@@ -13,6 +13,8 @@
             $greet = "Selamat Sore,";
         } else if ($hour >= 18 && $hour <= 23 && $minute <= 59 && $second <= 59) {
             $greet = "Selamat Malam,";
+        } else {
+            $greet = "Hai";
         }
     ?>
     <div class="page-wrapper">
