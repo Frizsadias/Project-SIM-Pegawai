@@ -77,41 +77,12 @@
 			</a>
 			<!-- Header Title -->
 			<div class="page-title-box">
-				<h3><marquee direction="left" scrollamount="2">Selamat datang {{ Session::get('name') }}, anda telah login sebagai {{ Session::get('role_name') }}</marquee></h3>
 
 			</div>
 			<!-- /Header Title -->
 			<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
 			<!-- Header Menu -->
 			<ul class="nav user-menu">
-				<!-- Search -->
-				<li class="nav-item">
-					<div class="top-nav-search">
-						<a href="javascript:void(0);" class="responsive-search"> <i class="fa fa-search"></i> </a>
-						<form action="search.html">
-							<input class="form-control" type="text" placeholder="Search here">
-							<button class="btn" type="submit">
-								<i class="fa fa-search"></i>
-							</button>
-						</form>
-					</div>
-				</li>
-				<!-- /Search -->
-
-				<!-- Flag -->
-				<li class="nav-item dropdown has-arrow flag-nav">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-						<img src="{{ URL::to('assets/img/flags/indo.png') }}" alt="" height="20"> Indonesia </a>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a href="javascript:void(0);" class="dropdown-item">
-						<img src="{{ URL::to('assets/img/flags/indo.png') }}" alt="" height="16"> Indonesia </a>
-						<a href="javascript:void(0);" class="dropdown-item">
-						<img src="{{ URL::to('assets/img/flags/us.png') }}" alt="" height="16"> English </a>
-						
-					</div>
-				</li>
-				<!-- /Flag -->
 
 				<!-- Profil -->
 				<li class="nav-item dropdown has-arrow main-drop">
