@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\AdminController; 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\Auth\LoginController;
@@ -42,19 +45,42 @@ function set_active($route) {
     return Request::path() == $route ? 'active' : '';
 }
 
+/** Website Link Redirection */
 Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/gate', function () {
+    return view('auth.login');
+})->name('masuk');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('daftar');
+
+Route::get('/lupa-kata-sandi', function () {
+    return view('auth.passwords.email');
+})->name('lupa kata sandi');
+
+
+/** Auth MultiLevel */
 Route::group(['middleware'=>'auth'],function()
 {
     Route::get('home',function()
     {
         return view('home');
     });
-    Route::get('home',function()
+    Route::get('admin',function()
     {
-        return view('home');
+        return view('admin');
+    });
+    Route::get('super-admin',function()
+    {
+        return view('super-admin');
+    });
+    Route::get('user',function()
+    {
+        return view('user');
     });
 });
 
@@ -65,16 +91,19 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
 });
 
-Route::middleware(['auth', 'role:Admin'])->group(function () {
-    Route::get('/admin/dashboard-admin', 'AdminController@dashboard');
+// ----------------------------- admin dashboard ------------------------------//
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'halamanadmin')->name('halamanadmin');
 });
 
-Route::middleware(['auth', 'role:Super Admin'])->group(function () {
-    Route::get('/super-admin/dashboard-super-admin', 'SuperAdminController@dashboard');
+// ----------------------------- super admin dashboard ------------------------------//
+Route::controller(SuperAdminController::class)->group(function () {
+    Route::get('/super-admin', 'halamansuperadmin')->name('halamansuperadmin');
 });
 
-Route::middleware(['auth', 'role:User'])->group(function () {
-    Route::get('/user/dashboard-user', 'UserController@dashboard');
+// ----------------------------- user dashboard ------------------------------//
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user', 'halamanuser')->name('halamanuser');
 });
 
 // -----------------------------settings-------------------------------------//
