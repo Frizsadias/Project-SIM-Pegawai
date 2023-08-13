@@ -9,14 +9,14 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">User Management</h3>
+                        <h3 class="page-title">Daftar Pengguna</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">User</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i>Tambah Pengguna</a>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="col-sm-6 col-md-3"> 
                     <div class="form-group form-focus select-focus">
                         <select class="select floating" id="type_role"> 
-                            <option selected disabled>-- Select Role Name --</option>
+                            <option selected disabled>-- Pilih Role Name --</option>
                             @foreach ($role_name as $name)
                                 <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
                             @endforeach
@@ -44,7 +44,7 @@
                 <div class="col-sm-6 col-md-3"> 
                     <div class="form-group form-focus select-focus">
                         <select class="select floating" id="type_status"> 
-                            <option selected disabled> --Select --</option>
+                            <option selected disabled> --Pilih --</option>
                             @foreach ($status_user as $status )
                             <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
                             @endforeach
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="col-sm-6 col-md-3">  
-                    <button type="sumit" class="btn btn-success btn-block btn_search"> Search </button>  
+                    <button type="sumit" class="btn btn-success btn-block btn_search"> Cari </button>  
                 </div>
             </div>
 
@@ -93,7 +93,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add New User</h5>
+                        <h5 class="modal-title">Tambah Pengguna Baru</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

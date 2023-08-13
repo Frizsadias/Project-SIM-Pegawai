@@ -8,10 +8,10 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">User Activity Log</h3>
+                        <h3 class="page-title">Riwayat Aktivitas</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">User Activity Log</li>
+                            <li class="breadcrumb-item active">Riwayat Aktivitas</li>
                         </ul>
                     </div>
                 </div>
