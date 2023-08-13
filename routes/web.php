@@ -25,6 +25,7 @@ use App\Http\Controllers\TrainersController;
 use App\Http\Controllers\TrainingTypeController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PersonalInformationController;
+use App\Http\Controllers\RekapitulasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -356,3 +357,5 @@ Route::controller(SalesController::class)->group(function () {
 Route::controller(PersonalInformationController::class)->group(function () {
     Route::post('user/information/save', 'saveRecord')->middleware('auth')->name('user/information/save');
 });
+
+Route::get('/super-admin', [RekapitulasiController::class, 'index'])->name('super-admin.rekapitulasi');
