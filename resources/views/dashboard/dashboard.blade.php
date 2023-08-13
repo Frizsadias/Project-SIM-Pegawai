@@ -1,21 +1,21 @@
 @extends('layouts.master')
 @section('content')
-    <?php  
-        $hour   = date ("G");
-        $minute = date ("i");
-        $second = date ("s");
-        $msg = " Today is " . date ("l, M. d, Y.");
-        if ($hour == 00 && $hour <= 11 && $minute <= 59 && $second <= 59) {
-            $greet = "Selamat Pagi,";
-        } else if ($hour >= 12 && $hour <= 15 && $minute <= 59 && $second <= 59) {
-            $greet = "Selamat Siang,";
-        } else if ($hour >= 16 && $hour <= 17 && $minute <= 59 && $second <= 59) {
-            $greet = "Selamat Sore,";
-        } else if ($hour >= 18 && $hour <= 23 && $minute <= 59 && $second <= 59) {
-            $greet = "Selamat Malam,";
-        } else {
-            $greet = "Hai";
-        }
+    <?php
+    $hour = date('G');
+    $minute = date('i');
+    $second = date('s');
+    $msg = ' Today is ' . date('l, M. d, Y.');
+    
+    if ($hour >= 0 && $hour <= 11 && $minute <= 59 && $second <= 59) {
+        $greet = 'Selamat Pagi,';
+    } elseif ($hour >= 12 && $hour <= 15 && $minute <= 59 && $second <= 59) {
+        $greet = 'Selamat Siang,';
+    } elseif ($hour >= 16 && $hour <= 17 && $minute <= 59 && $second <= 59) {
+        $greet = 'Selamat Sore,';
+    } elseif ($hour >= 18 && $hour <= 23 && $minute <= 59 && $second <= 59) {
+        $greet = 'Selamat Malam,';
+    }
+
     ?>
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -55,7 +55,7 @@
                     <div class="card dash-widget">
                         <div class="card-body"> <span class="dash-widget-icon"><i class="fa fa-user-plus"></i></span>
                             <div class="dash-widget-info">
-                                <h3>218</h3> <span>Pengguna</span>
+                                <h3>100</h3> <span>Pengguna</span>
                             </div>
                         </div>
                     </div>
@@ -63,8 +63,8 @@
             </div>
             {{-- message --}}
             {!! Toastr::message() !!}
-            </div>
         </div>
-        <!-- /Page Content -->
+    </div>
+    <!-- /Page Content -->
     </div>
 @endsection
