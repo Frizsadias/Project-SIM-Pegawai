@@ -33,9 +33,9 @@ class RiwayatPendidikanChart
         // ];
 
         return $this->chart->pieChart()
-        ->setTitle('Top 3 scorers of the team.')
-        ->setSubtitle('Season 2021.')
-        ->addData([40, 50, 30])
-        ->setLabels(['Player 7', 'Player 10', 'Player 9']);
+            ->setTitle('Riwayat Pendidikan')
+            ->setSubtitle('')
+            ->addData([40, 50, 30, 22, 15])
+            ->setLabels(['SD', 'SMP', 'SMA', 'S1', 'S2']);
     }
 }

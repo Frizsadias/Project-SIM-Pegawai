@@ -9,6 +9,6 @@ class RekapitulasiController extends Controller
 {
     public function index(RiwayatPendidikanChart $chart)
     {
-        return view('users.index', ['chart' => $chart->build()]);
+        return view('rekapitulasi.super-admin', ['chart' => $chart->build()]);
     }
 }
