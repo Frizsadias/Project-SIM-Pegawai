@@ -27,11 +27,12 @@ class CreateUsersTable extends Migration
             $table->string('department')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('document')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
     }
-    
+
 
     /**
      * Reverse the migrations.

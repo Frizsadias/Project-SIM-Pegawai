@@ -31,6 +31,7 @@ class User extends Authenticatable
         'position',
         'department',
         'password',
+        'document'
     ];
 
     /**
