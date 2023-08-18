@@ -22,26 +22,23 @@ class UserManagementController extends Controller
     /** index page */
     public function index()
     {
-        if (Session::get('role_name') == 'Admin')
-        {
+        if (Session::get('role_name') == 'Admin') {
             $result      = DB::table('users')->get();
             $role_name   = DB::table('role_type_users')->get();
             $position    = DB::table('position_types')->get();
             $department  = DB::table('departments')->get();
             $status_user = DB::table('user_types')->get();
-            return view('usermanagement.user_control',compact('result','role_name','position','department','status_user'));
-        }else if (Session::get('role_name') == 'Super Admin')
-        {
+            return view('usermanagement.user_control', compact('result', 'role_name', 'position', 'department', 'status_user'));
+        } else if (Session::get('role_name') == 'Super Admin') {
             $result      = DB::table('users')->get();
             $role_name   = DB::table('role_type_users')->get();
             $position    = DB::table('position_types')->get();
             $department  = DB::table('departments')->get();
             $status_user = DB::table('user_types')->get();
-            return view('usermanagement.user_control',compact('result','role_name','position','department','status_user'));
-        }  else {
+            return view('usermanagement.user_control', compact('result', 'role_name', 'position', 'department', 'status_user'));
+        } else {
             return redirect()->route('home');
         }
-        
     }
 
     /** get list data and search */
@@ -68,23 +65,23 @@ class UserManagementController extends Controller
         $type_status = $request->type_status;
 
         /** search for name */
-        if(!empty($user_name)) {
-            $users->when($user_name,function($query) use ($user_name){
-                $query->where('name','LIKE','%'.$user_name.'%');
+        if (!empty($user_name)) {
+            $users->when($user_name, function ($query) use ($user_name) {
+                $query->where('name', 'LIKE', '%' . $user_name . '%');
             });
         }
 
         /** search for type_role */
-        if(!empty($type_role)) {
-            $users->when($type_role,function($query) use ($type_role){
-                $query->where('role_name',$type_role);
+        if (!empty($type_role)) {
+            $users->when($type_role, function ($query) use ($type_role) {
+                $query->where('role_name', $type_role);
             });
         }
 
         /** search for status */
-        if(!empty($type_status)) {
-            $users->when($type_status,function($query) use ($type_status){
-                $query->where('status',$type_status);
+        if (!empty($type_status)) {
+            $users->when($type_status, function ($query) use ($type_status) {
+                $query->where('status', $type_status);
             });
         }
 
@@ -120,15 +117,17 @@ class UserManagementController extends Controller
             ->get();
         $data_arr = [];
         foreach ($records as $key => $record) {
-            $record->name = '<h2 class="table-avatar"><a href="'.url('employee/profile/' . $record->user_id).'" class="name">'.'<img class="avatar" data-avatar='.$record->avatar.' src="'.url('/assets/images/'.$record->avatar).'">' .$record->name.'</a></h2>';
-            if ($record->role_name == 'Admin') { /** color role name */
-                $role_name = '<span class="badge bg-inverse-danger role_name">'.$record->role_name.'</span>';
+            $record->name = '<h2 class="table-avatar"><a href="' . url('employee/profile/' . $record->user_id) . '" class="name">' . '<img class="avatar" data-avatar=' . $record->avatar . ' src="' . url('/assets/images/' . $record->avatar) . '">' . $record->name . '</a></h2>';
+            if ($record->role_name == 'Admin') {
+                /** color role name */
+                $role_name = '<span class="badge bg-inverse-danger role_name">' . $record->role_name . '</span>';
             } elseif ($record->role_name == 'Super Admin') {
-                $role_name = '<span class="badge bg-inverse-warning role_name">'.$record->role_name.'</span>';
+                $role_name = '<span class="badge bg-inverse-warning role_name">' . $record->role_name . '</span>';
             } elseif ($record->role_name == 'User') {
-                $role_name = '<span class="badge bg-inverse-info role_name">'.$record->role_name.'</span>';
+                $role_name = '<span class="badge bg-inverse-info role_name">' . $record->role_name . '</span>';
             } else {
-                $role_name = 'NULL'; /** null role name */
+                $role_name = 'NULL';
+                /** null role name */
             }
 
             /** status */
@@ -144,48 +143,48 @@ class UserManagementController extends Controller
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-dot-circle-o text-success"></i>
-                        <span class="status_s">'.$record->status.'</span>
+                        <span class="status_s">' . $record->status . '</span>
                     </a>
-                    '.$full_status.'
+                    ' . $full_status . '
                 ';
             } elseif ($record->status == 'Inactive') {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-dot-circle-o text-info"></i>
-                        <span class="status_s">'.$record->status.'</span>
+                        <span class="status_s">' . $record->status . '</span>
                     </a>
-                    '.$full_status.'
+                    ' . $full_status . '
                 ';
             } elseif ($record->status == 'Disable') {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-dot-circle-o text-danger"></i>
-                        <span class="status_s">'.$record->status.'</span>
+                        <span class="status_s">' . $record->status . '</span>
                     </a>
-                    '.$full_status.'
+                    ' . $full_status . '
                 ';
             } else {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-dot-circle-o text-dark"></i>
-                        <span class="statuss">'.$record->status.'</span>
+                        <span class="statuss">' . $record->status . '</span>
                     </a>
-                    '.$full_status.'
+                    ' . $full_status . '
                 ';
             }
 
-            $data_arr [] = [
-                "no"           => '<span class="id" data-id = '.$record->id.'>'.$start + ($key + 1).'</span>',
+            $data_arr[] = [
+                "no"           => '<span class="id" data-id = ' . $record->id . '>' . $start + ($key + 1) . '</span>',
                 "name"         => $record->name,
-                "user_id"      => '<span class="user_id">'.$record->user_id.'</span>',
-                "email"        => '<span class="email">'.$record->email.'</span>',
-                "position"     => '<span class="position">'.$record->position.'</span>',
-                "phone_number" => '<span class="phone_number">'.$record->phone_number.'</span>',
+                "user_id"      => '<span class="user_id">' . $record->user_id . '</span>',
+                "email"        => '<span class="email">' . $record->email . '</span>',
+                "position"     => '<span class="position">' . $record->position . '</span>',
+                "phone_number" => '<span class="phone_number">' . $record->phone_number . '</span>',
                 "join_date"    => $record->join_date,
                 "role_name"    => $role_name,
                 "status"       => $status,
-                "department"   => '<span class="department">'.$record->department.'</span>',
-                "action"       => 
+                "department"   => '<span class="department">' . $record->department . '</span>',
+                "action"       =>
                 '
                 <td>
                     <div class="dropdown dropdown-action">
@@ -193,10 +192,10 @@ class UserManagementController extends Controller
                             <i class="material-icons">more_vert</i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item userUpdate" data-toggle="modal" data-id="'.$record->id.'" data-target="#edit_user">
+                            <a class="dropdown-item userUpdate" data-toggle="modal" data-id="' . $record->id . '" data-target="#edit_user">
                                 <i class="fa fa-pencil m-r-5"></i> Edit
                             </a>
-                            <a class="dropdown-item userDelete" data-toggle="modal" data-id="'.$record->id.'" data-target="#delete_user">
+                            <a class="dropdown-item userDelete" data-toggle="modal" data-id="' . $record->id . '" data-target="#delete_user">
                                 <i class="fa fa-trash-o m-r-5"></i> Delete
                             </a>
                         </div>
@@ -218,42 +217,39 @@ class UserManagementController extends Controller
     public function activityLog()
     {
         $activityLog = DB::table('user_activity_logs')->get();
-        return view('usermanagement.user_activity_log',compact('activityLog'));
+        return view('usermanagement.user_activity_log', compact('activityLog'));
     }
 
     /** activity log */
     public function activityLogInLogOut()
     {
         $activityLog = DB::table('activity_logs')->get();
-        return view('usermanagement.activity_log',compact('activityLog'));
+        return view('usermanagement.activity_log', compact('activityLog'));
     }
 
     /** profile user */
     public function profile()
-    {   
+    {
         $profile = Session::get('user_id'); // get user_id session
-        $userInformation = PersonalInformation::where('user_id',$profile)->first(); // user information
+        $userInformation = PersonalInformation::where('user_id', $profile)->first(); // user information
         $user = DB::table('users')->get();
-        $employees = DB::table('profile_information')->where('user_id',$profile)->first();
+        $employees = DB::table('profile_information')->where('user_id', $profile)->first();
 
         /** emergency contact in user profile */
-        $emergencyContact = UserEmergencyContact::where('user_id',Session::get('user_id'))->first();
+        $emergencyContact = UserEmergencyContact::where('user_id', Session::get('user_id'))->first();
 
-        if(empty($employees))
-        {
-            $information = DB::table('profile_information')->where('user_id',$profile)->first();
-            return view('usermanagement.profile_user',compact('information','user','userInformation','emergencyContact'));
-
+        if (empty($employees)) {
+            $information = DB::table('profile_information')->where('user_id', $profile)->first();
+            return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
         } else {
             $user_id = $employees->user_id;
-            if($user_id == $profile)
-            {
-                $information = DB::table('profile_information')->where('user_id',$profile)->first();
-                return view('usermanagement.profile_user',compact('information','user','userInformation','emergencyContact'));
+            if ($user_id == $profile) {
+                $information = DB::table('profile_information')->where('user_id', $profile)->first();
+                return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile_user',compact('information','user','userInformation','emergencyContact'));
-            } 
+                return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+            }
         }
     }
 
@@ -261,23 +257,19 @@ class UserManagementController extends Controller
     public function profileInformation(Request $request)
     {
         try {
-            if(!empty($request->images))
-            {
+            if (!empty($request->images)) {
                 $image_name = $request->hidden_image;
                 $image      = $request->file('images');
-                if($image_name =='photo_defaults.jpg')
-                {
-                    if($image != '')
-                    {
+                if ($image_name == 'photo_defaults.jpg') {
+                    if ($image != '') {
                         $image_name = rand() . '.' . $image->getClientOriginalExtension();
                         $image->move(public_path('/assets/images/'), $image_name);
                     }
                 } else {
-                    if($image != '')
-                    {
+                    if ($image != '') {
                         $image_name = rand() . '.' . $image->getClientOriginalExtension();
                         $image->move(public_path('/assets/images/'), $image_name);
-                        unlink('assets/images/'.Auth::user()->avatar);
+                        unlink('assets/images/' . Auth::user()->avatar);
                     }
                 }
                 $update = [
@@ -285,8 +277,8 @@ class UserManagementController extends Controller
                     'name'   => $request->name,
                     'avatar' => $image_name,
                 ];
-                User::where('user_id',$request->user_id)->update($update);
-            } 
+                User::where('user_id', $request->user_id)->update($update);
+            }
 
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;
@@ -303,17 +295,17 @@ class UserManagementController extends Controller
             $information->designation  = $request->designation;
             $information->reports_to   = $request->reports_to;
             $information->save();
-            
+
             DB::commit();
-            Toastr::success('Profile Information successfully :)','Success');
+            Toastr::success('Profile Information successfully :)', 'Success');
             return redirect()->back();
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Add Profile Information fail :)','Error');
+            Toastr::error('Add Profile Information fail :)', 'Error');
             return redirect()->back();
         }
     }
-   
+
     /** save new user */
     public function addNewUserSave(Request $request)
     {
@@ -323,18 +315,18 @@ class UserManagementController extends Controller
             'phone'     => 'required|min:11|numeric',
             'role_name' => 'required|string|max:255',
             'position'  => 'required|string|max:255',
-            'department'=> 'required|string|max:255',
+            'department' => 'required|string|max:255',
             'status'    => 'required|string|max:255',
             'image'     => 'required|image',
             'password'  => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
         ]);
         DB::beginTransaction();
-        try{
+        try {
             $dt       = Carbon::now();
             $todayDate = $dt->toDayDateTimeString();
 
-            $image = time().'.'.$request->image->extension();  
+            $image = time() . '.' . $request->image->extension();
             $request->image->move(public_path('assets/images'), $image);
 
             $user = new User;
@@ -350,20 +342,20 @@ class UserManagementController extends Controller
             $user->password     = Hash::make($request->password);
             $user->save();
             DB::commit();
-            Toastr::success('Create new account successfully :)','Success');
+            Toastr::success('Create new account successfully :)', 'Success');
             return redirect()->route('userManagement');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('User add new account fail :)','Error');
+            Toastr::error('User add new account fail :)', 'Error');
             return redirect()->back();
         }
     }
-    
+
     /** update record */
     public function update(Request $request)
     {
         DB::beginTransaction();
-        try{
+        try {
             $user_id       = $request->user_id;
             $name         = $request->name;
             $email        = $request->email;
@@ -377,7 +369,7 @@ class UserManagementController extends Controller
             $todayDate = $dt->toDayDateTimeString();
             $image_name = $request->hidden_image;
             $image = $request->file('images');
-            if($image_name =='photo_defaults.jpg') {
+            if ($image_name == 'photo_defaults.jpg') {
                 if (empty($image)) {
                     $image_name = $image_name;
                 } else {
@@ -386,12 +378,12 @@ class UserManagementController extends Controller
                 }
             } else {
                 if (!empty($image)) {
-                    unlink('assets/images/'.$image_name);
+                    unlink('assets/images/' . $image_name);
                     $image_name = rand() . '.' . $image->getClientOriginalExtension();
                     $image->move(public_path('/assets/images/'), $image_name);
                 }
             }
-            
+
             $update = [
 
                 'user_id'       => $user_id,
@@ -416,14 +408,13 @@ class UserManagementController extends Controller
             ];
 
             DB::table('user_activity_logs')->insert($activityLog);
-            User::where('user_id',$request->user_id)->update($update);
+            User::where('user_id', $request->user_id)->update($update);
             DB::commit();
-            Toastr::success('User updated successfully :)','Success');
+            Toastr::success('User updated successfully :)', 'Success');
             return redirect()->route('userManagement');
-
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('User update fail :)','Error');
+            Toastr::error('User update fail :)', 'Error');
             return redirect()->back();
         }
     }
@@ -449,23 +440,24 @@ class UserManagementController extends Controller
 
             DB::table('user_activity_logs')->insert($activityLog);
 
-            if ($request->avatar == 'photo_defaults.jpg') { /** remove all information user */
+            if ($request->avatar == 'photo_defaults.jpg') {
+                /** remove all information user */
                 User::destroy($request->id);
                 PersonalInformation::destroy($request->id);
                 UserEmergencyContact::destroy($request->id);
             } else {
                 User::destroy($request->id);
-                unlink('assets/images/'.$request->avatar);
+                unlink('assets/images/' . $request->avatar);
                 PersonalInformation::destroy($request->id);
                 UserEmergencyContact::destroy($request->id);
             }
 
             DB::commit();
-            Toastr::success('User deleted successfully :)','Success');
-           return redirect()->back();
-        } catch(\Exception $e) {
+            Toastr::success('User deleted successfully :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('User deleted fail :)','Error');
+            Toastr::error('User deleted fail :)', 'Error');
             return redirect()->back();
         }
     }
@@ -475,7 +467,7 @@ class UserManagementController extends Controller
     {
         return view('settings.changepassword');
     }
-    
+
     /** change password in db */
     public function changePasswordDB(Request $request)
     {
@@ -485,9 +477,9 @@ class UserManagementController extends Controller
             'new_confirm_password' => ['same:new_password'],
         ]);
 
-        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
         DB::commit();
-        Toastr::success('User change successfully :)','Success');
+        Toastr::success('User change successfully :)', 'Success');
         return redirect()->intended('home');
     }
 
@@ -496,7 +488,7 @@ class UserManagementController extends Controller
     {
         /** validate form */
         $request->validate([
-            'name_primary' =>'required',
+            'name_primary' => 'required',
             'relationship_primary'   => 'required',
             'phone_primary'          => 'required',
             'phone_2_primary'        => 'required',
@@ -507,7 +499,7 @@ class UserManagementController extends Controller
         ]);
 
         try {
-            
+
             /** save or update to databases user_emergency_contacts table */
             $saveRecord = UserEmergencyContact::updateOrCreate(['user_id' => $request->user_id]);
             $saveRecord->name_primary           = $request->name_primary;
@@ -519,13 +511,13 @@ class UserManagementController extends Controller
             $saveRecord->phone_secondary        = $request->phone_secondary;
             $saveRecord->phone_2_secondary      = $request->phone_2_secondary;
             $saveRecord->save();
-            
+
             DB::commit();
-            Toastr::success('Add Emergency Contact successfully :)','Success');
+            Toastr::success('Add Emergency Contact successfully :)', 'Success');
             return redirect()->back();
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Add Emergency Contact fail :)','Error');
+            Toastr::error('Add Emergency Contact fail :)', 'Error');
             return redirect()->back();
         }
     }

@@ -78,7 +78,6 @@
                                     <th>Role</th>
                                     <th>Status</th>
                                     <th>Departement</th>
-                                    <th>Document</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -266,11 +265,6 @@
                                     <input class="form-control" type="file" id="image" name="images">
                                     <input type="hidden" name="hidden_image" id="e_image" value="">
                                 </div>
-                                <div class="col-sm-6"> 
-                                    <label>Document</label>
-                                    <input class="form-control" type="file" id="document" name="document">
-                                    <input type="hidden" name="hidden_document" id="e_document" value="">
-                                </div>
                             </div>
                             <br>
                             <div class="submit-section">
@@ -388,10 +382,6 @@
                     {
                         data: 'department',
                         name: 'department',
-                    },
-                    {
-                        data: 'document',
-                        name: 'document',
                     },
                     {
                         data: 'action',
