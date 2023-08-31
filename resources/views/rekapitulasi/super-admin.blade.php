@@ -9,7 +9,7 @@
         <meta name="viewport"
             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Chart Sample</title>
+        <title>Rekapitulasi</title>
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     </head>
 
@@ -21,7 +21,7 @@
                 {!! $chart->container() !!}
                 {!! $grafikAgama->container() !!}
                 {!! $grafikJenisKelamin->container() !!}
-
+                {!! $grafikPangkat->container() !!}
             </div>
 
         </div>
@@ -29,10 +29,12 @@
         <script src="{{ $chart->cdn() }}"></script>
         <script src="{{ $grafikAgama->cdn() }}"></script>
         <script src="{{ $grafikJenisKelamin->cdn() }}"></script>
+        <script src="{{ $grafikPangkat->cdn() }}"></script>
 
         {{ $chart->script() }}
         {{ $grafikAgama->script() }}
         {{ $grafikJenisKelamin->script() }}
+        {{ $grafikPangkat->script() }}
     </body>
 
     </html>

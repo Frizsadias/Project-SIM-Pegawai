@@ -10,6 +10,6 @@ class RekapitulasiController extends Controller
 {
     public function index(GrafikChart $chart)
     {
-        return view('rekapitulasi.super-admin', ['chart' => $chart->build(), 'grafikAgama' => $chart->grafikAgama(), 'grafikJenisKelamin' => $chart->grafikJenisKelamin()]);
+        return view('rekapitulasi.super-admin', ['chart' => $chart->build(), 'grafikAgama' => $chart->grafikAgama(), 'grafikJenisKelamin' => $chart->grafikJenisKelamin(), 'grafikPangkat' => $chart->grafikPangkat()]);
     }
 }

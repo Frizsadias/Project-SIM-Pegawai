@@ -39,4 +39,13 @@ class GrafikChart
             ->addData('Jenis Kelamin', [110, 125])
             ->setLabels(['Laki-Laki', 'Perempuan']);
     }
+
+    public function grafikPangkat(): \ArielMejiaDev\LarapexCharts\AreaChart
+    {
+        return $this->chart->areaChart()
+            ->setTitle('Jumlah Pegawai Berdasarkan Pangkat')
+            ->setSubtitle('')
+            ->addData('Pangkat', [8, 5, 7, 10])
+            ->setXAxis(['Pelaksana', 'Staf Muda I', 'Staf Madya I', 'Pelaksana Muda']);
+    }
 }
