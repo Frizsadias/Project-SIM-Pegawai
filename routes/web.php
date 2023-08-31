@@ -362,4 +362,10 @@ Route::controller(PersonalInformationController::class)->group(function () {
 // ----------------------- rekapitulasi  --------------------------//
 Route::controller(RekapitulasiController::class)->group(function () {
     Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
+    // Route::get('rekapitulasi', 'grafik_agama')->middleware('auth')->name('rekapitulasi');
+});
+
+// ----------------------- rekapitulasi  --------------------------//
+Route::controller(RekapitulasiController::class)->group(function () {
+    Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
 });
