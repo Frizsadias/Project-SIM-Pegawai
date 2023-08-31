@@ -12,10 +12,10 @@ class RiwayatController extends Controller
      *
      * @return void
      */
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
@@ -24,8 +24,6 @@ class RiwayatController extends Controller
      */
     public function index()
     {
-        $riwayataktivitas = activity_logs::count();
-        return view('dashboard.dashboard', compact('Riwayat_Aktivitas'));
-
+        return view('riwayat.riwayat-pendidikan');
     }
 }

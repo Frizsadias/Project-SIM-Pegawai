@@ -26,6 +26,7 @@ use App\Http\Controllers\TrainingTypeController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RekapitulasiController;
+use App\Http\Controllers\RiwayatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,7 +153,7 @@ Route::controller(ResetPasswordController::class)->group(function () {
     Route::post('reset-password', 'updatePassword');
 });
 
-// ----------------------------- manage users -------d-----------------------//
+// ----------------------------- manage users ------------------------------//
 Route::controller(UserManagementController::class)->group(function () {
     Route::get('profile_user', 'profile')->middleware('auth')->name('profile_user');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');
@@ -362,10 +363,9 @@ Route::controller(PersonalInformationController::class)->group(function () {
 // ----------------------- rekapitulasi  --------------------------//
 Route::controller(RekapitulasiController::class)->group(function () {
     Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
-    // Route::get('rekapitulasi', 'grafik_agama')->middleware('auth')->name('rekapitulasi');
 });
 
-// ----------------------- rekapitulasi  --------------------------//
-Route::controller(RekapitulasiController::class)->group(function () {
-    Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
+// ----------------------- riwayat  --------------------------//
+Route::controller(RiwayatController::class)->group(function () {
+    Route::get('riwayat', 'index')->middleware('auth')->name('riwayat');
 });

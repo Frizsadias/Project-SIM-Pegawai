@@ -28,6 +28,13 @@
                                     href="{{ route('activity/login/logout') }}">Aktivitas Pengguna</a></li>
                         </ul>
                     </li>
+                    <li class="menu-title"> <span>Informasi Riwayat</span> </li>
+                    <li class="{{ set_active(['riwayat']) }}">
+                        <a href="{{ route('riwayat') }}" class="{{ set_active(['riwayat']) ? 'noti-dot' : '' }}">
+                            <i class="la la-edit"></i>
+                            <span> Riwayat Pendidikan</span>
+                        </a>
+                    </li>
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
                     <li class="{{ set_active(['profile_user']) }}">
                         <a href="{{ route('profile_user') }}"
