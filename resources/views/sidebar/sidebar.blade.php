@@ -28,13 +28,38 @@
                                     href="{{ route('activity/login/logout') }}">Aktivitas Pengguna</a></li>
                         </ul>
                     </li>
-                    <li class="menu-title"> <span>Informasi Riwayat</span> </li>
-                    <li class="{{ set_active(['riwayat']) }}">
-                        <a href="{{ route('riwayat') }}" class="{{ set_active(['riwayat']) ? 'noti-dot' : '' }}">
-                            <i class="la la-edit"></i>
-                            <span> Riwayat Pendidikan</span>
+                    <li class="menu-title">
+                        <span>Informasi Riwayat</span>
+                    </li>
+                    <li class="{{ request()->routeIs('riwayat.index') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat.index') }}"
+                            class="{{ request()->routeIs('riwayat.index') ? 'noti-dot' : '' }}">
+                            <i class="la la-mortar-board"></i>
+                            <span>Riwayat Pendidikan</span>
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('riwayat.r_golongan') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat.r_golongan') }}"
+                            class="{{ request()->routeIs('riwayat.r_golongan') ? 'noti-dot' : '' }}">
+                            <i class="la la-group"></i>
+                            <span>Riwayat Golongan</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('riwayat.r_jabatan') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat.r_jabatan') }}"
+                            class="{{ request()->routeIs('riwayat.r_jabatan') ? 'noti-dot' : '' }}">
+                            <i class="la la-area-chart"></i>
+                            <span>Riwayat Jabatan</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('riwayat.r_diklat') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat.r_diklat') }}"
+                            class="{{ request()->routeIs('riwayat.r_diklat') ? 'noti-dot' : '' }}">
+                            <i class="la la-suitcase"></i>
+                            <span>Riwayat Diklat</span>
+                        </a>
+                    </li>
+
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
                     <li class="{{ set_active(['profile_user']) }}">
                         <a href="{{ route('profile_user') }}"

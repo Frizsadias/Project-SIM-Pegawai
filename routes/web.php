@@ -365,7 +365,15 @@ Route::controller(RekapitulasiController::class)->group(function () {
     Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
 });
 
-// ----------------------- riwayat  --------------------------//
-Route::controller(RiwayatController::class)->group(function () {
-    Route::get('riwayat', 'index')->middleware('auth')->name('riwayat');
+// // ----------------------- riwayat  --------------------------//
+// Route::controller(RiwayatController::class)->group(function () {
+//     Route::get('riwayat', 'index')->middleware('auth')->name('riwayat');
+//     Route::get('riwayat', 'r_golongan')->middleware('auth')->name('riwayat');
+// });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+    Route::get('riwayat/golongan', [RiwayatController::class, 'r_golongan'])->name('riwayat.r_golongan');
+    Route::get('riwayat/jabatan', [RiwayatController::class, 'r_jabatan'])->name('riwayat.r_jabatan');
+    Route::get('riwayat/diklat', [RiwayatController::class, 'r_diklat'])->name('riwayat.r_diklat');
 });

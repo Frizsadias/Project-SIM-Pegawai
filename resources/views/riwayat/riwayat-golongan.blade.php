@@ -10,19 +10,21 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Riwayat Pendidikan</h3>
+                        <h3 class="page-title">Riwayat Golongan</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Informasi Riwayat</a></li>
-                            <li class="breadcrumb-item active">Riwayat Pendidikan</li>
+                            <li class="breadcrumb-item active">Riwayat Golongan</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
                         <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i
-                                class="fa fa-plus"></i> Tambah Riwayat Pendidikan</a>
+                                class="fa fa-plus"></i> Tambah Riwayat Golongan</a>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
+
+            <!-- /Search Filter -->
 
             <div class="row">
                 <div class="col-md-12">
@@ -31,14 +33,15 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="tingkat_pendidikan">Tingkat Pendidikan</th>
-                                    <th class="pendidikan">Pendidikan</th>
-                                    <th class="tahun_lulus">Tahun Lulus</th>
-                                    <th class="no_ijazah">Nomor Ijazah</th>
-                                    <th class="nama_sekolah">Nama Sekolah</th>
-                                    <th class="gelar_depan">Gelar Depan</th>
-                                    <th class="gelar_belakang">Gelar Belakang</th>
-                                    <th class="jenis_pendidikan">Jenis Pendidikan</th>
+                                    <th class="golongan">Golongan</th>
+                                    <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
+                                    <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan (Tahun)</th>
+                                    <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan (Bulan)</th>
+                                    <th class="tmt_golongan">TMT Golongan</th>
+                                    <th class="no_teknis_bkn">No Teknis BKN</th>
+                                    <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
+                                    <th class="no_sk">No SK</th>
+                                    <th class="tanggal_sk">Tanggal SK</th>
                                 </tr>
                             </thead>
                             {{-- <tbody>
@@ -113,7 +116,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Riwayat Pendidikan</h5>
+                        <h5 class="modal-title">Tambah Riwayat Golongan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -124,56 +127,62 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Pendidikan</label>
-                                        <input class="form-control" type="text" name="tingkat_pendidikan">
+                                        <label>Golongan</label>
+                                        <input class="form-control" type="text" name="golongan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pendidikan</label>
-                                        <input class="form-control" type="text" name="pendidikan">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Tahun Lulus</label>
-                                        <input class="form-control" type="text" name="tahun_lulus">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nomor Ijazah</label>
-                                        <input class="form-control" type="text" name="no_ijazah">
+                                        <label>Jenis Kenaikan Pangkat (KP)</label>
+                                        <input class="form-control" type="text" name="jenis_kenaikan_pangkat">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama Sekolah</label>
-                                        <input class="form-control" type="text" name="nama_sekolah">
+                                        <label>Masa Kerja Golongan (Tahun)</label>
+                                        <input class="form-control" type="text" name="masa_kerja_golongan_tahun">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Gelar Depan</label>
-                                        <input class="form-control" type="text" name="gelar_depan">
+                                        <label>Masa Kerja Golongan (Bulan)</label>
+                                        <input class="form-control" type="text" name="masa_kerja_golongan_bulan">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Gelar Belakang</label>
-                                        <input class="form-control" type="text" name="gelar_belakang">
+                                        <label>TMT Golongan</label>
+                                        <input class="form-control" type="text" name="tmt_golongan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Pendidikan</label>
-                                        <input class="form-control" type="text" name="jenis_pendidikan">
+                                        <label>Nomor Pertimbangan Teknis BKN</label>
+                                        <input class="form-control" type="text" name="no_teknis_bkn">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tanggal Pertimbangan Teknis BKN</label>
+                                        <input class="form-control" type="text" name="tanggal_teknis_bkn">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nomor SK</label>
+                                        <input class="form-control" type="text" name="no_sk">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tanggal SK</label>
+                                        <input class="form-control" type="text" name="tanggal_sk">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -193,12 +202,12 @@
         </div>
         <!-- /Add Expense Modal -->
 
-        <!-- Edit Riwayat Pendidikan Modal -->
+        <!-- Edit Riwayat Golongan Modal -->
         <div id="edit_expense" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Riwayat Pendidikan</h5>
+                        <h5 class="modal-title">Edit Riwayat Golongan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -210,9 +219,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Pendidikan</label>
-                                        <input class="form-control" type="text" name="tingkat_pendidikan"
-                                            id="e_tingkat_pendidikan" value="">
+                                        <label>Tingkat Golongan</label>
+                                        <input class="form-control" type="text" name="tingkat_Golongan"
+                                            id="e_tingkat_Golongan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
