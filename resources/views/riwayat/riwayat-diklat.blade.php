@@ -33,15 +33,14 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="Diklat">Diklat</th>
-                                    <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
-                                    <th class="jenis_kerja_Diklat_tahun">Masa Kerja Diklat (Tahun)</th>
-                                    <th class="jenis_kerja_Diklat_bulan">Masa Kerja Diklat (Bulan)</th>
-                                    <th class="tmt_Diklat">TMT Diklat</th>
-                                    <th class="no_teknis_bkn">No Teknis BKN</th>
-                                    <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
-                                    <th class="no_sk">No SK</th>
-                                    <th class="tanggal_sk">Tanggal SK</th>
+                                    <th class="jenis_diklat"> Jenis Diklat</th>
+                                    <th class="nama_diklat">Nama Diklat</th>
+                                    <th class="Institusi Penyelenggara">Institusi Penyelenggara</th>
+                                    <th class="no_sertifikat">No Sertifikat</th>
+                                    <th class="tanggal_mulai">Tanggal Mulai</th>
+                                    <th class="tanggal_selesai">Tanggal Selesai</th>
+                                    <th class="tahun_diklat">Tahun Diklat</th>
+                                    <th class="durasi_jam">Durasi Jam</th>
                                 </tr>
                             </thead>
                             {{-- <tbody>
@@ -127,62 +126,56 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Diklat</label>
-                                        <input class="form-control" type="text" name="Diklat">
+                                        <label>Jenis Diklat</label>
+                                        <input class="form-control" type="text" name="jenis_diklat">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kenaikan Pangkat (KP)</label>
-                                        <input class="form-control" type="text" name="jenis_kenaikan_pangkat">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Masa Kerja Diklat (Tahun)</label>
-                                        <input class="form-control" type="text" name="masa_kerja_Diklat_tahun">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Masa Kerja Diklat (Bulan)</label>
-                                        <input class="form-control" type="text" name="masa_kerja_Diklat_bulan">
+                                        <label>Nama Diklat</label>
+                                        <input class="form-control" type="text" name="nama_diklat">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>TMT Diklat</label>
-                                        <input class="form-control" type="text" name="tmt_Diklat">
+                                        <label>Institusi Penyelenggara</label>
+                                        <input class="form-control" type="text" name="institusi_penyelenggara">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Pertimbangan Teknis BKN</label>
-                                        <input class="form-control" type="text" name="no_teknis_bkn">
+                                        <label>Nomor Sertifikat</label>
+                                        <input class="form-control" type="text" name="no_sertifikat">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Pertimbangan Teknis BKN</label>
-                                        <input class="form-control" type="text" name="tanggal_teknis_bkn">
+                                        <label>Tanggal Mulai</label>
+                                        <input class="form-control" type="text" name="tanggal_mulai">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor SK</label>
-                                        <input class="form-control" type="text" name="no_sk">
+                                        <label>Tanggal Selesai</label>
+                                        <input class="form-control" type="text" name="tanggal_selesai">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tahun Diklat</label>
+                                        <input class="form-control" type="text" name="tahun_diklat">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal SK</label>
-                                        <input class="form-control" type="text" name="tanggal_sk">
+                                        <label>Durasi Jam</label>
+                                            <input class="form-control" type="text" name="durasi_jam">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

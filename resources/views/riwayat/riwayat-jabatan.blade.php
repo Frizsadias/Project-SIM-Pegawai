@@ -36,25 +36,14 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="Jabatan
-    ">Jabatan
-
-                                    </th>
-                                    <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
-                                    <th class="jenis_kerja_Jabatan
-    _tahun">Masa Kerja Jabatan
-                                        (Tahun)</th>
-                                    <th class="jenis_kerja_Jabatan
-    _bulan">Masa Kerja Jabatan
-                                        (Bulan)</th>
-                                    <th class="tmt_Jabatan
-    ">TMT Jabatan
-
-                                    </th>
-                                    <th class="no_teknis_bkn">No Teknis BKN</th>
-                                    <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
+                                    <th class="jenis_jabatan"> Jenis Jabatan</th>
+                                    <th class="satuan_kerja">Satuan Kerja</th>
+                                    <th class="satuan_kerja_induk">Satuan Kerja Induk</th>
+                                    <th class="unit_organisasi">Unit Organisasi</th>
                                     <th class="no_sk">No SK</th>
                                     <th class="tanggal_sk">Tanggal SK</th>
+                                    <th class="tmt_jabatan">TMT Jabatan</th>
+                                    <th class="tmt_pelantikan">TMT Pelantikan</th>
                                 </tr>
                             </thead>
                             {{-- <tbody>
@@ -141,62 +130,32 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jabatan
-
-                                        </label>
-                                        <input class="form-control" type="text" name="Jabatan
-        ">
+                                        <label>Jenis Jabatan</label>
+                                        <input class="form-control" type="text" name="jenis_jabatan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kenaikan Pangkat (KP)</label>
-                                        <input class="form-control" type="text" name="jenis_kenaikan_pangkat">
+                                        <label>Satuan Kerja</label>
+                                        <input class="form-control" type="text" name="satuan_kerja">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Masa Kerja Jabatan
-                                            (Tahun)</label>
-                                        <input class="form-control" type="text" name="masa_kerja_Jabatan
-        _tahun">
+                                        <label>Satuan Kerja Induk</label>
+                                        <input class="form-control" type="text" name="satuan_kerja_induk">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Masa Kerja Jabatan
-                                            (Bulan)</label>
-                                        <input class="form-control" type="text" name="masa_kerja_Jabatan
-        _bulan">
+                                        <label>Unit Organisasi</label>
+                                        <input class="form-control" type="text" name="unit_organisasi">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>TMT Jabatan
-
-                                        </label>
-                                        <input class="form-control" type="text" name="tmt_Jabatan
-        ">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nomor Pertimbangan Teknis BKN</label>
-                                        <input class="form-control" type="text" name="no_teknis_bkn">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Tanggal Pertimbangan Teknis BKN</label>
-                                        <input class="form-control" type="text" name="tanggal_teknis_bkn">
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
@@ -207,6 +166,20 @@
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
                                         <input class="form-control" type="text" name="tanggal_sk">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>TMT Jabatan</label>
+                                        <input class="form-control" type="text" name="tmt_jabatan">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>TMT Pelantikan</label>
+                                        <input class="form-control" type="text" name="tmt_pelantikan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
