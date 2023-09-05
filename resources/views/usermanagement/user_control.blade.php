@@ -276,7 +276,34 @@
             </div>
         </div>
         <!-- /Edit Salary Modal -->
-				
+
+        <!-- Unggah Dokumen Modal -->
+        <div id="unggah_user" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Unggah Dokumen</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <br>
+                    <div class="modal-body">
+                        <form action="{{ route('upload.pdf') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="user_id" id="e_id" value="">
+                            <input type="file" name="pdf_file">
+                            <br>
+                            <div class="submit-section">
+                                <button type="submit" class="btn btn-primary submit-btn">Unggah Dokumen</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Edit Salary Modal -->
+
         <!-- Delete User Modal -->
         <div class="modal custom-modal fade" id="delete_user" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
@@ -409,6 +436,16 @@
             $('#e_department').val(_this.find('.department').text());
             $('#e_status').val(_this.find('.status_s').text()).change();
             $('#e_image').val(_this.find('.avatar').data('avatar'));
+        });
+    </script>
+
+    {{-- unggah js --}}
+    <script>
+        $(document).on('click','.userUpload',function()
+        {
+            var _this = $(this).parents('tr');
+            $('#e_id').val(_this.find('.user_id').text());
+            $('#e_pdf').val(_this.find('.pdf').data('pdf'));
         });
     </script>
 

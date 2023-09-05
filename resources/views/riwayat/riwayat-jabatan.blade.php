@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    {{-- message --}}
-    {!! Toastr::message() !!}
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -10,25 +9,20 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Riwayat Jabatan
-                        </h3>
+                        <h3 class="page-title">Riwayat Jabatan</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Informasi Riwayat</a></li>
-                            <li class="breadcrumb-item active">Riwayat Jabatan
-
-                            </li>
+                            <li class="breadcrumb-item active">Riwayat Jabatan</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i
-                                class="fa fa-plus"></i> Tambah Riwayat Jabatan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i class="fa fa-plus"></i> Tambah Riwayat Jabatan</a>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
 
-            <!-- /Search Filter -->
-
+            <!-- Search Filter -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">

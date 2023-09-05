@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    {{-- message --}}
-    {!! Toastr::message() !!}
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -17,13 +16,13 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pendidikan"><i
-                                class="fa fa-plus"></i> Tambah Riwayat Pendidikan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pendidikan"><i class="fa fa-plus"></i> Tambah Riwayat Pendidikan</a>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
 
+            <!-- Search Filter -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">

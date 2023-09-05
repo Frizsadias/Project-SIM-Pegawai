@@ -104,6 +104,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/user', 'halamanuser')->name('halamanuser');
 });
 
+
+// ----------------------------- Upload PDF ------------------------------//
+Route::post('upload/pdf', 'PDFController@upload')->name('upload.pdf');
+
 // -----------------------------settings-------------------------------------//
 Route::controller(SettingController::class)->group(function () {
     Route::get('company/settings/page', 'companySettings')->middleware('auth')->name('company/settings/page');
