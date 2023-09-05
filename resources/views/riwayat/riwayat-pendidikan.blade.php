@@ -16,11 +16,48 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pendidikan"><i class="fa fa-plus"></i> Tambah Riwayat Pendidikan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pendidikan"><i
+                                class="fa fa-plus"></i> Tambah Riwayat Pendidikan</a>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
+
+            <!-- Search Filter -->
+            <div class="row filter-row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" id="user_name" name="user_name">
+                        <label class="focus-label">Nama Sekolah</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus select-focus">
+                        <select class="select floating" id="type_role">
+                            <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
+                            {{-- @foreach ($role_name as $name)
+                                <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
+                            @endforeach --}}
+                        </select>
+                        <label class="focus-label">Tingkat Pendidikan</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus select-focus">
+                        <select class="select floating" id="type_status">
+                            <option selected disabled> --Pilih Jenis Pendidikan --</option>
+                            {{-- @foreach ($status_user as $status)
+                            <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
+                            @endforeach --}}
+                        </select>
+                        <label class="focus-label">Jenis Pendidikan</label>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <button type="sumit" class="btn btn-success btn-block btn_search"> Cari </button>
+                </div>
+            </div>
 
             <!-- Search Filter -->
             <div class="row">
@@ -77,6 +114,9 @@
                     </div>
                 </div>
             </div>
+
+            {{-- message --}}
+            {!! Toastr::message() !!}
         </div>
         <!-- /Page Content -->
 
@@ -96,9 +136,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Pendidikan</label>
-                                        <input class="form-control" type="text" name="tingkat_pendidikan">
+                                        <label for="tingkat_pendidikan">Tingkat Pendidikan</label>
+                                        <select class="form-control" name="tingkat_pendidikan" id="tingkat_pendidikan">
+                                            <option selected disabled> --Pilih Tingkat Pendidikan --</option>
+                                            <option value="SLTP">SLTP</option>
+                                            <option value="SLTA">SLTA</option>
+                                            <option value="Diploma I">Diploma I</option>
+                                            <option value="Diploma II">Diploma II</option>
+                                        </select>
                                     </div>
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -145,15 +192,33 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
-                                        <input class="form-control" type="text" name="jenis_pendidikan">
+                                        <br>
+                                        <input type="checkbox" name="jenis_pendidikan" value="pendidikan_pertama">
+                                        Pendidikan Pertama
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen</label>
+                                        <label>Dokumen Transkrip Nilai</label>
                                         <input class="form-control" type="file" name="dokumen">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Ijazah</label>
+                                        <input class="form-control" type="file" name="dokumen">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dokumen">Dokumen Pencantuman Gelar </label>
+                                        <input class="form-control" type="file" name="dokumen" id="dokumen">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Submit</button>

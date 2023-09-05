@@ -16,11 +16,48 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i class="fa fa-plus"></i> Tambah Riwayat Golongan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i
+                                class="fa fa-plus"></i> Tambah Riwayat Golongan</a>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
+
+            <!-- Search Filter -->
+            <div class="row filter-row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" id="user_name" name="user_name">
+                        <label class="focus-label">User Name</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus select-focus">
+                        <select class="select floating" id="type_role">
+                            <option selected disabled>-- Select Role Name --</option>
+                            {{-- @foreach ($role_name as $name)
+                                <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
+                            @endforeach --}}
+                        </select>
+                        <label class="focus-label">Role Name</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus select-focus">
+                        <select class="select floating" id="type_status">
+                            <option selected disabled> --Select --</option>
+                            {{-- @foreach ($status_user as $status)
+                            <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
+                            @endforeach --}}
+                        </select>
+                        <label class="focus-label">Status</label>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <button type="sumit" class="btn btn-success btn-block btn_search"> Search </button>
+                </div>
+            </div>
 
             <!-- Search Filter -->
             <div class="row">
@@ -105,6 +142,9 @@
                     </div>
                 </div>
             </div>
+
+            {{-- message --}}
+            {!! Toastr::message() !!}
         </div>
         <!-- /Page Content -->
 
@@ -167,7 +207,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Pertimbangan Teknis BKN</label>
-                                        <input class="form-control" type="text" name="tanggal_teknis_bkn">
+                                        <input class="form-control" type="date" name="tanggal_teknis_bkn">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -179,13 +219,21 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
-                                        <input class="form-control" type="text" name="tanggal_sk">
+                                        <input class="form-control" type="date" name="tanggal_sk">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen</label>
+                                        <label>Dokumen SK KP</label>
                                         <input class="form-control" type="file" name="dokumen">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Pertimbangan Teknis KP</label>
+                                        <input class="form-control" type="file" name="dokumen">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
