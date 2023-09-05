@@ -65,7 +65,6 @@
                     <div class="table-responsive">
                         <table class="table table-striped custom-table mb-0 datatable">
                             <thead>
-                                <tr>
                                     <th>No</th>
                                     <th class="tingkat_pendidikan">Tingkat Pendidikan</th>
                                     <th class="pendidikan">Pendidikan</th>
@@ -77,21 +76,23 @@
                                     <th class="jenis_pendidikan">Jenis Pendidikan</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                @foreach ($data as $key => $item)
-                                    <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td hidden class="id">{{ $item->id }}</td>
-                                        <td class="tingkat_pendidikan">{{ $item->tingkat_pendidikan }}</td>
-                                        <td class="pendidikan">{{ $item->pendidikan }}</td>
-                                        <td class="tahun_lulus">{{ $item->tahun_lulus }}</td>
-                                        <td class="no_ijazah">{{ $item->no_ijazah }}</td>
-                                        <td class="nama_sekolah">{{ $item->nama_sekolah }}</td>
-                                        <td class="gelar_depan">{{ $item->gelar_depan }}</td>
-                                        <td class="gelar_belakang">{{ $item->gelar_belakang }}</td>
-                                        <td class="jenis_pendidikan">{{ $item->jenis_pendidikan }}</td>
-                                        <td hidden class="dokumen">{{ $item->dokumen }}</td>
-
+                            <tbody>
+                                @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
+                                <tr>
+                                    <td>{{ ++$sqlpendidikan }}</td>
+                                    <td hidden class="id">{{ $result_pendidikan->id }}</td>
+                                    <td class="tingkat_pendidikan">{{ $result_pendidikan->tingkat_pendidikan }}</td>
+                                    <td class="pendidikan">{{ $result_pendidikan->pendidikan }}</td>
+                                    <td class="tahun_lulus">{{ $result_pendidikan->tahun_lulus }}</td>
+                                    <td class="no_ijazah">{{ $result_pendidikan->no_ijazah }}</td>
+                                    <td class="nama_sekolah">{{ $result_pendidikan->nama_sekolah }}</td>
+                                    <td class="gelar_depan">{{ $result_pendidikan->gelar_depan }}</td>
+                                    <td class="gelar_belakang">{{ $result_pendidikan->gelar_belakang }}</td>
+                                    <td class="jenis_pendidikan">{{ $result_pendidikan->jenis_pendidikan }}</td>
+                                    <td hidden class="dokumen">{{ $result_pendidikan->dokumen }}</td>
+                                @endforeach
+                            </tbody>
+                            <!-- Contoh Function Edit & Delete
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
@@ -106,10 +107,7 @@
                                                             class="fa fa-trash-o m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody> --}}
+                                        </td>-->
                         </table>
                     </div>
                 </div>
@@ -363,6 +361,7 @@
     <!-- /Page Wrapper -->
 
 @section('script')
+
     {{-- update js --}}
     <script>
         $(document).on('click', '.edit_expense', function() {
@@ -388,6 +387,7 @@
             $(_option).appendTo("#e_status");
         });
     </script>
+
     {{-- delete model --}}
     <script>
         $(document).on('click', '.delete_expense', function() {

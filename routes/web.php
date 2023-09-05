@@ -371,10 +371,10 @@ Route::controller(RekapitulasiController::class)->group(function () {
 
 // ----------------------- riwayat  --------------------------//
 Route::middleware(['auth'])->group(function () {
-    Route::get('riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
-    Route::get('riwayat/golongan', [RiwayatController::class, 'r_golongan'])->name('riwayat.r_golongan');
-    Route::get('riwayat/jabatan', [RiwayatController::class, 'r_jabatan'])->name('riwayat.r_jabatan');
-    Route::get('riwayat/diklat', [RiwayatController::class, 'r_diklat'])->name('riwayat.r_diklat');
-    Route::get('riwayat/pendidikan', [RiwayatController::class, 'pendidikan'])->name('riwayat.pendidikan');
+    Route::get('riwayat/pendidikan', [RiwayatController::class, 'pendidikan'])->name('riwayat-pendidikan');
+    Route::get('riwayat/golongan', [RiwayatController::class, 'golongan'])->name('riwayat-golongan');
+    Route::get('riwayat/jabatan', [RiwayatController::class, 'jabatan'])->name('riwayat-jabatan');
+    Route::get('riwayat/diklat', [RiwayatController::class, 'diklat'])->name('riwayat-diklat');
     Route::post('pendidikan/save', [RiwayatController::class, 'saveRecord'])->name('pendidikan.save');
+
 });

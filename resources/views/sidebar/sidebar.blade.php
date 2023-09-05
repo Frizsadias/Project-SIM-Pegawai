@@ -31,30 +31,30 @@
                     <li class="menu-title">
                         <span>Informasi Riwayat</span>
                     </li>
-                    <li class="{{ request()->routeIs('riwayat.index') ? 'active' : '' }}">
-                        <a href="{{ route('riwayat.index') }}"
-                            class="{{ request()->routeIs('riwayat.index') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-pendidikan') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-pendidikan') }}"
+                            class="{{ request()->routeIs('riwayat-pendidikan') ? 'noti-dot' : '' }}">
                             <i class="la la-mortar-board"></i>
                             <span>Riwayat Pendidikan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('riwayat.r_golongan') ? 'active' : '' }}">
-                        <a href="{{ route('riwayat.r_golongan') }}"
-                            class="{{ request()->routeIs('riwayat.r_golongan') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-golongan') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-golongan') }}"
+                            class="{{ request()->routeIs('riwayat-golongan') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i>
                             <span>Riwayat Golongan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('riwayat.r_jabatan') ? 'active' : '' }}">
-                        <a href="{{ route('riwayat.r_jabatan') }}"
-                            class="{{ request()->routeIs('riwayat.r_jabatan') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-jabatan') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-jabatan') }}"
+                            class="{{ request()->routeIs('riwayat-jabatan') ? 'noti-dot' : '' }}">
                             <i class="la la-area-chart"></i>
                             <span>Riwayat Jabatan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('riwayat.r_diklat') ? 'active' : '' }}">
-                        <a href="{{ route('riwayat.r_diklat') }}"
-                            class="{{ request()->routeIs('riwayat.r_diklat') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-diklat') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-diklat') }}"
+                            class="{{ request()->routeIs('riwayat-diklat') ? 'noti-dot' : '' }}">
                             <i class="la la-suitcase"></i>
                             <span>Riwayat Diklat</span>
                         </a>
