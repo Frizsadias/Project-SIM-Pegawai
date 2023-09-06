@@ -398,7 +398,6 @@
         $(document).on('click', '.edit_riwayat_pendidikan', function() {
             var _this = $(this).parents('tr');
             $('#e_id').val(_this.find('.id').text());
-            // $('#e_tingkat_pendidikan').val(_this.find('.tingkat_pendidikan').text());
             $('#e_pendidikan').val(_this.find('.pendidikan').text());
             $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
             $('#e_no_ijazah').val(_this.find('.no_ijazah').text());

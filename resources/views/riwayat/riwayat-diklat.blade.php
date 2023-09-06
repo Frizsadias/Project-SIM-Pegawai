@@ -189,7 +189,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Expense Modal -->
+        <!-- /Add Diklat Modal -->
 
         <!-- Edit Riwayat Diklat Modal -->
         <div id="edit_expense" class="modal custom-modal fade" role="dialog">

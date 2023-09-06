@@ -198,7 +198,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Expense Modal -->
+        <!-- /Add Jabatan Modal -->
 
         <!-- Edit Riwayat Jab Modal -->
         <div id="edit_expense" class="modal custom-modal fade" role="dialog">

@@ -320,7 +320,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Expense Modal -->
+        <!-- /Edit Riwayat Golongan Modal -->
 
         <!-- Delete Expense Modal -->
         <div class="modal custom-modal fade" id="delete_expense" role="dialog">

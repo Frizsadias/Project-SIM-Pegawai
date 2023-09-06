@@ -27,7 +27,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\RiwayatController;
-use App\Http\Controllers\PdfController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,10 +103,6 @@ Route::controller(SuperAdminController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::get('/user', 'halamanuser')->name('halamanuser');
 });
-
-
-// ----------------------------- Upload PDF ------------------------------//
-Route::post('upload/pdf', 'PDFController@upload')->name('upload.pdf');
 
 // -----------------------------settings-------------------------------------//
 Route::controller(SettingController::class)->group(function () {
@@ -382,6 +378,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('riwayat/diklat', [RiwayatController::class, 'diklat'])->name('riwayat-diklat');
     Route::post('riwayat/diklat/tambah-data', [RiwayatController::class, 'tambahRiwayatDiklat'])->name('riwayat/diklat/tambah-data');
 });
+
 
 // ----------------------- Melihat PDF --------------------------//
 Route::get('/riwayat/pendidikan/{pdfId}', 'PdfController@showPdf')->name('pdf.show');
