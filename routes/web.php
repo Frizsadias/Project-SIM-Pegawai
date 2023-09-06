@@ -27,7 +27,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\RiwayatController;
-
+use App\Http\Controllers\PdfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -369,12 +369,16 @@ Route::controller(RekapitulasiController::class)->group(function () {
     Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
 });
 
-// ----------------------- riwayat  --------------------------//
+// ----------------------- Informasi Riwayat --------------------------//
 Route::middleware(['auth'])->group(function () {
     Route::get('riwayat/pendidikan', [RiwayatController::class, 'pendidikan'])->name('riwayat-pendidikan');
+    Route::post('riwayat/pendidikan/tambah-data', [RiwayatController::class, 'tambahRiwayatPendidikan'])->name('riwayat/pendidikan/tambah-data');
+    Route::post('riwayat/pendidikan/perbaharui-data', [RiwayatController::class, 'perbaharuiRiwayatPendidikan'])->name('riwayat/pendidikan/perbaharui-data');
+    Route::post('riwayat/pendidikan/hapus-data', [RiwayatController::class, 'hapusRiwayatPendidikan'])->name('riwayat/pendidikan/hapus-data');
     Route::get('riwayat/golongan', [RiwayatController::class, 'golongan'])->name('riwayat-golongan');
     Route::get('riwayat/jabatan', [RiwayatController::class, 'jabatan'])->name('riwayat-jabatan');
     Route::get('riwayat/diklat', [RiwayatController::class, 'diklat'])->name('riwayat-diklat');
-    Route::post('pendidikan/save', [RiwayatController::class, 'saveRecord'])->name('pendidikan.save');
-
 });
+
+// ----------------------- Melihat PDF --------------------------//
+    Route::get('/riwayat/pendidikan/{pdfId}', 'PdfController@showPdf')->name('pdf.show');

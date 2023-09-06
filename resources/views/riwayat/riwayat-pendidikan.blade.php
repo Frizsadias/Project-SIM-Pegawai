@@ -74,6 +74,9 @@
                                     <th class="gelar_depan">Gelar Depan</th>
                                     <th class="gelar_belakang">Gelar Belakang</th>
                                     <th class="jenis_pendidikan">Jenis Pendidikan</th>
+                                    <th class="dokumen_transkrip">Dokumen Transkrip</th>
+                                    <th class="dokumen_ijazah">Dokumen Ijazah</th>
+                                    <th class="dokumen_gelar">Dokumen Gelar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,8 +92,10 @@
                                     <td class="gelar_depan">{{ $result_pendidikan->gelar_depan }}</td>
                                     <td class="gelar_belakang">{{ $result_pendidikan->gelar_belakang }}</td>
                                     <td class="jenis_pendidikan">{{ $result_pendidikan->jenis_pendidikan }}</td>
-                                    <td hidden class="dokumen">{{ $result_pendidikan->dokumen }}</td>
-                                @endforeach
+                                    <td class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>
+                                    <td class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>
+                                    <td class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>
+                            @endforeach
                             </tbody>
                             <!-- Contoh Function Edit & Delete
                                         <td class="text-right">
@@ -129,13 +134,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('pendidikan.save') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/pendidikan/tambah-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="tingkat_pendidikan">Tingkat Pendidikan</label>
-                                        <select class="form-control" name="tingkat_pendidikan" id="tingkat_pendidikan">
+                                        <label>Tingkat Pendidikan</label>
+                                        <select name="tingkat_pendidikan" class="form-control" id="tingkat_pendidikan" required>
                                             <option selected disabled> --Pilih Tingkat Pendidikan --</option>
                                             <option value="SLTP">SLTP</option>
                                             <option value="SLTA">SLTA</option>
@@ -143,12 +148,11 @@
                                             <option value="Diploma II">Diploma II</option>
                                         </select>
                                     </div>
-
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pendidikan</label>
-                                        <input class="form-control" type="text" name="pendidikan">
+                                        <input type="text" class="form-control" name="pendidikan" required>
                                     </div>
                                 </div>
                             </div>
@@ -156,13 +160,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tahun Lulus</label>
-                                        <input class="form-control" type="text" name="tahun_lulus">
+                                        <input type="number" class="form-control" name="tahun_lulus" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Ijazah</label>
-                                        <input class="form-control" type="text" name="no_ijazah">
+                                        <input type="number" class="form-control" name="no_ijazah" required>
                                     </div>
                                 </div>
                             </div>
@@ -170,13 +174,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Sekolah</label>
-                                        <input class="form-control" type="text" name="nama_sekolah">
+                                        <input type="text" class="form-control" name="nama_sekolah" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Depan</label>
-                                        <input class="form-control" type="text" name="gelar_depan">
+                                        <input type="text" class="form-control" name="gelar_depan" required>
                                     </div>
                                 </div>
                             </div>
@@ -184,39 +188,39 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Belakang</label>
-                                        <input class="form-control" type="text" name="gelar_belakang">
+                                        <input type="text" class="form-control" name="gelar_belakang" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
                                         <br>
-                                        <input type="checkbox" name="jenis_pendidikan" value="pendidikan_pertama">
-                                        Pendidikan Pertama
+                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan-Pertama" required> Pendidikan Pertama
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Transkrip Nilai</label>
-                                        <input class="form-control" type="file" name="dokumen">
+                                        <input type="file" class="form-control" name="dokumen_transkrip" required>
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Ijazah</label>
-                                        <input class="form-control" type="file" name="dokumen">
+                                        <input type="file" class="form-control" name="dokumen_ijazah" required>
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="dokumen">Dokumen Pencantuman Gelar </label>
-                                        <input class="form-control" type="file" name="dokumen" id="dokumen">
+                                        <input type="file" class="form-control" name="dokumen_gelar" required>
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Submit</button>
@@ -226,7 +230,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Expense Modal -->
+        <!-- /Tambah Riwayat Modal -->
 
         <!-- Edit Riwayat Pendidikan Modal -->
         <div id="edit_expense" class="modal custom-modal fade" role="dialog">
