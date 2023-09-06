@@ -77,66 +77,24 @@
                                     <th class="durasi_jam">Durasi Jam</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                @foreach ($data as $key => $item)
+                            <tbody>
+                                @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
                                     <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td hidden class="id">{{ $item->id }}</td>
-                                        <td class="item_name">{{ $item->item_name }}</td>
-                                        <td class="purchase_from">{{ $item->purchase_from }}</td>
-                                        <td class="purchase_date">{{ $item->purchase_date }}</td>
-                                        <td>
-                                            <h2 class="table-avatar">
-                                                <a href="profile.html" class="avatar avatar-xs"><img
-                                                        src="{{ URL::to('/assets/images/' . $item->attachments) }}"
-                                                        alt=""></a>
-                                                <a href="profile.html">{{ $item->purchased_by }}</a>
-                                        <td hidden class="purchased_by">{{ $item->purchased_by }}</td>
-                                        </h2>
+                                        <td>{{ ++$sqldiklat }}</td>
+                                        <td hidden class="id">{{ $result_diklat->id }}</td>
+                                        <td class="jenis_diklat">{{ $result_diklat->jenis_diklat }}</td>
+                                        <td class="nama_diklat">{{ $result_diklat->nama_diklat }}</td>
+                                        <td class="institusi_penyelenggara">{{ $result_diklat->institusi_penyelenggara }}
                                         </td>
-                                        <td class="amount">{{ $item->amount }}</td>
-                                        <td class="paid_by">{{ $item->paid_by }}</td>
-                                        <td hidden class="status">{{ $item->status }}</td>
-                                        <td hidden class="attachments">{{ $item->attachments }}</td>
-                                        <td class="text-center">
-                                            <div class="dropdown action-label">
-                                                @if ($item->status == 'Pending')
-                                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                                                        href="#" data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-dot-circle-o text-danger"></i> {{ $item->status }}
-                                                    </a>
-                                                @endif
-                                                @if ($item->status == 'Approved')
-                                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                                                        href="#" data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-dot-circle-o text-success"></i> {{ $item->status }}
-                                                    </a>
-                                                @endif
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="#"><i
-                                                            class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-                                                    <a class="dropdown-item" href="#"><i
-                                                            class="fa fa-dot-circle-o text-success"></i> Approved</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_expense" href="#" data-toggle="modal"
-                                                        data-target="#edit_expense"><i class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_expense" href="#"
-                                                        data-toggle="modal" data-target="#delete_expense"><i
-                                                            class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td class="no_sertifikat">{{ $result_diklat->no_sertifikat }}</td>
+                                        <td class="tanggal_mulai">{{ $result_diklat->tanggal_mulai }}</td>
+                                        <td class="tanggal_selesai">{{ $result_diklat->tanggal_selesai }}</td>
+                                        <td class="tahun_diklat">{{ $result_diklat->tahun_diklat }}</td>
+                                        <td class="durasi_jam">{{ $result_diklat->durasi_jam }}</td>
+                                        <td hidden class="dokumen">{{ $result_diklat->dokumen }}</td>
                                     </tr>
                                 @endforeach
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>

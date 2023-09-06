@@ -16,7 +16,8 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i class="fa fa-plus"></i> Tambah Riwayat Jabatan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i
+                                class="fa fa-plus"></i> Tambah Riwayat Jabatan</a>
                     </div>
                 </div>
             </div>
@@ -24,15 +25,15 @@
 
             <!-- Search Filter -->
             <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">  
+                <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
                         <input type="text" class="form-control floating" id="user_name" name="user_name">
                         <label class="focus-label">User Name</label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3"> 
+                <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus select-focus">
-                        <select class="select floating" id="type_role"> 
+                        <select class="select floating" id="type_role">
                             <option selected disabled>-- Select Role Name --</option>
                             {{-- @foreach ($role_name as $name)
                                 <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
@@ -41,11 +42,11 @@
                         <label class="focus-label">Role Name</label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3"> 
+                <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus select-focus">
-                        <select class="select floating" id="type_status"> 
+                        <select class="select floating" id="type_status">
                             <option selected disabled> --Select --</option>
-                            {{-- @foreach ($status_user as $status )
+                            {{-- @foreach ($status_user as $status)
                             <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
                             @endforeach --}}
                         </select>
@@ -53,8 +54,8 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-md-3">  
-                    <button type="sumit" class="btn btn-success btn-block btn_search"> Search </button>  
+                <div class="col-sm-6 col-md-3">
+                    <button type="sumit" class="btn btn-success btn-block btn_search"> Search </button>
                 </div>
             </div>
 
@@ -76,66 +77,23 @@
                                     <th class="tmt_pelantikan">TMT Pelantikan</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                @foreach ($data as $key => $item)
+                            <tbody>
+                                @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
                                     <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td hidden class="id">{{ $item->id }}</td>
-                                        <td class="item_name">{{ $item->item_name }}</td>
-                                        <td class="purchase_from">{{ $item->purchase_from }}</td>
-                                        <td class="purchase_date">{{ $item->purchase_date }}</td>
-                                        <td>
-                                            <h2 class="table-avatar">
-                                                <a href="profile.html" class="avatar avatar-xs"><img
-                                                        src="{{ URL::to('/assets/images/' . $item->attachments) }}"
-                                                        alt=""></a>
-                                                <a href="profile.html">{{ $item->purchased_by }}</a>
-                                        <td hidden class="purchased_by">{{ $item->purchased_by }}</td>
-                                        </h2>
-                                        </td>
-                                        <td class="amount">{{ $item->amount }}</td>
-                                        <td class="paid_by">{{ $item->paid_by }}</td>
-                                        <td hidden class="status">{{ $item->status }}</td>
-                                        <td hidden class="attachments">{{ $item->attachments }}</td>
-                                        <td class="text-center">
-                                            <div class="dropdown action-label">
-                                                @if ($item->status == 'Pending')
-                                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                                                        href="#" data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-dot-circle-o text-danger"></i> {{ $item->status }}
-                                                    </a>
-                                                @endif
-                                                @if ($item->status == 'Approved')
-                                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle"
-                                                        href="#" data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-dot-circle-o text-success"></i> {{ $item->status }}
-                                                    </a>
-                                                @endif
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="#"><i
-                                                            class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-                                                    <a class="dropdown-item" href="#"><i
-                                                            class="fa fa-dot-circle-o text-success"></i> Approved</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_expense" href="#" data-toggle="modal"
-                                                        data-target="#edit_expense"><i class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_expense" href="#"
-                                                        data-toggle="modal" data-target="#delete_expense"><i
-                                                            class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td>{{ ++$sqljabatan }}</td>
+                                        <td hidden class="id">{{ $result_jabatan->id }}</td>
+                                        <td class="jenis_jabatan">{{ $result_jabatan->jenis_jabatan }}</td>
+                                        <td class="satuan_kerja">{{ $result_jabatan->satuan_kerja }}</td>
+                                        <td class="satuan_kerja_induk">{{ $result_jabatan->satuan_kerja_induk }}</td>
+                                        <td class="unit_organisasi">{{ $result_jabatan->unit_organisasi }}</td>
+                                        <td class="no_sk">{{ $result_jabatan->no_sk }}</td>
+                                        <td class="tanggal_sk">{{ $result_jabatan->tanggal_sk }}</td>
+                                        <td class="tmt_jabatan">{{ $result_jabatan->tmt_jabatan }}</td>
+                                        <td class="tmt_pelantikan">{{ $result_jabatan->tmt_pelantikan }}</td>
+                                        <td hidden class="dokumen">{{ $result_jabatan->dokumen }}</td>
                                     </tr>
                                 @endforeach
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>
