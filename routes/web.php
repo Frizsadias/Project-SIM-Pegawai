@@ -373,12 +373,15 @@ Route::controller(RekapitulasiController::class)->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('riwayat/pendidikan', [RiwayatController::class, 'pendidikan'])->name('riwayat-pendidikan');
     Route::post('riwayat/pendidikan/tambah-data', [RiwayatController::class, 'tambahRiwayatPendidikan'])->name('riwayat/pendidikan/tambah-data');
-    Route::post('riwayat/pendidikan/perbaharui-data', [RiwayatController::class, 'perbaharuiRiwayatPendidikan'])->name('riwayat/pendidikan/perbaharui-data');
+    Route::post('riwayat/pendidikan/edit-data', [RiwayatController::class, 'editRiwayatPendidikan'])->name('riwayat/pendidikan/edit-data');
     Route::post('riwayat/pendidikan/hapus-data', [RiwayatController::class, 'hapusRiwayatPendidikan'])->name('riwayat/pendidikan/hapus-data');
     Route::get('riwayat/golongan', [RiwayatController::class, 'golongan'])->name('riwayat-golongan');
+    Route::post('riwayat/golongan/tambah-data', [RiwayatController::class, 'tambahRiwayatGolongan'])->name('riwayat/golongan/tambah-data');
     Route::get('riwayat/jabatan', [RiwayatController::class, 'jabatan'])->name('riwayat-jabatan');
+    Route::post('riwayat/jabatan/tambah-data', [RiwayatController::class, 'tambahRiwayatJabatan'])->name('riwayat/jabatan/tambah-data');
     Route::get('riwayat/diklat', [RiwayatController::class, 'diklat'])->name('riwayat-diklat');
+    Route::post('riwayat/diklat/tambah-data', [RiwayatController::class, 'tambahRiwayatDiklat'])->name('riwayat/diklat/tambah-data');
 });
 
 // ----------------------- Melihat PDF --------------------------//
-    Route::get('/riwayat/pendidikan/{pdfId}', 'PdfController@showPdf')->name('pdf.show');
+Route::get('/riwayat/pendidikan/{pdfId}', 'PdfController@showPdf')->name('pdf.show');

@@ -76,6 +76,8 @@
                                     <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
                                     <th class="no_sk">No SK</th>
                                     <th class="tanggal_sk">Tanggal SK</th>
+                                    <th class="dokumen_skkp">Dokumen SK KP</th>
+                                    <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -95,7 +97,8 @@
                                         <td class="tanggal_teknis_bkn">{{ $result_golongan->tanggal_teknis_bkn }}</td>
                                         <td class="no_sk">{{ $result_golongan->no_sk }}</td>
                                         <td class="tanggal_sk">{{ $result_golongan->tanggal_sk }}</td>
-                                        <td hidden class="dokumen">{{ $result_golongan->dokumen }}</td>
+                                        <td class="dokumen_skkp">{{ $result_golongan->dokumen_skkp }}</td>
+                                        <td class="dokumen_teknis_kp">{{ $result_golongan->dokumen_teknis_kp }}</td>
                                     </tr>
                                 @endforeach
                                 {{-- <td class="text-right">
@@ -134,7 +137,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('expenses/save') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/golongan/tambah-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -200,14 +203,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen SK KP</label>
-                                        <input class="form-control" type="file" name="dokumen">
+                                        <input class="form-control" type="file" name="dokumen_skkp">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Pertimbangan Teknis KP</label>
-                                        <input class="form-control" type="file" name="dokumen">
+                                        <input class="form-control" type="file" name="dokumen_teknis_kp">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>

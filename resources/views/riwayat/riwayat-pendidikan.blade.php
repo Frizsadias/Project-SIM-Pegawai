@@ -65,54 +65,57 @@
                     <div class="table-responsive">
                         <table class="table table-striped custom-table mb-0 datatable">
                             <thead>
-                                    <th>No</th>
-                                    <th class="tingkat_pendidikan">Tingkat Pendidikan</th>
-                                    <th class="pendidikan">Pendidikan</th>
-                                    <th class="tahun_lulus">Tahun Lulus</th>
-                                    <th class="no_ijazah">Nomor Ijazah</th>
-                                    <th class="nama_sekolah">Nama Sekolah</th>
-                                    <th class="gelar_depan">Gelar Depan</th>
-                                    <th class="gelar_belakang">Gelar Belakang</th>
-                                    <th class="jenis_pendidikan">Jenis Pendidikan</th>
-                                    <th class="dokumen_transkrip">Dokumen Transkrip</th>
-                                    <th class="dokumen_ijazah">Dokumen Ijazah</th>
-                                    <th class="dokumen_gelar">Dokumen Gelar</th>
+                                <th>No</th>
+                                <th class="tingkat_pendidikan">Tingkat Pendidikan</th>
+                                <th class="pendidikan">Pendidikan</th>
+                                <th class="tahun_lulus">Tahun Lulus</th>
+                                <th class="no_ijazah">Nomor Ijazah</th>
+                                <th class="nama_sekolah">Nama Sekolah</th>
+                                <th class="gelar_depan">Gelar Depan</th>
+                                <th class="gelar_belakang">Gelar Belakang</th>
+                                <th class="jenis_pendidikan">Jenis Pendidikan</th>
+                                <th class="dokumen_transkrip">Dokumen Transkrip</th>
+                                <th class="dokumen_ijazah">Dokumen Ijazah</th>
+                                <th class="dokumen_gelar">Dokumen Gelar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
-                                <tr>
-                                    <td>{{ ++$sqlpendidikan }}</td>
-                                    <td hidden class="id">{{ $result_pendidikan->id }}</td>
-                                    <td class="tingkat_pendidikan">{{ $result_pendidikan->tingkat_pendidikan }}</td>
-                                    <td class="pendidikan">{{ $result_pendidikan->pendidikan }}</td>
-                                    <td class="tahun_lulus">{{ $result_pendidikan->tahun_lulus }}</td>
-                                    <td class="no_ijazah">{{ $result_pendidikan->no_ijazah }}</td>
-                                    <td class="nama_sekolah">{{ $result_pendidikan->nama_sekolah }}</td>
-                                    <td class="gelar_depan">{{ $result_pendidikan->gelar_depan }}</td>
-                                    <td class="gelar_belakang">{{ $result_pendidikan->gelar_belakang }}</td>
-                                    <td class="jenis_pendidikan">{{ $result_pendidikan->jenis_pendidikan }}</td>
-                                    <td class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>
-                                    <td class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>
-                                    <td class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>
-                            @endforeach
-                            </tbody>
-                            <!-- Contoh Function Edit & Delete
+                                    <tr>
+                                        <td>{{ ++$sqlpendidikan }}</td>
+                                        <td hidden class="id">{{ $result_pendidikan->id }}</td>
+                                        <td class="tingkat_pendidikan">{{ $result_pendidikan->tingkat_pendidikan }}</td>
+                                        <td class="pendidikan">{{ $result_pendidikan->pendidikan }}</td>
+                                        <td class="tahun_lulus">{{ $result_pendidikan->tahun_lulus }}</td>
+                                        <td class="no_ijazah">{{ $result_pendidikan->no_ijazah }}</td>
+                                        <td class="nama_sekolah">{{ $result_pendidikan->nama_sekolah }}</td>
+                                        <td class="gelar_depan">{{ $result_pendidikan->gelar_depan }}</td>
+                                        <td class="gelar_belakang">{{ $result_pendidikan->gelar_belakang }}</td>
+                                        <td class="jenis_pendidikan">{{ $result_pendidikan->jenis_pendidikan }}</td>
+                                        <td class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>
+                                        <td class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>
+                                        <td class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>
+
+                                        {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_expense" href="#" data-toggle="modal"
-                                                        data-target="#edit_riwayat_pendidikan"><i
+                                                    <a class="dropdown-item edit_riwayat_pendidikan" href="#"
+                                                        data-toggle="modal" data-target="#edit_riwayat_pendidikan"><i
                                                             class="fa fa-pencil m-r-5"></i>
                                                         Edit</a>
-                                                    <a class="dropdown-item delete_expense" href="#"
+                                                    <a class="dropdown-item delete_riwayat_pendidikan" href="#"
                                                         data-toggle="modal" data-target="#delete_riwayat_pendidikan"><i
-                                                            class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
                                                 </div>
                                             </div>
-                                        </td>-->
+                                        </td>
+                                @endforeach
+                            </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -134,13 +137,15 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/pendidikan/tambah-data') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/pendidikan/tambah-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select name="tingkat_pendidikan" class="form-control" id="tingkat_pendidikan" required>
+                                        <select name="tingkat_pendidikan" class="form-control" id="tingkat_pendidikan"
+                                            required>
                                             <option selected disabled> --Pilih Tingkat Pendidikan --</option>
                                             <option value="SLTP">SLTP</option>
                                             <option value="SLTA">SLTA</option>
@@ -195,7 +200,8 @@
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
                                         <br>
-                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan-Pertama" required> Pendidikan Pertama
+                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan-Pertama"
+                                            > Pendidikan Pertama
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +239,7 @@
         <!-- /Tambah Riwayat Modal -->
 
         <!-- Edit Riwayat Pendidikan Modal -->
-        <div id="edit_expense" class="modal custom-modal fade" role="dialog">
+        <div id="edit_riwayat_pendidikan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -243,15 +249,20 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('expenses/update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/pendidikan/edit-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <input class="form-control" type="text" name="tingkat_pendidikan"
-                                            id="e_tingkat_pendidikan" value="">
+                                        <select  class="select" name="tingkat_pendidikan" id="e_tingkat_pendidikan">
+                                            <option value="SLTP">SLTP</option>
+                                            <option value="SLTA">SLTA</option>
+                                            <option value="Diploma I">Diploma I</option>
+                                            <option value="Diploma II">Diploma II</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -313,9 +324,26 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen</label>
-                                        <input class="form-control" type="file" id="dokumen" name="dokumen">
-                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen" value="">
+                                        <label>Dokumen Transkrip</label>
+                                        <input class="form-control" type="file" id="dokumen_transkrip"
+                                            name="dokumen_transkrip">
+                                        <input type="" name="hidden_dokumen" id="e_dokumen_transkrip"
+                                            value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Ijazah</label>
+                                        <input class="form-control" type="file" id="dokumen_ijazah" name="dokumen_ijazah">
+                                        <input type="" name="hidden_dokumen" id="e_dokumen_ijazah"
+                                            value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Gelar</label>
+                                        <input class="form-control" type="file" id="dokumen_gelar" name="dokumen_gelar">
+                                        <input type="" name="hidden_dokumen" id="e_dokumen_gelar" value="">
                                     </div>
                                 </div>
                             </div>
@@ -327,7 +355,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Expense Modal -->
+        <!-- /Edit Riwayat Pendidikan Modal -->
 
         <!-- Delete Expense Modal -->
         <div class="modal custom-modal fade" id="delete_expense" role="dialog">
@@ -339,18 +367,18 @@
                             <p>Apakah anda yakin ingin menghapus?</p>
                         </div>
                         <div class="modal-btn delete-action">
-                            <form action="{{ route('expenses/delete') }}" method="POST">
+                            <form action="{{ route('riwayat/pendidikan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
                                 <input type="hidden" name="attachments" class="d_attachments" value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Delete</button>
+                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
                                         <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Cancel</a>
+                                            class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -365,39 +393,39 @@
     <!-- /Page Wrapper -->
 
 @section('script')
-
     {{-- update js --}}
     <script>
-        $(document).on('click', '.edit_expense', function() {
+        $(document).on('click', '.edit_riwayat_pendidikan', function() {
             var _this = $(this).parents('tr');
             $('#e_id').val(_this.find('.id').text());
-            $('#e_item_name').val(_this.find('.item_name').text());
-            $('#e_purchase_from').val(_this.find('.purchase_from').text());
-            $('#e_purchase_date').val(_this.find('.purchase_date').text());
-            $('#e_amount').val(_this.find('.amount').text());
-            $('#e_attachments').val(_this.find('.attachments').text());
+            // $('#e_tingkat_pendidikan').val(_this.find('.tingkat_pendidikan').text());
+            $('#e_pendidikan').val(_this.find('.pendidikan').text());
+            $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
+            $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
+            $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
+            $('#e_gelar_depan').val(_this.find('.gelar_depan').text());
+            $('#e_gelar_belakang').val(_this.find('.gelar_belakang').text());
+            $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
+            $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
+            $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
+            $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
 
-            var purchased_by = (_this.find(".purchased_by").text());
-            var _option = '<option selected value="' + purchased_by + '">' + _this.find('.purchased_by').text() +
+            var tingkat_pendidikan = (_this.find(".tingkat_pendidikan").text());
+            var _option = '<option selected value="' + tingkat_pendidikan + '">' + _this.find('.tingkat_pendidikan')
+                .text() +
                 '</option>'
-            $(_option).appendTo("#e_purchased_by");
-
-            var paid_by = (_this.find(".paid_by").text());
-            var _option = '<option selected value="' + paid_by + '">' + _this.find('.paid_by').text() + '</option>'
-            $(_option).appendTo("#e_paid_by");
-
-            var status = (_this.find(".status").text());
-            var _option = '<option selected value="' + status + '">' + _this.find('.status').text() + '</option>'
-            $(_option).appendTo("#e_status");
+            $(_option).appendTo("#e_tingkat_pendidikan");
         });
     </script>
 
     {{-- delete model --}}
     <script>
-        $(document).on('click', '.delete_expense', function() {
+        $(document).on('click', '.delete_riwayat_pendidikan', function() {
             var _this = $(this).parents('tr');
             $('.e_id').val(_this.find('.id').text());
-            $('.d_attachments').val(_this.find('.attachments').text());
+            $('.e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
+            $('.e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
+            $('.e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
         });
     </script>
 @endsection

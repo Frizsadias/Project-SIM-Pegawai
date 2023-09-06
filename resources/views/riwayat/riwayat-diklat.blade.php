@@ -91,7 +91,7 @@
                                         <td class="tanggal_selesai">{{ $result_diklat->tanggal_selesai }}</td>
                                         <td class="tahun_diklat">{{ $result_diklat->tahun_diklat }}</td>
                                         <td class="durasi_jam">{{ $result_diklat->durasi_jam }}</td>
-                                        <td hidden class="dokumen">{{ $result_diklat->dokumen }}</td>
+                                        <td class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -116,7 +116,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('expenses/save') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/diklat/tambah-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -176,7 +177,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen</label>
-                                        <input class="form-control" type="file" name="dokumen">
+                                        <input class="form-control" type="file" name="dokumen_diklat">
                                     </div>
                                 </div>
                             </div>

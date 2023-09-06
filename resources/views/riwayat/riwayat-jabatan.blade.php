@@ -75,6 +75,8 @@
                                     <th class="tanggal_sk">Tanggal SK</th>
                                     <th class="tmt_jabatan">TMT Jabatan</th>
                                     <th class="tmt_pelantikan">TMT Pelantikan</th>
+                                    <th class="dokumen_sk_jabatan">Dokumen SK Jabatan</th>
+                                    <th class="dokumen_pelantikan">Dokumen Pelantikan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,7 +92,8 @@
                                         <td class="tanggal_sk">{{ $result_jabatan->tanggal_sk }}</td>
                                         <td class="tmt_jabatan">{{ $result_jabatan->tmt_jabatan }}</td>
                                         <td class="tmt_pelantikan">{{ $result_jabatan->tmt_pelantikan }}</td>
-                                        <td hidden class="dokumen">{{ $result_jabatan->dokumen }}</td>
+                                        <td class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}</td>
+                                        <td class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -116,7 +119,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('expenses/save') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/jabatan/tambah-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -175,8 +179,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen</label>
-                                        <input class="form-control" type="file" name="dokumen">
+                                        <label>Dokumen SK Jabatan</label>
+                                        <input class="form-control" type="file" name="dokumen_sk_jabatan">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Pelantikan</label>
+                                        <input class="form-control" type="file" name="dokumen_pelantikan">
                                     </div>
                                 </div>
                             </div>
