@@ -176,13 +176,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Golongan</label>
-                                        <input class="form-control" type="text" name="tmt_golongan">
+                                        <input class="form-control" type="date" name="tmt_golongan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Pertimbangan Teknis BKN</label>
-                                        <input class="form-control" type="text" name="no_teknis_bkn">
+                                        <input class="form-control" type="number" name="no_teknis_bkn">
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +196,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input class="form-control" type="text" name="no_sk">
+                                        <input class="form-control" type="number" name="no_sk">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -231,7 +231,7 @@
         <!-- /Add Expense Modal -->
 
         <!-- Edit Riwayat Golongan Modal -->
-        <div id="edit_expense" class="modal custom-modal fade" role="dialog">
+        <div id="edit_riwayat_golongan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -241,79 +241,98 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('expenses/update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/golongan/edit-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Golongan</label>
-                                        <input class="form-control" type="text" name="tingkat_Golongan"
-                                            id="e_tingkat_Golongan" value="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchase From</label>
-                                        <input class="form-control" type="text" name="purchase_from"
-                                            id="e_purchase_from" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchase Date</label>
-                                        <div class="cal-icon">
-                                            <input class="form-control datetimepicker" type="text"
-                                                name="purchase_date" id="e_purchase_date" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchased By</label>
-                                        <select class="select" name="purchased_by" id="e_purchased_by">
-                                            <option>Daniel Porter</option>
-                                            <option>Roger Dixon</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Amount</label>
-                                        <input class="form-control" type="text" name="amount" id="e_amount"
+                                        <label>Golongan</label>
+                                        <input class="form-control" type="text" name="golongan" id="e_golongan"
                                             value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Paid By</label>
-                                        <select class="select" name="paid_by" id="e_paid_by">
-                                            <option>Cash</option>
-                                            <option>Cheque</option>
-                                        </select>
+                                        <label>Jenis Kenaikan Pangkat</label>
+                                        <input class="form-control" type="text" name="jenis_kenaikan_pangkat"
+                                            id="e_jenis_kenaikan_pangkat" value="">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="select" name="status" id="e_status">
-                                            <option>Pending</option>
-                                            <option>Approved</option>
-                                        </select>
+                                        <label>Masa Kerja Golongan (Tahun)</label>
+                                        <input class="form-control" type="text" name="masa_kerja_golongan_tahun"
+                                            id="e_masa_kerja_golongan_tahun" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Attachments</label>
-                                        <input class="form-control" type="file" id="attachments" name="attachments">
-                                        <input type="hidden" name="hidden_attachments" id="e_attachments"
+                                        <label>Masa Kerja golongan (Bulan)</label>
+                                        <input class="form-control" type="text" name="masa_kerja_golongan_bulan"
+                                            id="e_masa_kerja_golongan_bulan" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>TMT Golongan</label>
+                                        <input class="form-control" type="date" name="tmt_golongan"
+                                            id="e_tmt_golongan" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nomor Teknis BKN</label>
+                                        <input class="form-control" type="number" name="no_teknis_bkn"
+                                            id="e_no_teknis_bkn" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tanggal Teknis BKN</label>
+                                        <input class="form-control" type="date" name="tanggal_teknis_bkn"
+                                            id="e_tanggal_teknis_bkn" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nomor SK</label>
+                                        <input class="form-control" type="number" name="no_sk" id="e_no_sk"
                                             value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tanggal SK</label>
+                                        <input class="form-control" type="date" name="tanggal_sk" id="e_tanggal_sk"
+                                            value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen SK KP</label>
+                                        <input class="form-control" type="file" id="dokumen_skkp"
+                                            name="dokumen_skkp">
+                                        <input type="hidden" name="hidden_dokumen_skkp" id="e_dokumen_skkp"
+                                            value="">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Teknis KP</label>
+                                        <input class="form-control" type="file" id="dokumen_teknis_kp"
+                                            name="dokumen_teknis_kp">
+                                        <input type="hidden" name="hidden_dokumen_teknis_kp" id="e_dokumen_teknis_kp"
+                                            value="">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -366,7 +385,24 @@
 @section('script')
     {{-- update js --}}
     <script>
+<<<<<<< HEAD
         
+=======
+        $(document).on('click', '.edit_riwayat_golongan', function() {
+            var _this = $(this).parents('tr');
+            $('#e_id').val(_this.find('.id').text());
+            $('#e_golongan').val(_this.find('.golongan').text());
+            $('#e_jenis_kenaikan_pangkat').val(_this.find('.jenis_kenaikan_pangkat').text());
+            $('#e_masa_kerja_golongan_tahun').val(_this.find('.masa_kerja_golongan_tahun').text());
+            $('#e_tmt_golongan').val(_this.find('.tmt_golongan').text());
+            $('#e_no_teknis_bkn').val(_this.find('.no_teknis_bkn').text());
+            $('#e_tanggal_teknis_bkn').val(_this.find('.tanggal_teknis_bkn').text());
+            $('#e_no_sk').val(_this.find('.no_sk').text());
+            $('#e_tanggal_sk').val(_this.find('.tanggal_sk').text());
+            $('#e_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
+            $('#e_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
+        });
+>>>>>>> b123cf8b93edefb218d22471cc937bfd9f3e54a6
     </script>
 
     {{-- delete model --}}

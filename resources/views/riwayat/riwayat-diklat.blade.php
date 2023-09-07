@@ -142,9 +142,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Diklat</label>
-                                        <input class="form-control" type="text" name="jenis_diklat">
+                                        <select class="form-control" name="jenis_diklat">
+                                            <option value="diklat_struktural">Diklat Struktural</option>
+                                            <option value="diklat_fungsional">Diklat Fungsional</option>
+                                            <option value="diklat_teknis">Diklat Teknis</option>
+                                            <option value="workshop">Workshop</option>
+                                        </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Diklat</label>
@@ -211,7 +217,7 @@
         <!-- /Add Diklat Modal -->
 
         <!-- Edit Riwayat Diklat Modal -->
-        <div id="edit_expense" class="modal custom-modal fade" role="dialog">
+        <div id="edit_riwayat_diklat" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -221,123 +227,129 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('expenses/update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/diklat/edit-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Diklat</label>
-                                        <input class="form-control" type="text" name="tingkat_Diklat"
-                                            id="e_tingkat_Diklat" value="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchase From</label>
-                                        <input class="form-control" type="text" name="purchase_from"
-                                            id="e_purchase_from" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchase Date</label>
-                                        <div class="cal-icon">
-                                            <input class="form-control datetimepicker" type="text"
-                                                name="purchase_date" id="e_purchase_date" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchased By</label>
-                                        <select class="select" name="purchased_by" id="e_purchased_by">
-                                            <option>Daniel Porter</option>
-                                            <option>Roger Dixon</option>
+                                        <label>Jenis Diklat</label>
+                                        <select name="jenis_diklat" class="form-control" id="jenis_diklat" required>
+                                            <option selected disabled> --Pilih Jenis_Diklat --</option>
+                                            <option value="diklat_struktural">Diklat Struktural</option>
+                                            <option value="diklat_fungsional">Diklat Fungsional</option>
+                                            <option value="diklat_teknis">Diklat Teknis</option>
+                                            <option value="workshop">Workshop</option>
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nama Diklat</label>
+                                        <input class="form-control" type="text" name="nama_diklat" id="e_nama_diklat"
+                                            value="">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Amount</label>
-                                        <input class="form-control" type="text" name="amount" id="e_amount"
+                                        <label>Institusi Penyelenggara</label>
+                                        <input class="form-control" type="text" name="institusi_penyelenggara"
+                                            id="e_institusi_penyelenggara" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>No Sertifikat</label>
+                                        <input class="form-control" type="number" name="no_sertifikat"
+                                            id="e_no_sertifikat" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tanggal Mulai</label>
+                                        <input class="form-control" type="date" name="tanggal_mulai"
+                                            id="e_tanggal_mulai" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tanggal Selesai</label>
+                                        <input class="form-control" type="date" name="tanggal_selesai"
+                                            id="e_tanggal_selesai" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tahun Diklat</label>
+                                        <input class="form-control" type="number" name="tahun_diklat"
+                                            id="e_tahun_diklat" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Durasi Jam</label>
+                                        <input class="form-control" type="number" name="durasi_jam" id="e_durasi_jam"
                                             value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Paid By</label>
-                                        <select class="select" name="paid_by" id="e_paid_by">
-                                            <option>Cash</option>
-                                            <option>Cheque</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="select" name="status" id="e_status">
-                                            <option>Pending</option>
-                                            <option>Approved</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Attachments</label>
-                                        <input class="form-control" type="file" id="attachments" name="attachments">
-                                        <input type="hidden" name="hidden_attachments" id="e_attachments"
+                                        <label>Dokumen Diklat</label>
+                                        <input class="form-control" type="file" id="dokumen_diklat"
+                                            name="dokumen_diklat">
+                                        <input type="hidden" name="hidden_dokumen_diklat" id="e_dokumen_diklat"
                                             value="">
                                     </div>
                                 </div>
                             </div>
-                            <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Edit Riwayat Diklat Modal -->
+
+    <!-- Delete Riwayat Diklat Modal -->
+    <div class="modal custom-modal fade" id="delete_riwayat_diklat" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-header">
+                        <h3>Hapus Riwayat Diklat</h3>
+                        <p>Apakah anda yakin ingin menghapus data ini?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <form action="{{ route('riwayat/diklat/hapus-data') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" class="e_id" value="">
+                            <input type="hidden" name="dokumen_diklat" class="d_dokumen_diklat" value="">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="javascript:void(0);" data-dismiss="modal"
+                                        class="btn btn-primary cancel-btn">Kembali</a>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /Edit Riwayat Diklat Modal -->
-
-        <!-- Delete Riwayat Diklat Modal -->
-        <div class="modal custom-modal fade" id="delete_riwayat_diklat" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="form-header">
-                            <h3>Hapus Riwayat Diklat</h3>
-                            <p>Apakah anda yakin ingin menghapus data ini?</p>
-                        </div>
-                        <div class="modal-btn delete-action">
-                            <form action="{{ route('riwayat/diklat/hapus-data') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_diklat" class="d_dokumen_diklat" value="">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Delete Expense Modal -->
+    </div>
+    <!-- Delete Expense Modal -->
 
     </div>
     <!-- /Page Wrapper -->
@@ -345,7 +357,27 @@
 @section('script')
     {{-- update js --}}
     <script>
+<<<<<<< HEAD
         
+=======
+        $(document).on('click', '.edit_expense', function() {
+            var _this = $(this).parents('tr');
+            $('#e_id').val(_this.find('.id').text());
+            $('#e_nama_diklat').val(_this.find('.nama_diklat').text());
+            $('#e_institusi_penyelenggara').val(_this.find('.institusi_penyelenggara').text());
+            $('#e_no_sertifikat').val(_this.find('.no_sertifikat').text());
+            $('#e_tanggal_mulai').val(_this.find('.tanggal_mulai').text());
+            $('#e_tanggal_selesai').val(_this.find('.tanggal_selesai').text());
+            $('#e_tahun_diklat').val(_this.find('.tahun_diklat').text());
+            $('#e_durasi_jam').val(_this.find('.durasi_jam').text());
+            $('#e_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
+
+            var jenis_diklat = (_this.find(".jenis_diklat").text());
+            var _option = '<option selected value="' + jenis_diklat + '">' + _this.find('.jenis_diklat').text() +
+                '</option>'
+            $(_option).appendTo("#e_jenis_diklat");
+        });
+>>>>>>> b123cf8b93edefb218d22471cc937bfd9f3e54a6
     </script>
 
     {{-- delete model --}}
