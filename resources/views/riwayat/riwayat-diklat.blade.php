@@ -357,6 +357,9 @@
 @section('script')
     {{-- update js --}}
     <script>
+<<<<<<< HEAD
+        
+=======
         $(document).on('click', '.edit_expense', function() {
             var _this = $(this).parents('tr');
             $('#e_id').val(_this.find('.id').text());
@@ -374,7 +377,9 @@
                 '</option>'
             $(_option).appendTo("#e_jenis_diklat");
         });
+>>>>>>> b123cf8b93edefb218d22471cc937bfd9f3e54a6
     </script>
+
     {{-- delete model --}}
     <script>
         $(document).on('click', '.delete_riwayat_diklat', function() {

@@ -355,10 +355,8 @@
                             <form action="{{ route('riwayat/jabatan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan"
-                                    value="">
-                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan"
-                                    value="">
+                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan" value="">
+                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan" value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"
@@ -383,6 +381,9 @@
 @section('script')
     {{-- update js --}}
     <script>
+<<<<<<< HEAD
+        
+=======
         $(document).on('click', '.edit_riwayat_jabatan', function() {
             var _this = $(this).parents('tr');
             $('#e_id').val(_this.find('.id').text());
@@ -402,7 +403,9 @@
                 '</option>'
             $(_option).appendTo("#e_jenis_jabatan");
         });
+>>>>>>> b123cf8b93edefb218d22471cc937bfd9f3e54a6
     </script>
+
     {{-- delete model --}}
     <script>
         $(document).on('click', '.delete_riwayat_jabatan', function() {

@@ -30,12 +30,14 @@ class RiwayatController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    /** View Riwayat Pendidikan */
+/** --------------------------------- Riwayat Pendidikan --------------------------------- */ 
+    /** Tampilan Riwayat Pendidikan */
     public function pendidikan()
     {
         $riwayatPendidikan = RiwayatPendidikan::all();
         return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan'));
     }
+    /** End Tampilan Riwayat Pendidikan */
 
     /** Tambah Data Riwayat Pendidikan */
     public function tambahRiwayatPendidikan(Request $request)
@@ -55,7 +57,6 @@ class RiwayatController extends Controller
         ]);
         DB::beginTransaction();
         try {
-
             $dokumen_transkrip = time() . '.' . $request->dokumen_transkrip->extension();
             $request->dokumen_transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrip);
 
@@ -80,11 +81,11 @@ class RiwayatController extends Controller
             $riw_pend->save();
 
             DB::commit();
-            Toastr::success('Berhasil membuat data baru :)', 'Success');
+            Toastr::success('Data riwayat pendidikan telah ditambah :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal membuat data baru :)', 'Error');
+            Toastr::error('Data riwayat pendidikan gagal ditambah :(', 'Error');
             return redirect()->back();
         }
     }
@@ -95,39 +96,38 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
-
-            $dokumen_transkrip = $request->hidden_dokumen_transkrip;
-            $transkrip  = $request->file('dokumen_transkrip');
-            if ($transkrip != '') {
-                unlink('assets/DokumenTranskrip' . $dokumen_transkrip);
-                $dokumen_transkrip = time() . '.' . $transkrip->getClientOriginalExtension();
-                $transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrip);
+            $dokumen_transkrips = $request->hidden_dokumen_transkrips;
+            $dokumen_transkrip  = $request->file('dokumen_transkrips');
+            if($dokumen_transkrip != '')
+            {
+                unlink('assets/DokumenTranskrip'.$dokumen_transkrips);
+                $dokumen_transkrips = time().'.'.$dokumen_transkrip->getClientOriginalExtension();  
+                $dokumen_transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrips);
             } else {
-                $dokumen_transkrip;
+                $dokumen_transkrips;
             }
 
-            $dokumen_ijazah = $request->hidden_dokumen_ijazah;
-            $ijazah  = $request->file('dokumen_Ijazah');
-            if ($ijazah != '') {
-                unlink('assets/DokumenIjazah' . $dokumen_ijazah);
-                $dokumen_ijazah = time() . '.' . $ijazah->getClientOriginalExtension();
-                $ijazah->move(public_path('assets/DokumenIjazah'), $dokumen_ijazah);
+            $dokumen_ijazahs = $request->hidden_dokumen_ijazahs;
+            $dokumen_ijazah  = $request->file('dokumen_Ijazahs');
+            if ($dokumen_ijazah != '') {
+                unlink('assets/DokumenIjazah' . $dokumen_ijazahs);
+                $dokumen_ijazahs = time() . '.' . $dokumen_ijazah->getClientOriginalExtension();
+                $dokumen_ijazah->move(public_path('assets/DokumenIjazah'), $dokumen_ijazahs);
             } else {
-                $dokumen_ijazah;
+                $dokumen_ijazahs;
             }
 
-            $dokumen_gelar = $request->hidden_dokumen_gelar;
-            $gelar  = $request->file('dokumen_gelar');
-            if ($gelar != '') {
-                unlink('assets/DokumenGelar' . $dokumen_gelar);
-                $dokumen_gelar = time() . '.' . $gelar->getClientOriginalExtension();
-                $gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelar);
+            $dokumen_gelars = $request->hidden_dokumen_gelars;
+            $dokumen_gelar  = $request->file('dokumen_gelars');
+            if ($dokumen_gelar != '') {
+                unlink('assets/DokumenGelar' . $dokumen_gelars);
+                $dokumen_gelars = time() . '.' . $dokumen_gelar->getClientOriginalExtension();
+                $dokumen_gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelars);
             } else {
-                $dokumen_gelar;
+                $dokumen_gelars;
             }
 
             $update = [
-
                 'id'                    => $request->id,
                 'tingkat_pendidikan'    => $request->tingkat_pendidikan,
                 'pendidikan'            => $request->pendidikan,
@@ -144,60 +144,60 @@ class RiwayatController extends Controller
 
             RiwayatPendidikan::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Berhasil edit data :)', 'Success');
+            Toastr::success('Data riwayat pendidikan berhasil diperbaharui :)', 'Success');
             return redirect()->back();
-        } catch (\Exception $e) {
+        }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Gagal edit data :)', 'Error');
+            Toastr::error('Data riwayat pendidikan gagal diperbaharui :(', 'Error');
             return redirect()->back();
         }
     }
     /** End Edit Data Riwayat Pendidikan */
 
-    /** Delete Data Riwayat Pendidikan */
+    /** Delete Riwayat Pendidikan */
     public function hapusRiwayatPendidikan(Request $request)
     {
         DB::beginTransaction();
         try {
-
             RiwayatPendidikan::destroy($request->id);
             DB::commit();
-            Toastr::success('Berhasil hapus data :)', 'Success');
+            Toastr::success('Data riwayat pendidikan berhasil dihapus :)','Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal hapus data :)', 'Error');
+            Toastr::error('Data riwayat pendidikan gagal dihapus :(','Error');
             return redirect()->back();
         }
     }
     /** End Delete Riwayat Pendidikan */
 
-    /** View Riwayat Golongan */
+/** --------------------------------- Riwayat Golongan --------------------------------- */ 
+    /** Tampilan Riwayat Golongan */
     public function golongan()
     {
         $riwayatGolongan = RiwayatGolongan::all();
         return view('riwayat.riwayat-golongan', compact('riwayatGolongan'));
     }
+    /** End Tampilan Riwayat Golongan */
 
     /** Tambah Data Riwayat Golongan */
     public function tambahRiwayatGolongan(Request $request)
     {
         $request->validate([
-            'golongan'    => 'required|string|max:255',
-            'jenis_kenaikan_pangkat'    => 'required|string|max:255|',
-            'masa_kerja_golongan_tahun' => 'required|string|max:255|',
-            'masa_kerja_golongan_bulan' => 'required|string|max:255|',
-            'tmt_golongan'              => 'required|string|max:255|',
-            'no_teknis_bkn'             => 'required|string|max:255|',
-            'tanggal_teknis_bkn'        => 'required|string|max:255|',
-            'no_sk'                     => 'required|string|max:255|',
-            'tanggal_sk'                => 'required|string|max:255|',
+            'golongan'                  => 'required|string|max:255',
+            'jenis_kenaikan_pangkat'    => 'required|string|max:255',
+            'masa_kerja_golongan_tahun' => 'required|min:11|numeric',
+            'masa_kerja_golongan_bulan' => 'required|min:11|numeric',
+            'tmt_golongan'              => 'required|string|max:255',
+            'no_teknis_bkn'             => 'required|string|max:255',
+            'tanggal_teknis_bkn'        => 'required|string|max:255',
+            'no_sk'                     => 'required|string|max:255',
+            'tanggal_sk'                => 'required|string|max:255',
             'dokumen_skkp'              => 'required|mimes:pdf|max:5120',
             'dokumen_teknis_kp'         => 'required|mimes:pdf|max:5120',
         ]);
         DB::beginTransaction();
         try {
-
             $dokumen_skkp = time() . '.' . $request->dokumen_skkp->extension();
             $request->dokumen_skkp->move(public_path('assets/DokumenSKKP'), $dokumen_skkp);
 
@@ -219,60 +219,59 @@ class RiwayatController extends Controller
             $riw_golongan->save();
 
             DB::commit();
-            Toastr::success('Berhasil membuat data baru :)', 'Success');
+            Toastr::success('Data riwayat golongan telah ditambah :)','Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal membuat data baru :)', 'Error');
+            Toastr::error('Data riwayat golongan gagal ditambah :(','Error');
             return redirect()->back();
         }
     }
     /** End Tambah Data Riwayat Golongan */
 
-    /** Delete Data Riwayat Golongan */
+    /** Delete Riwayat Golongan */
     public function hapusRiwayatGolongan(Request $request)
     {
         DB::beginTransaction();
         try {
-
             RiwayatGolongan::destroy($request->id);
             DB::commit();
-            Toastr::success('Berhasil hapus data :)', 'Success');
+            Toastr::success('Data riwayat golongan berhasil dihapus :)','Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal hapus data :)', 'Error');
+            Toastr::error('Data riwayat golongan gagal dihapus :(','Error');
             return redirect()->back();
         }
     }
     /** End Delete Riwayat Golongan */
 
-    /** view riwayat jabatan page */
+/** --------------------------------- Riwayat Jabatan --------------------------------- */ 
+    /** Tampilan riwayat jabatan */
     public function jabatan()
     {
         $riwayatJabatan = RiwayatJabatan::all();
         return view('riwayat.riwayat-jabatan', compact('riwayatJabatan'));
     }
+    /** End Tampilan Riwayat Jabatan */
 
     /** Tambah Data Riwayat Jabatan */
     public function tambahRiwayatJabatan(Request $request)
     {
         $request->validate([
             'jenis_jabatan'         => 'required|string|max:255',
-            'satuan_kerja'          => 'required|string|max:255|',
-            'satuan_kerja_induk'    => 'required|string|max:255|',
-            'unit_organisasi'       => 'required|string|max:255|',
-            'no_sk'                 => 'required|string|max:255|',
-            'tanggal_sk'            => 'required|string|max:255|',
-            'tmt_jabatan'           => 'required|string|max:255|',
-            'tmt_pelantikan'        => 'required|string|max:255|',
+            'satuan_kerja'          => 'required|string|max:255',
+            'satuan_kerja_induk'    => 'required|string|max:255',
+            'unit_organisasi'       => 'required|string|max:255',
+            'no_sk'                 => 'required|string|max:255',
+            'tanggal_sk'            => 'required|string|max:255',
+            'tmt_jabatan'           => 'required|string|max:255',
+            'tmt_pelantikan'        => 'required|string|max:255',
             'dokumen_sk_jabatan'    => 'required|mimes:pdf|max:5120',
             'dokumen_pelantikan'    => 'required|mimes:pdf|max:5120',
-
         ]);
         DB::beginTransaction();
         try {
-
             $dokumen_sk_jabatan = time() . '.' . $request->dokumen_sk_jabatan->extension();
             $request->dokumen_sk_jabatan->move(public_path('assets/DokumenSKJabatan'), $dokumen_sk_jabatan);
 
@@ -293,59 +292,58 @@ class RiwayatController extends Controller
             $riw_jabatan->save();
 
             DB::commit();
-            Toastr::success('Berhasil membuat data baru :)', 'Success');
+            Toastr::success('Data riwayat jabatan telah ditambah :)','Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal membuat data baru :)', 'Error');
+            Toastr::error('Data riwayat jabatan gagal ditambah :(','Error');
             return redirect()->back();
         }
     }
     /** End Tambah Data Riwayat Jabatan */
 
-    /** Delete Data Riwayat Jabatan */
+    /** Delete Riwayat Jabatan */
     public function hapusRiwayatJabatan(Request $request)
     {
         DB::beginTransaction();
         try {
-
             RiwayatJabatan::destroy($request->id);
             DB::commit();
-            Toastr::success('Berhasil hapus data :)', 'Success');
+            Toastr::success('Data riwayat jabatan berhasil dihapus :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal hapus data :)', 'Error');
+            Toastr::error('Data riwayat jabatan gagal dihapus :(', 'Error');
             return redirect()->back();
         }
     }
     /** End Delete Riwayat Jabatan */
 
-    /** view riwayat diklat page */
+/** --------------------------------- Riwayat Diklat --------------------------------- */  
+    /** Tampilan Riwayat Diklat */
     public function diklat()
     {
         $riwayatDiklat = RiwayatDiklat::all();
         return view('riwayat.riwayat-diklat', compact('riwayatDiklat'));
     }
+    /** End Tampilan Riwayat Diklat */
 
     /** Tambah Data Riwayat Diklat */
     public function tambahRiwayatDiklat(Request $request)
     {
         $request->validate([
             'jenis_diklat'              => 'required|string|max:255',
-            'nama_diklat'               => 'required|string|max:255|',
-            'institusi_penyelenggara'   => 'required|string|max:255|',
-            'no_sertifikat'             => 'required|string|max:255|',
-            'tanggal_mulai'             => 'required|string|max:255|',
-            'tanggal_selesai'           => 'required|string|max:255|',
-            'tahun_diklat'              => 'required|string|max:255|',
-            'durasi_jam'                => 'required|string|max:255|',
+            'nama_diklat'               => 'required|string|max:255',
+            'institusi_penyelenggara'   => 'required|string|max:255',
+            'no_sertifikat'             => 'required|min:11|numeric',
+            'tanggal_mulai'             => 'required|string|max:255',
+            'tanggal_selesai'           => 'required|string|max:255',
+            'tahun_diklat'              => 'required|min:11|numeric',
+            'durasi_jam'                => 'required|min:11|numeric',
             'dokumen_diklat'            => 'required|mimes:pdf|max:5120',
-
         ]);
         DB::beginTransaction();
         try {
-
             $dokumen_diklat = time() . '.' . $request->dokumen_diklat->extension();
             $request->dokumen_diklat->move(public_path('assets/DokumenPelantikan'), $dokumen_diklat);
 
@@ -362,29 +360,28 @@ class RiwayatController extends Controller
             $riw_diklat->save();
 
             DB::commit();
-            Toastr::success('Berhasil membuat data baru :)', 'Success');
+            Toastr::success('Data riwayat diklat telah ditambah :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal membuat data baru :)', 'Error');
+            Toastr::error('Data riwayat diklat gagal ditambah :(', 'Error');
             return redirect()->back();
         }
     }
     /** End Tambah Data Riwayat Diklat */
 
-    /** Delete Data Riwayat Diklat */
+    /** Delete Riwayat Diklat */
     public function hapusRiwayatDiklat(Request $request)
     {
         DB::beginTransaction();
         try {
-
             RiwayatDiklat::destroy($request->id);
             DB::commit();
-            Toastr::success('Berhasil hapus data :)', 'Success');
+            Toastr::success('Data riwayat diklat berhasil dihapus :)','Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal hapus data :)', 'Error');
+            Toastr::error('Data riwayat diklat gagal dihapus :(','Error');
             return redirect()->back();
         }
     }
