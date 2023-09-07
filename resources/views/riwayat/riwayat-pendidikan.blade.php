@@ -373,8 +373,7 @@
                             <form action="{{ route('riwayat/pendidikan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip"
-                                    value="">
+                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip" value="">
                                 <input type="hidden" name="dokumen_ijazah" class="d_dokumen_ijazah" value="">
                                 <input type="hidden" name="dokumen_gelar" class="d_dokumen_gelar" value="">
                                 <div class="row">
@@ -402,26 +401,25 @@
 @section('script')
     {{-- update js --}}
     <script>
-        $(document).on('click', '.edit_riwayat_pendidikan', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#e_pendidikan').val(_this.find('.pendidikan').text());
-            $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
-            $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
-            $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
-            $('#e_gelar_depan').val(_this.find('.gelar_depan').text());
-            $('#e_gelar_belakang').val(_this.find('.gelar_belakang').text());
-            $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
-            $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
-            $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
-            $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
+        $(document).on('click','.edit_riwayat_pendidikan',function()
+            {
+                var _this = $(this).parents('tr');
+                $('#e_id').val(_this.find('.id').text());
+                $('#e_pendidikan').val(_this.find('.pendidikan').text());
+                $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
+                $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
+                $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
+                $('#e_gelar_depan').val(_this.find('.gelar_depan').text());
+                $('#e_gelar_belakang').val(_this.find('.gelar_belakang').text());
+                $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
+                $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
+                $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
+                $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
 
-            var tingkat_pendidikan = (_this.find(".tingkat_pendidikan").text());
-            var _option = '<option selected value="' + tingkat_pendidikan + '">' + _this.find('.tingkat_pendidikan')
-                .text() +
-                '</option>'
-            $(_option).appendTo("#e_tingkat_pendidikan");
-        });
+                var tingkat_pendidikan = (_this.find(".tingkat_pendidikan").text());
+                var _option = '<option selected value="' + tingkat_pendidikan+ '">' + _this.find('.tingkat_pendidikan').text() + '</option>'
+                $( _option).appendTo("#e_tingkat_pendidikan");
+            });
     </script>
 
     {{-- delete model --}}

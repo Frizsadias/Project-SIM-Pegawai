@@ -345,29 +345,9 @@
 @section('script')
     {{-- update js --}}
     <script>
-        $(document).on('click', '.edit_expense', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#e_item_name').val(_this.find('.item_name').text());
-            $('#e_purchase_from').val(_this.find('.purchase_from').text());
-            $('#e_purchase_date').val(_this.find('.purchase_date').text());
-            $('#e_amount').val(_this.find('.amount').text());
-            $('#e_attachments').val(_this.find('.attachments').text());
-
-            var purchased_by = (_this.find(".purchased_by").text());
-            var _option = '<option selected value="' + purchased_by + '">' + _this.find('.purchased_by').text() +
-                '</option>'
-            $(_option).appendTo("#e_purchased_by");
-
-            var paid_by = (_this.find(".paid_by").text());
-            var _option = '<option selected value="' + paid_by + '">' + _this.find('.paid_by').text() + '</option>'
-            $(_option).appendTo("#e_paid_by");
-
-            var status = (_this.find(".status").text());
-            var _option = '<option selected value="' + status + '">' + _this.find('.status').text() + '</option>'
-            $(_option).appendTo("#e_status");
-        });
+        
     </script>
+
     {{-- delete model --}}
     <script>
         $(document).on('click', '.delete_riwayat_diklat', function() {
