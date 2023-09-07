@@ -80,7 +80,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($riwayatjabatan as $sqljabatan => $result_jabatan)
+                                @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
                                     <tr>
                                         <td>{{ ++$sqljabatan }}</td>
                                         <td hidden class="id">{{ $result_jabatan->id }}</td>
