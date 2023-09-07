@@ -144,9 +144,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Jabatan</label>
-                                        <input class="form-control" type="text" name="jenis_jabatan">
+                                        <select class="form-control" name="jenis_jabatan">
+                                            <option selected disabled> --Pilih Jenis Jabatan --</option>
+                                            <option value="jabatan_struktural">Jabatan Struktural</option>
+                                            <option value="jabatan_fungsional_tertentu">Jabatan Fungsional Tertentu
+                                            </option>
+                                            <option value="jabatan_fungsional_umum">Jabatan Fungsional Umum</option>
+                                        </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Satuan Kerja</label>
@@ -172,7 +179,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input class="form-control" type="text" name="no_sk">
+                                        <input class="form-control" type="number" name="no_sk">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -199,12 +206,14 @@
                                     <div class="form-group">
                                         <label>Dokumen SK Jabatan</label>
                                         <input class="form-control" type="file" name="dokumen_sk_jabatan">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Pelantikan</label>
                                         <input class="form-control" type="file" name="dokumen_pelantikan">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -218,8 +227,8 @@
         </div>
         <!-- /Add Jabatan Modal -->
 
-        <!-- Edit Riwayat Jab Modal -->
-        <div id="edit_expense" class="modal custom-modal fade" role="dialog">
+        <!-- Edit Riwayat Jabatan Modal -->
+        <div id="edit_riwayat_jabatan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -230,83 +239,96 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('expenses/update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/jabatan/edit-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Jabatan
-
+                                        <label>Jenis Jabatan
                                         </label>
-                                        <input class="form-control" type="text" name="tingkat_Jabatan
-        "
-                                            id="e_tingkat_Jabatan
-            " value="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchase From</label>
-                                        <input class="form-control" type="text" name="purchase_from"
-                                            id="e_purchase_from" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchase Date</label>
-                                        <div class="cal-icon">
-                                            <input class="form-control datetimepicker" type="text"
-                                                name="purchase_date" id="e_purchase_date" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Purchased By</label>
-                                        <select class="select" name="purchased_by" id="e_purchased_by">
-                                            <option>Daniel Porter</option>
-                                            <option>Roger Dixon</option>
+                                        <select class="select" name="jenis_jabatan" id="e_jenis_jabatan">
+                                            <option value="Jabatan Struktural">Jabatan Struktural</option>
+                                            <option value="Jabatan Fungsional Tertentu">Jabatan Fungsional Tertentu
+                                            </option>
+                                            <option value="Jabatan Fungsional Umum">Jabatan Fungsional Umum</option>
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Satuan Kerja</label>
+                                        <input class="form-control" type="text" name="satuaun_kerja"
+                                            id="e_satuan_kerja" value="">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Amount</label>
-                                        <input class="form-control" type="text" name="amount" id="e_amount"
+                                        <label>Satuan Kerja Induk</label>
+                                        <input class="form-control" type="text" name="satuan_kerja_induk"
+                                            id="e_satuan_kerja_induk" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Unit Organisasi</label>
+                                        <input class="form-control" type="text" name="unit_organisasi"
+                                            id="e_unit_organisasi" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>No SK</label>
+                                        <input class="form-control" type="number" name="no_sk" id="e_no_sk"
                                             value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Paid By</label>
-                                        <select class="select" name="paid_by" id="e_paid_by">
-                                            <option>Cash</option>
-                                            <option>Cheque</option>
-                                        </select>
+                                        <label>Tanggal SK</label>
+                                        <input class="form-control" type="date" name="tanggal_sk" id="e_tanggal_sk"
+                                            value="">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="select" name="status" id="e_status">
-                                            <option>Pending</option>
-                                            <option>Approved</option>
-                                        </select>
+                                        <label>TMT Jabatan</label>
+                                        <input class="form-control" type="text" name="tmt_jabatan" id="e_tmt_jabatan"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Attachments</label>
-                                        <input class="form-control" type="file" id="attachments" name="attachments">
-                                        <input type="hidden" name="hidden_attachments" id="e_attachments"
+                                        <label>TMT Pelantikan</label>
+                                        <input class="form-control" type="text" name="tmt_pelantikan"
+                                            id="e_tmt_pelantikan" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen SK Jabatan</label>
+                                        <input class="form-control" type="file" id="dokumen_sk_jabatan"
+                                            name="dokumen_sk_jabatan">
+                                        <input type="hidden" name="hidden_dokumen_sk_jabatan" id="e_dokumen_sk_jabatan"
                                             value="">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Pelantikan</label>
+                                        <input class="form-control" type="file" id="dokumen_pelantikan"
+                                            name="dokumen_pelantikan">
+                                        <input type="hidden" name="hidden_dokumen_pelantikan" id="e_dokumen_pelantikan"
+                                            value="">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -361,27 +383,24 @@
 @section('script')
     {{-- update js --}}
     <script>
-        $(document).on('click', '.edit_expense', function() {
+        $(document).on('click', '.edit_riwayat_jabatan', function() {
             var _this = $(this).parents('tr');
             $('#e_id').val(_this.find('.id').text());
-            $('#e_item_name').val(_this.find('.item_name').text());
-            $('#e_purchase_from').val(_this.find('.purchase_from').text());
-            $('#e_purchase_date').val(_this.find('.purchase_date').text());
-            $('#e_amount').val(_this.find('.amount').text());
-            $('#e_attachments').val(_this.find('.attachments').text());
+            $('#e_satuan_kerja').val(_this.find('.satuan_kerja').text());
+            $('#e_satuan_kerja_induk').val(_this.find('.satuan_kerja_induk').text());
+            $('#e_unit_organisasi').val(_this.find('.unit_organisasi').text());
+            $('#e_no_sk').val(_this.find('.no_sk').text());
+            $('#e_tanggal_sk').val(_this.find('.unit_tanggal_sk').text());
+            $('#e_tmt_jabatan').val(_this.find('.tmt_jabatan').text());
+            $('#e_tmt_pelantikan').val(_this.find('.tmt_pelantikan').text());
+            $('#e_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
+            $('#e_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
 
-            var purchased_by = (_this.find(".purchased_by").text());
-            var _option = '<option selected value="' + purchased_by + '">' + _this.find('.purchased_by').text() +
+            var jenis_jabatan = (_this.find(".jenis_jabatan").text());
+            var _option = '<option selected value="' + jenis_jabatan + '">' + _this.find('.jenis_jabatan')
+                .text() +
                 '</option>'
-            $(_option).appendTo("#e_purchased_by");
-
-            var paid_by = (_this.find(".paid_by").text());
-            var _option = '<option selected value="' + paid_by + '">' + _this.find('.paid_by').text() + '</option>'
-            $(_option).appendTo("#e_paid_by");
-
-            var status = (_this.find(".status").text());
-            var _option = '<option selected value="' + status + '">' + _this.find('.status').text() + '</option>'
-            $(_option).appendTo("#e_status");
+            $(_option).appendTo("#e_jenis_jabatan");
         });
     </script>
     {{-- delete model --}}
