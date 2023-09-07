@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tanggal_selesai')->nullable();
             $table->string('tahun_diklat')->nullable();
             $table->string('durasi_jam')->nullable();
-            $table->string('dokumen')->nullable();
+            $table->string('dokumen_diklat')->nullable();
             $table->timestamps();
         });
     }

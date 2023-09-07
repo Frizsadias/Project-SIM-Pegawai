@@ -223,7 +223,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="dokumen">Dokumen Pencantuman Gelar </label>
+                                        <label>Dokumen Pencantuman Gelar </label>
                                         <input type="file" class="form-control" name="dokumen_gelar" required>
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
@@ -326,7 +326,7 @@
                                         <label>Dokumen Transkrip</label>
                                         <input type="file" class="form-control" id="dokumen_transkrip"
                                             name="dokumen_transkrip">
-                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_transkrip"
+                                        <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip"
                                             value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
@@ -336,7 +336,7 @@
                                         <label>Dokumen Ijazah</label>
                                         <input type="file" class="form-control" id="dokumen_ijazah"
                                             name="dokumen_ijazah">
-                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_ijazah"
+                                        <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_ijazah"
                                             value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
@@ -346,7 +346,8 @@
                                         <label>Dokumen Gelar</label>
                                         <input type="file" class="form-control" id="dokumen_gelar"
                                             name="dokumen_gelar">
-                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_gelar" value="">
+                                        <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_gelar"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>

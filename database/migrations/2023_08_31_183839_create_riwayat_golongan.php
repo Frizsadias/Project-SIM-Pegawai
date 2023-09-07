@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('tanggal_teknis_bkn')->nullable();
             $table->string('no_sk')->nullable();
             $table->string('tanggal_sk')->nullable();
-            $table->string('dokumen')->nullable();
+            $table->string('dokumen_skkp')->nullable();
+            $table->string('dokumen_teknis_kp')->nullable();
             $table->timestamps();
         });
     }

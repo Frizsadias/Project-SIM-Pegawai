@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('tanggal_sk')->nullable();
             $table->string('tmt_jabatan')->nullable();
             $table->string('tmt_pelantikan')->nullable();
-            $table->string('dokumen')->nullable();
+            $table->string('dokumen_sk_jabatan')->nullable();
+            $table->string('dokumen_pelantikan')->nullable();
             $table->timestamps();
         });
     }

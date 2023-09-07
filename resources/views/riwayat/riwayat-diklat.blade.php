@@ -236,7 +236,6 @@
                                     <div class="form-group">
                                         <label>Jenis Diklat</label>
                                         <select name="jenis_diklat" class="form-control" id="jenis_diklat" required>
-                                            <option selected disabled> --Pilih Jenis_Diklat --</option>
                                             <option>Diklat Struktural</option>
                                             <option>Diklat Fungsional</option>
                                             <option>Diklat Teknis</option>

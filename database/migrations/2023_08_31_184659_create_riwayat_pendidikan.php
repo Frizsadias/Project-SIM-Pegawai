@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('gelar_depan')->nullable();
             $table->string('gelar_belakang')->nullable();
             $table->string('jenis_pendidikan')->nullable();
-            $table->string('dokumen')->nullable();
+            $table->string('dokumen_transkrip')->nullable();
+            $table->string('dokumen_ijazah')->nullable();
+            $table->string('dokumen_gelar')->nullable();
             $table->timestamps();
         });
     }
