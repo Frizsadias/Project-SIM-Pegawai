@@ -259,18 +259,17 @@
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
                                         <select class="select" name="tingkat_pendidikan" id="e_tingkat_pendidikan">
-                                            <option value="SLTP">SLTP</option>
-                                            <option value="SLTA">SLTA</option>
-                                            <option value="Diploma I">Diploma I</option>
-                                            <option value="Diploma II">Diploma II</option>
+                                            <option>SLTP</option>
+                                            <option>SLTA</option>
+                                            <option>Diploma I</option>
+                                            <option>Diploma II</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pendidikan</label>
-                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan"
-                                            value="">
+                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan" value="">
                                     </div>
                                 </div>
                             </div>
@@ -278,17 +277,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tahun Lulus</label>
-                                        <div class="cal-icon">
-                                            <input type="text" class="form-control" name="tahun_lulus"
-                                                id="e_tahun_lulus" value="">
-                                        </div>
+                                            <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Ijazah</label>
-                                        <input type="text" class="form-control" name="no_ijazah" id="e_no_ijazah"
-                                            value="">
+                                        <input type="text" class="form-control" name="no_ijazah" id="e_no_ijazah" value="">
                                     </div>
                                 </div>
                             </div>
@@ -296,15 +291,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Sekolah</label>
-                                        <input type="text" class="form-control" name="nama_sekolah"
-                                            id="e_nama_sekolah" value="">
+                                        <input type="text" class="form-control" name="nama_sekolah" id="e_nama_sekolah" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Depan</label>
-                                        <input type="text" class="form-control" name="gelar_depan" id="e_gelar_depan"
-                                            value="">
+                                        <input type="text" class="form-control" name="gelar_depan" id="e_gelar_depan" value="">
                                     </div>
                                 </div>
                             </div>
@@ -312,43 +305,36 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Belakang</label>
-                                        <input type="text" class="form-control" name="gelar_belakang"
-                                            id="e_gelar_belakang" value="">
+                                        <input type="text" class="form-control" name="gelar_belakang" id="e_gelar_belakang" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
-                                        <input type="text" class="form-control" name="jenis_pendidikan"
-                                            id="e_jenis_pendidikan" value="">
+                                        <input type="text" class="form-control" name="jenis_pendidikan" id="e_jenis_pendidikan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Transkrip</label>
-                                        <input type="file" class="form-control" id="dokumen_transkrip"
-                                            name="dokumen_transkrip">
-                                        <input type="" name="hidden_dokumen" id="e_dokumen_transkrip"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_transkrip" name="dokumen_transkrip">
+                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_transkrip" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Ijazah</label>
-                                        <input type="file" class="form-control" id="dokumen_ijazah"
-                                            name="dokumen_ijazah">
-                                        <input type="" name="hidden_dokumen" id="e_dokumen_ijazah"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_ijazah" name="dokumen_ijazah">
+                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_ijazah" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Gelar</label>
-                                        <input type="file" class="form-control" id="dokumen_gelar"
-                                            name="dokumen_gelar">
-                                        <input type="" name="hidden_dokumen" id="e_dokumen_gelar" value="">
+                                        <input type="file" class="form-control" id="dokumen_gelar" name="dokumen_gelar">
+                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_gelar" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
