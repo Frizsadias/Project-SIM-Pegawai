@@ -278,7 +278,7 @@
         <!-- /Edit Salary Modal -->
 
         <!-- Unggah Dokumen Modal -->
-        <div id="unggah_user" class="modal custom-modal fade" role="dialog">
+        {{-- <div id="unggah_user" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -301,7 +301,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- /Edit Salary Modal -->
 
         <!-- Delete User Modal -->

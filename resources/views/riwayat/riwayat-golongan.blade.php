@@ -99,22 +99,26 @@
                                         <td class="tanggal_sk">{{ $result_golongan->tanggal_sk }}</td>
                                         <td class="dokumen_skkp">{{ $result_golongan->dokumen_skkp }}</td>
                                         <td class="dokumen_teknis_kp">{{ $result_golongan->dokumen_teknis_kp }}</td>
+
+                                        {{-- Edit dan Hapus data  --}}
+                                        <td class="text-right">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item edit_riwayat_golongan" href="#"
+                                                        data-toggle="modal" data-target="#edit_riwayat_golongan"><i
+                                                            class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a class="dropdown-item delete_riwayat_golongan" href="#"
+                                                        data-toggle="modal" data-target="#delete_riwayat_golongan"><i
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
-                                {{-- <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item edit_expense" href="#" data-toggle="modal"
-                                                data-target="#edit_expense"><i class="fa fa-pencil m-r-5"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item delete_expense" href="#" data-toggle="modal"
-                                                data-target="#delete_expense"><i class="fa fa-trash-o m-r-5"></i>
-                                                Delete</a>
-                                        </div>
-                                    </div>
-                                </td> --}}
                             </tbody>
                         </table>
                     </div>
@@ -137,7 +141,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/golongan/tambah-data') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/golongan/tambah-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -322,28 +327,30 @@
         </div>
         <!-- /Edit Riwayat Golongan Modal -->
 
-        <!-- Delete Expense Modal -->
-        <div class="modal custom-modal fade" id="delete_expense" role="dialog">
+        <!-- Delete Riwayat Golongan Modal -->
+        <div class="modal custom-modal fade" id="delete_riwayat_golongan" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-header">
-                            <h3>Delete Expense</h3>
-                            <p>Are you sure want to delete?</p>
+                            <h3>Hapus Riwayat Golongan</h3>
+                            <p>Apakah anda yakin ingin menghapus data ini?</p>
                         </div>
                         <div class="modal-btn delete-action">
-                            <form action="{{ route('expenses/delete') }}" method="POST">
+                            <form action="{{ route('riwayat/golongan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="attachments" class="d_attachments" value="">
+                                <input type="hidden" name="dokumen_skkp" class="d_dokumen_skkp" value="">
+                                <input type="hidden" name="dokumen_teknis_kp" class="d_dokumen_teknis_kp"
+                                    value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Delete</button>
+                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
                                         <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Cancel</a>
+                                            class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -385,10 +392,11 @@
     </script>
     {{-- delete model --}}
     <script>
-        $(document).on('click', '.delete_expense', function() {
+        $(document).on('click', '.delete_riwayat_golongan', function() {
             var _this = $(this).parents('tr');
             $('.e_id').val(_this.find('.id').text());
-            $('.d_attachments').val(_this.find('.attachments').text());
+            $('.d_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
+            $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
         });
     </script>
 @endsection

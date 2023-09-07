@@ -113,6 +113,7 @@
                                                 </div>
                                             </div>
                                         </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
 
@@ -200,8 +201,8 @@
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
                                         <br>
-                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan-Pertama"
-                                            > Pendidikan Pertama
+                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan-Pertama">
+                                        Pendidikan Pertama
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +258,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select  class="select" name="tingkat_pendidikan" id="e_tingkat_pendidikan">
+                                        <select class="select" name="tingkat_pendidikan" id="e_tingkat_pendidikan">
                                             <option value="SLTP">SLTP</option>
                                             <option value="SLTA">SLTA</option>
                                             <option value="Diploma I">Diploma I</option>
@@ -334,7 +335,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Ijazah</label>
-                                        <input class="form-control" type="file" id="dokumen_ijazah" name="dokumen_ijazah">
+                                        <input class="form-control" type="file" id="dokumen_ijazah"
+                                            name="dokumen_ijazah">
                                         <input type="" name="hidden_dokumen" id="e_dokumen_ijazah"
                                             value="">
                                     </div>
@@ -342,7 +344,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Gelar</label>
-                                        <input class="form-control" type="file" id="dokumen_gelar" name="dokumen_gelar">
+                                        <input class="form-control" type="file" id="dokumen_gelar"
+                                            name="dokumen_gelar">
                                         <input type="" name="hidden_dokumen" id="e_dokumen_gelar" value="">
                                     </div>
                                 </div>
@@ -357,25 +360,29 @@
         </div>
         <!-- /Edit Riwayat Pendidikan Modal -->
 
-        <!-- Delete Expense Modal -->
-        <div class="modal custom-modal fade" id="delete_expense" role="dialog">
+        <!-- Delete Riwayat Pendidikan Modal -->
+        <div class="modal custom-modal fade" id="delete_riwayat_pendidikan" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-header">
-                            <h3>Delete Riwayat Pendidikan</h3>
-                            <p>Apakah anda yakin ingin menghapus?</p>
+                            <h3>Hapus Riwayat Pendidikan</h3>
+                            <p>Apakah anda yakin ingin menghapus data ini?</p>
                         </div>
                         <div class="modal-btn delete-action">
                             <form action="{{ route('riwayat/pendidikan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="attachments" class="d_attachments" value="">
+                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip"
+                                    value="">
+                                <input type="hidden" name="dokumen_ijazah" class="d_dokumen_ijazah" value="">
+                                <input type="hidden" name="dokumen_gelar" class="d_dokumen_gelar" value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
                                     </div>
+
                                     <div class="col-6">
                                         <a href="javascript:void(0);" data-dismiss="modal"
                                             class="btn btn-primary cancel-btn">Kembali</a>
@@ -422,9 +429,9 @@
         $(document).on('click', '.delete_riwayat_pendidikan', function() {
             var _this = $(this).parents('tr');
             $('.e_id').val(_this.find('.id').text());
-            $('.e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
-            $('.e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
-            $('.e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
+            $('.d_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
+            $('.d_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
+            $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
         });
     </script>
 @endsection

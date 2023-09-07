@@ -94,6 +94,24 @@
                                         <td class="tmt_pelantikan">{{ $result_jabatan->tmt_pelantikan }}</td>
                                         <td class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}</td>
                                         <td class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}</td>
+
+                                        {{-- Edit dan Hapus data  --}}
+                                        <td class="text-right">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item edit_riwayat_jabatan" href="#"
+                                                        data-toggle="modal" data-target="#edit_riwayat_jabatan"><i
+                                                            class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a class="dropdown-item delete_riwayat_jabatan" href="#"
+                                                        data-toggle="modal" data-target="#delete_riwayat_jabatan"><i
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -160,7 +178,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
-                                        <input class="form-control" type="text" name="tanggal_sk">
+                                        <input class="form-control" type="date" name="tanggal_sk">
                                     </div>
                                 </div>
                             </div>
@@ -300,30 +318,33 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Expense Modal -->
+        <!-- /Edit Riwayat Jabatan Modal -->
 
-        <!-- Delete Expense Modal -->
-        <div class="modal custom-modal fade" id="delete_expense" role="dialog">
+        <!-- Delete Riwayat Jabatan Modal -->
+        <div class="modal custom-modal fade" id="delete_riwayat_jabatan" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-header">
-                            <h3>Delete Expense</h3>
-                            <p>Are you sure want to delete?</p>
+                            <h3>Hapus Riwayat Jabatan</h3>
+                            <p>Apakah anda yakin ingin menghapus data ini?</p>
                         </div>
                         <div class="modal-btn delete-action">
-                            <form action="{{ route('expenses/delete') }}" method="POST">
+                            <form action="{{ route('riwayat/jabatan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="attachments" class="d_attachments" value="">
+                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan"
+                                    value="">
+                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan"
+                                    value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Delete</button>
+                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
                                         <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Cancel</a>
+                                            class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -365,10 +386,11 @@
     </script>
     {{-- delete model --}}
     <script>
-        $(document).on('click', '.delete_expense', function() {
+        $(document).on('click', '.delete_riwayat_jabatan', function() {
             var _this = $(this).parents('tr');
             $('.e_id').val(_this.find('.id').text());
-            $('.d_attachments').val(_this.find('.attachments').text());
+            $('.d_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
+            $('.d_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
         });
     </script>
 @endsection

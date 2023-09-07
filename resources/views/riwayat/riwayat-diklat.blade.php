@@ -75,6 +75,7 @@
                                     <th class="tanggal_selesai">Tanggal Selesai</th>
                                     <th class="tahun_diklat">Tahun Diklat</th>
                                     <th class="durasi_jam">Durasi Jam</th>
+                                    <th class="dokumen_diklat">Dokumen Diklat</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,6 +93,24 @@
                                         <td class="tahun_diklat">{{ $result_diklat->tahun_diklat }}</td>
                                         <td class="durasi_jam">{{ $result_diklat->durasi_jam }}</td>
                                         <td class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
+
+                                        {{-- Edit dan Hapus data  --}}
+                                        <td class="text-right">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item edit_riwayat_diklat" href="#"
+                                                        data-toggle="modal" data-target="#edit_riwayat_diklat"><i
+                                                            class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a class="dropdown-item delete_riwayat_diklat" href="#"
+                                                        data-toggle="modal" data-target="#delete_riwayat_diklat"><i
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -151,13 +170,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Mulai</label>
-                                        <input class="form-control" type="text" name="tanggal_mulai">
+                                        <input class="form-control" type="date" name="tanggal_mulai">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Selesai</label>
-                                        <input class="form-control" type="text" name="tanggal_selesai">
+                                        <input class="form-control" type="date" name="tanggal_selesai">
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +195,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen</label>
+                                        <label>Dokumen Diklat</label>
                                         <input class="form-control" type="file" name="dokumen_diklat">
                                     </div>
                                 </div>
@@ -286,30 +305,30 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Expense Modal -->
+        <!-- /Edit Riwayat Diklat Modal -->
 
-        <!-- Delete Expense Modal -->
-        <div class="modal custom-modal fade" id="delete_expense" role="dialog">
+        <!-- Delete Riwayat Diklat Modal -->
+        <div class="modal custom-modal fade" id="delete_riwayat_diklat" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-header">
-                            <h3>Delete Expense</h3>
-                            <p>Are you sure want to delete?</p>
+                            <h3>Hapus Riwayat Diklat</h3>
+                            <p>Apakah anda yakin ingin menghapus data ini?</p>
                         </div>
                         <div class="modal-btn delete-action">
-                            <form action="{{ route('expenses/delete') }}" method="POST">
+                            <form action="{{ route('riwayat/diklat/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="attachments" class="d_attachments" value="">
+                                <input type="hidden" name="dokumen_diklat" class="d_dokumen_diklat" value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Delete</button>
+                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
                                         <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Cancel</a>
+                                            class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -351,10 +370,10 @@
     </script>
     {{-- delete model --}}
     <script>
-        $(document).on('click', '.delete_expense', function() {
+        $(document).on('click', '.delete_riwayat_diklat', function() {
             var _this = $(this).parents('tr');
             $('.e_id').val(_this.find('.id').text());
-            $('.d_attachments').val(_this.find('.attachments').text());
+            $('.d_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
         });
     </script>
 @endsection
