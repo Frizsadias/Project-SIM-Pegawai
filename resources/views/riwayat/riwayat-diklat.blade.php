@@ -237,10 +237,10 @@
                                         <label>Jenis Diklat</label>
                                         <select name="jenis_diklat" class="form-control" id="jenis_diklat" required>
                                             <option selected disabled> --Pilih Jenis_Diklat --</option>
-                                            <option value="diklat_struktural">Diklat Struktural</option>
-                                            <option value="diklat_fungsional">Diklat Fungsional</option>
-                                            <option value="diklat_teknis">Diklat Teknis</option>
-                                            <option value="workshop">Workshop</option>
+                                            <option>Diklat Struktural</option>
+                                            <option>Diklat Fungsional</option>
+                                            <option>Diklat Teknis</option>
+                                            <option>Workshop</option>
                                         </select>
                                     </div>
                                 </div>
@@ -309,47 +309,47 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="submit-section">
-                        <button class="btn btn-primary submit-btn">Save</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Edit Riwayat Diklat Modal -->
-
-    <!-- Delete Riwayat Diklat Modal -->
-    <div class="modal custom-modal fade" id="delete_riwayat_diklat" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="form-header">
-                        <h3>Hapus Riwayat Diklat</h3>
-                        <p>Apakah anda yakin ingin menghapus data ini?</p>
-                    </div>
-                    <div class="modal-btn delete-action">
-                        <form action="{{ route('riwayat/diklat/hapus-data') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="id" class="e_id" value="">
-                            <input type="hidden" name="dokumen_diklat" class="d_dokumen_diklat" value="">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
-                                </div>
-                                <div class="col-6">
-                                    <a href="javascript:void(0);" data-dismiss="modal"
-                                        class="btn btn-primary cancel-btn">Kembali</a>
-                                </div>
+                            <div class="submit-section">
+                                <button class="btn btn-primary submit-btn">Save</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Delete Expense Modal -->
+        <!-- /Edit Riwayat Diklat Modal -->
+
+        <!-- Delete Riwayat Diklat Modal -->
+        <div class="modal custom-modal fade" id="delete_riwayat_diklat" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-header">
+                            <h3>Hapus Riwayat Diklat</h3>
+                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                        </div>
+                        <div class="modal-btn delete-action">
+                            <form action="{{ route('riwayat/diklat/hapus-data') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" class="e_id" value="">
+                                <input type="hidden" name="dokumen_diklat" class="d_dokumen_diklat" value="">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit"
+                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Expense Modal -->
 
     </div>
     <!-- /Page Wrapper -->
@@ -357,7 +357,7 @@
 @section('script')
     {{-- update js --}}
     <script>
-        $(document).on('click', '.edit_expense', function() {
+        $(document).on('click', '.edit_riwayat_diklat', function() {
             var _this = $(this).parents('tr');
             $('#e_id').val(_this.find('.id').text());
             $('#e_nama_diklat').val(_this.find('.nama_diklat').text());
@@ -370,8 +370,9 @@
             $('#e_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
 
             var jenis_diklat = (_this.find(".jenis_diklat").text());
-            var _option = '<option selected value="' + jenis_diklat+ '">' + _this.find('.jenis_diklat').text() + '</option>'
-            $( _option).appendTo("#e_jenis_diklat");
+            var _option = '<option selected value="' + jenis_diklat + '">' + _this.find('.jenis_diklat').text() +
+                '</option>'
+            $(_option).appendTo("#e_jenis_diklat");
         });
     </script>
 

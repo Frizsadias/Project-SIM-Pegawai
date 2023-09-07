@@ -16,7 +16,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_golongan"><i
                                 class="fa fa-plus"></i> Tambah Riwayat Golongan</a>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
         <!-- /Page Content -->
 
         <!-- Tambah Riwayat Modal -->
-        <div id="add_expense" class="modal custom-modal fade" role="dialog">
+        <div id="add_riwayat_golongan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -360,7 +360,8 @@
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
                                 <input type="hidden" name="dokumen_skkp" class="d_dokumen_skkp" value="">
-                                <input type="hidden" name="dokumen_teknis_kp" class="d_dokumen_teknis_kp" value="">
+                                <input type="hidden" name="dokumen_teknis_kp" class="d_dokumen_teknis_kp"
+                                    value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"

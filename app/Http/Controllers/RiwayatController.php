@@ -30,7 +30,7 @@ class RiwayatController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-/** --------------------------------- Riwayat Pendidikan --------------------------------- */ 
+    /** --------------------------------- Riwayat Pendidikan --------------------------------- */
     /** Tampilan Riwayat Pendidikan */
     public function pendidikan()
     {
@@ -98,10 +98,9 @@ class RiwayatController extends Controller
         try {
             $dokumen_transkrips = $request->hidden_dokumen_transkrips;
             $dokumen_transkrip  = $request->file('dokumen_transkrips');
-            if($dokumen_transkrip != '')
-            {
-                unlink('assets/DokumenTranskrip'.$dokumen_transkrips);
-                $dokumen_transkrips = time().'.'.$dokumen_transkrip->getClientOriginalExtension();  
+            if ($dokumen_transkrip != '') {
+                unlink('assets/DokumenTranskrip' . $dokumen_transkrips);
+                $dokumen_transkrips = time() . '.' . $dokumen_transkrip->getClientOriginalExtension();
                 $dokumen_transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrips);
             } else {
                 $dokumen_transkrips;
@@ -146,7 +145,7 @@ class RiwayatController extends Controller
             DB::commit();
             Toastr::success('Data riwayat pendidikan berhasil diperbaharui :)', 'Success');
             return redirect()->back();
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data riwayat pendidikan gagal diperbaharui :(', 'Error');
             return redirect()->back();
@@ -161,17 +160,17 @@ class RiwayatController extends Controller
         try {
             RiwayatPendidikan::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat pendidikan berhasil dihapus :)','Success');
+            Toastr::success('Data riwayat pendidikan berhasil dihapus :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat pendidikan gagal dihapus :(','Error');
+            Toastr::error('Data riwayat pendidikan gagal dihapus :(', 'Error');
             return redirect()->back();
         }
     }
     /** End Delete Riwayat Pendidikan */
 
-/** --------------------------------- Riwayat Golongan --------------------------------- */ 
+    /** --------------------------------- Riwayat Golongan --------------------------------- */
     /** Tampilan Riwayat Golongan */
     public function golongan()
     {
@@ -186,8 +185,8 @@ class RiwayatController extends Controller
         $request->validate([
             'golongan'                  => 'required|string|max:255',
             'jenis_kenaikan_pangkat'    => 'required|string|max:255',
-            'masa_kerja_golongan_tahun' => 'required|min:11|numeric',
-            'masa_kerja_golongan_bulan' => 'required|min:11|numeric',
+            'masa_kerja_golongan_tahun' => 'required|string|max:255',
+            'masa_kerja_golongan_bulan' => 'required|string|max:255',
             'tmt_golongan'              => 'required|string|max:255',
             'no_teknis_bkn'             => 'required|string|max:255',
             'tanggal_teknis_bkn'        => 'required|string|max:255',
@@ -219,15 +218,67 @@ class RiwayatController extends Controller
             $riw_golongan->save();
 
             DB::commit();
-            Toastr::success('Data riwayat golongan telah ditambah :)','Success');
+            Toastr::success('Data riwayat golongan telah ditambah :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat golongan gagal ditambah :(','Error');
+            Toastr::error('Data riwayat golongan gagal ditambah :(', 'Error');
             return redirect()->back();
         }
     }
     /** End Tambah Data Riwayat Golongan */
+
+    /** Edit Data Riwayat Golongan */
+    public function editRiwayatGolongan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_skkps = $request->hidden_dokumen_skkps;
+            $dokumen_skkp  = $request->file('dokumen_skkps');
+            if ($dokumen_skkp != '') {
+                unlink('assets/DokumenSKKP' . $dokumen_skkps);
+                $dokumen_skkps = time() . '.' . $dokumen_skkp->getClientOriginalExtension();
+                $dokumen_skkp->move(public_path('assets/DokumenSKKP'), $dokumen_skkps);
+            } else {
+                $dokumen_skkps;
+            }
+
+            $dokumen_teknis_kps = $request->hidden_dokumen_teknis_kps;
+            $dokumen_teknis_kp  = $request->file('dokumen_teknis_kps');
+            if ($dokumen_teknis_kp != '') {
+                unlink('assets/DokumenTeknisKP' . $dokumen_teknis_kps);
+                $dokumen_teknis_kps = time() . '.' . $dokumen_teknis_kp->getClientOriginalExtension();
+                $dokumen_teknis_kp->move(public_path('assets/DokumenTeknisKP'), $dokumen_teknis_kps);
+            } else {
+                $dokumen_teknis_kps;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'golongan'                  => $request->golongan,
+                'jenis_kenaikan_pangkat'    => $request->jenis_kenaikan_pangkat,
+                'masa_kerja_golongan_tahun' => $request->masa_kerja_golongan_tahun,
+                'masa_kerja_golongan_bulan' => $request->masa_kerja_golongan_bulan,
+                'tmt_golongan'              => $request->tmt_golongan,
+                'no_teknis_bkn'             => $request->no_teknis_bkn,
+                'tanggal_teknis_bkn'        => $request->tanggal_teknis_bkn,
+                'no_sk'                     => $request->no_sk,
+                'tanggal_sk'                => $request->tanggal_sk,
+                'dokumen_skkp'              => $dokumen_skkp,
+                'dokumen_teknis_kp'         => $dokumen_teknis_kp,
+            ];
+
+            RiwayatGolongan::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat golongan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat golongan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Golongan */
 
     /** Delete Riwayat Golongan */
     public function hapusRiwayatGolongan(Request $request)
@@ -236,17 +287,17 @@ class RiwayatController extends Controller
         try {
             RiwayatGolongan::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat golongan berhasil dihapus :)','Success');
+            Toastr::success('Data riwayat golongan berhasil dihapus :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat golongan gagal dihapus :(','Error');
+            Toastr::error('Data riwayat golongan gagal dihapus :(', 'Error');
             return redirect()->back();
         }
     }
     /** End Delete Riwayat Golongan */
 
-/** --------------------------------- Riwayat Jabatan --------------------------------- */ 
+    /** --------------------------------- Riwayat Jabatan --------------------------------- */
     /** Tampilan riwayat jabatan */
     public function jabatan()
     {
@@ -292,15 +343,66 @@ class RiwayatController extends Controller
             $riw_jabatan->save();
 
             DB::commit();
-            Toastr::success('Data riwayat jabatan telah ditambah :)','Success');
+            Toastr::success('Data riwayat jabatan telah ditambah :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat jabatan gagal ditambah :(','Error');
+            Toastr::error('Data riwayat jabatan gagal ditambah :(', 'Error');
             return redirect()->back();
         }
     }
     /** End Tambah Data Riwayat Jabatan */
+
+    /** Edit Data Riwayat Jabatan */
+    public function editRiwayatJabatan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_sk_jabatans = $request->hidden_dokumen_sk_jabatans;
+            $dokumen_sk_jabatan  = $request->file('dokumen_sk_jabatans');
+            if ($dokumen_sk_jabatan != '') {
+                unlink('assets/DokumenSKJabatan' . $dokumen_sk_jabatans);
+                $dokumen_sk_jabatans = time() . '.' . $dokumen_sk_jabatan->getClientOriginalExtension();
+                $dokumen_sk_jabatan->move(public_path('assets/DokumenSKJabatan'), $dokumen_sk_jabatans);
+            } else {
+                $dokumen_sk_jabatans;
+            }
+
+            $dokumen_pelantikans = $request->hidden_dokumen_pelantikans;
+            $dokumen_pelantikan  = $request->file('dokumen_pelantikans');
+            if ($dokumen_pelantikan != '') {
+                unlink('assets/DokumenPelantikan' . $dokumen_pelantikans);
+                $dokumen_pelantikans = time() . '.' . $dokumen_pelantikan->getClientOriginalExtension();
+                $dokumen_pelantikan->move(public_path('assets/DokumenPelantikan'), $dokumen_pelantikans);
+            } else {
+                $dokumen_pelantikans;
+            }
+
+            $update = [
+                'id'                    => $request->id,
+                'jenis_jabatan'         => $request->jenis_jabatan,
+                'satuan_kerja'          => $request->satuan_kerja,
+                'satuan_kerja_induk'    => $request->satuan_kerja_induk,
+                'unit_organisasi'       => $request->unit_organisasi,
+                'no_sk'                 => $request->no_sk,
+                'tanggal_sk'            => $request->tanggal_sk,
+                'tmt_jabatan'           => $request->tmt_jabatan,
+                'tmt_pelantikan'        => $request->tmt_pelantikan,
+                'dokumen_sk_jabatan'    => $dokumen_sk_jabatan,
+                'dokumen_pelantikan'    => $dokumen_pelantikan,
+            ];
+
+            RiwayatJabatan::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat jabatan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat jabatan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Golongan */
 
     /** Delete Riwayat Jabatan */
     public function hapusRiwayatJabatan(Request $request)
@@ -319,7 +421,7 @@ class RiwayatController extends Controller
     }
     /** End Delete Riwayat Jabatan */
 
-/** --------------------------------- Riwayat Diklat --------------------------------- */  
+    /** --------------------------------- Riwayat Diklat --------------------------------- */
     /** Tampilan Riwayat Diklat */
     public function diklat()
     {
@@ -345,7 +447,7 @@ class RiwayatController extends Controller
         DB::beginTransaction();
         try {
             $dokumen_diklat = time() . '.' . $request->dokumen_diklat->extension();
-            $request->dokumen_diklat->move(public_path('assets/DokumenPelantikan'), $dokumen_diklat);
+            $request->dokumen_diklat->move(public_path('assets/DokumenDiklat'), $dokumen_diklat);
 
             $riw_diklat = new RiwayatDiklat();
             $riw_diklat->jenis_diklat = $request->jenis_diklat;
@@ -370,6 +472,46 @@ class RiwayatController extends Controller
     }
     /** End Tambah Data Riwayat Diklat */
 
+    /** Edit Data Riwayat Diklat */
+    public function editRiwayatDiklat(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_diklats = $request->hidden_dokumen_diklats;
+            $dokumen_diklat = $request->file('dokumen_diklats');
+            if ($dokumen_diklat != '') {
+                unlink('assets/DokumenDiklat' . $dokumen_diklats);
+                $dokumen_diklats = time() . '.' . $dokumen_diklat->getClientOriginalExtension();
+                $dokumen_diklat->move(public_path('assets/DokumenDiklat'), $dokumen_diklats);
+            } else {
+                $dokumen_diklats;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'jenis_diklat'              => $request->jenis_diklat,
+                'nama_diklat'               => $request->nama_diklat,
+                'institusi_penyelenggara'   => $request->institusi_penyelenggara,
+                'no_sertifikat'             => $request->no_sertifikat,
+                'tanggal_mulai'             => $request->tanggal_mulai,
+                'tanggal_selesai'           => $request->tanggal_selesai,
+                'tahun_diklat'              => $request->tahun_diklat,
+                'durasi_jam'                => $request->durasi_jam,
+                'dokumen_diklat'            => $dokumen_diklat,
+            ];
+
+            RiwayatDiklat::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat diklat berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat diklat gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Diklat */
+
     /** Delete Riwayat Diklat */
     public function hapusRiwayatDiklat(Request $request)
     {
@@ -377,11 +519,11 @@ class RiwayatController extends Controller
         try {
             RiwayatDiklat::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat diklat berhasil dihapus :)','Success');
+            Toastr::success('Data riwayat diklat berhasil dihapus :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat diklat gagal dihapus :(','Error');
+            Toastr::error('Data riwayat diklat gagal dihapus :(', 'Error');
             return redirect()->back();
         }
     }

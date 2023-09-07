@@ -269,7 +269,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pendidikan</label>
-                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan" value="">
+                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan"
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -277,13 +278,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tahun Lulus</label>
-                                            <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus" value="">
+                                        <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Ijazah</label>
-                                        <input type="text" class="form-control" name="no_ijazah" id="e_no_ijazah" value="">
+                                        <input type="text" class="form-control" name="no_ijazah" id="e_no_ijazah"
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -291,13 +294,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Sekolah</label>
-                                        <input type="text" class="form-control" name="nama_sekolah" id="e_nama_sekolah" value="">
+                                        <input type="text" class="form-control" name="nama_sekolah"
+                                            id="e_nama_sekolah" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Depan</label>
-                                        <input type="text" class="form-control" name="gelar_depan" id="e_gelar_depan" value="">
+                                        <input type="text" class="form-control" name="gelar_depan" id="e_gelar_depan"
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -305,35 +310,42 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Belakang</label>
-                                        <input type="text" class="form-control" name="gelar_belakang" id="e_gelar_belakang" value="">
+                                        <input type="text" class="form-control" name="gelar_belakang"
+                                            id="e_gelar_belakang" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
-                                        <input type="text" class="form-control" name="jenis_pendidikan" id="e_jenis_pendidikan" value="">
+                                        <input type="text" class="form-control" name="jenis_pendidikan"
+                                            id="e_jenis_pendidikan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Transkrip</label>
-                                        <input type="file" class="form-control" id="dokumen_transkrip" name="dokumen_transkrip">
-                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_transkrip" value="">
+                                        <input type="file" class="form-control" id="dokumen_transkrip"
+                                            name="dokumen_transkrip">
+                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_transkrip"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Ijazah</label>
-                                        <input type="file" class="form-control" id="dokumen_ijazah" name="dokumen_ijazah">
-                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_ijazah" value="">
+                                        <input type="file" class="form-control" id="dokumen_ijazah"
+                                            name="dokumen_ijazah">
+                                        <input type="hidden" name="hidden_dokumen" id="e_dokumen_ijazah"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Gelar</label>
-                                        <input type="file" class="form-control" id="dokumen_gelar" name="dokumen_gelar">
+                                        <input type="file" class="form-control" id="dokumen_gelar"
+                                            name="dokumen_gelar">
                                         <input type="hidden" name="hidden_dokumen" id="e_dokumen_gelar" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
@@ -362,7 +374,8 @@
                             <form action="{{ route('riwayat/pendidikan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip" value="">
+                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip"
+                                    value="">
                                 <input type="hidden" name="dokumen_ijazah" class="d_dokumen_ijazah" value="">
                                 <input type="hidden" name="dokumen_gelar" class="d_dokumen_gelar" value="">
                                 <div class="row">
@@ -390,25 +403,25 @@
 @section('script')
     {{-- update js --}}
     <script>
-        $(document).on('click','.edit_riwayat_pendidikan',function()
-            {
-                var _this = $(this).parents('tr');
-                $('#e_id').val(_this.find('.id').text());
-                $('#e_pendidikan').val(_this.find('.pendidikan').text());
-                $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
-                $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
-                $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
-                $('#e_gelar_depan').val(_this.find('.gelar_depan').text());
-                $('#e_gelar_belakang').val(_this.find('.gelar_belakang').text());
-                $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
-                $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
-                $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
-                $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
+        $(document).on('click', '.edit_riwayat_pendidikan', function() {
+            var _this = $(this).parents('tr');
+            $('#e_id').val(_this.find('.id').text());
+            $('#e_pendidikan').val(_this.find('.pendidikan').text());
+            $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
+            $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
+            $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
+            $('#e_gelar_depan').val(_this.find('.gelar_depan').text());
+            $('#e_gelar_belakang').val(_this.find('.gelar_belakang').text());
+            $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
+            $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
+            $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
+            $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
 
-                var tingkat_pendidikan = (_this.find(".tingkat_pendidikan").text());
-                var _option = '<option selected value="' + tingkat_pendidikan+ '">' + _this.find('.tingkat_pendidikan').text() + '</option>'
-                $( _option).appendTo("#e_tingkat_pendidikan");
-            });
+            var tingkat_pendidikan = (_this.find(".tingkat_pendidikan").text());
+            var _option = '<option selected value="' + tingkat_pendidikan + '">' + _this.find('.tingkat_pendidikan')
+                .text() + '</option>'
+            $(_option).appendTo("#e_tingkat_pendidikan");
+        });
     </script>
 
     {{-- delete model --}}

@@ -249,17 +249,16 @@
                                         <label>Jenis Jabatan
                                         </label>
                                         <select class="select" name="jenis_jabatan" id="e_jenis_jabatan">
-                                            <option value="Jabatan Struktural">Jabatan Struktural</option>
-                                            <option value="Jabatan Fungsional Tertentu">Jabatan Fungsional Tertentu
-                                            </option>
-                                            <option value="Jabatan Fungsional Umum">Jabatan Fungsional Umum</option>
+                                            <option>Jabatan Struktural</option>
+                                            <option>Jabatan Fungsional Tertentu</option>
+                                            <option>Jabatan Fungsional Umum</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Satuan Kerja</label>
-                                        <input class="form-control" type="text" name="satuaun_kerja"
+                                        <input class="form-control" type="text" name="satuan_kerja"
                                             id="e_satuan_kerja" value="">
                                     </div>
                                 </div>
@@ -355,8 +354,10 @@
                             <form action="{{ route('riwayat/jabatan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan" value="">
-                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan" value="">
+                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan"
+                                    value="">
+                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan"
+                                    value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"
@@ -388,15 +389,16 @@
             $('#e_satuan_kerja_induk').val(_this.find('.satuan_kerja_induk').text());
             $('#e_unit_organisasi').val(_this.find('.unit_organisasi').text());
             $('#e_no_sk').val(_this.find('.no_sk').text());
-            $('#e_tanggal_sk').val(_this.find('.unit_tanggal_sk').text());
+            $('#e_tanggal_sk').val(_this.find('.tanggal_sk').text());
             $('#e_tmt_jabatan').val(_this.find('.tmt_jabatan').text());
             $('#e_tmt_pelantikan').val(_this.find('.tmt_pelantikan').text());
             $('#e_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
             $('#e_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
 
             var jenis_jabatan = (_this.find(".jenis_jabatan").text());
-            var _option = '<option selected value="' + jenis_jabatan+ '">' + _this.find('.jenis_jabatan') .text() + '</option>'
-            $( _option).appendTo("#e_jenis_jabatan");
+            var _option = '<option selected value="' + jenis_jabatan + '">' + _this.find('.jenis_jabatan').text() +
+                '</option>'
+            $(_option).appendTo("#e_jenis_jabatan");
         });
     </script>
 
