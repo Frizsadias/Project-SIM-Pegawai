@@ -176,7 +176,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Golongan</label>
-                                        <input class="form-control" type="text" name="tmt_golongan">
+                                        <input class="form-control" type="date" name="tmt_golongan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -281,7 +281,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Golongan</label>
-                                        <input class="form-control" type="text" name="tmt_golongan"
+                                        <input class="form-control" type="date" name="tmt_golongan"
                                             id="e_tmt_golongan" value="">
                                     </div>
                                 </div>

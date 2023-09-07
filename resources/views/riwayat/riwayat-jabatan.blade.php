@@ -80,7 +80,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
+                                @foreach ($riwayatjabatan as $sqljabatan => $result_jabatan)
                                     <tr>
                                         <td>{{ ++$sqljabatan }}</td>
                                         <td hidden class="id">{{ $result_jabatan->id }}</td>
@@ -193,13 +193,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Jabatan</label>
-                                        <input class="form-control" type="text" name="tmt_jabatan">
+                                        <input class="form-control" type="date" name="tmt_jabatan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Pelantikan</label>
-                                        <input class="form-control" type="text" name="tmt_pelantikan">
+                                        <input class="form-control" type="date" name="tmt_pelantikan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -300,14 +300,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Jabatan</label>
-                                        <input class="form-control" type="text" name="tmt_jabatan" id="e_tmt_jabatan"
+                                        <input class="form-control" type="date" name="tmt_jabatan" id="e_tmt_jabatan"
                                             value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Pelantikan</label>
-                                        <input class="form-control" type="text" name="tmt_pelantikan"
+                                        <input class="form-control" type="date" name="tmt_pelantikan"
                                             id="e_tmt_pelantikan" value="">
                                     </div>
                                 </div>
