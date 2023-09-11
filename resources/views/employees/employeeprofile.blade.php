@@ -126,11 +126,18 @@
                         <ul class="nav nav-tabs nav-tabs-bottom">
                             <li class="nav-item"><a href="#emp_profile" data-toggle="tab"
                                     class="nav-link active">Profile</a></li>
-                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Informasi
-                                    Riwayat</a>
+                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat
+                                    Pendidikan</a>
                             </li>
-                            <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link">Bank &
-                                    Statutory <small class="text-danger">(Admin Only)</small></a></li>
+                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat
+                                    Golongan</a>
+                            </li>
+                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat
+                                    Jabatan</a>
+                            </li>
+                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat
+                                    Diklat</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
