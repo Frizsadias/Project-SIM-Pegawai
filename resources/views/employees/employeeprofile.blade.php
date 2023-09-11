@@ -25,7 +25,9 @@
                             <div class="profile-view">
                                 <div class="profile-img-wrap">
                                     <div class="profile-img">
-                                        <a href="#"><img alt="" src="{{ URL::to('/assets/images/'. $users->avatar) }}" alt="{{ $users->name }}"></a>
+                                        <a href="#"><img alt=""
+                                                src="{{ URL::to('/assets/images/' . $users->avatar) }}"
+                                                alt="{{ $users->name }}"></a>
                                     </div>
                                 </div>
                                 <div class="profile-basic">
@@ -36,8 +38,10 @@
                                                 <h6 class="text-muted"> {{ $users->department }}</h6>
                                                 <small class="text-muted">{{ $users->position }}</small>
                                                 <div class="staff-id">Employee ID : {{ $users->user_id }}</div>
-                                                <div class="small doj text-muted">Date of Join : {{ $users->join_date }}</div>
-                                                <div class="staff-msg"><a class="btn btn-custom" href="chat.html">Send Message</a></div>
+                                                <div class="small doj text-muted">Date of Join : {{ $users->join_date }}
+                                                </div>
+                                                <div class="staff-msg"><a class="btn btn-custom" href="chat.html">Send
+                                                        Message</a></div>
                                             </div>
                                         </div>
                                         <div class="col-md-7">
@@ -45,7 +49,7 @@
                                                 <li>
                                                     <div class="title">Phone:</div>
                                                     <div class="text">
-                                                        @if(!empty($users->phone_number))
+                                                        @if (!empty($users->phone_number))
                                                             <a>{{ $users->phone_number }}</a>
                                                         @else
                                                             <a>N/A</a>
@@ -55,8 +59,8 @@
                                                 <li>
                                                     <div class="title">Email:</div>
                                                     <div class="text">
-                                                        @if(!empty($users->email))
-                                                        <a>{{ $users->email }}</a>
+                                                        @if (!empty($users->email))
+                                                            <a>{{ $users->email }}</a>
                                                         @else
                                                             <a>N/A</a>
                                                         @endif
@@ -65,8 +69,8 @@
                                                 <li>
                                                     <div class="title">Birthday:</div>
                                                     <div class="text">
-                                                        @if(!empty($users->birth_date))
-                                                        <a>{{ $users->birth_date }}</a>
+                                                        @if (!empty($users->birth_date))
+                                                            <a>{{ $users->birth_date }}</a>
                                                         @else
                                                             <a>N/A</a>
                                                         @endif
@@ -75,8 +79,8 @@
                                                 <li>
                                                     <div class="title">Address:</div>
                                                     <div class="text">
-                                                        @if(!empty($users->address))
-                                                        <a>{{ $users->address }}</a>
+                                                        @if (!empty($users->address))
+                                                            <a>{{ $users->address }}</a>
                                                         @else
                                                             <a>N/A</a>
                                                         @endif
@@ -85,8 +89,8 @@
                                                 <li>
                                                     <div class="title">Gender:</div>
                                                     <div class="text">
-                                                        @if(!empty($users->gender))
-                                                        <a>{{ $users->gender }}</a>
+                                                        @if (!empty($users->gender))
+                                                            <a>{{ $users->gender }}</a>
                                                         @else
                                                             <a>N/A</a>
                                                         @endif
@@ -97,35 +101,41 @@
                                                     <div class="text">
                                                         <div class="avatar-box">
                                                             <div class="avatar avatar-xs">
-                                                                <img src="{{ URL::to('/assets/images/'. $users->avatar) }}" alt="{{ $users->name }}">
+                                                                <img src="{{ URL::to('/assets/images/' . $users->avatar) }}"
+                                                                    alt="{{ $users->name }}">
                                                             </div>
                                                         </div>
                                                         <a>{{ $users->name }}</a>
                                                     </div>
-                                                </li> 
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div>
+                                <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon"
+                                        href="#"><i class="fa fa-pencil"></i></a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-					
+
             <div class="card tab-box">
                 <div class="row user-tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                         <ul class="nav nav-tabs nav-tabs-bottom">
-                            <li class="nav-item"><a href="#emp_profile" data-toggle="tab" class="nav-link active">Profile</a></li>
-                            <li class="nav-item"><a href="#emp_projects" data-toggle="tab" class="nav-link">Projects</a></li>
-                            <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link">Bank & Statutory <small class="text-danger">(Admin Only)</small></a></li>
+                            <li class="nav-item"><a href="#emp_profile" data-toggle="tab"
+                                    class="nav-link active">Profile</a></li>
+                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Informasi
+                                    Riwayat</a>
+                            </li>
+                            <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link">Bank &
+                                    Statutory <small class="text-danger">(Admin Only)</small></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            
+
             <div class="tab-content">
                 <!-- Profile Info Tab -->
                 <div id="emp_profile" class="pro-overview tab-pane fade show active">
@@ -133,7 +143,9 @@
                         <div class="col-md-6 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Personal Informations <a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Personal Informations <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#personal_info_modal"><i
+                                                class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
                                         <li>
                                             <div class="title">Passport No.</div>
@@ -206,31 +218,34 @@
                         <div class="col-md-6 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Emergency Contact <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Emergency Contact <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#emergency_contact_modal"><i
+                                                class="fa fa-pencil"></i></a></h3>
                                     <h5 class="section-title">Primary</h5>
                                     <ul class="personal-info">
                                         <li>
                                             <div class="title">Name</div>
                                             @if (!empty($users->name_primary))
-                                            <div class="text">{{ $users->name_primary }}</div>
+                                                <div class="text">{{ $users->name_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Relationship</div>
                                             @if (!empty($users->relationship_primary))
-                                            <div class="text">{{ $users->relationship_primary }}</div>
+                                                <div class="text">{{ $users->relationship_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Phone </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                     </ul>
@@ -240,25 +255,26 @@
                                         <li>
                                             <div class="title">Name</div>
                                             @if (!empty($users->name_secondary))
-                                            <div class="text">{{ $users->name_secondary }}</div>
+                                                <div class="text">{{ $users->name_secondary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Relationship</div>
                                             @if (!empty($users->relationship_secondary))
-                                            <div class="text">{{ $users->relationship_secondary }}</div>
+                                                <div class="text">{{ $users->relationship_secondary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Phone </div>
                                             @if (!empty($users->phone_secondary) && !empty($users->phone_2_secondary))
-                                            <div class="text">{{ $users->phone_secondary }},{{ $users->phone_2_secondary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_secondary }},{{ $users->phone_2_secondary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                     </ul>
@@ -295,7 +311,9 @@
                         <div class="col-md-6 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Family Informations <a href="#" class="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Family Informations <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#family_info_modal"><i
+                                                class="fa fa-pencil"></i></a></h3>
                                     <div class="table-responsive">
                                         <table class="table table-nowrap">
                                             <thead>
@@ -315,10 +333,14 @@
                                                     <td>9876543210</td>
                                                     <td class="text-right">
                                                         <div class="dropdown dropdown-action">
-                                                            <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
+                                                            <a aria-expanded="false" data-toggle="dropdown"
+                                                                class="action-icon dropdown-toggle" href="#"><i
+                                                                    class="material-icons">more_vert</i></a>
                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                                <a href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                <a href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                <a href="#" class="dropdown-item"><i
+                                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                                <a href="#" class="dropdown-item"><i
+                                                                        class="fa fa-trash-o m-r-5"></i> Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -334,7 +356,9 @@
                         <div class="col-md-6 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Education Informations <a href="#" class="edit-icon" data-toggle="modal" data-target="#education_info"><i class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Education Informations <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#education_info"><i
+                                                class="fa fa-pencil"></i></a></h3>
                                     <div class="experience-box">
                                         <ul class="experience-list">
                                             <li>
@@ -343,7 +367,8 @@
                                                 </div>
                                                 <div class="experience-content">
                                                     <div class="timeline-content">
-                                                        <a href="#/" class="name">International College of Arts and Science (UG)</a>
+                                                        <a href="#/" class="name">International College of Arts and
+                                                            Science (UG)</a>
                                                         <div>Bsc Computer Science</div>
                                                         <span class="time">2000 - 2003</span>
                                                     </div>
@@ -355,7 +380,8 @@
                                                 </div>
                                                 <div class="experience-content">
                                                     <div class="timeline-content">
-                                                        <a href="#/" class="name">International College of Arts and Science (PG)</a>
+                                                        <a href="#/" class="name">International College of Arts and
+                                                            Science (PG)</a>
                                                         <div>Msc Computer Science</div>
                                                         <span class="time">2000 - 2003</span>
                                                     </div>
@@ -369,7 +395,9 @@
                         <div class="col-md-6 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Experience <a href="#" class="edit-icon" data-toggle="modal" data-target="#experience_info"><i class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Experience <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#experience_info"><i
+                                                class="fa fa-pencil"></i></a></h3>
                                     <div class="experience-box">
                                         <ul class="experience-list">
                                             <li>
@@ -378,7 +406,8 @@
                                                 </div>
                                                 <div class="experience-content">
                                                     <div class="timeline-content">
-                                                        <a href="#/" class="name">Web Designer at Zen Corporation</a>
+                                                        <a href="#/" class="name">Web Designer at Zen
+                                                            Corporation</a>
                                                         <span class="time">Jan 2013 - Present (5 years 2 months)</span>
                                                     </div>
                                                 </div>
@@ -400,7 +429,8 @@
                                                 </div>
                                                 <div class="experience-content">
                                                     <div class="timeline-content">
-                                                        <a href="#/" class="name">Web Designer at Dalt Technology</a>
+                                                        <a href="#/" class="name">Web Designer at Dalt
+                                                            Technology</a>
                                                         <span class="time">Jan 2013 - Present (5 years 2 months)</span>
                                                     </div>
                                                 </div>
@@ -413,265 +443,402 @@
                     </div>
                 </div>
                 <!-- /Profile Info Tab -->
-                
-                <!-- Projects Tab -->
-                <div class="tab-pane fade" id="emp_projects">
+
+                <!-- Informasi Riwayat Tab -->
+                <div class="pro-overview tab-pane fade show active" id="riwayat_pendidikan">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-                            <div class="card">
+                        <div class="col-md-6 d-flex">
+                            <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <div class="dropdown profile-action">
-                                        <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                    <h4 class="project-title"><a href="project-view.html">Office Management</a></h4>
-                                    <small class="block text-ellipsis m-b-15">
-                                        <span class="text-xs">1</span> <span class="text-muted">open tasks, </span>
-                                        <span class="text-xs">9</span> <span class="text-muted">tasks completed</span>
-                                    </small>
-                                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. When an unknown printer took a galley of type and
-                                        scrambled it...
-                                    </p>
-                                    <div class="pro-deadline m-b-15">
-                                        <div class="sub-title">
-                                            Deadline:
-                                        </div>
-                                        <div class="text-muted">
-                                            17 Apr 2019
-                                        </div>
-                                    </div>
-                                    <div class="project-members m-b-15">
-                                        <div>Project Leader :</div>
-                                        <ul class="team-members">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="project-members m-b-15">
-                                        <div>Team :</div>
-                                        <ul class="team-members">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="John Smith"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Mike Litorus"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="all-users">+15</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
-                                    <div class="progress progress-xs mb-0">
-                                        <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
-                                    </div>
+                                    <h3 class="card-title">Riwayat Pendidikan <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#personal_info_modal"><i
+                                                class="fa fa-pencil"></i></a></h3>
+                                    <ul class="personal-info">
+                                        <li>
+                                            <div class="title">Tingkat Pendidikan</div>
+                                            @if (!empty($users->passport_no))
+                                                <div class="text">{{ $users->passport_no }}</div>
+                                            @else
+                                                <div class="text">Tingkat Pendidikan</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Pendidikan</div>
+                                            @if (!empty($users->passport_expiry_date))
+                                                <div class="text">{{ $users->passport_expiry_date }}</div>
+                                            @else
+                                                <div class="text">Pendidikan</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Tahun Lulus</div>
+                                            @if (!empty($users->tel))
+                                                <div class="text">{{ $users->tel }}</div>
+                                            @else
+                                                <div class="text">Tahun Lulus</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Nomor Ijazah</div>
+                                            @if (!empty($users->nationality))
+                                                <div class="text">{{ $users->nationality }}</div>
+                                            @else
+                                                <div class="text">Nomor Ijazah</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Gelar Depan</div>
+                                            @if (!empty($users->religion))
+                                                <div class="text">{{ $users->religion }}</div>
+                                            @else
+                                                <div class="text">Gelar Depan</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Gelar Belakang</div>
+                                            @if (!empty($users->marital_status))
+                                                <div class="text">{{ $users->marital_status }}</div>
+                                            @else
+                                                <div class="text">Gelar Belakang</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Jenis Pendidikan</div>
+                                            @if (!empty($users->employment_of_spouse))
+                                                <div class="text">{{ $users->employment_of_spouse }}</div>
+                                            @else
+                                                <div class="text">Jenis Pendidikan</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen Transkrip</div>
+                                            @if (!empty($users->employment_of_spouse))
+                                                <div class="text">{{ $users->employment_of_spouse }}</div>
+                                            @else
+                                                <div class="text">Dokumen Transkrip</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen Ijazah</div>
+                                            @if (!empty($users->employment_of_spouse))
+                                                <div class="text">{{ $users->employment_of_spouse }}</div>
+                                            @else
+                                                <div class="text">Dokumen Ijazah</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen Gelar</div>
+                                            @if (!empty($users->employment_of_spouse))
+                                                <div class="text">{{ $users->employment_of_spouse }}</div>
+                                            @else
+                                                <div class="text">Dokumen Gelar</div>
+                                            @endif
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-                            <div class="card">
+                        <div class="col-md-6 d-flex">
+                            <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <div class="dropdown profile-action">
-                                        <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                    <h4 class="project-title"><a href="project-view.html">Project Management</a></h4>
-                                    <small class="block text-ellipsis m-b-15">
-                                        <span class="text-xs">2</span> <span class="text-muted">open tasks, </span>
-                                        <span class="text-xs">5</span> <span class="text-muted">tasks completed</span>
-                                    </small>
-                                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. When an unknown printer took a galley of type and
-                                        scrambled it...
-                                    </p>
-                                    <div class="pro-deadline m-b-15">
-                                        <div class="sub-title">
-                                            Deadline:
-                                        </div>
-                                        <div class="text-muted">
-                                            17 Apr 2019
-                                        </div>
-                                    </div>
-                                    <div class="project-members m-b-15">
-                                        <div>Project Leader :</div>
-                                        <ul class="team-members">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="project-members m-b-15">
-                                        <div>Team :</div>
-                                        <ul class="team-members">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="John Smith"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Mike Litorus"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="all-users">+15</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
-                                    <div class="progress progress-xs mb-0">
-                                        <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
-                                    </div>
+                                    <h3 class="card-title">Riwayat Golongan <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#emergency_contact_modal"><i
+                                                class="fa fa-pencil"></i></a></h3>
+                                    <ul class="personal-info">
+                                        <li>
+                                            <div class="title">Golongan </div>
+                                            @if (!empty($users->name_primary))
+                                                <div class="text">{{ $users->name_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Jenis Kenaikan Pangkat (KP) </div>
+                                            @if (!empty($users->relationship_primary))
+                                                <div class="text">{{ $users->relationship_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Masa Kerja Golongan (Tahun) </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Masa Kerja Golongan (Bulan) </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">TMT Golongan </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Nomor Pertimbangan Teknis BKN </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Tanggal Pertimbangan Teknis BKN </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Nomor SK </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Tanggal SK </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen SK KP </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen Pertimbangan Teknis KP </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-                            <div class="card">
+                        <div class="col-md-6 d-flex">
+                            <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <div class="dropdown profile-action">
-                                        <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                    <h4 class="project-title"><a href="project-view.html">Video Calling App</a></h4>
-                                    <small class="block text-ellipsis m-b-15">
-                                        <span class="text-xs">3</span> <span class="text-muted">open tasks, </span>
-                                        <span class="text-xs">3</span> <span class="text-muted">tasks completed</span>
-                                    </small>
-                                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. When an unknown printer took a galley of type and
-                                        scrambled it...
-                                    </p>
-                                    <div class="pro-deadline m-b-15">
-                                        <div class="sub-title">
-                                            Deadline:
-                                        </div>
-                                        <div class="text-muted">
-                                            17 Apr 2019
-                                        </div>
-                                    </div>
-                                    <div class="project-members m-b-15">
-                                        <div>Project Leader :</div>
-                                        <ul class="team-members">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="project-members m-b-15">
-                                        <div>Team :</div>
-                                        <ul class="team-members">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="John Smith"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Mike Litorus"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="all-users">+15</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
-                                    <div class="progress progress-xs mb-0">
-                                        <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
-                                    </div>
+                                    <h3 class="card-title">Riwayat Jabatan <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#riwayat_jabatan"><i
+                                                class="fa fa-pencil"></i></a></h3>
+                                    <ul class="personal-info">
+                                        <li>
+                                            <div class="title">Jenis Jabatan </div>
+                                            @if (!empty($users->name_primary))
+                                                <div class="text">{{ $users->name_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Satuan Kerja </div>
+                                            @if (!empty($users->relationship_primary))
+                                                <div class="text">{{ $users->relationship_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Satuan Kerja Induk </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Unit Organisasi </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Nomor SK </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Tanggal SK </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">TMT Jabatan </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">TMT Pelantikan </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen SK Jabatan </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen Surat Pelantikan </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-                            <div class="card">
+                        <div class="col-md-6 d-flex">
+                            <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <div class="dropdown profile-action">
-                                        <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                    <h4 class="project-title"><a href="project-view.html">Hospital Administration</a></h4>
-                                    <small class="block text-ellipsis m-b-15">
-                                        <span class="text-xs">12</span> <span class="text-muted">open tasks, </span>
-                                        <span class="text-xs">4</span> <span class="text-muted">tasks completed</span>
-                                    </small>
-                                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. When an unknown printer took a galley of type and
-                                        scrambled it...
-                                    </p>
-                                    <div class="pro-deadline m-b-15">
-                                        <div class="sub-title">
-                                            Deadline:
-                                        </div>
-                                        <div class="text-muted">
-                                            17 Apr 2019
-                                        </div>
-                                    </div>
-                                    <div class="project-members m-b-15">
-                                        <div>Project Leader :</div>
-                                        <ul class="team-members">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="project-members m-b-15">
-                                        <div>Team :</div>
-                                        <ul class="team-members">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="John Smith"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="Mike Litorus"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="all-users">+15</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
-                                    <div class="progress progress-xs mb-0">
-                                        <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
-                                    </div>
+                                    <h3 class="card-title">Riwayat Diklat <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#riwayat_diklat"><i
+                                                class="fa fa-pencil"></i></a></h3>
+                                    <ul class="personal-info">
+                                        <li>
+                                            <div class="title">Jenis Diklat </div>
+                                            @if (!empty($users->name_primary))
+                                                <div class="text">{{ $users->name_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Nama Diklat </div>
+                                            @if (!empty($users->relationship_primary))
+                                                <div class="text">{{ $users->relationship_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Institusi Penyelenggara </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Nomor Sertifikat </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Tanggal Mulai </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Tanggal Selesai </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Tahun Diklat </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Durasi Jam </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen Sertifikat Diklat </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /Projects Tab -->
-                
+                <!-- /Informasi Riwayat Tab -->
+
                 <!-- Bank Statutory Tab -->
                 <div class="tab-pane fade" id="bank_statutory">
                     <div class="card">
@@ -681,7 +848,8 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="col-form-label">Salary basis <span class="text-danger">*</span></label>
+                                            <label class="col-form-label">Salary basis <span
+                                                    class="text-danger">*</span></label>
                                             <select class="select">
                                                 <option>Select salary basis type</option>
                                                 <option>Hourly</option>
@@ -693,12 +861,14 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="col-form-label">Salary amount <small class="text-muted">per month</small></label>
+                                            <label class="col-form-label">Salary amount <small class="text-muted">per
+                                                    month</small></label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="Type your salary amount" value="0.00">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Type your salary amount" value="0.00">
                                             </div>
                                         </div>
                                     </div>
@@ -729,7 +899,8 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="col-form-label">PF No. <span class="text-danger">*</span></label>
+                                            <label class="col-form-label">PF No. <span
+                                                    class="text-danger">*</span></label>
                                             <select class="select">
                                                 <option>Select PF contribution</option>
                                                 <option>Yes</option>
@@ -751,7 +922,8 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
+                                            <label class="col-form-label">Additional rate <span
+                                                    class="text-danger">*</span></label>
                                             <select class="select">
                                                 <option>Select additional rate</option>
                                                 <option>0%</option>
@@ -788,7 +960,8 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
+                                            <label class="col-form-label">Additional rate <span
+                                                    class="text-danger">*</span></label>
                                             <select class="select">
                                                 <option>Select additional rate</option>
                                                 <option>0%</option>
@@ -812,7 +985,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <hr>
                                 <h3 class="card-title"> ESI Information</h3>
                                 <div class="row">
@@ -828,7 +1001,8 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="col-form-label">ESI No. <span class="text-danger">*</span></label>
+                                            <label class="col-form-label">ESI No. <span
+                                                    class="text-danger">*</span></label>
                                             <select class="select">
                                                 <option>Select ESI contribution</option>
                                                 <option>Yes</option>
@@ -850,7 +1024,8 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
+                                            <label class="col-form-label">Additional rate <span
+                                                    class="text-danger">*</span></label>
                                             <select class="select">
                                                 <option>Select additional rate</option>
                                                 <option>0%</option>
@@ -874,7 +1049,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="submit-section">
                                     <button class="btn btn-primary submit-btn" type="submit">Save</button>
                                 </div>
@@ -898,17 +1073,20 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('profile/information/save') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('profile/information/save') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="profile-img-wrap edit-img">
-                                        <img class="inline-block" src="{{ URL::to('/assets/images/'. $users->avatar) }}" alt="{{ $users->name }}">
+                                        <img class="inline-block" src="{{ URL::to('/assets/images/' . $users->avatar) }}"
+                                            alt="{{ $users->name }}">
                                         <div class="fileupload btn">
                                             <span class="btn-text">edit</span>
                                             <input class="upload" type="file" id="image" name="images">
-                                            @if(!empty($users))
-                                            <input type="hidden" name="hidden_image" id="e_image" value="{{ $users->avatar }}">
+                                            @if (!empty($users))
+                                                <input type="hidden" name="hidden_image" id="e_image"
+                                                    value="{{ $users->avatar }}">
                                             @endif
                                         </div>
                                     </div>
@@ -916,19 +1094,25 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Full Name</label>
-                                                <input type="text" class="form-control" id="name" name="name" value="{{ $users->name }}">
-                                                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $users->user_id }}">
-                                                <input type="hidden" class="form-control" id="email" name="email" value="{{ $users->email }}">
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    value="{{ $users->name }}">
+                                                <input type="hidden" class="form-control" id="user_id" name="user_id"
+                                                    value="{{ $users->user_id }}">
+                                                <input type="hidden" class="form-control" id="email" name="email"
+                                                    value="{{ $users->email }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Birth Date</label>
                                                 <div class="cal-icon">
-                                                    @if(!empty($users))
-                                                        <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate" value="{{ $users->birth_date }}">
+                                                    @if (!empty($users))
+                                                        <input class="form-control datetimepicker" type="text"
+                                                            id="birthDate" name="birthDate"
+                                                            value="{{ $users->birth_date }}">
                                                     @else
-                                                        <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate">
+                                                        <input class="form-control datetimepicker" type="text"
+                                                            id="birthDate" name="birthDate">
                                                     @endif
                                                 </div>
                                             </div>
@@ -937,8 +1121,10 @@
                                             <div class="form-group">
                                                 <label>Gender</label>
                                                 <select class="select form-control" id="gender" name="gender">
-                                                    @if(!empty($users))
-                                                        <option value="{{ $users->gender }}" {{ ( $users->gender == $users->gender) ? 'selected' : '' }}>{{ $users->gender }} </option>
+                                                    @if (!empty($users))
+                                                        <option value="{{ $users->gender }}"
+                                                            {{ $users->gender == $users->gender ? 'selected' : '' }}>
+                                                            {{ $users->gender }} </option>
                                                         <option value="Male">Male</option>
                                                         <option value="Female">Female</option>
                                                     @else
@@ -955,8 +1141,9 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        @if(!empty($users))
-                                            <input type="text" class="form-control" id="address" name="address" value="{{ $users->address }}">
+                                        @if (!empty($users))
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                value="{{ $users->address }}">
                                         @else
                                             <input type="text" class="form-control" id="address" name="address">
                                         @endif
@@ -965,8 +1152,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>State</label>
-                                        @if(!empty($users))
-                                            <input type="text" class="form-control" id="state" name="state" value="{{ $users->state }}">
+                                        @if (!empty($users))
+                                            <input type="text" class="form-control" id="state" name="state"
+                                                value="{{ $users->state }}">
                                         @else
                                             <input type="text" class="form-control" id="state" name="state">
                                         @endif
@@ -975,8 +1163,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Country</label>
-                                        @if(!empty($users))
-                                            <input type="text" class="form-control" id="" name="country" value="{{ $users->country }}">
+                                        @if (!empty($users))
+                                            <input type="text" class="form-control" id="" name="country"
+                                                value="{{ $users->country }}">
                                         @else
                                             <input type="text" class="form-control" id="" name="country">
                                         @endif
@@ -985,8 +1174,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pin Code</label>
-                                        @if(!empty($users))
-                                            <input type="text" class="form-control" id="pin_code" name="pin_code" value="{{ $users->pin_code }}">
+                                        @if (!empty($users))
+                                            <input type="text" class="form-control" id="pin_code" name="pin_code"
+                                                value="{{ $users->pin_code }}">
                                         @else
                                             <input type="text" class="form-control" id="pin_code" name="pin_code">
                                         @endif
@@ -995,10 +1185,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Phone Number</label>
-                                        @if(!empty($users))
-                                            <input type="text" class="form-control" id="phoneNumber" name="phone_number" value="{{ $users->phone_number }}">
+                                        @if (!empty($users))
+                                            <input type="text" class="form-control" id="phoneNumber"
+                                                name="phone_number" value="{{ $users->phone_number }}">
                                         @else
-                                            <input type="text" class="form-control" id="phoneNumber" name="phone_number">
+                                            <input type="text" class="form-control" id="phoneNumber"
+                                                name="phone_number">
                                         @endif
                                     </div>
                                 </div>
@@ -1007,8 +1199,10 @@
                                     <div class="form-group">
                                         <label>Department <span class="text-danger">*</span></label>
                                         <select class="select" id="department" name="department">
-                                            @if(!empty($users))
-                                                <option value="{{ $users->department }}" {{ ( $users->department == $users->department) ? 'selected' : '' }}>{{ $users->department }} </option>
+                                            @if (!empty($users))
+                                                <option value="{{ $users->department }}"
+                                                    {{ $users->department == $users->department ? 'selected' : '' }}>
+                                                    {{ $users->department }} </option>
                                                 <option value="Web Development">Web Development</option>
                                                 <option value="IT Management">IT Management</option>
                                                 <option value="Marketing">Marketing</option>
@@ -1024,8 +1218,10 @@
                                     <div class="form-group">
                                         <label>Designation <span class="text-danger">*</span></label>
                                         <select class="select" id="designation" name="designation">
-                                            @if(!empty($users))
-                                                <option value="{{ $users->designation }}" {{ ( $users->designation == $users->designation) ? 'selected' : '' }}>{{ $users->designation }} </option>
+                                            @if (!empty($users))
+                                                <option value="{{ $users->designation }}"
+                                                    {{ $users->designation == $users->designation ? 'selected' : '' }}>
+                                                    {{ $users->designation }} </option>
                                                 <option value="Web Designer">Web Designer</option>
                                                 <option value="Web Developer">Web Developer</option>
                                                 <option value="Android Developer">Android Developer</option>
@@ -1041,13 +1237,15 @@
                                     <div class="form-group">
                                         <label>Reports To <span class="text-danger">*</span></label>
                                         <select class="select" id="" name="reports_to">
-                                            @if(!empty($users))
-                                                <option value="{{ $users->reports_to }}" {{ ( $users->reports_to == $users->reports_to) ? 'selected' : '' }}>{{ $users->reports_to }} </option>
-                                                    @foreach ($user as $users )
+                                            @if (!empty($users))
+                                                <option value="{{ $users->reports_to }}"
+                                                    {{ $users->reports_to == $users->reports_to ? 'selected' : '' }}>
+                                                    {{ $users->reports_to }} </option>
+                                                @foreach ($user as $users)
                                                     <option value="{{ $users->name }}">{{ $users->name }}</option>
                                                 @endforeach
                                             @else
-                                                @foreach ($user as $users )
+                                                @foreach ($user as $users)
                                                     <option value="{{ $users->name }}">{{ $users->name }}</option>
                                                 @endforeach
                                             @endif
@@ -1064,13 +1262,13 @@
             </div>
         </div>
         <!-- /Profile Modal -->
-    
-        <!-- Personal Info Modal -->
+
+        <!-- Edit Riwayat Pendidikan Modal -->
         <div id="personal_info_modal" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Personal Information</h5>
+                        <h5 class="modal-title">Riwayat Pendidikan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -1078,62 +1276,91 @@
                     <div class="modal-body">
                         <form action="{{ route('user/information/save') }}" method="POST">
                             @csrf
-                            <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}" readonly>
+                            <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}"
+                                readonly>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Passport No</label>
-                                        <input type="text" class="form-control @error('passport_no') is-invalid @enderror" name="passport_no" value="{{ $users->passport_no }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Passport Expiry Date</label>
-                                        <div class="cal-icon">
-                                            <input class="form-control datetimepicker @error('passport_expiry_date') is-invalid @enderror" type="text" name="passport_expiry_date" value="{{ $users->passport_expiry_date }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Tel</label>
-                                        <input class="form-control @error('tel') is-invalid @enderror" type="text" name="tel" value="{{ $users->tel }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nationality <span class="text-danger">*</span></label>
-                                        <input class="form-control @error('nationality') is-invalid @enderror" type="text" name="nationality" value="{{ $users->nationality }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Religion</label>
-                                        <div class="form-group">
-                                            <input class="form-control @error('religion') is-invalid @enderror" type="text" name="religion" value="{{ $users->religion }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Marital status <span class="text-danger">*</span></label>
-                                        <select class="select form-control @error('marital_status') is-invalid @enderror" name="marital_status">
-                                            <option value="{{ $users->marital_status }}" {{ ( $users->marital_status == $users->marital_status) ? 'selected' : '' }}> {{ $users->marital_status }} </option>
-                                            <option value="Single">Single</option>
-                                            <option value="Married">Married</option>
+                                        <label>Tingkat Pendidikan <span class="text-danger">*</span></label>
+                                        <select class="select form-control @error('marital_status') is-invalid @enderror"
+                                            name="marital_status">
+                                            <option value="{{ $users->marital_status }}"
+                                                {{ $users->marital_status == $users->marital_status ? 'selected' : '' }}>
+                                                {{ $users->marital_status }} </option>
+                                            <option value="SLTP">SLTP</option>
+                                            <option value="SLTA">SLTA</option>
+                                            <option value="Diploma I">Diploma I</option>
+                                            <option value="Diploma II">Diploma II</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Employment of spouse</label>
-                                        <input class="form-control @error('employment_of_spouse') is-invalid @enderror" type="text" name="employment_of_spouse" value="{{ $users->employment_of_spouse }}">
+                                        <label>Pendidikan <span class="text-danger">*</span></label>
+                                        <input class="form-control @error('passport_expiry_date') is-invalid @enderror"
+                                            type="text" name="passport_expiry_date"
+                                            value="{{ $users->passport_expiry_date }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>No. of children </label>
-                                        <input class="form-control @error('children') is-invalid @enderror" type="text" name="children" value="{{ $users->children }}">
+                                        <label>Tahun Lulus <span class="text-danger">*</span></label>
+                                        <input class="form-control @error('tel') is-invalid @enderror" type="text"
+                                            name="tel" value="{{ $users->tel }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nomor Ijazah <span class="text-danger">*</span></label>
+                                        <input class="form-control @error('nationality') is-invalid @enderror"
+                                            type="text" name="nationality" value="{{ $users->nationality }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Gelar Depan <span class="text-danger">*</span></label>
+                                        <div class="form-group">
+                                            <input class="form-control @error('religion') is-invalid @enderror"
+                                                type="text" name="religion" value="{{ $users->religion }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Gelar Belakang <span class="text-danger">*</span></label>
+                                        <div class="form-group">
+                                            <input class="form-control @error('religion') is-invalid @enderror"
+                                                type="text" name="religion" value="{{ $users->religion }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Jenis Pendidikan</label>
+                                        <input class="form-control @error('employment_of_spouse') is-invalid @enderror"
+                                            type="text" name="employment_of_spouse"
+                                            value="{{ $users->employment_of_spouse }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Transkrip </label>
+                                        <input class="form-control @error('children') is-invalid @enderror" type="file"
+                                            name="children" value="{{ $users->children }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Ijazah </label>
+                                        <input class="form-control @error('children') is-invalid @enderror" type="file"
+                                            name="children" value="{{ $users->children }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Gelar </label>
+                                        <input class="form-control @error('children') is-invalid @enderror" type="file"
+                                            name="children" value="{{ $users->children }}">
                                     </div>
                                 </div>
                             </div>
@@ -1145,8 +1372,469 @@
                 </div>
             </div>
         </div>
-        <!-- /Personal Info Modal -->
-        
+        <!-- /Edit Riwayat Pendidikan Modal -->
+
+        <!-- Edit Riwayat Golongan Modal -->
+        <div id="emergency_contact_modal" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Riwayat Golongan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="validation" action="{{ route('user/profile/emergency/contact/save') }}"
+                            method="POST">
+                            @csrf
+                            <input type="text" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Golongan <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jenis Kenaikan Pangkat (KP) <span
+                                                        class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Masa Kerja Golongan (Tahun) <span
+                                                        class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Masa Kerja Golongan (Bulan) <span
+                                                        class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>TMT Golongan <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nomor Pertimbangan Teknis BKN <span
+                                                        class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tanggal Pertimbangan Teknis BKN <span
+                                                        class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nomor SK <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tanggal SK <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Dokumen SK KP <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="file" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="file" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Dokumen Pertimbangan Teknis KP <span
+                                                        class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="file" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="file" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit-section">
+                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Edit Riwayat Golongan Modal -->
+
+        <!-- Edit Riwayat Jabatan Modal -->
+        <div id="riwayat_jabatan" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Riwayat Jabatan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="validation" action="{{ route('user/profile/emergency/contact/save') }}"
+                            method="POST">
+                            @csrf
+                            <input type="text" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jenis Jabatan <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Satuan Kerja <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Satuan Kerja Induk <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Unit Organisasi <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nomor SK <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tanggal SK <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>TMT Jabatan <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>TMT Pelantikan <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Dokumen SK Jabatan <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="file" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="file" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Dokumen Surat Pelantikan <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="file" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="file" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit-section">
+                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Edit Riwayat Jabatan Modal -->
+
+        <!-- Edit Riwayat Diklat Modal -->
+        <div id="riwayat_diklat" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Riwayat Jabatan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="validation" action="{{ route('user/profile/emergency/contact/save') }}"
+                            method="POST">
+                            @csrf
+                            <input type="text" class="form-control" name="user_id"
+                                value="{{ $users->user_id }}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jenis Diklat <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nama Diklat <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Institusi Penyelenggara <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nomor Sertifikat <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tanggal Mulai <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tanggal Selesai <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tahun Diklat <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Durasi Jam <span class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="text" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="text" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Dokumen Sertifikat Diklat <span
+                                                        class="text-danger">*</span></label>
+                                                @if (!empty($users->name_primary))
+                                                    <input type="file" class="form-control" name="name_primary"
+                                                        value="{{ $users->name_primary }}">
+                                                @else
+                                                    <input type="file" class="form-control" name="name_primary">
+                                                @endif
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit-section">
+                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Edit Riwayat Diklat Modal -->
+
         <!-- Family Info Modal -->
         <div id="family_info_modal" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1162,7 +1850,8 @@
                             <div class="form-scroll">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3 class="card-title">Family Member <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                        <h3 class="card-title">Family Member <a href="javascript:void(0);"
+                                                class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -1191,10 +1880,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3 class="card-title">Education Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                        <h3 class="card-title">Education Informations <a href="javascript:void(0);"
+                                                class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -1236,127 +1926,7 @@
             </div>
         </div>
         <!-- /Family Info Modal -->
-        
-        <!-- Emergency Contact Modal -->
-        <div id="emergency_contact_modal" class="modal custom-modal fade" role="dialog">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Personal Information</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="validation" action="{{ route('user/profile/emergency/contact/save') }}" method="POST">
-                            @csrf
-                            <input type="text" class="form-control" name="user_id" value="{{ $users->user_id }}">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">Primary Contact</h3>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Name <span class="text-danger">*</span></label>
-                                                @if (!empty($users->name_primary))
-                                                <input type="text" class="form-control" name="name_primary" value="{{ $users->name_primary }}">
-                                                @else
-                                                <input type="text" class="form-control" name="name_primary">
-                                                @endif
-                                            </li>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Relationship <span class="text-danger">*</span></label>
-                                                @if (!empty($users->relationship_primary))
-                                                <input type="text" class="form-control" name="relationship_primary" value="{{ $users->relationship_primary }}">
-                                                @else
-                                                <input type="text" class="form-control" name="relationship_primary">
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Phone <span class="text-danger">*</span></label>
-                                                @if (!empty($users->phone_primary))
-                                                <input type="text" class="form-control" name="phone_primary" value="{{ $users->phone_primary }}">
-                                                @else
-                                                <input type="text" class="form-control" name="phone_primary">
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Phone 2</label>
-                                                @if (!empty($users->phone_2_primary))
-                                                <input type="text" class="form-control" name="phone_2_primary" value="{{ $users->phone_2_primary }}">
-                                                @else
-                                                <input type="text" class="form-control" name="phone_2_primary">
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">Secondary Contact</h3>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Name <span class="text-danger">*</span></label>
-                                                @if (!empty($users->name_secondary))
-                                                <input type="text" class="form-control" name="name_secondary" value="{{ $users->name_secondary }}">
-                                                @else
-                                                <input type="text" class="form-control" name="name_secondary">
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Relationship <span class="text-danger">*</span></label>
-                                                @if (!empty($users->relationship_secondary))
-                                                <input type="text" class="form-control" name="relationship_secondary" value="{{ $users->relationship_secondary }}">
-                                                @else
-                                                <input type="text" class="form-control" name="relationship_secondary">
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Phone <span class="text-danger">*</span></label>
-                                                @if (!empty($users->phone_secondary))
-                                                <input type="text" class="form-control" name="phone_secondary" value="{{ $users->phone_secondary }}">
-                                                @else
-                                                <input type="text" class="form-control" name="phone_secondary">
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Phone 2</label>
-                                                @if (!empty($users->phone_2_secondary))
-                                                <input type="text" class="form-control" name="phone_2_secondary" value="{{ $users->phone_2_secondary }}">
-                                                @else
-                                                <input type="text" class="form-control" name="phone_2_secondary">
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Emergency Contact Modal -->
-        
+
         <!-- Education Modal -->
         <div id="education_info" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1372,24 +1942,28 @@
                             <div class="form-scroll">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3 class="card-title">Education Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                        <h3 class="card-title">Education Informations <a href="javascript:void(0);"
+                                                class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
-                                                    <input type="text" value="Oxford University" class="form-control floating">
+                                                    <input type="text" value="Oxford University"
+                                                        class="form-control floating">
                                                     <label class="focus-label">Institution</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
-                                                    <input type="text" value="Computer Science" class="form-control floating">
+                                                    <input type="text" value="Computer Science"
+                                                        class="form-control floating">
                                                     <label class="focus-label">Subject</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
                                                     <div class="cal-icon">
-                                                        <input type="text" value="01/06/2002" class="form-control floating datetimepicker">
+                                                        <input type="text" value="01/06/2002"
+                                                            class="form-control floating datetimepicker">
                                                     </div>
                                                     <label class="focus-label">Starting Date</label>
                                                 </div>
@@ -1397,47 +1971,54 @@
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
                                                     <div class="cal-icon">
-                                                        <input type="text" value="31/05/2006" class="form-control floating datetimepicker">
+                                                        <input type="text" value="31/05/2006"
+                                                            class="form-control floating datetimepicker">
                                                     </div>
                                                     <label class="focus-label">Complete Date</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
-                                                    <input type="text" value="BE Computer Science" class="form-control floating">
+                                                    <input type="text" value="BE Computer Science"
+                                                        class="form-control floating">
                                                     <label class="focus-label">Degree</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
-                                                    <input type="text" value="Grade A" class="form-control floating">
+                                                    <input type="text" value="Grade A"
+                                                        class="form-control floating">
                                                     <label class="focus-label">Grade</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3 class="card-title">Education Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                        <h3 class="card-title">Education Informations <a href="javascript:void(0);"
+                                                class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
-                                                    <input type="text" value="Oxford University" class="form-control floating">
+                                                    <input type="text" value="Oxford University"
+                                                        class="form-control floating">
                                                     <label class="focus-label">Institution</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
-                                                    <input type="text" value="Computer Science" class="form-control floating">
+                                                    <input type="text" value="Computer Science"
+                                                        class="form-control floating">
                                                     <label class="focus-label">Subject</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
                                                     <div class="cal-icon">
-                                                        <input type="text" value="01/06/2002" class="form-control floating datetimepicker">
+                                                        <input type="text" value="01/06/2002"
+                                                            class="form-control floating datetimepicker">
                                                     </div>
                                                     <label class="focus-label">Starting Date</label>
                                                 </div>
@@ -1445,20 +2026,23 @@
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
                                                     <div class="cal-icon">
-                                                        <input type="text" value="31/05/2006" class="form-control floating datetimepicker">
+                                                        <input type="text" value="31/05/2006"
+                                                            class="form-control floating datetimepicker">
                                                     </div>
                                                     <label class="focus-label">Complete Date</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
-                                                    <input type="text" value="BE Computer Science" class="form-control floating">
+                                                    <input type="text" value="BE Computer Science"
+                                                        class="form-control floating">
                                                     <label class="focus-label">Degree</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus focused">
-                                                    <input type="text" value="Grade A" class="form-control floating">
+                                                    <input type="text" value="Grade A"
+                                                        class="form-control floating">
                                                     <label class="focus-label">Grade</label>
                                                 </div>
                                             </div>
@@ -1478,7 +2062,7 @@
             </div>
         </div>
         <!-- /Education Modal -->
-        
+
         <!-- Experience Modal -->
         <div id="experience_info" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1494,30 +2078,36 @@
                             <div class="form-scroll">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3 class="card-title">Experience Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                        <h3 class="card-title">Experience Informations <a href="javascript:void(0);"
+                                                class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
-                                                    <input type="text" class="form-control floating" value="Digital Devlopment Inc">
+                                                    <input type="text" class="form-control floating"
+                                                        value="Digital Devlopment Inc">
                                                     <label class="focus-label">Company Name</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
-                                                    <input type="text" class="form-control floating" value="United States">
+                                                    <input type="text" class="form-control floating"
+                                                        value="United States">
                                                     <label class="focus-label">Location</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
-                                                    <input type="text" class="form-control floating" value="Web Developer">
+                                                    <input type="text" class="form-control floating"
+                                                        value="Web Developer">
                                                     <label class="focus-label">Job Position</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
                                                     <div class="cal-icon">
-                                                        <input type="text" class="form-control floating datetimepicker" value="01/07/2007">
+                                                        <input type="text"
+                                                            class="form-control floating datetimepicker"
+                                                            value="01/07/2007">
                                                     </div>
                                                     <label class="focus-label">Period From</label>
                                                 </div>
@@ -1525,7 +2115,9 @@
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
                                                     <div class="cal-icon">
-                                                        <input type="text" class="form-control floating datetimepicker" value="08/06/2018">
+                                                        <input type="text"
+                                                            class="form-control floating datetimepicker"
+                                                            value="08/06/2018">
                                                     </div>
                                                     <label class="focus-label">Period To</label>
                                                 </div>
@@ -1533,33 +2125,39 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3 class="card-title">Experience Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                        <h3 class="card-title">Experience Informations <a href="javascript:void(0);"
+                                                class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
-                                                    <input type="text" class="form-control floating" value="Digital Devlopment Inc">
+                                                    <input type="text" class="form-control floating"
+                                                        value="Digital Devlopment Inc">
                                                     <label class="focus-label">Company Name</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
-                                                    <input type="text" class="form-control floating" value="United States">
+                                                    <input type="text" class="form-control floating"
+                                                        value="United States">
                                                     <label class="focus-label">Location</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
-                                                    <input type="text" class="form-control floating" value="Web Developer">
+                                                    <input type="text" class="form-control floating"
+                                                        value="Web Developer">
                                                     <label class="focus-label">Job Position</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
                                                     <div class="cal-icon">
-                                                        <input type="text" class="form-control floating datetimepicker" value="01/07/2007">
+                                                        <input type="text"
+                                                            class="form-control floating datetimepicker"
+                                                            value="01/07/2007">
                                                     </div>
                                                     <label class="focus-label">Period From</label>
                                                 </div>
@@ -1567,7 +2165,9 @@
                                             <div class="col-md-6">
                                                 <div class="form-group form-focus">
                                                     <div class="cal-icon">
-                                                        <input type="text" class="form-control floating datetimepicker" value="08/06/2018">
+                                                        <input type="text"
+                                                            class="form-control floating datetimepicker"
+                                                            value="08/06/2018">
                                                     </div>
                                                     <label class="focus-label">Period To</label>
                                                 </div>
@@ -1588,35 +2188,35 @@
             </div>
         </div>
         <!-- /Experience Modal -->
-    <!-- /Page Content -->
+        <!-- /Page Content -->
     </div>
-    @section('script')
+@section('script')
     <script>
-        $('#validation').validate({  
-            rules: {  
-                name_primary: 'required',  
-                relationship_primary: 'required',  
-                phone_primary: 'required',  
-                phone_2_primary: 'required',  
-                name_secondary: 'required',  
-                relationship_secondary: 'required',  
-                phone_secondary: 'required',  
-                phone_2_secondary: 'required',  
-            },  
+        $('#validation').validate({
+            rules: {
+                name_primary: 'required',
+                relationship_primary: 'required',
+                phone_primary: 'required',
+                phone_2_primary: 'required',
+                name_secondary: 'required',
+                relationship_secondary: 'required',
+                phone_secondary: 'required',
+                phone_2_secondary: 'required',
+            },
             messages: {
-                name_primary: 'Please input name primary',  
-                relationship_primary: 'Please input relationship primary',  
-                phone_primary: 'Please input phone primary',  
-                phone_2_primary: 'Please input phone 2 primary',  
-                name_secondary: 'Please input name secondary',  
-                relationship_secondary: 'Please input relationship secondary',  
-                phone_secondaryr: 'Please input phone secondary',  
-                phone_2_secondary: 'Please input phone 2 secondary',  
-            },  
-            submitHandler: function(form) {  
+                name_primary: 'Please input name primary',
+                relationship_primary: 'Please input relationship primary',
+                phone_primary: 'Please input phone primary',
+                phone_2_primary: 'Please input phone 2 primary',
+                name_secondary: 'Please input name secondary',
+                relationship_secondary: 'Please input relationship secondary',
+                phone_secondaryr: 'Please input phone secondary',
+                phone_2_secondary: 'Please input phone 2 secondary',
+            },
+            submitHandler: function(form) {
                 form.submit();
-            }  
-        });  
+            }
+        });
     </script>
-    @endsection
+@endsection
 @endsection
