@@ -15,7 +15,7 @@
     } elseif ($hour >= 18 && $hour <= 23 && $minute <= 59 && $second <= 59) {
         $greet = 'Selamat Malam,';
     }
-
+    
     ?>
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -32,30 +32,38 @@
                 </div>
             </div>
             <!-- /Page Header -->
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                    <div class="card dash-widget">
-                        <div class="card-body"> <span class="dash-widget-icon"><i class="fa fa-eye"></i></span>
-                            <div class="dash-widget-info">
-                                <h3>11</h3><span>Riwayat Aktivitas</span>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa fa-eye"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>11</h3>
+                                    <span>Riwayat Aktivitas</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                    <div class="card dash-widget">
-                        <div class="card-body"> <span class="dash-widget-icon"><i class="fa fa-user"></i></span>
-                            <div class="dash-widget-info">
-                                <h3>44</h3> <span>Riwayat Aktivitas Pengguna</span>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa fa-user"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>44</h3>
+                                    <span>Riwayat Aktivitas Pengguna</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                    <div class="card dash-widget">
-                        <div class="card-body"> <span class="dash-widget-icon"><i class="fa fa-user-plus"></i></span>
-                            <div class="dash-widget-info">
-                                <h3>100</h3> <span>Pengguna</span>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa fa-user-plus"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>100</h3>
+                                    <span>Pengguna</span>
+                                </div>
                             </div>
                         </div>
                     </div>

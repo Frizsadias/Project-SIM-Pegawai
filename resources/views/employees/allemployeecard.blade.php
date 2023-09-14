@@ -14,14 +14,14 @@
             <div class="page-header">
                 <div class="row align-lists-center">
                     <div class="col">
-                        <h3 class="page-title">Employee</h3>
+                        <h3 class="page-title">Pegawai</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Employee</li>
+                            <li class="breadcrumb-item active">Pegawai</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Tambah Pegawai</a>
                         <div class="view-icons">
                             <a href="{{ route('all/employee/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                             <a href="{{ route('all/employee/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -75,7 +75,7 @@
                                 <a class="dropdown-item" href="{{url('all/employee/delete/'.$lists->user_id)}}"onclick="return confirm('Are you sure to want to delete it?')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                             </div>
                         </div>
-                        <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">{{ $lists->name }}</a></h4>
+                        <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->name }}</a></h4>
                         <div class="small text-muted">{{ $lists->position }}</div>
                     </div>
                 </div>

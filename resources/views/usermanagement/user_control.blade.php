@@ -9,14 +9,14 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">User Management</h3>
+                        <h3 class="page-title">Manajemen Pengguna</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">User</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Tambah Pengguna</a>
                     </div>
                 </div>
             </div>
@@ -33,18 +33,18 @@
                 <div class="col-sm-6 col-md-3"> 
                     <div class="form-group form-focus select-focus">
                         <select class="select floating" id="type_role"> 
-                            <option selected disabled>-- Select Role Name --</option>
+                            <option selected disabled>-- Pilih Nama Role --</option>
                             @foreach ($role_name as $name)
                                 <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
                             @endforeach
                         </select>
-                        <label class="focus-label">Role Name</label>
+                        <label class="focus-label">Nama Role</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3"> 
                     <div class="form-group form-focus select-focus">
                         <select class="select floating" id="type_status"> 
-                            <option selected disabled> --Select --</option>
+                            <option selected disabled> -- Pilih --</option>
                             @foreach ($status_user as $status )
                             <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
                             @endforeach
@@ -69,16 +69,13 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
+                                    <th>Nama</th>
                                     <th>User ID</th>
                                     <th>Email</th>
-                                    <th>Position</th>
-                                    <th>Phone</th>
-                                    <th>Join Date</th>
+                                    <th>Tanggal Bergabung</th>
                                     <th>Role</th>
                                     <th>Status</th>
-                                    <th>Departement</th>
-                                    <th>Action</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                         </table>
@@ -387,14 +384,6 @@
                         name: 'email'
                     },
                     {
-                        data: 'position',
-                        name: 'position'
-                    },
-                    {
-                        data: 'phone_number',
-                        name: 'phone_number'
-                    },
-                    {
                         data: 'join_date',
                         name: 'join_date',
                     },
@@ -405,10 +394,6 @@
                     {
                         data: 'status',
                         name: 'status',
-                    },
-                    {
-                        data: 'department',
-                        name: 'department',
                     },
                     {
                         data: 'action',

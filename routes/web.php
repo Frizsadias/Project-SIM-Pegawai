@@ -27,6 +27,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\RiwayatController;
+use App\Models\ProfilPegawai;
 
 /*
 |--------------------------------------------------------------------------
@@ -357,6 +358,11 @@ Route::controller(SalesController::class)->group(function () {
 
 // ----------------------- training type  --------------------------//
 Route::controller(PersonalInformationController::class)->group(function () {
+    Route::post('user/information/save', 'saveRecord')->middleware('auth')->name('user/information/save');
+});
+
+// ----------------------- profil pegawai  --------------------------//
+Route::controller(ProfilPegawai::class)->group(function () {
     Route::post('user/information/save', 'saveRecord')->middleware('auth')->name('user/information/save');
 });
 
