@@ -37,15 +37,15 @@
                                                 <h3 class="user-name m-t-0 mb-0">{{ $users->name }}</h3>
                                                 <h6 class="text-muted"> {{ $users->department }}</h6>
                                                 <small class="text-muted">{{ $users->position }}</small>
-                                                <div class="staff-id">Employee ID : {{ $users->user_id }}</div>
-                                                <div class="small doj text-muted">Date of Join : {{ $users->join_date }}
+                                                <div class="staff-id">ID Pegawai : {{ $users->user_id }}</div>
+                                                <div class="small doj text-muted">Tanggal Bergabung : {{ $users->join_date }}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-7">
                                             <ul class="personal-info">
                                                 <li>
-                                                    <div class="title">Phone:</div>
+                                                    <div class="title">Nomor Telepon:</div>
                                                     <div class="text">
                                                         @if (!empty($users->phone_number))
                                                             <a>{{ $users->phone_number }}</a>
@@ -65,7 +65,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="title">Birthday:</div>
+                                                    <div class="title">Tanggal Lahir:</div>
                                                     <div class="text">
                                                         @if (!empty($users->birth_date))
                                                             <a>{{ $users->birth_date }}</a>
@@ -75,7 +75,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="title">Address:</div>
+                                                    <div class="title">Alamat:</div>
                                                     <div class="text">
                                                         @if (!empty($users->address))
                                                             <a>{{ $users->address }}</a>
@@ -85,7 +85,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="title">Gender:</div>
+                                                    <div class="title">Jenis Kelamin:</div>
                                                     <div class="text">
                                                         @if (!empty($users->gender))
                                                             <a>{{ $users->gender }}</a>
@@ -111,20 +111,11 @@
                 <div class="row user-tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                         <ul class="nav nav-tabs nav-tabs-bottom">
-                            <li class="nav-item"><a href="#emp_profile" data-toggle="tab" class="nav-link active">Profil</a>
-                            </li>
-                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat
-                                    Pendidikan</a>
-                            </li>
-                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat
-                                    Golongan</a>
-                            </li>
-                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat
-                                    Jabatan</a>
-                            </li>
-                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat
-                                    Diklat</a>
-                            </li>
+                            <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
+                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat Pendidikan</a></li>
+                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat Golongan</a></li>
+                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat Jabatan</a></li>
+                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat Diklat</a></li>
                         </ul>
                     </div>
                 </div>
@@ -132,13 +123,13 @@
 
             <div class="tab-content">
                 <!-- Profile Info Tab -->
-                <div id="emp_profile" class="pro-overview tab-pane fade show active">
+                <div id="profil_pegawai" class="pro-overview tab-pane fade show active">
                     <div class="row">
-                        <div class="col-md-6 d-flex">
+                        <div class="col-md-12 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
                                     <h3 class="card-title">Profil Pegawai <a href="#" class="edit-icon"
-                                            data-toggle="modal" data-target="#profil_pegawai"><i
+                                            data-toggle="modal" data-target="#profil_pegawai_modal"><i
                                                 class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
                                         <li>
@@ -151,10 +142,10 @@
                                         </li>
                                         <li>
                                             <div class="title">Nama</div>
-                                            @if (!empty($users->nama))
-                                                <div class="text">{{ $users->nama }}</div>
+                                            @if (!empty($users->name))
+                                                <div class="text">{{ $users->name }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                                <div class="text">Nama</div>
                                             @endif
                                         </li>
                                         <li>
@@ -183,23 +174,23 @@
                                         </li>
                                         <li>
                                             <div class="title">Tanggal Lahir</div>
-                                            @if (!empty($users->tanggal_lahir))
-                                                <div class="text">{{ $users->tanggal_lahir }}</div>
+                                            @if (!empty($users->birth_date))
+                                                <div class="text">{{ $users->birth_date }}</div>
                                             @else
                                                 <div class="text">Tanggal Lahir</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Jenis Kelamin</div>
-                                            @if (!empty($users->jenis_kelamin))
-                                                <div class="text">{{ $users->jenis_kelamin }}</div>
+                                            @if (!empty($users->gender))
+                                                <div class="text">{{ $users->gender }}</div>
                                             @else
                                                 <div class="text">Jenis Kelamin</div>
                                             @endif
                                         </li>
-                                        {{-- <li>
+                                         <li>
                                             <div class="title">Agama</div>
-                                            @if ($users->agama != null)
+                                            @if (!empty($users->agama))
                                                 <div class="text">{{ $users->agama }}</div>
                                             @else
                                                 <div class="text">Agama</div>
@@ -207,7 +198,7 @@
                                         </li>
                                         <li>
                                             <div class="title">E-mail</div>
-                                            @if ($users->email != null)
+                                            @if (!empty($users->email))
                                                 <div class="text">{{ $users->email }}</div>
                                             @else
                                                 <div class="text">E-mail</div>
@@ -215,7 +206,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Jenis Dokumen</div>
-                                            @if ($users->jenis_dokumen != null)
+                                            @if (!empty($users->jenis_kelamin))
                                                 <div class="text">{{ $users->jenis_dokumen }}</div>
                                             @else
                                                 <div class="text">Jenis Dokumen</div>
@@ -223,7 +214,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Nomor Dokumen</div>
-                                            @if ($users->no_dokumen != null)
+                                            @if (!empty($users->no_dokumen))
                                                 <div class="text">{{ $users->no_dokumen }}</div>
                                             @else
                                                 <div class="text">Nomor Dokumen</div>
@@ -231,7 +222,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Kelurahan</div>
-                                            @if ($users->kelurahan != null)
+                                            @if (!empty($users->kelurahan))
                                                 <div class="text">{{ $users->kelurahan }}</div>
                                             @else
                                                 <div class="text">Kelurahan</div>
@@ -239,7 +230,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Kecamatan</div>
-                                            @if ($users->kecamatan != null)
+                                            @if (!empty($users->kecamatan))
                                                 <div class="text">{{ $users->kecamatan }}</div>
                                             @else
                                                 <div class="text">Kecamatan</div>
@@ -247,7 +238,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Kota</div>
-                                            @if ($users->kota != null)
+                                            @if (!empty($users->kota))
                                                 <div class="text">{{ $users->kota }}</div>
                                             @else
                                                 <div class="text">Kota</div>
@@ -255,7 +246,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Provinsi</div>
-                                            @if ($users->provinsi != null)
+                                            @if (!empty($users->provinsi))
                                                 <div class="text">{{ $users->provinsi }}</div>
                                             @else
                                                 <div class="text">Provinsi</div>
@@ -263,7 +254,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Kode Pos</div>
-                                            @if ($users->kode_pos != null)
+                                            @if (!empty($users->kode_pos))
                                                 <div class="text">{{ $users->kode_pos }}</div>
                                             @else
                                                 <div class="text">Kode Pos</div>
@@ -271,7 +262,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Nomor HP</div>
-                                            @if ($users->no_hp != null)
+                                            @if (!empty($users->no_hp))
                                                 <div class="text">{{ $users->no_hp }}</div>
                                             @else
                                                 <div class="text">Nomor HP</div>
@@ -279,7 +270,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Nomor Telepon</div>
-                                            @if ($users->no_telp != null)
+                                            @if (!empty($users->no_telp))
                                                 <div class="text">{{ $users->no_telp }}</div>
                                             @else
                                                 <div class="text">Nomor Telepon</div>
@@ -287,7 +278,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Jenis Pegawai</div>
-                                            @if ($users->jenis_pegawai != null)
+                                            @if (!empty($users->jenis_pegawai))
                                                 <div class="text">{{ $users->jenis_pegawai }}</div>
                                             @else
                                                 <div class="text">Jenis Pegawai</div>
@@ -295,7 +286,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Kedudukan PNS</div>
-                                            @if ($users->kedudukan_pns != null)
+                                            @if (!empty($users->kedudukan_pns))
                                                 <div class="text">{{ $users->kedudukan_pns }}</div>
                                             @else
                                                 <div class="text">Kedudukan PNS</div>
@@ -303,7 +294,7 @@
                                         </li>
                                         <li>
                                             <div class="title">Status Pegawai</div>
-                                            @if ($users->status_pegawai != null)
+                                            @if (!empty($users->status_pegawai))
                                                 <div class="text">{{ $users->status_pegawai }}</div>
                                             @else
                                                 <div class="text">Status Pegawai</div>
@@ -311,7 +302,7 @@
                                         </li>
                                         <li>
                                             <div class="title">TMT PNS</div>
-                                            @if ($users->tmt_pns != null)
+                                            @if (!empty($users->tmt_pns))
                                                 <div class="text">{{ $users->tmt_pns }}</div>
                                             @else
                                                 <div class="text">TMT PNS</div>
@@ -319,7 +310,7 @@
                                         </li>
                                         <li>
                                             <div class="title">No. Seri Kartu Pegawai</div>
-                                            @if ($users->no_seri_karpeg != null)
+                                            @if (!empty($users->no_seri_karpeg))
                                                 <div class="text">{{ $users->no_seri_karpeg }}</div>
                                             @else
                                                 <div class="text">No. Seri Kartu Pegawai</div>
@@ -327,15 +318,15 @@
                                         </li>
                                         <li>
                                             <div class="title">TMT CPNS</div>
-                                            @if ($users->tmt_cpns != null)
+                                            @if (!empty($users->tmt_cpns))
                                                 <div class="text">{{ $users->tmt_cpns }}</div>
                                             @else
                                                 <div class="text">TMT CPNS</div>
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Tingkat_Pendidikan</div>
-                                            @if ($users->tingkat_pendidikan != null)
+                                            <div class="title">Tingkat Pendidikan</div>
+                                            @if (!empty($users->tingkat_pendidikan))
                                                 <div class="text">{{ $users->tingkat_pegawai }}</div>
                                             @else
                                                 <div class="text">Tingkat Pegawai</div>
@@ -343,244 +334,60 @@
                                         </li>
                                         <li>
                                             <div class="title">Pendidikan Terakhir</div>
-                                            @if ($users->pendidikan_terakhir != null)
+                                            @if (!empty($users->pendidikan_terakhir))
                                                 <div class="text">{{ $users->pendidikan_terakhir }}</div>
                                             @else
                                                 <div class="text">Pendidikan Terakhir</div>
                                             @endif
-                                        </li> --}}
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex">
+                        <div class="col-md-12 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Emergency Contact <a href="#" class="edit-icon"
-                                            data-toggle="modal" data-target="#emergency_contact_modal"><i
-                                                class="fa fa-pencil"></i></a></h3>
-                                    <h5 class="section-title">Primary</h5>
+                                    <h3 class="card-title">Posisi & Jabatan Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
                                         <li>
                                             <div class="title">Name</div>
                                             @if (!empty($users->name_primary))
-                                                <div class="text">{{ $users->name_primary }}</div>
+                                            <div class="text">{{ $users->name_primary }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Relationship</div>
                                             @if (!empty($users->relationship_primary))
-                                                <div class="text">{{ $users->relationship_primary }}</div>
+                                            <div class="text">{{ $users->relationship_primary }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Phone </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                     </ul>
-                                    <hr>
-                                    <h5 class="section-title">Secondary</h5>
-                                    <ul class="personal-info">
-                                        <li>
-                                            <div class="title">Name</div>
-                                            @if (!empty($users->name_secondary))
-                                                <div class="text">{{ $users->name_secondary }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Relationship</div>
-                                            @if (!empty($users->relationship_secondary))
-                                                <div class="text">{{ $users->relationship_secondary }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Phone </div>
-                                            @if (!empty($users->phone_secondary) && !empty($users->phone_2_secondary))
-                                                <div class="text">
-                                                    {{ $users->phone_secondary }},{{ $users->phone_2_secondary }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 d-flex">
-                            <div class="card profile-box flex-fill">
-                                <div class="card-body">
-                                    <h3 class="card-title">Bank information</h3>
-                                    <ul class="personal-info">
-                                        <li>
-                                            <div class="title">Bank name</div>
-                                            <div class="text">ICICI Bank</div>
-                                        </li>
-                                        <li>
-                                            <div class="title">Bank account No.</div>
-                                            <div class="text">159843014641</div>
-                                        </li>
-                                        <li>
-                                            <div class="title">IFSC Code</div>
-                                            <div class="text">ICI24504</div>
-                                        </li>
-                                        <li>
-                                            <div class="title">PAN No</div>
-                                            <div class="text">TC000Y56</div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 d-flex">
-                            <div class="card profile-box flex-fill">
-                                <div class="card-body">
-                                    <h3 class="card-title">Family Informations <a href="#" class="edit-icon"
-                                            data-toggle="modal" data-target="#family_info_modal"><i
-                                                class="fa fa-pencil"></i></a></h3>
-                                    <div class="table-responsive">
-                                        <table class="table table-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Relationship</th>
-                                                    <th>Date of Birth</th>
-                                                    <th>Phone</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Leo</td>
-                                                    <td>Brother</td>
-                                                    <td>Feb 16th, 2019</td>
-                                                    <td>9876543210</td>
-                                                    <td class="text-right">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a aria-expanded="false" data-toggle="dropdown"
-                                                                class="action-icon dropdown-toggle" href="#"><i
-                                                                    class="material-icons">more_vert</i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a href="#" class="dropdown-item"><i
-                                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                <a href="#" class="dropdown-item"><i
-                                                                        class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 d-flex">
-                            <div class="card profile-box flex-fill">
-                                <div class="card-body">
-                                    <h3 class="card-title">Education Informations <a href="#" class="edit-icon"
-                                            data-toggle="modal" data-target="#education_info"><i
-                                                class="fa fa-pencil"></i></a></h3>
-                                    <div class="experience-box">
-                                        <ul class="experience-list">
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">International College of Arts and
-                                                            Science (UG)</a>
-                                                        <div>Bsc Computer Science</div>
-                                                        <span class="time">2000 - 2003</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">International College of Arts and
-                                                            Science (PG)</a>
-                                                        <div>Msc Computer Science</div>
-                                                        <span class="time">2000 - 2003</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 d-flex">
-                            <div class="card profile-box flex-fill">
-                                <div class="card-body">
-                                    <h3 class="card-title">Experience <a href="#" class="edit-icon"
-                                            data-toggle="modal" data-target="#experience_info"><i
-                                                class="fa fa-pencil"></i></a></h3>
-                                    <div class="experience-box">
-                                        <ul class="experience-list">
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Web Designer at Zen
-                                                            Corporation</a>
-                                                        <span class="time">Jan 2013 - Present (5 years 2 months)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Web Designer at Ron-tech</a>
-                                                        <span class="time">Jan 2013 - Present (5 years 2 months)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Web Designer at Dalt
-                                                            Technology</a>
-                                                        <span class="time">Jan 2013 - Present (5 years 2 months)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /Profile Info Tab -->
+
+
+
+
+
+
+
+                
 
                 <!-- Informasi Riwayat Pendidikan Tab -->
                 <div id="riwayat_pendidikan" class="pro-overview tab-pane fade show active">
@@ -925,12 +732,12 @@
             </div>
             <!-- /Profile Modal -->
 
-            <!-- Edit Riwayat Pendidikan Modal -->
-            <div id="personal_info_modal" class="modal custom-modal fade" role="dialog">
+            <!-- Profil Pegawai Modal -->
+            <div id="profil_pegawai_modal" class="modal custom-modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Riwayat Pendidikan</h5>
+                            <h5 class="modal-title">Profil Pegawai</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -943,87 +750,183 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Tingkat Pendidikan <span class="text-danger">*</span></label>
-                                            <select
-                                                class="select form-control @error('marital_status') is-invalid @enderror"
-                                                name="marital_status">
-                                                <option value="{{ $users->marital_status }}"
-                                                    {{ $users->marital_status == $users->marital_status ? 'selected' : '' }}>
-                                                    {{ $users->marital_status }} </option>
-                                                <option value="SLTP">SLTP</option>
-                                                <option value="SLTA">SLTA</option>
-                                                <option value="Diploma I">Diploma I</option>
-                                                <option value="Diploma II">Diploma II</option>
-                                            </select>
+                                            <label>NIP <span class="text-danger">*</span></label>
+                                            <div class="form-group">
+                                                <input class="form-control @error('nip') is-invalid @enderror"
+                                                    type="text" name="nip" value="">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Pendidikan <span class="text-danger">*</span></label>
-                                            <input class="form-control @error('passport_expiry_date') is-invalid @enderror"
-                                                type="text" name="passport_expiry_date"
-                                                value="{{ $users->passport_expiry_date }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tahun Lulus <span class="text-danger">*</span></label>
-                                            <input class="form-control @error('tel') is-invalid @enderror" type="text"
-                                                name="tel" value="{{ $users->tel }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nomor Ijazah <span class="text-danger">*</span></label>
-                                            <input class="form-control @error('nationality') is-invalid @enderror"
-                                                type="text" name="nationality" value="{{ $users->nationality }}">
+                                            <label>Nama <span class="text-danger">*</span></label>
+                                            <input class="form-control @error('nama') is-invalid @enderror" type="text"
+                                                name="nama" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Gelar Depan <span class="text-danger">*</span></label>
-                                            <div class="form-group">
-                                                <input class="form-control @error('religion') is-invalid @enderror"
-                                                    type="text" name="religion" value="{{ $users->religion }}">
-                                            </div>
+                                            <input class="form-control @error('gelar_depan') is-invalid @enderror"
+                                                type="text" name="gelar_depan" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Gelar Belakang <span class="text-danger">*</span></label>
+                                            <input class="form-control @error('gelar_belakang') is-invalid @enderror"
+                                                type="text" name="gelar_belakang" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tempat Lahir <span class="text-danger">*</span></label>
                                             <div class="form-group">
-                                                <input class="form-control @error('religion') is-invalid @enderror"
-                                                    type="text" name="religion" value="{{ $users->religion }}">
+                                                <input class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                                    type="text" name="tempat_lahir" value="">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Jenis Pendidikan</label>
-                                            <input class="form-control @error('employment_of_spouse') is-invalid @enderror"
-                                                type="text" name="employment_of_spouse"
-                                                value="{{ $users->employment_of_spouse }}">
+                                            <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                            <div class="form-group">
+                                                <input class="form-control @error('tanggal_lahir') is-invalid @enderror"
+                                                    type="text" name="tanggal_lahir" value="">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Dokumen Transkrip </label>
-                                            <input class="form-control @error('children') is-invalid @enderror"
-                                                type="file" name="children" value="{{ $users->children }}">
+                                            <label>Agama</label>
+                                            <input class="form-control @error('agama') is-invalid @enderror"
+                                                type="text" name="agama" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Dokumen Ijazah </label>
-                                            <input class="form-control @error('children') is-invalid @enderror"
-                                                type="file" name="children" value="{{ $users->children }}">
+                                            <label>E-mail </label>
+                                            <input class="form-control @error('email') is-invalid @enderror"
+                                                type="email" name="email" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Dokumen Gelar </label>
-                                            <input class="form-control @error('children') is-invalid @enderror"
-                                                type="file" name="children" value="{{ $users->children }}">
+                                            <label>Jenis Dokumen </label>
+                                            <input class="form-control @error('jenis_dokumen') is-invalid @enderror"
+                                                type="text" name="jenis_dokumen" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor Dokumen </label>
+                                            <input class="form-control @error('no_dokumen') is-invalid @enderror"
+                                                type="number" name="no_dokumen" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kelurahan </label>
+                                            <input class="form-control @error('kelurahan') is-invalid @enderror"
+                                                type="text" name="kelurahan" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kecamatan </label>
+                                            <input class="form-control @error('kecamatan') is-invalid @enderror"
+                                                type="text" name="kecamatan" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kota </label>
+                                            <input class="form-control @error('kota') is-invalid @enderror"
+                                                type="text" name="kota" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Provinsi </label>
+                                            <input class="form-control @error('provinsi') is-invalid @enderror"
+                                                type="text" name="provinsi" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kode Pos </label>
+                                            <input class="form-control @error('kode_pos') is-invalid @enderror"
+                                                type="kode_pos" name="kecamatan" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor HP </label>
+                                            <input class="form-control @error('no_hp') is-invalid @enderror"
+                                                type="number" name="no_hp" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor Telepon </label>
+                                            <input class="form-control @error('no_telp') is-invalid @enderror"
+                                                type="number" name="no_telp" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Jenis Pegawai </label>
+                                            <input class="form-control @error('jenis_pegawai') is-invalid @enderror"
+                                                type="text" name="jenis_pegawai" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kedudukan PNS </label>
+                                            <input class="form-control @error('kedudukan_pns') is-invalid @enderror"
+                                                type="text" name="kedudukan_pns" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Status Pegawai </label>
+                                            <input class="form-control @error('status_pegawai') is-invalid @enderror"
+                                                type="text" name="status_pegawai" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>TMT PNS </label>
+                                            <input class="form-control @error('tmt_pns') is-invalid @enderror"
+                                                type="text" name="tmt_pns" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>No. Seri Kartu Pegawai </label>
+                                            <input class="form-control @error('no_seri_karpeg') is-invalid @enderror"
+                                                type="number" name="no_seri_karpeg" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>TMT CPNS </label>
+                                            <input class="form-control @error('tmt_cpns') is-invalid @enderror"
+                                                type="text" name="tmt_cpns" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tingkat Pendidikan </label>
+                                            <input class="form-control @error('tingkat_pendidikan') is-invalid @enderror"
+                                                type="text" name="tingkat_pendidikan" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Pendidikan Terakhir </label>
+                                            <input class="form-control @error('pendidikan_terakhir') is-invalid @enderror"
+                                                type="text" name="pendidikan_terakhir" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -1471,8 +1374,7 @@
                                                         <input type="text" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="text" class="form-control"
-                                                            name="name_primary">
+                                                        <input type="text" class="form-control" name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
@@ -1485,8 +1387,7 @@
                                                         <input type="file" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="file" class="form-control"
-                                                            name="name_primary">
+                                                        <input type="file" class="form-control" name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>

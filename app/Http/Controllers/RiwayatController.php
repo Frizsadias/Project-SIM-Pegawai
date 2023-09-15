@@ -10,6 +10,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use DB;
 use App\Models\RiwayatPendidikan;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB as FacadesDB;
 use Session;
 
 class RiwayatController extends Controller

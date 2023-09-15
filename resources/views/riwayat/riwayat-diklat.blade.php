@@ -16,7 +16,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_diklat"><i
                                 class="fa fa-plus"></i> Tambah Riwayat Diklat</a>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
         <!-- /Page Content -->
 
         <!-- Tambah Riwayat Modal -->
-        <div id="add_expense" class="modal custom-modal fade" role="dialog">
+        <div id="add_riwayat_diklat" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
