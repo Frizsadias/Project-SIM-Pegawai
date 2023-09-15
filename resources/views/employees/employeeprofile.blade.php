@@ -350,7 +350,7 @@
                                     <h3 class="card-title">Posisi & Jabatan Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
                                         <li>
-                                            <div class="title">Name</div>
+                                            <div class="title">Unit Organisasi</div>
                                             @if (!empty($users->name_primary))
                                             <div class="text">{{ $users->name_primary }}</div>
                                             @else
@@ -358,7 +358,7 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Relationship</div>
+                                            <div class="title">Unit Organisasi Induk</div>
                                             @if (!empty($users->relationship_primary))
                                             <div class="text">{{ $users->relationship_primary }}</div>
                                             @else
@@ -366,7 +366,111 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Phone </div>
+                                            <div class="title">Jenis Jabatan </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Eselon </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Jabatan </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">TMT </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Lokasi Kerja </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Golongan Ruang Awal </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Golongan Ruang Akhir </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">TMT Golongan </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Gaji Pokok </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Masa Kerja (Tahun) </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Masa Kerja (Bulan) </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">No SPMT </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Tanggal SPMT </div>
+                                            @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
+                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                            @else
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">KPPN </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
                                             <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
