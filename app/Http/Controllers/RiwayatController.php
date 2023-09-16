@@ -46,7 +46,7 @@ class RiwayatController extends Controller
             'tingkat_pendidikan'    => 'required|string|max:255',
             'pendidikan'            => 'required|string|max:255|',
             'tahun_lulus'           => 'required|min:11|numeric',
-            'no_ijazah'             => 'required|min:11|numeric',
+            'no_ijazah'             => 'required|string|max:255',
             'nama_sekolah'          => 'required|string|max:255',
             'gelar_depan'           => 'required|string|max:255',
             'gelar_belakang'        => 'required|string|max:255',
@@ -96,34 +96,37 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
-            $dokumen_transkrips = $request->hidden_dokumen_transkrips;
-            $dokumen_transkrip  = $request->file('dokumen_transkrips');
-            if ($dokumen_transkrip != '') {
-                unlink('assets/DokumenTranskrip' . $dokumen_transkrips);
-                $dokumen_transkrips = time() . '.' . $dokumen_transkrip->getClientOriginalExtension();
-                $dokumen_transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrips);
+            $dokumen_transkrip = $request->hidden_dokumen_transkrip;
+            $dokumen_transkrips  = $request->file('dokumen_transkrip');
+            if($dokumen_transkrips != '')
+            {
+                unlink('assets/DokumenTranskrip/'.$dokumen_transkrip);
+                $dokumen_transkrip = time().'.'.$dokumen_transkrips->getClientOriginalExtension();  
+                $dokumen_transkrips->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrip);
             } else {
-                $dokumen_transkrips;
+                $dokumen_transkrip;
             }
 
-            $dokumen_ijazahs = $request->hidden_dokumen_ijazahs;
-            $dokumen_ijazah  = $request->file('dokumen_Ijazahs');
-            if ($dokumen_ijazah != '') {
-                unlink('assets/DokumenIjazah' . $dokumen_ijazahs);
-                $dokumen_ijazahs = time() . '.' . $dokumen_ijazah->getClientOriginalExtension();
-                $dokumen_ijazah->move(public_path('assets/DokumenIjazah'), $dokumen_ijazahs);
+            $dokumen_ijazah = $request->hidden_dokumen_ijazah;
+            $dokumen_ijazahs  = $request->file('dokumen_ijazah');
+            if($dokumen_ijazahs != '')
+            {
+                unlink('assets/DokumenIjazah/'.$dokumen_ijazah);
+                $dokumen_ijazah = time().'.'.$dokumen_ijazahs->getClientOriginalExtension();  
+                $dokumen_ijazahs->move(public_path('assets/DokumenIjazah'), $dokumen_ijazah);
             } else {
-                $dokumen_ijazahs;
+                $dokumen_ijazah;
             }
 
-            $dokumen_gelars = $request->hidden_dokumen_gelars;
-            $dokumen_gelar  = $request->file('dokumen_gelars');
-            if ($dokumen_gelar != '') {
-                unlink('assets/DokumenGelar' . $dokumen_gelars);
-                $dokumen_gelars = time() . '.' . $dokumen_gelar->getClientOriginalExtension();
-                $dokumen_gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelars);
+            $dokumen_gelar = $request->hidden_dokumen_gelar;
+            $dokumen_gelars  = $request->file('dokumen_gelar');
+            if($dokumen_gelars != '')
+            {
+                unlink('assets/DokumenGelar/'.$dokumen_gelar);
+                $dokumen_gelar = time().'.'.$dokumen_gelars->getClientOriginalExtension();  
+                $dokumen_gelars->move(public_path('assets/DokumenGelar'), $dokumen_gelar);
             } else {
-                $dokumen_gelars;
+                $dokumen_gelar;
             }
 
             $update = [
@@ -233,24 +236,26 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
-            $dokumen_skkps = $request->hidden_dokumen_skkps;
-            $dokumen_skkp  = $request->file('dokumen_skkps');
-            if ($dokumen_skkp != '') {
-                unlink('assets/DokumenSKKP' . $dokumen_skkps);
-                $dokumen_skkps = time() . '.' . $dokumen_skkp->getClientOriginalExtension();
-                $dokumen_skkp->move(public_path('assets/DokumenSKKP'), $dokumen_skkps);
+            $dokumen_skkp = $request->hidden_dokumen_skkp;
+            $dokumen_skkps  = $request->file('dokumen_skkp');
+            if($dokumen_skkps != '')
+            {
+                unlink('assets/DokumenSKKP/'.$dokumen_skkp);
+                $dokumen_skkp = time().'.'.$dokumen_skkps->getClientOriginalExtension();  
+                $dokumen_skkps->move(public_path('assets/DokumenSKKP'), $dokumen_skkp);
             } else {
-                $dokumen_skkps;
+                $dokumen_skkp;
             }
 
-            $dokumen_teknis_kps = $request->hidden_dokumen_teknis_kps;
-            $dokumen_teknis_kp  = $request->file('dokumen_teknis_kps');
-            if ($dokumen_teknis_kp != '') {
-                unlink('assets/DokumenTeknisKP' . $dokumen_teknis_kps);
-                $dokumen_teknis_kps = time() . '.' . $dokumen_teknis_kp->getClientOriginalExtension();
-                $dokumen_teknis_kp->move(public_path('assets/DokumenTeknisKP'), $dokumen_teknis_kps);
+            $dokumen_teknis_kp = $request->hidden_dokumen_teknis_kp;
+            $dokumen_teknis_kps  = $request->file('dokumen_teknis_kp');
+            if($dokumen_teknis_kps != '')
+            {
+                unlink('assets/DokumenTeknisKP/'.$dokumen_teknis_kp);
+                $dokumen_teknis_kp = time().'.'.$dokumen_teknis_kps->getClientOriginalExtension();  
+                $dokumen_teknis_kps->move(public_path('assets/DokumenTeknisKP'), $dokumen_teknis_kp);
             } else {
-                $dokumen_teknis_kps;
+                $dokumen_teknis_kp;
             }
 
             $update = [
@@ -358,24 +363,26 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
-            $dokumen_sk_jabatans = $request->hidden_dokumen_sk_jabatans;
-            $dokumen_sk_jabatan  = $request->file('dokumen_sk_jabatans');
-            if ($dokumen_sk_jabatan != '') {
-                unlink('assets/DokumenSKJabatan' . $dokumen_sk_jabatans);
-                $dokumen_sk_jabatans = time() . '.' . $dokumen_sk_jabatan->getClientOriginalExtension();
-                $dokumen_sk_jabatan->move(public_path('assets/DokumenSKJabatan'), $dokumen_sk_jabatans);
+            $dokumen_sk_jabatan = $request->hidden_dokumen_sk_jabatan;
+            $dokumen_sk_jabatans  = $request->file('dokumen_sk_jabatan');
+            if($dokumen_sk_jabatans != '')
+            {
+                unlink('assets/DokumenSKJabatan/'.$dokumen_sk_jabatan);
+                $dokumen_sk_jabatan = time().'.'.$dokumen_sk_jabatans->getClientOriginalExtension();  
+                $dokumen_sk_jabatans->move(public_path('assets/DokumenSKJabatan'), $dokumen_sk_jabatan);
             } else {
-                $dokumen_sk_jabatans;
+                $dokumen_sk_jabatan;
             }
 
-            $dokumen_pelantikans = $request->hidden_dokumen_pelantikans;
-            $dokumen_pelantikan  = $request->file('dokumen_pelantikans');
-            if ($dokumen_pelantikan != '') {
-                unlink('assets/DokumenPelantikan' . $dokumen_pelantikans);
-                $dokumen_pelantikans = time() . '.' . $dokumen_pelantikan->getClientOriginalExtension();
-                $dokumen_pelantikan->move(public_path('assets/DokumenPelantikan'), $dokumen_pelantikans);
+            $dokumen_pelantikan = $request->hidden_dokumen_pelantikan;
+            $dokumen_pelantikans  = $request->file('dokumen_pelantikan');
+            if($dokumen_pelantikans != '')
+            {
+                unlink('assets/DokumenPelantikan/'.$dokumen_pelantikan);
+                $dokumen_pelantikan = time().'.'.$dokumen_pelantikans->getClientOriginalExtension();  
+                $dokumen_pelantikans->move(public_path('assets/DokumenPelantikan'), $dokumen_pelantikan);
             } else {
-                $dokumen_pelantikans;
+                $dokumen_pelantikan;
             }
 
             $update = [
@@ -437,11 +444,11 @@ class RiwayatController extends Controller
             'jenis_diklat'              => 'required|string|max:255',
             'nama_diklat'               => 'required|string|max:255',
             'institusi_penyelenggara'   => 'required|string|max:255',
-            'no_sertifikat'             => 'required|min:11|numeric',
+            'no_sertifikat'             => 'required|string|max:255',
             'tanggal_mulai'             => 'required|string|max:255',
             'tanggal_selesai'           => 'required|string|max:255',
-            'tahun_diklat'              => 'required|min:11|numeric',
-            'durasi_jam'                => 'required|min:11|numeric',
+            'tahun_diklat'              => 'required|string|max:255',
+            'durasi_jam'                => 'required|string|max:255',
             'dokumen_diklat'            => 'required|mimes:pdf|max:5120',
         ]);
         DB::beginTransaction();
@@ -477,14 +484,15 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
-            $dokumen_diklats = $request->hidden_dokumen_diklats;
-            $dokumen_diklat = $request->file('dokumen_diklats');
-            if ($dokumen_diklat != '') {
-                unlink('assets/DokumenDiklat' . $dokumen_diklats);
-                $dokumen_diklats = time() . '.' . $dokumen_diklat->getClientOriginalExtension();
-                $dokumen_diklat->move(public_path('assets/DokumenDiklat'), $dokumen_diklats);
+            $dokumen_diklat = $request->hidden_dokumen_diklat;
+            $dokumen_diklats  = $request->file('dokumen_diklat');
+            if($dokumen_diklats != '')
+            {
+                unlink('assets/DokumenDiklat/'.$dokumen_diklat);
+                $dokumen_diklat = time().'.'.$dokumen_diklats->getClientOriginalExtension();  
+                $dokumen_diklats->move(public_path('assets/DokumenDiklat'), $dokumen_diklat);
             } else {
-                $dokumen_diklats;
+                $dokumen_diklat;
             }
 
             $update = [
