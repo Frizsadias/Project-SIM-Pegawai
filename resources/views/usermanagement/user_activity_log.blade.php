@@ -26,13 +26,13 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Full Name</th>
-                                    <th>Email Address</th>
-                                    <th>Phone Number</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>E-mail</th>
+                                    <th>Nomor Telepon</th>
                                     <th>Status</th>
-                                    <th>Role Name</th>
-                                    <th>Modify</th>
-                                    <th>Date Time</th>
+                                    <th>Role</th>
+                                    <th>Modifikasi</th>
+                                    <th>Waktu</th>
                                 </tr>
                             </thead>
                             <tbody>

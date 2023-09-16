@@ -12,7 +12,7 @@
                     <div class="page-header">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h3 class="page-title">Company Settings</h3>
+                                <h3 class="page-title">Pengaturan Perusahaan</h3>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Company Name <span class="text-danger">*</span></label>
+                                    <label>Nama Perusahaan <span class="text-danger">*</span></label>
                                     @if (!empty($companySettings->company_name))
                                     <input class="form-control" type="text" name="company_name" value="{{ $companySettings->company_name }}">
                                     @else
@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Contact Person</label>
+                                    <label>Narahubung</label>
                                     @if (!empty($companySettings->contact_person))
                                     <input type="text" class="form-control" name="contact_person" value="{{ $companySettings->contact_person }}">
                                     @else
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Address</label>
+                                    <label>Alamat</label>
                                     @if (!empty($companySettings->address))
                                     <input type="text" class="form-control" name="address" value="{{ $companySettings->address }}">
                                     @else
@@ -56,23 +56,19 @@
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3">
                                 <div class="form-group">
-                                    <label>Country</label>
+                                    <label>Negara</label>
                                     <select class="form-control select" name="country">
                                         @if (!empty($companySettings->country))
-                                            <option value="KHMER" {{ ( $companySettings->country == 'KHMER') ? 'selected' : '' }}> KHMER</option>
-                                            <option value="USA" {{ ( $companySettings->country == 'USA') ? 'selected' : '' }}> USA</option>
-                                            <option value="United Kingdom" {{ ( $companySettings->country == 'United Kingdom') ? 'selected' : '' }}> United Kingdom</option> 
+                                            <option value="Indonesia" {{ ( $companySettings->country == 'Indonesia') ? 'selected' : '' }}> Indonesia</option>
                                         @else
-                                            <option value="KHMER">KHMER</option>
-                                            <option value="USA">USA</option>
-                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="Indonesia">Indonesia</option>
                                         @endif
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3">
                                 <div class="form-group">
-                                    <label>City</label>
+                                    <label>Kota/Kabupaten</label>
                                     @if (!empty($companySettings->city))
                                         <input type="text" class="form-control" name="city" value="{{ $companySettings->city }}">
                                     @else
@@ -82,25 +78,19 @@
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3">
                                 <div class="form-group">
-                                    <label>State/Province</label>
+                                    <label>Provinsi</label>
                                     <select class="form-control select" name="state_province">
                                         @if (!empty($companySettings->state_province))
-                                            <option value="Phnom Penh" {{ ( $companySettings->state_province == 'Phnom Penh') ? 'selected' : '' }}> Phnom Penh</option>
-                                            <option value="Pursat" {{ ( $companySettings->state_province == 'Pursat') ? 'selected' : '' }}> Pursat</option>
-                                            <option value="Kan dal" {{ ( $companySettings->state_province == 'Kan dal') ? 'selected' : '' }}> Kan dal</option>
-                                            <option value="Ta Keav" {{ ( $companySettings->state_province == 'Ta Keav') ? 'selected' : '' }}> Ta Keav</option>
+                                            <option value="Jawa Timur" {{ ( $companySettings->state_province == 'Jawa Timur') ? 'selected' : '' }}> Jawa Timur</option>
                                         @else
-                                            <option value="Phnom Penh">Phnom Penh</option>
-                                            <option value="Pursat">Pursat</option>
-                                            <option value="Kan dal">Kan dal</option>
-                                            <option value="Ta Keav">Ta Keav</option>
+                                            <option value="Jawa Timur">Jawa Timur</option>
                                         @endif
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3">
                                 <div class="form-group">
-                                    <label>Postal Code</label>
+                                    <label>Kode Pos</label>
                                     @if (!empty($companySettings->postal_code))
                                         <input type="text" class="form-control" name="postal_code" value="{{ $companySettings->postal_code }}">
                                     @else
@@ -112,7 +102,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Email</label>
+                                    <label>E-mail</label>
                                     @if (!empty($companySettings->email))
                                         <input type="email" class="form-control" name="email" value="{{ $companySettings->email }}">
                                     @else
@@ -122,7 +112,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Phone Number</label>
+                                    <label>Nomor Telepon</label>
                                     @if (!empty($companySettings->phone_number))
                                         <input type="tel" class="form-control" name="phone_number" value="{{ $companySettings->phone_number }}">
                                     @else
@@ -134,7 +124,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Mobile Number</label>
+                                    <label>Nomor HP</label>
                                     @if (!empty($companySettings->mobile_number))
                                     <input type="tel" class="form-control" name="mobile_number" value="{{ $companySettings->mobile_number }}">
                                     @else
@@ -156,7 +146,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Website Url</label>
+                                    <label>Alamat Website</label>
                                     @if (!empty($companySettings->website_url))
                                     <input type="text" class="form-control" name="website_url" value="{{ $companySettings->website_url }}">
                                     @else
@@ -166,7 +156,7 @@
                             </div>
                         </div>
                         <div class="submit-section">
-                            <button type="submit" class="btn btn-primary submit-btn">Save</button>
+                            <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -174,5 +164,21 @@
         </div>
         <!-- /Page Content -->
     </div>
+    <script>
+        var toggleBtn = document.getElementById('toggle_btn');
+        var logo = document.querySelector('.logo');
+        var logoIcon = document.querySelector('.logo i');
+        var logoText = document.querySelector('.logo .logo-text');
+
+        toggleBtn.addEventListener('click', function() {
+            if (logoIcon.style.display === 'none') {
+                logoIcon.style.display = 'inline-block';
+                logoText.style.display = 'none';
+            } else {
+                logoIcon.style.display = 'inline-block';
+                logoText.style.display = 'none';
+            }
+        });
+    </script>
     <!-- /Page Wrapper -->
 @endsection

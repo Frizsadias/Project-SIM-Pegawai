@@ -58,14 +58,15 @@ class RiwayatController extends Controller
         ]);
         DB::beginTransaction();
         try {
-            $dokumen_transkrip = time() . '.' . $request->dokumen_transkrip->extension();
+            $dokumen_transkrip = time() . '_' . $request->dokumen_transkrip->getClientOriginalName();
             $request->dokumen_transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrip);
 
-            $dokumen_ijazah = time() . '.' . $request->dokumen_ijazah->extension();
+            $dokumen_ijazah = time() . '_' . $request->dokumen_ijazah->getClientOriginalName();
             $request->dokumen_ijazah->move(public_path('assets/DokumenIjazah'), $dokumen_ijazah);
 
-            $dokumen_gelar = time() . '.' . $request->dokumen_gelar->extension();
+            $dokumen_gelar = time() . '_' . $request->dokumen_gelar->getClientOriginalName();
             $request->dokumen_gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelar);
+
 
             $riw_pend = new RiwayatPendidikan;
             $riw_pend->tingkat_pendidikan = $request->tingkat_pendidikan;
@@ -100,7 +101,7 @@ class RiwayatController extends Controller
             $dokumen_transkrips = $request->hidden_dokumen_transkrips;
             $dokumen_transkrip  = $request->file('dokumen_transkrips');
             if ($dokumen_transkrip != '') {
-                unlink('assets/DokumenTranskrip' . $dokumen_transkrips);
+                unlink('assets/DokumenTranskrip/' . $dokumen_transkrips);
                 $dokumen_transkrips = time() . '.' . $dokumen_transkrip->getClientOriginalExtension();
                 $dokumen_transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrips);
             } else {
@@ -110,7 +111,7 @@ class RiwayatController extends Controller
             $dokumen_ijazahs = $request->hidden_dokumen_ijazahs;
             $dokumen_ijazah  = $request->file('dokumen_Ijazahs');
             if ($dokumen_ijazah != '') {
-                unlink('assets/DokumenIjazah' . $dokumen_ijazahs);
+                unlink('assets/DokumenIjazah/' . $dokumen_ijazahs);
                 $dokumen_ijazahs = time() . '.' . $dokumen_ijazah->getClientOriginalExtension();
                 $dokumen_ijazah->move(public_path('assets/DokumenIjazah'), $dokumen_ijazahs);
             } else {
@@ -120,7 +121,7 @@ class RiwayatController extends Controller
             $dokumen_gelars = $request->hidden_dokumen_gelars;
             $dokumen_gelar  = $request->file('dokumen_gelars');
             if ($dokumen_gelar != '') {
-                unlink('assets/DokumenGelar' . $dokumen_gelars);
+                unlink('assets/DokumenGelar/' . $dokumen_gelars);
                 $dokumen_gelars = time() . '.' . $dokumen_gelar->getClientOriginalExtension();
                 $dokumen_gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelars);
             } else {

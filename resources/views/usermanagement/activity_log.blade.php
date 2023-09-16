@@ -26,10 +26,10 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Description</th>
-                                    <th>Date Time</th>
+                                    <th>Deskripsi</th>
+                                    <th>Waktu</th>
                                 </tr>
                             </thead>
                             <tbody>

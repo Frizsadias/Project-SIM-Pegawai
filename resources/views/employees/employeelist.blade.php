@@ -37,23 +37,23 @@
                     <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="employee_id">
-                            <label class="focus-label">Employee ID</label>
+                            <label class="focus-label">ID Pegawai</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating">
-                            <label class="focus-label">Employee Name</label>
+                            <label class="focus-label">Nama Pegawai</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3"> 
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating">
-                            <label class="focus-label">Position</label>
+                            <label class="focus-label">Posisi</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">  
-                        <button type="sumit" class="btn btn-success btn-block"> Search </button>  
+                        <button type="sumit" class="btn btn-success btn-block"> Cari </button>  
                     </div>
                 </div>
             </form>
@@ -71,7 +71,7 @@
                                     <th>ID Pegawai</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th class="text-right no-sort">Action</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

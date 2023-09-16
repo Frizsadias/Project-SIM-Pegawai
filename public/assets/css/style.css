@@ -1845,6 +1845,9 @@ table.dataTable thead > tr > td.sorting {
 .account-page {
 	align-items: center ;
 	display: flex;
+	background-image: url('/assets/img/bg.jpg');
+    background-size: cover;
+    background-position: center;
 }
 .account-page .main-wrapper {
 	display: flex;
