@@ -138,15 +138,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/pendidikan/tambah-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/pendidikan/tambah-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select name="tingkat_pendidikan" class="form-control" id="tingkat_pendidikan"
-                                            required>
+                                        <select name="tingkat_pendidikan" class="select" id="tingkat_pendidikan" required>
                                             <option selected disabled> --Pilih Tingkat Pendidikan --</option>
                                             <option value="SLTP">SLTP</option>
                                             <option value="SLTA">SLTA</option>
@@ -172,7 +170,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Ijazah</label>
-                                        <input type="number" class="form-control" name="no_ijazah" required>
+                                        <input type="text" class="form-control" name="no_ijazah" required>
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +184,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Depan</label>
-                                        <input type="text" class="form-control" name="gelar_depan" required>
+                                        <input type="text" class="form-control" name="gelar_depan">
                                     </div>
                                 </div>
                             </div>
@@ -194,15 +192,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Belakang</label>
-                                        <input type="text" class="form-control" name="gelar_belakang" required>
+                                        <input type="text" class="form-control" name="gelar_belakang">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
                                         <br>
-                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan-Pertama">
-                                        Pendidikan Pertama
+                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Pertama"> Pendidikan Pertama
+                                        <br>
+                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Kedua"> Pendidikan Kedua
+                                        <br>
+                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Ketiga"> Pendidikan Ketiga
+                                        <br>
+                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Keempat"> Pendidikan Keempat
                                     </div>
                                 </div>
                             </div>
@@ -210,21 +213,21 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Transkrip Nilai</label>
-                                        <input type="file" class="form-control" name="dokumen_transkrip" required>
+                                        <input type="file" class="form-control" name="dokumen_transkrip">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Ijazah</label>
-                                        <input type="file" class="form-control" name="dokumen_ijazah" required>
+                                        <input type="file" class="form-control" name="dokumen_ijazah">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Pencantuman Gelar </label>
-                                        <input type="file" class="form-control" name="dokumen_gelar" required>
+                                        <input type="file" class="form-control" name="dokumen_gelar">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
@@ -250,15 +253,15 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/pendidikan/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/pendidikan/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select class="select" name="tingkat_pendidikan" id="e_tingkat_pendidikan">
+                                        <select name="tingkat_pendidikan" class="select" id="e_tingkat_pendidikan">
+                                            <option selected disabled> --Pilih Jenis Pendidikan --</option>
                                             <option>SLTP</option>
                                             <option>SLTA</option>
                                             <option>Diploma I</option>
@@ -294,8 +297,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Sekolah</label>
-                                        <input type="text" class="form-control" name="nama_sekolah"
-                                            id="e_nama_sekolah" value="">
+                                        <input type="text" class="form-control" name="nama_sekolah" id="e_nama_sekolah" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -310,44 +312,38 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Belakang</label>
-                                        <input type="text" class="form-control" name="gelar_belakang"
-                                            id="e_gelar_belakang" value="">
+                                        <input type="text" class="form-control" name="gelar_belakang" id="e_gelar_belakang" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
-                                        <input type="text" class="form-control" name="jenis_pendidikan"
-                                            id="e_jenis_pendidikan" value="">
+                                        <input type="text" class="form-control" name="jenis_pendidikan" id="e_jenis_pendidikan" value="">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Transkrip</label>
-                                        <input type="file" class="form-control" id="dokumen_transkrip"
-                                            name="dokumen_transkrip">
-                                        <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_transkrip" name="dokumen_transkrip">
+                                        <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Ijazah</label>
-                                        <input type="file" class="form-control" id="dokumen_ijazah"
-                                            name="dokumen_ijazah">
-                                        <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_ijazah"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_ijazah" name="dokumen_ijazah">
+                                        <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_ijazah" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Gelar</label>
-                                        <input type="file" class="form-control" id="dokumen_gelar"
-                                            name="dokumen_gelar">
-                                        <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_gelar"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_gelar" name="dokumen_gelar">
+                                        <input type="hidden" name="hidden_dokumen_gelar" id="e_dokumen_gelar" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
@@ -435,5 +431,5 @@
             $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
         });
     </script>
-@endsection
+    @endsection
 @endsection

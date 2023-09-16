@@ -16,7 +16,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_jabatan"><i
                                 class="fa fa-plus"></i> Tambah Riwayat Jabatan</a>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
         <!-- /Page Content -->
 
         <!-- Tambah Riwayat Modal -->
-        <div id="add_expense" class="modal custom-modal fade" role="dialog">
+        <div id="add_riwayat_jabatan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -137,27 +137,24 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/jabatan/tambah-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/jabatan/tambah-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Jabatan</label>
-                                        <select class="form-control" name="jenis_jabatan">
+                                        <select class="form-control" name="jenis_jabatan" required>
                                             <option selected disabled> --Pilih Jenis Jabatan --</option>
-                                            <option value="jabatan_struktural">Jabatan Struktural</option>
-                                            <option value="jabatan_fungsional_tertentu">Jabatan Fungsional Tertentu
-                                            </option>
-                                            <option value="jabatan_fungsional_umum">Jabatan Fungsional Umum</option>
+                                            <option value="Jabatan Struktural">Jabatan Struktural</option>
+                                            <option value="Jabatan Fungsional Tertentu">Jabatan Fungsional Tertentu</option>
+                                            <option value="Jabatan Fungsional Umum">Jabatan Fungsional Umum</option>
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Satuan Kerja</label>
-                                        <input class="form-control" type="text" name="satuan_kerja">
+                                        <input class="form-control" type="text" name="satuan_kerja" required>
                                     </div>
                                 </div>
                             </div>
@@ -165,13 +162,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Satuan Kerja Induk</label>
-                                        <input class="form-control" type="text" name="satuan_kerja_induk">
+                                        <input class="form-control" type="text" name="satuan_kerja_induk" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Unit Organisasi</label>
-                                        <input class="form-control" type="text" name="unit_organisasi">
+                                        <input class="form-control" type="text" name="unit_organisasi" required>
                                     </div>
                                 </div>
                             </div>
@@ -179,13 +176,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input class="form-control" type="number" name="no_sk">
+                                        <input class="form-control" type="text" name="no_sk" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
-                                        <input class="form-control" type="date" name="tanggal_sk">
+                                        <input class="form-control" type="date" name="tanggal_sk" required>
                                     </div>
                                 </div>
                             </div>
@@ -193,15 +190,17 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Jabatan</label>
-                                        <input class="form-control" type="date" name="tmt_jabatan">
+                                        <input class="form-control" type="date" name="tmt_jabatan" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Pelantikan</label>
-                                        <input class="form-control" type="date" name="tmt_pelantikan">
+                                        <input class="form-control" type="date" name="tmt_pelantikan" required>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen SK Jabatan</label>
@@ -239,8 +238,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/jabatan/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/jabatan/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
@@ -248,7 +246,8 @@
                                     <div class="form-group">
                                         <label>Jenis Jabatan
                                         </label>
-                                        <select class="select" name="jenis_jabatan" id="e_jenis_jabatan">
+                                        <select name="jenis_jabatan" class="select" id="e_jenis_jabatan">
+                                            <option selected disabled> --Pilih Jenis Jabatan --</option>
                                             <option>Jabatan Struktural</option>
                                             <option>Jabatan Fungsional Tertentu</option>
                                             <option>Jabatan Fungsional Umum</option>
@@ -258,8 +257,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Satuan Kerja</label>
-                                        <input class="form-control" type="text" name="satuan_kerja"
-                                            id="e_satuan_kerja" value="">
+                                        <input type="text" class="form-control" name="satuan_kerja" id="e_satuan_kerja" value="">
                                     </div>
                                 </div>
                             </div>
@@ -267,31 +265,27 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Satuan Kerja Induk</label>
-                                        <input class="form-control" type="text" name="satuan_kerja_induk"
-                                            id="e_satuan_kerja_induk" value="">
+                                        <input type="text" class="form-control" name="satuan_kerja_induk" id="e_satuan_kerja_induk" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Unit Organisasi</label>
-                                        <input class="form-control" type="text" name="unit_organisasi"
-                                            id="e_unit_organisasi" value="">
+                                        <input type="text" class="form-control" name="unit_organisasi" id="e_unit_organisasi" value="">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>No SK</label>
-                                        <input class="form-control" type="number" name="no_sk" id="e_no_sk"
-                                            value="">
+                                        <label>Nomor SK</label>
+                                        <input type="text" class="form-control" name="no_sk" id="e_no_sk" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
-                                        <input class="form-control" type="date" name="tanggal_sk" id="e_tanggal_sk"
-                                            value="">
+                                        <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk" value="">
                                     </div>
                                 </div>
                             </div>
@@ -299,34 +293,31 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Jabatan</label>
-                                        <input class="form-control" type="date" name="tmt_jabatan" id="e_tmt_jabatan"
+                                        <input type="date" class="form-control" name="tmt_jabatan" id="e_tmt_jabatan"
                                             value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Pelantikan</label>
-                                        <input class="form-control" type="date" name="tmt_pelantikan"
-                                            id="e_tmt_pelantikan" value="">
+                                        <input type="date" class="form-control" name="tmt_pelantikan" id="e_tmt_pelantikan" value="">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen SK Jabatan</label>
-                                        <input class="form-control" type="file" id="dokumen_sk_jabatan"
-                                            name="dokumen_sk_jabatan">
-                                        <input type="hidden" name="hidden_dokumen_sk_jabatan" id="e_dokumen_sk_jabatan"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_sk_jabatan" name="dokumen_sk_jabatan">
+                                        <input type="hidden" name="hidden_dokumen_sk_jabatan" id="e_dokumen_sk_jabatan" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Pelantikan</label>
-                                        <input class="form-control" type="file" id="dokumen_pelantikan"
-                                            name="dokumen_pelantikan">
-                                        <input type="hidden" name="hidden_dokumen_pelantikan" id="e_dokumen_pelantikan"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_pelantikan" name="dokumen_pelantikan">
+                                        <input type="hidden" name="hidden_dokumen_pelantikan" id="e_dokumen_pelantikan" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
