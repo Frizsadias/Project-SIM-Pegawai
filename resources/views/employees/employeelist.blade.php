@@ -68,10 +68,8 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Employee ID</th>
+                                    <th>ID Pegawai</th>
                                     <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th class="text-nowrap">Join Date</th>
                                     <th>Role</th>
                                     <th class="text-right no-sort">Action</th>
                                 </tr>
@@ -87,8 +85,6 @@
                                     </td>
                                     <td>{{ $items->user_id }}</td>
                                     <td>{{ $items->email }}</td>
-                                    <td>{{ $items->phone_number }}</td>
-                                    <td>{{ $items->join_date }}</td>
                                     <td>{{ $items->role_name }}</td>
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">

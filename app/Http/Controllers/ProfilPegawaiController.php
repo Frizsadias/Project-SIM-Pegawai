@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProfilPegawai;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use DB;
 
 class ProfilPegawaiController extends Controller
 {
@@ -29,7 +30,7 @@ class ProfilPegawaiController extends Controller
             'provinsi'              => 'required|string|max:255',
             'kode_pos'              => 'required|string|max:255',
             'no_hp'                 => 'required|string|max:255',
-            'no_gelar_depanp'       => 'required|string|max:255',
+            'no_telp'               => 'required|string|max:255',
             'jenis_pegawai'         => 'required|string|max:255',
             'kedudukan_pns'         => 'required|string|max:255',
             'status_pegawai'        => 'required|string|max:255',
