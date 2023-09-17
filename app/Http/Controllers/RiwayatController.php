@@ -10,7 +10,6 @@ use Brian2694\Toastr\Facades\Toastr;
 use DB;
 use App\Models\RiwayatPendidikan;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB as FacadesDB;
 use Session;
 
 class RiwayatController extends Controller
@@ -58,15 +57,14 @@ class RiwayatController extends Controller
         ]);
         DB::beginTransaction();
         try {
-            $dokumen_transkrip = time() . '_' . $request->dokumen_transkrip->getClientOriginalName();
+            $dokumen_transkrip = time() . '.' . $request->dokumen_transkrip->extension();
             $request->dokumen_transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrip);
 
-            $dokumen_ijazah = time() . '_' . $request->dokumen_ijazah->getClientOriginalName();
+            $dokumen_ijazah = time() . '.' . $request->dokumen_ijazah->extension();
             $request->dokumen_ijazah->move(public_path('assets/DokumenIjazah'), $dokumen_ijazah);
 
-            $dokumen_gelar = time() . '_' . $request->dokumen_gelar->getClientOriginalName();
+            $dokumen_gelar = time() . '.' . $request->dokumen_gelar->extension();
             $request->dokumen_gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelar);
-
 
             $riw_pend = new RiwayatPendidikan;
             $riw_pend->tingkat_pendidikan = $request->tingkat_pendidikan;
@@ -98,32 +96,32 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
-            $dokumen_transkrips = $request->hidden_dokumen_transkrips;
-            $dokumen_transkrip  = $request->file('dokumen_transkrips');
-            if ($dokumen_transkrip != '') {
-                unlink('assets/DokumenTranskrip' . $dokumen_transkrips);
-                $dokumen_transkrips = time() . '.' . $dokumen_transkrip->getClientOriginalExtension();
-                $dokumen_transkrip->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrips);
+            $dokumen_transkrip = $request->hidden_dokumen_transkrip;
+            $dokumen_transkrips  = $request->file('dokumen_transkrip');
+            if ($dokumen_transkrips != '') {
+                unlink('assets/DokumenTranskrip/' . $dokumen_transkrip);
+                $dokumen_transkrip = time() . '.' . $dokumen_transkrips->getClientOriginalExtension();
+                $dokumen_transkrips->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrip);
             } else {
                 $dokumen_transkrip;
             }
 
-            $dokumen_ijazahs = $request->hidden_dokumen_ijazahs;
-            $dokumen_ijazah  = $request->file('dokumen_Ijazahs');
-            if ($dokumen_ijazah != '') {
-                unlink('assets/DokumenIjazah' . $dokumen_ijazahs);
-                $dokumen_ijazahs = time() . '.' . $dokumen_ijazah->getClientOriginalExtension();
-                $dokumen_ijazah->move(public_path('assets/DokumenIjazah'), $dokumen_ijazahs);
+            $dokumen_ijazah = $request->hidden_dokumen_ijazah;
+            $dokumen_ijazahs  = $request->file('dokumen_ijazah');
+            if ($dokumen_ijazahs != '') {
+                unlink('assets/DokumenIjazah/' . $dokumen_ijazah);
+                $dokumen_ijazah = time() . '.' . $dokumen_ijazahs->getClientOriginalExtension();
+                $dokumen_ijazahs->move(public_path('assets/DokumenIjazah'), $dokumen_ijazah);
             } else {
                 $dokumen_ijazah;
             }
 
-            $dokumen_gelars = $request->hidden_dokumen_gelars;
-            $dokumen_gelar  = $request->file('dokumen_gelars');
-            if ($dokumen_gelar != '') {
-                unlink('assets/DokumenGelar' . $dokumen_gelars);
-                $dokumen_gelars = time() . '.' . $dokumen_gelar->getClientOriginalExtension();
-                $dokumen_gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelars);
+            $dokumen_gelar = $request->hidden_dokumen_gelar;
+            $dokumen_gelars  = $request->file('dokumen_gelar');
+            if ($dokumen_gelars != '') {
+                unlink('assets/DokumenGelar/' . $dokumen_gelar);
+                $dokumen_gelar = time() . '.' . $dokumen_gelars->getClientOriginalExtension();
+                $dokumen_gelars->move(public_path('assets/DokumenGelar'), $dokumen_gelar);
             } else {
                 $dokumen_gelar;
             }
@@ -237,10 +235,9 @@ class RiwayatController extends Controller
         try {
             $dokumen_skkp = $request->hidden_dokumen_skkp;
             $dokumen_skkps  = $request->file('dokumen_skkp');
-            if($dokumen_skkps != '')
-            {
-                unlink('assets/DokumenSKKP/'.$dokumen_skkp);
-                $dokumen_skkp = time().'.'.$dokumen_skkps->getClientOriginalExtension();  
+            if ($dokumen_skkps != '') {
+                unlink('assets/DokumenSKKP/' . $dokumen_skkp);
+                $dokumen_skkp = time() . '.' . $dokumen_skkps->getClientOriginalExtension();
                 $dokumen_skkps->move(public_path('assets/DokumenSKKP'), $dokumen_skkp);
             } else {
                 $dokumen_skkp;
@@ -248,10 +245,9 @@ class RiwayatController extends Controller
 
             $dokumen_teknis_kp = $request->hidden_dokumen_teknis_kp;
             $dokumen_teknis_kps  = $request->file('dokumen_teknis_kp');
-            if($dokumen_teknis_kps != '')
-            {
-                unlink('assets/DokumenTeknisKP/'.$dokumen_teknis_kp);
-                $dokumen_teknis_kp = time().'.'.$dokumen_teknis_kps->getClientOriginalExtension();  
+            if ($dokumen_teknis_kps != '') {
+                unlink('assets/DokumenTeknisKP/' . $dokumen_teknis_kp);
+                $dokumen_teknis_kp = time() . '.' . $dokumen_teknis_kps->getClientOriginalExtension();
                 $dokumen_teknis_kps->move(public_path('assets/DokumenTeknisKP'), $dokumen_teknis_kp);
             } else {
                 $dokumen_teknis_kp;
@@ -364,10 +360,9 @@ class RiwayatController extends Controller
         try {
             $dokumen_sk_jabatan = $request->hidden_dokumen_sk_jabatan;
             $dokumen_sk_jabatans  = $request->file('dokumen_sk_jabatan');
-            if($dokumen_sk_jabatans != '')
-            {
-                unlink('assets/DokumenSKJabatan/'.$dokumen_sk_jabatan);
-                $dokumen_sk_jabatan = time().'.'.$dokumen_sk_jabatans->getClientOriginalExtension();  
+            if ($dokumen_sk_jabatans != '') {
+                unlink('assets/DokumenSKJabatan/' . $dokumen_sk_jabatan);
+                $dokumen_sk_jabatan = time() . '.' . $dokumen_sk_jabatans->getClientOriginalExtension();
                 $dokumen_sk_jabatans->move(public_path('assets/DokumenSKJabatan'), $dokumen_sk_jabatan);
             } else {
                 $dokumen_sk_jabatan;
@@ -375,10 +370,9 @@ class RiwayatController extends Controller
 
             $dokumen_pelantikan = $request->hidden_dokumen_pelantikan;
             $dokumen_pelantikans  = $request->file('dokumen_pelantikan');
-            if($dokumen_pelantikans != '')
-            {
-                unlink('assets/DokumenPelantikan/'.$dokumen_pelantikan);
-                $dokumen_pelantikan = time().'.'.$dokumen_pelantikans->getClientOriginalExtension();  
+            if ($dokumen_pelantikans != '') {
+                unlink('assets/DokumenPelantikan/' . $dokumen_pelantikan);
+                $dokumen_pelantikan = time() . '.' . $dokumen_pelantikans->getClientOriginalExtension();
                 $dokumen_pelantikans->move(public_path('assets/DokumenPelantikan'), $dokumen_pelantikan);
             } else {
                 $dokumen_pelantikan;
@@ -485,10 +479,9 @@ class RiwayatController extends Controller
         try {
             $dokumen_diklat = $request->hidden_dokumen_diklat;
             $dokumen_diklats  = $request->file('dokumen_diklat');
-            if($dokumen_diklats != '')
-            {
-                unlink('assets/DokumenDiklat/'.$dokumen_diklat);
-                $dokumen_diklat = time().'.'.$dokumen_diklats->getClientOriginalExtension();  
+            if ($dokumen_diklats != '') {
+                unlink('assets/DokumenDiklat/' . $dokumen_diklat);
+                $dokumen_diklat = time() . '.' . $dokumen_diklats->getClientOriginalExtension();
                 $dokumen_diklats->move(public_path('assets/DokumenDiklat'), $dokumen_diklat);
             } else {
                 $dokumen_diklat;

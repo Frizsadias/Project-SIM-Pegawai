@@ -92,7 +92,10 @@
                                         <td class="tanggal_selesai">{{ $result_diklat->tanggal_selesai }}</td>
                                         <td class="tahun_diklat">{{ $result_diklat->tahun_diklat }}</td>
                                         <td class="durasi_jam">{{ $result_diklat->durasi_jam }} Jam</td>
-                                        <td class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
+                                        <td class="dokumen_diklat">
+                                            <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
+                                                target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
+                                        </td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -135,7 +138,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/diklat/tambah-data') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/diklat/tambah-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -161,7 +165,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Institusi Penyelenggara</label>
-                                        <input class="form-control" type="text" name="institusi_penyelenggara" required>
+                                        <input class="form-control" type="text" name="institusi_penyelenggara"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -229,7 +234,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/diklat/edit-data') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/diklat/edit-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
@@ -248,7 +254,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Diklat</label>
-                                        <input type="text" class="form-control" name="nama_diklat" id="e_nama_diklat" value="">
+                                        <input type="text" class="form-control" name="nama_diklat" id="e_nama_diklat"
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -256,13 +263,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Institusi Penyelenggara</label>
-                                        <input type="text" class="form-control" name="institusi_penyelenggara" id="e_institusi_penyelenggara" value="">
+                                        <input type="text" class="form-control" name="institusi_penyelenggara"
+                                            id="e_institusi_penyelenggara" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>No Sertifikat</label>
-                                        <input type="text" class="form-control" name="no_sertifikat" id="e_no_sertifikat" value="">
+                                        <input type="text" class="form-control" name="no_sertifikat"
+                                            id="e_no_sertifikat" value="">
                                     </div>
                                 </div>
                             </div>
@@ -270,13 +279,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Mulai</label>
-                                        <input type="date" class="form-control" name="tanggal_mulai" id="e_tanggal_mulai" value="">
+                                        <input type="date" class="form-control" name="tanggal_mulai"
+                                            id="e_tanggal_mulai" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Selesai</label>
-                                        <input type="date" class="form-control" name="tanggal_selesai" id="e_tanggal_selesai" value="">
+                                        <input type="date" class="form-control" name="tanggal_selesai"
+                                            id="e_tanggal_selesai" value="">
                                     </div>
                                 </div>
                             </div>
@@ -284,20 +295,24 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tahun Diklat</label>
-                                        <input type="number" class="form-control" name="tahun_diklat" id="e_tahun_diklat" value="">
+                                        <input type="number" class="form-control" name="tahun_diklat"
+                                            id="e_tahun_diklat" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Durasi (Jam)</label>
-                                        <input type="text" class="form-control" name="durasi_jam" id="e_durasi_jam" value="">
+                                        <input type="text" class="form-control" name="durasi_jam" id="e_durasi_jam"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Diklat</label>
-                                        <input type="file" class="form-control" name="dokumen_diklat" id="dokumen_diklat">
-                                        <input type="hidden" name="hidden_dokumen_diklat" id="e_dokumen_diklat" value="">
+                                        <input type="file" class="form-control" name="dokumen_diklat"
+                                            id="dokumen_diklat">
+                                        <input type="hidden" name="hidden_dokumen_diklat" id="e_dokumen_diklat"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>

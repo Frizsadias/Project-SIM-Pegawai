@@ -35,8 +35,9 @@
                     </li>
 
                     <li class="menu-title"> <span>Data Referensi </span>
-                    <li class="{{ request()->routeIs('agama') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('agama') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('form/agama/agamaIndex') ? 'active' : '' }}">
+                        <a href="{{ route('form/agama/agamaIndex') }}"
+                            class="{{ request()->routeIs('form/agama/agamaIndex') ? 'noti-dot' : '' }}">
                             <i class="la la-heart"></i>
                             <span>Agama</span>
                         </a>
@@ -165,10 +166,8 @@
                     </li>
 
                     <li class="menu-title"> <span>Laporan </span> </li>
-                    <li
-                        class="{{ set_active(['search/user/list']) }} submenu">
-                        <a href="#"
-                            class="{{ set_active(['search/user/list']) ? 'noti-dot' : '' }}">
+                    <li class="{{ set_active(['search/user/list']) }} submenu">
+                        <a href="#" class="{{ set_active(['search/user/list']) ? 'noti-dot' : '' }}">
                             <i class="la la-file"></i> <span> Laporan</span>
                         </a>
                     </li>
@@ -214,7 +213,8 @@
                         </a>
                     </li>
                     <li class="{{ set_active(['change/password']) }}">
-                        <a href="{{ route('change/password') }}" class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
+                        <a href="{{ route('change/password') }}"
+                            class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
                             <span> Ubah Password</span>
                         </a>
@@ -252,7 +252,8 @@
                         </a>
                     </li>
                     <li class="{{ set_active(['change/password']) }}">
-                        <a href="{{ route('change/password') }}" class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
+                        <a href="{{ route('change/password') }}"
+                            class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
                             <span> Ubah Password</span>
                         </a>
@@ -365,7 +366,8 @@
                         </a>
                     </li>
                     <li class="{{ set_active(['change/password']) }}">
-                        <a href="{{ route('change/password') }}" class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
+                        <a href="{{ route('change/password') }}"
+                            class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
                             <span> Ubah Password</span>
                         </a>

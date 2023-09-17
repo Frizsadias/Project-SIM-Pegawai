@@ -30,7 +30,7 @@
                                                 alt="{{ $users->name }}"></a>
                                     </div>
                                 </div>
-                                <div class="profile-basic">
+                                <div class="profile-basic pro-overview tab-pane fade show active">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="profile-info-left">

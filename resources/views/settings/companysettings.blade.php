@@ -50,20 +50,17 @@
                                     <input type="text" class="form-control" name="address" value="{{ $companySettings->address }}">
                                     @else
                                     <input type="text" class="form-control" name="address" value="">
-
                                     @endif
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3">
                                 <div class="form-group">
                                     <label>Negara</label>
-                                    <select class="form-control select" name="country">
-                                        @if (!empty($companySettings->country))
-                                            <option value="Indonesia" {{ ( $companySettings->country == 'Indonesia') ? 'selected' : '' }}> Indonesia</option>
-                                        @else
-                                            <option value="Indonesia">Indonesia</option>
-                                        @endif
-                                    </select>
+                                    @if (!empty($companySettings->country))
+                                    <input type="text" class="form-control" name="country" value="{{ $companySettings->country }}">
+                                    @else
+                                    <input type="text" class="form-control" name="country" value="">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3">
@@ -79,13 +76,11 @@
                             <div class="col-sm-6 col-md-6 col-lg-3">
                                 <div class="form-group">
                                     <label>Provinsi</label>
-                                    <select class="form-control select" name="state_province">
-                                        @if (!empty($companySettings->state_province))
-                                            <option value="Jawa Timur" {{ ( $companySettings->state_province == 'Jawa Timur') ? 'selected' : '' }}> Jawa Timur</option>
-                                        @else
-                                            <option value="Jawa Timur">Jawa Timur</option>
-                                        @endif
-                                    </select>
+                                    @if (!empty($companySettings->state_province))
+                                        <input type="text" class="form-control" name="state_province" value="{{ $companySettings->state_province }}">
+                                    @else
+                                        <input type="text" class="form-control" name="state_province">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3">

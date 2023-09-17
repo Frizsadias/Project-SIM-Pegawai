@@ -228,6 +228,11 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/department/update', 'updateRecordDepartment')->middleware('auth')->name('form/department/update');
     Route::post('form/department/delete', 'deleteRecordDepartment')->middleware('auth')->name('form/department/delete');
 
+    Route::get('form/agama/agamaIndex', 'agamaIndex')->middleware('auth')->name('form/agama/agamaIndex');
+    Route::post('form/agama/save', 'saveRecordAgama')->middleware('auth')->name('form/agama/save');
+    Route::post('form/agama/update', 'updateRecordAgama')->middleware('auth')->name('form/agama/update');
+    Route::post('form/agama/delete', 'deleteRecordAgama')->middleware('auth')->name('form/agama/delete');
+
     Route::get('form/designations/page', 'designationsIndex')->middleware('auth')->name('form/designations/page');
     Route::post('form/designations/save', 'saveRecordDesignations')->middleware('auth')->name('form/designations/save');
     Route::post('form/designations/update', 'updateRecordDesignations')->middleware('auth')->name('form/designations/update');

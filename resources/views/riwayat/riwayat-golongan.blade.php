@@ -86,16 +86,25 @@
                                         <td>{{ ++$sqlgolongan }}</td>
                                         <td hidden class="id">{{ $result_golongan->id }}</td>
                                         <td class="golongan">{{ $result_golongan->golongan }}</td>
-                                        <td class="jenis_kenaikan_pangkat">{{ $result_golongan->jenis_kenaikan_pangkat }}</td>
-                                        <td class="masa_kerja_golongan_tahun">{{ $result_golongan->masa_kerja_golongan_tahun }} Tahun</td>
-                                        <td class="masa_kerja_golongan_bulan">{{ $result_golongan->masa_kerja_golongan_bulan }} Bulan</td>
+                                        <td class="jenis_kenaikan_pangkat">{{ $result_golongan->jenis_kenaikan_pangkat }}
+                                        </td>
+                                        <td class="masa_kerja_golongan_tahun">
+                                            {{ $result_golongan->masa_kerja_golongan_tahun }} Tahun</td>
+                                        <td class="masa_kerja_golongan_bulan">
+                                            {{ $result_golongan->masa_kerja_golongan_bulan }} Bulan</td>
                                         <td class="tmt_golongan">{{ $result_golongan->tmt_golongan }}</td>
                                         <td class="no_teknis_bkn">{{ $result_golongan->no_teknis_bkn }}</td>
                                         <td class="tanggal_teknis_bkn">{{ $result_golongan->tanggal_teknis_bkn }}</td>
                                         <td class="no_sk">{{ $result_golongan->no_sk }}</td>
                                         <td class="tanggal_sk">{{ $result_golongan->tanggal_sk }}</td>
-                                        <td class="dokumen_skkp">{{ $result_golongan->dokumen_skkp }}</td>
-                                        <td class="dokumen_teknis_kp">{{ $result_golongan->dokumen_teknis_kp }}</td>
+                                        <td class="dokumen_skkp">
+                                            <a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
+                                                target="_blank">{{ $result_golongan->dokumen_skkp }}</a>
+                                        </td>
+                                        <td class="dokumen_teknis_kp">
+                                            <a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
+                                                target="_blank">{{ $result_golongan->dokumen_teknis_kp }}</a>
+                                        </td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -138,7 +147,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/golongan/tambah-data') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/golongan/tambah-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -150,7 +160,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Kenaikan Pangkat (KP)</label>
-                                        <input type="text" class="form-control" name="jenis_kenaikan_pangkat" required>
+                                        <input type="text" class="form-control" name="jenis_kenaikan_pangkat"
+                                            required>
                                     </div>
                                 </div>
                             </div>
@@ -158,13 +169,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Masa Kerja Golongan (Tahun)</label>
-                                        <input type="number" class="form-control" name="masa_kerja_golongan_tahun" required>
+                                        <input type="number" class="form-control" name="masa_kerja_golongan_tahun"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Masa Kerja Golongan (Bulan)</label>
-                                        <input type="number" class="form-control" name="masa_kerja_golongan_bulan" required>
+                                        <input type="number" class="form-control" name="masa_kerja_golongan_bulan"
+                                            required>
                                     </div>
                                 </div>
                             </div>
@@ -239,20 +252,23 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/golongan/edit-data') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/golongan/edit-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Golongan</label>
-                                        <input type="text" class="form-control" name="golongan" id="e_golongan" value="">
+                                        <input type="text" class="form-control" name="golongan" id="e_golongan"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Kenaikan Pangkat</label>
-                                        <input type="text" class="form-control" name="jenis_kenaikan_pangkat" id="e_jenis_kenaikan_pangkat" value="">
+                                        <input type="text" class="form-control" name="jenis_kenaikan_pangkat"
+                                            id="e_jenis_kenaikan_pangkat" value="">
                                     </div>
                                 </div>
                             </div>
@@ -260,13 +276,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Masa Kerja Golongan (Tahun)</label>
-                                        <input type="text" class="form-control" name="masa_kerja_golongan_tahun" id="e_masa_kerja_golongan_tahun" value="">
+                                        <input type="text" class="form-control" name="masa_kerja_golongan_tahun"
+                                            id="e_masa_kerja_golongan_tahun" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Masa Kerja golongan (Bulan)</label>
-                                        <input type="text" class="form-control" name="masa_kerja_golongan_bulan" id="e_masa_kerja_golongan_bulan" value="">
+                                        <input type="text" class="form-control" name="masa_kerja_golongan_bulan"
+                                            id="e_masa_kerja_golongan_bulan" value="">
                                     </div>
                                 </div>
                             </div>
@@ -274,13 +292,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Golongan</label>
-                                        <input type="date" class="form-control" name="tmt_golongan" id="e_tmt_golongan" value="">
+                                        <input type="date" class="form-control" name="tmt_golongan"
+                                            id="e_tmt_golongan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Teknis BKN</label>
-                                        <input type="number" class="form-control" name="no_teknis_bkn" id="e_no_teknis_bkn" value="">
+                                        <input type="number" class="form-control" name="no_teknis_bkn"
+                                            id="e_no_teknis_bkn" value="">
                                     </div>
                                 </div>
                             </div>
@@ -288,19 +308,22 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Teknis BKN</label>
-                                        <input type="date" class="form-control" name="tanggal_teknis_bkn" id="e_tanggal_teknis_bkn" value="">
+                                        <input type="date" class="form-control" name="tanggal_teknis_bkn"
+                                            id="e_tanggal_teknis_bkn" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input type="text" class="form-control" name="no_sk" id="e_no_sk" value="">
+                                        <input type="text" class="form-control" name="no_sk" id="e_no_sk"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
-                                        <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk" value="">
+                                        <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk"
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -308,16 +331,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen SK KP</label>
-                                        <input type="file" class="form-control" id="dokumen_skkp" name="dokumen_skkp">
-                                        <input type="hidden" name="hidden_dokumen_skkp" id="e_dokumen_skkp" value="">
+                                        <input type="file" class="form-control" id="dokumen_skkp"
+                                            name="dokumen_skkp">
+                                        <input type="hidden" name="hidden_dokumen_skkp" id="e_dokumen_skkp"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Teknis KP</label>
-                                        <input type="file" class="form-control" id="dokumen_teknis_kp" name="dokumen_teknis_kp">
-                                        <input type="hidden" name="hidden_dokumen_teknis_kp" id="e_dokumen_teknis_kp" value="">
+                                        <input type="file" class="form-control" id="dokumen_teknis_kp"
+                                            name="dokumen_teknis_kp">
+                                        <input type="hidden" name="hidden_dokumen_teknis_kp" id="e_dokumen_teknis_kp"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>

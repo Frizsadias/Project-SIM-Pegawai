@@ -92,8 +92,14 @@
                                         <td class="tanggal_sk">{{ $result_jabatan->tanggal_sk }}</td>
                                         <td class="tmt_jabatan">{{ $result_jabatan->tmt_jabatan }}</td>
                                         <td class="tmt_pelantikan">{{ $result_jabatan->tmt_pelantikan }}</td>
-                                        <td class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}</td>
-                                        <td class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}</td>
+                                        <td class="dokumen_sk_jabatan">
+                                            <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
+                                                target="_blank">{{ $result_jabatan->dokumen_sk_jabatan }}</a>
+                                        </td>
+                                        <td class="dokumen_pelantikan">
+                                            <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
+                                                target="_blank">{{ $result_jabatan->dokumen_pelantikan }}</a>
+                                        </td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
