@@ -60,8 +60,8 @@
                             <span>Pangkat</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('pendidikan') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('pendidikan') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('form/pendidikan/pendidikanIndex') ? 'active' : '' }}">
+                        <a href="{{ route('form/pendidikan/pendidikanIndex') }}" class="{{ request()->routeIs('form/pendidikan/pendidikanIndex') ? 'noti-dot' : '' }}">
                             <i class="la la-mortar-board"></i>
                             <span>Pendidikan</span>
                         </a>

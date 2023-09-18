@@ -34,19 +34,21 @@
             <!-- /Page Header -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-24 col-sm-24 col-lg-24 col-xl-12">
                         <div class="card dash-widget">
                             <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-user-plus"></i></span>
+                                <span class="dash-widget-icon"><i class="fa fa-building"></i></span>
                                 <div class="dash-widget-info">
-                                    <h3>100</h3>
-                                    <span>Pengguna</span>
+                                    <h3>Nama Instansi</h3>
+                                    <p>Alamat: Alamat Instansi</p>
+                                    <p>No. Telepon: Nomor Telepon Instansi</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             {{-- message --}}
             {!! Toastr::message() !!}
         </div>

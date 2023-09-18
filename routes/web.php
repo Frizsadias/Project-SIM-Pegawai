@@ -10,6 +10,7 @@ use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\EmployeeController;
@@ -233,6 +234,11 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/agama/update', 'updateRecordAgama')->middleware('auth')->name('form/agama/update');
     Route::post('form/agama/delete', 'deleteRecordAgama')->middleware('auth')->name('form/agama/delete');
 
+    Route::get('form/pendidikan/pendidikanIndex', 'pendidikanIndex')->middleware('auth')->name('form/pendidikan/pendidikanIndex');
+    Route::post('form/pendidikan/save', 'saveRecordPendidikan')->middleware('auth')->name('form/pendidikan/save');
+    Route::post('form/pendidikan/update', 'updateRecordPendidikan')->middleware('auth')->name('form/pendidikan/update');
+    Route::post('form/pendidikan/delete', 'deleteRecordPendidikan')->middleware('auth')->name('form/pendidikan/delete');
+
     Route::get('form/designations/page', 'designationsIndex')->middleware('auth')->name('form/designations/page');
     Route::post('form/designations/save', 'saveRecordDesignations')->middleware('auth')->name('form/designations/save');
     Route::post('form/designations/update', 'updateRecordDesignations')->middleware('auth')->name('form/designations/update');
@@ -374,6 +380,10 @@ Route::controller(ProfilPegawaiController::class)->group(function () {
 // ----------------------- rekapitulasi  --------------------------//
 Route::controller(RekapitulasiController::class)->group(function () {
     Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
+});
+
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('dashboard', 'index')->middleware('auth')->name('dashboard');
 });
 
 // ----------------------- Informasi Riwayat Pendidikan --------------------------//

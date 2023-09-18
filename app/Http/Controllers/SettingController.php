@@ -54,12 +54,12 @@ class SettingController extends Controller
             $saveRecord->save();
             
             DB::commit();
-            Toastr::success('Save CompanySettings successfully :)','Success');
+            Toastr::success('Sukses menyimpan pengaturan :)','Success');
             return redirect()->back();
         } catch(\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('Save CompanySettings fail :)','Error');
+            Toastr::error('Gagal menyimpan pengaturan :)','Error');
             return redirect()->back();
         }
     }
@@ -92,16 +92,16 @@ class SettingController extends Controller
 
                 // roles name exits
                 DB::rollback();
-                Toastr::error('Roles name exits :)','Error');
+                Toastr::error('Nama role sudah ada :)','Error');
                 return redirect()->back();
             }
 
             DB::commit();
-            Toastr::success('Create new role successfully :)','Success');
+            Toastr::success('Berhasil membuat role baru :)','Success');
             return redirect()->back();
         }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Add Role fail :)','Error');
+            Toastr::error('Gagal membuat role baru :)','Error');
             return redirect()->back();
         }
     }
@@ -121,12 +121,12 @@ class SettingController extends Controller
 
             RolesPermissions::where('id',$id)->update($update);
             DB::commit();
-            Toastr::success('Role Name updated successfully :)','Success');
+            Toastr::success('Berhasil mengubah role :)','Success');
             return redirect()->back();
 
         }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Role Name update fail :)','Error');
+            Toastr::error('Gagal mengubah role :)','Error');
             return redirect()->back();
         }
     }
@@ -136,12 +136,12 @@ class SettingController extends Controller
     {
         try{
             RolesPermissions::destroy($request->id);
-            Toastr::success('Role Name deleted successfully :)','Success');
+            Toastr::success('Berhasil menghapus role :)','Success');
             return redirect()->back();
         
         }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Role Name delete fail :)','Error');
+            Toastr::error('Gagal menghapus role :)','Error');
             return redirect()->back();
         }
     }

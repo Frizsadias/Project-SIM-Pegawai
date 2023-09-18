@@ -342,11 +342,11 @@ class UserManagementController extends Controller
             $user->password     = Hash::make($request->password);
             $user->save();
             DB::commit();
-            Toastr::success('Create new account successfully :)', 'Success');
+            Toastr::success('Berhasil membuat akun baru :)', 'Success');
             return redirect()->route('userManagement');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('User add new account fail :)', 'Error');
+            Toastr::error('Gagal membuat akun baru :)', 'Error');
             return redirect()->back();
         }
     }
@@ -410,11 +410,11 @@ class UserManagementController extends Controller
             DB::table('user_activity_logs')->insert($activityLog);
             User::where('user_id', $request->user_id)->update($update);
             DB::commit();
-            Toastr::success('User updated successfully :)', 'Success');
+            Toastr::success('Berhasil update user :)', 'Success');
             return redirect()->route('userManagement');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('User update fail :)', 'Error');
+            Toastr::error('Gagal update user :)', 'Error');
             return redirect()->back();
         }
     }
@@ -453,11 +453,11 @@ class UserManagementController extends Controller
             }
 
             DB::commit();
-            Toastr::success('User deleted successfully :)', 'Success');
+            Toastr::success('Berhasil hapus user :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('User deleted fail :)', 'Error');
+            Toastr::error('Gagal hapus user :)', 'Error');
             return redirect()->back();
         }
     }
@@ -479,7 +479,7 @@ class UserManagementController extends Controller
 
         User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
         DB::commit();
-        Toastr::success('User change successfully :)', 'Success');
+        Toastr::success('Berhasil update user :)', 'Success');
         return redirect()->intended('home');
     }
 

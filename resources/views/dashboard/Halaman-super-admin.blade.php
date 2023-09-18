@@ -40,7 +40,7 @@
                                 <span class="dash-widget-icon"><i class="fa fa-user-plus"></i></span>
                                 <div class="dash-widget-info">
                                     <h3>100</h3>
-                                    <span>Pengguna</span>
+                                    <span>Jumlah Pegawai</span>
                                 </div>
                             </div>
                         </div>
@@ -69,6 +69,7 @@
                     </div>
                 </div>
             </div>
+            
             {{-- message --}}
             {!! Toastr::message() !!}
         </div>

@@ -10,6 +10,7 @@ use App\Models\Employee;
 use App\Models\department;
 use App\Models\User;
 use App\Models\module_permission;
+use App\Models\pendidikan;
 
 class EmployeeController extends Controller
 {
@@ -477,8 +478,7 @@ class EmployeeController extends Controller
         try {
 
             $agama = agama::where('agama', $request->agama)->first();
-            if ($agama === null) 
-            {
+            if ($agama === null) {
                 $agama = new agama;
                 $agama->agama = $request->agama;
                 $agama->save();
@@ -531,6 +531,90 @@ class EmployeeController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Agama gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** page pendidikan */
+    public function pendidikanIndex()
+    {
+        $pendidikan = DB::table('pendidikan_id')->get();
+        return view('employees.pendidikan', compact('pendidikan'));
+    }
+
+    /** save record pendidikan */
+    public function saveRecordPendidikan(Request $request)
+    {
+        $request->validate([
+            'pendidikan' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $pendidikan = pendidikan::where('pendidikan', $request->pendidikan)->first();
+            if ($pendidikan === null) {
+                $pendidikan = new pendidikan;
+                $pendidikan->pendidikan = $request->pendidikan;
+                $pendidikan->tk_pendidikan_id = $request->tk_pendidikan_id;
+                $pendidikan->status_pendidikan = $request->status_pendidikan;
+                $pendidikan->save();
+
+                DB::commit();
+                Toastr::success('Tambahkan pendidikan baru berhasil :)', 'Sukses');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Pendidikan sudah ada :)', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Tambahkan pendidikan baru gagal :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+
+    /** update record pendidikan */
+    public function updateRecordPendidikan(Request $request)
+    {
+        $request->validate([
+            'pendidikan' => 'required|string|max:255',
+            'tk_pendidikan_id' =>'required|string|max:255',
+            'status_pendidikan' =>'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            // update table pendidikan
+            $pendidikan = [
+                'pendidikan' => $request->pendidikan,
+                'tk_pendidikan_id' => $request->tk_pendidikan_id,
+                'status_pendidikan' => $request->status_pendidikan,
+            ];
+            DB::table('pendidikan_id')->where('id', $request->id)->update($pendidikan);
+
+            DB::commit();
+            Toastr::success('Berhasil update pendidikan :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Gagal update pendidikan :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** delete record pendidikan */
+    public function deleteRecordPendidikan(Request $request)
+    {
+        try {
+            pendidikan::destroy($request->id);
+            Toastr::success('Pendidikan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Pendidikan gagal dihapus :)', 'Error');
             return redirect()->back();
         }
     }

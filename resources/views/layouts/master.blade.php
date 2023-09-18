@@ -171,22 +171,22 @@
     <!-- Custom JS -->
     <script src="{{ URL::to('assets/js/app.js') }}"></script>
 
-    <script>
-        var toggleBtn = document.getElementById('toggle_btn');
-        var logo = document.querySelector('.logo');
-        var logoIcon = document.querySelector('.logo i');
-        var logoText = document.querySelector('.logo .logo-text');
+   <script>
+    var toggleBtn = document.getElementById("toggle_btn");
+    var logoText = document.querySelector(".logo-text");
+    var faUser = document.querySelector(".fa-user");
 
-        toggleBtn.addEventListener('click', function() {
-            if (logoIcon.style.display === 'none') {
-                logoIcon.style.display = 'inline-block';
-                logoText.style.display = 'none';
-            } else {
-                logoIcon.style.display = 'inline-block';
-                logoText.style.display = 'none';
-            }
-        });
-    </script>
+    toggleBtn.addEventListener("click", function() {
+        if (logoText.style.display === "none") {
+            logoText.style.display = "inline-block";
+            faUser.style.display = "inline-block";
+        } else {
+            logoText.style.display = "none";
+            faUser.style.display = "inline-block";
+        }
+    });
+</script>
+
 
     @yield('script')
 </body>
