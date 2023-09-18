@@ -86,7 +86,7 @@ class LoginController extends Controller
                 $activityLog = ['name'=> Session::get('name'),'email'=> $username,'description' => 'Has log in','date_time'=> $todayDate,];
                 DB::table('activity_logs')->insert($activityLog);
                 
-                Toastr::success('Login successfully :)','Success');
+                Toastr::success('Login berhasil :)','Success');
                 return redirect()->intended('home');
             } else {
                 Toastr::error('Gagal, Nama Pengguna dan Kata Sandi tidak sama ✘','Error');
@@ -95,7 +95,7 @@ class LoginController extends Controller
         }catch(\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('Add new employee fail :)','Error');
+            Toastr::error('Gagal menambah pegawai baru :)','Error');
             return redirect()->back();
         }
     }
@@ -121,7 +121,7 @@ class LoginController extends Controller
         $request->session()->forget('department');
         $request->session()->flush();
         Auth::logout();
-        Toastr::success('Logout successfully :)','Success');
+        Toastr::success('Logout berhasil :)','Success');
         return redirect('login');
     }
 

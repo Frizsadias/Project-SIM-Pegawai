@@ -26,7 +26,7 @@
                     <div class="col-sm-12">
                         <h3 class="page-title">{{ $greet }} {{ Session::get('name') }} &#128522;</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item active">Dashboard Admin</li>
+                            <li class="breadcrumb-item active">Dashboard {{ Session::get('name') }}</li>
                         </ul>
                     </div>
                 </div>
@@ -41,6 +41,28 @@
                                 <div class="dash-widget-info">
                                     <h3>100</h3>
                                     <span>Pengguna</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title">Total Revenue</h3>
+                                    <div id="bar-charts"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title">Sales Overview</h3>
+                                    <div id="line-charts"></div>
                                 </div>
                             </div>
                         </div>

@@ -80,16 +80,16 @@ class EmployeeController extends Controller
                 }
 
                 DB::commit();
-                Toastr::success('Add new employee successfully :)', 'Success');
+                Toastr::success('Berhasil menambahkan pegawai baru :)', 'Success');
                 return redirect()->route('all/employee/card');
             } else {
                 DB::rollback();
-                Toastr::error('Add new employee exits :)', 'Error');
+                Toastr::error('Data tersebuut sudah tersedia :)', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Add new employee fail :)', 'Error');
+            Toastr::error('Gagal menambahkan pegawai baru :)', 'Error');
             return redirect()->back();
         }
     }
@@ -148,11 +148,11 @@ class EmployeeController extends Controller
             Employee::where('id', $request->id)->update($updateEmployee);
 
             DB::commit();
-            Toastr::success('updated record successfully :)', 'Success');
+            Toastr::success('Berhasil update data :)', 'Success');
             return redirect()->route('all/employee/card');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('updated record fail :)', 'Error');
+            Toastr::error('Gagal update data :)', 'Error');
             return redirect()->back();
         }
     }
@@ -166,11 +166,11 @@ class EmployeeController extends Controller
             module_permission::where('employee_id', $employee_id)->delete();
 
             DB::commit();
-            Toastr::success('Delete record successfully :)', 'Success');
+            Toastr::success('Berhasil hapus data :)', 'Success');
             return redirect()->route('all/employee/card');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Delete record fail :)', 'Error');
+            Toastr::error('Gagal hapus data :)', 'Error');
             return redirect()->back();
         }
     }
@@ -526,11 +526,11 @@ class EmployeeController extends Controller
     {
         try {
             agama::destroy($request->id);
-            Toastr::success('Agama deleted successfully :)', 'Success');
+            Toastr::success('Agama berhasil dihapus :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Agama delete fail :)', 'Error');
+            Toastr::error('Agama gagal dihapus :)', 'Error');
             return redirect()->back();
         }
     }

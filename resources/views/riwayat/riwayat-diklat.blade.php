@@ -96,6 +96,7 @@
                                             <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
                                                 target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
                                         </td>
+                                        
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">

@@ -223,10 +223,12 @@
 
                 @if (Auth::user()->role_name == 'Super Admin')
                     <li class="menu-title"> <span>Informasi Pegawai</span> </li>
-                    <li class="">
-                        <a href="#">
-                            <i class="la la-user-secret"></i>
-                            <span> Data Pegawai</span>
+                    <li
+                        class="{{ request()->routeIs('all/employee/list') || request()->routeIs('all/employee/card') ? 'active' : '' }}">
+                        <a href="{{ route('all/employee/list') }}"
+                            class="{{ request()->routeIs('all/employee/list') || request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                            <i class="la la-group"></i>
+                            <span>Data Pegawai</span>
                         </a>
                     </li>
                     <li class="menu-title"> <span>Data Statistik</span> </li>

@@ -104,12 +104,15 @@
                         <span class="user-img">
                             <img src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}"
                                 alt="{{ Auth::user()->name }}">
-                            <span class="status online"></span></span>
+                            <span class="status online"></span>
+                        </span>
                         <span>{{ Session::get('name') }}</span>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('profile_user') }}">My Profile</a>
-                        <a class="dropdown-item" href="{{ route('company/settings/page') }}">Settings</a>
+                        <a class="dropdown-item" href="{{ route('profile_user') }}">Profil Saya</a>
+                        @if (Auth::user()->role_name == 'Admin' || Auth::user()->role_name == 'Super Admin')
+                            <a class="dropdown-item" href="{{ route('company/settings/page') }}">Pengaturan</a>
+                        @endif
                         <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                     </div>
                 </li>
@@ -122,8 +125,8 @@
                     <i class="fa fa-ellipsis-v"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('profile_user') }}">My Profile</a>
-                    <a class="dropdown-item" href="{{ route('company/settings/page') }}">Settings</a>
+                    <a class="dropdown-item" href="{{ route('profile_user') }}">Profil Saya</a>
+                    <a class="dropdown-item" href="{{ route('company/settings/page') }}">Pengaturan</a>
                     <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>

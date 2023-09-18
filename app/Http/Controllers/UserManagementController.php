@@ -297,11 +297,11 @@ class UserManagementController extends Controller
             $information->save();
 
             DB::commit();
-            Toastr::success('Profile Information successfully :)', 'Success');
+            Toastr::success('Edit Profil Informasi berhasil :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Add Profile Information fail :)', 'Error');
+            Toastr::error('Menambahkan Profil Informasi gagal :)', 'Error');
             return redirect()->back();
         }
     }
