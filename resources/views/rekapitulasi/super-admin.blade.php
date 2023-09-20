@@ -1,25 +1,13 @@
 @extends('layouts.master')
 @section('content')
-
-    <!doctype html>
-    <html lang="en">
-    <div class="page-wrapper">
-        <div class="content container-fluid">
-
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport"
-                    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-                <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                <title>Rekapitulasi</title>
-                <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-            </head>
-
-            <body class="h-screen bg-gray-100">
-
-                <div class="container px-4 mx-auto">
-
-                    <div class="p-6 m-20 bg-white rounded shadow">
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container px-4 mx-auto">
                         {!! $chart->container() !!}
                         {!! $grafikAgama->container() !!}
                         {!! $grafikJenisKelamin->container() !!}
@@ -37,10 +25,15 @@
                 {{ $grafikAgama->script() }}
                 {{ $grafikJenisKelamin->script() }}
                 {{ $grafikPangkat->script() }}
-            </body>
+            </div>
         </div>
-
-
     </div>
-
-    </html>
+</div>
+</div>
+{{-- message --}}
+{!! Toastr::message() !!}
+</div>
+</div>
+<!-- /Page Content -->
+</div>
+@endsection

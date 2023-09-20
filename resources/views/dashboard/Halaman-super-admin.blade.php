@@ -46,30 +46,31 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6 text-center">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">Total Revenue</h3>
-                                    <div id="bar-charts"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container px-4 mx-auto">
+                                    {!! $chart->container() !!}
+                                    {!! $grafikAgama->container() !!}
+                                    {!! $grafikJenisKelamin->container() !!}
+                                    {!! $grafikPangkat->container() !!}                
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">Sales Overview</h3>
-                                    <div id="line-charts"></div>
-                                </div>
+                
+                                <script src="{{ $chart->cdn() }}"></script>
+                                <script src="{{ $grafikAgama->cdn() }}"></script>
+                                <script src="{{ $grafikJenisKelamin->cdn() }}"></script>
+                                <script src="{{ $grafikPangkat->cdn() }}"></script>
+                
+                                {{ $chart->script() }}
+                                {{ $grafikAgama->script() }}
+                                {{ $grafikJenisKelamin->script() }}
+                                {{ $grafikPangkat->script() }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
             {{-- message --}}
             {!! Toastr::message() !!}
         </div>
