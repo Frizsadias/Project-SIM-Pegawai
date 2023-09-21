@@ -118,7 +118,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Employee</h5>
+                    <h5 class="modal-title">Tambah Pegawai</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -129,7 +129,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Full Name</label>
+                                    <label class="col-form-label">Nama Lengkap</label>
                                     <select class="select" id="name" name="name">
                                         <option value="">-- Select --</option>
                                         @foreach ($userList as $key => $user)
@@ -149,7 +149,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Birth Date</label>
+                                    <label>Tanggal Lahir</label>
                                     <div class="cal-icon">
                                         <input class="form-control datetimepicker" type="text" id="birthDate"
                                             name="birthDate">
@@ -158,120 +158,22 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Gender</label>
+                                    <label>Jenis Kelamin</label>
                                     <select class="select form-control" id="gender" name="gender">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="Laki-Laki">Laki-Laki</option>
+                                        <option value="Perempuan">Perempuan</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Employee ID <span
+                                    <label class="col-form-label">ID Pegawai <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="employee_id" name="employee_id"
                                         placeholder="Auto id employee" readonly>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Line Manager</label>
-                                    <select class="select" id="company" name="company">
-                                        <option value="">-- Select --</option>
-                                        <option value="Soeng Souy">Soeng Souy</option>
-                                        <option value="StarGame Kh">StarGame Kh</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
-                        <div class="table-responsive m-t-15">
-                            <table class="table table-striped custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>Module Permission</th>
-                                        <th class="text-center">Read</th>
-                                        <th class="text-center">Write</th>
-                                        <th class="text-center">Create</th>
-                                        <th class="text-center">Delete</th>
-                                        <th class="text-center">Import</th>
-                                        <th class="text-center">Export</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $key = 0;
-                                    $key1 = 0;
-                                    ?>
-                                    @foreach ($permission_lists as $lists)
-                                        <tr>
-                                            <td>{{ $lists->permission_name }}</td>
-                                            <input type="hidden" name="permission[]"
-                                                value="{{ $lists->permission_name }}">
-                                            <input type="hidden" name="id_count[]" value="{{ $lists->id }}">
-                                            <td class="text-center">
-                                                <input type="checkbox"
-                                                    class="option-input checkbox read{{ ++$key }}"
-                                                    id="read" name="read[]"
-                                                    value="Y"{{ $lists->read == 'Y' ? 'checked' : '' }}>
-                                                <input type="checkbox"
-                                                    class="option-input checkbox read{{ ++$key1 }}"
-                                                    id="read" name="read[]" value="N"
-                                                    {{ $lists->read == 'N' ? 'checked' : '' }}>
-                                            </td>
-                                            <td class="text-center">
-                                                <input type="checkbox"
-                                                    class="option-input checkbox write{{ ++$key }}"
-                                                    id="write" name="write[]" value="Y"
-                                                    {{ $lists->write == 'Y' ? 'checked' : '' }}>
-                                                <input type="checkbox"
-                                                    class="option-input checkbox write{{ ++$key1 }}"
-                                                    id="write" name="write[]" value="N"
-                                                    {{ $lists->write == 'N' ? 'checked' : '' }}>
-                                            </td>
-                                            <td class="text-center">
-                                                <input type="checkbox"
-                                                    class="option-input checkbox create{{ ++$key }}"
-                                                    id="create" name="create[]" value="Y"
-                                                    {{ $lists->create == 'Y' ? 'checked' : '' }}>
-                                                <input type="checkbox"
-                                                    class="option-input checkbox create{{ ++$key1 }}"
-                                                    id="create" name="create[]" value="N"
-                                                    {{ $lists->create == 'N' ? 'checked' : '' }}>
-                                            </td>
-                                            <td class="text-center">
-                                                <input type="checkbox"
-                                                    class="option-input checkbox delete{{ ++$key }}"
-                                                    id="delete" name="delete[]" value="Y"
-                                                    {{ $lists->delete == 'Y' ? 'checked' : '' }}>
-                                                <input type="checkbox"
-                                                    class="option-input checkbox delete{{ ++$key1 }}"
-                                                    id="delete" name="delete[]" value="N"
-                                                    {{ $lists->delete == 'N' ? 'checked' : '' }}>
-                                            </td>
-                                            <td class="text-center">
-                                                <input type="checkbox"
-                                                    class="option-input checkbox import{{ ++$key }}"
-                                                    id="import" name="import[]" value="Y"
-                                                    {{ $lists->import == 'Y' ? 'checked' : '' }}>
-                                                <input type="checkbox"
-                                                    class="option-input checkbox import{{ ++$key1 }}"
-                                                    id="import" name="import[]" value="N"
-                                                    {{ $lists->import == 'N' ? 'checked' : '' }}>
-                                            </td>
-                                            <td class="text-center">
-                                                <input type="checkbox"
-                                                    class="option-input checkbox export{{ ++$key }}"
-                                                    id="export" name="export[]" value="Y"
-                                                    {{ $lists->export == 'Y' ? 'checked' : '' }}>
-                                                <input type="checkbox"
-                                                    class="option-input checkbox export{{ ++$key1 }}"
-                                                    id="export" name="export[]" value="N"
-                                                    {{ $lists->export == 'N' ? 'checked' : '' }}>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
                         </div>
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Submit</button>

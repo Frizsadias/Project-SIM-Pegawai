@@ -191,7 +191,7 @@
             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit User</h5>
+                        <h5 class="modal-title">Edit Pengguna</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -204,7 +204,7 @@
                             <div class="row"> 
                                 <div class="col-sm-6"> 
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>Nama</label>
                                         <input class="form-control" type="text" name="name" id="e_name" value="" />
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@
                             </div>
                             <div class="row"> 
                                 <div class="col-sm-6"> 
-                                    <label>Role Name</label>
+                                    <label>Role</label>
                                     <select class="select" name="role_name" id="e_role_name">
                                         @foreach ($role_name as $role )
                                         <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
@@ -223,7 +223,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-6"> 
-                                    <label>Position</label>
+                                    <label>Posisi</label>
                                     <select class="select" name="position" id="e_position">
                                         @foreach ($position as $positions )
                                         <option value="{{ $positions->position }}">{{ $positions->position }}</option>
@@ -235,12 +235,12 @@
                             <div class="row"> 
                                 <div class="col-sm-6"> 
                                     <div class="form-group">
-                                        <label>Phone</label>
+                                        <label>Nomor Telepon</label>
                                         <input class="form-control" type="text" id="e_phone_number" name="phone" placeholder="Enter Phone">
                                     </div>
                                 </div>
                                 <div class="col-sm-6"> 
-                                    <label>Department</label>
+                                    <label>Jabatan</label>
                                     <select class="select" name="department" id="e_department">
                                         @foreach ($department as $departments )
                                         <option value="{{ $departments->department }}">{{ $departments->department }}</option>
@@ -258,7 +258,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-6"> 
-                                    <label>Photo</label>
+                                    <label>Foto</label>
                                     <input class="form-control" type="file" id="image" name="images">
                                     <input type="hidden" name="hidden_image" id="e_image" value="">
                                 </div>

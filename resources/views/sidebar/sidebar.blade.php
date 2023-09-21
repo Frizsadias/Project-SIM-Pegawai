@@ -82,85 +82,85 @@
 
                     <li class="menu-title"> <span>Manajemen Pegawai</span> </li>
                     <li
-                        class="{{ request()->routeIs('all/employee/list') || request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="{{ route('all/employee/list') }}"
-                            class="{{ request()->routeIs('all/employee/list') || request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                        class="{{ request()->routeIs('all/employee/list','all/employee/card') || request()->routeIs('all/employee/card') ? 'active' : '' }}">
+                        <a href="{{ route('all/employee/list', 'all/employee/card') }}"
+                            class="{{ request()->routeIs('all/employee/list', 'all/employee/card') || request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i>
                             <span>Daftar Pegawai</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-level-down"></i>
                             <span>Daftar Pegawai Pensiun</span>
                         </a>
                     </li>
 
                     <li class="menu-title"> <span>Layanan Kepegawaian </span> </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-money"></i>
                             <span>Kenaikan Gaji Berkala</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-long-arrow-up"></i>
                             <span>Kenaikan Pangkat</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-tags"></i>
                             <span>Status Kepegawaian</span>
                         </a>
                     </li>
 
                     <li class="menu-title"> <span>Data Statistik </span> </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-list"></i>
                             <span>Daftar Urut Kepangkatan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-exclamation"></i>
                             <span>Hukuman Disiplin</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-venus"></i>
                             <span>Jenis Kelamin</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-university"></i>
                             <span>Tingkat Pendidikan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-industry"></i>
                             <span>Golongan Ruang</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-info"></i>
                             <span>Jabatan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-male"></i>
                             <span>Kelompok Umur</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-map-signs"></i>
                             <span>Jenis Pegawai</span>
                         </a>
@@ -173,7 +173,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-title">
+                    {{-- <li class="menu-title">
                         <span>Informasi Riwayat</span>
                     </li>
                     <li class="{{ request()->routeIs('riwayat-pendidikan') ? 'active' : '' }}">
@@ -203,7 +203,7 @@
                             <i class="la la-suitcase"></i>
                             <span>Riwayat Diklat</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
                     <li class="{{ set_active(['admin-profile']) }}">
@@ -225,9 +225,9 @@
                 @if (Auth::user()->role_name == 'Super Admin')
                     <li class="menu-title"> <span>Informasi Pegawai</span> </li>
                     <li
-                        class="{{ request()->routeIs('all/employee/list') || request()->routeIs('all/employee/card') ? 'active' : '' }}">
+                        class="{{ request()->routeIs('all/employee/list') || request()->routeIs('') ? 'active' : '' }}">
                         <a href="{{ route('all/employee/list') }}"
-                            class="{{ request()->routeIs('all/employee/list') || request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                            class="{{ request()->routeIs('all/employee/list') || request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i>
                             <span>Data Pegawai</span>
                         </a>
@@ -240,8 +240,8 @@
                             <span> Data Statistik</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-files-o"></i>
                             <span>Laporan</span>
                         </a>
@@ -286,14 +286,14 @@
                             <span>Jabatan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-sliders"></i>
                             <span>Peninjauan Masa Kerja</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-info"></i>
                             <span>CPNS/PNS</span>
                         </a>
@@ -305,56 +305,56 @@
                             <span> Diklat/Kursus</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-users"></i>
                             <span>Keluarga</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-quote-left"></i>
                             <span>SKP</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-certificate"></i>
                             <span>Penghargaan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-building-o"></i>
                             <span>Organisasi</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-bookmark-o"></i>
                             <span>Pencantuman Gelar</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-gavel"></i>
                             <span>Hukuman Disiplin</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-bank"></i>
                             <span>Angka Kredit</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-wrench"></i>
                             <span>Kinerja</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('all/employee/card') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-pied-piper-alt"></i>
                             <span>Profesi</span>
                         </a>

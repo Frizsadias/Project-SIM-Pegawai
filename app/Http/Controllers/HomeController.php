@@ -33,7 +33,7 @@ class HomeController extends Controller
 
         // Memeriksa peran pengguna dan mengarahkannya ke halaman yang sesuai
         if ($user->role_name === 'Admin') {
-            return view('dashboard.Halaman-admin');
+            return view('dashboard.Halaman-admin', ['chart' => $chart->build(), 'grafikAgama' => $chart->grafikAgama(), 'grafikJenisKelamin' => $chart->grafikJenisKelamin(), 'grafikPangkat' => $chart->grafikPangkat()]);
         } elseif ($user->role_name === 'Super Admin') {
             return view('dashboard.Halaman-super-admin', ['chart' => $chart->build(), 'grafikAgama' => $chart->grafikAgama(), 'grafikJenisKelamin' => $chart->grafikJenisKelamin(), 'grafikPangkat' => $chart->grafikPangkat()]);
         } elseif ($user->role_name === 'User') {
