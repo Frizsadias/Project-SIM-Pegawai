@@ -108,7 +108,7 @@ Route::controller(UserController::class)->group(function () {
 
 // -----------------------------settings-------------------------------------//
 Route::controller(SettingController::class)->group(function () {
-    Route::get('company/settings/page', 'companySettings')->middleware('auth')->name('company/settings/page');
+    Route::get('pengaturan/perusahaan', 'companySettings')->middleware('auth')->name('pengaturan-perusahaan');
     /** index page */
     Route::post('company/settings/save', 'saveRecord')->middleware('auth')->name('company/settings/save');
     /** save record or update */
@@ -157,7 +157,9 @@ Route::controller(ResetPasswordController::class)->group(function () {
 
 // ----------------------------- manage users ------------------------------//
 Route::controller(UserManagementController::class)->group(function () {
-    Route::get('profile_user', 'profile')->middleware('auth')->name('profile_user');
+    Route::get('user/profile', 'user_profile')->middleware('auth')->name('user-profile');
+    Route::get('admin/profile', 'admin_profile')->middleware('auth')->name('admin-profile');
+    Route::get('superadmin/profile', 'superadmin_profile')->middleware('auth')->name('superadmin-profile');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');
     Route::get('userManagement', 'index')->middleware('auth')->name('userManagement');
     Route::post('user/add/save', 'addNewUserSave')->name('user/add/save');
@@ -380,6 +382,7 @@ Route::controller(ProfilPegawaiController::class)->group(function () {
 // ----------------------- rekapitulasi  --------------------------//
 Route::controller(RekapitulasiController::class)->group(function () {
     Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
+    Route::get('dashboard', 'indexDashboard')->middleware('auth')->name('dashboard');
 });
 
 Route::controller(DashboardController::class)->group(function () {
@@ -411,7 +414,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/diklat/edit-data', [RiwayatController::class, 'editRiwayatDiklat'])->name('riwayat/diklat/edit-data');
     Route::post('riwayat/diklat/hapus-data', [RiwayatController::class, 'hapusRiwayatDiklat'])->name('riwayat/diklat/hapus-data');
 });
-
 
 // ----------------------- Melihat PDF --------------------------//
 Route::get('/riwayat/pendidikan/{pdfId}', 'PdfController@showPdf')->name('pdf.show');

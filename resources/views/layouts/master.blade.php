@@ -109,9 +109,17 @@
                         <span>{{ Session::get('name') }}</span>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('profile_user') }}">Profil Saya</a>
+                        @if (Auth::user()->role_name == 'Admin')
+                            <a class="dropdown-item" href="{{ route('admin-profile') }}">Profil Saya</a>
+                        @endif
+                        @if (Auth::user()->role_name == 'Super Admin')
+                            <a class="dropdown-item" href="{{ route('superadmin-profile') }}">Profil Saya</a>
+                        @endif
+                        @if (Auth::user()->role_name == 'User')
+                            <a class="dropdown-item" href="{{ route('user-profile') }}">Profil Saya</a>
+                        @endif
                         @if (Auth::user()->role_name == 'Admin' || Auth::user()->role_name == 'Super Admin')
-                            <a class="dropdown-item" href="{{ route('company/settings/page') }}">Pengaturan</a>
+                            <a class="dropdown-item" href="{{ route('pengaturan-perusahaan') }}">Pengaturan</a>
                         @endif
                         <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                     </div>
@@ -125,8 +133,18 @@
                     <i class="fa fa-ellipsis-v"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('profile_user') }}">Profil Saya</a>
-                    <a class="dropdown-item" href="{{ route('company/settings/page') }}">Pengaturan</a>
+                @if (Auth::user()->role_name == 'Admin')
+                    <a class="dropdown-item" href="{{ route('admin-profile') }}">Profil Saya</a>
+                @endif
+                @if (Auth::user()->role_name == 'Super Admin')
+                    <a class="dropdown-item" href="{{ route('superadmin-profile') }}">Profil Saya</a>
+                @endif
+                @if (Auth::user()->role_name == 'User')
+                    <a class="dropdown-item" href="{{ route('user-profile') }}">Profil Saya</a>
+                @endif
+                @if (Auth::user()->role_name == 'Admin' || Auth::user()->role_name == 'Super Admin')
+                    <a class="dropdown-item" href="{{ route('pengaturan-perusahaan') }}">Pengaturan</a>
+                @endif
                     <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>
@@ -171,21 +189,21 @@
     <!-- Custom JS -->
     <script src="{{ URL::to('assets/js/app.js') }}"></script>
 
-   <script>
-    var toggleBtn = document.getElementById("toggle_btn");
-    var logoText = document.querySelector(".logo-text");
-    var faUser = document.querySelector(".fa-user");
+    <script>
+        var toggleBtn = document.getElementById("toggle_btn");
+        var logoText = document.querySelector(".logo-text");
+        var faUser = document.querySelector(".fa-user");
 
-    toggleBtn.addEventListener("click", function() {
-        if (logoText.style.display === "none") {
-            logoText.style.display = "inline-block";
-            faUser.style.display = "inline-block";
-        } else {
-            logoText.style.display = "none";
-            faUser.style.display = "inline-block";
-        }
-    });
-</script>
+        toggleBtn.addEventListener("click", function() {
+            if (logoText.style.display === "none") {
+                logoText.style.display = "inline-block";
+                faUser.style.display = "inline-block";
+            } else {
+                logoText.style.display = "none";
+                faUser.style.display = "inline-block";
+            }
+        });
+    </script>
 
 
     @yield('script')

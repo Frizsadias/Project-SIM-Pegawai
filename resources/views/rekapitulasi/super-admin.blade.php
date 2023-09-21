@@ -21,8 +21,14 @@
 
                     <div class="p-6 m-20 bg-white rounded shadow">
                         {!! $chart->container() !!}
+                    </div>
+                    <div class="p-6 m-20 bg-white rounded shadow">
                         {!! $grafikAgama->container() !!}
+                    </div>
+                    <div class="p-6 m-20 bg-white rounded shadow">
                         {!! $grafikJenisKelamin->container() !!}
+                    </div>
+                    <div class="p-6 m-20 bg-white rounded shadow">
                         {!! $grafikPangkat->container() !!}
                     </div>
 

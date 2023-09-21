@@ -26,7 +26,8 @@
                                 <div class="profile-img-wrap">
                                     <div class="profile-img">
                                         <a href="#">
-                                            <img alt="" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}"
+                                            <img alt=""
+                                                src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}"
                                                 alt="{{ Auth::user()->name }}">
                                         </a>
                                     </div>
@@ -140,8 +141,8 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Nama Lengkap</label>
-                                                    <input type="text" class="form-control" id="name"
-                                                        name="name" value="{{ Auth::user()->name }}">
+                                                    <input type="text" class="form-control" id="name" name="name"
+                                                        value="{{ Auth::user()->name }}">
                                                     <input type="hidden" class="form-control" id="user_id"
                                                         name="user_id" value="{{ Auth::user()->user_id }}">
                                                     <input type="hidden" class="form-control" id="email"

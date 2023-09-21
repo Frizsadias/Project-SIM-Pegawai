@@ -26,8 +26,8 @@
             {!! Toastr::message() !!}
             <div class="row">
                 <div class="col-md-12">
-                    <div>
-                        <table class="table table-striped custom-table mb-0 datatable">
+                    <div class="table-responsive">
+                        <table class="table table-striped custom-table datatable" id="tableAgama">
                             <thead>
                                 <tr>
                                     <th style="width: 30px;">No</th>
@@ -175,5 +175,6 @@
             $('.e_id').val(_this.find('.id').text());
         });
     </script>
+    
 @endsection
 @endsection
