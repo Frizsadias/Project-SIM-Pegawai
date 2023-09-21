@@ -5,32 +5,61 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="container px-4 mx-auto">
-                                    {!! $chart->container() !!}
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title"><b>Riwayat Pendidikan</b></h3>
+                                        <div class="container px-4 mx-auto">
+                                            {!! $chart->container() !!}
+                                        </div>
+                                        <script src="{{ $chart->cdn() }}"></script>
+                                        {{ $chart->script() }}
+                                    </div>
                                 </div>
-                                <div class="p-6 m-20 bg-white rounded shadow">
-                                    {!! $grafikAgama->container() !!}
-                                </div>
-                                <div class="p-6 m-20 bg-white rounded shadow">
-                                    {!! $grafikJenisKelamin->container() !!}
-                                </div>
-                                <div class="p-6 m-20 bg-white rounded shadow">
-                                    {!! $grafikPangkat->container() !!}
-                                </div>
-
                             </div>
-
-                            <script src="{{ $chart->cdn() }}"></script>
-                            <script src="{{ $grafikAgama->cdn() }}"></script>
-                            <script src="{{ $grafikJenisKelamin->cdn() }}"></script>
-                            <script src="{{ $grafikPangkat->cdn() }}"></script>
-
-                            {{ $chart->script() }}
-                            {{ $grafikAgama->script() }}
-                            {{ $grafikJenisKelamin->script() }}
-                            {{ $grafikPangkat->script() }}
+                            <div class="col-md-6 text-center">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title"><b>Grafik Pegawai Berdasarkan Agama</b></h3>
+                                        <div class="container px-4 mx-auto">
+                                        {!! $grafikAgama->container() !!}
+                                        </div>
+                                        <script src="{{ $grafikAgama->cdn() }}"></script>
+                                        {{ $grafikAgama->script() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title"><b>Grafik Pegawai Berdasarkan Jenis Kelamin</b></h3>
+                                        <div class="container px-4 mx-auto">
+                                            {!! $grafikJenisKelamin->container() !!}
+                                        </div>
+                                        <script src="{{ $grafikJenisKelamin->cdn() }}"></script>
+                                        {{ $grafikJenisKelamin->script() }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Jumlah Pegawai Berdasarkan Pangkat</h3>
+                                        <div class="container px-4 mx-auto">
+                                            {!! $grafikPangkat->container() !!}
+                                        </div>
+                                        <script src="{{ $grafikPangkat->cdn() }}"></script>
+                                        {{ $grafikPangkat->script() }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

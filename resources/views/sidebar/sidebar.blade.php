@@ -206,9 +206,9 @@
                     </li> --}}
 
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
-                    <li class="{{ set_active(['admin-profile']) }}">
+                    <li class="{{ set_active(['admin/profile']) }}">
                         <a href="{{ route('admin-profile') }}"
-                            class="{{ set_active(['admin-profile']) ? 'noti-dot' : '' }}">
+                            class="{{ set_active(['admin/profile']) ? 'noti-dot' : '' }}">
                             <i class="la la-user"></i>
                             <span> Profil</span>
                         </a>
@@ -247,9 +247,9 @@
                         </a>
                     </li>
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
-                    <li class="{{ set_active(['superadmin-profile']) }}">
+                    <li class="{{ set_active(['superadmin/profile']) }}">
                         <a href="{{ route('superadmin-profile') }}"
-                            class="{{ set_active(['superadmin-profile']) ? 'noti-dot' : '' }}">
+                            class="{{ set_active(['superadmin/profile']) ? 'noti-dot' : '' }}">
                             <i class="la la-user"></i>
                             <span> Profil</span>
                         </a>
@@ -361,9 +361,9 @@
                     </li>
 
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
-                    <li class="{{ set_active(['user-profile']) }}">
+                    <li class="{{ set_active(['user/profile']) }}">
                         <a href="{{ route('user-profile') }}"
-                            class="{{ set_active(['user-profile']) ? 'noti-dot' : '' }}">
+                            class="{{ set_active(['user/profile']) ? 'noti-dot' : '' }}">
                             <i class="la la-user"></i>
                             <span> Profil</span>
                         </a>
