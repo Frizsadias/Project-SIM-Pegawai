@@ -51,7 +51,7 @@
                             <div class="col-md-6 text-center">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3 class="card-title">Jumlah Pegawai Berdasarkan Pangkat</h3>
+                                        <h3 class="card-title"><b> Pegawai Berdasarkan Pangkat</b></h3>
                                         <div class="container px-4 mx-auto">
                                             {!! $grafikPangkat->container() !!}
                                         </div>
