@@ -39,16 +39,5 @@ class HomeController extends Controller
         } elseif ($user->role_name === 'User') {
             return view('dashboard.Halaman-user');
         }
-
-        // Jika tidak ada peran yang sesuai, Anda dapat menangani ini sesuai dengan kebutuhan Anda
-        return view('dashboard.dashboard');
-    }
-
-    // employee dashboard
-    public function emDashboard()
-    {
-        $dt        = Carbon::now();
-        $todayDate = $dt->toDayDateTimeString();
-        return view('dashboard.emdashboard',compact('todayDate'));
     }
 }

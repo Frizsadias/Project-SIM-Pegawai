@@ -73,15 +73,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('home', function () {
         return view('home');
     });
-    Route::get('admin', function () {
-        return view('admin');
-    });
-    Route::get('super-admin', function () {
-        return view('super-admin');
-    });
-    Route::get('user', function () {
-        return view('user');
-    });
 });
 
 Auth::routes();
@@ -89,21 +80,6 @@ Auth::routes();
 // ----------------------------- main dashboard ------------------------------//
 Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
-});
-
-// ----------------------------- admin dashboard ------------------------------//
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin', 'halamanadmin')->name('halamanadmin');
-});
-
-// ----------------------------- super admin dashboard ------------------------------//
-Route::controller(SuperAdminController::class)->group(function () {
-    Route::get('/super-admin', 'halamansuperadmin')->name('halamansuperadmin');
-});
-
-// ----------------------------- user dashboard ------------------------------//
-Route::controller(UserController::class)->group(function () {
-    Route::get('/user', 'halamanuser')->name('halamanuser');
 });
 
 // -----------------------------settings-------------------------------------//
