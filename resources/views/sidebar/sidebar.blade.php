@@ -81,12 +81,18 @@
                     </li>
 
                     <li class="menu-title"> <span>Manajemen Pegawai</span> </li>
-                    <li
+                    {{-- <li
                         class="{{ request()->routeIs('all/employee/list','all/employee/card') || request()->routeIs('all/employee/card') ? 'active' : '' }}">
                         <a href="{{ route('all/employee/list', 'all/employee/card') }}"
                             class="{{ request()->routeIs('all/employee/list', 'all/employee/card') || request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i>
                             <span>Daftar Pegawai</span>
+                        </a>
+                    </li> --}}
+                    <li class="{{ request()->is('search/user/list', 'userManagement') ? 'active' : '' }}">
+                        <a href="{{ route('userManagement') }}"
+                            class="{{ request()->is('search/user/list', 'userManagement') ? 'noti-dot' : '' }}">
+                            <i class="la la-group"></i> <span>Daftar Pegawai</span>
                         </a>
                     </li>
                     <li class="{{ request()->routeIs('') ? 'active' : '' }}">
