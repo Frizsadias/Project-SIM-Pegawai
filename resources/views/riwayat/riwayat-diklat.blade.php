@@ -82,7 +82,7 @@
                                 @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
                                     <tr>
                                         <td>{{ ++$sqldiklat }}</td>
-                                        <td hidden class="id">{{ $result_diklat->id }}</td>
+                                        <td hidden class="id">{{ $result_diklat->user_id }}</td>
                                         <td class="jenis_diklat">{{ $result_diklat->jenis_diklat }}</td>
                                         <td class="nama_diklat">{{ $result_diklat->nama_diklat }}</td>
                                         <td class="institusi_penyelenggara">{{ $result_diklat->institusi_penyelenggara }}
@@ -142,6 +142,13 @@
                         <form action="{{ route('riwayat/diklat/tambah-data') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

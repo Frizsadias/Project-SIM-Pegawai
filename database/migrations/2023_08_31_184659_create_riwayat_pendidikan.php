@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('riwayat_pendidikan', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id')->nullable();
             $table->string('tingkat_pendidikan')->nullable();
             $table->string('pendidikan')->nullable();
             $table->string('tahun_lulus')->nullable();

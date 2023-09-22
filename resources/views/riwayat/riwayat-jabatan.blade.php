@@ -83,7 +83,7 @@
                                 @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
                                     <tr>
                                         <td>{{ ++$sqljabatan }}</td>
-                                        <td hidden class="id">{{ $result_jabatan->id }}</td>
+                                        <td hidden class="id">{{ $result_jabatan->user_id }}</td>
                                         <td class="jenis_jabatan">{{ $result_jabatan->jenis_jabatan }}</td>
                                         <td class="satuan_kerja">{{ $result_jabatan->satuan_kerja }}</td>
                                         <td class="satuan_kerja_induk">{{ $result_jabatan->satuan_kerja_induk }}</td>
@@ -145,6 +145,13 @@
                     <div class="modal-body">
                         <form action="{{ route('riwayat/jabatan/tambah-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

@@ -83,7 +83,7 @@
                                 @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
                                     <tr>
                                         <td>{{ ++$sqlpendidikan }}</td>
-                                        <td hidden class="id">{{ $result_pendidikan->id }}</td>
+                                        <td hidden class="id">{{ $result_pendidikan->user_id }}</td>
                                         <td class="tingkat_pendidikan">{{ $result_pendidikan->tingkat_pendidikan }}</td>
                                         <td class="pendidikan">{{ $result_pendidikan->pendidikan }}</td>
                                         <td class="tahun_lulus">{{ $result_pendidikan->tahun_lulus }}</td>
@@ -154,9 +154,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select name="tingkat_pendidikan" class="select" id="tingkat_pendidikan"
-                                            required>
+                                        <select name="tingkat_pendidikan" class="select" id="tingkat_pendidikan" required>
                                             <option selected disabled> --Pilih Tingkat Pendidikan --</option>
                                             <option value="SLTP">SLTP</option>
                                             <option value="SLTA">SLTA</option>

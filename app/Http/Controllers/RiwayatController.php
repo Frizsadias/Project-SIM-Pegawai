@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\RiwayatDiklat;
 use App\Models\RiwayatGolongan;
 use App\Models\RiwayatJabatan;
@@ -30,11 +31,16 @@ class RiwayatController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
+     /** Contoh function tampilan */
+     /** $riwayatDiklat = RiwayatDiklat::all(); */
+     /** return view('riwayat.riwayat-diklat', compact('riwayatDiklat')); */
+
     /** --------------------------------- Riwayat Pendidikan --------------------------------- */
     /** Tampilan Riwayat Pendidikan */
     public function pendidikan()
     {
-        $riwayatPendidikan = RiwayatPendidikan::all();
+        $datapendidikan = Session::get('user_id');
+        $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
         return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan'));
     }
     /** End Tampilan Riwayat Pendidikan */
@@ -43,6 +49,7 @@ class RiwayatController extends Controller
     public function tambahRiwayatPendidikan(Request $request)
     {
         $request->validate([
+            'user_id'               => 'required|string|max:255',
             'tingkat_pendidikan'    => 'required|string|max:255',
             'pendidikan'            => 'required|string|max:255|',
             'tahun_lulus'           => 'required|min:11|numeric',
@@ -67,6 +74,7 @@ class RiwayatController extends Controller
             $request->dokumen_gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelar);
 
             $riw_pend = new RiwayatPendidikan;
+            $riw_pend->user_id            = $request->user_id;
             $riw_pend->tingkat_pendidikan = $request->tingkat_pendidikan;
             $riw_pend->pendidikan         = $request->pendidikan;
             $riw_pend->tahun_lulus        = $request->tahun_lulus;
@@ -174,7 +182,8 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Golongan */
     public function golongan()
     {
-        $riwayatGolongan = RiwayatGolongan::all();
+        $datagolongan = Session::get('user_id');
+        $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
         return view('riwayat.riwayat-golongan', compact('riwayatGolongan'));
     }
     /** End Tampilan Riwayat Golongan */
@@ -183,6 +192,7 @@ class RiwayatController extends Controller
     public function tambahRiwayatGolongan(Request $request)
     {
         $request->validate([
+            'user_id'                   => 'required|string|max:255',
             'golongan'                  => 'required|string|max:255',
             'jenis_kenaikan_pangkat'    => 'required|string|max:255',
             'masa_kerja_golongan_tahun' => 'required|string|max:255',
@@ -204,17 +214,18 @@ class RiwayatController extends Controller
             $request->dokumen_teknis_kp->move(public_path('assets/DokumenTeknisKP'), $dokumen_teknis_kp);
 
             $riw_golongan = new RiwayatGolongan();
-            $riw_golongan->golongan = $request->golongan;
-            $riw_golongan->jenis_kenaikan_pangkat         = $request->jenis_kenaikan_pangkat;
-            $riw_golongan->masa_kerja_golongan_tahun      = $request->masa_kerja_golongan_tahun;
-            $riw_golongan->masa_kerja_golongan_bulan      = $request->masa_kerja_golongan_bulan;
-            $riw_golongan->tmt_golongan                   = $request->tmt_golongan;
-            $riw_golongan->no_teknis_bkn                  = $request->no_teknis_bkn;
-            $riw_golongan->tanggal_teknis_bkn             = $request->tanggal_teknis_bkn;
-            $riw_golongan->no_sk                          = $request->no_sk;
-            $riw_golongan->tanggal_sk                     = $request->tanggal_sk;
-            $riw_golongan->dokumen_skkp                   = $dokumen_skkp;
-            $riw_golongan->dokumen_teknis_kp              = $dokumen_teknis_kp;
+            $riw_golongan->user_id                    = $request->user_id;
+            $riw_golongan->golongan                   = $request->golongan;
+            $riw_golongan->jenis_kenaikan_pangkat     = $request->jenis_kenaikan_pangkat;
+            $riw_golongan->masa_kerja_golongan_tahun  = $request->masa_kerja_golongan_tahun;
+            $riw_golongan->masa_kerja_golongan_bulan  = $request->masa_kerja_golongan_bulan;
+            $riw_golongan->tmt_golongan               = $request->tmt_golongan;
+            $riw_golongan->no_teknis_bkn              = $request->no_teknis_bkn;
+            $riw_golongan->tanggal_teknis_bkn         = $request->tanggal_teknis_bkn;
+            $riw_golongan->no_sk                      = $request->no_sk;
+            $riw_golongan->tanggal_sk                 = $request->tanggal_sk;
+            $riw_golongan->dokumen_skkp               = $dokumen_skkp;
+            $riw_golongan->dokumen_teknis_kp          = $dokumen_teknis_kp;
             $riw_golongan->save();
 
             DB::commit();
@@ -301,7 +312,8 @@ class RiwayatController extends Controller
     /** Tampilan riwayat jabatan */
     public function jabatan()
     {
-        $riwayatJabatan = RiwayatJabatan::all();
+        $datajabatan = Session::get('user_id');
+        $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
         return view('riwayat.riwayat-jabatan', compact('riwayatJabatan'));
     }
     /** End Tampilan Riwayat Jabatan */
@@ -310,6 +322,7 @@ class RiwayatController extends Controller
     public function tambahRiwayatJabatan(Request $request)
     {
         $request->validate([
+            'user_id'               => 'required|string|max:255',
             'jenis_jabatan'         => 'required|string|max:255',
             'satuan_kerja'          => 'required|string|max:255',
             'satuan_kerja_induk'    => 'required|string|max:255',
@@ -330,16 +343,17 @@ class RiwayatController extends Controller
             $request->dokumen_pelantikan->move(public_path('assets/DokumenPelantikan'), $dokumen_pelantikan);
 
             $riw_jabatan = new RiwayatJabatan();
-            $riw_jabatan->jenis_jabatan = $request->jenis_jabatan;
-            $riw_jabatan->satuan_kerja = $request->satuan_kerja;
-            $riw_jabatan->satuan_kerja_induk = $request->satuan_kerja_induk;
-            $riw_jabatan->unit_organisasi = $request->unit_organisasi;
-            $riw_jabatan->no_sk = $request->no_sk;
-            $riw_jabatan->tanggal_sk = $request->tanggal_sk;
-            $riw_jabatan->tmt_jabatan = $request->tmt_jabatan;
-            $riw_jabatan->tmt_pelantikan = $request->tmt_pelantikan;
-            $riw_jabatan->dokumen_sk_jabatan = $dokumen_sk_jabatan;
-            $riw_jabatan->dokumen_pelantikan = $dokumen_pelantikan;
+            $riw_jabatan->user_id             = $request->user_id;
+            $riw_jabatan->jenis_jabatan       = $request->jenis_jabatan;
+            $riw_jabatan->satuan_kerja        = $request->satuan_kerja;
+            $riw_jabatan->satuan_kerja_induk  = $request->satuan_kerja_induk;
+            $riw_jabatan->unit_organisasi     = $request->unit_organisasi;
+            $riw_jabatan->no_sk               = $request->no_sk;
+            $riw_jabatan->tanggal_sk          = $request->tanggal_sk;
+            $riw_jabatan->tmt_jabatan         = $request->tmt_jabatan;
+            $riw_jabatan->tmt_pelantikan      = $request->tmt_pelantikan;
+            $riw_jabatan->dokumen_sk_jabatan  = $dokumen_sk_jabatan;
+            $riw_jabatan->dokumen_pelantikan  = $dokumen_pelantikan;
             $riw_jabatan->save();
 
             DB::commit();
@@ -425,7 +439,8 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Diklat */
     public function diklat()
     {
-        $riwayatDiklat = RiwayatDiklat::all();
+        $datadiklat = Session::get('user_id');
+        $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
         return view('riwayat.riwayat-diklat', compact('riwayatDiklat'));
     }
     /** End Tampilan Riwayat Diklat */
@@ -434,6 +449,7 @@ class RiwayatController extends Controller
     public function tambahRiwayatDiklat(Request $request)
     {
         $request->validate([
+            'user_id'                   => 'required|string|max:255',
             'jenis_diklat'              => 'required|string|max:255',
             'nama_diklat'               => 'required|string|max:255',
             'institusi_penyelenggara'   => 'required|string|max:255',
@@ -450,15 +466,16 @@ class RiwayatController extends Controller
             $request->dokumen_diklat->move(public_path('assets/DokumenDiklat'), $dokumen_diklat);
 
             $riw_diklat = new RiwayatDiklat();
-            $riw_diklat->jenis_diklat = $request->jenis_diklat;
-            $riw_diklat->nama_diklat = $request->nama_diklat;
-            $riw_diklat->institusi_penyelenggara = $request->institusi_penyelenggara;
-            $riw_diklat->no_sertifikat = $request->no_sertifikat;
-            $riw_diklat->tanggal_mulai = $request->tanggal_mulai;
-            $riw_diklat->tanggal_selesai = $request->tanggal_selesai;
-            $riw_diklat->tahun_diklat = $request->tahun_diklat;
-            $riw_diklat->durasi_jam = $request->durasi_jam;
-            $riw_diklat->dokumen_diklat = $dokumen_diklat;
+            $riw_diklat->user_id                  = $request->user_id;
+            $riw_diklat->jenis_diklat             = $request->jenis_diklat;
+            $riw_diklat->nama_diklat              = $request->nama_diklat;
+            $riw_diklat->institusi_penyelenggara  = $request->institusi_penyelenggara;
+            $riw_diklat->no_sertifikat            = $request->no_sertifikat;
+            $riw_diklat->tanggal_mulai            = $request->tanggal_mulai;
+            $riw_diklat->tanggal_selesai          = $request->tanggal_selesai;
+            $riw_diklat->tahun_diklat             = $request->tahun_diklat;
+            $riw_diklat->durasi_jam               = $request->durasi_jam;
+            $riw_diklat->dokumen_diklat           = $dokumen_diklat;
             $riw_diklat->save();
 
             DB::commit();

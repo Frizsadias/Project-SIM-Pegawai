@@ -84,7 +84,7 @@
                                 @foreach ($riwayatGolongan as $sqlgolongan => $result_golongan)
                                     <tr>
                                         <td>{{ ++$sqlgolongan }}</td>
-                                        <td hidden class="id">{{ $result_golongan->id }}</td>
+                                        <td hidden class="id">{{ $result_golongan->user_id }}</td>
                                         <td class="golongan">{{ $result_golongan->golongan }}</td>
                                         <td class="jenis_kenaikan_pangkat">{{ $result_golongan->jenis_kenaikan_pangkat }}
                                         </td>
@@ -150,6 +150,13 @@
                         <form action="{{ route('riwayat/golongan/tambah-data') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
