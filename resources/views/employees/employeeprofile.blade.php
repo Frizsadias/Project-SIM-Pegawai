@@ -67,8 +67,8 @@
                                                 <li>
                                                     <div class="title">Tanggal Lahir:</div>
                                                     <div class="text">
-                                                        @if (!empty($users->birth_date))
-                                                            <a>{{ $users->birth_date }}</a>
+                                                        @if (!empty($users->tgl_lahir))
+                                                            <a>{{ $users->tgl_lahir }}</a>
                                                         @else
                                                             <a>N/A</a>
                                                         @endif
@@ -77,8 +77,8 @@
                                                 <li>
                                                     <div class="title">Alamat:</div>
                                                     <div class="text">
-                                                        @if (!empty($users->address))
-                                                            <a>{{ $users->address }}</a>
+                                                        @if (!empty($users->alamat))
+                                                            <a>{{ $users->alamat }}</a>
                                                         @else
                                                             <a>N/A</a>
                                                         @endif
@@ -87,8 +87,8 @@
                                                 <li>
                                                     <div class="title">Jenis Kelamin:</div>
                                                     <div class="text">
-                                                        @if (!empty($users->gender))
-                                                            <a>{{ $users->gender }}</a>
+                                                        @if (!empty($users->jk))
+                                                            <a>{{ $users->jk }}</a>
                                                         @else
                                                             <a>N/A</a>
                                                         @endif
@@ -174,16 +174,16 @@
                                         </li>
                                         <li>
                                             <div class="title">Tanggal Lahir</div>
-                                            @if (!empty($users->birth_date))
-                                                <div class="text">{{ $users->birth_date }}</div>
+                                            @if (!empty($users->tgl_lahir))
+                                                <div class="text">{{ $users->tgl_lahir }}</div>
                                             @else
                                                 <div class="text">Tanggal Lahir</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Jenis Kelamin</div>
-                                            @if (!empty($users->gender))
-                                                <div class="text">{{ $users->gender }}</div>
+                                            @if (!empty($users->jk))
+                                                <div class="text">{{ $users->jk }}</div>
                                             @else
                                                 <div class="text">Jenis Kelamin</div>
                                             @endif
@@ -678,7 +678,7 @@
                                                         @if (!empty($users))
                                                             <input class="form-control datetimepicker" type="text"
                                                                 id="birthDate" name="birthDate"
-                                                                value="{{ $users->birth_date }}">
+                                                                value="{{ $users->tgl_lahir }}">
                                                         @else
                                                             <input class="form-control datetimepicker" type="text"
                                                                 id="birthDate" name="birthDate">
@@ -689,11 +689,11 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Gender</label>
-                                                    <select class="select form-control" id="gender" name="gender">
+                                                    <select class="select form-control" id="jk" name="jk">
                                                         @if (!empty($users))
-                                                            <option value="{{ $users->gender }}"
-                                                                {{ $users->gender == $users->gender ? 'selected' : '' }}>
-                                                                {{ $users->gender }} </option>
+                                                            <option value="{{ $users->jk }}"
+                                                                {{ $users->jk == $users->jk ? 'selected' : '' }}>
+                                                                {{ $users->jk }} </option>
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
                                                         @else
@@ -711,47 +711,11 @@
                                         <div class="form-group">
                                             <label>Address</label>
                                             @if (!empty($users))
-                                                <input type="text" class="form-control" id="address" name="address"
-                                                    value="{{ $users->address }}">
+                                                <input type="text" class="form-control" id="alamat" name="alamat"
+                                                    value="{{ $users->alamat }}">
                                             @else
-                                                <input type="text" class="form-control" id="address"
-                                                    name="address">
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>State</label>
-                                            @if (!empty($users))
-                                                <input type="text" class="form-control" id="state" name="state"
-                                                    value="{{ $users->state }}">
-                                            @else
-                                                <input type="text" class="form-control" id="state"
-                                                    name="state">
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Country</label>
-                                            @if (!empty($users))
-                                                <input type="text" class="form-control" id="" name="country"
-                                                    value="{{ $users->country }}">
-                                            @else
-                                                <input type="text" class="form-control" id=""
-                                                    name="country">
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Pin Code</label>
-                                            @if (!empty($users))
-                                                <input type="text" class="form-control" id="pin_code"
-                                                    name="pin_code" value="{{ $users->pin_code }}">
-                                            @else
-                                                <input type="text" class="form-control" id="pin_code"
-                                                    name="pin_code">
+                                                <input type="text" class="form-control" id="alamat"
+                                                    name="alamat">
                                             @endif
                                         </div>
                                     </div>
@@ -783,44 +747,6 @@
                                                     <option value="Web Development">Web Development</option>
                                                     <option value="IT Management">IT Management</option>
                                                     <option value="Marketing">Marketing</option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Designation <span class="text-danger">*</span></label>
-                                            <select class="select" id="designation" name="designation">
-                                                @if (!empty($users))
-                                                    <option value="{{ $users->designation }}"
-                                                        {{ $users->designation == $users->designation ? 'selected' : '' }}>
-                                                        {{ $users->designation }} </option>
-                                                    <option value="Web Designer">Web Designer</option>
-                                                    <option value="Web Developer">Web Developer</option>
-                                                    <option value="Android Developer">Android Developer</option>
-                                                @else
-                                                    <option value="Web Designer">Web Designer</option>
-                                                    <option value="Web Developer">Web Developer</option>
-                                                    <option value="Android Developer">Android Developer</option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Reports To <span class="text-danger">*</span></label>
-                                            <select class="select" id="" name="reports_to">
-                                                @if (!empty($users))
-                                                    <option value="{{ $users->reports_to }}"
-                                                        {{ $users->reports_to == $users->reports_to ? 'selected' : '' }}>
-                                                        {{ $users->reports_to }} </option>
-                                                    @foreach ($user as $users)
-                                                        <option value="{{ $users->name }}">{{ $users->name }}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($user as $users)
-                                                        <option value="{{ $users->name }}">{{ $users->name }}</option>
-                                                    @endforeach
                                                 @endif
                                             </select>
                                         </div>

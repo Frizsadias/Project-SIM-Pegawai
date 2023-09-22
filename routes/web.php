@@ -137,12 +137,13 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('admin/profile', 'admin_profile')->middleware('auth')->name('admin-profile');
     Route::get('superadmin/profile', 'superadmin_profile')->middleware('auth')->name('superadmin-profile');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');
-    Route::get('userManagement', 'index')->middleware('auth')->name('userManagement');
+    Route::get('manajemen/pengguna', 'index')->middleware('auth')->name('manajemen-pengguna');
+    Route::get('daftar/pegawai', 'index')->middleware('auth')->name('daftar-pegawai');
     Route::post('user/add/save', 'addNewUserSave')->name('user/add/save');
     Route::post('update', 'update')->name('update');
     Route::post('user/delete', 'delete')->middleware('auth')->name('user/delete');
-    Route::get('activity/log', 'activityLog')->middleware('auth')->name('activity/log');
-    Route::get('activity/login/logout', 'activityLogInLogOut')->middleware('auth')->name('activity/login/logout');
+    Route::get('riwayat/aktivitas', 'activityLog')->middleware('auth')->name('riwayat-aktivitas');
+    Route::get('riwayat/aktivitas/otentikasi', 'activityLogInLogOut')->middleware('auth')->name('riwayat-aktivitas-otentikasi');
     Route::get('change/password', 'changePasswordView')->middleware('auth')->name('change/password');
     Route::post('change/password/db', 'changePasswordDB')->name('change/password/db');
 
@@ -207,12 +208,12 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/department/update', 'updateRecordDepartment')->middleware('auth')->name('form/department/update');
     Route::post('form/department/delete', 'deleteRecordDepartment')->middleware('auth')->name('form/department/delete');
 
-    Route::get('form/agama/agamaIndex', 'agamaIndex')->middleware('auth')->name('form/agama/agamaIndex');
+    Route::get('referensi/agama', 'agamaIndex')->middleware('auth')->name('referensi-agama');
     Route::post('form/agama/save', 'saveRecordAgama')->middleware('auth')->name('form/agama/save');
     Route::post('form/agama/update', 'updateRecordAgama')->middleware('auth')->name('form/agama/update');
     Route::post('form/agama/delete', 'deleteRecordAgama')->middleware('auth')->name('form/agama/delete');
 
-    Route::get('form/pendidikan/pendidikanIndex', 'pendidikanIndex')->middleware('auth')->name('form/pendidikan/pendidikanIndex');
+    Route::get('referensi/pendidikan', 'pendidikanIndex')->middleware('auth')->name('referensi-pendidikan');
     Route::post('form/pendidikan/save', 'saveRecordPendidikan')->middleware('auth')->name('form/pendidikan/save');
     Route::post('form/pendidikan/update', 'updateRecordPendidikan')->middleware('auth')->name('form/pendidikan/update');
     Route::post('form/pendidikan/delete', 'deleteRecordPendidikan')->middleware('auth')->name('form/pendidikan/delete');

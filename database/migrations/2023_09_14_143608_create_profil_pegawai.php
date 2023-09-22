@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('profil_pegawai', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('email')->nullable();
             $table->string('nip')->nullable();
             $table->string('nama')->nullable();
             $table->string('gelar_depan')->nullable();
@@ -21,7 +24,6 @@ return new class extends Migration
             $table->string('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('agama')->nullable();
-            $table->string('email')->nullable();
             $table->string('jenis_dokumen')->nullable();
             $table->string('no_dokumen')->nullable();
             $table->string('kelurahan')->nullable();

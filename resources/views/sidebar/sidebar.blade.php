@@ -12,22 +12,22 @@
 
                 @if (Auth::user()->role_name == 'Admin')
                     <li class="menu-title"> <span>Manajemen Sistem</span> </li>
-                    <li class="{{ request()->is('search/user/list', 'userManagement') ? 'active' : '' }}">
-                        <a href="{{ route('userManagement') }}"
-                            class="{{ request()->is('search/user/list', 'userManagement') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->is('search/user/list', 'manajemen/pengguna') ? 'active' : '' }}">
+                        <a href="{{ route('manajemen-pengguna') }}"
+                            class="{{ request()->is('search/user/list', 'manajemen/pengguna') ? 'noti-dot' : '' }}">
                             <i class="la la-user-secret"></i> <span>Daftar Pengguna</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('activity/log') ? 'active' : '' }}">
-                        <a href="{{ route('activity/log') }}"
-                            class="{{ request()->routeIs('activity/log') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-aktivitas') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-aktivitas') }}"
+                            class="{{ request()->routeIs('riwayat-aktivitas') ? 'noti-dot' : '' }}">
                             <i class="la la-caret-square-o-left"></i>
                             <span>Riwayat Aktivitas</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('activity/login/logout') ? 'active' : '' }}">
-                        <a href="{{ route('activity/login/logout') }}"
-                            class="{{ request()->routeIs('activity/login/logout') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-aktivitas-otentikasi') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-aktivitas-otentikasi') }}"
+                            class="{{ request()->routeIs('riwayat-aktivitas-otentikasi') ? 'noti-dot' : '' }}">
                             <i class="la la-line-chart"></i>
                             <span>Aktivitas Pengguna</span>
                         </a>
@@ -35,9 +35,9 @@
                     </li>
 
                     <li class="menu-title"> <span>Data Referensi </span>
-                    <li class="{{ request()->routeIs('form/agama/agamaIndex') ? 'active' : '' }}">
-                        <a href="{{ route('form/agama/agamaIndex') }}"
-                            class="{{ request()->routeIs('form/agama/agamaIndex') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('referensi-agama') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-agama') }}"
+                            class="{{ request()->routeIs('referensi-agama') ? 'noti-dot' : '' }}">
                             <i class="la la-heart"></i>
                             <span>Agama</span>
                         </a>
@@ -60,9 +60,9 @@
                             <span>Pangkat</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('form/pendidikan/pendidikanIndex') ? 'active' : '' }}">
-                        <a href="{{ route('form/pendidikan/pendidikanIndex') }}"
-                            class="{{ request()->routeIs('form/pendidikan/pendidikanIndex') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('referensi-pendidikan') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-pendidikan') }}"
+                            class="{{ request()->routeIs('referensi-pendidikan') ? 'noti-dot' : '' }}">
                             <i class="la la-mortar-board"></i>
                             <span>Pendidikan</span>
                         </a>
@@ -89,9 +89,9 @@
                             <span>Daftar Pegawai</span>
                         </a>
                     </li> --}}
-                    <li class="{{ request()->is('search/user/list', 'userManagement') ? 'active' : '' }}">
-                        <a href="{{ route('userManagement') }}"
-                            class="{{ request()->is('search/user/list', 'userManagement') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->is('search/user/list', 'daftar/pegawai') ? 'active' : '' }}">
+                        <a href="{{ route('daftar-pegawai') }}"
+                            class="{{ request()->is('search/user/list', 'daftar/pegawai') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i> <span>Daftar Pegawai</span>
                         </a>
                     </li>

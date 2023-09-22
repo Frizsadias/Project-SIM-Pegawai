@@ -9,6 +9,12 @@ use App\Models\User;
 use App\Models\Employee;
 use App\Models\Form;
 use App\Models\ProfileInformation;
+use App\Models\RiwayatPendidikan;
+use App\Models\RiwayatDiklat;
+use App\Models\RiwayatGolongan;
+use App\Models\RiwayatJabatan;
+use App\Models\ProfilPegawai;
+use App\Models\PosisiJabatan;
 use App\Models\PersonalInformation;
 use App\Rules\MatchOldPassword;
 use App\Models\UserEmergencyContact;
@@ -227,54 +233,59 @@ class UserManagementController extends Controller
         return view('usermanagement.activity_log', compact('activityLog'));
     }
 
-    /** profile user */
+    /** profile admin */
     public function admin_profile()
     {
         $profile = Session::get('user_id'); // get user_id session
-        $userInformation = PersonalInformation::where('user_id', $profile)->first(); // user information
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
 
-        /** emergency contact in user profile */
-        $emergencyContact = UserEmergencyContact::where('user_id', Session::get('user_id'))->first();
+        $datapendidikan = Session::get('user_id');
+        $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
+        $datadiklat = Session::get('user_id');
+        $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
+        $datagolongan = Session::get('user_id');
+        $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
+        $datajabatan = Session::get('user_id');
+        $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
+        $dataprofilpegawai = Session::get('user_id');
+        $profilPegawai = ProfilPegawai::where('user_id', $dataprofilpegawai)->get();
+        $dataposisijabatan = Session::get('user_id');
+        $posisiJabatan = PosisiJabatan::where('user_id', $dataposisijabatan)->get();
 
         if (empty($employees)) {
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
-            return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan'));
             }
         }
     }
 
-    /** profile user */
+    /** profile super admin */
     public function superadmin_profile()
     {
-        $profile = Session::get('user_id'); // get user_id session
-        $userInformation = PersonalInformation::where('user_id', $profile)->first(); // user information
+        $profile = Session::get('user_id');
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
 
-        /** emergency contact in user profile */
-        $emergencyContact = UserEmergencyContact::where('user_id', Session::get('user_id'))->first();
-
         if (empty($employees)) {
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
-            return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile_user', compact('information', 'user'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile_user', compact('information', 'user'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile_user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile_user', compact('information', 'user'));
             }
         }
     }
@@ -282,25 +293,34 @@ class UserManagementController extends Controller
     /** profile user */
     public function user_profile()
     {
-        $profile = Session::get('user_id'); // get user_id session
-        $userInformation = PersonalInformation::where('user_id', $profile)->first(); // user information
+        $profile = Session::get('user_id');
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
 
-        /** emergency contact in user profile */
-        $emergencyContact = UserEmergencyContact::where('user_id', Session::get('user_id'))->first();
+        $datapendidikan = Session::get('user_id');
+        $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
+        $datadiklat = Session::get('user_id');
+        $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
+        $datagolongan = Session::get('user_id');
+        $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
+        $datajabatan = Session::get('user_id');
+        $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
+        $dataprofilpegawai = Session::get('user_id');
+        $profilPegawai = ProfilPegawai::where('user_id', $dataprofilpegawai)->get();
+        $dataposisijabatan = Session::get('user_id');
+        $posisiJabatan = PosisiJabatan::where('user_id', $dataposisijabatan)->get();
 
         if (empty($employees)) {
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
-            return view('usermanagement.profile-user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile-user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile-user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile-user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile-user', compact('information', 'user', 'userInformation', 'emergencyContact'));
+                return view('usermanagement.profile-user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan'));
             }
         }
     }
@@ -336,16 +356,9 @@ class UserManagementController extends Controller
             $information->name         = $request->name;
             $information->user_id      = $request->user_id;
             $information->email        = $request->email;
-            $information->birth_date   = $request->birthDate;
-            $information->gender       = $request->gender;
-            $information->address      = $request->address;
-            $information->state        = $request->state;
-            $information->country      = $request->country;
-            $information->pin_code     = $request->pin_code;
-            $information->phone_number = $request->phone_number;
-            $information->department   = $request->department;
-            $information->designation  = $request->designation;
-            $information->reports_to   = $request->reports_to;
+            $information->tgl_lahir    = $request->birthDate;
+            $information->jk           = $request->jk;
+            $information->alamat       = $request->alamat;
             $information->save();
 
             DB::commit();
@@ -395,7 +408,7 @@ class UserManagementController extends Controller
             $user->save();
             DB::commit();
             Toastr::success('Berhasil membuat akun baru :)', 'Success');
-            return redirect()->route('userManagement');
+            return redirect()->route('manajemen-pengguna');
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Gagal membuat akun baru :)', 'Error');
@@ -463,7 +476,7 @@ class UserManagementController extends Controller
             User::where('user_id', $request->user_id)->update($update);
             DB::commit();
             Toastr::success('Berhasil update user :)', 'Success');
-            return redirect()->route('userManagement');
+            return redirect()->route('manajemen-pengguna');
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Gagal update user :)', 'Error');

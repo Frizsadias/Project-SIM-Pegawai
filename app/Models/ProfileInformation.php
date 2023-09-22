@@ -12,15 +12,8 @@ class ProfileInformation extends Model
         'name',
         'user_id',
         'email',
-        'birth_date',
-        'gender',
-        'address',
-        'state',
-        'country',
-        'pin_code',
-        'phone_number',
-        'department',
-        'designation',
-        'reports_to',
+        'tgl_lahir',
+        'jk',
+        'alamat',
     ];
 }

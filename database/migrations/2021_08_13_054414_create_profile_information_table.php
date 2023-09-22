@@ -18,16 +18,9 @@ class CreateProfileInformationTable extends Migration
             $table->string('name')->nullable();
             $table->string('user_id')->nullable();
             $table->string('email')->nullable();
-            $table->string('birth_date')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('address')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
-            $table->string('pin_code')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('department')->nullable();
-            $table->string('designation')->nullable();
-            $table->string('reports_to')->nullable();
+            $table->string('tgl_lahir')->nullable();
+            $table->string('jk')->nullable();
+            $table->string('alamat')->nullable();
             $table->timestamps();
         });
     }
