@@ -219,9 +219,9 @@
                             <span> Profil</span>
                         </a>
                     </li>
-                    <li class="{{ set_active(['change/password']) }}">
-                        <a href="{{ route('change/password') }}"
-                            class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
+                    <li class="{{ set_active(['admin/kata-sandi']) }}">
+                        <a href="{{ route('admin-kata-sandi') }}"
+                            class="{{ set_active(['admin/kata-sandi']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
                             <span> Ubah Password</span>
                         </a>
@@ -253,16 +253,16 @@
                         </a>
                     </li>
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
-                    <li class="{{ set_active(['superadmin/profile']) }}">
-                        <a href="{{ route('superadmin-profile') }}"
-                            class="{{ set_active(['superadmin/profile']) ? 'noti-dot' : '' }}">
+                    <li class="{{ set_active(['super-admin/profile']) }}">
+                        <a href="{{ route('super-admin-profile') }}"
+                            class="{{ set_active(['super-admin/profile']) ? 'noti-dot' : '' }}">
                             <i class="la la-user"></i>
                             <span> Profil</span>
                         </a>
                     </li>
-                    <li class="{{ set_active(['change/password']) }}">
-                        <a href="{{ route('change/password') }}"
-                            class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
+                    <li class="{{ set_active(['super-admin/kata-sandi']) }}">
+                        <a href="{{ route('super-admin-kata-sandi') }}"
+                            class="{{ set_active(['super-admin/kata-sandi']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
                             <span> Ubah Password</span>
                         </a>
@@ -374,9 +374,9 @@
                             <span> Profil</span>
                         </a>
                     </li>
-                    <li class="{{ set_active(['change/password']) }}">
-                        <a href="{{ route('change/password') }}"
-                            class="{{ set_active(['change/password']) ? 'noti-dot' : '' }}">
+                    <li class="{{ set_active(['user/kata-sandi']) }}">
+                        <a href="{{ route('user-kata-sandi') }}"
+                            class="{{ set_active(['user/kata-sandi']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
                             <span> Ubah Password</span>
                         </a>

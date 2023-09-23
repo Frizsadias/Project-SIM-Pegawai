@@ -11,7 +11,7 @@
                     <div class="col">
                         <h3 class="page-title">Riwayat Diklat</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Informasi Riwayat</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Riwayat Diklat</li>
                         </ul>
                     </div>
@@ -67,7 +67,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="jenis_diklat"> Jenis Diklat</th>
+                                    <th class="jenis_diklat"><center>Jenis Diklat</center></th>
                                     <th class="nama_diklat">Nama Diklat</th>
                                     <th class="Institusi Penyelenggara">Institusi Penyelenggara</th>
                                     <th class="no_sertifikat">No Sertifikat</th>
@@ -76,26 +76,27 @@
                                     <th class="tahun_diklat">Tahun Diklat</th>
                                     <th class="durasi_jam">Durasi</th>
                                     <th class="dokumen_diklat">Dokumen Diklat</th>
+                                    <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
                                     <tr>
-                                        <td>{{ ++$sqldiklat }}</td>
-                                        <td hidden class="id">{{ $result_diklat->user_id }}</td>
-                                        <td class="jenis_diklat">{{ $result_diklat->jenis_diklat }}</td>
-                                        <td class="nama_diklat">{{ $result_diklat->nama_diklat }}</td>
-                                        <td class="institusi_penyelenggara">{{ $result_diklat->institusi_penyelenggara }}
-                                        </td>
-                                        <td class="no_sertifikat">{{ $result_diklat->no_sertifikat }}</td>
-                                        <td class="tanggal_mulai">{{ $result_diklat->tanggal_mulai }}</td>
-                                        <td class="tanggal_selesai">{{ $result_diklat->tanggal_selesai }}</td>
-                                        <td class="tahun_diklat">{{ $result_diklat->tahun_diklat }}</td>
-                                        <td class="durasi_jam">{{ $result_diklat->durasi_jam }} Jam</td>
+                                        <td><center>{{ ++$sqldiklat }}</center></td>
+                                        <td hidden class="user_id"><center>{{ $result_diklat->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
+                                        <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
+                                        <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
+                                        <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
+                                        <td class="no_sertifikat"><center>{{ $result_diklat->no_sertifikat }}</center></td>
+                                        <td class="tanggal_mulai"><center>{{ $result_diklat->tanggal_mulai }}</center></td>
+                                        <td class="tanggal_selesai"><center>{{ $result_diklat->tanggal_selesai }}</center></td>
+                                        <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
+                                        <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
                                         <td class="dokumen_diklat">
-                                            <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
-                                                target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
                                         
 
                                         {{-- Edit dan Hapus data  --}}
@@ -310,7 +311,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Durasi (Jam)</label>
-                                        <input type="text" class="form-control" name="durasi_jam" id="e_durasi_jam"
+                                        <input type="number" class="form-control" name="durasi_jam" id="e_durasi_jam"
                                             value="">
                                     </div>
                                 </div>

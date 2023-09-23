@@ -135,7 +135,7 @@ Route::controller(ResetPasswordController::class)->group(function () {
 Route::controller(UserManagementController::class)->group(function () {
     Route::get('user/profile', 'user_profile')->middleware('auth')->name('user-profile');
     Route::get('admin/profile', 'admin_profile')->middleware('auth')->name('admin-profile');
-    Route::get('superadmin/profile', 'superadmin_profile')->middleware('auth')->name('superadmin-profile');
+    Route::get('super-admin/profile', 'superadmin_profile')->middleware('auth')->name('super-admin-profile');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');
     Route::get('manajemen/pengguna', 'index')->middleware('auth')->name('manajemen-pengguna');
     Route::get('daftar/pegawai', 'index')->middleware('auth')->name('daftar-pegawai');
@@ -144,9 +144,10 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::post('user/delete', 'delete')->middleware('auth')->name('user/delete');
     Route::get('riwayat/aktivitas', 'activityLog')->middleware('auth')->name('riwayat-aktivitas');
     Route::get('riwayat/aktivitas/otentikasi', 'activityLogInLogOut')->middleware('auth')->name('riwayat-aktivitas-otentikasi');
-    Route::get('change/password', 'changePasswordView')->middleware('auth')->name('change/password');
+    Route::get('admin/kata-sandi', 'changePasswordView')->middleware('auth')->name('admin-kata-sandi');
+    Route::get('super-admin/kata-sandi', 'changePasswordView')->middleware('auth')->name('super-admin-kata-sandi');
+    Route::get('user/kata-sandi', 'changePasswordView')->middleware('auth')->name('user-kata-sandi');
     Route::post('change/password/db', 'changePasswordDB')->name('change/password/db');
-
     Route::post('user/profile/emergency/contact/save', 'emergencyContactSaveOrUpdate')->name('user/profile/emergency/contact/save');
     /** save or update emergency contact */
     Route::get('get-users-data', 'getUsersData')->name('get-users-data');

@@ -11,7 +11,7 @@
                     <div class="col">
                         <h3 class="page-title">Riwayat Pendidikan</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Informasi Riwayat</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Riwayat Pendidikan</li>
                         </ul>
                     </div>
@@ -77,33 +77,35 @@
                                 <th class="dokumen_transkrip">Dokumen Transkrip</th>
                                 <th class="dokumen_ijazah">Dokumen Ijazah</th>
                                 <th class="dokumen_gelar">Dokumen Gelar</th>
+                                <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
                                     <tr>
-                                        <td>{{ ++$sqlpendidikan }}</td>
-                                        <td hidden class="id">{{ $result_pendidikan->user_id }}</td>
-                                        <td class="tingkat_pendidikan">{{ $result_pendidikan->tingkat_pendidikan }}</td>
-                                        <td class="pendidikan">{{ $result_pendidikan->pendidikan }}</td>
-                                        <td class="tahun_lulus">{{ $result_pendidikan->tahun_lulus }}</td>
-                                        <td class="no_ijazah">{{ $result_pendidikan->no_ijazah }}</td>
-                                        <td class="nama_sekolah">{{ $result_pendidikan->nama_sekolah }}</td>
-                                        <td class="gelar_depan">{{ $result_pendidikan->gelar_depan }}</td>
-                                        <td class="gelar_belakang">{{ $result_pendidikan->gelar_belakang }}</td>
-                                        <td class="jenis_pendidikan">{{ $result_pendidikan->jenis_pendidikan }}</td>
+                                        <td><center>{{ ++$sqlpendidikan }}</center></td>
+                                        <td hidden class="user_id"><center>{{ $result_pendidikan->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
+                                        <td class="tingkat_pendidikan"><center>{{ $result_pendidikan->tingkat_pendidikan }}</center></td>
+                                        <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
+                                        <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
+                                        <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
+                                        <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
+                                        <td class="gelar_depan"><center>{{ $result_pendidikan->gelar_depan }}</center></td>
+                                        <td class="gelar_belakang"><center>{{ $result_pendidikan->gelar_belakang }}</center></td>
+                                        <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
                                         <td class="dokumen_transkrip">
-                                            <a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
-                                                target="_blank">{{ $result_pendidikan->dokumen_transkrip }}</a>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
                                         <td class="dokumen_ijazah">
-                                            <a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
-                                                target="_blank">{{ $result_pendidikan->dokumen_ijazah }}</a>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
                                         <td class="dokumen_gelar">
-                                            <a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
-                                                target="_blank">{{ $result_pendidikan->dokumen_gelar }}</a>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
 
 
                                         {{-- Edit dan Hapus data  --}}

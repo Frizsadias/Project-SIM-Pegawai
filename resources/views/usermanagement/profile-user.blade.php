@@ -513,50 +513,51 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
-                                                        <tr>
-                                                            <td>{{ ++$sqlpendidikan }}</td>
-                                                            <td hidden class="id">{{ $result_pendidikan->user_id }}</td>
-                                                            <td class="tingkat_pendidikan">{{ $result_pendidikan->tingkat_pendidikan }}</td>
-                                                            <td class="pendidikan">{{ $result_pendidikan->pendidikan }}</td>
-                                                            <td class="tahun_lulus">{{ $result_pendidikan->tahun_lulus }}</td>
-                                                            <td class="no_ijazah">{{ $result_pendidikan->no_ijazah }}</td>
-                                                            <td class="nama_sekolah">{{ $result_pendidikan->nama_sekolah }}</td>
-                                                            <td class="gelar_depan">{{ $result_pendidikan->gelar_depan }}</td>
-                                                            <td class="gelar_belakang">{{ $result_pendidikan->gelar_belakang }}</td>
-                                                            <td class="jenis_pendidikan">{{ $result_pendidikan->jenis_pendidikan }}</td>
-                                                            <td class="dokumen_transkrip">
-                                                                <a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
-                                                                    target="_blank">{{ $result_pendidikan->dokumen_transkrip }}</a>
-                                                            </td>
-                                                            <td class="dokumen_ijazah">
-                                                                <a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
-                                                                    target="_blank">{{ $result_pendidikan->dokumen_ijazah }}</a>
-                                                            </td>
-                                                            <td class="dokumen_gelar">
-                                                                <a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
-                                                                    target="_blank">{{ $result_pendidikan->dokumen_gelar }}</a>
-                                                            </td>
-                    
-                    
-                                                            {{-- Edit dan Hapus data  --}}
-                                                            <td class="text-right">
-                                                                <div class="dropdown dropdown-action">
-                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a class="dropdown-item edit_riwayat_pendidikan" href="#"
-                                                                            data-toggle="modal" data-target="#edit_riwayat_pendidikan"><i
-                                                                                class="fa fa-pencil m-r-5"></i>
-                                                                            Edit</a>
-                                                                        <a class="dropdown-item delete_riwayat_pendidikan" href="#"
-                                                                            data-toggle="modal" data-target="#delete_riwayat_pendidikan"><i
-                                                                                class="fa fa-trash-o m-r-5"></i>
-                                                                            Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
+                                    <tr>
+                                        <td><center>{{ ++$sqlpendidikan }}</center></td>
+                                        <td hidden class="user_id"><center>{{ $result_pendidikan->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
+                                        <td class="tingkat_pendidikan"><center>{{ $result_pendidikan->tingkat_pendidikan }}</center></td>
+                                        <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
+                                        <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
+                                        <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
+                                        <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
+                                        <td class="gelar_depan"><center>{{ $result_pendidikan->gelar_depan }}</center></td>
+                                        <td class="gelar_belakang"><center>{{ $result_pendidikan->gelar_belakang }}</center></td>
+                                        <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
+                                        <td class="dokumen_transkrip">
+                                            <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        <td class="dokumen_ijazah">
+                                            <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        <td class="dokumen_gelar">
+                                            <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+
+
+                                        {{-- Edit dan Hapus data  --}}
+                                        <td class="text-right">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item edit_riwayat_pendidikan" href="#"
+                                                        data-toggle="modal" data-target="#edit_riwayat_pendidikan"><i
+                                                            class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a class="dropdown-item delete_riwayat_pendidikan" href="#"
+                                                        data-toggle="modal" data-target="#delete_riwayat_pendidikan"><i
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                                 </tbody>
                     
                                             </table>
@@ -576,8 +577,8 @@
                                                     <th>No</th>
                                                     <th class="golongan">Golongan</th>
                                                     <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
-                                                    <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan</th>
-                                                    <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan</th>
+                                                    <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan (Tahun)</th>
+                                                    <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan (Bulan)</th>
                                                     <th class="tmt_golongan">TMT Golongan</th>
                                                     <th class="no_teknis_bkn">No Teknis BKN</th>
                                                     <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
@@ -590,49 +591,47 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($riwayatGolongan as $sqlgolongan => $result_golongan)
-                                                    <tr>
-                                                        <td>{{ ++$sqlgolongan }}</td>
-                                                        <td hidden class="id">{{ $result_golongan->user_id }}</td>
-                                                        <td class="golongan">{{ $result_golongan->golongan }}</td>
-                                                        <td class="jenis_kenaikan_pangkat">{{ $result_golongan->jenis_kenaikan_pangkat }}
-                                                        </td>
-                                                        <td class="masa_kerja_golongan_tahun">
-                                                            {{ $result_golongan->masa_kerja_golongan_tahun }} Tahun</td>
-                                                        <td class="masa_kerja_golongan_bulan">
-                                                            {{ $result_golongan->masa_kerja_golongan_bulan }} Bulan</td>
-                                                        <td class="tmt_golongan">{{ $result_golongan->tmt_golongan }}</td>
-                                                        <td class="no_teknis_bkn">{{ $result_golongan->no_teknis_bkn }}</td>
-                                                        <td class="tanggal_teknis_bkn">{{ $result_golongan->tanggal_teknis_bkn }}</td>
-                                                        <td class="no_sk">{{ $result_golongan->no_sk }}</td>
-                                                        <td class="tanggal_sk">{{ $result_golongan->tanggal_sk }}</td>
-                                                        <td class="dokumen_skkp">
-                                                            <a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
-                                                                target="_blank">{{ $result_golongan->dokumen_skkp }}</a>
-                                                        </td>
-                                                        <td class="dokumen_teknis_kp">
-                                                            <a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
-                                                                target="_blank">{{ $result_golongan->dokumen_teknis_kp }}</a>
-                                                        </td>
-                
-                                                        {{-- Edit dan Hapus data  --}}
-                                                        <td class="text-right">
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                    <a class="dropdown-item edit_riwayat_golongan" href="#"
-                                                                        data-toggle="modal" data-target="#edit_riwayat_golongan"><i
-                                                                            class="fa fa-pencil m-r-5"></i>
-                                                                        Edit</a>
-                                                                    <a class="dropdown-item delete_riwayat_golongan" href="#"
-                                                                        data-toggle="modal" data-target="#delete_riwayat_golongan"><i
-                                                                            class="fa fa-trash-o m-r-5"></i>
-                                                                        Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                    <tr>
+                                        <td><center>{{ ++$sqlgolongan }}</center></td>
+                                        <td hidden class="user_id"><center>{{ $result_golongan->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
+                                        <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
+                                        <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
+                                        <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
+                                        <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }}</center></td>
+                                        <td class="tmt_golongan"><center>{{ $result_golongan->tmt_golongan }}</center></td>
+                                        <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
+                                        <td class="tanggal_teknis_bkn"><center>{{ $result_golongan->tanggal_teknis_bkn }}</center></td>
+                                        <td class="no_sk"><center>{{ $result_golongan->no_sk }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ $result_golongan->tanggal_sk }}</center></td>
+                                        <td class="dokumen_skkp">
+                                            <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        <td class="dokumen_teknis_kp">
+                                            <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+
+                                        {{-- Edit dan Hapus data  --}}
+                                        <td class="text-right">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item edit_riwayat_golongan" href="#"
+                                                        data-toggle="modal" data-target="#edit_riwayat_golongan"><i
+                                                            class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a class="dropdown-item delete_riwayat_golongan" href="#"
+                                                        data-toggle="modal" data-target="#delete_riwayat_golongan"><i
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -664,45 +663,46 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
-                                                <tr>
-                                                    <td>{{ ++$sqljabatan }}</td>
-                                                    <td hidden class="id">{{ $result_jabatan->user_id }}</td>
-                                                    <td class="jenis_jabatan">{{ $result_jabatan->jenis_jabatan }}</td>
-                                                    <td class="satuan_kerja">{{ $result_jabatan->satuan_kerja }}</td>
-                                                    <td class="satuan_kerja_induk">{{ $result_jabatan->satuan_kerja_induk }}</td>
-                                                    <td class="unit_organisasi">{{ $result_jabatan->unit_organisasi }}</td>
-                                                    <td class="no_sk">{{ $result_jabatan->no_sk }}</td>
-                                                    <td class="tanggal_sk">{{ $result_jabatan->tanggal_sk }}</td>
-                                                    <td class="tmt_jabatan">{{ $result_jabatan->tmt_jabatan }}</td>
-                                                    <td class="tmt_pelantikan">{{ $result_jabatan->tmt_pelantikan }}</td>
-                                                    <td class="dokumen_sk_jabatan">
-                                                        <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
-                                                            target="_blank">{{ $result_jabatan->dokumen_sk_jabatan }}</a>
-                                                    </td>
-                                                    <td class="dokumen_pelantikan">
-                                                        <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
-                                                            target="_blank">{{ $result_jabatan->dokumen_pelantikan }}</a>
-                                                    </td>
-            
-                                                    {{-- Edit dan Hapus data  --}}
-                                                    <td class="text-right">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item edit_riwayat_jabatan" href="#"
-                                                                    data-toggle="modal" data-target="#edit_riwayat_jabatan"><i
-                                                                        class="fa fa-pencil m-r-5"></i>
-                                                                    Edit</a>
-                                                                <a class="dropdown-item delete_riwayat_jabatan" href="#"
-                                                                    data-toggle="modal" data-target="#delete_riwayat_jabatan"><i
-                                                                        class="fa fa-trash-o m-r-5"></i>
-                                                                    Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                    <tr>
+                                        <td><center>{{ ++$sqljabatan }}</center></td>
+                                        <td hidden class="user_id"><center>{{ $result_jabatan->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
+                                        <td class="jenis_jabatan"><center>{{ $result_jabatan->jenis_jabatan }}</center></td>
+                                        <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
+                                        <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
+                                        <td class="unit_organisasi"><center>{{ $result_jabatan->unit_organisasi }}</center></td>
+                                        <td class="no_sk"><center>{{ $result_jabatan->no_sk }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ $result_jabatan->tanggal_sk }}</center></td>
+                                        <td class="tmt_jabatan"><center>{{ $result_jabatan->tmt_jabatan }}</center></td>
+                                        <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
+                                        <td class="dokumen_sk_jabatan">
+                                            <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        <td class="dokumen_pelantikan">
+                                            <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+
+                                        {{-- Edit dan Hapus data  --}}
+                                        <td class="text-right">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item edit_riwayat_jabatan" href="#"
+                                                        data-toggle="modal" data-target="#edit_riwayat_jabatan"><i
+                                                            class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a class="dropdown-item delete_riwayat_jabatan" href="#"
+                                                        data-toggle="modal" data-target="#delete_riwayat_jabatan"><i
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -733,43 +733,43 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
-                                            <tr>
-                                                <td>{{ ++$sqldiklat }}</td>
-                                                <td hidden class="id">{{ $result_diklat->user_id }}</td>
-                                                <td class="jenis_diklat">{{ $result_diklat->jenis_diklat }}</td>
-                                                <td class="nama_diklat">{{ $result_diklat->nama_diklat }}</td>
-                                                <td class="institusi_penyelenggara">{{ $result_diklat->institusi_penyelenggara }}
-                                                </td>
-                                                <td class="no_sertifikat">{{ $result_diklat->no_sertifikat }}</td>
-                                                <td class="tanggal_mulai">{{ $result_diklat->tanggal_mulai }}</td>
-                                                <td class="tanggal_selesai">{{ $result_diklat->tanggal_selesai }}</td>
-                                                <td class="tahun_diklat">{{ $result_diklat->tahun_diklat }}</td>
-                                                <td class="durasi_jam">{{ $result_diklat->durasi_jam }} Jam</td>
-                                                <td class="dokumen_diklat">
-                                                    <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
-                                                        target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
-                                                </td>
-                                                
-        
-                                                {{-- Edit dan Hapus data  --}}
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item edit_riwayat_diklat" href="#"
-                                                                data-toggle="modal" data-target="#edit_riwayat_diklat"><i
-                                                                    class="fa fa-pencil m-r-5"></i>
-                                                                Edit</a>
-                                                            <a class="dropdown-item delete_riwayat_diklat" href="#"
-                                                                data-toggle="modal" data-target="#delete_riwayat_diklat"><i
-                                                                    class="fa fa-trash-o m-r-5"></i>
-                                                                Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    <tr>
+                                        <td><center>{{ ++$sqldiklat }}</center></td>
+                                        <td hidden class="user_id"><center>{{ $result_diklat->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
+                                        <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
+                                        <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
+                                        <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
+                                        <td class="no_sertifikat"><center>{{ $result_diklat->no_sertifikat }}</center></td>
+                                        <td class="tanggal_mulai"><center>{{ $result_diklat->tanggal_mulai }}</center></td>
+                                        <td class="tanggal_selesai"><center>{{ $result_diklat->tanggal_selesai }}</center></td>
+                                        <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
+                                        <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
+                                        <td class="dokumen_diklat">
+                                            <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        
+
+                                        {{-- Edit dan Hapus data  --}}
+                                        <td class="text-right">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item edit_riwayat_diklat" href="#"
+                                                        data-toggle="modal" data-target="#edit_riwayat_diklat"><i
+                                                            class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a class="dropdown-item delete_riwayat_diklat" href="#"
+                                                        data-toggle="modal" data-target="#delete_riwayat_diklat"><i
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                     </tbody>
                                 </table>
                             </div>

@@ -11,7 +11,7 @@
                     <div class="col">
                         <h3 class="page-title">Riwayat Golongan</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Informasi Riwayat</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Riwayat Golongan</li>
                         </ul>
                     </div>
@@ -69,8 +69,8 @@
                                     <th>No</th>
                                     <th class="golongan">Golongan</th>
                                     <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
-                                    <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan</th>
-                                    <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan</th>
+                                    <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan (Tahun)</th>
+                                    <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan (Bulan)</th>
                                     <th class="tmt_golongan">TMT Golongan</th>
                                     <th class="no_teknis_bkn">No Teknis BKN</th>
                                     <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
@@ -78,33 +78,32 @@
                                     <th class="tanggal_sk">Tanggal SK</th>
                                     <th class="dokumen_skkp">Dokumen SK KP</th>
                                     <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
+                                    <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatGolongan as $sqlgolongan => $result_golongan)
                                     <tr>
-                                        <td>{{ ++$sqlgolongan }}</td>
-                                        <td hidden class="id">{{ $result_golongan->user_id }}</td>
-                                        <td class="golongan">{{ $result_golongan->golongan }}</td>
-                                        <td class="jenis_kenaikan_pangkat">{{ $result_golongan->jenis_kenaikan_pangkat }}
-                                        </td>
-                                        <td class="masa_kerja_golongan_tahun">
-                                            {{ $result_golongan->masa_kerja_golongan_tahun }} Tahun</td>
-                                        <td class="masa_kerja_golongan_bulan">
-                                            {{ $result_golongan->masa_kerja_golongan_bulan }} Bulan</td>
-                                        <td class="tmt_golongan">{{ $result_golongan->tmt_golongan }}</td>
-                                        <td class="no_teknis_bkn">{{ $result_golongan->no_teknis_bkn }}</td>
-                                        <td class="tanggal_teknis_bkn">{{ $result_golongan->tanggal_teknis_bkn }}</td>
-                                        <td class="no_sk">{{ $result_golongan->no_sk }}</td>
-                                        <td class="tanggal_sk">{{ $result_golongan->tanggal_sk }}</td>
+                                        <td><center>{{ ++$sqlgolongan }}</center></td>
+                                        <td hidden class="user_id"><center>{{ $result_golongan->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
+                                        <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
+                                        <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
+                                        <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
+                                        <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }}</center></td>
+                                        <td class="tmt_golongan"><center>{{ $result_golongan->tmt_golongan }}</center></td>
+                                        <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
+                                        <td class="tanggal_teknis_bkn"><center>{{ $result_golongan->tanggal_teknis_bkn }}</center></td>
+                                        <td class="no_sk"><center>{{ $result_golongan->no_sk }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ $result_golongan->tanggal_sk }}</center></td>
                                         <td class="dokumen_skkp">
-                                            <a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
-                                                target="_blank">{{ $result_golongan->dokumen_skkp }}</a>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
                                         <td class="dokumen_teknis_kp">
-                                            <a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
-                                                target="_blank">{{ $result_golongan->dokumen_teknis_kp }}</a>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -283,14 +282,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Masa Kerja Golongan (Tahun)</label>
-                                        <input type="text" class="form-control" name="masa_kerja_golongan_tahun"
+                                        <input type="number" class="form-control" name="masa_kerja_golongan_tahun"
                                             id="e_masa_kerja_golongan_tahun" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Masa Kerja golongan (Bulan)</label>
-                                        <input type="text" class="form-control" name="masa_kerja_golongan_bulan"
+                                        <input type="number" class="form-control" name="masa_kerja_golongan_bulan"
                                             id="e_masa_kerja_golongan_bulan" value="">
                                     </div>
                                 </div>

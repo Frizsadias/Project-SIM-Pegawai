@@ -113,7 +113,7 @@
                             <a class="dropdown-item" href="{{ route('admin-profile') }}">Profil Saya</a>
                         @endif
                         @if (Auth::user()->role_name == 'Super Admin')
-                            <a class="dropdown-item" href="{{ route('superadmin-profile') }}">Profil Saya</a>
+                            <a class="dropdown-item" href="{{ route('super-admin-profile') }}">Profil Saya</a>
                         @endif
                         @if (Auth::user()->role_name == 'User')
                             <a class="dropdown-item" href="{{ route('user-profile') }}">Profil Saya</a>
@@ -137,7 +137,7 @@
                     <a class="dropdown-item" href="{{ route('admin-profile') }}">Profil Saya</a>
                 @endif
                 @if (Auth::user()->role_name == 'Super Admin')
-                    <a class="dropdown-item" href="{{ route('superadmin-profile') }}">Profil Saya</a>
+                    <a class="dropdown-item" href="{{ route('super-admin-profile') }}">Profil Saya</a>
                 @endif
                 @if (Auth::user()->role_name == 'User')
                     <a class="dropdown-item" href="{{ route('user-profile') }}">Profil Saya</a>

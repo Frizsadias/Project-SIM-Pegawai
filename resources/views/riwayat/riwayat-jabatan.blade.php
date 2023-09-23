@@ -11,7 +11,7 @@
                     <div class="col">
                         <h3 class="page-title">Riwayat Jabatan</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Informasi Riwayat</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Riwayat Jabatan</li>
                         </ul>
                     </div>
@@ -77,29 +77,31 @@
                                     <th class="tmt_pelantikan">TMT Pelantikan</th>
                                     <th class="dokumen_sk_jabatan">Dokumen SK Jabatan</th>
                                     <th class="dokumen_pelantikan">Dokumen Pelantikan</th>
+                                    <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
                                     <tr>
-                                        <td>{{ ++$sqljabatan }}</td>
-                                        <td hidden class="id">{{ $result_jabatan->user_id }}</td>
-                                        <td class="jenis_jabatan">{{ $result_jabatan->jenis_jabatan }}</td>
-                                        <td class="satuan_kerja">{{ $result_jabatan->satuan_kerja }}</td>
-                                        <td class="satuan_kerja_induk">{{ $result_jabatan->satuan_kerja_induk }}</td>
-                                        <td class="unit_organisasi">{{ $result_jabatan->unit_organisasi }}</td>
-                                        <td class="no_sk">{{ $result_jabatan->no_sk }}</td>
-                                        <td class="tanggal_sk">{{ $result_jabatan->tanggal_sk }}</td>
-                                        <td class="tmt_jabatan">{{ $result_jabatan->tmt_jabatan }}</td>
-                                        <td class="tmt_pelantikan">{{ $result_jabatan->tmt_pelantikan }}</td>
+                                        <td><center>{{ ++$sqljabatan }}</center></td>
+                                        <td hidden class="user_id"><center>{{ $result_jabatan->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
+                                        <td class="jenis_jabatan"><center>{{ $result_jabatan->jenis_jabatan }}</center></td>
+                                        <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
+                                        <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
+                                        <td class="unit_organisasi"><center>{{ $result_jabatan->unit_organisasi }}</center></td>
+                                        <td class="no_sk"><center>{{ $result_jabatan->no_sk }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ $result_jabatan->tanggal_sk }}</center></td>
+                                        <td class="tmt_jabatan"><center>{{ $result_jabatan->tmt_jabatan }}</center></td>
+                                        <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
                                         <td class="dokumen_sk_jabatan">
-                                            <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
-                                                target="_blank">{{ $result_jabatan->dokumen_sk_jabatan }}</a>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
                                         <td class="dokumen_pelantikan">
-                                            <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
-                                                target="_blank">{{ $result_jabatan->dokumen_pelantikan }}</a>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
