@@ -84,7 +84,6 @@
                                 @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
                                     <tr>
                                         <td><center>{{ ++$sqlpendidikan }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_pendidikan->user_id }}</center></td>
                                         <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
                                         <td class="tingkat_pendidikan"><center>{{ $result_pendidikan->tingkat_pendidikan }}</center></td>
                                         <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
@@ -96,15 +95,15 @@
                                         <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
                                         <td class="dokumen_transkrip">
                                             <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_pendidikan->dokumen_transkrip }}</a>
                                         </center></td>
                                         <td class="dokumen_ijazah">
                                             <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_pendidikan->dokumen_ijazah }}</a>
                                         </center></td>
                                         <td class="dokumen_gelar">
                                             <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_pendidikan->dokumen_gelar }}</a>
                                         </center></td>
 
 

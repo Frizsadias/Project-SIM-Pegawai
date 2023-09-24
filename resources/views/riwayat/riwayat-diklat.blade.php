@@ -83,7 +83,6 @@
                                 @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
                                     <tr>
                                         <td><center>{{ ++$sqldiklat }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_diklat->user_id }}</center></td>
                                         <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
                                         <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
                                         <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
@@ -95,7 +94,7 @@
                                         <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
                                         <td class="dokumen_diklat">
                                             <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
                                         </center></td>
                                         
 

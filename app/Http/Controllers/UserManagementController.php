@@ -335,6 +335,279 @@ class UserManagementController extends Controller
         }
     }
 
+    /** Edit Data Riwayat Pendidikan */
+    public function editUserRiwayatPendidikan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_transkrip = $request->hidden_dokumen_transkrip;
+            $dokumen_transkrips  = $request->file('dokumen_transkrip');
+            if ($dokumen_transkrips != '') {
+                unlink('assets/DokumenTranskrip/' . $dokumen_transkrip);
+                $dokumen_transkrip = time() . '.' . $dokumen_transkrips->getClientOriginalExtension();
+                $dokumen_transkrips->move(public_path('assets/DokumenTranskrip'), $dokumen_transkrip);
+            } else {
+                $dokumen_transkrip;
+            }
+
+            $dokumen_ijazah = $request->hidden_dokumen_ijazah;
+            $dokumen_ijazahs  = $request->file('dokumen_ijazah');
+            if ($dokumen_ijazahs != '') {
+                unlink('assets/DokumenIjazah/' . $dokumen_ijazah);
+                $dokumen_ijazah = time() . '.' . $dokumen_ijazahs->getClientOriginalExtension();
+                $dokumen_ijazahs->move(public_path('assets/DokumenIjazah'), $dokumen_ijazah);
+            } else {
+                $dokumen_ijazah;
+            }
+
+            $dokumen_gelar = $request->hidden_dokumen_gelar;
+            $dokumen_gelars  = $request->file('dokumen_gelar');
+            if ($dokumen_gelars != '') {
+                unlink('assets/DokumenGelar/' . $dokumen_gelar);
+                $dokumen_gelar = time() . '.' . $dokumen_gelars->getClientOriginalExtension();
+                $dokumen_gelars->move(public_path('assets/DokumenGelar'), $dokumen_gelar);
+            } else {
+                $dokumen_gelar;
+            }
+
+            $update = [
+                'id'                    => $request->id,
+                'tingkat_pendidikan'    => $request->tingkat_pendidikan,
+                'pendidikan'            => $request->pendidikan,
+                'tahun_lulus'           => $request->tahun_lulus,
+                'no_ijazah'             => $request->no_ijazah,
+                'nama_sekolah'          => $request->nama_sekolah,
+                'gelar_depan'           => $request->gelar_depan,
+                'gelar_belakang'        => $request->gelar_belakang,
+                'jenis_pendidikan'      => $request->jenis_pendidikan,
+                'dokumen_transkrip'     => $dokumen_transkrip,
+                'dokumen_ijazah'        => $dokumen_ijazah,
+                'dokumen_gelar'         => $dokumen_gelar,
+            ];
+
+            RiwayatPendidikan::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat pendidikan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat pendidikan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Pendidikan */
+
+    /** Delete Riwayat Pendidikan */
+    public function hapusUserRiwayatPendidikan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatPendidikan::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat pendidikan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat pendidikan gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Pendidikan */
+
+    /** Edit Data Riwayat Golongan */
+    public function editUserRiwayatGolongan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_skkp = $request->hidden_dokumen_skkp;
+            $dokumen_skkps  = $request->file('dokumen_skkp');
+            if ($dokumen_skkps != '') {
+                unlink('assets/DokumenSKKP/' . $dokumen_skkp);
+                $dokumen_skkp = time() . '.' . $dokumen_skkps->getClientOriginalExtension();
+                $dokumen_skkps->move(public_path('assets/DokumenSKKP'), $dokumen_skkp);
+            } else {
+                $dokumen_skkp;
+            }
+
+            $dokumen_teknis_kp = $request->hidden_dokumen_teknis_kp;
+            $dokumen_teknis_kps  = $request->file('dokumen_teknis_kp');
+            if ($dokumen_teknis_kps != '') {
+                unlink('assets/DokumenTeknisKP/' . $dokumen_teknis_kp);
+                $dokumen_teknis_kp = time() . '.' . $dokumen_teknis_kps->getClientOriginalExtension();
+                $dokumen_teknis_kps->move(public_path('assets/DokumenTeknisKP'), $dokumen_teknis_kp);
+            } else {
+                $dokumen_teknis_kp;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'golongan'                  => $request->golongan,
+                'jenis_kenaikan_pangkat'    => $request->jenis_kenaikan_pangkat,
+                'masa_kerja_golongan_tahun' => $request->masa_kerja_golongan_tahun,
+                'masa_kerja_golongan_bulan' => $request->masa_kerja_golongan_bulan,
+                'tmt_golongan'              => $request->tmt_golongan,
+                'no_teknis_bkn'             => $request->no_teknis_bkn,
+                'tanggal_teknis_bkn'        => $request->tanggal_teknis_bkn,
+                'no_sk'                     => $request->no_sk,
+                'tanggal_sk'                => $request->tanggal_sk,
+                'dokumen_skkp'              => $dokumen_skkp,
+                'dokumen_teknis_kp'         => $dokumen_teknis_kp,
+            ];
+
+            RiwayatGolongan::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat golongan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat golongan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Golongan */
+
+    /** Delete Riwayat Golongan */
+    public function hapusUserRiwayatGolongan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatGolongan::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat golongan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat golongan gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Golongan */
+
+    /** Edit Data Riwayat Jabatan */
+    public function editUserRiwayatJabatan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_sk_jabatan = $request->hidden_dokumen_sk_jabatan;
+            $dokumen_sk_jabatans  = $request->file('dokumen_sk_jabatan');
+            if ($dokumen_sk_jabatans != '') {
+                unlink('assets/DokumenSKJabatan/' . $dokumen_sk_jabatan);
+                $dokumen_sk_jabatan = time() . '.' . $dokumen_sk_jabatans->getClientOriginalExtension();
+                $dokumen_sk_jabatans->move(public_path('assets/DokumenSKJabatan'), $dokumen_sk_jabatan);
+            } else {
+                $dokumen_sk_jabatan;
+            }
+
+            $dokumen_pelantikan = $request->hidden_dokumen_pelantikan;
+            $dokumen_pelantikans  = $request->file('dokumen_pelantikan');
+            if ($dokumen_pelantikans != '') {
+                unlink('assets/DokumenPelantikan/' . $dokumen_pelantikan);
+                $dokumen_pelantikan = time() . '.' . $dokumen_pelantikans->getClientOriginalExtension();
+                $dokumen_pelantikans->move(public_path('assets/DokumenPelantikan'), $dokumen_pelantikan);
+            } else {
+                $dokumen_pelantikan;
+            }
+
+            $update = [
+                'id'                    => $request->id,
+                'jenis_jabatan'         => $request->jenis_jabatan,
+                'satuan_kerja'          => $request->satuan_kerja,
+                'satuan_kerja_induk'    => $request->satuan_kerja_induk,
+                'unit_organisasi'       => $request->unit_organisasi,
+                'no_sk'                 => $request->no_sk,
+                'tanggal_sk'            => $request->tanggal_sk,
+                'tmt_jabatan'           => $request->tmt_jabatan,
+                'tmt_pelantikan'        => $request->tmt_pelantikan,
+                'dokumen_sk_jabatan'    => $dokumen_sk_jabatan,
+                'dokumen_pelantikan'    => $dokumen_pelantikan,
+            ];
+
+            RiwayatJabatan::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat jabatan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat jabatan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Golongan */
+
+    /** Delete Riwayat Jabatan */
+    public function hapusUserRiwayatJabatan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatJabatan::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat jabatan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat jabatan gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Jabatan */
+
+    /** Edit Data Riwayat Diklat */
+    public function editUserRiwayatDiklat(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_diklat = $request->hidden_dokumen_diklat;
+            $dokumen_diklats  = $request->file('dokumen_diklat');
+            if ($dokumen_diklats != '') {
+                unlink('assets/DokumenDiklat/' . $dokumen_diklat);
+                $dokumen_diklat = time() . '.' . $dokumen_diklats->getClientOriginalExtension();
+                $dokumen_diklats->move(public_path('assets/DokumenDiklat'), $dokumen_diklat);
+            } else {
+                $dokumen_diklat;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'jenis_diklat'              => $request->jenis_diklat,
+                'nama_diklat'               => $request->nama_diklat,
+                'institusi_penyelenggara'   => $request->institusi_penyelenggara,
+                'no_sertifikat'             => $request->no_sertifikat,
+                'tanggal_mulai'             => $request->tanggal_mulai,
+                'tanggal_selesai'           => $request->tanggal_selesai,
+                'tahun_diklat'              => $request->tahun_diklat,
+                'durasi_jam'                => $request->durasi_jam,
+                'dokumen_diklat'            => $dokumen_diklat,
+            ];
+
+            RiwayatDiklat::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat diklat berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat diklat gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Diklat */
+
+    /** Delete Riwayat Diklat */
+    public function hapusUserRiwayatDiklat(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatDiklat::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat diklat berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat diklat gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Diklat */
+
     /** save profile information */
     public function profileInformation(Request $request)
     {

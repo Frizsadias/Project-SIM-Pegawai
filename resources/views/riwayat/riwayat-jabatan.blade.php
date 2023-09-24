@@ -84,7 +84,6 @@
                                 @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
                                     <tr>
                                         <td><center>{{ ++$sqljabatan }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_jabatan->user_id }}</center></td>
                                         <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
                                         <td class="jenis_jabatan"><center>{{ $result_jabatan->jenis_jabatan }}</center></td>
                                         <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
@@ -96,11 +95,11 @@
                                         <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
                                         <td class="dokumen_sk_jabatan">
                                             <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_jabatan->dokumen_sk_jabatan }}</a>
                                         </center></td>
                                         <td class="dokumen_pelantikan">
                                             <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_jabatan->dokumen_pelantikan }}</a>
                                         </center></td>
 
                                         {{-- Edit dan Hapus data  --}}

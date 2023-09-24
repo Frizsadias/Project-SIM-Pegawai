@@ -85,7 +85,6 @@
                                 @foreach ($riwayatGolongan as $sqlgolongan => $result_golongan)
                                     <tr>
                                         <td><center>{{ ++$sqlgolongan }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_golongan->user_id }}</center></td>
                                         <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
                                         <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
                                         <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
@@ -98,11 +97,11 @@
                                         <td class="tanggal_sk"><center>{{ $result_golongan->tanggal_sk }}</center></td>
                                         <td class="dokumen_skkp">
                                             <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_golongan->dokumen_skkp }}</a>
                                         </center></td>
                                         <td class="dokumen_teknis_kp">
                                             <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_golongan->dokumen_teknis_kp }}</a>
                                         </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
