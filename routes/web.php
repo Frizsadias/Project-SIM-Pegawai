@@ -134,6 +134,14 @@ Route::controller(ResetPasswordController::class)->group(function () {
 // ----------------------------- manage users ------------------------------//
 Route::controller(UserManagementController::class)->group(function () {
     Route::get('user/profile', 'user_profile')->middleware('auth')->name('user-profile');
+    Route::post('user/profile/pendidikan/edit-data', 'editUserRiwayatPendidikan')->name('user/profile/pendidikan/edit-data');
+    Route::post('user/profile/pendidikan/hapus-data', 'hapusUserRiwayatPendidikan')->name('user/profile/pendidikan/hapus-data');
+    Route::post('user/profile/golongan/edit-data', 'editUserRiwayatGolongan')->name('user/profile/golongan/edit-data');
+    Route::post('user/profile/golongan/hapus-data', 'hapusUserRiwayatGolongan')->name('user/profile/golongan/hapus-data');
+    Route::post('user/profile/jabatan/edit-data', 'editUserRiwayatJabatan')->name('user/profile/jabatan/edit-data');
+    Route::post('user/profile/jabatan/hapus-data', 'hapusUserRiwayatJabatan')->name('user/profile/jabatan/hapus-data');
+    Route::post('user/profile/diklat/edit-data', 'editUserRiwayatDiklat')->name('user/profile/diklat/edit-data');
+    Route::post('user/profile/diklat/hapus-data', 'hapusUserRiwayatDiklat')->name('user/profile/diklat/hapus-data');
     Route::get('admin/profile', 'admin_profile')->middleware('auth')->name('admin-profile');
     Route::get('super-admin/profile', 'superadmin_profile')->middleware('auth')->name('super-admin-profile');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');

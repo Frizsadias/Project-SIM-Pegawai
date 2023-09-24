@@ -10,9 +10,9 @@ use App\Models\Employee;
 use App\Models\Form;
 use App\Models\ProfileInformation;
 use App\Models\RiwayatPendidikan;
-use App\Models\RiwayatDiklat;
 use App\Models\RiwayatGolongan;
 use App\Models\RiwayatJabatan;
+use App\Models\RiwayatDiklat;
 use App\Models\ProfilPegawai;
 use App\Models\PosisiJabatan;
 use App\Models\PersonalInformation;
@@ -242,14 +242,19 @@ class UserManagementController extends Controller
 
         $datapendidikan = Session::get('user_id');
         $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
+
         $datadiklat = Session::get('user_id');
         $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
+
         $datagolongan = Session::get('user_id');
         $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
+
         $datajabatan = Session::get('user_id');
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
+
         $dataprofilpegawai = Session::get('user_id');
         $profilPegawai = ProfilPegawai::where('user_id', $dataprofilpegawai)->get();
+        
         $dataposisijabatan = Session::get('user_id');
         $posisiJabatan = PosisiJabatan::where('user_id', $dataposisijabatan)->get();
 
@@ -299,14 +304,19 @@ class UserManagementController extends Controller
 
         $datapendidikan = Session::get('user_id');
         $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
+
         $datadiklat = Session::get('user_id');
         $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
+
         $datagolongan = Session::get('user_id');
         $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
+
         $datajabatan = Session::get('user_id');
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
+
         $dataprofilpegawai = Session::get('user_id');
         $profilPegawai = ProfilPegawai::where('user_id', $dataprofilpegawai)->get();
+
         $dataposisijabatan = Session::get('user_id');
         $posisiJabatan = PosisiJabatan::where('user_id', $dataposisijabatan)->get();
 

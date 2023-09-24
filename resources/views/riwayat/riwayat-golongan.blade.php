@@ -258,23 +258,20 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/golongan/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/golongan/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Golongan</label>
-                                        <input type="text" class="form-control" name="golongan" id="e_golongan"
-                                            value="">
+                                        <input type="text" class="form-control" name="golongan" id="e_golongan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Kenaikan Pangkat</label>
-                                        <input type="text" class="form-control" name="jenis_kenaikan_pangkat"
-                                            id="e_jenis_kenaikan_pangkat" value="">
+                                        <input type="text" class="form-control" name="jenis_kenaikan_pangkat" id="e_jenis_kenaikan_pangkat" value="">
                                     </div>
                                 </div>
                             </div>
@@ -282,15 +279,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Masa Kerja Golongan (Tahun)</label>
-                                        <input type="number" class="form-control" name="masa_kerja_golongan_tahun"
-                                            id="e_masa_kerja_golongan_tahun" value="">
+                                        <input type="number" class="form-control" name="masa_kerja_golongan_tahun" id="e_masa_kerja_golongan_tahun" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Masa Kerja golongan (Bulan)</label>
-                                        <input type="number" class="form-control" name="masa_kerja_golongan_bulan"
-                                            id="e_masa_kerja_golongan_bulan" value="">
+                                        <input type="number" class="form-control" name="masa_kerja_golongan_bulan" id="e_masa_kerja_golongan_bulan" value="">
                                     </div>
                                 </div>
                             </div>
@@ -298,15 +293,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Golongan</label>
-                                        <input type="date" class="form-control" name="tmt_golongan"
-                                            id="e_tmt_golongan" value="">
+                                        <input type="date" class="form-control" name="tmt_golongan" id="e_tmt_golongan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Teknis BKN</label>
-                                        <input type="number" class="form-control" name="no_teknis_bkn"
-                                            id="e_no_teknis_bkn" value="">
+                                        <input type="number" class="form-control" name="no_teknis_bkn" id="e_no_teknis_bkn" value="">
                                     </div>
                                 </div>
                             </div>
@@ -314,22 +307,19 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Teknis BKN</label>
-                                        <input type="date" class="form-control" name="tanggal_teknis_bkn"
-                                            id="e_tanggal_teknis_bkn" value="">
+                                        <input type="date" class="form-control" name="tanggal_teknis_bkn" id="e_tanggal_teknis_bkn" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input type="text" class="form-control" name="no_sk" id="e_no_sk"
-                                            value="">
+                                        <input type="text" class="form-control" name="no_sk" id="e_no_sk" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
-                                        <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk"
-                                            value="">
+                                        <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk" value="">
                                     </div>
                                 </div>
                             </div>
@@ -337,20 +327,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen SK KP</label>
-                                        <input type="file" class="form-control" id="dokumen_skkp"
-                                            name="dokumen_skkp">
-                                        <input type="hidden" name="hidden_dokumen_skkp" id="e_dokumen_skkp"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_skkp" name="dokumen_skkp">
+                                        <input type="hidden" name="hidden_dokumen_skkp" id="e_dokumen_skkp" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Teknis KP</label>
-                                        <input type="file" class="form-control" id="dokumen_teknis_kp"
-                                            name="dokumen_teknis_kp">
-                                        <input type="hidden" name="hidden_dokumen_teknis_kp" id="e_dokumen_teknis_kp"
-                                            value="">
+                                        <input type="file" class="form-control" id="dokumen_teknis_kp" name="dokumen_teknis_kp">
+                                        <input type="hidden" name="hidden_dokumen_teknis_kp" id="e_dokumen_teknis_kp" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
@@ -397,7 +383,7 @@
                 </div>
             </div>
         </div>
-        <!-- Delete Expense Modal -->
+        <!-- End Delete Riwayat Golongan Modal -->
 
     </div>
     <!-- /Page Wrapper -->

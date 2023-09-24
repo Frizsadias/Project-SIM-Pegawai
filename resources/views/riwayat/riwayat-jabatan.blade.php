@@ -308,8 +308,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Jabatan</label>
-                                        <input type="date" class="form-control" name="tmt_jabatan" id="e_tmt_jabatan"
-                                            value="">
+                                        <input type="date" class="form-control" name="tmt_jabatan" id="e_tmt_jabatan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -360,18 +359,14 @@
                             <form action="{{ route('riwayat/jabatan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan"
-                                    value="">
-                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan"
-                                    value="">
+                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan" value="">
+                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -380,7 +375,7 @@
                 </div>
             </div>
         </div>
-        <!-- Delete Expense Modal -->
+        <!-- End Delete Riwayat Jabatan Modal -->
 
     </div>
     <!-- /Page Wrapper -->
