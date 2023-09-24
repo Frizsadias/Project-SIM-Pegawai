@@ -200,7 +200,7 @@ class RiwayatController extends Controller
             'tmt_golongan'              => 'required|string|max:255',
             'no_teknis_bkn'             => 'required|string|max:255',
             'tanggal_teknis_bkn'        => 'required|string|max:255',
-            'no_sk'                     => 'required|string|max:255',
+            'no_sk_golongan'            => 'required|string|max:255',
             'tanggal_sk'                => 'required|string|max:255',
             'dokumen_skkp'              => 'required|mimes:pdf|max:5120',
             'dokumen_teknis_kp'         => 'required|mimes:pdf|max:5120',
@@ -222,7 +222,7 @@ class RiwayatController extends Controller
             $riw_golongan->tmt_golongan               = $request->tmt_golongan;
             $riw_golongan->no_teknis_bkn              = $request->no_teknis_bkn;
             $riw_golongan->tanggal_teknis_bkn         = $request->tanggal_teknis_bkn;
-            $riw_golongan->no_sk                      = $request->no_sk;
+            $riw_golongan->no_sk_golongan             = $request->no_sk_golongan;
             $riw_golongan->tanggal_sk                 = $request->tanggal_sk;
             $riw_golongan->dokumen_skkp               = $dokumen_skkp;
             $riw_golongan->dokumen_teknis_kp          = $dokumen_teknis_kp;
@@ -273,7 +273,7 @@ class RiwayatController extends Controller
                 'tmt_golongan'              => $request->tmt_golongan,
                 'no_teknis_bkn'             => $request->no_teknis_bkn,
                 'tanggal_teknis_bkn'        => $request->tanggal_teknis_bkn,
-                'no_sk'                     => $request->no_sk,
+                'no_sk_golongan'            => $request->no_sk_golongan,
                 'tanggal_sk'                => $request->tanggal_sk,
                 'dokumen_skkp'              => $dokumen_skkp,
                 'dokumen_teknis_kp'         => $dokumen_teknis_kp,

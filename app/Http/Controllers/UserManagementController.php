@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
-use DB;
 use App\Models\User;
 use App\Models\Employee;
 use App\Models\Form;
 use App\Models\ProfileInformation;
-use App\Models\RiwayatPendidikan;
+use App\Models\RiwayatDiklat;
 use App\Models\RiwayatGolongan;
 use App\Models\RiwayatJabatan;
-use App\Models\RiwayatDiklat;
+use App\Models\RiwayatPendidikan;
 use App\Models\ProfilPegawai;
 use App\Models\PosisiJabatan;
 use App\Models\PersonalInformation;
@@ -22,6 +21,9 @@ use Carbon\Carbon;
 use Session;
 use Auth;
 use Hash;
+use DB;
+
+
 
 class UserManagementController extends Controller
 {

@@ -74,7 +74,7 @@
                                     <th class="tmt_golongan">TMT Golongan</th>
                                     <th class="no_teknis_bkn">No Teknis BKN</th>
                                     <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
-                                    <th class="no_sk">No SK</th>
+                                    <th class="no_sk_golongan">No SK</th>
                                     <th class="tanggal_sk">Tanggal SK</th>
                                     <th class="dokumen_skkp">Dokumen SK KP</th>
                                     <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
@@ -93,7 +93,7 @@
                                         <td class="tmt_golongan"><center>{{ $result_golongan->tmt_golongan }}</center></td>
                                         <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
                                         <td class="tanggal_teknis_bkn"><center>{{ $result_golongan->tanggal_teknis_bkn }}</center></td>
-                                        <td class="no_sk"><center>{{ $result_golongan->no_sk }}</center></td>
+                                        <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
                                         <td class="tanggal_sk"><center>{{ $result_golongan->tanggal_sk }}</center></td>
                                         <td class="dokumen_skkp">
                                             <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
@@ -210,7 +210,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input type="text" class="form-control" name="no_sk" required>
+                                        <input type="text" class="form-control" name="no_sk_golongan" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -312,7 +312,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input type="text" class="form-control" name="no_sk" id="e_no_sk" value="">
+                                        <input type="text" class="form-control" name="no_sk_golongan" id="e_no_sk_golongan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -400,7 +400,7 @@
             $('#e_tmt_golongan').val(_this.find('.tmt_golongan').text());
             $('#e_no_teknis_bkn').val(_this.find('.no_teknis_bkn').text());
             $('#e_tanggal_teknis_bkn').val(_this.find('.tanggal_teknis_bkn').text());
-            $('#e_no_sk').val(_this.find('.no_sk').text());
+            $('#e_no_sk_golongan').val(_this.find('.no_sk_golongan').text());
             $('#e_tanggal_sk').val(_this.find('.tanggal_sk').text());
             $('#e_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
             $('#e_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
