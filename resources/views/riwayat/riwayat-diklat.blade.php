@@ -67,7 +67,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="jenis_diklat"><center>Jenis Diklat</center></th>
+                                    <th class="jenis_diklat">Jenis Diklat</th>
                                     <th class="nama_diklat">Nama Diklat</th>
                                     <th class="Institusi Penyelenggara">Institusi Penyelenggara</th>
                                     <th class="no_sertifikat">No Sertifikat</th>
