@@ -85,7 +85,9 @@ Route::controller(HomeController::class)->group(function () {
 // -----------------------------settings-------------------------------------//
 Route::controller(SettingController::class)->group(function () {
     Route::get('pengaturan/perusahaan', 'companySettings')->middleware('auth')->name('pengaturan-perusahaan');
+    Route::post('pengaturan/perusahaan/save', 'saveRecord')->middleware('auth')->name('pengaturan-perusahaansave');
     /** index page */
+    Route::get('company/settings/page', 'companySettings')->middleware('auth')->name('company/settings/page');
     Route::post('company/settings/save', 'saveRecord')->middleware('auth')->name('company/settings/save');
     /** save record or update */
     Route::get('roles/permissions/page', 'rolesPermissions')->middleware('auth')->name('roles/permissions/page');
@@ -152,6 +154,13 @@ Route::controller(UserManagementController::class)->group(function () {
     /** save or update emergency contact */
     Route::get('get-users-data', 'getUsersData')->name('get-users-data');
     /** get all data users */
+
+    Route::post('user-profile/edit-pendidikan', 'editRiwayatPendidikan')->name('user-profile/edit-pendidikan');
+    Route::post('user-profile/hapus-data-pendidikan', 'hapusRiwayatPendidikan')->name('user-profile/hapus-data-pendidikan');
+    
+    Route::post('user-profile/edit-golongan', 'editRiwayatGolongan')->name('user-profile/edit-golongan');
+    Route::post('user-profile/edit-jabatan', 'editRiwayatJabatan')->name('user-profile/edit-jabatan');
+    Route::post('user-profile/edit-diklat', 'editRiwayatDiklat')->name('user-profile/edit-diklat');
 });
 
 // --------------------------------- job ---------------------------------//

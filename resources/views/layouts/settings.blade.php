@@ -73,7 +73,7 @@
                             <a class="dropdown-item" href="{{ route('admin-profile') }}">Profil Saya</a>
                         @endif
                         @if (Auth::user()->role_name == 'Super Admin')
-                            <a class="dropdown-item" href="{{ route('superadmin-profile') }}">Profil Saya</a>
+                            <a class="dropdown-item" href="{{ route('super-admin-profile') }}">Profil Saya</a>
                         @endif
                         <a class="dropdown-item" href="{{ route('pengaturan-perusahaan') }}">Pengaturan</a>
                         <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>

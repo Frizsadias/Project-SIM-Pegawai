@@ -968,7 +968,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /Edit Riwayat Pendidikan Modal -->
+            <!-- /Profil Pegawai Modal -->
 
             <!-- Edit Riwayat Golongan Modal -->
             <div id="emergency_contact_modal" class="modal custom-modal fade" role="dialog">

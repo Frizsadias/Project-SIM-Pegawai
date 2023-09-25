@@ -8,14 +8,14 @@
                 <!-- /Account Logo -->
                 <div class="account-box">
                     <div class="account-wrapper">
-                        <h3 class="account-title">Forgot Password</h3>
-                        <p class="account-subtitle">Input your email send you a reset password link.</p>
+                        <h3 class="account-title">Lupa Password</h3>
+                        <p class="account-subtitle">Masukkan email Anda untuk mengirimkan tautan reset password.</p>
                         <!-- Account Form -->
                         <form method="POST" action="/forget-password">
                             @csrf
                             <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter email">
+                                <label>Alamat Email</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan email">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -23,11 +23,11 @@
                                 @enderror
                             </div>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary account-btn" type="submit">SEND</button>
+                                <button class="btn btn-primary account-btn" type="submit">KIRIM</button>
                             </div>
-                            <div class="account-footer">
-                                <p>Don't have an account yet? <a href="{{ route('login') }}">Login</a></p>
-                            </div>
+                            {{-- <div class="account-footer">
+                                <p>"Belum memiliki akun?" <a href="{{ route('login') }}">Login</a></p>
+                            </div> --}}
                         </form>
                         <!-- /Account Form -->
                     </div>
