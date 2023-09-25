@@ -67,7 +67,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="jenis_diklat"><center>Jenis Diklat</center></th>
+                                    <th class="jenis_diklat">Jenis Diklat</th>
                                     <th class="nama_diklat">Nama Diklat</th>
                                     <th class="Institusi Penyelenggara">Institusi Penyelenggara</th>
                                     <th class="no_sertifikat">No Sertifikat</th>
@@ -83,7 +83,6 @@
                                 @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
                                     <tr>
                                         <td><center>{{ ++$sqldiklat }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_diklat->user_id }}</center></td>
                                         <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
                                         <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
                                         <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
@@ -95,7 +94,7 @@
                                         <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
                                         <td class="dokumen_diklat">
                                             <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
                                         </center></td>
                                         
 
@@ -243,8 +242,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/diklat/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/diklat/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
@@ -263,8 +261,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Diklat</label>
-                                        <input type="text" class="form-control" name="nama_diklat" id="e_nama_diklat"
-                                            value="">
+                                        <input type="text" class="form-control" name="nama_diklat" id="e_nama_diklat" value="">
                                     </div>
                                 </div>
                             </div>
@@ -272,15 +269,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Institusi Penyelenggara</label>
-                                        <input type="text" class="form-control" name="institusi_penyelenggara"
-                                            id="e_institusi_penyelenggara" value="">
+                                        <input type="text" class="form-control" name="institusi_penyelenggara" id="e_institusi_penyelenggara" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>No Sertifikat</label>
-                                        <input type="text" class="form-control" name="no_sertifikat"
-                                            id="e_no_sertifikat" value="">
+                                        <input type="text" class="form-control" name="no_sertifikat" id="e_no_sertifikat" value="">
                                     </div>
                                 </div>
                             </div>
@@ -288,15 +283,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Mulai</label>
-                                        <input type="date" class="form-control" name="tanggal_mulai"
-                                            id="e_tanggal_mulai" value="">
+                                        <input type="date" class="form-control" name="tanggal_mulai" id="e_tanggal_mulai" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Selesai</label>
-                                        <input type="date" class="form-control" name="tanggal_selesai"
-                                            id="e_tanggal_selesai" value="">
+                                        <input type="date" class="form-control" name="tanggal_selesai" id="e_tanggal_selesai" value="">
                                     </div>
                                 </div>
                             </div>
@@ -304,15 +297,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tahun Diklat</label>
-                                        <input type="number" class="form-control" name="tahun_diklat"
-                                            id="e_tahun_diklat" value="">
+                                        <input type="number" class="form-control" name="tahun_diklat" id="e_tahun_diklat" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Durasi (Jam)</label>
-                                        <input type="number" class="form-control" name="durasi_jam" id="e_durasi_jam"
-                                            value="">
+                                        <input type="number" class="form-control" name="durasi_jam" id="e_durasi_jam" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -320,8 +311,7 @@
                                         <label>Dokumen Diklat</label>
                                         <input type="file" class="form-control" name="dokumen_diklat"
                                             id="dokumen_diklat">
-                                        <input type="hidden" name="hidden_dokumen_diklat" id="e_dokumen_diklat"
-                                            value="">
+                                        <input type="hidden" name="hidden_dokumen_diklat" id="e_dokumen_diklat" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
@@ -356,8 +346,7 @@
                                             class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -366,7 +355,7 @@
                 </div>
             </div>
         </div>
-        <!-- Delete Expense Modal -->
+        <!-- End Delete Riwayat Diklat Modal -->
 
     </div>
     <!-- /Page Wrapper -->

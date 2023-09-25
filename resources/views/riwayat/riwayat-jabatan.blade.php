@@ -84,7 +84,6 @@
                                 @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
                                     <tr>
                                         <td><center>{{ ++$sqljabatan }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_jabatan->user_id }}</center></td>
                                         <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
                                         <td class="jenis_jabatan"><center>{{ $result_jabatan->jenis_jabatan }}</center></td>
                                         <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
@@ -96,11 +95,11 @@
                                         <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
                                         <td class="dokumen_sk_jabatan">
                                             <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_jabatan->dokumen_sk_jabatan }}</a>
                                         </center></td>
                                         <td class="dokumen_pelantikan">
                                             <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                target="_blank">{{ $result_jabatan->dokumen_pelantikan }}</a>
                                         </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
@@ -308,8 +307,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Jabatan</label>
-                                        <input type="date" class="form-control" name="tmt_jabatan" id="e_tmt_jabatan"
-                                            value="">
+                                        <input type="date" class="form-control" name="tmt_jabatan" id="e_tmt_jabatan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -360,18 +358,14 @@
                             <form action="{{ route('riwayat/jabatan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan"
-                                    value="">
-                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan"
-                                    value="">
+                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan" value="">
+                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -380,7 +374,7 @@
                 </div>
             </div>
         </div>
-        <!-- Delete Expense Modal -->
+        <!-- End Delete Riwayat Jabatan Modal -->
 
     </div>
     <!-- /Page Wrapper -->
