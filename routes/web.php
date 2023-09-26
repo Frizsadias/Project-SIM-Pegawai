@@ -158,17 +158,13 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('super-admin/kata-sandi', 'changePasswordView')->middleware('auth')->name('super-admin-kata-sandi');
     Route::get('user/kata-sandi', 'changePasswordView')->middleware('auth')->name('user-kata-sandi');
     Route::post('change/password/db', 'changePasswordDB')->name('change/password/db');
-    Route::post('user/profile/emergency/contact/save', 'emergencyContactSaveOrUpdate')->name('user/profile/emergency/contact/save');
-    /** save or update emergency contact */
-    Route::get('get-users-data', 'getUsersData')->name('get-users-data');
-    /** get all data users */
+    Route::get('user/profile/{user_id}', 'profileEmployee')->middleware('auth');
 
-    Route::post('user-profile/edit-pendidikan', 'editRiwayatPendidikan')->name('user-profile/edit-pendidikan');
-    Route::post('user-profile/hapus-data-pendidikan', 'hapusRiwayatPendidikan')->name('user-profile/hapus-data-pendidikan');
-    
-    Route::post('user-profile/edit-golongan', 'editRiwayatGolongan')->name('user-profile/edit-golongan');
-    Route::post('user-profile/edit-jabatan', 'editRiwayatJabatan')->name('user-profile/edit-jabatan');
-    Route::post('user-profile/edit-diklat', 'editRiwayatDiklat')->name('user-profile/edit-diklat');
+    /** save or update emergency contact */
+    Route::post('user/profile/emergency/contact/save', 'emergencyContactSaveOrUpdate')->name('user/profile/emergency/contact/save');
+
+    /** get all data users */
+    Route::get('get-users-data', 'getUsersData')->name('get-users-data');
 });
 
 // --------------------------------- job ---------------------------------//

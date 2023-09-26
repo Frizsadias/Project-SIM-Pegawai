@@ -2,13 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\ProfilPegawai;
 use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Http\Request;
 use DB;
 
 class ProfilPegawaiController extends Controller
 {
+
+    /** all employee card view */
+    public function cardAllEmployee(Request $request)
+    {
+        $users = DB::table('users')
+            ->join('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->select('users.*', 'profil_pegawai.name', 'profil_pegawai.email', 'profil_pegawai.nip', 'profil_pegawai.nama', 'profil_pegawai.gelar_depan', 'profil_pegawai.gelar_belakang', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir', 'profil_pegawai.jenis_kelamin', 'profil_pegawai.agama', 'profil_pegawai.jenis_dokumen', 'profil_pegawai.no_dokumen', 'profil_pegawai.kelurahan', 'profil_pegawai.kecamatan', 'profil_pegawai.kota', 'profil_pegawai.provinsi', 'profil_pegawai.kode_pos', 'profil_pegawai.no_hp', 'profil_pegawai.no_telp', 'profil_pegawai.jenis_pegawai', 'profil_pegawai.kedudukan_pns', 'profil_pegawai.status_pegawai', 'profil_pegawai.tmt_pns', 'profil_pegawai.no_seri_karpeg', 'profil_pegawai.tmt_cpns', 'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.pendidikan_terakhir')
+            ->get();
+        $userList = DB::table('users')->get();
+        $permission_lists = DB::table('permission_lists')->get();
+        return view('employees.allemployeecard', compact('users', 'userList', 'permission_lists'));
+    }
+
+    /** all employee list */
+    public function listAllEmployee()
+    {
+        $users = DB::table('users')
+            ->join('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->select('users.*', 'profil_pegawai.name', 'profil_pegawai.email', 'profil_pegawai.nip', 'profil_pegawai.nama', 'profil_pegawai.gelar_depan', 'profil_pegawai.gelar_belakang', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir', 'profil_pegawai.jenis_kelamin', 'profil_pegawai.agama', 'profil_pegawai.jenis_dokumen', 'profil_pegawai.no_dokumen', 'profil_pegawai.kelurahan', 'profil_pegawai.kecamatan', 'profil_pegawai.kota', 'profil_pegawai.provinsi', 'profil_pegawai.kode_pos', 'profil_pegawai.no_hp', 'profil_pegawai.no_telp', 'profil_pegawai.jenis_pegawai', 'profil_pegawai.kedudukan_pns', 'profil_pegawai.status_pegawai', 'profil_pegawai.tmt_pns', 'profil_pegawai.no_seri_karpeg', 'profil_pegawai.tmt_cpns', 'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.pendidikan_terakhir')
+            ->get();
+        $userList = DB::table('users')->get();
+        $permission_lists = DB::table('permission_lists')->get();
+        return view('employees.employeelist', compact('users', 'userList', 'permission_lists'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     /** save record */
     public function saveRecord(Request $request)
     {
@@ -47,6 +84,7 @@ class ProfilPegawaiController extends Controller
             $profilpegawai = ProfilPegawai::firstOrNew(
                 ['user_id' =>  $request->user_id],
             );
+            
             $profilpegawai->user_id             = $request->user_id;
             $profilpegawai->nip                 = $request->nip;
             $profilpegawai->nama                = $request->nama;
@@ -77,11 +115,11 @@ class ProfilPegawaiController extends Controller
             $profilpegawai->save();
 
             DB::commit();
-            Toastr::success('Create profil pegawai successfully :)', 'Success');
+            Toastr::success('Data profil pegawai berhasil diperbaharui :)','Success');
             return redirect()->back();
-        } catch (\Exception $e) {
+        } catch(\Exception $e) {
             DB::rollback();
-            Toastr::error('Add profil pegawai fail :)', 'Error');
+            Toastr::error('Data profil pegawai gagal diperbaharui :(','Error');
             return redirect()->back();
         }
     }
