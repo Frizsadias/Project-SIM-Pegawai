@@ -574,24 +574,17 @@
                                             <center>{{ $users->jenis_pendidikan }}</center>
                                         </td>
                                         <td class="dokumen_transkrip">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenTranskrip/' . $users->dokumen_transkrip) }}"
-                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
-                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                            </center>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenTranskrip/' . $users->dokumen_transkrip) }}"
+                                                target="_blank">{{ $users->dokumen_transkrip }}</a>
+                                        </center></td>
                                         <td class="dokumen_ijazah">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenIjazah/' . $users->dokumen_ijazah) }}"
-                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
-                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                            </center>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenIjazah/' . $users->dokumen_ijazah) }}"
+                                                target="_blank">{{ $users->dokumen_ijazah }}</a>
+                                        </center></td>
                                         <td class="dokumen_gelar">
                                             <center><a href="{{ asset('assets/DokumenGelar/' . $users->dokumen_gelar) }}"
-                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
-                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                            </center>
+                                                target="_blank">{{ $users->dokumen_gelar }}</a>
+                                        </center></td>
                                         </td>
                                     </tbody>
 
@@ -664,16 +657,12 @@
                                         </td>
                                         <td class="dokumen_skkp">
                                             <center><a href="{{ asset('assets/DokumenSKKP/' . $users->dokumen_skkp) }}"
-                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
-                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                            </center>
-                                        </td>
+                                                target="_blank">{{ $users->dokumen_skkp }}</a>
+                                        </center></td>
                                         <td class="dokumen_teknis_kp">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenTeknisKP/' . $users->dokumen_teknis_kp) }}"
-                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
-                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                            </center>
+                                            <center><a href="{{ asset('assets/DokumenTeknisKP/' . $users->dokumen_teknis_kp) }}"
+                                                target="_blank">{{ $users->dokumen_teknis_kp }}</a>
+                                        </center></td>
                                         </td>
                                     </tbody>
 
@@ -741,18 +730,13 @@
                                             <center>{{ $users->tmt_pelantikan }}</center>
                                         </td>
                                         <td class="dokumen_sk_jabatan">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenSKJabatan/' . $users->dokumen_sk_jabatan) }}"
-                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
-                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                            </center>
-                                        </td>
+                                            <center><a href="{{ asset('assets/DokumenSKJabatan/' . $users->dokumen_sk_jabatan) }}"
+                                                target="_blank">{{ $users->dokumen_sk_jabatan }}</a>
+                                        </center></td>
                                         <td class="dokumen_pelantikan">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenPelantikan/' . $users->dokumen_pelantikan) }}"
-                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
-                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                            </center>
+                                            <center><a href="{{ asset('assets/DokumenPelantikan/' . $users->dokumen_pelantikan) }}"
+                                                target="_blank">{{ $users->dokumen_pelantikan }}</a>
+                                        </center></td>
                                         </td>
                                     </tbody>
 
@@ -819,11 +803,9 @@
                                             <center>{{ $users->durasi_jam }}</center>
                                         </td>
                                         <td class="dokumen_diklat">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenDiklat/' . $users->dokumen_diklat) }}"
-                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
-                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                            </center>
+                                            <center><a href="{{ asset('assets/DokumenDiklat/' . $users->dokumen_diklat) }}"
+                                                target="_blank">{{ $users->dokumen_diklat }}</a>
+                                        </center></td>
                                         </td>
                                     </tbody>
                                 </table>

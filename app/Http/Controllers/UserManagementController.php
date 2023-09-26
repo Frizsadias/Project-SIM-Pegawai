@@ -234,10 +234,13 @@ class UserManagementController extends Controller
             ->select(
                 'users.*',
                 'pi.name',
+                'pi.user_id',
                 'pi.email',
                 'pi.tgl_lahir',
                 'pi.jk',
                 'pi.alamat',
+
+                'rp.user_id',
                 'rp.tingkat_pendidikan',
                 'rp.pendidikan',
                 'rp.tahun_lulus',
@@ -249,6 +252,8 @@ class UserManagementController extends Controller
                 'rp.dokumen_transkrip',
                 'rp.dokumen_ijazah',
                 'rp.dokumen_gelar',
+
+                'rg.user_id',
                 'rg.golongan',
                 'rg.jenis_kenaikan_pangkat',
                 'rg.masa_kerja_golongan_tahun',
@@ -260,6 +265,8 @@ class UserManagementController extends Controller
                 'rg.tanggal_sk',
                 'rg.dokumen_skkp',
                 'rg.dokumen_teknis_kp',
+
+                'rj.user_id',
                 'rj.jenis_jabatan',
                 'rj.satuan_kerja',
                 'rj.satuan_kerja_induk',
@@ -270,6 +277,9 @@ class UserManagementController extends Controller
                 'rj.tmt_pelantikan',
                 'rj.dokumen_sk_jabatan',
                 'rj.dokumen_pelantikan',
+
+
+                'rd.user_id',
                 'rd.jenis_diklat',
                 'rd.nama_diklat',
                 'rd.institusi_penyelenggara',
@@ -279,9 +289,12 @@ class UserManagementController extends Controller
                 'rd.tahun_diklat',
                 'rd.durasi_jam',
                 'rd.dokumen_diklat',
+
                 'pg.name',
+                'pg.user_id',
                 'pg.email',
                 'pg.nip',
+                'pg.nama',
                 'pg.gelar_depan',
                 'pg.gelar_belakang',
                 'pg.tempat_lahir',
@@ -305,7 +318,9 @@ class UserManagementController extends Controller
                 'pg.tmt_cpns',
                 'pg.tingkat_pendidikan',
                 'pg.pendidikan_terakhir',
+                
                 'pj.name',
+                'pj.user_id',
                 'pj.email',
                 'pj.unit_organisasi',
                 'pj.unit_organisasi_induk',
@@ -336,10 +351,13 @@ class UserManagementController extends Controller
             ->select(
                 'users.*',
                 'pi.name',
+                'pi.user_id',
                 'pi.email',
                 'pi.tgl_lahir',
                 'pi.jk',
                 'pi.alamat',
+
+                'rp.user_id',
                 'rp.tingkat_pendidikan',
                 'rp.pendidikan',
                 'rp.tahun_lulus',
@@ -351,6 +369,8 @@ class UserManagementController extends Controller
                 'rp.dokumen_transkrip',
                 'rp.dokumen_ijazah',
                 'rp.dokumen_gelar',
+
+                'rg.user_id',
                 'rg.golongan',
                 'rg.jenis_kenaikan_pangkat',
                 'rg.masa_kerja_golongan_tahun',
@@ -362,6 +382,8 @@ class UserManagementController extends Controller
                 'rg.tanggal_sk',
                 'rg.dokumen_skkp',
                 'rg.dokumen_teknis_kp',
+
+                'rj.user_id',
                 'rj.jenis_jabatan',
                 'rj.satuan_kerja',
                 'rj.satuan_kerja_induk',
@@ -372,6 +394,9 @@ class UserManagementController extends Controller
                 'rj.tmt_pelantikan',
                 'rj.dokumen_sk_jabatan',
                 'rj.dokumen_pelantikan',
+
+
+                'rd.user_id',
                 'rd.jenis_diklat',
                 'rd.nama_diklat',
                 'rd.institusi_penyelenggara',
@@ -381,9 +406,12 @@ class UserManagementController extends Controller
                 'rd.tahun_diklat',
                 'rd.durasi_jam',
                 'rd.dokumen_diklat',
+
                 'pg.name',
+                'pg.user_id',
                 'pg.email',
                 'pg.nip',
+                'pg.nama',
                 'pg.gelar_depan',
                 'pg.gelar_belakang',
                 'pg.tempat_lahir',
@@ -407,7 +435,9 @@ class UserManagementController extends Controller
                 'pg.tmt_cpns',
                 'pg.tingkat_pendidikan',
                 'pg.pendidikan_terakhir',
+                
                 'pj.name',
+                'pj.user_id',
                 'pj.email',
                 'pj.unit_organisasi',
                 'pj.unit_organisasi_induk',
