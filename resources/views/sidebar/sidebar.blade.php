@@ -81,20 +81,20 @@
                     </li>
 
                     <li class="menu-title"> <span>Manajemen Pegawai</span> </li>
-                    {{-- <li
+                    <li
                         class="{{ request()->routeIs('all/employee/list','all/employee/card') || request()->routeIs('all/employee/card') ? 'active' : '' }}">
                         <a href="{{ route('all/employee/list', 'all/employee/card') }}"
                             class="{{ request()->routeIs('all/employee/list', 'all/employee/card') || request()->routeIs('all/employee/card') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i>
                             <span>Daftar Pegawai</span>
                         </a>
-                    </li> --}}
-                    <li class="{{ request()->is('search/user/list', 'daftar/pegawai') ? 'active' : '' }}">
+                    </li>
+                    {{-- <li class="{{ request()->is('search/user/list', 'daftar/pegawai') ? 'active' : '' }}">
                         <a href="{{ route('daftar-pegawai') }}"
                             class="{{ request()->is('search/user/list', 'daftar/pegawai') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i> <span>Daftar Pegawai</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-level-down"></i>
@@ -235,7 +235,7 @@
                         <a href="{{ route('all/employee/list') }}"
                             class="{{ request()->routeIs('all/employee/list') || request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i>
-                            <span>Data Pegawai</span>
+                            <span>Daftar Pegawai</span>
                         </a>
                     </li>
                     <li class="menu-title"> <span>Data Statistik</span> </li>

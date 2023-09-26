@@ -67,8 +67,31 @@
                     <table class="table table-striped custom-table datatable">
                         <thead>
                             <tr>
+                                <th>NIP</th>
                                 <th>Nama</th>
-                                <th>ID Pegawai</th>
+                                <th>Gelar Depan</th>
+                                <th>Gelar Belakang</th>
+                                <th>Tempat Lahir</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Agama</th>
+                                <th>Jenis Dokumen</th>
+                                <th>No Dokumen</th>
+                                <th>Kelurahan</th>
+                                <th>Kecamatan</th>
+                                <th>Kota</th>
+                                <th>Provinsi</th>
+                                <th>Kode Pos</th>
+                                <th>No HP</th>
+                                <th>Nomor Telepon</th>
+                                <th>Jenis Pegawai</th>
+                                <th>Kedudukan PNS</th>
+                                <th>Status Pegawai</th>
+                                <th>TMT PNS</th>
+                                <th>No Seri Karpeg</th>
+                                <th>TMT CPNS</th>
+                                <th>Tingkat Pendidikan</th>
+                                <th>Pendidikan Terakhir</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th class="text-right no-sort">Aksi</th>
@@ -129,14 +152,16 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label class="col-form-label">NIP</label>
+                                    <input class="form-control" type="nip" id="nip" name="nip"
+                                        placeholder="Masukkan NIP">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label class="col-form-label">Nama Lengkap</label>
-                                    <select class="select" id="name" name="name">
-                                        <option value="">-- Select --</option>
-                                        @foreach ($userList as $key => $user)
-                                            <option value="{{ $user->name }}" data-employee_id={{ $user->user_id }}
-                                                data-email={{ $user->email }}>{{ $user->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input class="form-control" type="nama" id="nama" name="nip"
+                                        placeholder="Masukkan NIP">
                                 </div>
                             </div>
 
@@ -174,16 +199,16 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Submit</button>
-                        </div>
-                    </form>
                 </div>
+                <div class="submit-section">
+                    <button class="btn btn-primary submit-btn">Submit</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- /Add Employee Modal -->
+</div>
+<!-- /Add Employee Modal -->
 </div>
 <!-- /Page Wrapper -->
 @section('script')
