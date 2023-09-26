@@ -38,7 +38,8 @@
                                                 <h6 class="text-muted"> {{ $users->department }}</h6>
                                                 <small class="text-muted">{{ $users->position }}</small>
                                                 <div class="staff-id">ID Pegawai : {{ $users->user_id }}</div>
-                                                <div class="small doj text-muted">Tanggal Bergabung : {{ $users->join_date }}
+                                                <div class="small doj text-muted">Tanggal Bergabung :
+                                                    {{ $users->join_date }}
                                                 </div>
                                             </div>
                                         </div>
@@ -111,11 +112,16 @@
                 <div class="row user-tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                         <ul class="nav nav-tabs nav-tabs-bottom">
-                            <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
-                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat Pendidikan</a></li>
-                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat Golongan</a></li>
-                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat Jabatan</a></li>
-                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat Diklat</a></li>
+                            <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab"
+                                    class="nav-link active">Profil</a></li>
+                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat
+                                    Pendidikan</a></li>
+                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat
+                                    Golongan</a></li>
+                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat
+                                    Jabatan</a></li>
+                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat
+                                    Diklat</a></li>
                         </ul>
                     </div>
                 </div>
@@ -188,7 +194,7 @@
                                                 <div class="text">Jenis Kelamin</div>
                                             @endif
                                         </li>
-                                         <li>
+                                        <li>
                                             <div class="title">Agama</div>
                                             @if (!empty($users->agama))
                                                 <div class="text">{{ $users->agama }}</div>
@@ -347,134 +353,150 @@
                         <div class="col-md-12 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Posisi & Jabatan Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Posisi & Jabatan Pegawai <a href="#" class="edit-icon"
+                                            data-toggle="modal" data-target="#emergency_contact_modal"><i
+                                                class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
                                         <li>
                                             <div class="title">Unit Organisasi</div>
                                             @if (!empty($users->name_primary))
-                                            <div class="text">{{ $users->name_primary }}</div>
+                                                <div class="text">{{ $users->name_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Unit Organisasi Induk</div>
                                             @if (!empty($users->relationship_primary))
-                                            <div class="text">{{ $users->relationship_primary }}</div>
+                                                <div class="text">{{ $users->relationship_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Jenis Jabatan </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Eselon </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Jabatan </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">TMT </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Lokasi Kerja </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Golongan Ruang Awal </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Golongan Ruang Akhir </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">TMT Golongan </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Gaji Pokok </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Masa Kerja (Tahun) </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Masa Kerja (Bulan) </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">No SPMT </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Tanggal SPMT </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">KPPN </div>
                                             @if (!empty($users->phone_primary) && !empty($users->phone_2_primary))
-                                            <div class="text">{{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
+                                                <div class="text">
+                                                    {{ $users->phone_primary }},{{ $users->phone_2_primary }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                     </ul>
@@ -491,7 +513,7 @@
 
 
 
-                
+
 
                 <!-- Informasi Riwayat Pendidikan Tab -->
                 <div id="riwayat_pendidikan" class="pro-overview tab-pane fade show active">
@@ -520,6 +542,58 @@
                                             <th class="dokumen_gelar">Dokumen Gelar</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <td hidden class="user_id">
+                                            <center>{{ $users->user_id }}</center>
+                                        </td>
+                                        <td hidden class="id">
+                                            <center>{{ $users->id }}</center>
+                                        </td>
+                                        <td class="tingkat_pendidikan">
+                                            <center>{{ $users->tingkat_pendidikan }}</center>
+                                        </td>
+                                        <td class="pendidikan">
+                                            <center>{{ $users->pendidikan }}</center>
+                                        </td>
+                                        <td class="tahun_lulus">
+                                            <center>{{ $users->tahun_lulus }}</center>
+                                        </td>
+                                        <td class="no_ijazah">
+                                            <center>{{ $users->no_ijazah }}</center>
+                                        </td>
+                                        <td class="nama_sekolah">
+                                            <center>{{ $users->nama_sekolah }}</center>
+                                        </td>
+                                        <td class="gelar_depan">
+                                            <center>{{ $users->gelar_depan }}</center>
+                                        </td>
+                                        <td class="gelar_belakang">
+                                            <center>{{ $users->gelar_belakang }}</center>
+                                        </td>
+                                        <td class="jenis_pendidikan">
+                                            <center>{{ $users->jenis_pendidikan }}</center>
+                                        </td>
+                                        <td class="dokumen_transkrip">
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenTranskrip/' . $users->dokumen_transkrip) }}"
+                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
+                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                            </center>
+                                        </td>
+                                        <td class="dokumen_ijazah">
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenIjazah/' . $users->dokumen_ijazah) }}"
+                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
+                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                            </center>
+                                        </td>
+                                        <td class="dokumen_gelar">
+                                            <center><a href="{{ asset('assets/DokumenGelar/' . $users->dokumen_gelar) }}"
+                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
+                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                            </center>
+                                        </td>
+                                    </tbody>
 
                                 </table>
                             </div>
@@ -554,6 +628,54 @@
                                             <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <td hidden class="user_id">
+                                            <center>{{ $users->user_id }}</center>
+                                        </td>
+                                        <td hidden class="id">
+                                            <center>{{ $users->id }}</center>
+                                        </td>
+                                        <td class="golongan">
+                                            <center>{{ $users->golongan }}</center>
+                                        </td>
+                                        <td class="jenis_kenaikan_pangkat">
+                                            <center>{{ $users->jenis_kenaikan_pangkat }}</center>
+                                        </td>
+                                        <td class="masa_kerja_golongan_tahun">
+                                            <center>{{ $users->masa_kerja_golongan_tahun }}</center>
+                                        </td>
+                                        <td class="masa_kerja_golongan_bulan">
+                                            <center>{{ $users->masa_kerja_golongan_bulan }}</center>
+                                        </td>
+                                        <td class="tmt_golongan">
+                                            <center>{{ $users->tmt_golongan }}</center>
+                                        </td>
+                                        <td class="no_teknis_bkn">
+                                            <center>{{ $users->no_teknis_bkn }}</center>
+                                        </td>
+                                        <td class="tanggal_teknis_bkn">
+                                            <center>{{ $users->tanggal_teknis_bkn }}</center>
+                                        </td>
+                                        <td class="no_sk">
+                                            <center>{{ $users->no_sk }}</center>
+                                        </td>
+                                        <td class="tanggal_sk">
+                                            <center>{{ $users->tanggal_sk }}</center>
+                                        </td>
+                                        <td class="dokumen_skkp">
+                                            <center><a href="{{ asset('assets/DokumenSKKP/' . $users->dokumen_skkp) }}"
+                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
+                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                            </center>
+                                        </td>
+                                        <td class="dokumen_teknis_kp">
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenTeknisKP/' . $users->dokumen_teknis_kp) }}"
+                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
+                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                            </center>
+                                        </td>
+                                    </tbody>
 
                                 </table>
                             </div>
@@ -587,6 +709,52 @@
                                             <th class="dokumen_pelantikan">Dokumen Pelantikan</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <td hidden class="user_id">
+                                            <center>{{ $users->user_id }}</center>
+                                        </td>
+                                        <td hidden class="id">
+                                            <center>{{ $users->id }}</center>
+                                        </td>
+                                        <td class="jenis_jabatan">
+                                            <center>{{ $users->jenis_jabatan }}</center>
+                                        </td>
+                                        <td class="satuan_kerja">
+                                            <center>{{ $users->satuan_kerja }}</center>
+                                        </td>
+                                        <td class="satuan_kerja_induk">
+                                            <center>{{ $users->satuan_kerja_induk }}</center>
+                                        </td>
+                                        <td class="unit_organisasi">
+                                            <center>{{ $users->unit_organisasi }}</center>
+                                        </td>
+                                        <td class="no_sk">
+                                            <center>{{ $users->no_sk }}</center>
+                                        </td>
+                                        <td class="tanggal_sk">
+                                            <center>{{ $users->tanggal_sk }}</center>
+                                        </td>
+                                        <td class="tmt_jabatan">
+                                            <center>{{ $users->tmt_jabatan }}</center>
+                                        </td>
+                                        <td class="tmt_pelantikan">
+                                            <center>{{ $users->tmt_pelantikan }}</center>
+                                        </td>
+                                        <td class="dokumen_sk_jabatan">
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenSKJabatan/' . $users->dokumen_sk_jabatan) }}"
+                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
+                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                            </center>
+                                        </td>
+                                        <td class="dokumen_pelantikan">
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenPelantikan/' . $users->dokumen_pelantikan) }}"
+                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
+                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                            </center>
+                                        </td>
+                                    </tbody>
 
                                 </table>
                             </div>
@@ -619,6 +787,45 @@
                                             <th class="dokumen_diklat">Dokumen Diklat</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <td hidden class="user_id">
+                                            <center>{{ $users->user_id }}</center>
+                                        </td>
+                                        <td hidden class="id">
+                                            <center>{{ $users->id }}</center>
+                                        </td>
+                                        <td class="jenis_diklat">
+                                            <center>{{ $users->jenis_diklat }}</center>
+                                        </td>
+                                        <td class="nama_diklat">
+                                            <center>{{ $users->nama_diklat }}</center>
+                                        </td>
+                                        <td class="institusi_penyelenggara">
+                                            <center>{{ $users->institusi_penyelenggara }}</center>
+                                        </td>
+                                        <td class="no_sertifikat">
+                                            <center>{{ $users->no_sertifikat }}</center>
+                                        </td>
+                                        <td class="tanggal_mulai">
+                                            <center>{{ $users->tanggal_mulai }}</center>
+                                        </td>
+                                        <td class="tanggal_selesai">
+                                            <center>{{ $users->tanggal_selesai }}</center>
+                                        </td>
+                                        <td class="tahun_diklat">
+                                            <center>{{ $users->tahun_diklat }}</center>
+                                        </td>
+                                        <td class="durasi_jam">
+                                            <center>{{ $users->durasi_jam }}</center>
+                                        </td>
+                                        <td class="dokumen_diklat">
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenDiklat/' . $users->dokumen_diklat) }}"
+                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x"
+                                                        style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                            </center>
+                                        </td>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -775,8 +982,8 @@
                         <div class="modal-body">
                             <form action="{{ route('user/information/save') }}" method="POST">
                                 @csrf
-                                <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}"
-                                    readonly>
+                                <input type="hidden" class="form-control" name="user_id"
+                                    value="{{ $users->user_id }}" readonly>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -1331,7 +1538,8 @@
                                                         <input type="text" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="text" class="form-control" name="name_primary">
+                                                        <input type="text" class="form-control"
+                                                            name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
@@ -1344,7 +1552,8 @@
                                                         <input type="text" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="text" class="form-control" name="name_primary">
+                                                        <input type="text" class="form-control"
+                                                            name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
@@ -1356,7 +1565,8 @@
                                                         <input type="text" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="text" class="form-control" name="name_primary">
+                                                        <input type="text" class="form-control"
+                                                            name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
@@ -1368,7 +1578,8 @@
                                                         <input type="text" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="text" class="form-control" name="name_primary">
+                                                        <input type="text" class="form-control"
+                                                            name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
@@ -1380,7 +1591,8 @@
                                                         <input type="text" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="text" class="form-control" name="name_primary">
+                                                        <input type="text" class="form-control"
+                                                            name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
@@ -1392,7 +1604,8 @@
                                                         <input type="text" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="text" class="form-control" name="name_primary">
+                                                        <input type="text" class="form-control"
+                                                            name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
@@ -1404,7 +1617,8 @@
                                                         <input type="text" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="text" class="form-control" name="name_primary">
+                                                        <input type="text" class="form-control"
+                                                            name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
@@ -1417,7 +1631,8 @@
                                                         <input type="file" class="form-control" name="name_primary"
                                                             value="{{ $users->name_primary }}">
                                                     @else
-                                                        <input type="file" class="form-control" name="name_primary">
+                                                        <input type="file" class="form-control"
+                                                            name="name_primary">
                                                     @endif
                                                     </li>
                                                 </div>
