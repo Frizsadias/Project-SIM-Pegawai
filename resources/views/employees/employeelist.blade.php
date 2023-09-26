@@ -20,13 +20,10 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i
-                            class="fa fa-plus"></i> Tambah Pegawai</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Tambah Pegawai</a>
                     <div class="view-icons">
-                        <a href="{{ route('all/employee/card') }}" class="grid-view btn btn-link active"><i
-                                class="fa fa-th"></i></a>
-                        <a href="{{ route('all/employee/list') }}" class="list-view btn btn-link"><i
-                                class="fa fa-bars"></i></a>
+                        <a href="{{ route('all/employee/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+                        <a href="{{ route('all/employee/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
                     </div>
                 </div>
             </div>
@@ -38,20 +35,26 @@
             @csrf
             <div class="container">
                 <div class="row filter-row">
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="employee_id">
                             <label class="focus-label">ID Pegawai</label>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="name">
                             <label class="focus-label">Nama Pegawai</label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
-                        <button type="submit" class="btn btn-success btn-block">Cari</button>
+                    <div class="col-sm-6 col-md-3"> 
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" name="position">
+                            <label class="focus-label">Posisi</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">  
+                        <button type="sumit" class="btn btn-success btn-block"> Cari </button>  
                     </div>
                 </div>
             </div>

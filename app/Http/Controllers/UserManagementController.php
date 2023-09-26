@@ -125,7 +125,7 @@ class UserManagementController extends Controller
             ->get();
         $data_arr = [];
         foreach ($records as $key => $record) {
-            $record->name = '<h2 class="table-avatar"><a href="' . url('employee/profile/' . $record->user_id) . '" class="name">' . '<img class="avatar" data-avatar=' . $record->avatar . ' src="' . url('/assets/images/' . $record->avatar) . '">' . $record->name . '</a></h2>';
+            $record->name = '<h2 class="table-avatar"><a href="' . url('user/profile/' . $record->user_id) . '" class="name">' . '<img class="avatar" data-avatar=' . $record->avatar . ' src="' . url('/assets/images/' . $record->avatar) . '">' . $record->name . '</a></h2>';
             if ($record->role_name == 'Admin') {
                 /** color role name */
                 $role_name = '<span class="badge bg-inverse-danger role_name">' . $record->role_name . '</span>';
@@ -220,6 +220,68 @@ class UserManagementController extends Controller
         ];
         return response()->json($response);
     }
+
+    public function profileEmployee($user_id)
+    {
+        $user = DB::table('users')
+            ->leftJoin('personal_information as pi', 'pi.user_id', 'users.user_id')
+            ->leftJoin('profile_information as pr', 'pr.user_id', 'users.user_id')
+            ->leftJoin('user_emergency_contacts as ue', 'ue.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'pi.passport_no',
+                'pi.passport_expiry_date',
+                'pi.tel',
+                'pi.nationality',
+                'pi.religion',
+                'pi.marital_status',
+                'pi.employment_of_spouse',
+                'pi.children',
+                'pr.tgl_lahir',
+                'pr.jk',
+                'pr.alamat',
+                'ue.name_primary',
+                'ue.relationship_primary',
+                'ue.phone_primary',
+                'ue.phone_2_primary',
+                'ue.name_secondary',
+                'ue.relationship_secondary',
+                'ue.phone_secondary',
+                'ue.phone_2_secondary'
+            )
+            ->where('users.user_id', $user_id)->get();
+        $users = DB::table('users')
+            ->leftJoin('personal_information as pi', 'pi.user_id', 'users.user_id')
+            ->leftJoin('profile_information as pr', 'pr.user_id', 'users.user_id')
+            ->leftJoin('user_emergency_contacts as ue', 'ue.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'pi.passport_no',
+                'pi.passport_expiry_date',
+                'pi.tel',
+                'pi.nationality',
+                'pi.religion',
+                'pi.marital_status',
+                'pi.employment_of_spouse',
+                'pi.children',
+                'pr.tgl_lahir',
+                'pr.jk',
+                'pr.alamat',
+                'ue.name_primary',
+                'ue.relationship_primary',
+                'ue.phone_primary',
+                'ue.phone_2_primary',
+                'ue.name_secondary',
+                'ue.relationship_secondary',
+                'ue.phone_secondary',
+                'ue.phone_2_secondary'
+            )
+            ->where('users.user_id', $user_id)->first();
+
+        return view('usermanagement.employeeprofile', compact('user', 'users'));
+    }
+
+
 
     /** use activity log */
     public function activityLog()

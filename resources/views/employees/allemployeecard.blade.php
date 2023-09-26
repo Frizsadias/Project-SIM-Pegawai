@@ -1,11 +1,10 @@
-
 @extends('layouts.master')
 @section('content')
-    @section('style')
+@section('style')
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
     <!-- checkbox style -->
     <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-    @endsection
+@endsection
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
