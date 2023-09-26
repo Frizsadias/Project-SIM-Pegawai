@@ -44,10 +44,34 @@ class EmployeeController extends Controller
         $request->validate([
             'name'        => 'required|string|max:255',
             'email'       => 'required|string|email',
-            'birthDate'   => 'required|string|max:255',
-            'jk'      => 'required|string|max:255',
+            'nip'        => 'required|string|max:255',
+            'gelar_depan'        => 'required|string|max:255',
+            'gelar_belakang'        => 'required|string|max:255',
+            'tempat_lahir'        => 'required|string|max:255',
+            'tanggal_lahir'        => 'required|string|max:255',
+            'jenis_kelamin'        => 'required|string|max:255',
+            'agama'        => 'required|string|max:255',
+            'jenis_dokumen'        => 'required|string|max:255',
+            'no_dokumen'        => 'required|string|max:255',
+            'kelurahan'        => 'required|string|max:255',
+            'kecamatan'        => 'required|string|max:255',
+            'kota'        => 'required|string|max:255',
+            'provinsi'        => 'required|string|max:255',
+            'kode_pos'        => 'required|string|max:255',
+            'no_hp'        => 'required|string|max:255',
+            'no_telp'        => 'required|string|max:255',
+            'jenis_pegawai'        => 'required|string|max:255',
+            'kedudukan_pns'        => 'required|string|max:255',
+            'status_pegawai'        => 'required|string|max:255',
+            'tmt_pns'        => 'required|string|max:255',
+            'no_seri_karpeg'        => 'required|string|max:255',
+            'tmt_cpns'        => 'required|string|max:255',
+            'tingkat_pendidikan'        => 'required|string|max:255',
+            'pendidikan_terakhir'        => 'required|string|max:255',
+            // 'birthDate'   => 'required|string|max:255',
+            // 'jk'      => 'required|string|max:255',
             'employee_id' => 'required|string|max:255',
-            'company'     => 'required|string|max:255',
+            // 'company'     => 'required|string|max:255',
         ]);
 
         DB::beginTransaction();
@@ -57,12 +81,33 @@ class EmployeeController extends Controller
             if ($employees === null) {
 
                 $employee = new Employee;
-                $employee->name         = $request->name;
-                $employee->email        = $request->email;
-                $employee->tgl_lahir   = $request->birthDate;
-                $employee->jk       = $request->jk;
-                $employee->employee_id  = $request->employee_id;
-                $employee->company      = $request->company;
+                $employee->name = $request->input('name');
+                $employee->email = $request->input('email');
+                $employee->nip = $request->input('nip');
+                $employee->gelar_depan = $request->input('gelar_depan');
+                $employee->gelar_belakang = $request->input('gelar_belakang');
+                $employee->tempat_lahir = $request->input('tempat_lahir');
+                $employee->tanggal_lahir = $request->input('tanggal_lahir');
+                $employee->jenis_kelamin = $request->input('jenis_kelamin');
+                $employee->agama = $request->input('agama');
+                $employee->jenis_dokumen = $request->input('jenis_dokumen');
+                $employee->no_dokumen = $request->input('no_dokumen');
+                $employee->kelurahan = $request->input('kelurahan');
+                $employee->kecamatan = $request->input('kecamatan');
+                $employee->kota = $request->input('kota');
+                $employee->provinsi = $request->input('provinsi');
+                $employee->kode_pos = $request->input('kode_pos');
+                $employee->no_hp = $request->input('no_hp');
+                $employee->no_telp = $request->input('no_telp');
+                $employee->jenis_pegawai = $request->input('jenis_pegawai');
+                $employee->kedudukan_pns = $request->input('kedudukan_pns');
+                $employee->status_pegawai = $request->input('status_pegawai');
+                $employee->tmt_pns = $request->input('tmt_pns');
+                $employee->no_seri_karpeg = $request->input('no_seri_karpeg');
+                $employee->tmt_cpns = $request->input('tmt_cpns');
+                $employee->tingkat_pendidikan = $request->input('tingkat_pendidikan');
+                $employee->pendidikan_terakhir = $request->input('pendidikan_terakhir');
+                $employee->employee_id = $request->input('employee_id');
                 $employee->save();
 
                 for ($i = 0; $i < count($request->id_count); $i++) {

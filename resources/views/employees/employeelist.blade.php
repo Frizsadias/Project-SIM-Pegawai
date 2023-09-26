@@ -152,19 +152,16 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">NIP</label>
-                                    <input class="form-control" type="nip" id="nip" name="nip"
-                                        placeholder="Masukkan NIP">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
                                     <label class="col-form-label">Nama Lengkap</label>
-                                    <input class="form-control" type="nama" id="nama" name="nip"
-                                        placeholder="Masukkan NIP">
+                                    <select class="select" id="name" name="name">
+                                        <option value="">-- Select --</option>
+                                        @foreach ($userList as $key => $user)
+                                            <option value="{{ $user->name }}" data-employee_id={{ $user->user_id }}
+                                                data-email={{ $user->email }}>{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Email <span class="text-danger">*</span></label>
@@ -172,13 +169,46 @@
                                         placeholder="Auto email" readonly>
                                 </div>
                             </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">NIP</label>
+                                    <input class="form-control" type="nip" id="nip" name="nip"
+                                        placeholder="Masukkan NIP">
+                                </div>
+                            </div>
+                            <!-- <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Nama Lengkap</label>
+                                    <input class="form-control" type="name" id="name" name="name"
+                                        placeholder="Masukkan Nama Lengkap">
+                                </div>
+                            </div> -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Gelar Depan</label>
+                                    <input class="form-control" type="text" id="gelar_depan" name="gelar_depan"
+                                        placeholder="Masukkan Gelar Depan">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Gelar Belakang</label>
+                                    <input class="form-control" type="text" id="gelar_belakang"
+                                        name="gelar_belakang" placeholder="Masukkan Gelar Belakang">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tempat Lahir</label>
+                                    <input class="form-control" type="text" id="tempat_lahir"
+                                        name="tempat_lahir">
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
-                                    <div class="cal-icon">
-                                        <input class="form-control datetimepicker" type="text" id="birthDate"
-                                            name="birthDate">
-                                    </div>
+                                    <input class="form-control" type="date" id="tanggal_lahir"
+                                        name="tanggal_lahir">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -190,6 +220,121 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Agama</label>
+                                    <input class="form-control" type="text" id="agama" name="agama">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Jenis Dokumen</label>
+                                    <input class="form-control" type="text" id="jenis_dokumen"
+                                        name="jenis_dokumen">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nomor Dokumen</label>
+                                    <input class="form-control" type="text" id="no_dokumen" name="no_dokumen">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kelurahan</label>
+                                    <input class="form-control" type="text" id="kelurahan" name="kelurahan">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kecamatan</label>
+                                    <input class="form-control" type="text" id="kecamatab" name="kecamatan">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kota</label>
+                                    <input class="form-control" type="text" id="kota" name="kota">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Provinsi</label>
+                                    <input class="form-control" type="text" id="provinsi" name="provinsi">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kode Pos</label>
+                                    <input class="form-control" type="text" id="kode_pos" name="kode_pos">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nomor HP</label>
+                                    <input class="form-control" type="text" id="no_hp" name="no_hp">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nomor Telepon</label>
+                                    <input class="form-control" type="text" id="no_telepon" name="no_telepon">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Jenis Pegawai</label>
+                                    <input class="form-control" type="text" id="jenis_pegawai"
+                                        name="jenis_pegawai">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kedudukan PNS</label>
+                                    <input class="form-control" type="text" id="kedudukan_pns"
+                                        name="kedudukan_pns">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Status Pegawai</label>
+                                    <input class="form-control" type="text" id="status_pegawai"
+                                        name="status_pegawai">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>TMT PNS</label>
+                                    <input class="form-control" type="text" id="tmt_pns" name="tmt_pns">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nomor Seri Kartu Pegawai</label>
+                                    <input class="form-control" type="text" id="no_seri_karpeg"
+                                        name="no_seri_karpeg">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>TMT CPNS</label>
+                                    <input class="form-control" type="text" id="tmt_cpns" name="tmt_cpns">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tingkat Pendidikan</label>
+                                    <input class="form-control" type="text" id="tingkat_pendidikan"
+                                        name="tingkat_pendidikan">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Pendidikan Terakhir</label>
+                                    <input class="form-control" type="text" id="pendidikan_terakhir"
+                                        name="pendidikan_terakhir">
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">ID Pegawai <span
@@ -199,10 +344,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn">Submit</button>
+                        </div>
                 </div>
-                <div class="submit-section">
-                    <button class="btn btn-primary submit-btn">Submit</button>
-                </div>
+
                 </form>
             </div>
         </div>

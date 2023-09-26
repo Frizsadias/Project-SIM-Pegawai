@@ -520,6 +520,30 @@
                                             <th class="dokumen_gelar">Dokumen Gelar</th>
                                         </tr>
                                     </thead>
+                                   <tbody>
+                                    <td hidden class="user_id"><center>{{ $users->user_id }}</center></td>
+                                    <td hidden class="id"><center>{{ $users->id }}</center></td>
+                                    <td class="tingkat_pendidikan"><center>{{ $users->tingkat_pendidikan }}</center></td>
+                                        <td class="pendidikan"><center>{{ $users->pendidikan }}</center></td>
+                                        <td class="tahun_lulus"><center>{{ $users->tahun_lulus }}</center></td>
+                                        <td class="no_ijazah"><center>{{ $users->no_ijazah }}</center></td>
+                                        <td class="nama_sekolah"><center>{{ $users->nama_sekolah }}</center></td>
+                                        <td class="gelar_depan"><center>{{ $users->gelar_depan }}</center></td>
+                                        <td class="gelar_belakang"><center>{{ $users->gelar_belakang }}</center></td>
+                                        <td class="jenis_pendidikan"><center>{{ $users->jenis_pendidikan }}</center></td>
+                                        <td class="dokumen_transkrip">
+                                            <center><a href="{{ asset('assets/DokumenTranskrip/' . $users->dokumen_transkrip) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        <td class="dokumen_ijazah">
+                                            <center><a href="{{ asset('assets/DokumenIjazah/' . $users->dokumen_ijazah) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        <td class="dokumen_gelar">
+                                            <center><a href="{{ asset('assets/DokumenGelar/' . $users->dokumen_gelar) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                   </tbody>
 
                                 </table>
                             </div>
@@ -554,6 +578,27 @@
                                             <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <td hidden class="user_id"><center>{{ $users->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $users->id }}</center></td>
+                                        <td class="golongan"><center>{{ $users->golongan }}</center></td>
+                                        <td class="jenis_kenaikan_pangkat"><center>{{ $users->jenis_kenaikan_pangkat }}</center></td>
+                                        <td class="masa_kerja_golongan_tahun"><center>{{ $users->masa_kerja_golongan_tahun }}</center></td>
+                                        <td class="masa_kerja_golongan_bulan"><center>{{ $users->masa_kerja_golongan_bulan }}</center></td>
+                                        <td class="tmt_golongan"><center>{{ $users->tmt_golongan }}</center></td>
+                                        <td class="no_teknis_bkn"><center>{{ $users->no_teknis_bkn }}</center></td>
+                                        <td class="tanggal_teknis_bkn"><center>{{ $users->tanggal_teknis_bkn }}</center></td>
+                                        <td class="no_sk"><center>{{ $users->no_sk }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ $users->tanggal_sk }}</center></td>
+                                        <td class="dokumen_skkp">
+                                            <center><a href="{{ asset('assets/DokumenSKKP/' . $users->dokumen_skkp) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        <td class="dokumen_teknis_kp">
+                                            <center><a href="{{ asset('assets/DokumenTeknisKP/' . $users->dokumen_teknis_kp) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                    </tbody>
 
                                 </table>
                             </div>
@@ -587,6 +632,26 @@
                                             <th class="dokumen_pelantikan">Dokumen Pelantikan</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <td hidden class="user_id"><center>{{ $users->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $users->id }}</center></td>
+                                        <td class="jenis_jabatan"><center>{{ $users->jenis_jabatan }}</center></td>
+                                        <td class="satuan_kerja"><center>{{ $users->satuan_kerja }}</center></td>
+                                        <td class="satuan_kerja_induk"><center>{{ $users->satuan_kerja_induk }}</center></td>
+                                        <td class="unit_organisasi"><center>{{ $users->unit_organisasi }}</center></td>
+                                        <td class="no_sk"><center>{{ $users->no_sk }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ $users->tanggal_sk }}</center></td>
+                                        <td class="tmt_jabatan"><center>{{ $users->tmt_jabatan }}</center></td>
+                                        <td class="tmt_pelantikan"><center>{{ $users->tmt_pelantikan }}</center></td>
+                                        <td class="dokumen_sk_jabatan">
+                                            <center><a href="{{ asset('assets/DokumenSKJabatan/' . $users->dokumen_sk_jabatan) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                        <td class="dokumen_pelantikan">
+                                            <center><a href="{{ asset('assets/DokumenPelantikan/' . $users->dokumen_pelantikan) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                    </tbody>
 
                                 </table>
                             </div>
@@ -619,6 +684,22 @@
                                             <th class="dokumen_diklat">Dokumen Diklat</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <td hidden class="user_id"><center>{{ $users->user_id }}</center></td>
+                                        <td hidden class="id"><center>{{ $users->id }}</center></td>
+                                        <td class="jenis_diklat"><center>{{ $users->jenis_diklat }}</center></td>
+                                        <td class="nama_diklat"><center>{{ $users->nama_diklat }}</center></td>
+                                        <td class="institusi_penyelenggara"><center>{{ $users->institusi_penyelenggara }}</center></td>
+                                        <td class="no_sertifikat"><center>{{ $users->no_sertifikat }}</center></td>
+                                        <td class="tanggal_mulai"><center>{{ $users->tanggal_mulai }}</center></td>
+                                        <td class="tanggal_selesai"><center>{{ $users->tanggal_selesai }}</center></td>
+                                        <td class="tahun_diklat"><center>{{ $users->tahun_diklat }}</center></td>
+                                        <td class="durasi_jam"><center>{{ $users->durasi_jam }}</center></td>
+                                        <td class="dokumen_diklat">
+                                            <center><a href="{{ asset('assets/DokumenDiklat/' . $users->dokumen_diklat) }}"
+                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                        </center></td>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
