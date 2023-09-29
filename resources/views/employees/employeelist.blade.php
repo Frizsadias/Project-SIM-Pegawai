@@ -15,15 +15,15 @@
                 <div class="col">
                     <h3 class="page-title">Pegawai</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Pegawai</li>
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Tambah Pegawai</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i class="fa fa-plus"></i> Tambah Pegawai</a>
                     <div class="view-icons">
-                        <a href="{{ route('all/employee/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-                        <a href="{{ route('all/employee/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                        <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+                        <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
                     </div>
                 </div>
             </div>
@@ -31,34 +31,31 @@
         <!-- /Page Header -->
 
         <!-- Search Filter -->
-        <form action="{{ route('all/employee/list/search') }}" method="POST">
+        <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
             @csrf
-            <div class="container">
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="employee_id">
+                            <input type="text" class="form-control floating" name="user_id">
                             <label class="focus-label">ID Pegawai</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="name">
+                            <input type="text" class="form-control floating" name="nama">
                             <label class="focus-label">Nama Pegawai</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3"> 
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="position">
-                            <label class="focus-label">Posisi</label>
+                            <input type="text" class="form-control floating" name="email">
+                            <label class="focus-label">Email</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">  
                         <button type="sumit" class="btn btn-success btn-block"> Cari </button>  
                     </div>
                 </div>
-            </div>
-
         </form>
         <!-- Search Filter -->
         {{-- message --}}
@@ -70,8 +67,11 @@
                     <table class="table table-striped custom-table datatable">
                         <thead>
                             <tr>
+                                <th>Nama Akun</th>
+                                <th>ID Akun</th>
                                 <th>NIP</th>
                                 <th>Nama</th>
+                                <th>Email</th>
                                 <th>Gelar Depan</th>
                                 <th>Gelar Belakang</th>
                                 <th>Tempat Lahir</th>
@@ -86,7 +86,7 @@
                                 <th>Provinsi</th>
                                 <th>Kode Pos</th>
                                 <th>No HP</th>
-                                <th>Nomor Telepon</th>
+                                <th>No Telepon</th>
                                 <th>Jenis Pegawai</th>
                                 <th>Kedudukan PNS</th>
                                 <th>Status Pegawai</th>
@@ -95,37 +95,55 @@
                                 <th>TMT CPNS</th>
                                 <th>Tingkat Pendidikan</th>
                                 <th>Pendidikan Terakhir</th>
-                                <th>Email</th>
-                                <th>Role</th>
                                 <th class="text-right no-sort">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $items)
+                            @foreach ($users as $profpeg)
                                 <tr>
                                     <td>
                                         <h2 class="table-avatar">
-                                            <a href="{{ url('employee/profile/' . $items->user_id) }}"
-                                                class="avatar"><img alt=""
-                                                    src="{{ URL::to('/assets/images/' . $items->avatar) }}"></a>
-                                            <a
-                                                href="{{ url('employee/profile/' . $items->user_id) }}">{{ $items->name }}<span>{{ $items->position }}</span></a>
+                                            <a href="{{ url('user/profile/' . $profpeg->user_id) }}" class="avatar">
+                                                <img alt="" src="{{ URL::to('/assets/images/' . $profpeg->avatar) }}">
+                                            </a>
+                                            <a href="{{ url('user/profile/' . $profpeg->user_id) }}">{{ $profpeg->name }}
+                                                <span>{{ $profpeg->position }}</span>
+                                            </a>
                                         </h2>
                                     </td>
-                                    <td>{{ $items->user_id }}</td>
-                                    <td>{{ $items->email }}</td>
-                                    <td>{{ $items->role_name }}</td>
+                                    <td>{{ $profpeg->user_id }}</td>
+                                    <td>{{ $profpeg->nip }}</td>
+                                    <td>{{ $profpeg->nama }}</td>
+                                    <td>{{ $profpeg->email }}</td>
+                                    <td>{{ $profpeg->gelar_depan }}</td>
+                                    <td>{{ $profpeg->gelar_belakang }}</td>
+                                    <td>{{ $profpeg->tempat_lahir }}</td>
+                                    <td>{{ $profpeg->tanggal_lahir }}</td>
+                                    <td>{{ $profpeg->jenis_kelamin }}</td>
+                                    <td>{{ $profpeg->agama }}</td>
+                                    <td>{{ $profpeg->jenis_dokumen }}</td>
+                                    <td>{{ $profpeg->no_dokumen }}</td>
+                                    <td>{{ $profpeg->kelurahan }}</td>
+                                    <td>{{ $profpeg->kecamatan }}</td>
+                                    <td>{{ $profpeg->kota }}</td>
+                                    <td>{{ $profpeg->provinsi }}</td>
+                                    <td>{{ $profpeg->kode_pos }}</td>
+                                    <td>{{ $profpeg->no_hp }}</td>
+                                    <td>{{ $profpeg->no_telp }}</td>
+                                    <td>{{ $profpeg->jenis_pegawai }}</td>
+                                    <td>{{ $profpeg->kedudukan_pns }}</td>
+                                    <td>{{ $profpeg->status_pegawai }}</td>
+                                    <td>{{ $profpeg->tmt_pns }}</td>
+                                    <td>{{ $profpeg->no_seri_karpeg }}</td>
+                                    <td>{{ $profpeg->tmt_cpns }}</td>
+                                    <td>{{ $profpeg->tingkat_pendidikan }}</td>
+                                    <td>{{ $profpeg->pendidikan_terakhir }}</td>
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item"
-                                                    href="{{ url('all/employee/view/edit/' . $items->user_id) }}"><i
-                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ url('all/employee/delete/' . $items->user_id) }}"onclick="return confirm('Are you sure to want to delete it?')"><i
-                                                        class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                <a class="dropdown-item" href="{{ url('all/employee/view/edit/' . $profpeg->user_id) }}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item" href="{{ url('all/employee/delete/' . $profpeg->user_id) }}"onclick="return confirm('Are you sure to want to delete it?')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -140,7 +158,7 @@
     <!-- /Page Content -->
 
     <!-- Add Employee Modal -->
-    <div id="add_employee" class="modal custom-modal fade" role="dialog">
+    <div id="daftar_pegawai" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -150,17 +168,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('all/employee/save') }}" method="POST">
+                    <form action="{{ route('daftar/pegawai/save') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Nama Lengkap</label>
+                                    <label class="col-form-label">Nama Akun</label>
                                     <select class="select" id="name" name="name">
-                                        <option value="">-- Select --</option>
+                                        <option value="">-- Pilih Nama Akun --</option>
                                         @foreach ($userList as $key => $user)
-                                            <option value="{{ $user->name }}" data-employee_id={{ $user->user_id }}
-                                                data-email={{ $user->email }}>{{ $user->name }}</option>
+                                            <option value="{{ $user->name }}" data-pegawai_id={{ $user->user_id }} data-email={{ $user->email }}>{{ $user->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -168,56 +185,56 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="email" id="email" name="email"
-                                        placeholder="Auto email" readonly>
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="Otomatis email" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">ID Pegawai <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="pegawai_id" name="user_id" placeholder="Otomatis id pengguna" readonly>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">NIP</label>
-                                    <input class="form-control" type="nip" id="nip" name="nip"
-                                        placeholder="Masukkan NIP">
+                                    <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP">
                                 </div>
                             </div>
-                            <!-- <div class="col-sm-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Nama Lengkap</label>
-                                    <input class="form-control" type="name" id="name" name="name"
-                                        placeholder="Masukkan Nama Lengkap">
+                                    <label class="col-form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap">
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gelar Depan</label>
-                                    <input class="form-control" type="text" id="gelar_depan" name="gelar_depan"
-                                        placeholder="Masukkan Gelar Depan">
+                                    <input type="text" class="form-control" id="gelar_depan" name="gelar_depan" placeholder="Masukkan Gelar Depan">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gelar Belakang</label>
-                                    <input class="form-control" type="text" id="gelar_belakang"
-                                        name="gelar_belakang" placeholder="Masukkan Gelar Belakang">
+                                    <input type="text" class="form-control" id="gelar_belakang" name="gelar_belakang" placeholder="Masukkan Gelar Belakang">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tempat Lahir</label>
-                                    <input class="form-control" type="text" id="tempat_lahir"
-                                        name="tempat_lahir">
+                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
-                                    <input class="form-control" type="date" id="tanggal_lahir"
-                                        name="tanggal_lahir">
+                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Jenis Kelamin</label>
-                                    <select class="select form-control" id="gender" name="gender">
+                                    <select name="jenis_kelamin" class="select form-control" id="jenis_kelamin">
+                                        <option selected disabled> --Pilih Jenis Kelamin --</option>
                                         <option value="Laki-Laki">Laki-Laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
@@ -226,124 +243,109 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Agama</label>
-                                    <input class="form-control" type="text" id="agama" name="agama">
+                                    <input type="text" class="form-control" id="agama" name="agama">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Jenis Dokumen</label>
-                                    <input class="form-control" type="text" id="jenis_dokumen"
-                                        name="jenis_dokumen">
+                                    <input type="text" class="form-control" id="jenis_dokumen" name="jenis_dokumen">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor Dokumen</label>
-                                    <input class="form-control" type="text" id="no_dokumen" name="no_dokumen">
+                                    <input type="text" class="form-control" id="no_dokumen" name="no_dokumen">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kelurahan</label>
-                                    <input class="form-control" type="text" id="kelurahan" name="kelurahan">
+                                    <input type="text" class="form-control" id="kelurahan" name="kelurahan">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kecamatan</label>
-                                    <input class="form-control" type="text" id="kecamatab" name="kecamatan">
+                                    <input type="text" class="form-control" id="kecamatan" name="kecamatan">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kota</label>
-                                    <input class="form-control" type="text" id="kota" name="kota">
+                                    <input type="text" class="form-control" id="kota" name="kota">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Provinsi</label>
-                                    <input class="form-control" type="text" id="provinsi" name="provinsi">
+                                    <input type="text" class="form-control" id="provinsi" name="provinsi">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kode Pos</label>
-                                    <input class="form-control" type="text" id="kode_pos" name="kode_pos">
+                                    <input type="text" class="form-control" id="kode_pos" name="kode_pos">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor HP</label>
-                                    <input class="form-control" type="text" id="no_hp" name="no_hp">
+                                    <input type="text" class="form-control" id="no_hp" name="no_hp">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor Telepon</label>
-                                    <input class="form-control" type="text" id="no_telepon" name="no_telepon">
+                                    <input type="text" class="form-control" id="no_telp" name="no_telp">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Jenis Pegawai</label>
-                                    <input class="form-control" type="text" id="jenis_pegawai"
-                                        name="jenis_pegawai">
+                                    <input type="text" class="form-control" id="jenis_pegawai" name="jenis_pegawai">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kedudukan PNS</label>
-                                    <input class="form-control" type="text" id="kedudukan_pns"
-                                        name="kedudukan_pns">
+                                    <input type="text" class="form-control" id="kedudukan_pns" name="kedudukan_pns">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Status Pegawai</label>
-                                    <input class="form-control" type="text" id="status_pegawai"
-                                        name="status_pegawai">
+                                    <input type="text" class="form-control" id="status_pegawai" name="status_pegawai">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>TMT PNS</label>
-                                    <input class="form-control" type="text" id="tmt_pns" name="tmt_pns">
+                                    <input type="text" class="form-control" id="tmt_pns" name="tmt_pns">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor Seri Kartu Pegawai</label>
-                                    <input class="form-control" type="text" id="no_seri_karpeg"
-                                        name="no_seri_karpeg">
+                                    <input type="text" class="form-control" id="no_seri_karpeg" name="no_seri_karpeg">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>TMT CPNS</label>
-                                    <input class="form-control" type="text" id="tmt_cpns" name="tmt_cpns">
+                                    <input type="text" class="form-control" id="tmt_cpns" name="tmt_cpns">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tingkat Pendidikan</label>
-                                    <input class="form-control" type="text" id="tingkat_pendidikan"
-                                        name="tingkat_pendidikan">
+                                    <input type="text" class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Pendidikan Terakhir</label>
-                                    <input class="form-control" type="text" id="pendidikan_terakhir"
-                                        name="pendidikan_terakhir">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">ID Pegawai <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="employee_id" name="employee_id"
-                                        placeholder="Auto id employee" readonly>
+                                    <input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir">
                                 </div>
                             </div>
                         </div>
@@ -361,25 +363,28 @@
 </div>
 <!-- /Page Wrapper -->
 @section('script')
-    <script>
-        $("input:checkbox").on('click', function() {
-            var $box = $(this);
-            if ($box.is(":checked")) {
-                var group = "input:checkbox[class='" + $box.attr("class") + "']";
-                $(group).prop("checked", false);
-                $box.prop("checked", true);
-            } else {
-                $box.prop("checked", false);
-            }
-        });
-    </script>
+<script>
+    $("input:checkbox").on('click', function()
+    {
+        var $box = $(this);
+        if ($box.is(":checked"))
+        {
+            var group = "input:checkbox[class='" + $box.attr("class") + "']";
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        } else {
+            $box.prop("checked", false);
+        }
+    });
+</script>
 
-    <script>
-        // select auto id and email
-        $('#name').on('change', function() {
-            $('#employee_id').val($(this).find(':selected').data('employee_id'));
-            $('#email').val($(this).find(':selected').data('email'));
-        });
-    </script>
+<script>
+    // select auto id and email
+    $('#name').on('change',function()
+    {
+        $('#pegawai_id').val($(this).find(':selected').data('pegawai_id'));
+        $('#email').val($(this).find(':selected').data('email'));
+    });
+</script>
 @endsection
 @endsection

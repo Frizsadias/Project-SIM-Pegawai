@@ -15,7 +15,7 @@ class CreateModulePermissionsTable extends Migration
     {
         Schema::create('module_permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('employee_id')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('module_permission')->nullable();
             $table->string('id_count')->nullable();
             $table->string('read')->nullable();

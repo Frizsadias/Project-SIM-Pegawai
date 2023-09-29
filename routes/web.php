@@ -26,9 +26,9 @@ use App\Http\Controllers\TrainersController;
 use App\Http\Controllers\TrainingTypeController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PersonalInformationController;
-use App\Http\Controllers\ProfilPegawaiController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\ProfilePegawaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,19 +136,10 @@ Route::controller(ResetPasswordController::class)->group(function () {
 // ----------------------------- manage users ------------------------------//
 Route::controller(UserManagementController::class)->group(function () {
     Route::get('user/profile', 'user_profile')->middleware('auth')->name('user-profile');
-    Route::post('user/profile/pendidikan/edit-data', 'editUserRiwayatPendidikan')->name('user/profile/pendidikan/edit-data');
-    Route::post('user/profile/pendidikan/hapus-data', 'hapusUserRiwayatPendidikan')->name('user/profile/pendidikan/hapus-data');
-    Route::post('user/profile/golongan/edit-data', 'editUserRiwayatGolongan')->name('user/profile/golongan/edit-data');
-    Route::post('user/profile/golongan/hapus-data', 'hapusUserRiwayatGolongan')->name('user/profile/golongan/hapus-data');
-    Route::post('user/profile/jabatan/edit-data', 'editUserRiwayatJabatan')->name('user/profile/jabatan/edit-data');
-    Route::post('user/profile/jabatan/hapus-data', 'hapusUserRiwayatJabatan')->name('user/profile/jabatan/hapus-data');
-    Route::post('user/profile/diklat/edit-data', 'editUserRiwayatDiklat')->name('user/profile/diklat/edit-data');
-    Route::post('user/profile/diklat/hapus-data', 'hapusUserRiwayatDiklat')->name('user/profile/diklat/hapus-data');
     Route::get('admin/profile', 'admin_profile')->middleware('auth')->name('admin-profile');
     Route::get('super-admin/profile', 'superadmin_profile')->middleware('auth')->name('super-admin-profile');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');
     Route::get('manajemen/pengguna', 'index')->middleware('auth')->name('manajemen-pengguna');
-    Route::get('daftar/pegawai', 'index')->middleware('auth')->name('daftar-pegawai');
     Route::post('user/add/save', 'addNewUserSave')->name('user/add/save');
     Route::post('update', 'update')->name('update');
     Route::post('user/delete', 'delete')->middleware('auth')->name('user/delete');
@@ -158,13 +149,13 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('super-admin/kata-sandi', 'changePasswordView')->middleware('auth')->name('super-admin-kata-sandi');
     Route::get('user/kata-sandi', 'changePasswordView')->middleware('auth')->name('user-kata-sandi');
     Route::post('change/password/db', 'changePasswordDB')->name('change/password/db');
-    Route::get('user/profile/{user_id}', 'profileEmployee')->middleware('auth');
+    Route::post('user/profile/emergency/contact/save', 'emergencyContactSaveOrUpdate')->name('user/profile/emergency/contact/save'); /** save or update emergency contact */
+    Route::get('get-users-data', 'getUsersData')->name('get-users-data'); /** get all data users */
+});
 
-    /** save or update emergency contact */
-    Route::post('user/profile/emergency/contact/save', 'emergencyContactSaveOrUpdate')->name('user/profile/emergency/contact/save');
-
-    /** get all data users */
-    Route::get('get-users-data', 'getUsersData')->name('get-users-data');
+// ----------------------- Profile Pegawai  --------------------------//
+Route::controller(ProfilePegawaiController::class)->group(function () {
+    Route::post('user/propeg/save', 'saveRecord')->middleware('auth')->name('user/propeg/save');
 });
 
 // --------------------------------- job ---------------------------------//
@@ -208,26 +199,26 @@ Route::controller(JobController::class)->group(function () {
 
 // ---------------------------- form employee ---------------------------//
 Route::controller(EmployeeController::class)->group(function () {
-    Route::get('all/employee/card', 'cardAllEmployee')->middleware('auth')->name('all/employee/card');
-    Route::get('all/employee/list', 'listAllEmployee')->middleware('auth')->name('all/employee/list');
-    Route::post('all/employee/save', 'saveRecord')->middleware('auth')->name('all/employee/save');
+    Route::get('daftar/pegawai/card', 'cardAllEmployee')->middleware('auth')->name('daftar/pegawai/card');
+    Route::get('daftar/pegawai/list', 'listAllEmployee')->middleware('auth')->name('daftar/pegawai/list');
+    Route::post('daftar/pegawai/save', 'saveRecord')->middleware('auth')->name('daftar/pegawai/save');
     Route::get('all/employee/view/edit/{employee_id}', 'viewRecord');
     Route::post('all/employee/update', 'updateRecord')->middleware('auth')->name('all/employee/update');
     Route::get('all/employee/delete/{employee_id}', 'deleteRecord')->middleware('auth');
-    Route::post('all/employee/search', 'employeeSearch')->name('all/employee/search');
-    Route::post('all/employee/list/search', 'employeeListSearch')->name('all/employee/list/search');
+    Route::post('daftar/pegawai/search', 'employeeSearch')->name('daftar/pegawai/search');
+    Route::post('daftar/pegawai/list/search', 'employeeListSearch')->name('daftar/pegawai/list/search');
 
     Route::get('form/departments/page', 'index')->middleware('auth')->name('form/departments/page');
     Route::post('form/departments/save', 'saveRecordDepartment')->middleware('auth')->name('form/departments/save');
     Route::post('form/department/update', 'updateRecordDepartment')->middleware('auth')->name('form/department/update');
     Route::post('form/department/delete', 'deleteRecordDepartment')->middleware('auth')->name('form/department/delete');
 
-    Route::get('referensi/agama', 'agamaIndex')->middleware('auth')->name('referensi-agama');
+    Route::get('referensi/agama', 'indexAgama')->middleware('auth')->name('referensi-agama');
     Route::post('form/agama/save', 'saveRecordAgama')->middleware('auth')->name('form/agama/save');
     Route::post('form/agama/update', 'updateRecordAgama')->middleware('auth')->name('form/agama/update');
     Route::post('form/agama/delete', 'deleteRecordAgama')->middleware('auth')->name('form/agama/delete');
 
-    Route::get('referensi/pendidikan', 'pendidikanIndex')->middleware('auth')->name('referensi-pendidikan');
+    Route::get('referensi/pendidikan', 'indexPendidikan')->middleware('auth')->name('referensi-pendidikan');
     Route::post('form/pendidikan/save', 'saveRecordPendidikan')->middleware('auth')->name('form/pendidikan/save');
     Route::post('form/pendidikan/update', 'updateRecordPendidikan')->middleware('auth')->name('form/pendidikan/update');
     Route::post('form/pendidikan/delete', 'deleteRecordPendidikan')->middleware('auth')->name('form/pendidikan/delete');
@@ -250,7 +241,7 @@ Route::controller(EmployeeController::class)->group(function () {
 
 // ------------------------- profile employee --------------------------//
 Route::controller(EmployeeController::class)->group(function () {
-    Route::get('employee/profile/{user_id}', 'profileEmployee')->middleware('auth');
+    Route::get('user/profile/{user_id}', 'profileEmployee')->middleware('auth');
 });
 
 // --------------------------- form holiday ---------------------------//
@@ -362,11 +353,6 @@ Route::controller(SalesController::class)->group(function () {
 
 // ----------------------- training type  --------------------------//
 Route::controller(PersonalInformationController::class)->group(function () {
-    Route::post('user/information/save', 'saveRecord')->middleware('auth')->name('user/information/save');
-});
-
-// ----------------------- profil pegawai  --------------------------//
-Route::controller(ProfilPegawaiController::class)->group(function () {
     Route::post('user/information/save', 'saveRecord')->middleware('auth')->name('user/information/save');
 });
 

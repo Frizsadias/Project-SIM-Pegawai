@@ -53,7 +53,7 @@
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
                                                             <div class="title">Tanggal Lahir :</div>
-                                                            <div class="text">{{ date('d F, Y', strtotime($information->tgl_lahir)) }}</div>
+                                                            <div class="text">{{ date('d F Y', strtotime($information->tgl_lahir)) }}</div>
                                                         @else
                                                             <div class="title">Tanggal Lahir :</div>
                                                             <div class="text">N/A</div>
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                                 <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
                                 </div>
                             </form>
                         </div>
@@ -236,7 +236,7 @@
                                     </div>
                                 </div>
                                 <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
                                 </div>
                             </form>
                         </div>

@@ -26,9 +26,7 @@
                                 <div class="profile-img-wrap">
                                     <div class="profile-img">
                                         <a href="#">
-                                            <img alt=""
-                                                src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}"
-                                                alt="{{ Auth::user()->name }}">
+                                            <img alt="" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                         </a>
                                     </div>
                                 </div>
@@ -50,8 +48,7 @@
                                                 <li>
                                                     <div class="title">E-mail :</div>
                                                     <div class="text">
-                                                        <a
-                                                            href="mailto:{{ Session::get('email') }}">{{ Session::get('email') }}</a>
+                                                        <a href="mailto:{{ Session::get('email') }}">{{ Session::get('email') }}</a>
                                                     </div>
                                                 </li>
                                                 @if (!empty($information))
@@ -59,7 +56,7 @@
                                                         @if (Auth::user()->user_id == $information->user_id)
                                                             <div class="title">Tanggal Lahir :</div>
                                                             <div class="text">
-                                                                {{ date('d F, Y', strtotime($information->tgl_lahir)) }}
+                                                                {{ date('d F Y', strtotime($information->tgl_lahir)) }}
                                                             </div>
                                                         @else
                                                             <div class="title">Tanggal Lahir :</div>
@@ -116,22 +113,18 @@
                 <div class="row user-tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                         <ul class="nav nav-tabs nav-tabs-bottom">
-                            <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab"
-                                    class="nav-link active">Profil</a></li>
-                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat
-                                    Pendidikan</a></li>
-                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat
-                                    Golongan</a></li>
-                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat
-                                    Jabatan</a></li>
-                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat
-                                    Diklat</a></li>
+                            <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
+                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat Pendidikan</a></li>
+                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat Golongan</a></li>
+                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat Jabatan</a></li>
+                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat Diklat</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="tab-content">
+                <!-- Profile Info Tab -->
                 <div id="profil_pegawai" class="pro-overview tab-pane fade show active">
                     <div class="row">
                         <div class="col-md-12 d-flex">
@@ -778,7 +771,6 @@
                                                     <th class="dokumen_transkrip">Dokumen Transkrip</th>
                                                     <th class="dokumen_ijazah">Dokumen Ijazah</th>
                                                     <th class="dokumen_gelar">Dokumen Gelar</th>
-                                                    <th class="aksi">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -810,7 +802,7 @@
 
 
                                         {{-- Edit dan Hapus data  --}}
-                                        <td class="text-right">
+                                        {{-- <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -825,7 +817,7 @@
                                                         Delete</a>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                                                 </tbody>
@@ -852,11 +844,10 @@
                                                     <th class="tmt_golongan">TMT Golongan</th>
                                                     <th class="no_teknis_bkn">No Teknis BKN</th>
                                                     <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
-                                                    <th class="no_sk">No SK</th>
+                                                    <th class="no_sk_golongan">No SK</th>
                                                     <th class="tanggal_sk">Tanggal SK</th>
                                                     <th class="dokumen_skkp">Dokumen SK KP</th>
                                                     <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
-                                                    <th class="aksi">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -869,11 +860,11 @@
                                         <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
                                         <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
                                         <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }}</center></td>
-                                        <td class="tmt_golongan"><center>{{ $result_golongan->tmt_golongan }}</center></td>
+                                        <td class="tmt_golongan"><center>{{ \Carbon\Carbon::parse($result_golongan->tmt_golongan)->formatLocalized('%d %B %Y') }}</center></td>
                                         <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
-                                        <td class="tanggal_teknis_bkn"><center>{{ $result_golongan->tanggal_teknis_bkn }}</center></td>
-                                        <td class="no_sk"><center>{{ $result_golongan->no_sk }}</center></td>
-                                        <td class="tanggal_sk"><center>{{ $result_golongan->tanggal_sk }}</center></td>
+                                        <td class="tanggal_teknis_bkn"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_teknis_bkn)->formatLocalized('%d %B %Y') }}</center></td>
+                                        <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
                                         <td class="dokumen_skkp">
                                             <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
                                                 target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
@@ -884,7 +875,7 @@
                                         </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
-                                        <td class="text-right">
+                                        {{-- <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -899,7 +890,7 @@
                                                         Delete</a>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                                             </tbody>
@@ -928,7 +919,6 @@
                                                 <th class="tmt_pelantikan">TMT Pelantikan</th>
                                                 <th class="dokumen_sk_jabatan">Dokumen SK Jabatan</th>
                                                 <th class="dokumen_pelantikan">Dokumen Pelantikan</th>
-                                                <th class="aksi">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -942,9 +932,9 @@
                                         <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
                                         <td class="unit_organisasi"><center>{{ $result_jabatan->unit_organisasi }}</center></td>
                                         <td class="no_sk"><center>{{ $result_jabatan->no_sk }}</center></td>
-                                        <td class="tanggal_sk"><center>{{ $result_jabatan->tanggal_sk }}</center></td>
-                                        <td class="tmt_jabatan"><center>{{ $result_jabatan->tmt_jabatan }}</center></td>
-                                        <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_jabatan->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
+                                        <td class="tmt_jabatan"><center>{{ \Carbon\Carbon::parse($result_jabatan->tmt_jabatan)->formatLocalized('%d %B %Y') }}</center></td>
+                                        <td class="tmt_pelantikan"><center>{{ \Carbon\Carbon::parse($result_jabatan->tmt_pelantikan)->formatLocalized('%d %B %Y') }}</center></td>
                                         <td class="dokumen_sk_jabatan">
                                             <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
                                                 target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
@@ -955,7 +945,7 @@
                                         </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
-                                        <td class="text-right">
+                                        {{-- <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -970,7 +960,7 @@
                                                         Delete</a>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                                         </tbody>
@@ -1011,8 +1001,8 @@
                                         <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
                                         <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
                                         <td class="no_sertifikat"><center>{{ $result_diklat->no_sertifikat }}</center></td>
-                                        <td class="tanggal_mulai"><center>{{ $result_diklat->tanggal_mulai }}</center></td>
-                                        <td class="tanggal_selesai"><center>{{ $result_diklat->tanggal_selesai }}</center></td>
+                                        <td class="tanggal_mulai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_mulai)->formatLocalized('%d %B %Y') }}</center></td>
+                                        <td class="tanggal_selesai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_selesai)->formatLocalized('%d %B %Y') }}</center></td>
                                         <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
                                         <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
                                         <td class="dokumen_diklat">
@@ -1022,7 +1012,7 @@
                                         
 
                                         {{-- Edit dan Hapus data  --}}
-                                        <td class="text-right">
+                                        {{-- <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -1037,7 +1027,7 @@
                                                         Delete</a>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                                     </tbody>
@@ -1123,7 +1113,7 @@
                                     </div>
                                 </div>
                                 <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
                                 </div>
                             </form>
                         </div>
@@ -1148,9 +1138,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block"
-                                                src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}"
-                                                alt="{{ Auth::user()->name }}">
+                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file" id="upload" name="upload">
@@ -1159,28 +1147,23 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="hidden" class="form-control" id="name"
-                                                        name="name" value="{{ Auth::user()->name }}">
-                                                    <input type="hidden" class="form-control" id="user_id"
-                                                        name="user_id" value="{{ Auth::user()->user_id }}">
-                                                    <input type="hidden" class="form-control" id="email"
-                                                        name="email" value="{{ Auth::user()->email }}">
+                                                    <input type="hidden" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}">
+                                                    <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    <input type="hidden" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Tanggal Lahir</label>
                                                     <div class="cal-icon">
-                                                        <input class="form-control datetimepicker" type="text"
-                                                            id="birthDate" name="birthDate">
+                                                        <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Alamat</label>
-                                                    <input type="text" class="form-control" id="alamat"
-                                                        name="alamat">
+                                                    <input type="text" class="form-control" id="alamat" name="alamat">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1197,7 +1180,7 @@
                                     </div>
                                 </div>
                                 <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
                                 </div>
                             </form>
                         </div>
