@@ -224,6 +224,7 @@ class UserManagementController extends Controller
     public function profileEmployee($user_id)
     {
         $user = DB::table('users')
+            ->leftJoin('personal_information as pr', 'pr.user_id', 'users.user_id')
             ->leftJoin('profile_information as pi', 'pi.user_id', 'users.user_id')
             ->leftJoin('riwayat_pendidikan as rp', 'rp.user_id', 'users.user_id')
             ->leftJoin('riwayat_golongan as rg', 'rg.user_id', 'users.user_id')
@@ -233,6 +234,15 @@ class UserManagementController extends Controller
             ->leftJoin('posisi_jabatan as pj', 'pj.user_id', 'users.user_id')
             ->select(
                 'users.*',
+                'pr.passport_no',
+                'pr.passport_expiry_date',
+                'pr.tel',
+                'pr.nationality',
+                'pr.religion',
+                'pr.marital_status',
+                'pr.employment_of_spouse',
+                'pr.children',
+
                 'pi.name',
                 'pi.user_id',
                 'pi.email',
@@ -341,6 +351,7 @@ class UserManagementController extends Controller
             )
             ->where('users.user_id', $user_id)->get();
         $users = DB::table('users')
+            ->leftJoin('personal_information as pr', 'pr.user_id', 'users.user_id')
             ->leftJoin('profile_information as pi', 'pi.user_id', 'users.user_id')
             ->leftJoin('riwayat_pendidikan as rp', 'rp.user_id', 'users.user_id')
             ->leftJoin('riwayat_golongan as rg', 'rg.user_id', 'users.user_id')
@@ -350,6 +361,15 @@ class UserManagementController extends Controller
             ->leftJoin('posisi_jabatan as pj', 'pj.user_id', 'users.user_id')
             ->select(
                 'users.*',
+                'pr.passport_no',
+                'pr.passport_expiry_date',
+                'pr.tel',
+                'pr.nationality',
+                'pr.religion',
+                'pr.marital_status',
+                'pr.employment_of_spouse',
+                'pr.children',
+
                 'pi.name',
                 'pi.user_id',
                 'pi.email',
