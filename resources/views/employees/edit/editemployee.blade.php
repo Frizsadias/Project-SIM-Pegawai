@@ -31,11 +31,17 @@
                             <h4 class="card-title mb-0">Edit Pegawai</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('all/employee/update') }}" method="POST">
+                            <form action="{{ route('daftar/pegawai/update') }}" method="POST">
                                 @csrf
                                 <input type="hidden" class="form-control" id="id" name="id" value="{{ $employees[0]->id }}">
                                 <div class="form-group row">
-                                    <label class="col-form-label col-md-2">Nama Lengkap</label>
+                                    <label class="col-form-label col-md-2">ID Pegawai</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="employee_id" name="employee_id" value="{{ $employees[0]->employee_id }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-2">Nama Akun</label>
                                     <div class="col-md-10">
                                         <input type="text" class="form-control" id="name" name="name" value="{{ $employees[0]->name }}">
                                     </div>
@@ -46,33 +52,10 @@
                                         <input type="email" class="form-control" id="email" name="email" value="{{ $employees[0]->email }}">
                                     </div>
                                 </div>
-                                {{-- <div class="form-group row">
-                                    <label class="col-form-label col-md-2">Tanggal Lahir</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control datetimepicker" id="birth_date" name="birth_date" value="{{ $employees[0]->birth_date }}">
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="form-group row">
-                                    <label class="col-form-label col-md-2">Jenis Kelamin</label>
-                                    <div class="col-md-10">
-                                        <select class="select form-control" id="gender" name="gender">
-                                            <option value="{{ $employees[0]->gender }}" {{ ( $employees[0]->gender == $employees[0]->gender) ? 'selected' : '' }}>{{ $employees[0]->gender }} </option>
-                                            <option value="Laki-Laki">Laki-Laki</option>
-                                            <option value="Perempuan">Perempuan</option>
-                                        </select>
-                                    </div>
-                                </div> --}}
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-2">ID Pegawai</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="employee_id" name="employee_id" value="{{ $employees[0]->employee_id }}" readonly>
-                                    </div>
-                                </div>
-
                                 <div class="form-group row">
                                     <label class="col-form-label col-md-2"></label>
                                     <div class="col-md-10">
-                                        <button type="submit" class="btn btn-primary submit-btn">Update</button>
+                                        <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
                                     </div>
                                 </div>
                             </form>

@@ -204,9 +204,9 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('daftar/pegawai/card', 'cardAllEmployee')->middleware('auth')->name('daftar/pegawai/card');
     Route::get('daftar/pegawai/list', 'listAllEmployee')->middleware('auth')->name('daftar/pegawai/list');
     Route::post('daftar/pegawai/save', 'saveRecord')->middleware('auth')->name('daftar/pegawai/save');
-    Route::get('all/employee/view/edit/{employee_id}', 'viewRecord');
-    Route::post('all/employee/update', 'updateRecord')->middleware('auth')->name('all/employee/update');
-    Route::get('all/employee/delete/{employee_id}', 'deleteRecord')->middleware('auth');
+    Route::get('daftar/pegawai/view/edit/{employee_id}', 'viewRecord');
+    Route::post('daftar/pegawai/update', 'updateRecord')->middleware('auth')->name('daftar/pegawai/update');
+    Route::get('daftar/pegawai/delete/{employee_id}', 'deleteRecord')->middleware('auth');
     Route::post('daftar/pegawai/search', 'employeeSearch')->name('daftar/pegawai/search');
     Route::post('daftar/pegawai/list/search', 'employeeListSearch')->name('daftar/pegawai/list/search');
 
