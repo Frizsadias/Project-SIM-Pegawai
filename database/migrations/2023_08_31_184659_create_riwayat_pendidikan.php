@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('riwayat_pendidikan', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->nullable();
-            $table->string('tingkat_pendidikan')->nullable();
+            $table->string('ting_ped')->nullable();
             $table->string('pendidikan')->nullable();
             $table->string('tahun_lulus')->nullable();
             $table->string('no_ijazah')->nullable();

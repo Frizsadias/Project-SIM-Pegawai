@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('jenis_kenaikan_pangkat')->nullable();
             $table->string('masa_kerja_golongan_tahun')->nullable();
             $table->string('masa_kerja_golongan_bulan')->nullable();
-            $table->string('tmt_golongan')->nullable();
+            $table->string('tmt_golongan_riwayat')->nullable();
             $table->string('no_teknis_bkn')->nullable();
             $table->string('tanggal_teknis_bkn')->nullable();
             $table->string('no_sk_golongan')->nullable();

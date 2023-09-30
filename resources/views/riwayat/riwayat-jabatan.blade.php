@@ -67,10 +67,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="jenis_jabatan"> Jenis Jabatan</th>
+                                    <th class="jenis_jabatan_riwayat"> Jenis Jabatan</th>
                                     <th class="satuan_kerja">Satuan Kerja</th>
                                     <th class="satuan_kerja_induk">Satuan Kerja Induk</th>
-                                    <th class="unit_organisasi">Unit Organisasi</th>
+                                    <th class="unit_organisasi_riwayat">Unit Organisasi</th>
                                     <th class="no_sk">No SK</th>
                                     <th class="tanggal_sk">Tanggal SK</th>
                                     <th class="tmt_jabatan">TMT Jabatan</th>
@@ -85,10 +85,10 @@
                                     <tr>
                                         <td><center>{{ ++$sqljabatan }}</center></td>
                                         <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
-                                        <td class="jenis_jabatan"><center>{{ $result_jabatan->jenis_jabatan }}</center></td>
+                                        <td class="jenis_jabatan_riwayat"><center>{{ $result_jabatan->jenis_jabatan_riwayat }}</center></td>
                                         <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
                                         <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
-                                        <td class="unit_organisasi"><center>{{ $result_jabatan->unit_organisasi }}</center></td>
+                                        <td class="unit_organisasi_riwayat"><center>{{ $result_jabatan->unit_organisasi_riwayat }}</center></td>
                                         <td class="no_sk"><center>{{ $result_jabatan->no_sk }}</center></td>
                                         <td class="tanggal_sk"><center>{{ $result_jabatan->tanggal_sk }}</center></td>
                                         <td class="tmt_jabatan"><center>{{ $result_jabatan->tmt_jabatan }}</center></td>
@@ -157,7 +157,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Jabatan</label>
-                                        <select class="form-control" name="jenis_jabatan" required>
+                                        <select class="form-control" name="jenis_jabatan_riwayat" required>
                                             <option selected disabled> --Pilih Jenis Jabatan --</option>
                                             <option value="Jabatan Struktural">Jabatan Struktural</option>
                                             <option value="Jabatan Fungsional Tertentu">Jabatan Fungsional Tertentu</option>
@@ -182,7 +182,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Unit Organisasi</label>
-                                        <input class="form-control" type="text" name="unit_organisasi" required>
+                                        <input class="form-control" type="text" name="unit_organisasi_riwayat" required>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +260,7 @@
                                     <div class="form-group">
                                         <label>Jenis Jabatan
                                         </label>
-                                        <select name="jenis_jabatan" class="select" id="e_jenis_jabatan">
+                                        <select name="jenis_jabatan_riwayat" class="select" id="e_jenis_jabatan_riwayat">
                                             <option selected disabled> --Pilih Jenis Jabatan --</option>
                                             <option>Jabatan Struktural</option>
                                             <option>Jabatan Fungsional Tertentu</option>
@@ -285,7 +285,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Unit Organisasi</label>
-                                        <input type="text" class="form-control" name="unit_organisasi" id="e_unit_organisasi" value="">
+                                        <input type="text" class="form-control" name="unit_organisasi_riwayat" id="e_unit_organisasi_riwayat" value="">
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +387,7 @@
             $('#e_id').val(_this.find('.id').text());
             $('#e_satuan_kerja').val(_this.find('.satuan_kerja').text());
             $('#e_satuan_kerja_induk').val(_this.find('.satuan_kerja_induk').text());
-            $('#e_unit_organisasi').val(_this.find('.unit_organisasi').text());
+            $('#e_unit_organisasi_riwayat').val(_this.find('.unit_organisasi_riwayat').text());
             $('#e_no_sk').val(_this.find('.no_sk').text());
             $('#e_tanggal_sk').val(_this.find('.tanggal_sk').text());
             $('#e_tmt_jabatan').val(_this.find('.tmt_jabatan').text());
@@ -395,10 +395,10 @@
             $('#e_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
             $('#e_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
 
-            var jenis_jabatan = (_this.find(".jenis_jabatan").text());
-            var _option = '<option selected value="' + jenis_jabatan + '">' + _this.find('.jenis_jabatan').text() +
+            var jenis_jabatan_riwayat = (_this.find(".jenis_jabatan_riwayat").text());
+            var _option = '<option selected value="' + jenis_jabatan_riwayat + '">' + _this.find('.jenis_jabatan_riwayat').text() +
                 '</option>'
-            $(_option).appendTo("#e_jenis_jabatan");
+            $(_option).appendTo("#e_jenis_jabatan_riwayat");
         });
     </script>
 

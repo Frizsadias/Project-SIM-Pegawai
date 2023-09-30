@@ -71,7 +71,7 @@
                                     <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
                                     <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan (Tahun)</th>
                                     <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan (Bulan)</th>
-                                    <th class="tmt_golongan">TMT Golongan</th>
+                                    <th class="tmt_golongan_riwayat">TMT Golongan</th>
                                     <th class="no_teknis_bkn">No Teknis BKN</th>
                                     <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
                                     <th class="no_sk_golongan">No SK</th>
@@ -90,7 +90,7 @@
                                         <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
                                         <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
                                         <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }}</center></td>
-                                        <td class="tmt_golongan"><center>{{ $result_golongan->tmt_golongan }}</center></td>
+                                        <td class="tmt_golongan_riwayat"><center>{{ $result_golongan->tmt_golongan_riwayat }}</center></td>
                                         <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
                                         <td class="tanggal_teknis_bkn"><center>{{ $result_golongan->tanggal_teknis_bkn }}</center></td>
                                         <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
@@ -190,7 +190,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Golongan</label>
-                                        <input type="date" class="form-control" name="tmt_golongan" required>
+                                        <input type="date" class="form-control" name="tmt_golongan_riwayat" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -292,7 +292,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Golongan</label>
-                                        <input type="date" class="form-control" name="tmt_golongan" id="e_tmt_golongan" value="">
+                                        <input type="date" class="form-control" name="tmt_golongan_riwayat" id="e_tmt_golongan_riwayat" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -397,7 +397,7 @@
             $('#e_jenis_kenaikan_pangkat').val(_this.find('.jenis_kenaikan_pangkat').text());
             $('#e_masa_kerja_golongan_tahun').val(_this.find('.masa_kerja_golongan_tahun').text());
             $('#e_masa_kerja_golongan_bulan').val(_this.find('.masa_kerja_golongan_bulan').text());
-            $('#e_tmt_golongan').val(_this.find('.tmt_golongan').text());
+            $('#e_tmt_golongan_riwayat').val(_this.find('.tmt_golongan_riwayat').text());
             $('#e_no_teknis_bkn').val(_this.find('.no_teknis_bkn').text());
             $('#e_tanggal_teknis_bkn').val(_this.find('.tanggal_teknis_bkn').text());
             $('#e_no_sk_golongan').val(_this.find('.no_sk_golongan').text());

@@ -124,635 +124,732 @@
             </div>
 
             <div class="tab-content">
-                <!-- Profile Info Tab -->
+
+                <!-- Profile Pegawai Tab -->
                 <div id="profil_pegawai" class="pro-overview tab-pane fade show active">
                     <div class="row">
                         <div class="col-md-12 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Profil Pegawai <a href="#" class="edit-icon"
-                                            data-toggle="modal" data-target="#profil_pegawai_modal"><i
-                                                class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Profil Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal"><i class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
-                                        <!-- Ditarik untuk fitur edit -->
-                                        <input type="hidden" class="form-control" id="name" name="name"
-                                            value="{{ Auth::user()->name }}">
-                                        <input type="hidden" class="form-control" id="user_id" name="user_id"
-                                            value="{{ Auth::user()->user_id }}">
-                                        <input type="hidden" class="form-control" id="email" name="email"
-                                            value="{{ Auth::user()->email }}">
+                                        @foreach ($profilPegawai as $sqlprofilpegawai => $result_profilpegawai)
                                         <li>
-                                            <div class="title">NIP</div>
-                                            @if (!empty($profilPegawai->nip))
-                                                <div class="text">{{ $profilPegawai->nip }}</div>
+                                            <div class="title">Nama</div>
+                                            @if (!empty($result_profilpegawai->nama))
+                                                <div class="text">{{ $result_profilpegawai->nama }}</div>
                                             @else
-                                                <div class="text">NIP</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
-                                        {{-- <li>
-                                            <div class="title">Nama</div>
-                                            @if (!empty($profilPegawai->name))
-                                                <div class="text">{{ $profilPegawai->name }}</div>
+                                        <li>
+                                            <div class="title">NIP</div>
+                                            @if (!empty($result_profilpegawai->nip))
+                                                <div class="text">{{ $result_profilpegawai->nip }}</div>
                                             @else
-                                                <div class="text">Nama</div>
+                                                <div class="text">N/A</div>
                                             @endif
-                                        </li> --}}
+                                        </li>
                                         <li>
                                             <div class="title">Gelar Depan</div>
-                                            @if (!empty($profilPegawai->gelar_depan))
-                                                <div class="text">{{ $profilPegawai->gelar_depan }}</div>
+                                            @if (!empty($result_profilpegawai->gelar_depan))
+                                                <div class="text">{{ $result_profilpegawai->gelar_depan }}</div>
                                             @else
-                                                <div class="text">Gelar Belakang</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Gelar Belakang</div>
-                                            @if (!empty($profilPegawai->gelar_belakang))
-                                                <div class="text">{{ $profilPegawai->gelar_belakang }}</div>
+                                            @if (!empty($result_profilpegawai->gelar_belakang))
+                                                <div class="text">{{ $result_profilpegawai->gelar_belakang }}</div>
                                             @else
-                                                <div class="text">Gelar Belakang</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Tempat Lahir</div>
-                                            @if (!empty($profilPegawai->tempat_lahir))
-                                                <div class="text">{{ $profilPegawai->tempat_lahir }}</div>
+                                            @if (!empty($result_profilpegawai->tempat_lahir))
+                                                <div class="text">{{ $result_profilpegawai->tempat_lahir }}</div>
                                             @else
-                                                <div class="text">Tempat Lahir</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Tanggal Lahir</div>
-                                            @if (!empty($profilPegawai->tgl_lahir))
-                                                <div class="text">{{ $profilPegawai->tgl_lahir }}</div>
+                                            @if (!empty($result_profilpegawai->tanggal_lahir))
+                                                <div class="text">{{ $result_profilpegawai->tanggal_lahir }}</div>
                                             @else
-                                                <div class="text">Tanggal Lahir</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Jenis Kelamin</div>
-                                            @if (!empty($profilPegawai->jk))
-                                                <div class="text">{{ $profilPegawai->jk }}</div>
+                                            @if (!empty($result_profilpegawai->jenis_kelamin))
+                                                <div class="text">{{ $result_profilpegawai->jenis_kelamin }}</div>
                                             @else
-                                                <div class="text">Jenis Kelamin</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
-                                        <li>
+                                         <li>
                                             <div class="title">Agama</div>
-                                            @if (!empty($profilPegawai->agama))
-                                                <div class="text">{{ $profilPegawai->agama }}</div>
+                                            @if (!empty($result_profilpegawai->agama))
+                                                <div class="text">{{ $result_profilpegawai->agama }}</div>
                                             @else
-                                                <div class="text">Agama</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
+                                        @foreach ($sqluser as $sql_email)
                                         <li>
                                             <div class="title">E-mail</div>
-                                            @if (!empty($profilPegawai->email))
-                                                <div class="text">{{ $profilPegawai->email }}</div>
+                                            @if (!empty($sql_email->email))
+                                                <div class="text">{{ $sql_email->email }}</div>
                                             @else
-                                                <div class="text">E-mail</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
+                                        @endforeach
                                         <li>
                                             <div class="title">Jenis Dokumen</div>
-                                            @if (!empty($profilPegawai->jenis_kelamin))
-                                                <div class="text">{{ $profilPegawai->jenis_dokumen }}</div>
+                                            @if (!empty($result_profilpegawai->jenis_dokumen))
+                                                <div class="text">{{ $result_profilpegawai->jenis_dokumen }}</div>
                                             @else
-                                                <div class="text">Jenis Dokumen</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Nomor Dokumen</div>
-                                            @if (!empty($profilPegawai->no_dokumen))
-                                                <div class="text">{{ $profilPegawai->no_dokumen }}</div>
+                                            @if (!empty($result_profilpegawai->no_dokumen))
+                                                <div class="text">{{ $result_profilpegawai->no_dokumen }}</div>
                                             @else
-                                                <div class="text">Nomor Dokumen</div>
+                                                <div class="text">N/An</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Kelurahan</div>
-                                            @if (!empty($profilPegawai->kelurahan))
-                                                <div class="text">{{ $profilPegawai->kelurahan }}</div>
+                                            @if (!empty($result_profilpegawai->kelurahan))
+                                                <div class="text">{{ $result_profilpegawai->kelurahan }}</div>
                                             @else
-                                                <div class="text">Kelurahan</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Kecamatan</div>
-                                            @if (!empty($profilPegawai->kecamatan))
-                                                <div class="text">{{ $profilPegawai->kecamatan }}</div>
+                                            @if (!empty($result_profilpegawai->kecamatan))
+                                                <div class="text">{{ $result_profilpegawai->kecamatan }}</div>
                                             @else
-                                                <div class="text">Kecamatan</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Kota</div>
-                                            @if (!empty($profilPegawai->kota))
-                                                <div class="text">{{ $profilPegawai->kota }}</div>
+                                            @if (!empty($result_profilpegawai->kota))
+                                                <div class="text">{{ $result_profilpegawai->kota }}</div>
                                             @else
-                                                <div class="text">Kota</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Provinsi</div>
-                                            @if (!empty($profilPegawai->provinsi))
-                                                <div class="text">{{ $profilPegawai->provinsi }}</div>
+                                            @if (!empty($result_profilpegawai->provinsi))
+                                                <div class="text">{{ $result_profilpegawai->provinsi }}</div>
                                             @else
-                                                <div class="text">Provinsi</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Kode Pos</div>
-                                            @if (!empty($profilPegawai->kode_pos))
-                                                <div class="text">{{ $profilPegawai->kode_pos }}</div>
+                                            @if (!empty($result_profilpegawai->kode_pos))
+                                                <div class="text">{{ $result_profilpegawai->kode_pos }}</div>
                                             @else
-                                                <div class="text">Kode Pos</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Nomor HP</div>
-                                            @if (!empty($profilPegawai->no_hp))
-                                                <div class="text">{{ $profilPegawai->no_hp }}</div>
+                                            @if (!empty($result_profilpegawai->no_hp))
+                                                <div class="text">{{ $result_profilpegawai->no_hp }}</div>
                                             @else
-                                                <div class="text">Nomor HP</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Nomor Telepon</div>
-                                            @if (!empty($profilPegawai->no_telp))
-                                                <div class="text">{{ $profilPegawai->no_telp }}</div>
+                                            @if (!empty($result_profilpegawai->no_telp))
+                                                <div class="text">{{ $result_profilpegawai->no_telp }}</div>
                                             @else
-                                                <div class="text">Nomor Telepon</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Jenis Pegawai</div>
-                                            @if (!empty($profilPegawai->jenis_pegawai))
-                                                <div class="text">{{ $profilPegawai->jenis_pegawai }}</div>
+                                            @if (!empty($result_profilpegawai->jenis_pegawai))
+                                                <div class="text">{{ $result_profilpegawai->jenis_pegawai }}</div>
                                             @else
-                                                <div class="text">Jenis Pegawai</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Kedudukan PNS</div>
-                                            @if (!empty($profilPegawai->kedudukan_pns))
-                                                <div class="text">{{ $profilPegawai->kedudukan_pns }}</div>
+                                            @if (!empty($result_profilpegawai->kedudukan_pns))
+                                                <div class="text">{{ $result_profilpegawai->kedudukan_pns }}</div>
                                             @else
-                                                <div class="text">Kedudukan PNS</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Status Pegawai</div>
-                                            @if (!empty($profilPegawai->status_pegawai))
-                                                <div class="text">{{ $profilPegawai->status_pegawai }}</div>
+                                            @if (!empty($result_profilpegawai->status_pegawai))
+                                                <div class="text">{{ $result_profilpegawai->status_pegawai }}</div>
                                             @else
-                                                <div class="text">Status Pegawai</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">TMT PNS</div>
-                                            @if (!empty($profilPegawai->tmt_pns))
-                                                <div class="text">{{ $profilPegawai->tmt_pns }}</div>
+                                            @if (!empty($result_profilpegawai->tmt_pns))
+                                                <div class="text">{{ $result_profilpegawai->tmt_pns }}</div>
                                             @else
-                                                <div class="text">TMT PNS</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">No. Seri Kartu Pegawai</div>
-                                            @if (!empty($profilPegawai->no_seri_karpeg))
-                                                <div class="text">{{ $profilPegawai->no_seri_karpeg }}</div>
+                                            @if (!empty($result_profilpegawai->no_seri_karpeg))
+                                                <div class="text">{{ $result_profilpegawai->no_seri_karpeg }}</div>
                                             @else
-                                                <div class="text">No. Seri Kartu Pegawai</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">TMT CPNS</div>
-                                            @if (!empty($profilPegawai->tmt_cpns))
-                                                <div class="text">{{ $profilPegawai->tmt_cpns }}</div>
+                                            @if (!empty($result_profilpegawai->tmt_cpns))
+                                                <div class="text">{{ $result_profilpegawai->tmt_cpns }}</div>
                                             @else
-                                                <div class="text">TMT CPNS</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Tingkat Pendidikan</div>
-                                            @if (!empty($profilPegawai->tingkat_pendidikan))
-                                                <div class="text">{{ $profilPegawai->tingkat_pegawai }}</div>
+                                            @if (!empty($result_profilpegawai->tingkat_pendidikan))
+                                                <div class="text">{{ $result_profilpegawai->tingkat_pendidikan }}</div>
                                             @else
-                                                <div class="text">Tingkat Pegawai</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Pendidikan Terakhir</div>
-                                            @if (!empty($profilPegawai->pendidikan_terakhir))
-                                                <div class="text">{{ $profilPegawai->pendidikan_terakhir }}</div>
+                                            @if (!empty($result_profilpegawai->pendidikan_terakhir))
+                                                <div class="text">{{ $result_profilpegawai->pendidikan_terakhir }}</div>
                                             @else
-                                                <div class="text">Pendidikan Terakhir</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <!-- Profil Pegawai Modal -->
-                        <div id="profil_pegawai_modal" class="modal custom-modal fade" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Profil Pegawai</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ route('user/information/save') }}" method="POST">
-                                            @csrf
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>NIP <span class="text-danger">*</span></label>
-                                                        <div class="form-group">
-                                                            <input class="form-control @error('nip') is-invalid @enderror"
-                                                                type="text" name="nip" value="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{-- <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Nama <span class="text-danger">*</span></label>
-                                                        <input class="form-control @error('nama') is-invalid @enderror"
-                                                            type="text" name="nama" value="">
-                                                    </div>
-                                                </div> --}}
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Gelar Depan <span class="text-danger">*</span></label>
-                                                        <input
-                                                            class="form-control @error('gelar_depan') is-invalid @enderror"
-                                                            type="text" name="gelar_depan" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Gelar Belakang <span class="text-danger">*</span></label>
-                                                        <input
-                                                            class="form-control @error('gelar_belakang') is-invalid @enderror"
-                                                            type="text" name="gelar_belakang" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Tempat Lahir <span class="text-danger">*</span></label>
-                                                        <div class="form-group">
-                                                            <input
-                                                                class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                                                type="text" name="tempat_lahir" value="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                        <div class="form-group">
-                                                            <input
-                                                                class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                                                type="text" name="tanggal_lahir" value="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Agama</label>
-                                                        <input class="form-control @error('agama') is-invalid @enderror"
-                                                            type="text" name="agama" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>E-mail </label>
-                                                        <input class="form-control @error('email') is-invalid @enderror"
-                                                            type="email" name="email" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Jenis Dokumen </label>
-                                                        <input
-                                                            class="form-control @error('jenis_dokumen') is-invalid @enderror"
-                                                            type="text" name="jenis_dokumen" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Nomor Dokumen </label>
-                                                        <input
-                                                            class="form-control @error('no_dokumen') is-invalid @enderror"
-                                                            type="number" name="no_dokumen" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Kelurahan </label>
-                                                        <input
-                                                            class="form-control @error('kelurahan') is-invalid @enderror"
-                                                            type="text" name="kelurahan" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Kecamatan </label>
-                                                        <input
-                                                            class="form-control @error('kecamatan') is-invalid @enderror"
-                                                            type="text" name="kecamatan" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Kota </label>
-                                                        <input class="form-control @error('kota') is-invalid @enderror"
-                                                            type="text" name="kota" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Provinsi </label>
-                                                        <input
-                                                            class="form-control @error('provinsi') is-invalid @enderror"
-                                                            type="text" name="provinsi" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Kode Pos </label>
-                                                        <input
-                                                            class="form-control @error('kode_pos') is-invalid @enderror"
-                                                            type="kode_pos" name="kecamatan" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Nomor HP </label>
-                                                        <input class="form-control @error('no_hp') is-invalid @enderror"
-                                                            type="number" name="no_hp" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Nomor Telepon </label>
-                                                        <input class="form-control @error('no_telp') is-invalid @enderror"
-                                                            type="number" name="no_telp" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Jenis Pegawai </label>
-                                                        <input
-                                                            class="form-control @error('jenis_pegawai') is-invalid @enderror"
-                                                            type="text" name="jenis_pegawai" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Kedudukan PNS </label>
-                                                        <input
-                                                            class="form-control @error('kedudukan_pns') is-invalid @enderror"
-                                                            type="text" name="kedudukan_pns" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Status Pegawai </label>
-                                                        <input
-                                                            class="form-control @error('status_pegawai') is-invalid @enderror"
-                                                            type="text" name="status_pegawai" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>TMT PNS </label>
-                                                        <input class="form-control @error('tmt_pns') is-invalid @enderror"
-                                                            type="text" name="tmt_pns" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>No. Seri Kartu Pegawai </label>
-                                                        <input
-                                                            class="form-control @error('no_seri_karpeg') is-invalid @enderror"
-                                                            type="number" name="no_seri_karpeg" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>TMT CPNS </label>
-                                                        <input
-                                                            class="form-control @error('tmt_cpns') is-invalid @enderror"
-                                                            type="text" name="tmt_cpns" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Tingkat Pendidikan </label>
-                                                        <input
-                                                            class="form-control @error('tingkat_pendidikan') is-invalid @enderror"
-                                                            type="text" name="tingkat_pendidikan" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pendidikan Terakhir </label>
-                                                        <input
-                                                            class="form-control @error('pendidikan_terakhir') is-invalid @enderror"
-                                                            type="text" name="pendidikan_terakhir" value="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Update</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Profil Pegawai Modal -->
                     </div>
+
                     <div class="row">
                         <div class="col-md-12 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Posisi & Jabatan Pegawai <a href="#" class="edit-icon"
-                                            data-toggle="modal" data-target="#posisi_jabatan_modal"><i
-                                                class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Posisi & Jabatan Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal"><i class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
-                                        <!-- Ditarik untuk fitur edit -->
-                                        <input type="hidden" class="form-control" id="name" name="name"
-                                            value="{{ Auth::user()->name }}">
-                                        <input type="hidden" class="form-control" id="user_id" name="user_id"
-                                            value="{{ Auth::user()->user_id }}">
-                                        <input type="hidden" class="form-control" id="email" name="email"
-                                            value="{{ Auth::user()->email }}">
+                                        @foreach ($posisiJabatan as $sqlposisijabatan => $result_posisijabatan)
                                         <li>
                                             <div class="title">Unit Organisasi</div>
-                                            @if (!empty($posisiJabatan->name_primary))
-                                                <div class="text">{{ $posisiJabatan->name_primary }}</div>
+                                            @if (!empty($result_posisijabatan->unit_organisasi))
+                                            <div class="text">{{ $result_posisijabatan->unit_organisasi }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Unit Organisasi Induk</div>
-                                            @if (!empty($posisiJabatan->relationship_primary))
-                                                <div class="text">{{ $posisiJabatan->relationship_primary }}</div>
+                                            @if (!empty($result_posisijabatan->unit_organisasi_induk))
+                                            <div class="text">{{ $result_posisijabatan->unit_organisasi_induk }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Jenis Jabatan </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->jenis_jabatan))
+                                            <div class="text">{{ $result_posisijabatan->jenis_jabatan }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Eselon </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->eselon))
+                                            <div class="text">{{ $result_posisijabatan->eselon }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Jabatan </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->jabatan))
+                                            <div class="text">{{ $result_posisijabatan->jabatan }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">TMT </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->tmt))
+                                            <div class="text">{{ $result_posisijabatan->tmt }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Lokasi Kerja </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->lokasi_kerja))
+                                            <div class="text">{{ $result_posisijabatan->lokasi_kerja }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Golongan Ruang Awal </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->gol_ruang_awal))
+                                            <div class="text">{{ $result_posisijabatan->gol_ruang_awal }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Golongan Ruang Akhir </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->gol_ruang_akhir))
+                                            <div class="text">{{ $result_posisijabatan->gol_ruang_akhir }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">TMT Golongan </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->tmt_golongan))
+                                            <div class="text">{{ $result_posisijabatan->tmt_golongan }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Gaji Pokok </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->gaji_pokok))
+                                            <div class="text">{{ $result_posisijabatan->gaji_pokok }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Masa Kerja (Tahun) </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->masa_kerja_tahun))
+                                            <div class="text">{{ $result_posisijabatan->masa_kerja_tahun }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Masa Kerja (Bulan) </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->masa_kerja_bulan))
+                                            <div class="text">{{ $result_posisijabatan->masa_kerja_bulan }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">No SPMT </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->no_spmt))
+                                            <div class="text">{{ $result_posisijabatan->no_spmt }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">Tanggal SPMT </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->tanggal_spmt))
+                                            <div class="text">{{ $result_posisijabatan->tanggal_spmt }}</div>
                                             @else
-                                                <div class="text">N/A</div>
+                                            <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
                                             <div class="title">KPPN </div>
-                                            @if (!empty($posisiJabatan->phone_primary) && !empty($posisiJabatan->phone_2_primary))
-                                                <div class="text">
-                                                    {{ $posisiJabatan->phone_primary }},{{ $posisiJabatan->phone_2_primary }}
-                                                </div>
+                                            @if (!empty($result_posisijabatan->kppn))
+                                            <div class="text">{{ $result_posisijabatan->kppn }}</div>
                                             @else
-                                                <div class="text">N/A</div>
-                                                @endif
-                                            </li>
-                                        </ul>
-                                    </div>
+                                            <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
+                <!-- /Profile Pegawai Tab -->
+                
+                <!-- Profil Pegawai Modal -->
+                <div id="profil_pegawai_modal" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Profil Pegawai</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('user/propeg/save') }}" method="POST">
+                                @csrf
+                                <input type="hidden" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}" readonly>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nama <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $result_profilpegawai->nama }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>NIP <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_profilpegawai->nip }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gelar Depan <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $result_profilpegawai->gelar_depan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gelar Belakang <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $result_profilpegawai->gelar_belakang }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tempat Lahir <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $result_profilpegawai->tempat_lahir }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_profilpegawai->tanggal_lahir }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Jenis Kelamin <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $result_profilpegawai->jenis_kelamin }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Agama</label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $result_profilpegawai->agama }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Jenis Dokumen </label>
+                                            <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $result_profilpegawai->jenis_dokumen }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Nomor Dokumen </label>
+                                            <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_profilpegawai->no_dokumen }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Kelurahan </label>
+                                            <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $result_profilpegawai->kelurahan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Kecamatan </label>
+                                            <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $result_profilpegawai->kecamatan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kota </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $result_profilpegawai->kota }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Provinsi </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_profilpegawai->provinsi }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kode Pos </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $result_profilpegawai->kode_pos }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor HP </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $result_profilpegawai->no_hp }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_profilpegawai->no_telp }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $result_profilpegawai->jenis_pegawai }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $result_profilpegawai->kedudukan_pns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Status Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $result_profilpegawai->status_pegawai }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>TMT PNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_profilpegawai->tmt_pns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $result_profilpegawai->no_seri_karpeg }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>TMT CPNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_profilpegawai->tmt_cpns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $result_profilpegawai->tingkat_pendidikan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_profilpegawai->pendidikan_terakhir }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- /Profil Pegawai Modal -->
+
+                <!-- Posisi Jabatan Modal -->
+                <div id="posisi_jabatan_modal" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Profil Pegawai</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('user/propeg/save') }}" method="POST">
+                                @csrf
+                                <input type="hidden" class="form-control" name="user_id" value="{{ $result_posisijabatan->user_id }}" readonly>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Unit Organisasi <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('unit_organisasi') is-invalid @enderror" name="unit_organisasi" value="{{ $result_posisijabatan->unit_organisasi }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>NIP <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_posisijabatan->nip }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gelar Depan <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $result_posisijabatan->gelar_depan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gelar Belakang <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $result_posisijabatan->gelar_belakang }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tempat Lahir <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $result_posisijabatan->tempat_lahir }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_posisijabatan->tanggal_lahir }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Jenis Kelamin <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $result_posisijabatan->jenis_kelamin }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Agama</label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $result_posisijabatan->agama }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Jenis Dokumen </label>
+                                            <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $result_posisijabatan->jenis_dokumen }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Nomor Dokumen </label>
+                                            <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_posisijabatan->no_dokumen }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Kelurahan </label>
+                                            <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $result_posisijabatan->kelurahan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Kecamatan </label>
+                                            <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $result_posisijabatan->kecamatan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kota </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $result_posisijabatan->kota }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Provinsi </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_posisijabatan->provinsi }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kode Pos </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $result_posisijabatan->kode_pos }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor HP </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $result_posisijabatan->no_hp }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_posisijabatan->no_telp }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $result_posisijabatan->jenis_pegawai }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $result_posisijabatan->kedudukan_pns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Status Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $result_posisijabatan->status_pegawai }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>TMT PNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_posisijabatan->tmt_pns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $result_posisijabatan->no_seri_karpeg }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>TMT CPNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_posisijabatan->tmt_cpns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $result_posisijabatan->tingkat_pendidikan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_posisijabatan->pendidikan_terakhir }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- /Posisi Jabatan Modal -->
+                            
+                            <!-- Riwayat Pendidikan Tab -->
                             <div class="tab-pane fade" id="riwayat_pendidikan">    
                                 <div class="row">
                                     <div class="col-md-12">
@@ -760,7 +857,7 @@
                                             <table class="table table-striped custom-table mb-0 datatable">
                                                 <thead>
                                                     <th>No</th>
-                                                    <th class="tingkat_pendidikan">Tingkat Pendidikan</th>
+                                                    <th class="ting_ped">Tingkat Pendidikan</th>
                                                     <th class="pendidikan">Pendidikan</th>
                                                     <th class="tahun_lulus">Tahun Lulus</th>
                                                     <th class="no_ijazah">Nomor Ijazah</th>
@@ -775,271 +872,271 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
-                                    <tr>
-                                        <td><center>{{ ++$sqlpendidikan }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_pendidikan->user_id }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
-                                        <td class="tingkat_pendidikan"><center>{{ $result_pendidikan->tingkat_pendidikan }}</center></td>
-                                        <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
-                                        <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
-                                        <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
-                                        <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
-                                        <td class="gelar_depan"><center>{{ $result_pendidikan->gelar_depan }}</center></td>
-                                        <td class="gelar_belakang"><center>{{ $result_pendidikan->gelar_belakang }}</center></td>
-                                        <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
-                                        <td class="dokumen_transkrip">
-                                            <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                        </center></td>
-                                        <td class="dokumen_ijazah">
-                                            <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                        </center></td>
-                                        <td class="dokumen_gelar">
-                                            <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                        </center></td>
+                                                        <tr>
+                                                            <td><center>{{ ++$sqlpendidikan }}</center></td>
+                                                            <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
+                                                            <td class="ting_ped"><center>{{ $result_pendidikan->ting_ped }}</center></td>
+                                                            <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
+                                                            <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
+                                                            <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
+                                                            <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
+                                                            <td class="gelar_depan"><center>{{ $result_pendidikan->gelar_depan }}</center></td>
+                                                            <td class="gelar_belakang"><center>{{ $result_pendidikan->gelar_belakang }}</center></td>
+                                                            <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
+                                                            <td class="dokumen_transkrip">
+                                                                <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
+                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                            </center></td>
+                                                            <td class="dokumen_ijazah">
+                                                                <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
+                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                            </center></td>
+                                                            <td class="dokumen_gelar">
+                                                                <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
+                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                            </center></td>
 
-
-                                        {{-- Edit dan Hapus data  --}}
-                                        {{-- <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_riwayat_pendidikan" href="#"
-                                                        data-toggle="modal" data-target="#edit_riwayat_pendidikan"><i
-                                                            class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_riwayat_pendidikan" href="#"
-                                                        data-toggle="modal" data-target="#delete_riwayat_pendidikan"><i
-                                                            class="fa fa-trash-o m-r-5"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
-                                        </td> --}}
-                                    </tr>
-                                @endforeach
+                                                            {{-- Edit dan Hapus data  --}}
+                                                            {{-- <td class="text-right">
+                                                                <div class="dropdown dropdown-action">
+                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item edit_riwayat_pendidikan" href="#"
+                                                                            data-toggle="modal" data-target="#edit_riwayat_pendidikan"><i
+                                                                                class="fa fa-pencil m-r-5"></i>
+                                                                            Edit</a>
+                                                                        <a class="dropdown-item delete_riwayat_pendidikan" href="#"
+                                                                            data-toggle="modal" data-target="#delete_riwayat_pendidikan"><i
+                                                                                class="fa fa-trash-o m-r-5"></i>
+                                                                            Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </td> --}}
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
-                    
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Tempat Field Edit & Hapus -->
                             </div>
+                            <!-- /Riwayat Pendidikan Tab -->
 
-                        <div class="tab-pane fade" id="riwayat_golongan">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped custom-table mb-0 datatable">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th class="golongan">Golongan</th>
-                                                    <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
-                                                    <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan (Tahun)</th>
-                                                    <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan (Bulan)</th>
-                                                    <th class="tmt_golongan">TMT Golongan</th>
-                                                    <th class="no_teknis_bkn">No Teknis BKN</th>
-                                                    <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
-                                                    <th class="no_sk_golongan">No SK</th>
-                                                    <th class="tanggal_sk">Tanggal SK</th>
-                                                    <th class="dokumen_skkp">Dokumen SK KP</th>
-                                                    <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($riwayatGolongan as $sqlgolongan => $result_golongan)
-                                    <tr>
-                                        <td><center>{{ ++$sqlgolongan }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_golongan->user_id }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
-                                        <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
-                                        <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
-                                        <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
-                                        <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }}</center></td>
-                                        <td class="tmt_golongan"><center>{{ \Carbon\Carbon::parse($result_golongan->tmt_golongan)->formatLocalized('%d %B %Y') }}</center></td>
-                                        <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
-                                        <td class="tanggal_teknis_bkn"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_teknis_bkn)->formatLocalized('%d %B %Y') }}</center></td>
-                                        <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
-                                        <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
-                                        <td class="dokumen_skkp">
-                                            <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                        </center></td>
-                                        <td class="dokumen_teknis_kp">
-                                            <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                        </center></td>
+                            <!-- Riwayat Golongan Tab -->
+                            <div class="tab-pane fade" id="riwayat_golongan">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped custom-table mb-0 datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th class="golongan">Golongan</th>
+                                                        <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
+                                                        <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan (Tahun)</th>
+                                                        <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan (Bulan)</th>
+                                                        <th class="tmt_golongan_riwayat">TMT Golongan</th>
+                                                        <th class="no_teknis_bkn">No Teknis BKN</th>
+                                                        <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
+                                                        <th class="no_sk_golongan">No SK</th>
+                                                        <th class="tanggal_sk">Tanggal SK</th>
+                                                        <th class="dokumen_skkp">Dokumen SK KP</th>
+                                                        <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($riwayatGolongan as $sqlgolongan => $result_golongan)
+                                                        <tr>
+                                                            <td><center>{{ ++$sqlgolongan }}</center></td>
+                                                            <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
+                                                            <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
+                                                            <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
+                                                            <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
+                                                            <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }}</center></td>
+                                                            <td class="tmt_golongan_riwayat"><center>{{ \Carbon\Carbon::parse($result_golongan->tmt_golongan_riwayat)->formatLocalized('%d %B %Y') }}</center></td>
+                                                            <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
+                                                            <td class="tanggal_teknis_bkn"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_teknis_bkn)->formatLocalized('%d %B %Y') }}</center></td>
+                                                            <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
+                                                            <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
+                                                            <td class="dokumen_skkp">
+                                                                <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
+                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                            </center></td>
+                                                            <td class="dokumen_teknis_kp">
+                                                                <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
+                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                            </center></td>
 
-                                        {{-- Edit dan Hapus data  --}}
-                                        {{-- <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_riwayat_golongan" href="#"
-                                                        data-toggle="modal" data-target="#edit_riwayat_golongan"><i
-                                                            class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_riwayat_golongan" href="#"
-                                                        data-toggle="modal" data-target="#delete_riwayat_golongan"><i
-                                                            class="fa fa-trash-o m-r-5"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
-                                        </td> --}}
-                                    </tr>
-                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                            {{-- Edit dan Hapus data  --}}
+                                                            {{-- <td class="text-right">
+                                                                <div class="dropdown dropdown-action">
+                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item edit_riwayat_golongan" href="#"
+                                                                            data-toggle="modal" data-target="#edit_riwayat_golongan"><i
+                                                                                class="fa fa-pencil m-r-5"></i>
+                                                                            Edit</a>
+                                                                        <a class="dropdown-item delete_riwayat_golongan" href="#"
+                                                                            data-toggle="modal" data-target="#delete_riwayat_golongan"><i
+                                                                                class="fa fa-trash-o m-r-5"></i>
+                                                                            Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </td> --}}
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- Tempat Field Edit & Hapus -->
                             </div>
-                            <!-- Tempat Field Edit & Hapus -->
-                        </div>
+                            <!-- /Riwayat Golongan Tab -->
+                            
+                            <!-- Riwayat Jabatan Tab -->
+                            <div class="tab-pane fade" id="riwayat_jabatan">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped custom-table mb-0 datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th class="jenis_jabatan_riwayat"> Jenis Jabatan</th>
+                                                        <th class="satuan_kerja">Satuan Kerja</th>
+                                                        <th class="satuan_kerja_induk">Satuan Kerja Induk</th>
+                                                        <th class="unit_organisasi_riwayat">Unit Organisasi</th>
+                                                        <th class="no_sk">No SK</th>
+                                                        <th class="tanggal_sk">Tanggal SK</th>
+                                                        <th class="tmt_jabatan">TMT Jabatan</th>
+                                                        <th class="tmt_pelantikan">TMT Pelantikan</th>
+                                                        <th class="dokumen_sk_jabatan">Dokumen SK Jabatan</th>
+                                                        <th class="dokumen_pelantikan">Dokumen Pelantikan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
+                                                        <tr>
+                                                            <td><center>{{ ++$sqljabatan }}</center></td>
+                                                            <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
+                                                            <td class="jenis_jabatan_riwayat"><center>{{ $result_jabatan->jenis_jabatan_riwayat }}</center></td>
+                                                            <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
+                                                            <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
+                                                            <td class="unit_organisasi_riwayat"><center>{{ $result_jabatan->unit_organisasi_riwayat }}</center></td>
+                                                            <td class="no_sk"><center>{{ $result_jabatan->no_sk }}</center></td>
+                                                            <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_jabatan->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
+                                                            <td class="tmt_jabatan"><center>{{ \Carbon\Carbon::parse($result_jabatan->tmt_jabatan)->formatLocalized('%d %B %Y') }}</center></td>
+                                                            <td class="tmt_pelantikan"><center>{{ \Carbon\Carbon::parse($result_jabatan->tmt_pelantikan)->formatLocalized('%d %B %Y') }}</center></td>
+                                                            <td class="dokumen_sk_jabatan">
+                                                                <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
+                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                            </center></td>
+                                                            <td class="dokumen_pelantikan">
+                                                                <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
+                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                            </center></td>
 
-                    <div class="tab-pane fade" id="riwayat_jabatan">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table class="table table-striped custom-table mb-0 datatable">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th class="jenis_jabatan"> Jenis Jabatan</th>
-                                                <th class="satuan_kerja">Satuan Kerja</th>
-                                                <th class="satuan_kerja_induk">Satuan Kerja Induk</th>
-                                                <th class="unit_organisasi">Unit Organisasi</th>
-                                                <th class="no_sk">No SK</th>
-                                                <th class="tanggal_sk">Tanggal SK</th>
-                                                <th class="tmt_jabatan">TMT Jabatan</th>
-                                                <th class="tmt_pelantikan">TMT Pelantikan</th>
-                                                <th class="dokumen_sk_jabatan">Dokumen SK Jabatan</th>
-                                                <th class="dokumen_pelantikan">Dokumen Pelantikan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
-                                    <tr>
-                                        <td><center>{{ ++$sqljabatan }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_jabatan->user_id }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
-                                        <td class="jenis_jabatan"><center>{{ $result_jabatan->jenis_jabatan }}</center></td>
-                                        <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
-                                        <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
-                                        <td class="unit_organisasi"><center>{{ $result_jabatan->unit_organisasi }}</center></td>
-                                        <td class="no_sk"><center>{{ $result_jabatan->no_sk }}</center></td>
-                                        <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_jabatan->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
-                                        <td class="tmt_jabatan"><center>{{ \Carbon\Carbon::parse($result_jabatan->tmt_jabatan)->formatLocalized('%d %B %Y') }}</center></td>
-                                        <td class="tmt_pelantikan"><center>{{ \Carbon\Carbon::parse($result_jabatan->tmt_pelantikan)->formatLocalized('%d %B %Y') }}</center></td>
-                                        <td class="dokumen_sk_jabatan">
-                                            <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                        </center></td>
-                                        <td class="dokumen_pelantikan">
-                                            <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                        </center></td>
-
-                                        {{-- Edit dan Hapus data  --}}
-                                        {{-- <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_riwayat_jabatan" href="#"
-                                                        data-toggle="modal" data-target="#edit_riwayat_jabatan"><i
-                                                            class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_riwayat_jabatan" href="#"
-                                                        data-toggle="modal" data-target="#delete_riwayat_jabatan"><i
-                                                            class="fa fa-trash-o m-r-5"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
-                                        </td> --}}
-                                    </tr>
-                                @endforeach
-                                        </tbody>
-                                    </table>
+                                                            {{-- Edit dan Hapus data  --}}
+                                                            {{-- <td class="text-right">
+                                                                <div class="dropdown dropdown-action">
+                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item edit_riwayat_jabatan" href="#"
+                                                                            data-toggle="modal" data-target="#edit_riwayat_jabatan"><i
+                                                                                class="fa fa-pencil m-r-5"></i>
+                                                                            Edit</a>
+                                                                        <a class="dropdown-item delete_riwayat_jabatan" href="#"
+                                                                            data-toggle="modal" data-target="#delete_riwayat_jabatan"><i
+                                                                                class="fa fa-trash-o m-r-5"></i>
+                                                                            Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </td> --}}
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
+                                <!-- Tempat Field Edit & Hapus -->
                             </div>
-                        </div>
-                        <!-- Tempat Field Edit & Hapus -->
-                    </div>
+                            <!-- /Riwayat Jabatan Tab -->
 
-                {{-- DIKLAT --}}
-                <div class="tab-pane fade" id="riwayat_diklat">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="table-responsive">
-                                <table class="table table-striped custom-table mb-0 datatable">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th class="jenis_diklat">Jenis Diklat</th>
-                                            <th class="nama_diklat">Nama Diklat</th>
-                                            <th class="Institusi Penyelenggara">Institusi Penyelenggara</th>
-                                            <th class="no_sertifikat">No Sertifikat</th>
-                                            <th class="tanggal_mulai">Tanggal Mulai</th>
-                                            <th class="tanggal_selesai">Tanggal Selesai</th>
-                                            <th class="tahun_diklat">Tahun Diklat</th>
-                                            <th class="durasi_jam">Durasi</th>
-                                            <th class="dokumen_diklat">Dokumen Diklat</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
-                                    <tr>
-                                        <td><center>{{ ++$sqldiklat }}</center></td>
-                                        <td hidden class="user_id"><center>{{ $result_diklat->user_id }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
-                                        <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
-                                        <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
-                                        <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
-                                        <td class="no_sertifikat"><center>{{ $result_diklat->no_sertifikat }}</center></td>
-                                        <td class="tanggal_mulai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_mulai)->formatLocalized('%d %B %Y') }}</center></td>
-                                        <td class="tanggal_selesai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_selesai)->formatLocalized('%d %B %Y') }}</center></td>
-                                        <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
-                                        <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
-                                        <td class="dokumen_diklat">
-                                            <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
-                                                target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                        </center></td>
-                                        
-
-                                        {{-- Edit dan Hapus data  --}}
-                                        {{-- <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_riwayat_diklat" href="#"
-                                                        data-toggle="modal" data-target="#edit_riwayat_diklat"><i
-                                                            class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_riwayat_diklat" href="#"
-                                                        data-toggle="modal" data-target="#delete_riwayat_diklat"><i
-                                                            class="fa fa-trash-o m-r-5"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
-                                        </td> --}}
-                                    </tr>
-                                @endforeach
-                                    </tbody>
-                                </table>
+                            <!-- Riwayat Diklat Tab -->
+                            <div class="tab-pane fade" id="riwayat_diklat">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped custom-table mb-0 datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th class="jenis_diklat">Jenis Diklat</th>
+                                                        <th class="nama_diklat">Nama Diklat</th>
+                                                        <th class="Institusi Penyelenggara">Institusi Penyelenggara</th>
+                                                        <th class="no_sertifikat">No Sertifikat</th>
+                                                        <th class="tanggal_mulai">Tanggal Mulai</th>
+                                                        <th class="tanggal_selesai">Tanggal Selesai</th>
+                                                        <th class="tahun_diklat">Tahun Diklat</th>
+                                                        <th class="durasi_jam">Durasi</th>
+                                                        <th class="dokumen_diklat">Dokumen Diklat</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
+                                                <tr>
+                                                    <td><center>{{ ++$sqldiklat }}</center></td>
+                                                    <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
+                                                    <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
+                                                    <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
+                                                    <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
+                                                    <td class="no_sertifikat"><center>{{ $result_diklat->no_sertifikat }}</center></td>
+                                                    <td class="tanggal_mulai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_mulai)->formatLocalized('%d %B %Y') }}</center></td>
+                                                    <td class="tanggal_selesai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_selesai)->formatLocalized('%d %B %Y') }}</center></td>
+                                                    <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
+                                                    <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
+                                                    <td class="dokumen_diklat">
+                                                        <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
+                                                            target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
+                                                    </center></td>
+                                                    
+                                                    {{-- Edit dan Hapus data  --}}
+                                                    {{-- <td class="text-right">
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <a class="dropdown-item edit_riwayat_diklat" href="#"
+                                                                    data-toggle="modal" data-target="#edit_riwayat_diklat"><i
+                                                                        class="fa fa-pencil m-r-5"></i>
+                                                                    Edit</a>
+                                                                <a class="dropdown-item delete_riwayat_diklat" href="#"
+                                                                    data-toggle="modal" data-target="#delete_riwayat_diklat"><i
+                                                                        class="fa fa-trash-o m-r-5"></i>
+                                                                    Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td> --}}
+                                                </tr>
+                                            @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tempat Field Edit & Hapus -->
                             </div>
-                        </div>
-                    </div>
-                    <!-- Tempat Field Edit & Hapus -->
-                </div>
+                            <!-- /Riwayat Diklat Tab -->
             </div>
         </div>
         <!-- /Page Content -->
+
         @if (!empty($information))
             <!-- Profile Modal -->
             <div id="profile_info" class="modal custom-modal fade" role="dialog">
@@ -1191,33 +1288,4 @@
         @endif
         <!-- /Page Content -->
     </div>
-@section('script')
-    <script>
-        $('#validation').validate({
-            rules: {
-                name_primary: 'required',
-                relationship_primary: 'required',
-                phone_primary: 'required',
-                phone_2_primary: 'required',
-                name_secondary: 'required',
-                relationship_secondary: 'required',
-                phone_secondary: 'required',
-                phone_2_secondary: 'required',
-            },
-            messages: {
-                name_primary: 'Please input name primary',
-                relationship_primary: 'Please input relationship primary',
-                phone_primary: 'Please input phone primary',
-                phone_2_primary: 'Please input phone 2 primary',
-                name_secondary: 'Please input name secondary',
-                relationship_secondary: 'Please input relationship secondary',
-                phone_secondaryr: 'Please input phone secondary',
-                phone_2_secondary: 'Please input phone 2 secondary',
-            },
-            submitHandler: function(form) {
-                form.submit();
-            }
-        });
-    </script>
-@endsection
 @endsection

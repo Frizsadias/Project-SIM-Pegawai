@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('posisi_jabatan', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
             $table->string('user_id')->nullable();
-            $table->string('email')->nullable();
             $table->string('unit_organisasi')->nullable();
             $table->string('unit_organisasi_induk')->nullable();
             $table->string('jenis_jabatan')->nullable();

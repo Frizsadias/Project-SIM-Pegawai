@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('riwayat_jabatan', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->nullable();
-            $table->string('jenis_jabatan')->nullable();
+            $table->string('jenis_jabatan_riwayat')->nullable();
             $table->string('satuan_kerja')->nullable();
             $table->string('satuan_kerja_induk')->nullable();
-            $table->string('unit_organisasi')->nullable();
+            $table->string('unit_organisasi_riwayat')->nullable();
             $table->string('no_sk')->nullable();
             $table->string('tanggal_sk')->nullable();
             $table->string('tmt_jabatan')->nullable();

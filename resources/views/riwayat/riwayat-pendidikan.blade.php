@@ -66,7 +66,7 @@
                         <table class="table table-striped custom-table mb-0 datatable">
                             <thead>
                                 <th>No</th>
-                                <th class="tingkat_pendidikan">Tingkat Pendidikan</th>
+                                <th class="ting_ped">Tingkat Pendidikan</th>
                                 <th class="pendidikan">Pendidikan</th>
                                 <th class="tahun_lulus">Tahun Lulus</th>
                                 <th class="no_ijazah">Nomor Ijazah</th>
@@ -85,7 +85,7 @@
                                     <tr>
                                         <td><center>{{ ++$sqlpendidikan }}</center></td>
                                         <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
-                                        <td class="tingkat_pendidikan"><center>{{ $result_pendidikan->tingkat_pendidikan }}</center></td>
+                                        <td class="ting_ped"><center>{{ $result_pendidikan->ting_ped }}</center></td>
                                         <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
                                         <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
                                         <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
@@ -163,7 +163,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select name="tingkat_pendidikan" class="select" id="tingkat_pendidikan" required>
+                                        <select name="ting_ped" class="select" id="ting_ped" required>
                                             <option selected disabled> --Pilih Tingkat Pendidikan --</option>
                                             <option value="SLTP">SLTP</option>
                                             <option value="SLTA">SLTA</option>
@@ -283,7 +283,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select name="tingkat_pendidikan" class="select" id="e_tingkat_pendidikan">
+                                        <select name="ting_ped" class="select" id="e_ting_ped">
                                             <option selected disabled> --Pilih Jenis Pendidikan --</option>
                                             <option>SLTP</option>
                                             <option>SLTA</option>
@@ -431,10 +431,10 @@
             $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
             $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
 
-            var tingkat_pendidikan = (_this.find(".tingkat_pendidikan").text());
-            var _option = '<option selected value="' + tingkat_pendidikan + '">' + _this.find('.tingkat_pendidikan')
+            var ting_ped = (_this.find(".ting_ped").text());
+            var _option = '<option selected value="' + ting_ped + '">' + _this.find('.ting_ped')
                 .text() + '</option>'
-            $(_option).appendTo("#e_tingkat_pendidikan");
+            $(_option).appendTo("#e_ting_ped");
         });
     </script>
 

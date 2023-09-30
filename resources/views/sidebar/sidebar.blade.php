@@ -224,10 +224,8 @@
 
                 @if (Auth::user()->role_name == 'Super Admin')
                     <li class="menu-title"> <span>Informasi Pegawai</span> </li>
-                    <li
-                        class="{{ request()->routeIs('daftar/pegawai/list') || request()->routeIs('') ? 'active' : '' }}">
-                        <a href="{{ route('daftar/pegawai/list') }}"
-                            class="{{ request()->routeIs('daftar/pegawai/list') || request()->routeIs('') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('daftar/pegawai/list','daftar/pegawai/card') || request()->routeIs('daftar/pegawai/card') ? 'active' : '' }}">
+                        <a href="{{ route('daftar/pegawai/list', 'daftar/pegawai/card') }}" class="{{ request()->routeIs('daftar/pegawai/list', 'daftar/pegawai/card') || request()->routeIs('daftar/pegawai/card') ? 'noti-dot' : '' }}">
                             <i class="la la-group"></i>
                             <span>Daftar Pegawai</span>
                         </a>
