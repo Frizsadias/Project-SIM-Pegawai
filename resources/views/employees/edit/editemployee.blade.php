@@ -46,13 +46,13 @@
                                         <input type="email" class="form-control" id="email" name="email" value="{{ $employees[0]->email }}">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                {{-- <div class="form-group row">
                                     <label class="col-form-label col-md-2">Tanggal Lahir</label>
                                     <div class="col-md-10">
                                         <input type="text" class="form-control datetimepicker" id="birth_date" name="birth_date" value="{{ $employees[0]->birth_date }}">
                                     </div>
-                                </div>
-                                <div class="form-group row">
+                                </div> --}}
+                                {{-- <div class="form-group row">
                                     <label class="col-form-label col-md-2">Jenis Kelamin</label>
                                     <div class="col-md-10">
                                         <select class="select form-control" id="gender" name="gender">
@@ -61,7 +61,7 @@
                                             <option value="Perempuan">Perempuan</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group row">
                                     <label class="col-form-label col-md-2">ID Pegawai</label>
                                     <div class="col-md-10">

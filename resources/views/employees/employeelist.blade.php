@@ -20,13 +20,10 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i
-                            class="fa fa-plus"></i> Tambah Pegawai</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i class="fa fa-plus"></i> Tambah Pegawai</a>
                     <div class="view-icons">
-                        <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i
-                                class="fa fa-th"></i></a>
-                        <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i
-                                class="fa fa-bars"></i></a>
+                        <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+                        <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
                     </div>
                 </div>
             </div>
@@ -39,20 +36,20 @@
             <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" name="user_id">
+                        <input type="text" class="form-control floating" name="employee_id">
                         <label class="focus-label">ID Pegawai</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" name="nama">
+                        <input type="text" class="form-control floating">
                         <label class="focus-label">Nama Pegawai</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" name="email">
-                        <label class="focus-label">Email</label>
+                        <input type="text" class="form-control floating">
+                        <label class="focus-label">Posisi</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
@@ -106,53 +103,21 @@
                                 <tr>
                                     <td>
                                         <h2 class="table-avatar">
-                                            <a href="{{ url('user/profile/' . $profpeg->user_id) }}" class="avatar">
-                                                <img alt=""
-                                                    src="{{ URL::to('/assets/images/' . $profpeg->avatar) }}">
-                                            </a>
-                                            <a href="{{ url('user/profile/' . $profpeg->user_id) }}">{{ $profpeg->name }}
-                                                <span>{{ $profpeg->position }}</span>
-                                            </a>
+                                            <a href="{{ url('user/profile/' . $profpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $profpeg->avatar) }}"></a>
+                                            <a href="{{ url('user/profile/' . $profpeg->user_id) }}">{{ $profpeg->name }}<span>{{ $profpeg->position }}</span></a>
                                         </h2>
                                     </td>
                                     <td>{{ $profpeg->user_id }}</td>
-                                    <td>{{ $profpeg->nip }}</td>
-                                    <td>{{ $profpeg->nama }}</td>
                                     <td>{{ $profpeg->email }}</td>
-                                    <td>{{ $profpeg->gelar_depan }}</td>
-                                    <td>{{ $profpeg->gelar_belakang }}</td>
-                                    <td>{{ $profpeg->tempat_lahir }}</td>
-                                    <td>{{ $profpeg->tanggal_lahir }}</td>
-                                    <td>{{ $profpeg->jenis_kelamin }}</td>
-                                    <td>{{ $profpeg->agama }}</td>
-                                    <td>{{ $profpeg->jenis_dokumen }}</td>
-                                    <td>{{ $profpeg->no_dokumen }}</td>
-                                    <td>{{ $profpeg->kelurahan }}</td>
-                                    <td>{{ $profpeg->kecamatan }}</td>
-                                    <td>{{ $profpeg->kota }}</td>
-                                    <td>{{ $profpeg->provinsi }}</td>
-                                    <td>{{ $profpeg->kode_pos }}</td>
-                                    <td>{{ $profpeg->no_hp }}</td>
-                                    <td>{{ $profpeg->no_telp }}</td>
-                                    <td>{{ $profpeg->jenis_pegawai }}</td>
-                                    <td>{{ $profpeg->kedudukan_pns }}</td>
-                                    <td>{{ $profpeg->status_pegawai }}</td>
-                                    <td>{{ $profpeg->tmt_pns }}</td>
-                                    <td>{{ $profpeg->no_seri_karpeg }}</td>
-                                    <td>{{ $profpeg->tmt_cpns }}</td>
-                                    <td>{{ $profpeg->tingkat_pendidikan }}</td>
-                                    <td>{{ $profpeg->pendidikan_terakhir }}</td>
+                                    <td>{{ $profpeg->phone_number }}</td>
+                                    <td>{{ $profpeg->join_date }}</td>
+                                    <td>{{ $profpeg->role_name }}</td>
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item"
-                                                    href="{{ url('all/employee/view/edit/' . $profpeg->user_id) }}"><i
-                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ url('all/employee/delete/' . $profpeg->user_id) }}"onclick="return confirm('Are you sure to want to delete it?')"><i
-                                                        class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                <a class="dropdown-item" href="{{ url('all/employee/view/edit/' . $profpeg->user_id) }}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item" href="{{ url('all/employee/delete/' . $profpeg->user_id) }}"onclick="return confirm('Are you sure to want to delete it?')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -186,8 +151,7 @@
                                     <select class="select" id="name" name="name">
                                         <option value="">-- Pilih Nama Akun --</option>
                                         @foreach ($userList as $key => $user)
-                                            <option value="{{ $user->name }}" data-pegawai_id={{ $user->user_id }}
-                                                data-email={{ $user->email }}>{{ $user->name }}</option>
+                                            <option value="{{ $user->name }}" data-employee_id={{ $user->user_id }} data-email={{ $user->email }}>{{ $user->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -195,19 +159,16 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="email" id="email" name="email"
-                                        placeholder="Otomatis email" readonly>
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="E-mail otomatis" readonly>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">ID Pegawai <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="pegawai_id" name="user_id"
-                                        placeholder="Otomatis id pengguna" readonly>
+                                    <label class="col-form-label">ID Pegawai <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="ID pengguna otomatis" readonly>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            {{-- <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">NIP</label>
                                     <input type="text" class="form-control" id="nip" name="nip"
@@ -373,10 +334,10 @@
                                     <input type="text" class="form-control" id="pendidikan_terakhir"
                                         name="pendidikan_terakhir">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Submit</button>
+                            <button class="btn btn-primary submit-btn">Tambah Data</button>
                         </div>
                 </div>
 
@@ -390,9 +351,11 @@
 <!-- /Page Wrapper -->
 @section('script')
     <script>
-        $("input:checkbox").on('click', function() {
+        $("input:checkbox").on('click', function()
+        {
             var $box = $(this);
-            if ($box.is(":checked")) {
+            if ($box.is(":checked"))
+            {
                 var group = "input:checkbox[class='" + $box.attr("class") + "']";
                 $(group).prop("checked", false);
                 $box.prop("checked", true);
@@ -401,13 +364,14 @@
             }
         });
     </script>
-
+    
     <script>
         // select auto id and email
-        $('#name').on('change', function() {
-            $('#pegawai_id').val($(this).find(':selected').data('pegawai_id'));
+        $('#name').on('change',function()
+        {
+            $('#employee_id').val($(this).find(':selected').data('employee_id'));
             $('#email').val($(this).find(':selected').data('email'));
         });
     </script>
-@endsection
+    @endsection
 @endsection

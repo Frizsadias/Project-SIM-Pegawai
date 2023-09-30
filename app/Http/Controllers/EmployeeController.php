@@ -18,14 +18,14 @@ class EmployeeController extends Controller
     public function cardAllEmployee(Request $request)
     {
         $users = DB::table('users')
-            ->join('profil_pegawai','employees','users.user_id','profil_pegawai.user_id','employees.employee_id')
+            ->join('employees','users.user_id','employees.employee_id')
+            ->join('profil_pegawai','users.user_id','profil_pegawai.user_id')
             ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
             'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
-            'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
-            'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns', 'profil_pegawai.status_pegawai',
-            'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-            'employees.name','employees.email','employees.employee_id')
-            ->get();
+            'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos','profil_pegawai.no_hp',
+            'profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns', 'profil_pegawai.status_pegawai','profil_pegawai.tmt_pns',
+            'profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir','employees.name','employees.email')
+            ->get(); 
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
         return view('employees.allemployeecard',compact('users','userList','permission_lists'));
@@ -35,13 +35,13 @@ class EmployeeController extends Controller
     public function listAllEmployee()
     {
         $users = DB::table('users')
-            ->join('profil_pegawai','employees','users.user_id','profil_pegawai.user_id','employees.employee_id')
+            ->join('employees','users.user_id','employees.employee_id')
+            ->join('profil_pegawai','users.user_id','profil_pegawai.user_id')
             ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
             'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
-            'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
-            'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns', 'profil_pegawai.status_pegawai',
-            'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-            'employees.name','employees.email','employees.employee_id')
+            'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos','profil_pegawai.no_hp',
+            'profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns', 'profil_pegawai.status_pegawai','profil_pegawai.tmt_pns',
+            'profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir','employees.name','employees.email')
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
@@ -59,32 +59,15 @@ class EmployeeController extends Controller
 
         DB::beginTransaction();
         try{
-
+            
             $employees = Employee::where('email', '=',$request->email)->first();
             if ($employees === null)
             {
-
-                $employee = new Employee;
+                $employee               = new Employee;
                 $employee->name         = $request->name;
                 $employee->email        = $request->email;
                 $employee->employee_id  = $request->employee_id;
                 $employee->save();
-
-                for($i=0;$i<count($request->id_count);$i++)
-                {
-                    $module_permissions = [
-                        'employee_id' => $request->employee_id,
-                        'module_permission' => $request->permission[$i],
-                        'id_count'          => $request->id_count[$i],
-                        'read'              => $request->read[$i],
-                        'write'             => $request->write[$i],
-                        'create'            => $request->create[$i],
-                        'delete'            => $request->delete[$i],
-                        'import'            => $request->import[$i],
-                        'export'            => $request->export[$i],
-                    ];
-                    DB::table('module_permissions')->insert($module_permissions);
-                }
 
                 DB::commit();
                 Toastr::success('Berhasil menambahkan pegawai baru :)','Success');
@@ -104,11 +87,8 @@ class EmployeeController extends Controller
     /** view edit record */
     public function viewRecord($employee_id)
     {
-        $permission = DB::table('employees')
-            ->join('module_permissions','employees.employee_id','module_permissions.employee_id')
-            ->select('employees.*','module_permissions.*')->where('employees.employee_id',$employee_id)->get();
         $employees = DB::table('employees')->where('employee_id',$employee_id)->get();
-        return view('employees.edit.editemployee',compact('employees','permission'));
+        return view('employees.edit.editemployee',compact('employees'));
     }
 
     /** update record employee */
@@ -132,23 +112,6 @@ class EmployeeController extends Controller
                 'email'         =>$request->email,
             ];
 
-            // update table module_permissions
-            for($i = 0;$i<count($request->id_permission);$i++)
-            {
-                $UpdateModule_permissions = [
-                    'employee_id' => $request->employee_id,
-                    'module_permission' => $request->permission[$i],
-                    'id'                => $request->id_permission[$i],
-                    'read'              => $request->read[$i],
-                    'write'             => $request->write[$i],
-                    'create'            => $request->create[$i],
-                    'delete'            => $request->delete[$i],
-                    'import'            => $request->import[$i],
-                    'export'            => $request->export[$i],
-                ];
-                module_permission::where('id',$request->id_permission[$i])->update($UpdateModule_permissions);
-            }
-
             User::where('id',$request->id)->update($updateUser);
             Employee::where('id',$request->id)->update($updateEmployee);
 
@@ -168,7 +131,6 @@ class EmployeeController extends Controller
         DB::beginTransaction();
         try{
             Employee::where('employee_id',$employee_id)->delete();
-            module_permission::where('employee_id',$employee_id)->delete();
 
             DB::commit();
             Toastr::success('Data daftar pegawai berhasil dihapus :)','Success');
@@ -328,11 +290,12 @@ class EmployeeController extends Controller
         }
         return view('employees.employeelist',compact('users','userList','permission_lists'));
     }
+    /** End Search */
 
     /** employee profile with all controller user */
     public function profileEmployee($user_id)
     {
-        $user = DB::table('users') 
+        $user = DB::table('users')
                 ->leftJoin('profile_information as pr','pr.user_id','users.user_id')
                 ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
                 ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
@@ -364,7 +327,7 @@ class EmployeeController extends Controller
                 'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan',
                 'pj.no_spmt','pj.tanggal_spmt','pj.kppn')
                 ->where('users.user_id',$user_id)->get();
-            $users = DB::table('users')
+        $users = DB::table('users')
                 ->leftJoin('profile_information as pr','pr.user_id','users.user_id')
                 ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
                 ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
