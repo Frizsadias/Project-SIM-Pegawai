@@ -18,8 +18,8 @@ class EmployeeController extends Controller
     public function cardAllEmployee(Request $request)
     {
         $users = DB::table('users')
-            ->join('employees','users.user_id','employees.employee_id')
-            ->join('profil_pegawai','users.user_id','profil_pegawai.user_id')
+            ->leftjoin('employees','users.user_id','employees.employee_id')
+            ->leftjoin('profil_pegawai','users.user_id','profil_pegawai.user_id')
             ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
             'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
             'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos','profil_pegawai.no_hp',
@@ -35,8 +35,8 @@ class EmployeeController extends Controller
     public function listAllEmployee()
     {
         $users = DB::table('users')
-            ->join('employees','users.user_id','employees.employee_id')
-            ->join('profil_pegawai','users.user_id','profil_pegawai.user_id')
+            ->leftjoin('employees','users.user_id','employees.employee_id')
+            ->leftjoin('profil_pegawai','users.user_id','profil_pegawai.user_id')
             ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
             'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
             'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos','profil_pegawai.no_hp',
