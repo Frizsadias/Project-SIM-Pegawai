@@ -18,38 +18,14 @@ class EmployeeController extends Controller
     public function cardAllEmployee(Request $request)
     {
         $users = DB::table('users')
-            ->leftjoin('employees', 'users.user_id', 'employees.employee_id')
+            ->leftjoin('employees','users.user_id','employees.employee_id')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-            ->select(
-                'users.*',
-                'profil_pegawai.nip',
-                'profil_pegawai.nama',
-                'profil_pegawai.gelar_depan',
-                'profil_pegawai.gelar_belakang',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.jenis_kelamin',
-                'profil_pegawai.agama',
-                'profil_pegawai.jenis_dokumen',
-                'profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan',
-                'profil_pegawai.kecamatan',
-                'profil_pegawai.kota',
-                'profil_pegawai.provinsi',
-                'profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp',
-                'profil_pegawai.no_telp',
-                'profil_pegawai.jenis_pegawai',
-                'profil_pegawai.kedudukan_pns',
-                'profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns',
-                'profil_pegawai.no_seri_karpeg',
-                'profil_pegawai.tmt_cpns',
-                'profil_pegawai.tingkat_pendidikan',
-                'profil_pegawai.pendidikan_terakhir',
-                'employees.name',
-                'employees.email'
-            )
+            ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
+                'employees.name','employees.email')
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
@@ -60,38 +36,14 @@ class EmployeeController extends Controller
     public function listAllEmployee()
     {
         $users = DB::table('users')
-            ->leftjoin('employees', 'users.user_id', 'employees.employee_id')
+            ->leftjoin('employees','users.user_id','employees.employee_id')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-            ->select(
-                'users.*',
-                'profil_pegawai.nip',
-                'profil_pegawai.nama',
-                'profil_pegawai.gelar_depan',
-                'profil_pegawai.gelar_belakang',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.jenis_kelamin',
-                'profil_pegawai.agama',
-                'profil_pegawai.jenis_dokumen',
-                'profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan',
-                'profil_pegawai.kecamatan',
-                'profil_pegawai.kota',
-                'profil_pegawai.provinsi',
-                'profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp',
-                'profil_pegawai.no_telp',
-                'profil_pegawai.jenis_pegawai',
-                'profil_pegawai.kedudukan_pns',
-                'profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns',
-                'profil_pegawai.no_seri_karpeg',
-                'profil_pegawai.tmt_cpns',
-                'profil_pegawai.tingkat_pendidikan',
-                'profil_pegawai.pendidikan_terakhir',
-                'employees.name',
-                'employees.email'
-            )
+            ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
+                'employees.name','employees.email')
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
@@ -329,101 +281,27 @@ class EmployeeController extends Controller
     public function profileEmployee($user_id)
     {
         $user = DB::table('users')
-            ->leftJoin('profile_information as pr', 'pr.user_id', 'users.user_id')
-            ->leftJoin('riwayat_pendidikan as rp', 'rp.user_id', 'users.user_id')
-            ->leftJoin('riwayat_golongan as rg', 'rg.user_id', 'users.user_id')
-            ->leftJoin('riwayat_jabatan as rj', 'rj.user_id', 'users.user_id')
-            ->leftJoin('riwayat_diklat as rd', 'rd.user_id', 'users.user_id')
-            ->leftJoin('profil_pegawai as pg', 'pg.user_id', 'users.user_id')
-            ->leftJoin('posisi_jabatan as pj', 'pj.user_id', 'users.user_id')
-            ->select(
-                'users.*',
-                'pr.tgl_lahir',
-                'pr.jk',
-                'pr.alamat',
-                'rp.tingkat_pendidikan',
-                'rp.pendidikan',
-                'rp.tahun_lulus',
-                'rp.no_ijazah',
-                'rp.nama_sekolah',
-                'rp.gelar_depan',
-                'rp.gelar_belakang',
-                'rp.jenis_pendidikan',
-                'rp.dokumen_transkrip',
-                'rp.dokumen_ijazah',
-                'rp.dokumen_gelar',
-                'rg.golongan',
-                'rg.jenis_kenaikan_pangkat',
-                'rg.masa_kerja_golongan_tahun',
-                'rg.masa_kerja_golongan_bulan',
-                'rg.tmt_golongan',
-                'rg.no_teknis_bkn',
-                'rg.tanggal_teknis_bkn',
-                'rg.no_sk_golongan',
-                'rg.tanggal_sk',
-                'rg.dokumen_skkp',
-                'rg.dokumen_teknis_kp',
-                'rj.jenis_jabatan',
-                'rj.satuan_kerja',
-                'rj.satuan_kerja_induk',
-                'rj.unit_organisasi',
-                'rj.no_sk',
-                'rj.tanggal_sk',
-                'rj.tmt_jabatan',
-                'rj.tmt_pelantikan',
-                'rj.dokumen_sk_jabatan',
-                'rj.dokumen_pelantikan',
-                'rd.jenis_diklat',
-                'rd.nama_diklat',
-                'rd.institusi_penyelenggara',
-                'rd.no_sertifikat',
-                'rd.tanggal_mulai',
-                'rd.tanggal_selesai',
-                'rd.tahun_diklat',
-                'rd.durasi_jam',
-                'rd.dokumen_diklat',
-                'pg.nip',
-                'pg.nama',
-                'pg.gelar_depan',
-                'pg.gelar_belakang',
-                'pg.tempat_lahir',
-                'pg.tanggal_lahir',
-                'pg.jenis_kelamin',
-                'pg.agama',
-                'pg.jenis_dokumen',
-                'pg.no_dokumen',
-                'pg.kelurahan',
-                'pg.kecamatan',
-                'pg.kota',
-                'pg.provinsi',
-                'pg.kode_pos',
-                'pg.no_hp',
-                'pg.no_telp',
-                'pg.jenis_pegawai',
-                'pg.kedudukan_pns',
-                'pg.status_pegawai',
-                'pg.tmt_pns',
-                'pg.no_seri_karpeg',
-                'pg.tmt_cpns',
-                'pg.tingkat_pendidikan',
-                'pg.pendidikan_terakhir',
-                'pj.unit_organisasi',
-                'pj.unit_organisasi_induk',
-                'pj.jenis_jabatan',
-                'pj.eselon',
-                'pj.jabatan',
-                'pj.tmt',
-                'pj.lokasi_kerja',
-                'pj.gol_ruang_awal',
-                'pj.gol_ruang_akhir',
-                'pj.tmt_golongan',
-                'pj.gaji_pokok',
-                'pj.masa_kerja_tahun',
-                'pj.masa_kerja_bulan',
-                'pj.no_spmt',
-                'pj.tanggal_spmt',
-                'pj.kppn'
-            )
+            ->leftJoin('profile_information as pr','pr.user_id','users.user_id')
+            ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
+            ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
+            ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
+            ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
+            ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
+            ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
+            ->select('users.*',
+                'pr.tgl_lahir','pr.jk','pr.alamat','rp.tingkat_pendidikan','rp.pendidikan',
+                'rp.tahun_lulus','rp.no_ijazah','rp.nama_sekolah','rp.gelar_depan','rp.gelar_belakang',
+                'rp.jenis_pendidikan','rp.dokumen_transkrip','rp.dokumen_ijazah','rp.dokumen_gelar','rg.golongan',
+                'rg.jenis_kenaikan_pangkat','rg.masa_kerja_golongan_tahun','rg.masa_kerja_golongan_bulan','rg.tmt_golongan','rg.no_teknis_bkn',
+                'rg.tanggal_teknis_bkn','rg.no_sk_golongan','rg.tanggal_sk','rg.dokumen_skkp','rg.dokumen_teknis_kp','rj.jenis_jabatan',
+                'rj.satuan_kerja','rj.satuan_kerja_induk','rj.unit_organisasi','rj.no_sk','rj.tanggal_sk','rj.tmt_jabatan','rj.tmt_pelantikan',
+                'rj.dokumen_sk_jabatan','rj.dokumen_pelantikan','rd.jenis_diklat','rd.nama_diklat','rd.institusi_penyelenggara','rd.no_sertifikat',
+                'rd.tanggal_mulai','rd.tanggal_selesai','rd.tahun_diklat','rd.durasi_jam','rd.dokumen_diklat','pg.nip','pg.nama','pg.gelar_depan',
+                'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
+                'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
+                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pj.unit_organisasi',
+                'pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
+                'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
             ->where('users.user_id', $user_id)->get();
         $users = DB::table('users')
             ->leftJoin('profile_information as pr', 'pr.user_id', 'users.user_id')
@@ -433,94 +311,20 @@ class EmployeeController extends Controller
             ->leftJoin('riwayat_diklat as rd', 'rd.user_id', 'users.user_id')
             ->leftJoin('profil_pegawai as pg', 'pg.user_id', 'users.user_id')
             ->leftJoin('posisi_jabatan as pj', 'pj.user_id', 'users.user_id')
-            ->select(
-                'users.*',
-                'pr.tgl_lahir',
-                'pr.jk',
-                'pr.alamat',
-                'rp.tingkat_pendidikan',
-                'rp.pendidikan',
-                'rp.tahun_lulus',
-                'rp.no_ijazah',
-                'rp.nama_sekolah',
-                'rp.gelar_depan',
-                'rp.gelar_belakang',
-                'rp.jenis_pendidikan',
-                'rp.dokumen_transkrip',
-                'rp.dokumen_ijazah',
-                'rp.dokumen_gelar',
-                'rg.golongan',
-                'rg.jenis_kenaikan_pangkat',
-                'rg.masa_kerja_golongan_tahun',
-                'rg.masa_kerja_golongan_bulan',
-                'rg.tmt_golongan',
-                'rg.no_teknis_bkn',
-                'rg.tanggal_teknis_bkn',
-                'rg.no_sk_golongan',
-                'rg.tanggal_sk',
-                'rg.dokumen_skkp',
-                'rg.dokumen_teknis_kp',
-                'rj.jenis_jabatan',
-                'rj.satuan_kerja',
-                'rj.satuan_kerja_induk',
-                'rj.unit_organisasi',
-                'rj.no_sk',
-                'rj.tanggal_sk',
-                'rj.tmt_jabatan',
-                'rj.tmt_pelantikan',
-                'rj.dokumen_sk_jabatan',
-                'rj.dokumen_pelantikan',
-                'rd.jenis_diklat',
-                'rd.nama_diklat',
-                'rd.institusi_penyelenggara',
-                'rd.no_sertifikat',
-                'rd.tanggal_mulai',
-                'rd.tanggal_selesai',
-                'rd.tahun_diklat',
-                'rd.durasi_jam',
-                'rd.dokumen_diklat',
-                'pg.nip',
-                'pg.nama',
-                'pg.gelar_depan',
-                'pg.gelar_belakang',
-                'pg.tempat_lahir',
-                'pg.tanggal_lahir',
-                'pg.jenis_kelamin',
-                'pg.agama',
-                'pg.jenis_dokumen',
-                'pg.no_dokumen',
-                'pg.kelurahan',
-                'pg.kecamatan',
-                'pg.kota',
-                'pg.provinsi',
-                'pg.kode_pos',
-                'pg.no_hp',
-                'pg.no_telp',
-                'pg.jenis_pegawai',
-                'pg.kedudukan_pns',
-                'pg.status_pegawai',
-                'pg.tmt_pns',
-                'pg.no_seri_karpeg',
-                'pg.tmt_cpns',
-                'pg.tingkat_pendidikan',
-                'pg.pendidikan_terakhir',
-                'pj.unit_organisasi',
-                'pj.unit_organisasi_induk',
-                'pj.jenis_jabatan',
-                'pj.eselon',
-                'pj.jabatan',
-                'pj.tmt',
-                'pj.lokasi_kerja',
-                'pj.gol_ruang_awal',
-                'pj.gol_ruang_akhir',
-                'pj.tmt_golongan',
-                'pj.gaji_pokok',
-                'pj.masa_kerja_tahun',
-                'pj.masa_kerja_bulan',
-                'pj.no_spmt',
-                'pj.tanggal_spmt',
-                'pj.kppn'
-            )
+            ->select('users.*',
+                'pr.tgl_lahir','pr.jk','pr.alamat','rp.tingkat_pendidikan','rp.pendidikan',
+                'rp.tahun_lulus','rp.no_ijazah','rp.nama_sekolah','rp.gelar_depan','rp.gelar_belakang',
+                'rp.jenis_pendidikan','rp.dokumen_transkrip','rp.dokumen_ijazah','rp.dokumen_gelar','rg.golongan',
+                'rg.jenis_kenaikan_pangkat','rg.masa_kerja_golongan_tahun','rg.masa_kerja_golongan_bulan','rg.tmt_golongan','rg.no_teknis_bkn',
+                'rg.tanggal_teknis_bkn','rg.no_sk_golongan','rg.tanggal_sk','rg.dokumen_skkp','rg.dokumen_teknis_kp','rj.jenis_jabatan',
+                'rj.satuan_kerja','rj.satuan_kerja_induk','rj.unit_organisasi','rj.no_sk','rj.tanggal_sk','rj.tmt_jabatan','rj.tmt_pelantikan',
+                'rj.dokumen_sk_jabatan','rj.dokumen_pelantikan','rd.jenis_diklat','rd.nama_diklat','rd.institusi_penyelenggara','rd.no_sertifikat',
+                'rd.tanggal_mulai','rd.tanggal_selesai','rd.tahun_diklat','rd.durasi_jam','rd.dokumen_diklat','pg.nip','pg.nama','pg.gelar_depan',
+                'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
+                'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
+                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pj.unit_organisasi',
+                'pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
+                'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
             ->where('users.user_id', $user_id)->first();
         return view('employees.employeeprofile', compact('user', 'users'));
     }
