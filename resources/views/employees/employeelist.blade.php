@@ -194,7 +194,7 @@
                                     <input type="text" class="form-control" id="pegawai_id" name="user_id" placeholder="Otomatis id pengguna" readonly>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            {{-- <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">NIP</label>
                                     <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP">
@@ -347,7 +347,7 @@
                                     <label>Pendidikan Terakhir</label>
                                     <input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Submit</button>

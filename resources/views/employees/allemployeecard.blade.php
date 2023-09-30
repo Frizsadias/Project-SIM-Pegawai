@@ -99,9 +99,9 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label class="col-form-label">Nama Lengkap</label>
+                                        <label class="col-form-label">Nama Akun</label>
                                         <select class="select select2s-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="name" name="name">
-                                            <option value="">-- Select --</option>
+                                            <option value="">-- Pilih Nama Akun --</option>
                                             @foreach ($userList as $key=>$user )
                                                 <option value="{{ $user->name }}" data-employee_id={{ $user->user_id }} data-email={{ $user->email }}>{{ $user->name }}</option>
                                             @endforeach
@@ -112,18 +112,18 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="email" id="email" name="email" placeholder="Auto email" readonly>
+                                        <input class="form-control" type="email" id="email" name="email" placeholder="Otomatis email" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Lahir</label>
                                         <div class="cal-icon">
                                             <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                </div> --}}
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Kelamin</label>
                                         <select class="select form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" id="gender" name="gender">
@@ -131,11 +131,11 @@
                                             <option value="Perempuan">Perempuan</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-sm-6">  
                                     <div class="form-group">
                                         <label class="col-form-label">ID Pegawai <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="Auto id employee" readonly>
+                                        <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="Otomatis id pengguna" readonly>
                                     </div>
                                 </div>
                                 </div>
