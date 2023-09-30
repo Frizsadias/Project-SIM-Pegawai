@@ -149,14 +149,14 @@
                                                 <div class="text">NIP</div>
                                             @endif
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <div class="title">Nama</div>
                                             @if (!empty($profilPegawai->name))
                                                 <div class="text">{{ $profilPegawai->name }}</div>
                                             @else
                                                 <div class="text">Nama</div>
                                             @endif
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <div class="title">Gelar Depan</div>
                                             @if (!empty($profilPegawai->gelar_depan))
@@ -376,13 +376,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                {{-- <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Nama <span class="text-danger">*</span></label>
                                                         <input class="form-control @error('nama') is-invalid @enderror"
                                                             type="text" name="nama" value="">
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Gelar Depan <span class="text-danger">*</span></label>

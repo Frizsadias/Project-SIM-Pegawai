@@ -131,14 +131,14 @@
                                                 <div class="text">N/A</div>
                                             @endif
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <div class="title">Nama</div>
-                                            @if (!empty($users->nama))
-                                                <div class="text">{{ $users->nama }}</div>
+                                            @if (!empty($users->name))
+                                                <div class="text">{{ $users->name }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <div class="title">Gelar Depan</div>
                                             @if (!empty($users->gelar_depan))
