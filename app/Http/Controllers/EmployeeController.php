@@ -18,64 +18,43 @@ class EmployeeController extends Controller
     public function cardAllEmployee(Request $request)
     {
         $users = DB::table('users')
-            ->join('profil_pegawai','users.user_id','profil_pegawai.user_id')
+            ->join('profil_pegawai','employees','users.user_id','profil_pegawai.user_id','employees.employee_id')
             ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
             'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
             'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
             'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns', 'profil_pegawai.status_pegawai',
-            'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir')
+            'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
+            'employees.name','employees.email','employees.employee_id')
             ->get();
         $userList = DB::table('users')->get();
-        return view('employees.allemployeecard',compact('users','userList'));
+        $permission_lists = DB::table('permission_lists')->get();
+        return view('employees.allemployeecard',compact('users','userList','permission_lists'));
     }
 
     /** all employee list */
     public function listAllEmployee()
     {
         $users = DB::table('users')
-            ->join('profil_pegawai','users.user_id','profil_pegawai.user_id')
+            ->join('profil_pegawai','employees','users.user_id','profil_pegawai.user_id','employees.employee_id')
             ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
             'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
             'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
             'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns', 'profil_pegawai.status_pegawai',
-            'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir')
+            'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
+            'employees.name','employees.email','employees.employee_id')
             ->get();
         $userList = DB::table('users')->get();
-        return view('employees.employeelist',compact('users','userList'));
+        $permission_lists = DB::table('permission_lists')->get();
+        return view('employees.employeelist',compact('users','userList','permission_lists'));
     }
 
     /** save data employee */
     public function saveRecord(Request $request)
     {
         $request->validate([
-            'user_id'               => 'required|string|max:255',
-            'nip'                   => 'required|string|max:255',
-            'name'                  => 'required|string|max:255',
-            'email'                 => 'required|string|email',
-            'nama'                  => 'required|string|max:255',
-            'gelar_depan'           => 'required|string|max:255',
-            'gelar_belakang'        => 'required|string|max:255',
-            'tempat_lahir'          => 'required|string|max:255',
-            'tanggal_lahir'         => 'required|string|max:255',
-            'jenis_kelamin'         => 'required|string|max:255',
-            'agama'                 => 'required|string|max:255',
-            'jenis_dokumen'         => 'required|string|max:255',
-            'no_dokumen'            => 'required|string|max:255',
-            'kelurahan'             => 'required|string|max:255',
-            'kecamatan'             => 'required|string|max:255',
-            'kota'                  => 'required|string|max:255',
-            'provinsi'              => 'required|string|max:255',
-            'kode_pos'              => 'required|string|max:255',
-            'no_hp'                 => 'required|string|max:255',
-            'no_telp'               => 'required|string|max:255',
-            'jenis_pegawai'         => 'required|string|max:255',
-            'kedudukan_pns'         => 'required|string|max:255',
-            'status_pegawai'        => 'required|string|max:255',
-            'tmt_pns'               => 'required|string|max:255',
-            'no_seri_karpeg'        => 'required|string|max:255',
-            'tmt_cpns'              => 'required|string|max:255',
-            'tingkat_pendidikan'    => 'required|string|max:255',
-            'pendidikan_terakhir'   => 'required|string|max:255',
+            'name'        => 'required|string|max:255',
+            'email'       => 'required|string|email',
+            'employee_id' => 'required|string|max:255',
         ]);
 
         DB::beginTransaction();
@@ -86,39 +65,30 @@ class EmployeeController extends Controller
             {
 
                 $employee = new Employee;
-                $employee->user_id              = $request->user_id;
-                $employee->nip                  = $request->nip;
-                $employee->name                 = $request->name;
-                $employee->email                = $request->email;
-                $employee->nama                 = $request->nama;
-                $employee->gelar_depan          = $request->gelar_depan;
-                $employee->gelar_belakang       = $request->gelar_belakang;
-                $employee->tempat_lahir         = $request->tempat_lahir;
-                $employee->tanggal_lahir        = $request->tanggal_lahir;
-                $employee->jenis_kelamin        = $request->jenis_kelamin;
-                $employee->agama                = $request->agama;
-                $employee->jenis_dokumen        = $request->jenis_dokumen;
-                $employee->no_dokumen           = $request->no_dokumen;
-                $employee->kelurahan            = $request->kelurahan;
-                $employee->kecamatan            = $request->kecamatan;
-                $employee->kota                 = $request->kota;
-                $employee->provinsi             = $request->provinsi;
-                $employee->kode_pos             = $request->kode_pos;
-                $employee->no_hp                = $request->no_hp;
-                $employee->no_telp              = $request->no_telp;
-                $employee->jenis_pegawai        = $request->jenis_pegawai;
-                $employee->kedudukan_pns        = $request->kedudukan_pns;
-                $employee->status_pegawai       = $request->status_pegawai;
-                $employee->tmt_pns              = $request->tmt_pns;
-                $employee->no_seri_karpeg       = $request->no_seri_karpeg;
-                $employee->tmt_cpns             = $request->tmt_cpns;
-                $employee->tingkat_pendidikan   = $request->tingkat_pendidikan;
-                $employee->pendidikan_terakhir  = $request->pendidikan_terakhir;
+                $employee->name         = $request->name;
+                $employee->email        = $request->email;
+                $employee->employee_id  = $request->employee_id;
                 $employee->save();
+
+                for($i=0;$i<count($request->id_count);$i++)
+                {
+                    $module_permissions = [
+                        'employee_id' => $request->employee_id,
+                        'module_permission' => $request->permission[$i],
+                        'id_count'          => $request->id_count[$i],
+                        'read'              => $request->read[$i],
+                        'write'             => $request->write[$i],
+                        'create'            => $request->create[$i],
+                        'delete'            => $request->delete[$i],
+                        'import'            => $request->import[$i],
+                        'export'            => $request->export[$i],
+                    ];
+                    DB::table('module_permissions')->insert($module_permissions);
+                }
 
                 DB::commit();
                 Toastr::success('Berhasil menambahkan pegawai baru :)','Success');
-                return redirect()->route('all/employee/card');
+                return redirect()->route('daftar/pegawai/card');
             } else {
                 DB::rollback();
                 Toastr::error('Data tersebuut sudah tersedia :(','Error');
@@ -132,12 +102,12 @@ class EmployeeController extends Controller
     }
 
     /** view edit record */
-    public function viewRecord($user_id)
+    public function viewRecord($employee_id)
     {
-        $permission = DB::table('profil_pegawai')
-            ->join('module_permissions', 'profil_pegawai.user_id', 'module_permissions.user_id')
-            ->select('profil_pegawai.*', 'module_permissions.*')->where('profil_pegawai.user_id', $user_id)->get();
-        $employees = DB::table('profil_pegawai')->where('user_id', $user_id)->get();
+        $permission = DB::table('employees')
+            ->join('module_permissions','employees.employee_id','module_permissions.employee_id')
+            ->select('employees.*','module_permissions.*')->where('employees.employee_id',$employee_id)->get();
+        $employees = DB::table('employees')->where('employee_id',$employee_id)->get();
         return view('employees.edit.editemployee',compact('employees','permission'));
     }
 
@@ -149,221 +119,215 @@ class EmployeeController extends Controller
 
             // update table Employee
             $updateEmployee = [
-                'id'                    => $request->id,
-                'name'                  => $request->name,
-                'user_id'               => $request->user_id,
-                'email'                 => $request->email,
-                'nip'                   => $request->nip,
-                'nama'                  => $request->nama,
-                'gelar_depan'           => $request->gelar_depan,
-                'gelar_belakang'        => $request->gelar_belakang,
-                'tempat_lahir'          => $request->tempat_lahir,
-                'tanggal_lahir'         => $request->tanggal_lahir,
-                'jenis_kelamin'         => $request->jenis_kelamin,
-                'agama'                 => $request->agama,
-                'jenis_dokumen'         => $request->jenis_dokumen,
-                'no_dokumen'            => $request->no_dokumen,
-                'kelurahan'             => $request->kelurahan,
-                'kecamatan'             => $request->kecamatan,
-                'kota'                  => $request->kota,
-                'provinsi'              => $request->provinsi,
-                'kode_pos'              => $request->kode_pos,
-                'no_hp'                 => $request->no_hp,
-                'no_telp'               => $request->no_telp,
-                'jenis_pegawai'         => $request->jenis_pegawai,
-                'kedudukan_pns'         => $request->kedudukan_pns,
-                'status_pegawai'        => $request->status_pegawai,
-                'tmt_pns'               => $request->tmt_pns,
-                'no_seri_karpeg'        => $request->no_seri_karpeg,
-                'tmt_cpns'              => $request->tmt_cpns,
-                'tingkat_pendidikan'    => $request->tingkat_pendidikan,
-                'pendidikan_terakhir'   => $request->pendidikan_terakhir,
+                'id'            =>$request->id,
+                'name'          =>$request->name,
+                'email'         =>$request->email,
+                'employee_id'   =>$request->employee_id,
             ];
 
             // update table user
             $updateUser = [
-                'id'                    =>$request->id,
-                'name'                  =>$request->name,
-                'email'                 =>$request->email,
+                'id'            =>$request->id,
+                'name'          =>$request->name,
+                'email'         =>$request->email,
             ];
+
+            // update table module_permissions
+            for($i = 0;$i<count($request->id_permission);$i++)
+            {
+                $UpdateModule_permissions = [
+                    'employee_id' => $request->employee_id,
+                    'module_permission' => $request->permission[$i],
+                    'id'                => $request->id_permission[$i],
+                    'read'              => $request->read[$i],
+                    'write'             => $request->write[$i],
+                    'create'            => $request->create[$i],
+                    'delete'            => $request->delete[$i],
+                    'import'            => $request->import[$i],
+                    'export'            => $request->export[$i],
+                ];
+                module_permission::where('id',$request->id_permission[$i])->update($UpdateModule_permissions);
+            }
 
             User::where('id',$request->id)->update($updateUser);
             Employee::where('id',$request->id)->update($updateEmployee);
 
             DB::commit();
-            Toastr::success('Berhasil update data :)','Success');
-            return redirect()->route('all/employee/card');
+            Toastr::success('Data daftar pegawai berhasil diperbaharui :)','Success');
+            return redirect()->route('daftar/pegawai/card');
         }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Gagal update data :(','Error');
+            Toastr::error('Data daftar pegawai gagal diperbaharui :(','Error');
             return redirect()->back();
         }
     }
 
     /** delete record */
-    public function deleteRecord($user_id)
+    public function deleteRecord($employee_id)
     {
         DB::beginTransaction();
         try{
-            Employee::where('user_id', $user_id)->delete();
-            module_permission::where('user_id', $user_id)->delete();
+            Employee::where('employee_id',$employee_id)->delete();
+            module_permission::where('employee_id',$employee_id)->delete();
 
             DB::commit();
-            Toastr::success('Berhasil hapus data :)','Success');
-            return redirect()->route('all/employee/card');
+            Toastr::success('Data daftar pegawai berhasil dihapus :)','Success');
+            return redirect()->route('daftar/pegawai/card');
         }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Gagal hapus data :(','Error');
+            Toastr::error('Data daftar pegawai gagal dihapus :(','Error');
             return redirect()->back();
         }
     }
-
-
-
-
-
-    
-
-
-
 
     /** employee search */
     public function employeeSearch(Request $request)
     {
         $users = DB::table('users')
-            ->join('employees', 'users.user_id', 'employees.employee_id')
-            ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')->get();
+                    ->join('employees','users.user_id','employees.employee_id')
+                    ->select('users.*','employees.birth_date','employees.gender','employees.company')->get();
         $permission_lists = DB::table('permission_lists')->get();
         $userList = DB::table('users')->get();
 
         // search by id
-        if ($request->employee_id) {
+        if($request->employee_id)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')->get();
         }
         // search by name
-        if ($request->name) {
+        if($request->name)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('users.name', 'LIKE', '%' . $request->name . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
         }
         // search by name
-        if ($request->position) {
+        if($request->position)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('users.position', 'LIKE', '%' . $request->position . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('users.position','LIKE','%'.$request->position.'%')->get();
         }
 
         // search by name and id
-        if ($request->employee_id && $request->name) {
+        if($request->employee_id && $request->name)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
-                ->where('users.name', 'LIKE', '%' . $request->name . '%')
-                ->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->get();
         }
         // search by position and id
-        if ($request->employee_id && $request->position) {
+        if($request->employee_id && $request->position)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
-                ->where('users.position', 'LIKE', '%' . $request->position . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date', 'employees.gender', 'employees.company')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.position','LIKE','%'.$request->position.'%')->get();
         }
         // search by name and position
-        if ($request->name && $request->position) {
+        if($request->name && $request->position)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('users.name', 'LIKE', '%' . $request->name . '%')
-                ->where('users.position', 'LIKE', '%' . $request->position . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->where('users.position','LIKE','%'.$request->position.'%')->get();
         }
         // search by name and position and id
-        if ($request->employee_id && $request->name && $request->position) {
+        if($request->employee_id && $request->name && $request->position)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
-                ->where('users.name', 'LIKE', '%' . $request->name . '%')
-                ->where('users.position', 'LIKE', '%' . $request->position . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->where('users.position','LIKE','%'.$request->position.'%')->get();
         }
-        return view('employees.allemployeecard', compact('users', 'userList', 'permission_lists'));
+        return view('employees.allemployeecard',compact('users','userList','permission_lists'));
     }
 
     /** list search employee */
     public function employeeListSearch(Request $request)
     {
         $users = DB::table('users')
-            ->join('employees', 'users.user_id', 'employees.employee_id')
-            ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')->get();
+                    ->join('employees','users.user_id','employees.employee_id')
+                    ->select('users.*','employees.birth_date','employees.gender','employees.company')->get(); 
         $permission_lists = DB::table('permission_lists')->get();
         $userList         = DB::table('users')->get();
 
         // search by id
-        if ($request->employee_id) {
+        if($request->employee_id)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')->get();
         }
         // search by name
-        if ($request->name) {
+        if($request->name)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('users.name', 'LIKE', '%' . $request->name . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
         }
         // search by name
-        if ($request->position) {
+        if($request->position)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('users.position', 'LIKE', '%' . $request->position . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('users.position','LIKE','%'.$request->position.'%')->get();
         }
 
         // search by name and id
-        if ($request->employee_id && $request->name) {
+        if($request->employee_id && $request->name)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
-                ->where('users.name', 'LIKE', '%' . $request->name . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
         }
         // search by position and id
-        if ($request->employee_id && $request->position) {
+        if($request->employee_id && $request->position)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
-                ->where('users.position', 'LIKE', '%' . $request->position . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.position','LIKE','%'.$request->position.'%')->get();
         }
         // search by name and position
-        if ($request->name && $request->position) {
+        if($request->name && $request->position)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('users.name', 'LIKE', '%' . $request->name . '%')
-                ->where('users.position', 'LIKE', '%' . $request->position . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->where('users.position','LIKE','%'.$request->position.'%')->get();
         }
         // search by name and position and id
-        if ($request->employee_id && $request->name && $request->position) {
+        if($request->employee_id && $request->name && $request->position)
+        {
             $users = DB::table('users')
-                ->join('employees', 'users.user_id', 'employees.employee_id')
-                ->select('users.*', 'employees.tgl_lahir', 'employees.jk', 'employees.company')
-                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
-                ->where('users.name', 'LIKE', '%' . $request->name . '%')
-                ->where('users.position', 'LIKE', '%' . $request->position . '%')->get();
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.birth_date','employees.gender','employees.company')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->where('users.position','LIKE','%'.$request->position.'%')->get();
         }
-        return view('employees.employeelist', compact('users', 'userList', 'permission_lists'));
+        return view('employees.employeelist',compact('users','userList','permission_lists'));
     }
-
-
-
 
     /** employee profile with all controller user */
     public function profileEmployee($user_id)
@@ -400,7 +364,6 @@ class EmployeeController extends Controller
                 'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan',
                 'pj.no_spmt','pj.tanggal_spmt','pj.kppn')
                 ->where('users.user_id',$user_id)->get();
-
             $users = DB::table('users')
                 ->leftJoin('profile_information as pr','pr.user_id','users.user_id')
                 ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
