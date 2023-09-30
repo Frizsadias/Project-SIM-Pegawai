@@ -30,36 +30,36 @@
             </div>
             <!-- /Page Header -->
 
-            <!-- Search Filter -->
-            <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
-                @csrf
-                <div class="row filter-row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="employee_id">
-                            <label class="focus-label">ID Pegawai</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="name">
-                            <label class="focus-label">Nama Pegawai</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="email">
-                            <label class="focus-label">Email</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <button type="sumit" class="btn btn-success btn-block"> Cari </button>
+        <!-- Search Filter -->
+        <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
+            @csrf
+            <div class="row filter-row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" name="employee_id">
+                        <label class="focus-label">ID Pegawai</label>
                     </div>
                 </div>
-            </form>
-            <!-- Search Filter -->
-            {{-- message --}}
-            {!! Toastr::message() !!}
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating">
+                        <label class="focus-label">Nama Pegawai</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating">
+                        <label class="focus-label">Posisi</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <button type="sumit" class="btn btn-success btn-block"> Cari </button>
+                </div>
+            </div>
+        </form>
+        <!-- Search Filter -->
+        {{-- message --}}
+        {!! Toastr::message() !!}
 
             <div class="row">
                 <div class="col-md-12">
