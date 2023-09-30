@@ -149,8 +149,10 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('super-admin/kata-sandi', 'changePasswordView')->middleware('auth')->name('super-admin-kata-sandi');
     Route::get('user/kata-sandi', 'changePasswordView')->middleware('auth')->name('user-kata-sandi');
     Route::post('change/password/db', 'changePasswordDB')->name('change/password/db');
-    Route::post('user/profile/emergency/contact/save', 'emergencyContactSaveOrUpdate')->name('user/profile/emergency/contact/save'); /** save or update emergency contact */
-    Route::get('get-users-data', 'getUsersData')->name('get-users-data'); /** get all data users */
+    Route::post('user/profile/emergency/contact/save', 'emergencyContactSaveOrUpdate')->name('user/profile/emergency/contact/save');
+    /** save or update emergency contact */
+    Route::get('get-users-data', 'getUsersData')->name('get-users-data');
+    /** get all data users */
 });
 
 // ----------------------- Profile Pegawai  --------------------------//
@@ -394,3 +396,11 @@ Route::middleware(['auth'])->group(function () {
 
 // ----------------------- Melihat PDF --------------------------//
 Route::get('/riwayat/pendidikan/{pdfId}', 'PdfController@showPdf')->name('pdf.show');
+
+//------------------------ Pegawai -----------------------------//
+Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
+Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
+Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
+Route::get('/pegawai/{id}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+Route::put('/pegawai/{id}', [PegawaiController::class, 'update'])->name('pegawai.update');
+Route::delete('/pegawai/{id}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');

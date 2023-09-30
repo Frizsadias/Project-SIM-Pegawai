@@ -89,12 +89,12 @@
                             <span>Daftar Pegawai</span>
                         </a>
                     </li>
-                    {{-- <li class="{{ request()->is('search/user/list', 'daftar/pegawai') ? 'active' : '' }}">
-                        <a href="{{ route('daftar-pegawai') }}"
-                            class="{{ request()->is('search/user/list', 'daftar/pegawai') ? 'noti-dot' : '' }}">
-                            <i class="la la-group"></i> <span>Daftar Pegawai</span>
+                    <li class="{{ request()->is('/pegawai') ? 'active' : '' }}">
+                        <a href="{{ route('/pegawai') }}"
+                            class="{{ request()->is('/pegawai') ? 'noti-dot' : '' }}">
+                            <i class="la la-group"></i> <span> Pegawai</span>
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-level-down"></i>

@@ -20,10 +20,13 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i class="fa fa-plus"></i> Tambah Pegawai</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i
+                            class="fa fa-plus"></i> Tambah Pegawai</a>
                     <div class="view-icons">
-                        <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-                        <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                        <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i
+                                class="fa fa-th"></i></a>
+                        <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i
+                                class="fa fa-bars"></i></a>
                     </div>
                 </div>
             </div>
@@ -33,29 +36,29 @@
         <!-- Search Filter -->
         <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
             @csrf
-                <div class="row filter-row">
-                    <div class="col-sm-6 col-md-3">  
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="user_id">
-                            <label class="focus-label">ID Pegawai</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">  
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="nama">
-                            <label class="focus-label">Nama Pegawai</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3"> 
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="email">
-                            <label class="focus-label">Email</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">  
-                        <button type="sumit" class="btn btn-success btn-block"> Cari </button>  
+            <div class="row filter-row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" name="user_id">
+                        <label class="focus-label">ID Pegawai</label>
                     </div>
                 </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" name="nama">
+                        <label class="focus-label">Nama Pegawai</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" name="email">
+                        <label class="focus-label">Email</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <button type="sumit" class="btn btn-success btn-block"> Cari </button>
+                </div>
+            </div>
         </form>
         <!-- Search Filter -->
         {{-- message --}}
@@ -104,7 +107,8 @@
                                     <td>
                                         <h2 class="table-avatar">
                                             <a href="{{ url('user/profile/' . $profpeg->user_id) }}" class="avatar">
-                                                <img alt="" src="{{ URL::to('/assets/images/' . $profpeg->avatar) }}">
+                                                <img alt=""
+                                                    src="{{ URL::to('/assets/images/' . $profpeg->avatar) }}">
                                             </a>
                                             <a href="{{ url('user/profile/' . $profpeg->user_id) }}">{{ $profpeg->name }}
                                                 <span>{{ $profpeg->position }}</span>
@@ -140,10 +144,15 @@
                                     <td>{{ $profpeg->pendidikan_terakhir }}</td>
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="{{ url('all/employee/view/edit/' . $profpeg->user_id) }}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                <a class="dropdown-item" href="{{ url('all/employee/delete/' . $profpeg->user_id) }}"onclick="return confirm('Are you sure to want to delete it?')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ url('all/employee/view/edit/' . $profpeg->user_id) }}"><i
+                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ url('all/employee/delete/' . $profpeg->user_id) }}"onclick="return confirm('Are you sure to want to delete it?')"><i
+                                                        class="fa fa-trash-o m-r-5"></i> Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -177,7 +186,8 @@
                                     <select class="select" id="name" name="name">
                                         <option value="">-- Pilih Nama Akun --</option>
                                         @foreach ($userList as $key => $user)
-                                            <option value="{{ $user->name }}" data-pegawai_id={{ $user->user_id }} data-email={{ $user->email }}>{{ $user->name }}</option>
+                                            <option value="{{ $user->name }}" data-pegawai_id={{ $user->user_id }}
+                                                data-email={{ $user->email }}>{{ $user->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -185,49 +195,58 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="email" id="email" name="email" placeholder="Otomatis email" readonly>
+                                    <input class="form-control" type="email" id="email" name="email"
+                                        placeholder="Otomatis email" readonly>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">ID Pegawai <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="pegawai_id" name="user_id" placeholder="Otomatis id pengguna" readonly>
+                                    <label class="col-form-label">ID Pegawai <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="pegawai_id" name="user_id"
+                                        placeholder="Otomatis id pengguna" readonly>
                                 </div>
                             </div>
-                            {{-- <div class="col-sm-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">NIP</label>
-                                    <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP">
+                                    <input type="text" class="form-control" id="nip" name="nip"
+                                        placeholder="Masukkan NIP">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Nama</label>
-                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap">
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        placeholder="Masukkan Nama Lengkap">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gelar Depan</label>
-                                    <input type="text" class="form-control" id="gelar_depan" name="gelar_depan" placeholder="Masukkan Gelar Depan">
+                                    <input type="text" class="form-control" id="gelar_depan" name="gelar_depan"
+                                        placeholder="Masukkan Gelar Depan">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gelar Belakang</label>
-                                    <input type="text" class="form-control" id="gelar_belakang" name="gelar_belakang" placeholder="Masukkan Gelar Belakang">
+                                    <input type="text" class="form-control" id="gelar_belakang"
+                                        name="gelar_belakang" placeholder="Masukkan Gelar Belakang">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tempat Lahir</label>
-                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
+                                    <input type="text" class="form-control" id="tempat_lahir"
+                                        name="tempat_lahir">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
+                                    <input type="date" class="form-control" id="tanggal_lahir"
+                                        name="tanggal_lahir">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -249,7 +268,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Jenis Dokumen</label>
-                                    <input type="text" class="form-control" id="jenis_dokumen" name="jenis_dokumen">
+                                    <input type="text" class="form-control" id="jenis_dokumen"
+                                        name="jenis_dokumen">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -303,19 +323,22 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Jenis Pegawai</label>
-                                    <input type="text" class="form-control" id="jenis_pegawai" name="jenis_pegawai">
+                                    <input type="text" class="form-control" id="jenis_pegawai"
+                                        name="jenis_pegawai">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kedudukan PNS</label>
-                                    <input type="text" class="form-control" id="kedudukan_pns" name="kedudukan_pns">
+                                    <input type="text" class="form-control" id="kedudukan_pns"
+                                        name="kedudukan_pns">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Status Pegawai</label>
-                                    <input type="text" class="form-control" id="status_pegawai" name="status_pegawai">
+                                    <input type="text" class="form-control" id="status_pegawai"
+                                        name="status_pegawai">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -327,7 +350,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor Seri Kartu Pegawai</label>
-                                    <input type="text" class="form-control" id="no_seri_karpeg" name="no_seri_karpeg">
+                                    <input type="text" class="form-control" id="no_seri_karpeg"
+                                        name="no_seri_karpeg">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -339,15 +363,17 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tingkat Pendidikan</label>
-                                    <input type="text" class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan">
+                                    <input type="text" class="form-control" id="tingkat_pendidikan"
+                                        name="tingkat_pendidikan">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Pendidikan Terakhir</label>
-                                    <input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir">
+                                    <input type="text" class="form-control" id="pendidikan_terakhir"
+                                        name="pendidikan_terakhir">
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Submit</button>
@@ -363,28 +389,25 @@
 </div>
 <!-- /Page Wrapper -->
 @section('script')
-<script>
-    $("input:checkbox").on('click', function()
-    {
-        var $box = $(this);
-        if ($box.is(":checked"))
-        {
-            var group = "input:checkbox[class='" + $box.attr("class") + "']";
-            $(group).prop("checked", false);
-            $box.prop("checked", true);
-        } else {
-            $box.prop("checked", false);
-        }
-    });
-</script>
+    <script>
+        $("input:checkbox").on('click', function() {
+            var $box = $(this);
+            if ($box.is(":checked")) {
+                var group = "input:checkbox[class='" + $box.attr("class") + "']";
+                $(group).prop("checked", false);
+                $box.prop("checked", true);
+            } else {
+                $box.prop("checked", false);
+            }
+        });
+    </script>
 
-<script>
-    // select auto id and email
-    $('#name').on('change',function()
-    {
-        $('#pegawai_id').val($(this).find(':selected').data('pegawai_id'));
-        $('#email').val($(this).find(':selected').data('email'));
-    });
-</script>
+    <script>
+        // select auto id and email
+        $('#name').on('change', function() {
+            $('#pegawai_id').val($(this).find(':selected').data('pegawai_id'));
+            $('#email').val($(this).find(':selected').data('email'));
+        });
+    </script>
 @endsection
 @endsection
