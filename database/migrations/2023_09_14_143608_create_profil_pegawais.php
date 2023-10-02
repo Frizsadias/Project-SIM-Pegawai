@@ -8,15 +8,15 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * 
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('pegawai', function (Blueprint $table) {
+        Schema::create('profil_pegawais', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('nip');
-            $table->string('name')->nullable();
-            $table->string('email')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('nip')->nullable();
             $table->string('nama')->nullable();
             $table->string('gelar_depan')->nullable();
             $table->string('gelar_belakang')->nullable();
@@ -47,9 +47,11 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('pegawai');
+        Schema::dropIfExists('profil_pegawais');
     }
 };

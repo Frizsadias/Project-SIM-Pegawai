@@ -28,7 +28,6 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\RiwayatController;
-use App\Http\Controllers\ProfilePegawaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -149,15 +148,11 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('super-admin/kata-sandi', 'changePasswordView')->middleware('auth')->name('super-admin-kata-sandi');
     Route::get('user/kata-sandi', 'changePasswordView')->middleware('auth')->name('user-kata-sandi');
     Route::post('change/password/db', 'changePasswordDB')->name('change/password/db');
-    Route::post('user/profile/emergency/contact/save', 'emergencyContactSaveOrUpdate')->name('user/profile/emergency/contact/save');
-    /** save or update emergency contact */
+    Route::post('user/profile/pegawai/add', 'profilePegawaiAdd')->name('user/profile/pegawai/add');
+    Route::post('user/profile/pegawai/edit', 'profilePegawaiEdit')->name('user/profile/pegawai/edit');
+    Route::post('user/profile/posisi/jabatan/add', 'posisiJabatanAdd')->name('user/profile/posisi/jabatan/add');
+    Route::post('user/profile/posisi/jabatan/edit', 'posisiJabatanEdit')->name('user/profile/posisi/jabatan/edit');
     Route::get('get-users-data', 'getUsersData')->name('get-users-data');
-    /** get all data users */
-});
-
-// ----------------------- Profile Pegawai  --------------------------//
-Route::controller(ProfilePegawaiController::class)->group(function () {
-    Route::post('user/propeg/save', 'saveRecord')->middleware('auth')->name('user/propeg/save');
 });
 
 // --------------------------------- job ---------------------------------//
@@ -393,6 +388,3 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/diklat/edit-data', [RiwayatController::class, 'editRiwayatDiklat'])->name('riwayat/diklat/edit-data');
     Route::post('riwayat/diklat/hapus-data', [RiwayatController::class, 'hapusRiwayatDiklat'])->name('riwayat/diklat/hapus-data');
 });
-
-// ----------------------- Melihat PDF --------------------------//
-Route::get('/riwayat/pendidikan/{pdfId}', 'PdfController@showPdf')->name('pdf.show');

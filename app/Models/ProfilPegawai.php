@@ -9,10 +9,7 @@ class ProfilPegawai extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
         'nip',
-        'name',
-        'email',
         'nama',
         'gelar_depan',
         'gelar_belakang',

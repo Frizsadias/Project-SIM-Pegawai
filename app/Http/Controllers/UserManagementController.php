@@ -12,7 +12,7 @@ use App\Models\RiwayatDiklat;
 use App\Models\RiwayatGolongan;
 use App\Models\RiwayatJabatan;
 use App\Models\RiwayatPendidikan;
-use App\Models\ProfilPegawaiPengguna;
+use App\Models\ProfilPegawai;
 use App\Models\PosisiJabatan;
 use App\Models\PersonalInformation;
 use App\Rules\MatchOldPassword;
@@ -283,45 +283,40 @@ class UserManagementController extends Controller
     public function user_profile()
     {
         $profile = Session::get('user_id');
+        $result_profilpegawai = ProfilPegawai::where('user_id',$profile)->first();
         $user = DB::table('users')->get();
-        $employees = DB::table('profile_information')->where('user_id', $profile)->first();
+        $employees = DB::table('profile_information')->where('user_id',$profile)->first();
+
+        $result_posisijabatan = PosisiJabatan::where('user_id',Session::get('user_id'))->first();
 
         $datauser = Session::get('user_id');
         $sqluser = User::where('user_id', $datauser)->get();
-
         $datapendidikan = Session::get('user_id');
         $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
-
         $datadiklat = Session::get('user_id');
         $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
-
         $datagolongan = Session::get('user_id');
         $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
-
         $datajabatan = Session::get('user_id');
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
-
-        $dataprofilpegawai = Session::get('user_id');
-        $profilPegawai = ProfilPegawaiPengguna::where('user_id', $dataprofilpegawai)->get();
-
-        $dataposisijabatan = Session::get('user_id');
-        $posisiJabatan = PosisiJabatan::where('user_id', $dataposisijabatan)->get();
-
-        if (empty($employees)) {
-            $information = DB::table('profile_information')->where('user_id', $profile)->first();
-            return view('usermanagement.profile-user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan', 'sqluser'));
+        
+        if(empty($employees))
+        {
+            $information = DB::table('profile_information')->where('user_id',$profile)->first();
+            return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser'));
         } else {
             $user_id = $employees->user_id;
-            if ($user_id == $profile) {
+            if($user_id == $profile)
+            {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile-user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan', 'sqluser'));
+                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile-user', compact('information', 'user', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'profilPegawai', 'posisiJabatan', 'sqluser'));
+                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser'));
             }
         }
     }
-
+    
     /** save profile information */
     public function profileInformation(Request $request)
     {
@@ -545,42 +540,281 @@ class UserManagementController extends Controller
         return redirect()->intended('home');
     }
 
-    /** user profile Emergency Contact */
-    public function emergencyContactSaveOrUpdate(Request $request)
+    /** Tambah Data Profil Pegawai */
+    public function profilePegawaiAdd(Request $request)
     {
-        /** validate form */
         $request->validate([
-            'name_primary' => 'required',
-            'relationship_primary'   => 'required',
-            'phone_primary'          => 'required',
-            'phone_2_primary'        => 'required',
-            'name_secondary'         => 'required',
-            'relationship_secondary' => 'required',
-            'phone_secondary'        => 'required',
-            'phone_2_secondary'      => 'required',
+            'nip'                   => 'required|string|max:255',
+            'nama'                  => 'required|string|max:255',
+            'gelar_depan'           => 'required|string|max:255',
+            'gelar_belakang'        => 'required|string|max:255',
+            'tempat_lahir'          => 'required|string|max:255',
+            'tanggal_lahir'         => 'required|string|max:255',
+            'jenis_kelamin'         => 'required|string|max:255',
+            'agama'                 => 'required|string|max:255',
+            'jenis_dokumen'         => 'required|string|max:255',
+            'no_dokumen'            => 'required|string|max:255',
+            'kelurahan'             => 'required|string|max:255',
+            'kecamatan'             => 'required|string|max:255',
+            'kota'                  => 'required|string|max:255',
+            'provinsi'              => 'required|string|max:255',
+            'kode_pos'              => 'required|string|max:255',
+            'no_hp'                 => 'required|string|max:255',
+            'no_telp'               => 'required|string|max:255',
+            'jenis_pegawai'         => 'required|string|max:255',
+            'kedudukan_pns'         => 'required|string|max:255',
+            'status_pegawai'        => 'required|string|max:255',
+            'tmt_pns'               => 'required|string|max:255',
+            'no_seri_karpeg'        => 'required|string|max:255',
+            'tmt_cpns'              => 'required|string|max:255',
+            'tingkat_pendidikan'    => 'required|string|max:255',
+            'pendidikan_terakhir'   => 'required|string|max:255',
         ]);
 
+        DB::beginTransaction();
         try {
 
-            /** save or update to databases user_emergency_contacts table */
-            $saveRecord = UserEmergencyContact::updateOrCreate(['user_id' => $request->user_id]);
-            $saveRecord->name_primary           = $request->name_primary;
-            $saveRecord->relationship_primary   = $request->relationship_primary;
-            $saveRecord->phone_primary          = $request->phone_primary;
-            $saveRecord->phone_2_primary        = $request->phone_2_primary;
-            $saveRecord->name_secondary         = $request->name_secondary;
-            $saveRecord->relationship_secondary = $request->relationship_secondary;
-            $saveRecord->phone_secondary        = $request->phone_secondary;
-            $saveRecord->phone_2_secondary      = $request->phone_2_secondary;
-            $saveRecord->save();
+            $addProfilPegawai = ProfilPegawai::where('user_id', '=', $request->user_id)->first();
+            if ($addProfilPegawai === null) {
 
-            DB::commit();
-            Toastr::success('Add Emergency Contact successfully :)', 'Success');
+         $addProfilPegawai = new ProfilPegawai();
+         $addProfilPegawai->user_id                 = $request->user_id;
+         $addProfilPegawai->nip                     = $request->nip;
+         $addProfilPegawai->nama                    = $request->nama;
+         $addProfilPegawai->gelar_depan             = $request->gelar_depan;
+         $addProfilPegawai->gelar_belakang          = $request->gelar_belakang;
+         $addProfilPegawai->tempat_lahir            = $request->tempat_lahir;
+         $addProfilPegawai->tanggal_lahir           = $request->tanggal_lahir;
+         $addProfilPegawai->jenis_kelamin           = $request->jenis_kelamin;
+         $addProfilPegawai->agama                   = $request->agama;
+         $addProfilPegawai->jenis_dokumen           = $request->jenis_dokumen;
+         $addProfilPegawai->no_dokumen              = $request->no_dokumen;
+         $addProfilPegawai->kelurahan               = $request->kelurahan;
+         $addProfilPegawai->kecamatan               = $request->kecamatan;
+         $addProfilPegawai->kota                    = $request->kota;
+         $addProfilPegawai->provinsi                = $request->provinsi;
+         $addProfilPegawai->kode_pos                = $request->kode_pos;
+         $addProfilPegawai->no_hp                   = $request->no_hp;
+         $addProfilPegawai->no_telp                 = $request->no_telp;
+         $addProfilPegawai->jenis_pegawai           = $request->jenis_pegawai;
+         $addProfilPegawai->kedudukan_pns           = $request->kedudukan_pns;
+         $addProfilPegawai->status_pegawai          = $request->status_pegawai;
+         $addProfilPegawai->tmt_pns                 = $request->tmt_pns;
+         $addProfilPegawai->no_seri_karpeg          = $request->no_seri_karpeg;
+         $addProfilPegawai->tmt_cpns                = $request->tmt_cpns;
+         $addProfilPegawai->tingkat_pendidikan      = $request->tingkat_pendidikan;
+         $addProfilPegawai->pendidikan_terakhir     = $request->pendidikan_terakhir;
+         $addProfilPegawai->save();
+
+         DB::commit();
+            Toastr::success('Data profil pegawai berhasil ditambah :)','Success');
             return redirect()->back();
+        } else {
+            DB::rollback();
+            Toastr::error('Data profil pegawai sudah tersedia :(','Error');
+            return redirect()->back();
+        }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Add Emergency Contact fail :)', 'Error');
+            Toastr::error('Data profil pegawai gagal ditambah :(', 'Error');
             return redirect()->back();
         }
     }
+    /** End Tambah Data Profil Pegawai */
+
+    /** Edit Data Posisi & Jabatan */
+    public function profilePegawaiEdit(Request $request)
+    {
+        $request->validate([
+            'nip'                   => 'required|string|max:255',
+            'nama'                  => 'required|string|max:255',
+            'gelar_depan'           => 'required|string|max:255',
+            'gelar_belakang'        => 'required|string|max:255',
+            'tempat_lahir'          => 'required|string|max:255',
+            'tanggal_lahir'         => 'required|string|max:255',
+            'jenis_kelamin'         => 'required|string|max:255',
+            'agama'                 => 'required|string|max:255',
+            'jenis_dokumen'         => 'required|string|max:255',
+            'no_dokumen'            => 'required|string|max:255',
+            'kelurahan'             => 'required|string|max:255',
+            'kecamatan'             => 'required|string|max:255',
+            'kota'                  => 'required|string|max:255',
+            'provinsi'              => 'required|string|max:255',
+            'kode_pos'              => 'required|string|max:255',
+            'no_hp'                 => 'required|string|max:255',
+            'no_telp'               => 'required|string|max:255',
+            'jenis_pegawai'         => 'required|string|max:255',
+            'kedudukan_pns'         => 'required|string|max:255',
+            'status_pegawai'        => 'required|string|max:255',
+            'tmt_pns'               => 'required|string|max:255',
+            'no_seri_karpeg'        => 'required|string|max:255',
+            'tmt_cpns'              => 'required|string|max:255',
+            'tingkat_pendidikan'    => 'required|string|max:255',
+            'pendidikan_terakhir'   => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+         
+            $editProfilPegawai = [
+            'nip'                   => $request->nip,
+            'nama'                  => $request->nama,
+            'gelar_depan'           => $request->gelar_depan,
+            'gelar_belakang'        => $request->gelar_belakang,
+            'tempat_lahir'          => $request->tempat_lahir,
+            'tanggal_lahir'         => $request->tanggal_lahir,
+            'jenis_kelamin'         => $request->jenis_kelamin,
+            'agama'                 => $request->agama,
+            'jenis_dokumen'         => $request->jenis_dokumen,
+            'no_dokumen'            => $request->no_dokumen,
+            'kelurahan'             => $request->kelurahan,
+            'kecamatan'             => $request->kecamatan,
+            'kota'                  => $request->kota,
+            'provinsi'              => $request->provinsi,
+            'kode_pos'              => $request->kode_pos,
+            'no_hp'                 => $request->no_hp,
+            'no_telp'               => $request->no_telp,
+            'jenis_pegawai'         => $request->jenis_pegawai,
+            'kedudukan_pns'         => $request->kedudukan_pns,
+            'status_pegawai'        => $request->status_pegawai,
+            'tmt_pns'               => $request->tmt_pns,
+            'no_seri_karpeg'        => $request->no_seri_karpeg,
+            'tmt_cpns'              => $request->tmt_cpns,
+            'tingkat_pendidikan'    => $request->tingkat_pendidikan,
+            'pendidikan_terakhir'   => $request->pendidikan_terakhir,
+            ];
+
+         DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($editProfilPegawai);
+
+         DB::commit();
+         Toastr::success('Data profil pegawai berhasil diperbaharui :)','Success');
+         return redirect()->back();
+        } catch (\Exception $e) {
+         DB::rollback();
+         Toastr::error('Data profil pegawai gagal diperbaharui :(', 'Error');
+         return redirect()->back();
+        }
+    }
+    /** End Edit Data Posisi & Jabatan */
+
+    /** Tambah Data Posisi & Jabatan */
+    public function posisiJabatanAdd(Request $request)
+    {
+        $request->validate([
+            'unit_organisasi'       => 'required|string|max:255',
+            'unit_organisasi_induk' => 'required|string|max:255',
+            'jenis_jabatan'         => 'required|string|max:255',
+            'eselon'                => 'required|string|max:255',
+            'jabatan'               => 'required|string|max:255',
+            'tmt'                   => 'required|string|max:255',
+            'lokasi_kerja'          => 'required|string|max:255',
+            'gol_ruang_awal'        => 'required|string|max:255',
+            'gol_ruang_akhir'       => 'required|string|max:255',
+            'tmt_golongan'          => 'required|string|max:255',
+            'gaji_pokok'            => 'required|string|max:255',
+            'masa_kerja_tahun'      => 'required|string|max:255',
+            'masa_kerja_bulan'      => 'required|string|max:255',
+            'no_spmt'               => 'required|string|max:255', 
+            'tanggal_spmt'          => 'required|string|max:255',
+            'kppn'                  => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $addPosisiJabatan = PosisiJabatan::where('user_id', '=', $request->user_id)->first();
+            if ($addPosisiJabatan === null) {
+
+         $addPosisiJabatan = new PosisiJabatan();
+         $addPosisiJabatan->user_id                = $request->user_id;
+         $addPosisiJabatan->unit_organisasi        = $request->unit_organisasi;
+         $addPosisiJabatan->unit_organisasi_induk  = $request->unit_organisasi_induk;
+         $addPosisiJabatan->jenis_jabatan          = $request->jenis_jabatan;
+         $addPosisiJabatan->eselon                 = $request->eselon;
+         $addPosisiJabatan->jabatan                = $request->jabatan;
+         $addPosisiJabatan->tmt                    = $request->tmt;
+         $addPosisiJabatan->lokasi_kerja           = $request->lokasi_kerja;
+         $addPosisiJabatan->gol_ruang_awal         = $request->gol_ruang_awal;
+         $addPosisiJabatan->gol_ruang_akhir        = $request->gol_ruang_akhir;
+         $addPosisiJabatan->tmt_golongan           = $request->tmt_golongan;
+         $addPosisiJabatan->gaji_pokok             = $request->gaji_pokok;
+         $addPosisiJabatan->masa_kerja_tahun       = $request->masa_kerja_tahun;
+         $addPosisiJabatan->masa_kerja_bulan       = $request->masa_kerja_bulan;
+         $addPosisiJabatan->no_spmt                = $request->no_spmt;
+         $addPosisiJabatan->tanggal_spmt           = $request->tanggal_spmt;
+         $addPosisiJabatan->kppn                   = $request->kppn;
+         $addPosisiJabatan->save();
+
+         DB::commit();
+            Toastr::success('Data posisi & jabatan berhasil ditambah :)','Success');
+            return redirect()->back();
+        } else {
+            DB::rollback();
+            Toastr::error('Data posisi & jabatan sudah tersedia :(','Error');
+            return redirect()->back();
+        }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data posisi & jabatan gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Posisi & Jabatan */
+
+    /** Edit Data Posisi & Jabatan */
+    public function posisiJabatanEdit(Request $request)
+    {
+        $request->validate([
+            'unit_organisasi'       => 'required|string|max:255',
+            'unit_organisasi_induk' => 'required|string|max:255',
+            'jenis_jabatan'         => 'required|string|max:255',
+            'eselon'                => 'required|string|max:255',
+            'jabatan'               => 'required|string|max:255',
+            'tmt'                   => 'required|string|max:255',
+            'lokasi_kerja'          => 'required|string|max:255',
+            'gol_ruang_awal'        => 'required|string|max:255',
+            'gol_ruang_akhir'       => 'required|string|max:255',
+            'tmt_golongan'          => 'required|string|max:255',
+            'gaji_pokok'            => 'required|string|max:255',
+            'masa_kerja_tahun'      => 'required|string|max:255',
+            'masa_kerja_bulan'      => 'required|string|max:255',
+            'no_spmt'               => 'required|string|max:255', 
+            'tanggal_spmt'          => 'required|string|max:255',
+            'kppn'                  => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+         
+            $editPosisiJabatan = [
+            'unit_organisasi'        => $request->unit_organisasi,
+            'unit_organisasi_induk'  => $request->unit_organisasi_induk,
+            'jenis_jabatan'          => $request->jenis_jabatan,
+            'eselon'                 => $request->eselon,
+            'jabatan'                => $request->jabatan,
+            'tmt'                    => $request->tmt,
+            'lokasi_kerja'           => $request->lokasi_kerja,
+            'gol_ruang_awal'         => $request->gol_ruang_awal,
+            'gol_ruang_akhir'        => $request->gol_ruang_akhir,
+            'tmt_golongan'           => $request->tmt_golongan,
+            'gaji_pokok'             => $request->gaji_pokok,
+            'masa_kerja_tahun'       => $request->masa_kerja_tahun,
+            'masa_kerja_bulan'       => $request->masa_kerja_bulan,
+            'no_spmt'                => $request->no_spmt,
+            'tanggal_spmt'           => $request->tanggal_spmt,
+            'kppn'                   => $request->kppn,
+            ];
+
+         DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($editPosisiJabatan);
+
+         DB::commit();
+         Toastr::success('Data posisi & jabatan berhasil diperbaharui :)','Success');
+         return redirect()->back();
+        } catch (\Exception $e) {
+         DB::rollback();
+         Toastr::error('Data posisi & jabatan gagal diperbaharui :(', 'Error');
+         return redirect()->back();
+        }
+    }
+    /** End Edit Data Posisi & Jabatan */
 }

@@ -70,7 +70,7 @@
                                     <th>Nama Akun</th>
                                     <th>ID Akun</th>
                                     <th>Email</th>
-                                    {{-- <th>NIP</th>
+                                    <th>NIP</th>
                                     <th>Nama</th>
                                     <th>Gelar Depan</th>
                                     <th>Gelar Belakang</th>
@@ -94,7 +94,7 @@
                                     <th>No Seri Karpeg</th>
                                     <th>TMT CPNS</th>
                                     <th>Tingkat Pendidikan</th>
-                                    <th>Pendidikan Terakhir</th> --}}
+                                    <th>Pendidikan Terakhir</th>
                                     <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
@@ -109,6 +109,31 @@
                                     </td>
                                     <td>{{ $dafpeg->user_id }}</td>
                                     <td>{{ $dafpeg->email }}</td>
+                                    <td>{{ $dafpeg->nip }}</td>
+                                    <td>{{ $dafpeg->nama }}</td>
+                                    <td>{{ $dafpeg->gelar_depan }}</td>
+                                    <td>{{ $dafpeg->gelar_belakang }}</td>
+                                    <td>{{ $dafpeg->tempat_lahir }}</td>
+                                    <td>{{ $dafpeg->tanggal_lahir }}</td>
+                                    <td>{{ $dafpeg->jenis_kelamin }}</td>
+                                    <td>{{ $dafpeg->agama }}</td>
+                                    <td>{{ $dafpeg->jenis_dokumen }}</td>
+                                    <td>{{ $dafpeg->no_dokumen }}</td>
+                                    <td>{{ $dafpeg->kelurahan }}</td>
+                                    <td>{{ $dafpeg->kecamatan }}</td>
+                                    <td>{{ $dafpeg->kota }}</td>
+                                    <td>{{ $dafpeg->provinsi }}</td>
+                                    <td>{{ $dafpeg->kode_pos }}</td>
+                                    <td>{{ $dafpeg->no_hp }}</td>
+                                    <td>{{ $dafpeg->no_telp }}</td>
+                                    <td>{{ $dafpeg->jenis_pegawai }}</td>
+                                    <td>{{ $dafpeg->kedudukan_pns }}</td>
+                                    <td>{{ $dafpeg->status_pegawai }}</td>
+                                    <td>{{ $dafpeg->tmt_pns }}</td>
+                                    <td>{{ $dafpeg->no_seri_karpeg }}</td>
+                                    <td>{{ $dafpeg->tmt_cpns }}</td>
+                                    <td>{{ $dafpeg->tingkat_pendidikan }}</td>
+                                    <td>{{ $dafpeg->pendidikan_terakhir }}</td>
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>

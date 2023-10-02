@@ -100,740 +100,386 @@
                     </div>
                 </div>
             </div>
-            <div class="card tab-box">
-                <div class="row user-tabs">
-                    <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
-                        <ul class="nav nav-tabs nav-tabs-bottom">
-                            <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
-                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat Pendidikan</a></li>
-                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat Golongan</a></li>
-                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat Jabatan</a></li>
-                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat Diklat</a></li>
-                        </ul>
+                <div class="card tab-box">
+                    <div class="row user-tabs">
+                        <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                            <ul class="nav nav-tabs nav-tabs-bottom">
+                                <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
+                                <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat Pendidikan</a></li>
+                                <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat Golongan</a></li>
+                                <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat Jabatan</a></li>
+                                <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat Diklat</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tab-content">
-
-                <!-- Profile Pegawai Tab -->
-                <div id="profil_pegawai" class="pro-overview tab-pane fade show active">
-                    <div class="row">
-                        <div class="col-md-12 d-flex">
-                            <div class="card profile-box flex-fill">
-                                <div class="card-body">
-                                    <h3 class="card-title">Profil Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal"><i class="fa fa-pencil"></i></a></h3>
-                                    <ul class="personal-info">
-                                        <li>
-                                            <div class="title">Nama</div>
-                                            @if (!empty($users->nama))
-                                                <div class="text">{{ $users->nama }}</div>
-                                            @else
+                <div class="tab-content">
+                    <!-- Profile Pegawai Tab -->
+                    <div id="profil_pegawai" class="pro-overview tab-pane fade show active">
+                        <div class="row">
+                            <div class="col-md-12 d-flex">
+                                <div class="card profile-box flex-fill">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Profil Pegawai
+                                            {{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_tambah"><i class="fa fa-plus"></i></a></h3> --}}
+                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_edit"><i class="fa fa-pencil"></i></a></h3>
+                                        <ul class="personal-info">
+                                            <li>
+                                                <div class="title">Nama</div>
+                                                @if (!empty($users->nama))
+                                                    <div class="text">{{ $users->nama }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">NIP</div>
+                                                @if (!empty($users->nip))
+                                                    <div class="text">{{ $users->nip }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Gelar Depan</div>
+                                                @if (!empty($users->gelar_depan))
+                                                    <div class="text">{{ $users->gelar_depan }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Gelar Belakang</div>
+                                                @if (!empty($users->gelar_belakang))
+                                                    <div class="text">{{ $users->gelar_belakang }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Tempat Lahir</div>
+                                                @if (!empty($users->tempat_lahir))
+                                                    <div class="text">{{ $users->tempat_lahir }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Tanggal Lahir</div>
+                                                @if (!empty($users->tanggal_lahir))
+                                                    <div class="text">{{ $users->tanggal_lahir }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Jenis Kelamin</div>
+                                                @if (!empty($users->jenis_kelamin))
+                                                    <div class="text">{{ $users->jenis_kelamin }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Agama</div>
+                                                @if (!empty($users->agama))
+                                                    <div class="text">{{ $users->agama }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">E-mail</div>
+                                                @if (!empty($users->email))
+                                                    <div class="text">{{ $users->email }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Jenis Dokumen</div>
+                                                @if (!empty($users->jenis_dokumen))
+                                                    <div class="text">{{ $users->jenis_dokumen }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Nomor Dokumen</div>
+                                                @if (!empty($users->no_dokumen))
+                                                    <div class="text">{{ $users->no_dokumen }}</div>
+                                                @else
+                                                    <div class="text">N/An</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Kelurahan</div>
+                                                @if (!empty($users->kelurahan))
+                                                    <div class="text">{{ $users->kelurahan }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Kecamatan</div>
+                                                @if (!empty($users->kecamatan))
+                                                    <div class="text">{{ $users->kecamatan }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Kota</div>
+                                                @if (!empty($users->kota))
+                                                    <div class="text">{{ $users->kota }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Provinsi</div>
+                                                @if (!empty($users->provinsi))
+                                                    <div class="text">{{ $users->provinsi }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Kode Pos</div>
+                                                @if (!empty($users->kode_pos))
+                                                    <div class="text">{{ $users->kode_pos }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Nomor HP</div>
+                                                @if (!empty($users->no_hp))
+                                                    <div class="text">{{ $users->no_hp }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Nomor Telepon</div>
+                                                @if (!empty($users->no_telp))
+                                                    <div class="text">{{ $users->no_telp }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Jenis Pegawai</div>
+                                                @if (!empty($users->jenis_pegawai))
+                                                    <div class="text">{{ $users->jenis_pegawai }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Kedudukan PNS</div>
+                                                @if (!empty($users->kedudukan_pns))
+                                                    <div class="text">{{ $users->kedudukan_pns }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Status Pegawai</div>
+                                                @if (!empty($users->status_pegawai))
+                                                    <div class="text">{{ $users->status_pegawai }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">TMT PNS</div>
+                                                @if (!empty($users->tmt_pns))
+                                                    <div class="text">{{ $users->tmt_pns }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">No. Seri Kartu Pegawai</div>
+                                                @if (!empty($users->no_seri_karpeg))
+                                                    <div class="text">{{ $users->no_seri_karpeg }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">TMT CPNS</div>
+                                                @if (!empty($users->tmt_cpns))
+                                                    <div class="text">{{ $users->tmt_cpns }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Tingkat Pendidikan</div>
+                                                @if (!empty($users->tingkat_pendidikan))
+                                                    <div class="text">{{ $users->tingkat_pendidikan }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Pendidikan Terakhir</div>
+                                                @if (!empty($users->pendidikan_terakhir))
+                                                    <div class="text">{{ $users->pendidikan_terakhir }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-flex">
+                                <div class="card profile-box flex-fill">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Posisi & Jabatan Pegawai
+                                            {{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal_tambah"><i class="fa fa-plus"></i></a></h3> --}}
+                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal_edit"><i class="fa fa-pencil"></i></a></h3>
+                                        <ul class="personal-info">
+                                            <li>
+                                                <div class="title">Unit Organisasi</div>
+                                                @if (!empty($users->unit_organisasi))
+                                                <div class="text">{{ $users->unit_organisasi }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">NIP</div>
-                                            @if (!empty($users->nip))
-                                                <div class="text">{{ $users->nip }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Unit Organisasi Induk</div>
+                                                @if (!empty($users->unit_organisasi_induk))
+                                                <div class="text">{{ $users->unit_organisasi_induk }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Gelar Depan</div>
-                                            @if (!empty($users->gelar_depan))
-                                                <div class="text">{{ $users->gelar_depan }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Jenis Jabatan </div>
+                                                @if (!empty($users->jenis_jabatan))
+                                                <div class="text">{{ $users->jenis_jabatan }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Gelar Belakang</div>
-                                            @if (!empty($users->gelar_belakang))
-                                                <div class="text">{{ $users->gelar_belakang }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Eselon </div>
+                                                @if (!empty($users->eselon))
+                                                <div class="text">{{ $users->eselon }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Tempat Lahir</div>
-                                            @if (!empty($users->tempat_lahir))
-                                                <div class="text">{{ $users->tempat_lahir }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Jabatan </div>
+                                                @if (!empty($users->jabatan))
+                                                <div class="text">{{ $users->jabatan }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Tanggal Lahir</div>
-                                            @if (!empty($users->tanggal_lahir))
-                                                <div class="text">{{ $users->tanggal_lahir }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">TMT </div>
+                                                @if (!empty($users->tmt))
+                                                <div class="text">{{ $users->tmt }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Jenis Kelamin</div>
-                                            @if (!empty($users->jenis_kelamin))
-                                                <div class="text">{{ $users->jenis_kelamin }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Lokasi Kerja </div>
+                                                @if (!empty($users->lokasi_kerja))
+                                                <div class="text">{{ $users->lokasi_kerja }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                         <li>
-                                            <div class="title">Agama</div>
-                                            @if (!empty($users->agama))
-                                                <div class="text">{{ $users->agama }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Golongan Ruang Awal </div>
+                                                @if (!empty($users->gol_ruang_awal))
+                                                <div class="text">{{ $users->gol_ruang_awal }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">E-mail</div>
-                                            @if (!empty($users->email))
-                                                <div class="text">{{ $users->email }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Golongan Ruang Akhir </div>
+                                                @if (!empty($users->gol_ruang_akhir))
+                                                <div class="text">{{ $users->gol_ruang_akhir }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Jenis Dokumen</div>
-                                            @if (!empty($users->jenis_dokumen))
-                                                <div class="text">{{ $users->jenis_dokumen }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">TMT Golongan </div>
+                                                @if (!empty($users->tmt_golongan))
+                                                <div class="text">{{ $users->tmt_golongan }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Nomor Dokumen</div>
-                                            @if (!empty($users->no_dokumen))
-                                                <div class="text">{{ $users->no_dokumen }}</div>
-                                            @else
-                                                <div class="text">N/An</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Kelurahan</div>
-                                            @if (!empty($users->kelurahan))
-                                                <div class="text">{{ $users->kelurahan }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Gaji Pokok </div>
+                                                @if (!empty($users->gaji_pokok))
+                                                <div class="text">{{ $users->gaji_pokok }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Kecamatan</div>
-                                            @if (!empty($users->kecamatan))
-                                                <div class="text">{{ $users->kecamatan }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Masa Kerja (Tahun) </div>
+                                                @if (!empty($users->masa_kerja_tahun))
+                                                <div class="text">{{ $users->masa_kerja_tahun }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Kota</div>
-                                            @if (!empty($users->kota))
-                                                <div class="text">{{ $users->kota }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Masa Kerja (Bulan) </div>
+                                                @if (!empty($users->masa_kerja_bulan))
+                                                <div class="text">{{ $users->masa_kerja_bulan }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Provinsi</div>
-                                            @if (!empty($users->provinsi))
-                                                <div class="text">{{ $users->provinsi }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">No SPMT </div>
+                                                @if (!empty($users->no_spmt))
+                                                <div class="text">{{ $users->no_spmt }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Kode Pos</div>
-                                            @if (!empty($users->kode_pos))
-                                                <div class="text">{{ $users->kode_pos }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Tanggal SPMT </div>
+                                                @if (!empty($users->tanggal_spmt))
+                                                <div class="text">{{ $users->tanggal_spmt }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Nomor HP</div>
-                                            @if (!empty($users->no_hp))
-                                                <div class="text">{{ $users->no_hp }}</div>
-                                            @else
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">KPPN </div>
+                                                @if (!empty($users->kppn))
+                                                <div class="text">{{ $users->kppn }}</div>
+                                                @else
                                                 <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Nomor Telepon</div>
-                                            @if (!empty($users->no_telp))
-                                                <div class="text">{{ $users->no_telp }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Jenis Pegawai</div>
-                                            @if (!empty($users->jenis_pegawai))
-                                                <div class="text">{{ $users->jenis_pegawai }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Kedudukan PNS</div>
-                                            @if (!empty($users->kedudukan_pns))
-                                                <div class="text">{{ $users->kedudukan_pns }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Status Pegawai</div>
-                                            @if (!empty($users->status_pegawai))
-                                                <div class="text">{{ $users->status_pegawai }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">TMT PNS</div>
-                                            @if (!empty($users->tmt_pns))
-                                                <div class="text">{{ $users->tmt_pns }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">No. Seri Kartu Pegawai</div>
-                                            @if (!empty($users->no_seri_karpeg))
-                                                <div class="text">{{ $users->no_seri_karpeg }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">TMT CPNS</div>
-                                            @if (!empty($users->tmt_cpns))
-                                                <div class="text">{{ $users->tmt_cpns }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Tingkat Pendidikan</div>
-                                            @if (!empty($users->tingkat_pendidikan))
-                                                <div class="text">{{ $users->tingkat_pendidikan }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Pendidikan Terakhir</div>
-                                            @if (!empty($users->pendidikan_terakhir))
-                                                <div class="text">{{ $users->pendidikan_terakhir }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                    </ul>
+                                                @endif
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-12 d-flex">
-                            <div class="card profile-box flex-fill">
-                                <div class="card-body">
-                                    <h3 class="card-title">Posisi & Jabatan Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal"><i class="fa fa-pencil"></i></a></h3>
-                                    <ul class="personal-info">
-                                        <li>
-                                            <div class="title">Unit Organisasi</div>
-                                            @if (!empty($users->unit_organisasi))
-                                            <div class="text">{{ $users->unit_organisasi }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Unit Organisasi Induk</div>
-                                            @if (!empty($users->unit_organisasi_induk))
-                                            <div class="text">{{ $users->unit_organisasi_induk }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Jenis Jabatan </div>
-                                            @if (!empty($users->jenis_jabatan))
-                                            <div class="text">{{ $users->jenis_jabatan }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Eselon </div>
-                                            @if (!empty($users->eselon))
-                                            <div class="text">{{ $users->eselon }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Jabatan </div>
-                                            @if (!empty($users->jabatan))
-                                            <div class="text">{{ $users->jabatan }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">TMT </div>
-                                            @if (!empty($users->tmt))
-                                            <div class="text">{{ $users->tmt }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Lokasi Kerja </div>
-                                            @if (!empty($users->lokasi_kerja))
-                                            <div class="text">{{ $users->lokasi_kerja }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Golongan Ruang Awal </div>
-                                            @if (!empty($users->gol_ruang_awal))
-                                            <div class="text">{{ $users->gol_ruang_awal }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Golongan Ruang Akhir </div>
-                                            @if (!empty($users->gol_ruang_akhir))
-                                            <div class="text">{{ $users->gol_ruang_akhir }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">TMT Golongan </div>
-                                            @if (!empty($users->tmt_golongan))
-                                            <div class="text">{{ $users->tmt_golongan }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Gaji Pokok </div>
-                                            @if (!empty($users->gaji_pokok))
-                                            <div class="text">{{ $users->gaji_pokok }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Masa Kerja (Tahun) </div>
-                                            @if (!empty($users->masa_kerja_tahun))
-                                            <div class="text">{{ $users->masa_kerja_tahun }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Masa Kerja (Bulan) </div>
-                                            @if (!empty($users->masa_kerja_bulan))
-                                            <div class="text">{{ $users->masa_kerja_bulan }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">No SPMT </div>
-                                            @if (!empty($users->no_spmt))
-                                            <div class="text">{{ $users->no_spmt }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Tanggal SPMT </div>
-                                            @if (!empty($users->tanggal_spmt))
-                                            <div class="text">{{ $users->tanggal_spmt }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">KPPN </div>
-                                            @if (!empty($users->kppn))
-                                            <div class="text">{{ $users->kppn }}</div>
-                                            @else
-                                            <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Profile Pegawai Tab -->
-
-                <!-- Profil Pegawai Modal -->
-                <div id="profil_pegawai_modal" class="modal custom-modal fade" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Profil Pegawai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('user/propeg/save') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}" readonly>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nama <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $users->nama }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>NIP <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $users->nip }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Gelar Depan <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $users->gelar_depan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Gelar Belakang <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $users->gelar_belakang }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tempat Lahir <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $users->tempat_lahir }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $users->tanggal_lahir }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $users->jenis_kelamin }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Agama</label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $users->agama }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Jenis Dokumen </label>
-                                                <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $users->jenis_dokumen }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Nomor Dokumen </label>
-                                                <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $users->no_dokumen }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Kelurahan </label>
-                                                <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $users->kelurahan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Kecamatan </label>
-                                                <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $users->kecamatan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kota </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $users->kota }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Provinsi </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kode Pos </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $users->kode_pos }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nomor HP </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $users->no_hp }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $users->no_telp }}">
-                                            </div>
-                                        </div>
+                    <!-- /Profile Pegawai Tab -->
     
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $users->jenis_pegawai }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $users->kedudukan_pns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $users->status_pegawai }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>TMT PNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $users->tmt_pns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $users->no_seri_karpeg }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>TMT CPNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $users->tmt_cpns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $users->tingkat_pendidikan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $users->pendidikan_terakhir }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="submit-section">
-                                        <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- /Profil Pegawai Modal -->
-    
-                    <!-- Posisi Jabatan Modal -->
-                    <div id="posisi_jabatan_modal" class="modal custom-modal fade" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Profil Pegawai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('user/propeg/save') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}" readonly>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Unit Organisasi <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('unit_organisasi') is-invalid @enderror" name="unit_organisasi" value="{{ $users->unit_organisasi }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>NIP <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $users->nip }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Gelar Depan <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $users->gelar_depan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Gelar Belakang <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $users->gelar_belakang }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tempat Lahir <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $users->tempat_lahir }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $users->tanggal_lahir }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $users->jenis_kelamin }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Agama</label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $users->agama }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Jenis Dokumen </label>
-                                                <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $users->jenis_dokumen }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Nomor Dokumen </label>
-                                                <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $users->no_dokumen }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Kelurahan </label>
-                                                <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $users->kelurahan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Kecamatan </label>
-                                                <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $users->kecamatan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kota </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $users->kota }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Provinsi </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kode Pos </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $users->kode_pos }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nomor HP </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $users->no_hp }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $users->no_telp }}">
-                                            </div>
-                                        </div>
-    
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $users->jenis_pegawai }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $users->kedudukan_pns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $users->status_pegawai }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>TMT PNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $users->tmt_pns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $users->no_seri_karpeg }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>TMT CPNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $users->tmt_cpns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $users->tingkat_pendidikan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $users->pendidikan_terakhir }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="submit-section">
-                                        <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- /Posisi Jabatan Modal -->
-
                     <!-- Riwayat Pendidikan Tab -->
                     <div class="tab-pane fade" id="riwayat_pendidikan">    
                         <div class="row">
@@ -858,8 +504,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                    <td><center>{{ $users->id }}</center></td>
-                                                    <td hidden class="id"><center>{{ $users->id }}</center></td>
+                                                    <td class="id"><center>{{ $users->id }}</center></td>
                                                     <td class="ting_ped"><center>{{ $users->ting_ped }}</center></td>
                                                     <td class="pendidikan"><center>{{ $users->pendidikan }}</center></td>
                                                     <td class="tahun_lulus"><center>{{ $users->tahun_lulus }}</center></td>
@@ -1205,6 +850,788 @@
             </div>
             <!-- /Profile Modal -->
 
+            {{-- <!-- Profil Pegawai Modal Tambah -->
+            <div id="profil_pegawai_modal_tambah" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Profil Pegawai</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('user/profile/pegawai/add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}" readonly>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nama <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $users->nama }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>NIP <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $users->nip }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gelar Depan <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $users->gelar_depan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gelar Belakang <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $users->gelar_belakang }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tempat Lahir <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $users->tempat_lahir }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $users->tanggal_lahir }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Jenis Kelamin <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $users->jenis_kelamin }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Agama</label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $users->agama }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Jenis Dokumen </label>
+                                            <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $users->jenis_dokumen }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Nomor Dokumen </label>
+                                            <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $users->no_dokumen }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Kelurahan </label>
+                                            <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $users->kelurahan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <span class="text-danger">*</span></label>
+                                            <label>Kecamatan </label>
+                                            <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $users->kecamatan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kota </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $users->kota }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Provinsi </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kode Pos </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $users->kode_pos }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor HP </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $users->no_hp }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $users->no_telp }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $users->jenis_pegawai }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $users->kedudukan_pns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Status Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $users->status_pegawai }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>TMT PNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $users->tmt_pns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $users->no_seri_karpeg }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>TMT CPNS </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $users->tmt_cpns }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $users->tingkat_pendidikan }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $users->pendidikan_terakhir }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- /Profil Pegawai Modal Tambah --> --}}
+
+                <!-- Profil Pegawai Modal Edit -->
+                <div id="profil_pegawai_modal_edit" class="modal custom-modal fade" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Profil Pegawai</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('user/profile/pegawai/edit') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}" readonly>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nama <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $users->nama }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>NIP <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $users->nip }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Gelar Depan <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $users->gelar_depan }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Gelar Belakang <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $users->gelar_belakang }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tempat Lahir <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $users->tempat_lahir }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $users->tanggal_lahir }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jenis Kelamin <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $users->jenis_kelamin }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Agama</label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $users->agama }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <span class="text-danger">*</span></label>
+                                                <label>Jenis Dokumen </label>
+                                                <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $users->jenis_dokumen }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <span class="text-danger">*</span></label>
+                                                <label>Nomor Dokumen </label>
+                                                <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $users->no_dokumen }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <span class="text-danger">*</span></label>
+                                                <label>Kelurahan </label>
+                                                <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $users->kelurahan }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <span class="text-danger">*</span></label>
+                                                <label>Kecamatan </label>
+                                                <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $users->kecamatan }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kota </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $users->kota }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Provinsi </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kode Pos </label> <span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $users->kode_pos }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nomor HP </label> <span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $users->no_hp }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $users->no_telp }}">
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $users->jenis_pegawai }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $users->kedudukan_pns }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Status Pegawai </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $users->status_pegawai }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>TMT PNS </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $users->tmt_pns }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $users->no_seri_karpeg }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>TMT CPNS </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $users->tmt_cpns }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $users->tingkat_pendidikan }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $users->pendidikan_terakhir }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="submit-section">
+                                        <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- /Profil Pegawai Modal Edit -->
+
+                    <!-- Posisi Jabatan Modal Tambah -->
+                    <div id="posisi_jabatan_modal_tambah" class="modal custom-modal fade" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Posisi & Jabatan Pegawai</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="validation" action="{{ route('user/profile/posisi/jabatan/add') }}" method="POST">
+                                        @csrf
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}" readonly>
+                                                </div>
+                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Unit Organisasi <span class="text-danger">*</span></label>
+                                                            @if (!empty($users->unit_organisasi))
+                                                            <input type="text" class="form-control" name="unit_organisasi" value="{{ $users->unit_organisasi }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="unit_organisasi">
+                                                            @endif
+                                                        </li>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Unit Organisasi Induk <span class="text-danger">*</span></label>
+                                                            @if (!empty($users->unit_organisasi_induk))
+                                                            <input type="text" class="form-control" name="unit_organisasi_induk" value="{{ $users->unit_organisasi_induk }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="unit_organisasi_induk">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Jenis Jabatan <span class="text-danger">*</span></label>
+                                                            @if (!empty($users->jenis_jabatan))
+                                                            <input type="text" class="form-control" name="jenis_jabatan" value="{{ $users->jenis_jabatan }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="jenis_jabatan">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Eselon</label>
+                                                            @if (!empty($users->eselon))
+                                                            <input type="text" class="form-control" name="eselon" value="{{ $users->eselon }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="eselon">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Jabatan</label>
+                                                            @if (!empty($users->jabatan))
+                                                            <input type="text" class="form-control" name="jabatan" value="{{ $users->jabatan }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="jabatan">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT</label>
+                                                            @if (!empty($users->tmt))
+                                                            <input type="text" class="form-control" name="tmt" value="{{ $users->tmt }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="tmt">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Lokasi Kerja</label>
+                                                            @if (!empty($users->lokasi_kerja))
+                                                            <input type="text" class="form-control" name="lokasi_kerja" value="{{ $users->lokasi_kerja }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="lokasi_kerja">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Golongan Ruang Awal</label>
+                                                            @if (!empty($users->gol_ruang_awal))
+                                                            <input type="text" class="form-control" name="gol_ruang_awal" value="{{ $users->gol_ruang_awal }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="gol_ruang_awal">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Golongan Ruang Akhir</label>
+                                                            @if (!empty($users->gol_ruang_akhir))
+                                                            <input type="text" class="form-control" name="gol_ruang_akhir" value="{{ $users->gol_ruang_akhir }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="gol_ruang_akhir">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT Golongan</label>
+                                                            @if (!empty($users->tmt_golongan))
+                                                            <input type="text" class="form-control" name="tmt_golongan" value="{{ $users->tmt_golongan }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="tmt_golongan">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Gaji Pokok</label>
+                                                            @if (!empty($users->gaji_pokok))
+                                                            <input type="text" class="form-control" name="gaji_pokok" value="{{ $users->gaji_pokok }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="gaji_pokok">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Kerja (Tahun)</label>
+                                                            @if (!empty($users->masa_kerja_tahun))
+                                                            <input type="text" class="form-control" name="masa_kerja_tahun" value="{{ $users->masa_kerja_tahun }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="masa_kerja_tahun">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Kerja (Bulan)</label>
+                                                            @if (!empty($users->masa_kerja_bulan))
+                                                            <input type="text" class="form-control" name="masa_kerja_bulan" value="{{ $users->masa_kerja_bulan }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="masa_kerja_bulan">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nomor SPMT</label>
+                                                            @if (!empty($users->no_spmt))
+                                                            <input type="text" class="form-control" name="no_spmt" value="{{ $users->no_spmt }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="no_spmt">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tanggal SPMT</label>
+                                                            @if (!empty($users->tanggal_spmt))
+                                                            <input type="text" class="form-control" name="tanggal_spmt" value="{{ $users->tanggal_spmt }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="tanggal_spmt">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>KPPN</label>
+                                                            @if (!empty($users->kppn))
+                                                            <input type="text" class="form-control" name="kppn" value="{{ $users->kppn }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="kppn">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        <div class="submit-section">
+                                            <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Posisi Jabatan Modal Tambah -->
+
+                    <!-- Posisi Jabatan Modal Edit -->
+                    <div id="posisi_jabatan_modal_edit" class="modal custom-modal fade" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Posisi & Jabatan Pegawai</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="validation" action="{{ route('user/profile/posisi/jabatan/edit') }}" method="POST">
+                                        @csrf
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}" readonly>
+                                                </div>
+                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Unit Organisasi <span class="text-danger">*</span></label>
+                                                            @if (!empty($users->unit_organisasi))
+                                                            <input type="text" class="form-control" name="unit_organisasi" value="{{ $users->unit_organisasi }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="unit_organisasi">
+                                                            @endif
+                                                        </li>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Unit Organisasi Induk <span class="text-danger">*</span></label>
+                                                            @if (!empty($users->unit_organisasi_induk))
+                                                            <input type="text" class="form-control" name="unit_organisasi_induk" value="{{ $users->unit_organisasi_induk }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="unit_organisasi_induk">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Jenis Jabatan <span class="text-danger">*</span></label>
+                                                            @if (!empty($users->jenis_jabatan))
+                                                            <input type="text" class="form-control" name="jenis_jabatan" value="{{ $users->jenis_jabatan }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="jenis_jabatan">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Eselon</label>
+                                                            @if (!empty($users->eselon))
+                                                            <input type="text" class="form-control" name="eselon" value="{{ $users->eselon }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="eselon">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Jabatan</label>
+                                                            @if (!empty($users->jabatan))
+                                                            <input type="text" class="form-control" name="jabatan" value="{{ $users->jabatan }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="jabatan">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT</label>
+                                                            @if (!empty($users->tmt))
+                                                            <input type="text" class="form-control" name="tmt" value="{{ $users->tmt }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="tmt">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Lokasi Kerja</label>
+                                                            @if (!empty($users->lokasi_kerja))
+                                                            <input type="text" class="form-control" name="lokasi_kerja" value="{{ $users->lokasi_kerja }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="lokasi_kerja">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Golongan Ruang Awal</label>
+                                                            @if (!empty($users->gol_ruang_awal))
+                                                            <input type="text" class="form-control" name="gol_ruang_awal" value="{{ $users->gol_ruang_awal }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="gol_ruang_awal">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Golongan Ruang Akhir</label>
+                                                            @if (!empty($users->gol_ruang_akhir))
+                                                            <input type="text" class="form-control" name="gol_ruang_akhir" value="{{ $users->gol_ruang_akhir }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="gol_ruang_akhir">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT Golongan</label>
+                                                            @if (!empty($users->tmt_golongan))
+                                                            <input type="text" class="form-control" name="tmt_golongan" value="{{ $users->tmt_golongan }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="tmt_golongan">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Gaji Pokok</label>
+                                                            @if (!empty($users->gaji_pokok))
+                                                            <input type="text" class="form-control" name="gaji_pokok" value="{{ $users->gaji_pokok }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="gaji_pokok">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Kerja (Tahun)</label>
+                                                            @if (!empty($users->masa_kerja_tahun))
+                                                            <input type="text" class="form-control" name="masa_kerja_tahun" value="{{ $users->masa_kerja_tahun }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="masa_kerja_tahun">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Kerja (Bulan)</label>
+                                                            @if (!empty($users->masa_kerja_bulan))
+                                                            <input type="text" class="form-control" name="masa_kerja_bulan" value="{{ $users->masa_kerja_bulan }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="masa_kerja_bulan">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nomor SPMT</label>
+                                                            @if (!empty($users->no_spmt))
+                                                            <input type="text" class="form-control" name="no_spmt" value="{{ $users->no_spmt }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="no_spmt">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tanggal SPMT</label>
+                                                            @if (!empty($users->tanggal_spmt))
+                                                            <input type="text" class="form-control" name="tanggal_spmt" value="{{ $users->tanggal_spmt }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="tanggal_spmt">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>KPPN</label>
+                                                            @if (!empty($users->kppn))
+                                                            <input type="text" class="form-control" name="kppn" value="{{ $users->kppn }}">
+                                                            @else
+                                                            <input type="text" class="form-control" name="kppn">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        <div class="submit-section">
+                                            <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Posisi Jabatan Modal Edit -->
+
             <!-- /Page Content -->
         </div>
+        
+        @section('script')
+        <script>
+            $('#validation').validate({  
+                rules: {  
+                    unit_organisasi: 'required',
+                    unit_organisasi_induk: 'required',
+                    jenis_jabatan: 'required',
+                    eselon: 'required',
+                    jabatan: 'required',
+                    tmt: 'required',
+                    lokasi_kerja: 'required',
+                    gol_ruang_awal: 'required',
+                    gol_ruang_akhir: 'required',
+                    tmt_golongan: 'required',
+                    gaji_pokok: 'required',
+                    masa_kerja_tahun: 'required',
+                    masa_kerja_bulan: 'required',
+                    no_spmt: 'required',
+                    tanggal_spmt: 'required',
+                    kppn: 'required',
+                },  
+                messages: {
+                    unit_organisasi: 'Masukkan unit organisasi',
+                    unit_organisasi_induk: 'Masukkan unit organisasi induk',
+                    jenis_jabatan: 'Masukkan jenis jabatan',
+                    eselon: 'Masukkan eselon',
+                    jabatan: 'Masukkan jabatan',
+                    tmt: 'Masukkan tmt',
+                    lokasi_kerja: 'Masukkan lokasi kerja',
+                    gol_ruang_awal: 'Masukkan golongan ruang awal',
+                    gol_ruang_akhir: 'Masukkan golongan ruang akhir',
+                    tmt_golongan: 'Masukkan tmt golongan',
+                    gaji_pokok: 'Masukkan gaji pokok',
+                    masa_kerja_tahun: 'Masukkan masa kerja tahun',
+                    masa_kerja_bulan: 'Masukkan masa kerja bulan',
+                    no_spmt: 'Masukkan nomor spmt',
+                    tanggal_spmt: 'Masukkan tanggal spmt',
+                    kppn: 'Masukkan kppn',
+                },  
+                submitHandler: function(form) {  
+                    form.submit();
+                }  
+            });  
+        </script>
+        @endsection
 @endsection

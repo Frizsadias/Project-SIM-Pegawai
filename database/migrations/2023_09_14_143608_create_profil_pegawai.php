@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('profil_pegawai', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('nip');
+            $table->string('user_id')->nullable();
+            $table->string('nip')->nullable();
             $table->string('nama')->nullable();
             $table->string('gelar_depan')->nullable();
             $table->string('gelar_belakang')->nullable();
@@ -47,8 +47,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('profil_pegawai');
     }

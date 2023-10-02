@@ -8,10 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class PosisiJabatan extends Model
 {
     use HasFactory;
-    protected $table = 'posisi_jabatan';
+    protected $fillable = [
+        'user_id',
+        'unit_organisasi',
+        'unit_organisasi_induk',
+        'jenis_jabatan',
+        'eselon',
+        'jabatan',
+        'tmt',
+        'lokasi_kerja',
+        'gol_ruang_awal',
+        'gol_ruang_akhir',
+        'tmt_golongan',
+        'gaji_pokok',
+        'masa_kerja_tahun',
+        'masa_kerja_bulan',
+        'no_spmt', 
+        'tanggal_spmt',
+        'kppn',
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    ];
 }

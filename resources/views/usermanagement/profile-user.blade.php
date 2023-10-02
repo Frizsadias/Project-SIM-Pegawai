@@ -26,7 +26,7 @@
                                 <div class="profile-img-wrap">
                                     <div class="profile-img">
                                         <a href="#">
-                                            <img alt="" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <img alt="" src="{{ URL::to('/assets/images/'.Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                         </a>
                                     </div>
                                 </div>
@@ -38,8 +38,7 @@
                                                 <h6 class="text-muted">{{ Session::get('department') }}</h6>
                                                 <small class="text-muted">{{ Session::get('position') }}</small>
                                                 <div class="staff-id">ID Pegawai : {{ Session::get('user_id') }}</div>
-                                                <div class="small doj text-muted">Tanggal Bergabung :
-                                                    {{ \Carbon\Carbon::parse(Session::get('join_date'))->locale('id')->format('d F Y, H:i') }}
+                                                <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse(Session::get('join_date'))->locale('id')->format('d F Y, H:i') }}
                                                 </div>
                                             </div>
                                         </div>
@@ -47,41 +46,38 @@
                                             <ul class="personal-info">
                                                 <li>
                                                     <div class="title">E-mail :</div>
-                                                    <div class="text">
-                                                        <a href="mailto:{{ Session::get('email') }}">{{ Session::get('email') }}</a>
-                                                    </div>
+                                                    <div class="text"><a href="mailto:{{ Session::get('email') }}">{{ Session::get('email') }}</a></div>
                                                 </li>
                                                 @if (!empty($information))
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
-                                                            <div class="title">Tanggal Lahir :</div>
-                                                            <div class="text">
-                                                                {{ date('d F Y', strtotime($information->tgl_lahir)) }}
-                                                            </div>
+                                                        <div class="title">Tanggal Lahir :</div>
+                                                        <div class="text">{{ date('d F Y', strtotime($information->tgl_lahir)) }}
+                                                        </div>
                                                         @else
-                                                            <div class="title">Tanggal Lahir :</div>
-                                                            <div class="text">N/A</div>
+                                                        <div class="title">Tanggal Lahir :</div>
+                                                        <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
-                                                            <div class="title">Alamat :</div>
-                                                            <div class="text">{{ $information->alamat }}</div>
+                                                        <div class="title">Alamat :</div>
+                                                        <div class="text">{{ $information->alamat }}</div>
                                                         @else
-                                                            <div class="title">Alamat :</div>
-                                                            <div class="text">N/A</div>
+                                                        <div class="title">Alamat :</div>
+                                                        <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
-                                                            <div class="title">Jenis Kelamin :</div>
-                                                            <div class="text">{{ $information->jk }}</div>
+                                                        <div class="title">Jenis Kelamin :</div>
+                                                        <div class="text">{{ $information->jk }}</div>
                                                         @else
-                                                            <div class="title">Jenis Kelamin :</div>
-                                                            <div class="text">N/A</div>
+                                                        <div class="title">Jenis Kelamin :</div>
+                                                        <div class="text">N/A</div>
                                                         @endif
                                                     </li>
-                                                @else
+                                                    @else
                                                     <li>
                                                         <div class="title">Tanggal Lahir :</div>
                                                         <div class="text">N/A</div>
@@ -99,16 +95,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pro-edit">
-                                    <a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                </div>
+                                <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        
             <div class="card tab-box">
                 <div class="row user-tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
@@ -124,16 +118,16 @@
             </div>
 
             <div class="tab-content">
-
                 <!-- Profile Pegawai Tab -->
                 <div id="profil_pegawai" class="pro-overview tab-pane fade show active">
                     <div class="row">
                         <div class="col-md-12 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Profil Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal"><i class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Profil Pegawai
+                                        {{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_tambah"><i class="fa fa-plus"></i></a></h3> --}}
+                                        <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_edit"><i class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
-                                        @foreach ($profilPegawai as $sqlprofilpegawai => $result_profilpegawai)
                                         <li>
                                             <div class="title">Nama</div>
                                             @if (!empty($result_profilpegawai->nama))
@@ -344,20 +338,18 @@
                                                 <div class="text">N/A</div>
                                             @endif
                                         </li>
-                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
                         <div class="col-md-12 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Posisi & Jabatan Pegawai <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal"><i class="fa fa-pencil"></i></a></h3>
+                                    <h3 class="card-title">Posisi & Jabatan Pegawai
+                                        {{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal_tambah"><i class="fa fa-plus"></i></a></h3> --}}
+                                        <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal_edit"><i class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
-                                        @foreach ($posisiJabatan as $sqlposisijabatan => $result_posisijabatan)
                                         <li>
                                             <div class="title">Unit Organisasi</div>
                                             @if (!empty($result_posisijabatan->unit_organisasi))
@@ -486,7 +478,6 @@
                                             <div class="text">N/A</div>
                                             @endif
                                         </li>
-                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -494,360 +485,6 @@
                     </div>
                 </div>
                 <!-- /Profile Pegawai Tab -->
-                
-                <!-- Profil Pegawai Modal -->
-                <div id="profil_pegawai_modal" class="modal custom-modal fade" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Profil Pegawai</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('user/propeg/save') }}" method="POST">
-                                @csrf
-                                <input type="hidden" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}" readonly>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nama <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $result_profilpegawai->nama }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>NIP <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_profilpegawai->nip }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Gelar Depan <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $result_profilpegawai->gelar_depan }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Gelar Belakang <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $result_profilpegawai->gelar_belakang }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tempat Lahir <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $result_profilpegawai->tempat_lahir }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_profilpegawai->tanggal_lahir }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $result_profilpegawai->jenis_kelamin }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Agama</label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $result_profilpegawai->agama }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> <span class="text-danger">*</span></label>
-                                            <label>Jenis Dokumen </label>
-                                            <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $result_profilpegawai->jenis_dokumen }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> <span class="text-danger">*</span></label>
-                                            <label>Nomor Dokumen </label>
-                                            <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_profilpegawai->no_dokumen }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> <span class="text-danger">*</span></label>
-                                            <label>Kelurahan </label>
-                                            <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $result_profilpegawai->kelurahan }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> <span class="text-danger">*</span></label>
-                                            <label>Kecamatan </label>
-                                            <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $result_profilpegawai->kecamatan }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Kota </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $result_profilpegawai->kota }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Provinsi </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_profilpegawai->provinsi }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Kode Pos </label> <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $result_profilpegawai->kode_pos }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nomor HP </label> <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $result_profilpegawai->no_hp }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_profilpegawai->no_telp }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $result_profilpegawai->jenis_pegawai }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $result_profilpegawai->kedudukan_pns }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $result_profilpegawai->status_pegawai }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>TMT PNS </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_profilpegawai->tmt_pns }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $result_profilpegawai->no_seri_karpeg }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>TMT CPNS </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_profilpegawai->tmt_cpns }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $result_profilpegawai->tingkat_pendidikan }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_profilpegawai->pendidikan_terakhir }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <!-- /Profil Pegawai Modal -->
-
-                <!-- Posisi Jabatan Modal -->
-                <div id="posisi_jabatan_modal" class="modal custom-modal fade" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Profil Pegawai</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('user/propeg/save') }}" method="POST">
-                                @csrf
-                                <input type="hidden" class="form-control" name="user_id" value="{{ $result_posisijabatan->user_id }}" readonly>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Unit Organisasi <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('unit_organisasi') is-invalid @enderror" name="unit_organisasi" value="{{ $result_posisijabatan->unit_organisasi }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>NIP <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_posisijabatan->nip }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Gelar Depan <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $result_posisijabatan->gelar_depan }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Gelar Belakang <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $result_posisijabatan->gelar_belakang }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tempat Lahir <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $result_posisijabatan->tempat_lahir }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_posisijabatan->tanggal_lahir }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $result_posisijabatan->jenis_kelamin }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Agama</label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $result_posisijabatan->agama }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> <span class="text-danger">*</span></label>
-                                            <label>Jenis Dokumen </label>
-                                            <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $result_posisijabatan->jenis_dokumen }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> <span class="text-danger">*</span></label>
-                                            <label>Nomor Dokumen </label>
-                                            <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_posisijabatan->no_dokumen }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> <span class="text-danger">*</span></label>
-                                            <label>Kelurahan </label>
-                                            <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $result_posisijabatan->kelurahan }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> <span class="text-danger">*</span></label>
-                                            <label>Kecamatan </label>
-                                            <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $result_posisijabatan->kecamatan }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Kota </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $result_posisijabatan->kota }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Provinsi </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_posisijabatan->provinsi }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Kode Pos </label> <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $result_posisijabatan->kode_pos }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nomor HP </label> <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $result_posisijabatan->no_hp }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_posisijabatan->no_telp }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $result_posisijabatan->jenis_pegawai }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $result_posisijabatan->kedudukan_pns }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $result_posisijabatan->status_pegawai }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>TMT PNS </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_posisijabatan->tmt_pns }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $result_posisijabatan->no_seri_karpeg }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>TMT CPNS </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_posisijabatan->tmt_cpns }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $result_posisijabatan->tingkat_pendidikan }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_posisijabatan->pendidikan_terakhir }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <!-- /Posisi Jabatan Modal -->
                             
                             <!-- Riwayat Pendidikan Tab -->
                             <div class="tab-pane fade" id="riwayat_pendidikan">    
@@ -895,24 +532,6 @@
                                                                 <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
                                                                     target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
                                                             </center></td>
-
-                                                            {{-- Edit dan Hapus data  --}}
-                                                            {{-- <td class="text-right">
-                                                                <div class="dropdown dropdown-action">
-                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a class="dropdown-item edit_riwayat_pendidikan" href="#"
-                                                                            data-toggle="modal" data-target="#edit_riwayat_pendidikan"><i
-                                                                                class="fa fa-pencil m-r-5"></i>
-                                                                            Edit</a>
-                                                                        <a class="dropdown-item delete_riwayat_pendidikan" href="#"
-                                                                            data-toggle="modal" data-target="#delete_riwayat_pendidikan"><i
-                                                                                class="fa fa-trash-o m-r-5"></i>
-                                                                            Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                            </td> --}}
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -920,7 +539,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Tempat Field Edit & Hapus -->
                             </div>
                             <!-- /Riwayat Pendidikan Tab -->
 
@@ -968,24 +586,6 @@
                                                                 <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
                                                                     target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
                                                             </center></td>
-
-                                                            {{-- Edit dan Hapus data  --}}
-                                                            {{-- <td class="text-right">
-                                                                <div class="dropdown dropdown-action">
-                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a class="dropdown-item edit_riwayat_golongan" href="#"
-                                                                            data-toggle="modal" data-target="#edit_riwayat_golongan"><i
-                                                                                class="fa fa-pencil m-r-5"></i>
-                                                                            Edit</a>
-                                                                        <a class="dropdown-item delete_riwayat_golongan" href="#"
-                                                                            data-toggle="modal" data-target="#delete_riwayat_golongan"><i
-                                                                                class="fa fa-trash-o m-r-5"></i>
-                                                                            Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                            </td> --}}
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -993,7 +593,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Tempat Field Edit & Hapus -->
                             </div>
                             <!-- /Riwayat Golongan Tab -->
                             
@@ -1039,24 +638,6 @@
                                                                 <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
                                                                     target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
                                                             </center></td>
-
-                                                            {{-- Edit dan Hapus data  --}}
-                                                            {{-- <td class="text-right">
-                                                                <div class="dropdown dropdown-action">
-                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                                        aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a class="dropdown-item edit_riwayat_jabatan" href="#"
-                                                                            data-toggle="modal" data-target="#edit_riwayat_jabatan"><i
-                                                                                class="fa fa-pencil m-r-5"></i>
-                                                                            Edit</a>
-                                                                        <a class="dropdown-item delete_riwayat_jabatan" href="#"
-                                                                            data-toggle="modal" data-target="#delete_riwayat_jabatan"><i
-                                                                                class="fa fa-trash-o m-r-5"></i>
-                                                                            Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                            </td> --}}
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -1064,7 +645,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Tempat Field Edit & Hapus -->
                             </div>
                             <!-- /Riwayat Jabatan Tab -->
 
@@ -1105,24 +685,6 @@
                                                         <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
                                                             target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
                                                     </center></td>
-                                                    
-                                                    {{-- Edit dan Hapus data  --}}
-                                                    {{-- <td class="text-right">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item edit_riwayat_diklat" href="#"
-                                                                    data-toggle="modal" data-target="#edit_riwayat_diklat"><i
-                                                                        class="fa fa-pencil m-r-5"></i>
-                                                                    Edit</a>
-                                                                <a class="dropdown-item delete_riwayat_diklat" href="#"
-                                                                    data-toggle="modal" data-target="#delete_riwayat_diklat"><i
-                                                                        class="fa fa-trash-o m-r-5"></i>
-                                                                    Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td> --}}
                                                 </tr>
                                             @endforeach
                                                 </tbody>
@@ -1130,7 +692,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Tempat Field Edit & Hapus -->
                             </div>
                             <!-- /Riwayat Diklat Tab -->
             </div>
@@ -1286,6 +847,791 @@
             </div>
             <!-- /Profile Modal -->
         @endif
+
+                {{-- <!-- Profil Pegawai Modal Tambah -->
+                <div id="profil_pegawai_modal_tambah" class="modal custom-modal fade" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Profil Pegawai</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('user/profile/pegawai/add') }}" method="POST">
+                                    @csrf
+                                    <input type="text" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}" readonly>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nama <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $result_profilpegawai->nama }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>NIP <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_profilpegawai->nip }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Gelar Depan <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $result_profilpegawai->gelar_depan }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Gelar Belakang <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $result_profilpegawai->gelar_belakang }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tempat Lahir <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $result_profilpegawai->tempat_lahir }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_profilpegawai->tanggal_lahir }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jenis Kelamin <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $result_profilpegawai->jenis_kelamin }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Agama</label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $result_profilpegawai->agama }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <span class="text-danger">*</span></label>
+                                                <label>Jenis Dokumen </label>
+                                                <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $result_profilpegawai->jenis_dokumen }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <span class="text-danger">*</span></label>
+                                                <label>Nomor Dokumen </label>
+                                                <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_profilpegawai->no_dokumen }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <span class="text-danger">*</span></label>
+                                                <label>Kelurahan </label>
+                                                <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $result_profilpegawai->kelurahan }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"> <span class="text-danger">*</span></label>
+                                                <label>Kecamatan </label>
+                                                <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $result_profilpegawai->kecamatan }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kota </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $result_profilpegawai->kota }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Provinsi </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_profilpegawai->provinsi }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kode Pos </label> <span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $result_profilpegawai->kode_pos }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nomor HP </label> <span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $result_profilpegawai->no_hp }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_profilpegawai->no_telp }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $result_profilpegawai->jenis_pegawai }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $result_profilpegawai->kedudukan_pns }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Status Pegawai </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $result_profilpegawai->status_pegawai }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>TMT PNS </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_profilpegawai->tmt_pns }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $result_profilpegawai->no_seri_karpeg }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>TMT CPNS </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_profilpegawai->tmt_cpns }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $result_profilpegawai->tingkat_pendidikan }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_profilpegawai->pendidikan_terakhir }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="submit-section">
+                                        <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- /Profil Pegawai Modal Tambah --> --}}
+
+                    <!-- Profil Pegawai Modal Edit -->
+                    <div id="profil_pegawai_modal_edit" class="modal custom-modal fade" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Profil Pegawai</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('user/profile/pegawai/edit') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}" readonly>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nama <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $result_profilpegawai->nama }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>NIP <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_profilpegawai->nip }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Gelar Depan <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $result_profilpegawai->gelar_depan }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Gelar Belakang <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $result_profilpegawai->gelar_belakang }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tempat Lahir <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $result_profilpegawai->tempat_lahir }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tanggal Lahir <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_profilpegawai->tanggal_lahir }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Jenis Kelamin <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $result_profilpegawai->jenis_kelamin }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Agama</label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $result_profilpegawai->agama }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group"> <span class="text-danger">*</span></label>
+                                                    <label>Jenis Dokumen </label>
+                                                    <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $result_profilpegawai->jenis_dokumen }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group"> <span class="text-danger">*</span></label>
+                                                    <label>Nomor Dokumen </label>
+                                                    <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_profilpegawai->no_dokumen }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group"> <span class="text-danger">*</span></label>
+                                                    <label>Kelurahan </label>
+                                                    <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $result_profilpegawai->kelurahan }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group"> <span class="text-danger">*</span></label>
+                                                    <label>Kecamatan </label>
+                                                    <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $result_profilpegawai->kecamatan }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Kota </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $result_profilpegawai->kota }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Provinsi </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_profilpegawai->provinsi }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Kode Pos </label> <span class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $result_profilpegawai->kode_pos }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nomor HP </label> <span class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $result_profilpegawai->no_hp }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_profilpegawai->no_telp }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $result_profilpegawai->jenis_pegawai }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $result_profilpegawai->kedudukan_pns }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Status Pegawai </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $result_profilpegawai->status_pegawai }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>TMT PNS </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_profilpegawai->tmt_pns }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $result_profilpegawai->no_seri_karpeg }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>TMT CPNS </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_profilpegawai->tmt_cpns }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $result_profilpegawai->tingkat_pendidikan }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_profilpegawai->pendidikan_terakhir }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submit-section">
+                                            <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- /Profil Pegawai Modal Edit -->
+
+                        {{-- <!-- Posisi Jabatan Modal Tambah -->
+                        <div id="posisi_jabatan_modal_tambah" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Posisi & Jabatan Pegawai</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="validation" action="{{ route('user/profile/posisi/jabatan/add') }}" method="POST">
+                                            @csrf
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $result_posisijabatan->user_id }}" readonly>
+                                                    </div>
+                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Unit Organisasi <span class="text-danger">*</span></label>
+                                                                @if (!empty($result_posisijabatan->unit_organisasi))
+                                                                <input type="text" class="form-control" name="unit_organisasi" value="{{ $result_posisijabatan->unit_organisasi }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="unit_organisasi">
+                                                                @endif
+                                                            </li>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Unit Organisasi Induk <span class="text-danger">*</span></label>
+                                                                @if (!empty($result_posisijabatan->unit_organisasi_induk))
+                                                                <input type="text" class="form-control" name="unit_organisasi_induk" value="{{ $result_posisijabatan->unit_organisasi_induk }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="unit_organisasi_induk">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Jenis Jabatan <span class="text-danger">*</span></label>
+                                                                @if (!empty($result_posisijabatan->jenis_jabatan))
+                                                                <input type="text" class="form-control" name="jenis_jabatan" value="{{ $result_posisijabatan->jenis_jabatan }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="jenis_jabatan">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Eselon</label>
+                                                                @if (!empty($result_posisijabatan->eselon))
+                                                                <input type="text" class="form-control" name="eselon" value="{{ $result_posisijabatan->eselon }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="eselon">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Jabatan</label>
+                                                                @if (!empty($result_posisijabatan->jabatan))
+                                                                <input type="text" class="form-control" name="jabatan" value="{{ $result_posisijabatan->jabatan }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="jabatan">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>TMT</label>
+                                                                @if (!empty($result_posisijabatan->tmt))
+                                                                <input type="text" class="form-control" name="tmt" value="{{ $result_posisijabatan->tmt }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="tmt">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Lokasi Kerja</label>
+                                                                @if (!empty($result_posisijabatan->lokasi_kerja))
+                                                                <input type="text" class="form-control" name="lokasi_kerja" value="{{ $result_posisijabatan->lokasi_kerja }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="lokasi_kerja">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Golongan Ruang Awal</label>
+                                                                @if (!empty($result_posisijabatan->gol_ruang_awal))
+                                                                <input type="text" class="form-control" name="gol_ruang_awal" value="{{ $result_posisijabatan->gol_ruang_awal }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="gol_ruang_awal">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Golongan Ruang Akhir</label>
+                                                                @if (!empty($result_posisijabatan->gol_ruang_akhir))
+                                                                <input type="text" class="form-control" name="gol_ruang_akhir" value="{{ $result_posisijabatan->gol_ruang_akhir }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="gol_ruang_akhir">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>TMT Golongan</label>
+                                                                @if (!empty($result_posisijabatan->tmt_golongan))
+                                                                <input type="text" class="form-control" name="tmt_golongan" value="{{ $result_posisijabatan->tmt_golongan }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="tmt_golongan">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Gaji Pokok</label>
+                                                                @if (!empty($result_posisijabatan->gaji_pokok))
+                                                                <input type="text" class="form-control" name="gaji_pokok" value="{{ $result_posisijabatan->gaji_pokok }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="gaji_pokok">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Masa Kerja (Tahun)</label>
+                                                                @if (!empty($result_posisijabatan->masa_kerja_tahun))
+                                                                <input type="text" class="form-control" name="masa_kerja_tahun" value="{{ $result_posisijabatan->masa_kerja_tahun }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="masa_kerja_tahun">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Masa Kerja (Bulan)</label>
+                                                                @if (!empty($result_posisijabatan->masa_kerja_bulan))
+                                                                <input type="text" class="form-control" name="masa_kerja_bulan" value="{{ $result_posisijabatan->masa_kerja_bulan }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="masa_kerja_bulan">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Nomor SPMT</label>
+                                                                @if (!empty($result_posisijabatan->no_spmt))
+                                                                <input type="text" class="form-control" name="no_spmt" value="{{ $result_posisijabatan->no_spmt }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="no_spmt">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Tanggal SPMT</label>
+                                                                @if (!empty($result_posisijabatan->tanggal_spmt))
+                                                                <input type="text" class="form-control" name="tanggal_spmt" value="{{ $result_posisijabatan->tanggal_spmt }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="tanggal_spmt">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>KPPN</label>
+                                                                @if (!empty($result_posisijabatan->kppn))
+                                                                <input type="text" class="form-control" name="kppn" value="{{ $result_posisijabatan->kppn }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="kppn">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Posisi Jabatan Modal Tambah --> --}}
+
+                        <!-- Posisi Jabatan Modal Edit -->
+                        <div id="posisi_jabatan_modal_edit" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Posisi & Jabatan Pegawai</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="validation" action="{{ route('user/profile/posisi/jabatan/edit') }}" method="POST">
+                                            @csrf
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $result_posisijabatan->user_id }}" readonly>
+                                                    </div>
+                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Unit Organisasi <span class="text-danger">*</span></label>
+                                                                @if (!empty($result_posisijabatan->unit_organisasi))
+                                                                <input type="text" class="form-control" name="unit_organisasi" value="{{ $result_posisijabatan->unit_organisasi }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="unit_organisasi">
+                                                                @endif
+                                                            </li>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Unit Organisasi Induk <span class="text-danger">*</span></label>
+                                                                @if (!empty($result_posisijabatan->unit_organisasi_induk))
+                                                                <input type="text" class="form-control" name="unit_organisasi_induk" value="{{ $result_posisijabatan->unit_organisasi_induk }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="unit_organisasi_induk">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Jenis Jabatan <span class="text-danger">*</span></label>
+                                                                @if (!empty($result_posisijabatan->jenis_jabatan))
+                                                                <input type="text" class="form-control" name="jenis_jabatan" value="{{ $result_posisijabatan->jenis_jabatan }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="jenis_jabatan">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Eselon</label>
+                                                                @if (!empty($result_posisijabatan->eselon))
+                                                                <input type="text" class="form-control" name="eselon" value="{{ $result_posisijabatan->eselon }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="eselon">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Jabatan</label>
+                                                                @if (!empty($result_posisijabatan->jabatan))
+                                                                <input type="text" class="form-control" name="jabatan" value="{{ $result_posisijabatan->jabatan }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="jabatan">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>TMT</label>
+                                                                @if (!empty($result_posisijabatan->tmt))
+                                                                <input type="text" class="form-control" name="tmt" value="{{ $result_posisijabatan->tmt }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="tmt">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Lokasi Kerja</label>
+                                                                @if (!empty($result_posisijabatan->lokasi_kerja))
+                                                                <input type="text" class="form-control" name="lokasi_kerja" value="{{ $result_posisijabatan->lokasi_kerja }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="lokasi_kerja">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Golongan Ruang Awal</label>
+                                                                @if (!empty($result_posisijabatan->gol_ruang_awal))
+                                                                <input type="text" class="form-control" name="gol_ruang_awal" value="{{ $result_posisijabatan->gol_ruang_awal }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="gol_ruang_awal">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Golongan Ruang Akhir</label>
+                                                                @if (!empty($result_posisijabatan->gol_ruang_akhir))
+                                                                <input type="text" class="form-control" name="gol_ruang_akhir" value="{{ $result_posisijabatan->gol_ruang_akhir }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="gol_ruang_akhir">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>TMT Golongan</label>
+                                                                @if (!empty($result_posisijabatan->tmt_golongan))
+                                                                <input type="text" class="form-control" name="tmt_golongan" value="{{ $result_posisijabatan->tmt_golongan }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="tmt_golongan">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Gaji Pokok</label>
+                                                                @if (!empty($result_posisijabatan->gaji_pokok))
+                                                                <input type="text" class="form-control" name="gaji_pokok" value="{{ $result_posisijabatan->gaji_pokok }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="gaji_pokok">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Masa Kerja (Tahun)</label>
+                                                                @if (!empty($result_posisijabatan->masa_kerja_tahun))
+                                                                <input type="text" class="form-control" name="masa_kerja_tahun" value="{{ $result_posisijabatan->masa_kerja_tahun }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="masa_kerja_tahun">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Masa Kerja (Bulan)</label>
+                                                                @if (!empty($result_posisijabatan->masa_kerja_bulan))
+                                                                <input type="text" class="form-control" name="masa_kerja_bulan" value="{{ $result_posisijabatan->masa_kerja_bulan }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="masa_kerja_bulan">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Nomor SPMT</label>
+                                                                @if (!empty($result_posisijabatan->no_spmt))
+                                                                <input type="text" class="form-control" name="no_spmt" value="{{ $result_posisijabatan->no_spmt }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="no_spmt">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Tanggal SPMT</label>
+                                                                @if (!empty($result_posisijabatan->tanggal_spmt))
+                                                                <input type="text" class="form-control" name="tanggal_spmt" value="{{ $result_posisijabatan->tanggal_spmt }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="tanggal_spmt">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>KPPN</label>
+                                                                @if (!empty($result_posisijabatan->kppn))
+                                                                <input type="text" class="form-control" name="kppn" value="{{ $result_posisijabatan->kppn }}">
+                                                                @else
+                                                                <input type="text" class="form-control" name="kppn">
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Posisi Jabatan Modal Edit -->
+
+
+
         <!-- /Page Content -->
     </div>
+
+    @section('script')
+        <script>
+            $('#validation').validate({  
+                rules: {  
+                    unit_organisasi: 'required',
+                    unit_organisasi_induk: 'required',
+                    jenis_jabatan: 'required',
+                    eselon: 'required',
+                    jabatan: 'required',
+                    tmt: 'required',
+                    lokasi_kerja: 'required',
+                    gol_ruang_awal: 'required',
+                    gol_ruang_akhir: 'required',
+                    tmt_golongan: 'required',
+                    gaji_pokok: 'required',
+                    masa_kerja_tahun: 'required',
+                    masa_kerja_bulan: 'required',
+                    no_spmt: 'required',
+                    tanggal_spmt: 'required',
+                    kppn: 'required',
+                },  
+                messages: {
+                    unit_organisasi: 'Masukkan unit organisasi',
+                    unit_organisasi_induk: 'Masukkan unit organisasi induk',
+                    jenis_jabatan: 'Masukkan jenis jabatan',
+                    eselon: 'Masukkan eselon',
+                    jabatan: 'Masukkan jabatan',
+                    tmt: 'Masukkan tmt',
+                    lokasi_kerja: 'Masukkan lokasi kerja',
+                    gol_ruang_awal: 'Masukkan golongan ruang awal',
+                    gol_ruang_akhir: 'Masukkan golongan ruang akhir',
+                    tmt_golongan: 'Masukkan tmt golongan',
+                    gaji_pokok: 'Masukkan gaji pokok',
+                    masa_kerja_tahun: 'Masukkan masa kerja tahun',
+                    masa_kerja_bulan: 'Masukkan masa kerja bulan',
+                    no_spmt: 'Masukkan nomor spmt',
+                    tanggal_spmt: 'Masukkan tanggal spmt',
+                    kppn: 'Masukkan kppn',
+                },  
+                submitHandler: function(form) {  
+                    form.submit();
+                }  
+            });  
+        </script>
+        @endsection
 @endsection
