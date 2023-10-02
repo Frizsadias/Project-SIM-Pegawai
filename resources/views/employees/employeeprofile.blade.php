@@ -122,7 +122,7 @@
                                 <div class="card profile-box flex-fill">
                                     <div class="card-body">
                                         <h3 class="card-title">Profil Pegawai
-                                            {{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_tambah"><i class="fa fa-plus"></i></a></h3> --}}
+                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_tambah"><i class="fa fa-plus"></i></a></h3>
                                             <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_edit"><i class="fa fa-pencil"></i></a></h3>
                                         <ul class="personal-info">
                                             <li>
@@ -341,7 +341,7 @@
                                 <div class="card profile-box flex-fill">
                                     <div class="card-body">
                                         <h3 class="card-title">Posisi & Jabatan Pegawai
-                                            {{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal_tambah"><i class="fa fa-plus"></i></a></h3> --}}
+                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal_tambah"><i class="fa fa-plus"></i></a></h3>
                                             <a href="#" class="edit-icon" data-toggle="modal" data-target="#posisi_jabatan_modal_edit"><i class="fa fa-pencil"></i></a></h3>
                                         <ul class="personal-info">
                                             <li>
@@ -850,7 +850,7 @@
             </div>
             <!-- /Profile Modal -->
 
-            {{-- <!-- Profil Pegawai Modal Tambah -->
+            <!-- Profil Pegawai Modal Tambah -->
             <div id="profil_pegawai_modal_tambah" class="modal custom-modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
@@ -1025,7 +1025,7 @@
                     </div>
                 </div>
                 </div>
-                <!-- /Profil Pegawai Modal Tambah --> --}}
+                <!-- /Profil Pegawai Modal Tambah -->
 
                 <!-- Profil Pegawai Modal Edit -->
                 <div id="profil_pegawai_modal_edit" class="modal custom-modal fade" role="dialog">
