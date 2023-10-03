@@ -349,6 +349,18 @@ class EmployeeController extends Controller
         return view('employees.agama', compact('agama'));
     }
 
+    /** search for agama */
+    public function searchAgama(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $agama = DB::table('agama_id')
+        ->where('agama', 'like', '%' . $keyword . '%')
+            ->get();
+
+        return view('employees.agama', compact('agama'));
+    }
+
     /** save record agama */
     public function saveRecordAgama(Request $request)
     {
@@ -423,6 +435,19 @@ class EmployeeController extends Controller
         $pendidikan = DB::table('pendidikan_id')->get();
         return view('employees.pendidikan', compact('pendidikan'));
     }
+
+    /** search for pendidikan */
+    public function searchPendidikan(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $pendidikan = DB::table('pendidikan_id')
+        ->where('pendidikan', 'like', '%' . $keyword . '%')
+            ->get();
+
+        return view('employees.pendidikan', compact('pendidikan'));
+    }
+
 
     /** save record pendidikan */
     public function saveRecordPendidikan(Request $request)
