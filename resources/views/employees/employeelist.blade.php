@@ -95,11 +95,12 @@
                                     <th>TMT CPNS</th>
                                     <th>Tingkat Pendidikan</th>
                                     <th>Pendidikan Terakhir</th>
-                                    <th class="text-right no-sort">Aksi</th>
+                                    {{-- <th class="text-right no-sort">Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users as $dafpeg)
+                                @if ($dafpeg->role_name == 'User')
                                 <tr>
                                     <td>
                                         <h2 class="table-avatar">
@@ -134,7 +135,7 @@
                                     <td>{{ $dafpeg->tmt_cpns }}</td>
                                     <td>{{ $dafpeg->tingkat_pendidikan }}</td>
                                     <td>{{ $dafpeg->pendidikan_terakhir }}</td>
-                                    <td class="text-right">
+                                    {{-- <td class="text-right">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
@@ -142,8 +143,9 @@
                                                 <a class="dropdown-item" href="{{ url('daftar/pegawai/delete/' . $dafpeg->user_id) }}"onclick="return confirm('Apakah anda yakin ingin menghapusnya?')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                             </div>
                                         </div>
-                                    </td>
+                                    </td> --}}
                                 </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>

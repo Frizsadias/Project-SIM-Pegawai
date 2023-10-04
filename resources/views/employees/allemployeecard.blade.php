@@ -62,22 +62,24 @@
             {!! Toastr::message() !!}
             <div class="row staff-grid-row">
                 @foreach ($users as $lists )
+                @if ($lists->role_name == 'User')
                 <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                     <div class="profile-widget">
                         <div class="profile-img">
                             <a href="{{ url('user/profile/' . $lists->user_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/' . $lists->avatar) }}" alt="{{ $lists->avatar }}" alt="{{ $lists->avatar }}"></a>
                         </div>
-                        <div class="dropdown profile-action">
+                        {{-- <div class="dropdown profile-action">
                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{ url('daftar/pegawai/view/edit/'.$lists->user_id) }}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
                                 <a class="dropdown-item" href="{{url('daftar/pegawai/delete/'.$lists->user_id)}}"onclick="return confirm('Apakah anda yakin ingin menghapusnya?')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                             </div>
-                        </div>
+                        </div> --}}
                         <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->name }}</a></h4>
                         <div class="small text-muted">{{ $lists->position }}</div>
                     </div>
                 </div>
+                @endif
                 @endforeach
             </div>
         </div>
