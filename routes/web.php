@@ -214,11 +214,13 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/agama/save', 'saveRecordAgama')->middleware('auth')->name('form/agama/save');
     Route::post('form/agama/update', 'updateRecordAgama')->middleware('auth')->name('form/agama/update');
     Route::post('form/agama/delete', 'deleteRecordAgama')->middleware('auth')->name('form/agama/delete');
+    Route::get('form/agama/search', 'searchAgama')->middleware('auth')->name('form/agama/search');
 
     Route::get('referensi/pendidikan', 'indexPendidikan')->middleware('auth')->name('referensi-pendidikan');
     Route::post('form/pendidikan/save', 'saveRecordPendidikan')->middleware('auth')->name('form/pendidikan/save');
     Route::post('form/pendidikan/update', 'updateRecordPendidikan')->middleware('auth')->name('form/pendidikan/update');
     Route::post('form/pendidikan/delete', 'deleteRecordPendidikan')->middleware('auth')->name('form/pendidikan/delete');
+    Route::get('form/pendidikan/search', 'searchPendidikan')->middleware('auth')->name('form/pendidikan/search');
 
     Route::get('form/designations/page', 'designationsIndex')->middleware('auth')->name('form/designations/page');
     Route::post('form/designations/save', 'saveRecordDesignations')->middleware('auth')->name('form/designations/save');
