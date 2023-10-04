@@ -14,7 +14,7 @@ class CreateGenerateUserIdPosisiJabatanTable extends Migration
     public function up()
     {
         DB::unprepared('
-            CREATE TRIGGER update_profilpegawai AFTER UPDATE ON posisi_jabatan FOR EACH ROW
+            CREATE TRIGGER update_posisijabatan AFTER UPDATE ON posisi_jabatan FOR EACH ROW
             BEGIN
                 UPDATE posisi_jabatans SET unit_organisasi=NEW.unit_organisasi,unit_organisasi_induk=NEW.unit_organisasi_induk,
                 jenis_jabatan=NEW.jenis_jabatan,eselon=NEW.eselon,
