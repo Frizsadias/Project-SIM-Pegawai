@@ -35,8 +35,8 @@
                                         <div class="col-md-5">
                                             <div class="profile-info-left">
                                                 <h3 class="user-name m-t-0 mb-0">{{ Session::get('name') }}</h3>
-                                                <h6 class="text-muted">{{ Session::get('department') }}</h6>
-                                                <small class="text-muted">{{ Session::get('position') }}</small>
+                                                {{-- <h6 class="text-muted">{{ Session::get('department') }}</h6> --}}
+                                                {{-- <small class="text-muted">{{ Session::get('position') }}</small> --}}
                                                 <div class="staff-id">ID Pegawai : {{ Session::get('user_id') }}</div>
                                                 <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse(Session::get('join_date'))->locale('id')->format('d F Y, H:i') }}
                                                 </div>

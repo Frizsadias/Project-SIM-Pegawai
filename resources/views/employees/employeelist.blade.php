@@ -105,7 +105,7 @@
                                     <td>
                                         <h2 class="table-avatar">
                                             <a href="{{ url('user/profile/' . $dafpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $dafpeg->avatar) }}"></a>
-                                            <a href="{{ url('user/profile/' . $dafpeg->user_id) }}">{{ $dafpeg->name }}<span>{{ $dafpeg->position }}</span></a>
+                                            {{-- <a href="{{ url('user/profile/' . $dafpeg->user_id) }}">{{ $dafpeg->name }}<span>{{ $dafpeg->position }}</span></a> --}}
                                         </h2>
                                     </td>
                                     <td>{{ $dafpeg->user_id }}</td>

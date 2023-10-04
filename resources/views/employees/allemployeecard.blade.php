@@ -76,7 +76,7 @@
                             </div>
                         </div> --}}
                         <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->name }}</a></h4>
-                        <div class="small text-muted">{{ $lists->position }}</div>
+                        {{-- <div class="small text-muted">{{ $lists->position }}</div> --}}
                     </div>
                 </div>
                 @endif

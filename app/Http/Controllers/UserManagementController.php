@@ -33,17 +33,13 @@ class UserManagementController extends Controller
         if (Session::get('role_name') == 'Admin') {
             $result      = DB::table('users')->get();
             $role_name   = DB::table('role_type_users')->get();
-            $position    = DB::table('position_types')->get();
-            $department  = DB::table('departments')->get();
             $status_user = DB::table('user_types')->get();
-            return view('usermanagement.user_control', compact('result', 'role_name', 'position', 'department', 'status_user'));
+            return view('usermanagement.user_control', compact('result', 'role_name', 'status_user'));
         } else if (Session::get('role_name') == 'Super Admin') {
             $result      = DB::table('users')->get();
             $role_name   = DB::table('role_type_users')->get();
-            $position    = DB::table('position_types')->get();
-            $department  = DB::table('departments')->get();
             $status_user = DB::table('user_types')->get();
-            return view('usermanagement.user_control', compact('result', 'role_name', 'position', 'department', 'status_user'));
+            return view('usermanagement.user_control', compact('result', 'role_name', 'status_user'));
         } else {
             return redirect()->route('home');
         }
@@ -97,12 +93,10 @@ class UserManagementController extends Controller
             $query->where('name', 'like', '%' . $searchValue . '%');
             $query->orWhere('user_id', 'like', '%' . $searchValue . '%');
             $query->orWhere('email', 'like', '%' . $searchValue . '%');
-            $query->orWhere('position', 'like', '%' . $searchValue . '%');
             $query->orWhere('phone_number', 'like', '%' . $searchValue . '%');
             $query->orWhere('join_date', 'like', '%' . $searchValue . '%');
             $query->orWhere('role_name', 'like', '%' . $searchValue . '%');
             $query->orWhere('status', 'like', '%' . $searchValue . '%');
-            $query->orWhere('department', 'like', '%' . $searchValue . '%');
         })->count();
 
         if ($columnName == 'user_id') {
@@ -113,12 +107,10 @@ class UserManagementController extends Controller
                 $query->where('name', 'like', '%' . $searchValue . '%');
                 $query->orWhere('user_id', 'like', '%' . $searchValue . '%');
                 $query->orWhere('email', 'like', '%' . $searchValue . '%');
-                $query->orWhere('position', 'like', '%' . $searchValue . '%');
                 $query->orWhere('phone_number', 'like', '%' . $searchValue . '%');
                 $query->orWhere('join_date', 'like', '%' . $searchValue . '%');
                 $query->orWhere('role_name', 'like', '%' . $searchValue . '%');
                 $query->orWhere('status', 'like', '%' . $searchValue . '%');
-                $query->orWhere('department', 'like', '%' . $searchValue . '%');
             })
             ->skip($start)
             ->take($rowPerPage)
@@ -186,12 +178,10 @@ class UserManagementController extends Controller
                 "name"         => $record->name,
                 "user_id"      => '<span class="user_id">' . $record->user_id . '</span>',
                 "email"        => '<span class="email">' . $record->email . '</span>',
-                "position"     => '<span class="position">' . $record->position . '</span>',
                 "phone_number" => '<span class="phone_number">' . $record->phone_number . '</span>',
                 "join_date"    => $record->join_date,
                 "role_name"    => $role_name,
                 "status"       => $status,
-                "department"   => '<span class="department">' . $record->department . '</span>',
                 "action"       =>
                 '
                 <td>
@@ -202,9 +192,6 @@ class UserManagementController extends Controller
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item userUpdate" data-toggle="modal" data-id="' . $record->id . '" data-target="#edit_user">
                                 <i class="fa fa-pencil m-r-5"></i> Edit
-                            </a>
-                            <a class="dropdown-item userDelete" data-toggle="modal" data-id="' . $record->id . '" data-target="#delete_user">
-                                <i class="fa fa-trash-o m-r-5"></i> Delete
                             </a>
                         </div>
                     </div>
@@ -220,6 +207,9 @@ class UserManagementController extends Controller
         ];
         return response()->json($response);
     }
+
+    // Function untuk hapus data pengguna
+    // <a class="dropdown-item userDelete" data-toggle="modal" data-id="' . $record->id . '" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 
     /** use activity log */
     public function activityLog()
@@ -371,10 +361,9 @@ class UserManagementController extends Controller
             'email'     => 'required|string|email|max:255|unique:users',
             'phone'     => 'required|min:11|numeric',
             'role_name' => 'required|string|max:255',
-            'position'  => 'required|string|max:255',
-            'department' => 'required|string|max:255',
             'status'    => 'required|string|max:255',
-            'image'     => 'required|image',
+            // 'image'     => 'required|image',
+            'image'     => 'required|string|max:255',
             'password'  => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
         ]);
@@ -383,8 +372,8 @@ class UserManagementController extends Controller
             $dt       = Carbon::now();
             $todayDate = $dt->toDayDateTimeString();
 
-            $image = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $image);
+            // $image = time() . '.' . $request->image->extension();
+            // $request->image->move(public_path('assets/images'), $image);
 
             $user = new User;
             $user->name         = $request->name;
@@ -392,18 +381,16 @@ class UserManagementController extends Controller
             $user->join_date    = $todayDate;
             $user->phone_number = $request->phone;
             $user->role_name    = $request->role_name;
-            $user->position     = $request->position;
-            $user->department   = $request->department;
             $user->status       = $request->status;
-            $user->avatar       = $image;
+            $user->avatar       = $request->image;
             $user->password     = Hash::make($request->password);
             $user->save();
             DB::commit();
-            Toastr::success('Berhasil membuat akun baru :)', 'Success');
+            Toastr::success('Data pengguna berhasil ditambah :)', 'Success');
             return redirect()->route('manajemen-pengguna');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal membuat akun baru :)', 'Error');
+            Toastr::error('Data pengguna gagal ditambah :(', 'Error');
             return redirect()->back();
         }
     }
@@ -413,33 +400,33 @@ class UserManagementController extends Controller
     {
         DB::beginTransaction();
         try {
-            $user_id       = $request->user_id;
+            $user_id      = $request->user_id;
             $name         = $request->name;
             $email        = $request->email;
             $role_name    = $request->role_name;
-            $position     = $request->position;
             $phone        = $request->phone;
-            $department   = $request->department;
             $status       = $request->status;
+            $avatar       = $request->images;
 
             $dt       = Carbon::now();
             $todayDate = $dt->toDayDateTimeString();
-            $image_name = $request->hidden_image;
-            $image = $request->file('images');
-            if ($image_name == 'photo_defaults.jpg') {
-                if (empty($image)) {
-                    $image_name = $image_name;
-                } else {
-                    $image_name = rand() . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('/assets/images/'), $image_name);
-                }
-            } else {
-                if (!empty($image)) {
-                    unlink('assets/images/' . $image_name);
-                    $image_name = rand() . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('/assets/images/'), $image_name);
-                }
-            }
+
+            // $image_name = $request->hidden_image;
+            // $image = $request->file('images');
+            // if ($image_name == 'photo_defaults.jpg') {
+            //     if (empty($image)) {
+            //         $image_name = $image_name;
+            //     } else {
+            //         $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            //         $image->move(public_path('/assets/images/'), $image_name);
+            //     }
+            // } else {
+            //     if (!empty($image)) {
+            //         unlink('assets/images/' . $image_name);
+            //         $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            //         $image->move(public_path('/assets/images/'), $image_name);
+            //     }
+            // }
 
             $update = [
 
@@ -447,11 +434,9 @@ class UserManagementController extends Controller
                 'name'         => $name,
                 'role_name'    => $role_name,
                 'email'        => $email,
-                'position'     => $position,
                 'phone_number' => $phone,
-                'department'   => $department,
                 'status'       => $status,
-                'avatar'       => $image_name,
+                'avatar'       => $avatar,
             ];
 
             $activityLog = [
@@ -460,18 +445,18 @@ class UserManagementController extends Controller
                 'phone_number' => $phone,
                 'status'       => $status,
                 'role_name'    => $role_name,
-                'modify_user'  => 'Update',
+                'modify_user'  => 'Perbaharui Data',
                 'date_time'    => $todayDate,
             ];
 
             DB::table('user_activity_logs')->insert($activityLog);
             User::where('user_id', $request->user_id)->update($update);
             DB::commit();
-            Toastr::success('Berhasil update user :)', 'Success');
+            Toastr::success('Data pengguna berhasil diperbaharui :)', 'Success');
             return redirect()->route('manajemen-pengguna');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal update user :)', 'Error');
+            Toastr::error('Data pengguna gagal diperbaharui :(', 'Error');
             return redirect()->back();
         }
     }
@@ -491,7 +476,7 @@ class UserManagementController extends Controller
                 'phone_number' => Session::get('phone_number'),
                 'status'       => Session::get('status'),
                 'role_name'    => Session::get('role_name'),
-                'modify_user'  => 'Delete',
+                'modify_user'  => 'Hapus Data',
                 'date_time'    => $todayDate,
             ];
 
@@ -510,15 +495,15 @@ class UserManagementController extends Controller
             }
 
             DB::commit();
-            Toastr::success('Berhasil hapus user :)', 'Success');
+            Toastr::success('Data pengguna berhasil dihapus :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal hapus user :)', 'Error');
+            Toastr::error('Data pengguna gagal dihapus :(', 'Error');
             return redirect()->back();
         }
     }
-
+            
     /** view change password */
     public function changePasswordView()
     {
