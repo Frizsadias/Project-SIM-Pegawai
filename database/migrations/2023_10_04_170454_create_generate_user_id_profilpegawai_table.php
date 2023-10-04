@@ -14,7 +14,7 @@ class CreateGenerateUserIdProfilPegawaiTable extends Migration
     public function up()
     {
         DB::unprepared('
-            CREATE TRIGGER update_profile AFTER UPDATE ON profil_pegawai FOR EACH ROW
+            CREATE TRIGGER update_profilpegawai AFTER UPDATE ON profil_pegawai FOR EACH ROW
             BEGIN
                 UPDATE profil_pegawais SET nip=NEW.nip,nama=NEW.nama,gelar_depan=NEW.gelar_depan,
                 gelar_belakang=NEW.gelar_belakang,tempat_lahir=NEW.tempat_lahir,
@@ -37,6 +37,6 @@ class CreateGenerateUserIdProfilPegawaiTable extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER "update_profile"');
+        DB::unprepared('DROP TRIGGER "update_profilpegawai"');
     }
 }

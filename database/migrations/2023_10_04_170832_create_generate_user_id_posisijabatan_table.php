@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenerateUserIdProfilPegawaiTable extends Migration
+class CreateGenerateUserIdPosisiJabatanTable extends Migration
 {
      /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateGenerateUserIdProfilPegawaiTable extends Migration
     public function up()
     {
         DB::unprepared('
-            CREATE TRIGGER update_posisi AFTER UPDATE ON posisi_jabatan FOR EACH ROW
+            CREATE TRIGGER update_posisijabatan AFTER UPDATE ON posisi_jabatan FOR EACH ROW
             BEGIN
                 UPDATE profil_pegawais SET unit_organisasi=NEW.unit_organisasi,unit_organisasi_induk=NEW.unit_organisasi_induk,
                 jenis_jabatan=NEW.jenis_jabatan,eselon=NEW.eselon,jabatan=NEW.jabatan,tmt=NEW.tmt,
@@ -33,6 +33,6 @@ class CreateGenerateUserIdProfilPegawaiTable extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER "update_posisi"');
+        DB::unprepared('DROP TRIGGER "update_posisijabatan"');
     }
 }
