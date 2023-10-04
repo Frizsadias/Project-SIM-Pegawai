@@ -20,7 +20,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i class="fa fa-plus"></i> Tambah Pegawai</a>
+                        {{-- <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i class="fa fa-plus"></i> Tambah Pegawai</a> --}}
                         <div class="view-icons">
                             <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                             <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -153,7 +153,7 @@
         </div>
     <!-- /Page Content -->
 
-        <!-- Add Employee Modal -->
+        {{-- <!-- Add Employee Modal -->
         <div id="daftar_pegawai" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -201,7 +201,7 @@
         </div>
     </div>
 </div>
-<!-- /Add Employee Modal -->
+<!-- /Add Employee Modal --> --}}
 </div>
 <!-- /Page Wrapper -->
 @section('script')
