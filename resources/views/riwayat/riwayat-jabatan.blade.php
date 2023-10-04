@@ -132,7 +132,7 @@
         </div>
         <!-- /Page Content -->
 
-        <!-- Tambah Riwayat Modal -->
+        <!-- Tambah Riwayat Jabatan Modal -->
         <div id="add_riwayat_jabatan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -238,7 +238,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Jabatan Modal -->
+        <!-- /Tambah Riwayat Jabatan Modal -->
 
         <!-- Edit Riwayat Jabatan Modal -->
         <div id="edit_riwayat_jabatan" class="modal custom-modal fade" role="dialog">

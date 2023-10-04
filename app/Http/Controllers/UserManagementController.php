@@ -177,8 +177,10 @@ class UserManagementController extends Controller
                 "no"           => '<span class="id" data-id = ' . $record->id . '>' . $start + ($key + 1) . '</span>',
                 "name"         => $record->name,
                 "user_id"      => '<span class="user_id">' . $record->user_id . '</span>',
-                "email"        => '<span class="email">' . $record->email . '</span>',
-                "phone_number" => '<span class="phone_number">' . $record->phone_number . '</span>',
+                "email"        => '<a href="mailto:' . $record->email . '"><i class="fa fa-envelope fa-2x" style="font-size: 1.6em; color: #f44336;"></i>
+                </a> || <span class="email">' . $record->email . '</span>',
+                "phone_number" => '<a href="https://api.whatsapp.com/send?phone=' . $record->phone_number . '" target="_blank">
+                <i class="fa fa-whatsapp fa-2x" style="color: #25D366;"></i>&nbsp;</a> || <span class="phone_number">' . $record->phone_number . '</span>',
                 "join_date"    => $record->join_date,
                 "role_name"    => $role_name,
                 "status"       => $status,
@@ -283,12 +285,12 @@ class UserManagementController extends Controller
         $sqluser = User::where('user_id', $datauser)->get();
         $datapendidikan = Session::get('user_id');
         $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
-        $datadiklat = Session::get('user_id');
-        $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
         $datagolongan = Session::get('user_id');
         $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
         $datajabatan = Session::get('user_id');
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
+        $datadiklat = Session::get('user_id');
+        $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
         
         if(empty($employees))
         {

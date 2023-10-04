@@ -55,8 +55,8 @@ class RiwayatController extends Controller
             'tahun_lulus'           => 'required|min:11|numeric',
             'no_ijazah'             => 'required|string|max:255',
             'nama_sekolah'          => 'required|string|max:255',
-            'gelar_depan'           => 'required|string|max:255',
-            'gelar_belakang'        => 'required|string|max:255',
+            'gelar_depan_pend'      => 'required|string|max:255',
+            'gelar_belakang_pend'   => 'required|string|max:255',
             'jenis_pendidikan'      => 'required|string|max:255',
             'dokumen_transkrip'     => 'required|mimes:pdf|max:5120',
             'dokumen_ijazah'        => 'required|mimes:pdf|max:5120',
@@ -74,18 +74,18 @@ class RiwayatController extends Controller
             $request->dokumen_gelar->move(public_path('assets/DokumenGelar'), $dokumen_gelar);
 
             $riw_pend = new RiwayatPendidikan;
-            $riw_pend->user_id            = $request->user_id;
-            $riw_pend->ting_ped           = $request->ting_ped;
-            $riw_pend->pendidikan         = $request->pendidikan;
-            $riw_pend->tahun_lulus        = $request->tahun_lulus;
-            $riw_pend->no_ijazah          = $request->no_ijazah;
-            $riw_pend->nama_sekolah       = $request->nama_sekolah;
-            $riw_pend->gelar_depan        = $request->gelar_depan;
-            $riw_pend->gelar_belakang     = $request->gelar_belakang;
-            $riw_pend->jenis_pendidikan   = $request->jenis_pendidikan;
-            $riw_pend->dokumen_transkrip  = $dokumen_transkrip;
-            $riw_pend->dokumen_ijazah     = $dokumen_ijazah;
-            $riw_pend->dokumen_gelar      = $dokumen_gelar;
+            $riw_pend->user_id              = $request->user_id;
+            $riw_pend->ting_ped             = $request->ting_ped;
+            $riw_pend->pendidikan           = $request->pendidikan;
+            $riw_pend->tahun_lulus          = $request->tahun_lulus;
+            $riw_pend->no_ijazah            = $request->no_ijazah;
+            $riw_pend->nama_sekolah         = $request->nama_sekolah;
+            $riw_pend->gelar_depan_pend     = $request->gelar_depan_pend;
+            $riw_pend->gelar_belakang_pend  = $request->gelar_belakang_pend;
+            $riw_pend->jenis_pendidikan     = $request->jenis_pendidikan;
+            $riw_pend->dokumen_transkrip    = $dokumen_transkrip;
+            $riw_pend->dokumen_ijazah       = $dokumen_ijazah;
+            $riw_pend->dokumen_gelar        = $dokumen_gelar;
             $riw_pend->save();
 
             DB::commit();
@@ -141,8 +141,8 @@ class RiwayatController extends Controller
                 'tahun_lulus'           => $request->tahun_lulus,
                 'no_ijazah'             => $request->no_ijazah,
                 'nama_sekolah'          => $request->nama_sekolah,
-                'gelar_depan'           => $request->gelar_depan,
-                'gelar_belakang'        => $request->gelar_belakang,
+                'gelar_depan_pend'      => $request->gelar_depan_pend,
+                'gelar_belakang_pend'   => $request->gelar_belakang_pend,
                 'jenis_pendidikan'      => $request->jenis_pendidikan,
                 'dokumen_transkrip'     => $dokumen_transkrip,
                 'dokumen_ijazah'        => $dokumen_ijazah,
@@ -201,7 +201,7 @@ class RiwayatController extends Controller
             'no_teknis_bkn'             => 'required|string|max:255',
             'tanggal_teknis_bkn'        => 'required|string|max:255',
             'no_sk_golongan'            => 'required|string|max:255',
-            'tanggal_sk'                => 'required|string|max:255',
+            'tanggal_sk_golongan'       => 'required|string|max:255',
             'dokumen_skkp'              => 'required|mimes:pdf|max:5120',
             'dokumen_teknis_kp'         => 'required|mimes:pdf|max:5120',
         ]);
@@ -223,7 +223,7 @@ class RiwayatController extends Controller
             $riw_golongan->no_teknis_bkn              = $request->no_teknis_bkn;
             $riw_golongan->tanggal_teknis_bkn         = $request->tanggal_teknis_bkn;
             $riw_golongan->no_sk_golongan             = $request->no_sk_golongan;
-            $riw_golongan->tanggal_sk                 = $request->tanggal_sk;
+            $riw_golongan->tanggal_sk_golongan        = $request->tanggal_sk_golongan;
             $riw_golongan->dokumen_skkp               = $dokumen_skkp;
             $riw_golongan->dokumen_teknis_kp          = $dokumen_teknis_kp;
             $riw_golongan->save();
@@ -274,7 +274,7 @@ class RiwayatController extends Controller
                 'no_teknis_bkn'             => $request->no_teknis_bkn,
                 'tanggal_teknis_bkn'        => $request->tanggal_teknis_bkn,
                 'no_sk_golongan'            => $request->no_sk_golongan,
-                'tanggal_sk'                => $request->tanggal_sk,
+                'tanggal_sk_golongan'       => $request->tanggal_sk_golongan,
                 'dokumen_skkp'              => $dokumen_skkp,
                 'dokumen_teknis_kp'         => $dokumen_teknis_kp,
             ];

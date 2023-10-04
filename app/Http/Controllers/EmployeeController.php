@@ -11,7 +11,12 @@ use App\Models\User;
 use App\Models\module_permission;
 use App\Models\pendidikan;
 use App\Models\agama;
+use App\Models\RiwayatDiklat;
+use App\Models\RiwayatGolongan;
+use App\Models\RiwayatJabatan;
+use App\Models\RiwayatPendidikan;
 use Carbon\Carbon;
+use Session;
 
 class EmployeeController extends Controller
 {
@@ -297,51 +302,82 @@ class EmployeeController extends Controller
     {
         $user = DB::table('users')
             ->leftJoin('profile_information as pr','pr.user_id','users.user_id')
-            ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
-            ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
-            ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
-            ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
+            // ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
+            // ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
+            // ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
+            // ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
             ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
             ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
-            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','rp.ting_ped','rp.pendidikan',
-                'rp.tahun_lulus','rp.no_ijazah','rp.nama_sekolah','rp.gelar_depan','rp.gelar_belakang',
-                'rp.jenis_pendidikan','rp.dokumen_transkrip','rp.dokumen_ijazah','rp.dokumen_gelar','rg.golongan',
-                'rg.jenis_kenaikan_pangkat','rg.masa_kerja_golongan_tahun','rg.masa_kerja_golongan_bulan','rg.tmt_golongan_riwayat','rg.no_teknis_bkn',
-                'rg.tanggal_teknis_bkn','rg.no_sk_golongan','rg.tanggal_sk','rg.dokumen_skkp','rg.dokumen_teknis_kp','rj.jenis_jabatan_riwayat',
-                'rj.satuan_kerja','rj.satuan_kerja_induk','rj.unit_organisasi_riwayat','rj.no_sk','rj.tanggal_sk','rj.tmt_jabatan','rj.tmt_pelantikan',
-                'rj.dokumen_sk_jabatan','rj.dokumen_pelantikan','rd.jenis_diklat','rd.nama_diklat','rd.institusi_penyelenggara','rd.no_sertifikat',
-                'rd.tanggal_mulai','rd.tanggal_selesai','rd.tahun_diklat','rd.durasi_jam','rd.dokumen_diklat','pg.nip','pg.nama','pg.gelar_depan',
+            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pg.nip','pg.nama','pg.gelar_depan',
                 'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
                 'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
                 'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pj.unit_organisasi',
                 'pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
                 'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
             ->where('users.user_id', $user_id)->get();
+            
         $users = DB::table('users')
             ->leftJoin('profile_information as pr','pr.user_id','users.user_id')
-            ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
-            ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
-            ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
-            ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
+            // ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
+            // ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
+            // ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
+            // ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
             ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
             ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
-            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','rp.ting_ped','rp.pendidikan',
-                'rp.tahun_lulus','rp.no_ijazah','rp.nama_sekolah','rp.gelar_depan','rp.gelar_belakang',
-                'rp.jenis_pendidikan','rp.dokumen_transkrip','rp.dokumen_ijazah','rp.dokumen_gelar','rg.golongan',
-                'rg.jenis_kenaikan_pangkat','rg.masa_kerja_golongan_tahun','rg.masa_kerja_golongan_bulan','rg.tmt_golongan_riwayat','rg.no_teknis_bkn',
-                'rg.tanggal_teknis_bkn','rg.no_sk_golongan','rg.tanggal_sk','rg.dokumen_skkp','rg.dokumen_teknis_kp','rj.jenis_jabatan_riwayat',
-                'rj.satuan_kerja','rj.satuan_kerja_induk','rj.unit_organisasi_riwayat','rj.no_sk','rj.tanggal_sk','rj.tmt_jabatan','rj.tmt_pelantikan',
-                'rj.dokumen_sk_jabatan','rj.dokumen_pelantikan','rd.jenis_diklat','rd.nama_diklat','rd.institusi_penyelenggara','rd.no_sertifikat',
-                'rd.tanggal_mulai','rd.tanggal_selesai','rd.tahun_diklat','rd.durasi_jam','rd.dokumen_diklat','pg.nip','pg.nama','pg.gelar_depan',
+            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pg.nip','pg.nama','pg.gelar_depan',
                 'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
                 'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
                 'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pj.unit_organisasi',
                 'pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
                 'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
             ->where('users.user_id', $user_id)->first();
-        return view('employees.employeeprofile', compact('user', 'users'));
-    }
 
+            $riwayatPendidikan = DB::table('users')
+                ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
+                ->select('users.*','rp.ting_ped','rp.pendidikan','rp.tahun_lulus','rp.no_ijazah','rp.nama_sekolah','rp.gelar_depan_pend','rp.gelar_belakang_pend',
+                    'rp.jenis_pendidikan','rp.dokumen_transkrip','rp.dokumen_ijazah','rp.dokumen_gelar')
+                ->where('users.user_id', $user_id)->get();
+            $riwayatPendidikans = DB::table('users')
+                ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
+                ->select('users.*','rp.ting_ped','rp.pendidikan','rp.tahun_lulus','rp.no_ijazah','rp.nama_sekolah','rp.gelar_depan_pend','rp.gelar_belakang_pend',
+                    'rp.jenis_pendidikan','rp.dokumen_transkrip','rp.dokumen_ijazah','rp.dokumen_gelar')
+                ->where('users.user_id', $user_id)->first();
+
+            $riwayatGolongan = DB::table('users')
+                ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
+                ->select('users.*','rg.golongan','rg.jenis_kenaikan_pangkat','rg.masa_kerja_golongan_tahun','rg.masa_kerja_golongan_bulan',
+                    'rg.tmt_golongan_riwayat','rg.no_teknis_bkn','rg.tanggal_teknis_bkn','rg.no_sk_golongan','rg.tanggal_sk_golongan','rg.dokumen_skkp','rg.dokumen_teknis_kp')
+                ->where('users.user_id', $user_id)->get();
+            $riwayatGolongans = DB::table('users')
+                ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
+                ->select('users.*','rg.golongan','rg.jenis_kenaikan_pangkat','rg.masa_kerja_golongan_tahun','rg.masa_kerja_golongan_bulan',
+                    'rg.tmt_golongan_riwayat','rg.no_teknis_bkn','rg.tanggal_teknis_bkn','rg.no_sk_golongan','rg.tanggal_sk_golongan','rg.dokumen_skkp','rg.dokumen_teknis_kp')
+                ->where('users.user_id', $user_id)->first();
+
+            $riwayatJabatan = DB::table('users')
+                ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
+                ->select('users.*','rj.jenis_jabatan_riwayat','rj.satuan_kerja','rj.satuan_kerja_induk','rj.unit_organisasi_riwayat',
+                    'rj.no_sk','rj.tanggal_sk','rj.tmt_jabatan','rj.tmt_pelantikan','rj.dokumen_sk_jabatan','rj.dokumen_pelantikan')
+                ->where('users.user_id', $user_id)->get();
+            $riwayatJabatans = DB::table('users')
+                ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
+                ->select('users.*','rj.jenis_jabatan_riwayat','rj.satuan_kerja','rj.satuan_kerja_induk','rj.unit_organisasi_riwayat',
+                    'rj.no_sk','rj.tanggal_sk','rj.tmt_jabatan','rj.tmt_pelantikan','rj.dokumen_sk_jabatan','rj.dokumen_pelantikan')
+                ->where('users.user_id', $user_id)->first();
+
+            $riwayatDiklat = DB::table('users')
+                ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
+                ->select('users.*','rd.jenis_diklat','rd.nama_diklat','rd.institusi_penyelenggara','rd.no_sertifikat',
+                    'rd.tanggal_mulai','rd.tanggal_selesai','rd.tahun_diklat','rd.durasi_jam','rd.dokumen_diklat')
+                ->where('users.user_id', $user_id)->get();
+            $riwayatDiklats = DB::table('users')
+                ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
+                ->select('users.*','rd.jenis_diklat','rd.nama_diklat','rd.institusi_penyelenggara','rd.no_sertifikat',
+                    'rd.tanggal_mulai','rd.tanggal_selesai','rd.tahun_diklat','rd.durasi_jam','rd.dokumen_diklat')
+                ->where('users.user_id', $user_id)->first();
+        return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans','riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats'));
+    }
+    
     /** page agama */
     public function indexAgama()
     {

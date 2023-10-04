@@ -35,8 +35,6 @@
                                         <div class="col-md-5">
                                             <div class="profile-info-left">
                                                 <h3 class="user-name m-t-0 mb-0">{{ Session::get('name') }}</h3>
-                                                {{-- <h6 class="text-muted">{{ Session::get('department') }}</h6> --}}
-                                                {{-- <small class="text-muted">{{ Session::get('position') }}</small> --}}
                                                 <div class="staff-id">ID Pegawai : {{ Session::get('user_id') }}</div>
                                                 <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse(Session::get('join_date'))->locale('id')->format('d F Y, H:i') }}
                                                 </div>
@@ -499,8 +497,8 @@
                                                     <th class="tahun_lulus">Tahun Lulus</th>
                                                     <th class="no_ijazah">Nomor Ijazah</th>
                                                     <th class="nama_sekolah">Nama Sekolah</th>
-                                                    <th class="gelar_depan">Gelar Depan</th>
-                                                    <th class="gelar_belakang">Gelar Belakang</th>
+                                                    <th class="gelar_depan_pend">Gelar Depan</th>
+                                                    <th class="gelar_belakang_pend">Gelar Belakang</th>
                                                     <th class="jenis_pendidikan">Jenis Pendidikan</th>
                                                     <th class="dokumen_transkrip">Dokumen Transkrip</th>
                                                     <th class="dokumen_ijazah">Dokumen Ijazah</th>
@@ -517,8 +515,8 @@
                                                             <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
                                                             <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
                                                             <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
-                                                            <td class="gelar_depan"><center>{{ $result_pendidikan->gelar_depan }}</center></td>
-                                                            <td class="gelar_belakang"><center>{{ $result_pendidikan->gelar_belakang }}</center></td>
+                                                            <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
+                                                            <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
                                                             <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
                                                             <td class="dokumen_transkrip">
                                                                 <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
@@ -559,7 +557,7 @@
                                                         <th class="no_teknis_bkn">No Teknis BKN</th>
                                                         <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
                                                         <th class="no_sk_golongan">No SK</th>
-                                                        <th class="tanggal_sk">Tanggal SK</th>
+                                                        <th class="tanggal_sk_golongan">Tanggal SK</th>
                                                         <th class="dokumen_skkp">Dokumen SK KP</th>
                                                         <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
                                                     </tr>
@@ -577,7 +575,7 @@
                                                             <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
                                                             <td class="tanggal_teknis_bkn"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_teknis_bkn)->formatLocalized('%d %B %Y') }}</center></td>
                                                             <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
-                                                            <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
+                                                            <td class="tanggal_sk_golongan"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_sk_golongan)->formatLocalized('%d %B %Y') }}</center></td>
                                                             <td class="dokumen_skkp">
                                                                 <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
                                                                     target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>

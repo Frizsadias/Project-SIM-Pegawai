@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('tahun_lulus')->nullable();
             $table->string('no_ijazah')->nullable();
             $table->string('nama_sekolah')->nullable();
-            $table->string('gelar_depan')->nullable();
-            $table->string('gelar_belakang')->nullable();
+            $table->string('gelar_depan_pend')->nullable();
+            $table->string('gelar_belakang_pend')->nullable();
             $table->string('jenis_pendidikan')->nullable();
             $table->string('dokumen_transkrip')->nullable();
             $table->string('dokumen_ijazah')->nullable();

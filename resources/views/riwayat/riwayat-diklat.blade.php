@@ -128,7 +128,7 @@
         </div>
         <!-- /Page Content -->
 
-        <!-- Tambah Riwayat Modal -->
+        <!-- Tambah Riwayat Diklat Modal -->
         <div id="add_riwayat_diklat" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -229,7 +229,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Diklat Modal -->
+        <!-- /Tambah Riwayat Diklat Modal -->
 
         <!-- Edit Riwayat Diklat Modal -->
         <div id="edit_riwayat_diklat" class="modal custom-modal fade" role="dialog">

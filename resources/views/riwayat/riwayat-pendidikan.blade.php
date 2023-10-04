@@ -71,8 +71,8 @@
                                 <th class="tahun_lulus">Tahun Lulus</th>
                                 <th class="no_ijazah">Nomor Ijazah</th>
                                 <th class="nama_sekolah">Nama Sekolah</th>
-                                <th class="gelar_depan">Gelar Depan</th>
-                                <th class="gelar_belakang">Gelar Belakang</th>
+                                <th class="gelar_depan_pend">Gelar Depan</th>
+                                <th class="gelar_belakang_pend">Gelar Belakang</th>
                                 <th class="jenis_pendidikan">Jenis Pendidikan</th>
                                 <th class="dokumen_transkrip">Dokumen Transkrip</th>
                                 <th class="dokumen_ijazah">Dokumen Ijazah</th>
@@ -90,8 +90,8 @@
                                         <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
                                         <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
                                         <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
-                                        <td class="gelar_depan"><center>{{ $result_pendidikan->gelar_depan }}</center></td>
-                                        <td class="gelar_belakang"><center>{{ $result_pendidikan->gelar_belakang }}</center></td>
+                                        <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
+                                        <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
                                         <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
                                         <td class="dokumen_transkrip">
                                             <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
@@ -203,7 +203,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Depan</label>
-                                        <input type="text" class="form-control" name="gelar_depan">
+                                        <input type="text" class="form-control" name="gelar_depan_pend">
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Belakang</label>
-                                        <input type="text" class="form-control" name="gelar_belakang">
+                                        <input type="text" class="form-control" name="gelar_belakang_pend">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -323,7 +323,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Depan</label>
-                                        <input type="text" class="form-control" name="gelar_depan" id="e_gelar_depan" value="">
+                                        <input type="text" class="form-control" name="gelar_depan_pend" id="e_gelar_depan_pend" value="">
                                     </div>
                                 </div>
                             </div>
@@ -331,7 +331,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Belakang</label>
-                                        <input type="text" class="form-control" name="gelar_belakang" id="e_gelar_belakang" value="">
+                                        <input type="text" class="form-control" name="gelar_belakang_pend" id="e_gelar_belakang_pend" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -424,8 +424,8 @@
             $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
             $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
             $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
-            $('#e_gelar_depan').val(_this.find('.gelar_depan').text());
-            $('#e_gelar_belakang').val(_this.find('.gelar_belakang').text());
+            $('#e_gelar_depan_pend').val(_this.find('.gelar_depan_pend').text());
+            $('#e_gelar_belakang_pend').val(_this.find('.gelar_belakang_pend').text());
             $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
             $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
             $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());

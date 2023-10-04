@@ -35,11 +35,8 @@
                                         <div class="col-md-5">
                                             <div class="profile-info-left">
                                                 <h3 class="user-name m-t-0 mb-0">{{ $users->name }}</h3>
-                                                {{-- <h6 class="text-muted">{{ $users->department }}</h6> --}}
-                                                {{-- <small class="text-muted">{{ $users->position }}</small> --}}
                                                 <div class="staff-id">ID Pegawai : {{ $users->user_id }}</div>
-                                                <div class="small doj text-muted">Tanggal Bergabung :
-                                                    {{ \Carbon\Carbon::parse($users->join_date)->locale('id')->format('d F Y, H:i') }}
+                                                <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse($users->join_date)->locale('id')->format('d F Y, H:i') }}
                                                 </div>
                                             </div>
                                         </div>
@@ -58,8 +55,7 @@
                                                 <li>
                                                     <div class="title">Tanggal Lahir :</div>
                                                     <div class="text">
-                                                        @if (!empty($users->tgl_lahir))
-                                                            <a>{{ date('d F Y', strtotime($users->tgl_lahir)) }}</a>
+                                                        @if (!empty($users->tgl_lahir))<a>{{ date('d F Y', strtotime($users->tgl_lahir)) }}</a>
                                                         @else
                                                             <a>N/A</a>
                                                         @endif
@@ -90,10 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pro-edit">
-                                    <a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
+                                <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -337,6 +330,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-md-12 d-flex">
                                 <div class="card profile-box flex-fill">
                                     <div class="card-body">
@@ -483,6 +477,7 @@
                     <!-- Riwayat Pendidikan Tab -->
                     <div class="tab-pane fade" id="riwayat_pendidikan">    
                         <div class="row">
+                            <div class="col-auto float-right ml-auto"><a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pendidikan"><i class="fa fa-plus"></i> Tambah Riwayat Pendidikan</a></div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
@@ -493,8 +488,8 @@
                                             <th class="tahun_lulus">Tahun Lulus</th>
                                             <th class="no_ijazah">Nomor Ijazah</th>
                                             <th class="nama_sekolah">Nama Sekolah</th>
-                                            <th class="gelar_depan">Gelar Depan</th>
-                                            <th class="gelar_belakang">Gelar Belakang</th>
+                                            <th class="gelar_depan_pend">Gelar Depan</th>
+                                            <th class="gelar_belakang_pend">Gelar Belakang</th>
                                             <th class="jenis_pendidikan">Jenis Pendidikan</th>
                                             <th class="dokumen_transkrip">Dokumen Transkrip</th>
                                             <th class="dokumen_ijazah">Dokumen Ijazah</th>
@@ -503,27 +498,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($riwayatPendidikan as $sqlpendidikan => $riwayatPendidikans)
                                                 <tr>
-                                                    <td class="id"><center>{{ $users->id }}</center></td>
-                                                    <td class="ting_ped"><center>{{ $users->ting_ped }}</center></td>
-                                                    <td class="pendidikan"><center>{{ $users->pendidikan }}</center></td>
-                                                    <td class="tahun_lulus"><center>{{ $users->tahun_lulus }}</center></td>
-                                                    <td class="no_ijazah"><center>{{ $users->no_ijazah }}</center></td>
-                                                    <td class="nama_sekolah"><center>{{ $users->nama_sekolah }}</center></td>
-                                                    <td class="gelar_depan"><center>{{ $users->gelar_depan }}</center></td>
-                                                    <td class="gelar_belakang"><center>{{ $users->gelar_belakang }}</center></td>
-                                                    <td class="jenis_pendidikan"><center>{{ $users->jenis_pendidikan }}</center></td>
+                                                    <td><center>{{ ++$sqlpendidikan }}</center></td>
+                                                    <td hidden class="id"><center>{{ $riwayatPendidikans->id }}</center></td>
+                                                    <td class="ting_ped"><center>{{ $riwayatPendidikans->ting_ped }}</center></td>
+                                                    <td class="pendidikan"><center>{{ $riwayatPendidikans->pendidikan }}</center></td>
+                                                    <td class="tahun_lulus"><center>{{ $riwayatPendidikans->tahun_lulus }}</center></td>
+                                                    <td class="no_ijazah"><center>{{ $riwayatPendidikans->no_ijazah }}</center></td>
+                                                    <td class="nama_sekolah"><center>{{ $riwayatPendidikans->nama_sekolah }}</center></td>
+                                                    <td class="gelar_depan_pend"><center>{{ $riwayatPendidikans->gelar_depan_pend }}</center></td>
+                                                    <td class="gelar_belakang_pend"><center>{{ $riwayatPendidikans->gelar_belakang_pend }}</center></td>
+                                                    <td class="jenis_pendidikan"><center>{{ $riwayatPendidikans->jenis_pendidikan }}</center></td>
                                                     <td class="dokumen_transkrip">
-                                                        <center><a href="{{ asset('assets/DokumenTranskrip/' . $users->dokumen_transkrip) }}"
-                                                            target="_blank">{{ $users->dokumen_transkrip }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenTranskrip/' . $riwayatPendidikans->dokumen_transkrip) }}"
+                                                            target="_blank">{{ $riwayatPendidikans->dokumen_transkrip }}</a>
                                                     </center></td>
                                                     <td class="dokumen_ijazah">
-                                                        <center><a href="{{ asset('assets/DokumenIjazah/' . $users->dokumen_ijazah) }}"
-                                                            target="_blank">{{ $users->dokumen_ijazah }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenIjazah/' . $riwayatPendidikans->dokumen_ijazah) }}"
+                                                            target="_blank">{{ $riwayatPendidikans->dokumen_ijazah }}</a>
                                                     </center></td>
                                                     <td class="dokumen_gelar">
-                                                        <center><a href="{{ asset('assets/DokumenGelar/' . $users->dokumen_gelar) }}"
-                                                            target="_blank">{{ $users->dokumen_gelar }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenGelar/' . $riwayatPendidikans->dokumen_gelar) }}"
+                                                            target="_blank">{{ $riwayatPendidikans->dokumen_gelar }}</a>
                                                     </center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
@@ -544,18 +541,291 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <!-- Tempat Field Edit & Hapus -->
+                        <!-- Tambah Riwayat Modal -->
+                        <div id="add_riwayat_pendidikan" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Pendidikan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/pendidikan/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tingkat Pendidikan</label>
+                                                        <select name="ting_ped" class="select" id="ting_ped" required>
+                                                            <option selected disabled> --Pilih Tingkat Pendidikan --</option>
+                                                            <option value="SLTP">SLTP</option>
+                                                            <option value="SLTA">SLTA</option>
+                                                            <option value="Diploma I">Diploma I</option>
+                                                            <option value="Diploma II">Diploma II</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pendidikan</label>
+                                                        <input type="text" class="form-control" name="pendidikan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Lulus</label>
+                                                        <input type="number" class="form-control" name="tahun_lulus" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Ijazah</label>
+                                                        <input type="text" class="form-control" name="no_ijazah" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Sekolah</label>
+                                                        <input type="text" class="form-control" name="nama_sekolah" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Gelar Depan</label>
+                                                        <input type="text" class="form-control" name="gelar_depan_pend">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Gelar Belakang</label>
+                                                        <input type="text" class="form-control" name="gelar_belakang_pend">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Pendidikan</label>
+                                                        <br>
+                                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Pertama">
+                                                        Pendidikan Pertama
+                                                        <br>
+                                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Kedua">
+                                                        Pendidikan Kedua
+                                                        <br>
+                                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Ketiga">
+                                                        Pendidikan Ketiga
+                                                        <br>
+                                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Keempat">
+                                                        Pendidikan Keempat
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Transkrip Nilai</label>
+                                                        <input type="file" class="form-control" name="dokumen_transkrip">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Ijazah</label>
+                                                        <input type="file" class="form-control" name="dokumen_ijazah">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Pencantuman Gelar </label>
+                                                        <input type="file" class="form-control" name="dokumen_gelar">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Riwayat Modal -->
+                        <!-- Edit Riwayat Pendidikan Modal -->
+                        <div id="edit_riwayat_pendidikan" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Pendidikan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/pendidikan/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tingkat Pendidikan</label>
+                                                        <select name="ting_ped" class="select" id="e_ting_ped">
+                                                            <option selected disabled> --Pilih Jenis Pendidikan --</option>
+                                                            <option>SLTP</option>
+                                                            <option>SLTA</option>
+                                                            <option>Diploma I</option>
+                                                            <option>Diploma II</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pendidikan</label>
+                                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Lulus</label>
+                                                        <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Ijazah</label>
+                                                        <input type="text" class="form-control" name="no_ijazah" id="e_no_ijazah" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Sekolah</label>
+                                                        <input type="text" class="form-control" name="nama_sekolah" id="e_nama_sekolah" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Gelar Depan</label>
+                                                        <input type="text" class="form-control" name="gelar_depan_pend" id="e_gelar_depan_pend" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Gelar Belakang</label>
+                                                        <input type="text" class="form-control" name="gelar_belakang_pend" id="e_gelar_belakang_pend" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Pendidikan</label>
+                                                        <input type="text" class="form-control" name="jenis_pendidikan" id="e_jenis_pendidikan" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Transkrip</label>
+                                                        <input type="file" class="form-control" id="dokumen_transkrip" name="dokumen_transkrip">
+                                                        <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip" value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Ijazah</label>
+                                                        <input type="file" class="form-control" id="dokumen_ijazah" name="dokumen_ijazah">
+                                                        <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_ijazah" value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Gelar</label>
+                                                        <input type="file" class="form-control" id="dokumen_gelar" name="dokumen_gelar">
+                                                        <input type="hidden" name="hidden_dokumen_gelar" id="e_dokumen_gelar" value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Pendidikan Modal -->
+
+                        <!-- Delete Riwayat Pendidikan Modal -->
+                        <div class="modal custom-modal fade" id="delete_riwayat_pendidikan" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Pendidikan</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/pendidikan/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id" value="">
+                                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip" value="">
+                                                <input type="hidden" name="dokumen_ijazah" class="d_dokumen_ijazah" value="">
+                                                <input type="hidden" name="dokumen_gelar" class="d_dokumen_gelar" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Delete Riwayat Pendidikan Modal -->
                     </div>
                     <!-- /Riwayat Pendidikan Tab -->
 
                     <!-- Riwayat Golongan Tab -->
                     <div class="tab-pane fade" id="riwayat_golongan">
                         <div class="row">
+                            <div class="col-auto float-right ml-auto"><a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_golongan"><i class="fa fa-plus"></i> Tambah Riwayat Golongan</a></div>
+                            <br><br>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
@@ -570,32 +840,33 @@
                                                 <th class="no_teknis_bkn">No Teknis BKN</th>
                                                 <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
                                                 <th class="no_sk_golongan">No SK</th>
-                                                <th class="tanggal_sk">Tanggal SK</th>
+                                                <th class="tanggal_sk_golongan">Tanggal SK</th>
                                                 <th class="dokumen_skkp">Dokumen SK KP</th>
                                                 <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
                                                 <th class="aksi">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($riwayatGolongan as $sqlgolongan => $riwayatGolongans)
                                                 <tr>
-                                                    <td><center>{{ $users->id }}</center></td>
-                                                    <td hidden class="id"><center>{{ $users->id }}</center></td>
-                                                    <td class="golongan"><center>{{ $users->golongan }}</center></td>
-                                                    <td class="jenis_kenaikan_pangkat"><center>{{ $users->jenis_kenaikan_pangkat }}</center></td>
-                                                    <td class="masa_kerja_golongan_tahun"><center>{{ $users->masa_kerja_golongan_tahun }}</center></td>
-                                                    <td class="masa_kerja_golongan_bulan"><center>{{ $users->masa_kerja_golongan_bulan }}</center></td>
-                                                    <td class="tmt_golongan_riwayat"><center>{{ $users->tmt_golongan_riwayat }}</center></td>
-                                                    <td class="no_teknis_bkn"><center>{{ $users->no_teknis_bkn }}</center></td>
-                                                    <td class="tanggal_teknis_bkn"><center>{{ $users->tanggal_teknis_bkn }}</center></td>
-                                                    <td class="no_sk_golongan"><center>{{ $users->no_sk_golongan }}</center></td>
-                                                    <td class="tanggal_sk"><center>{{ $users->tanggal_sk }}</center></td>
+                                                    <td><center>{{ ++$sqlgolongan }}</center></td>
+                                                    <td hidden class="id"><center>{{ $riwayatGolongans->id }}</center></td>
+                                                    <td class="golongan"><center>{{ $riwayatGolongans->golongan }}</center></td>
+                                                    <td class="jenis_kenaikan_pangkat"><center>{{ $riwayatGolongans->jenis_kenaikan_pangkat }}</center></td>
+                                                    <td class="masa_kerja_golongan_tahun"><center>{{ $riwayatGolongans->masa_kerja_golongan_tahun }}</center></td>
+                                                    <td class="masa_kerja_golongan_bulan"><center>{{ $riwayatGolongans->masa_kerja_golongan_bulan }}</center></td>
+                                                    <td class="tmt_golongan_riwayat"><center>{{ $riwayatGolongans->tmt_golongan_riwayat }}</center></td>
+                                                    <td class="no_teknis_bkn"><center>{{ $riwayatGolongans->no_teknis_bkn }}</center></td>
+                                                    <td class="tanggal_teknis_bkn"><center>{{ $riwayatGolongans->tanggal_teknis_bkn }}</center></td>
+                                                    <td class="no_sk_golongan"><center>{{ $riwayatGolongans->no_sk_golongan }}</center></td>
+                                                    <td class="tanggal_sk_golongan"><center>{{ $riwayatGolongans->tanggal_sk_golongan }}</center></td>
                                                     <td class="dokumen_skkp">
-                                                        <center><a href="{{ asset('assets/DokumenSKKP/' . $users->dokumen_skkp) }}"
-                                                            target="_blank">{{ $users->dokumen_skkp }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenSKKP/' . $riwayatGolongans->dokumen_skkp) }}"
+                                                            target="_blank">{{ $riwayatGolongans->dokumen_skkp }}</a>
                                                     </center></td>
                                                     <td class="dokumen_teknis_kp">
-                                                        <center><a href="{{ asset('assets/DokumenTeknisKP/' . $users->dokumen_teknis_kp) }}"
-                                                            target="_blank">{{ $users->dokumen_teknis_kp }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenTeknisKP/' . $riwayatGolongans->dokumen_teknis_kp) }}"
+                                                            target="_blank">{{ $riwayatGolongans->dokumen_teknis_kp }}</a>
                                                     </center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
@@ -604,30 +875,274 @@
                                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                                 aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item edit_riwayat_golongan" href="#"
-                                                                    data-toggle="modal" data-target="#edit_riwayat_golongan"><i
-                                                                        class="fa fa-pencil m-r-5"></i>
-                                                                    Edit</a>
-                                                                <a class="dropdown-item delete_riwayat_golongan" href="#"
-                                                                    data-toggle="modal" data-target="#delete_riwayat_golongan"><i
-                                                                        class="fa fa-trash-o m-r-5"></i>
-                                                                    Delete</a>
+                                                                <a class="dropdown-item edit_riwayat_golongan" href="#" data-toggle="modal" data-target="#edit_riwayat_golongan"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                                <a class="dropdown-item delete_riwayat_golongan" href="#" data-toggle="modal" data-target="#delete_riwayat_golongan"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <!-- Tempat Field Edit & Hapus -->
+                            <!-- Tambah Riwayat Golongan Modal -->
+                            <div id="add_riwayat_golongan" class="modal custom-modal fade" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Tambah Riwayat Golongan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('riwayat/golongan/tambah-data') }}" method="POST"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Golongan</label>
+                                                            <input type="text" class="form-control" name="golongan" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Jenis Kenaikan Pangkat (KP)</label>
+                                                            <input type="text" class="form-control" name="jenis_kenaikan_pangkat"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Kerja Golongan (Tahun)</label>
+                                                            <input type="number" class="form-control" name="masa_kerja_golongan_tahun"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Kerja Golongan (Bulan)</label>
+                                                            <input type="number" class="form-control" name="masa_kerja_golongan_bulan"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT Golongan</label>
+                                                            <input type="date" class="form-control" name="tmt_golongan_riwayat" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nomor Pertimbangan Teknis BKN</label>
+                                                            <input type="number" class="form-control" name="no_teknis_bkn" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tanggal Pertimbangan Teknis BKN</label>
+                                                            <input type="date" class="form-control" name="tanggal_teknis_bkn" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nomor SK</label>
+                                                            <input type="text" class="form-control" name="no_sk_golongan" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tanggal SK</label>
+                                                            <input type="date" class="form-control" name="tanggal_sk_golongan" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Dokumen SK KP</label>
+                                                            <input type="file" class="form-control" name="dokumen_skkp">
+                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Dokumen Pertimbangan Teknis KP</label>
+                                                            <input type="file" class="form-control" name="dokumen_teknis_kp">
+                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="submit-section">
+                                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Tambah Riwayat Golongan Modal -->
+                            <!-- Edit Riwayat Golongan Modal -->
+                            <div id="edit_riwayat_golongan" class="modal custom-modal fade" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Riwayat Golongan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('riwayat/golongan/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="id" id="e_id" value="">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Golongan</label>
+                                                            <input type="text" class="form-control" name="golongan" id="e_golongan" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Jenis Kenaikan Pangkat</label>
+                                                            <input type="text" class="form-control" name="jenis_kenaikan_pangkat" id="e_jenis_kenaikan_pangkat" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Kerja Golongan (Tahun)</label>
+                                                            <input type="number" class="form-control" name="masa_kerja_golongan_tahun" id="e_masa_kerja_golongan_tahun" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Kerja golongan (Bulan)</label>
+                                                            <input type="number" class="form-control" name="masa_kerja_golongan_bulan" id="e_masa_kerja_golongan_bulan" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT Golongan</label>
+                                                            <input type="date" class="form-control" name="tmt_golongan_riwayat" id="e_tmt_golongan_riwayat" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nomor Teknis BKN</label>
+                                                            <input type="number" class="form-control" name="no_teknis_bkn" id="e_no_teknis_bkn" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tanggal Teknis BKN</label>
+                                                            <input type="date" class="form-control" name="tanggal_teknis_bkn" id="e_tanggal_teknis_bkn" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nomor SK</label>
+                                                            <input type="text" class="form-control" name="no_sk_golongan" id="e_no_sk_golongan" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tanggal SK</label>
+                                                            <input type="date" class="form-control" name="tanggal_sk_golongan" id="e_tanggal_sk_golongan" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Dokumen SK KP</label>
+                                                            <input type="file" class="form-control" id="dokumen_skkp" name="dokumen_skkp">
+                                                            <input type="hidden" name="hidden_dokumen_skkp" id="e_dokumen_skkp" value="">
+                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Dokumen Teknis KP</label>
+                                                            <input type="file" class="form-control" id="dokumen_teknis_kp" name="dokumen_teknis_kp">
+                                                            <input type="hidden" name="hidden_dokumen_teknis_kp" id="e_dokumen_teknis_kp" value="">
+                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="submit-section">
+                                                    <button class="btn btn-primary submit-btn">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Edit Riwayat Golongan Modal -->
+
+                            <!-- Delete Riwayat Golongan Modal -->
+                            <div class="modal custom-modal fade" id="delete_riwayat_golongan" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="form-header">
+                                                <h3>Hapus Riwayat Golongan</h3>
+                                                <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                            </div>
+                                            <div class="modal-btn delete-action">
+                                                <form action="{{ route('riwayat/golongan/hapus-data') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" class="e_id" value="">
+                                                    <input type="hidden" name="dokumen_skkp" class="d_dokumen_skkp" value="">
+                                                    <input type="hidden" name="dokumen_teknis_kp" class="d_dokumen_teknis_kp"
+                                                        value="">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <button type="submit"
+                                                                class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <a href="javascript:void(0);" data-dismiss="modal"
+                                                                class="btn btn-primary cancel-btn">Kembali</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Delete Riwayat Golongan Modal -->
                     </div>
                     <!-- /Riwayat Golongan Tab -->
                     
                     <!-- Riwayat Jabatan Tab -->
                     <div class="tab-pane fade" id="riwayat_jabatan">
                         <div class="row">
+                            <div class="col-auto float-right ml-auto"><a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_jabatan"><i class="fa fa-plus"></i> Tambah Riwayat Jabatan</a></div>
+                            <br><br>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
@@ -648,24 +1163,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($riwayatJabatan as $sqljabatan => $riwayatJabatans)
                                                 <tr>
-                                                    <td><center>{{ $users->id }}</center></td>
-                                                    <td hidden class="id"><center>{{ $users->id }}</center></td>
-                                                    <td class="jenis_jabatan_riwayat"><center>{{ $users->jenis_jabatan_riwayat }}</center></td>
-                                                    <td class="satuan_kerja"><center>{{ $users->satuan_kerja }}</center></td>
-                                                    <td class="satuan_kerja_induk"><center>{{ $users->satuan_kerja_induk }}</center></td>
-                                                    <td class="unit_organisasi_riwayat"><center>{{ $users->unit_organisasi_riwayat }}</center></td>
-                                                    <td class="no_sk"><center>{{ $users->no_sk }}</center></td>
-                                                    <td class="tanggal_sk"><center>{{ $users->tanggal_sk }}</center></td>
-                                                    <td class="tmt_jabatan"><center>{{ $users->tmt_jabatan }}</center></td>
-                                                    <td class="tmt_pelantikan"><center>{{ $users->tmt_pelantikan }}</center></td>
+                                                    <td><center>{{ ++$sqljabatan }}</center></td>
+                                                    <td hidden class="id"><center>{{ $riwayatJabatans->id }}</center></td>
+                                                    <td class="jenis_jabatan_riwayat"><center>{{ $riwayatJabatans->jenis_jabatan_riwayat }}</center></td>
+                                                    <td class="satuan_kerja"><center>{{ $riwayatJabatans->satuan_kerja }}</center></td>
+                                                    <td class="satuan_kerja_induk"><center>{{ $riwayatJabatans->satuan_kerja_induk }}</center></td>
+                                                    <td class="unit_organisasi_riwayat"><center>{{ $riwayatJabatans->unit_organisasi_riwayat }}</center></td>
+                                                    <td class="no_sk"><center>{{ $riwayatJabatans->no_sk }}</center></td>
+                                                    <td class="tanggal_sk"><center>{{ $riwayatJabatans->tanggal_sk }}</center></td>
+                                                    <td class="tmt_jabatan"><center>{{ $riwayatJabatans->tmt_jabatan }}</center></td>
+                                                    <td class="tmt_pelantikan"><center>{{ $riwayatJabatans->tmt_pelantikan }}</center></td>
                                                     <td class="dokumen_sk_jabatan">
-                                                        <center><a href="{{ asset('assets/DokumenSKJabatan/' . $users->dokumen_sk_jabatan) }}"
-                                                            target="_blank">{{ $users->dokumen_sk_jabatan }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenSKJabatan/' . $riwayatJabatans->dokumen_sk_jabatan) }}"
+                                                            target="_blank">{{ $riwayatJabatans->dokumen_sk_jabatan }}</a>
                                                     </center></td>
                                                     <td class="dokumen_pelantikan">
-                                                        <center><a href="{{ asset('assets/DokumenPelantikan/' . $users->dokumen_pelantikan) }}"
-                                                            target="_blank">{{ $users->dokumen_pelantikan }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenPelantikan/' . $riwayatJabatans->dokumen_pelantikan) }}"
+                                                            target="_blank">{{ $riwayatJabatans->dokumen_pelantikan }}</a>
                                                     </center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
@@ -686,18 +1202,262 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <!-- Tempat Field Edit & Hapus -->
+                            <!-- Tambah Riwayat Jabatan Modal -->
+                            <div id="add_riwayat_jabatan" class="modal custom-modal fade" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Tambah Riwayat Jabatan
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('riwayat/jabatan/tambah-data') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Jenis Jabatan</label>
+                                                            <select class="form-control" name="jenis_jabatan_riwayat" required>
+                                                                <option selected disabled> --Pilih Jenis Jabatan --</option>
+                                                                <option value="Jabatan Struktural">Jabatan Struktural</option>
+                                                                <option value="Jabatan Fungsional Tertentu">Jabatan Fungsional Tertentu</option>
+                                                                <option value="Jabatan Fungsional Umum">Jabatan Fungsional Umum</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Satuan Kerja</label>
+                                                            <input class="form-control" type="text" name="satuan_kerja" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Satuan Kerja Induk</label>
+                                                            <input class="form-control" type="text" name="satuan_kerja_induk" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Unit Organisasi</label>
+                                                            <input class="form-control" type="text" name="unit_organisasi_riwayat" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nomor SK</label>
+                                                            <input class="form-control" type="text" name="no_sk" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tanggal SK</label>
+                                                            <input class="form-control" type="date" name="tanggal_sk" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT Jabatan</label>
+                                                            <input class="form-control" type="date" name="tmt_jabatan" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT Pelantikan</label>
+                                                            <input class="form-control" type="date" name="tmt_pelantikan" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Dokumen SK Jabatan</label>
+                                                            <input class="form-control" type="file" name="dokumen_sk_jabatan">
+                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Dokumen Pelantikan</label>
+                                                            <input class="form-control" type="file" name="dokumen_pelantikan">
+                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="submit-section">
+                                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Tambah Riwayat Jabatan Modal -->
+                            <!-- Edit Riwayat Jabatan Modal -->
+                            <div id="edit_riwayat_jabatan" class="modal custom-modal fade" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Riwayat Jabatan
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('riwayat/jabatan/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="id" id="e_id" value="">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Jenis Jabatan
+                                                            </label>
+                                                            <select name="jenis_jabatan_riwayat" class="select" id="e_jenis_jabatan_riwayat">
+                                                                <option selected disabled> --Pilih Jenis Jabatan --</option>
+                                                                <option>Jabatan Struktural</option>
+                                                                <option>Jabatan Fungsional Tertentu</option>
+                                                                <option>Jabatan Fungsional Umum</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Satuan Kerja</label>
+                                                            <input type="text" class="form-control" name="satuan_kerja" id="e_satuan_kerja" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Satuan Kerja Induk</label>
+                                                            <input type="text" class="form-control" name="satuan_kerja_induk" id="e_satuan_kerja_induk" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Unit Organisasi</label>
+                                                            <input type="text" class="form-control" name="unit_organisasi_riwayat" id="e_unit_organisasi_riwayat" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nomor SK</label>
+                                                            <input type="text" class="form-control" name="no_sk" id="e_no_sk" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tanggal SK</label>
+                                                            <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT Jabatan</label>
+                                                            <input type="date" class="form-control" name="tmt_jabatan" id="e_tmt_jabatan" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>TMT Pelantikan</label>
+                                                            <input type="date" class="form-control" name="tmt_pelantikan" id="e_tmt_pelantikan" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Dokumen SK Jabatan</label>
+                                                            <input type="file" class="form-control" id="dokumen_sk_jabatan" name="dokumen_sk_jabatan">
+                                                            <input type="hidden" name="hidden_dokumen_sk_jabatan" id="e_dokumen_sk_jabatan" value="">
+                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Dokumen Pelantikan</label>
+                                                            <input type="file" class="form-control" id="dokumen_pelantikan" name="dokumen_pelantikan">
+                                                            <input type="hidden" name="hidden_dokumen_pelantikan" id="e_dokumen_pelantikan" value="">
+                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="submit-section">
+                                                    <button class="btn btn-primary submit-btn">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Edit Riwayat Jabatan Modal -->
+
+                            <!-- Delete Riwayat Jabatan Modal -->
+                            <div class="modal custom-modal fade" id="delete_riwayat_jabatan" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="form-header">
+                                                <h3>Hapus Riwayat Jabatan</h3>
+                                                <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                            </div>
+                                            <div class="modal-btn delete-action">
+                                                <form action="{{ route('riwayat/jabatan/hapus-data') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" class="e_id" value="">
+                                                    <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan" value="">
+                                                    <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan" value="">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Delete Riwayat Jabatan Modal -->
                     </div>
                     <!-- /Riwayat Jabatan Tab -->
 
                     <!-- Riwayat Diklat Tab -->
                     <div class="tab-pane fade" id="riwayat_diklat">
                         <div class="row">
+                            <div class="col-auto float-right ml-auto"><a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_diklat"><i class="fa fa-plus"></i> Tambah Riwayat Diklat</a></div>
+                            <br><br>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
@@ -717,20 +1477,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($riwayatDiklat as $sqldiklat => $riwayatDiklats)
                                         <tr>
-                                            <td><center>{{ $users->id }}</center></td>
-                                            <td hidden class="id"><center>{{ $users->id }}</center></td>
-                                            <td class="jenis_diklat"><center>{{ $users->jenis_diklat }}</center></td>
-                                            <td class="nama_diklat"><center>{{ $users->nama_diklat }}</center></td>
-                                            <td class="institusi_penyelenggara"><center>{{ $users->institusi_penyelenggara }}</center></td>
-                                            <td class="no_sertifikat"><center>{{ $users->no_sertifikat }}</center></td>
-                                            <td class="tanggal_mulai"><center>{{ $users->tanggal_mulai }}</center></td>
-                                            <td class="tanggal_selesai"><center>{{ $users->tanggal_selesai }}</center></td>
-                                            <td class="tahun_diklat"><center>{{ $users->tahun_diklat }}</center></td>
-                                            <td class="durasi_jam"><center>{{ $users->durasi_jam }}</center></td>
+                                            <td><center>{{ ++$sqldiklat }}</center></td>
+                                            <td hidden class="id"><center>{{ $riwayatDiklats->id }}</center></td>
+                                            <td class="jenis_diklat"><center>{{ $riwayatDiklats->jenis_diklat }}</center></td>
+                                            <td class="nama_diklat"><center>{{ $riwayatDiklats->nama_diklat }}</center></td>
+                                            <td class="institusi_penyelenggara"><center>{{ $riwayatDiklats->institusi_penyelenggara }}</center></td>
+                                            <td class="no_sertifikat"><center>{{ $riwayatDiklats->no_sertifikat }}</center></td>
+                                            <td class="tanggal_mulai"><center>{{ $riwayatDiklats->tanggal_mulai }}</center></td>
+                                            <td class="tanggal_selesai"><center>{{ $riwayatDiklats->tanggal_selesai }}</center></td>
+                                            <td class="tahun_diklat"><center>{{ $riwayatDiklats->tahun_diklat }}</center></td>
+                                            <td class="durasi_jam"><center>{{ $riwayatDiklats->durasi_jam }}</center></td>
                                             <td class="dokumen_diklat">
-                                                <center><a href="{{ asset('assets/DokumenDiklat/' . $users->dokumen_diklat) }}"
-                                                    target="_blank">{{ $users->dokumen_diklat }}</a>
+                                                <center><a href="{{ asset('assets/DokumenDiklat/' . $riwayatDiklats->dokumen_diklat) }}"
+                                                    target="_blank">{{ $riwayatDiklats->dokumen_diklat }}</a>
                                             </center></td>
                                             
                                             {{-- Edit dan Hapus data  --}}
@@ -751,12 +1512,239 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <!-- Tempat Field Edit & Hapus -->
+                        <!-- Tambah Riwayat Diklat Modal -->
+                        <div id="add_riwayat_diklat" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Diklat</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/diklat/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Diklat</label>
+                                                        <select class="form-control" name="jenis_diklat" required>
+                                                            <option selected disabled> --Pilih Jenis Diklat --</option>
+                                                            <option value="Diklat Struktural">Diklat Struktural</option>
+                                                            <option value="Diklat Fungsional">Diklat Fungsional</option>
+                                                            <option value="Diklat Teknis">Diklat Teknis</option>
+                                                            <option value="Workshop">Workshop</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Diklat</label>
+                                                        <input class="form-control" type="text" name="nama_diklat" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Institusi Penyelenggara</label>
+                                                        <input class="form-control" type="text" name="institusi_penyelenggara"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Sertifikat</label>
+                                                        <input class="form-control" type="text" name="no_sertifikat" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Mulai</label>
+                                                        <input class="form-control" type="date" name="tanggal_mulai" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Selesai</label>
+                                                        <input class="form-control" type="date" name="tanggal_selesai" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Diklat</label>
+                                                        <input class="form-control" type="number" name="tahun_diklat" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Durasi (Jam)</label>
+                                                        <input class="form-control" type="number" name="durasi_jam" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Diklat</label>
+                                                        <input class="form-control" type="file" name="dokumen_diklat" required>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Riwayat Diklat Modal -->
+                        <!-- Edit Riwayat Diklat Modal -->
+                        <div id="edit_riwayat_diklat" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Diklat</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/diklat/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Diklat</label>
+                                                        <select name="jenis_diklat" class="select" id="e_jenis_diklat">
+                                                            <option selected disabled> --Pilih Jenis Diklat --</option>
+                                                            <option>Diklat Struktural</option>
+                                                            <option>Diklat Fungsional</option>
+                                                            <option>Diklat Teknis</option>
+                                                            <option>Workshop</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Diklat</label>
+                                                        <input type="text" class="form-control" name="nama_diklat" id="e_nama_diklat" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Institusi Penyelenggara</label>
+                                                        <input type="text" class="form-control" name="institusi_penyelenggara" id="e_institusi_penyelenggara" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>No Sertifikat</label>
+                                                        <input type="text" class="form-control" name="no_sertifikat" id="e_no_sertifikat" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Mulai</label>
+                                                        <input type="date" class="form-control" name="tanggal_mulai" id="e_tanggal_mulai" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Selesai</label>
+                                                        <input type="date" class="form-control" name="tanggal_selesai" id="e_tanggal_selesai" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Diklat</label>
+                                                        <input type="number" class="form-control" name="tahun_diklat" id="e_tahun_diklat" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Durasi (Jam)</label>
+                                                        <input type="number" class="form-control" name="durasi_jam" id="e_durasi_jam" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Diklat</label>
+                                                        <input type="file" class="form-control" name="dokumen_diklat"
+                                                            id="dokumen_diklat">
+                                                        <input type="hidden" name="hidden_dokumen_diklat" id="e_dokumen_diklat" value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Diklat Modal -->
+
+                        <!-- Delete Riwayat Diklat Modal -->
+                        <div class="modal custom-modal fade" id="delete_riwayat_diklat" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Diklat</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/diklat/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id" value="">
+                                                <input type="hidden" name="dokumen_diklat" class="d_dokumen_diklat" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Delete Riwayat Diklat Modal -->
                     </div>
                     <!-- /Riwayat Diklat Tab -->
 
@@ -1633,5 +2621,131 @@
                 }  
             });  
         </script>
+
+        {{-- update pendidikan --}}
+        {{-- <script>
+            $(document).on('click', '.edit_riwayat_pendidikan', function() {
+                var _this = $(this).parents('tr');
+                $('#e_id').val(_this.find('.id').text());
+                $('#e_pendidikan').val(_this.find('.pendidikan').text());
+                $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
+                $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
+                $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
+                $('#e_gelar_depan_pend').val(_this.find('.gelar_depan_pend').text());
+                $('#e_gelar_belakang_pend').val(_this.find('.gelar_belakang_pend').text());
+                $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
+                $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
+                $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
+                $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
+    
+                var ting_ped = (_this.find(".ting_ped").text());
+                var _option = '<option selected value="' + ting_ped + '">' + _this.find('.ting_ped')
+                    .text() + '</option>'
+                $(_option).appendTo("#e_ting_ped");
+            });
+        </script> --}}
+
+        {{-- update golongan --}}
+        {{-- <script>
+            $(document).on('click', '.edit_riwayat_golongan', function() {
+                var _this = $(this).parents('tr');
+                $('#e_id').val(_this.find('.id').text());
+                $('#e_golongan').val(_this.find('.golongan').text());
+                $('#e_jenis_kenaikan_pangkat').val(_this.find('.jenis_kenaikan_pangkat').text());
+                $('#e_masa_kerja_golongan_tahun').val(_this.find('.masa_kerja_golongan_tahun').text());
+                $('#e_masa_kerja_golongan_bulan').val(_this.find('.masa_kerja_golongan_bulan').text());
+                $('#e_tmt_golongan_riwayat').val(_this.find('.tmt_golongan_riwayat').text());
+                $('#e_no_teknis_bkn').val(_this.find('.no_teknis_bkn').text());
+                $('#e_tanggal_teknis_bkn').val(_this.find('.tanggal_teknis_bkn').text());
+                $('#e_no_sk_golongan').val(_this.find('.no_sk_golongan').text());
+                $('#e_tanggal_sk_golongan').val(_this.find('.tanggal_sk_golongan').text());
+                $('#e_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
+                $('#e_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
+            });
+        </script> --}}
+
+        {{-- update jabatan --}}
+        {{-- <script>
+            $(document).on('click', '.edit_riwayat_jabatan', function() {
+                var _this = $(this).parents('tr');
+                $('#e_id').val(_this.find('.id').text());
+                $('#e_satuan_kerja').val(_this.find('.satuan_kerja').text());
+                $('#e_satuan_kerja_induk').val(_this.find('.satuan_kerja_induk').text());
+                $('#e_unit_organisasi_riwayat').val(_this.find('.unit_organisasi_riwayat').text());
+                $('#e_no_sk').val(_this.find('.no_sk').text());
+                $('#e_tanggal_sk').val(_this.find('.tanggal_sk').text());
+                $('#e_tmt_jabatan').val(_this.find('.tmt_jabatan').text());
+                $('#e_tmt_pelantikan').val(_this.find('.tmt_pelantikan').text());
+                $('#e_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
+                $('#e_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
+
+                var jenis_jabatan_riwayat = (_this.find(".jenis_jabatan_riwayat").text());
+                var _option = '<option selected value="' + jenis_jabatan_riwayat + '">' + _this.find('.jenis_jabatan_riwayat').text() +
+                    '</option>'
+                $(_option).appendTo("#e_jenis_jabatan_riwayat");
+            });
+        </script> --}}
+
+        {{-- update diklat --}}
+        <script>
+            $(document).on('click', '.edit_riwayat_diklat', function() {
+                var _this = $(this).parents('tr');
+                $('#e_id').val(_this.find('.id').text());
+                $('#e_nama_diklat').val(_this.find('.nama_diklat').text());
+                $('#e_institusi_penyelenggara').val(_this.find('.institusi_penyelenggara').text());
+                $('#e_no_sertifikat').val(_this.find('.no_sertifikat').text());
+                $('#e_tanggal_mulai').val(_this.find('.tanggal_mulai').text());
+                $('#e_tanggal_selesai').val(_this.find('.tanggal_selesai').text());
+                $('#e_tahun_diklat').val(_this.find('.tahun_diklat').text());
+                $('#e_durasi_jam').val(_this.find('.durasi_jam').text());
+                $('#e_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
+
+                var jenis_diklat = (_this.find(".jenis_diklat").text());
+                var _option = '<option selected value="' + jenis_diklat + '">' + _this.find('.jenis_diklat').text() +
+                    '</option>'
+                $(_option).appendTo("#e_jenis_diklat");
+            });
+        </script>
+
+        {{-- delete pendidikan --}}
+        {{-- <script>
+            $(document).on('click', '.delete_riwayat_pendidikan', function() {
+                var _this = $(this).parents('tr');
+                $('.e_id').val(_this.find('.id').text());
+                $('.d_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
+                $('.d_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
+                $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
+            });
+        </script> --}}
+
+        {{-- delete golongan --}}
+        {{-- <script>
+            $(document).on('click', '.delete_riwayat_golongan', function() {
+                var _this = $(this).parents('tr');
+                $('.e_id').val(_this.find('.id').text());
+                $('.d_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
+                $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
+            });
+        </script> --}}
+
+        {{-- delete jabatan --}}
+        {{-- <script>
+            $(document).on('click', '.delete_riwayat_jabatan', function() {
+                var _this = $(this).parents('tr');
+                $('.e_id').val(_this.find('.id').text());
+                $('.d_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
+                $('.d_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
+            });
+        </script> --}}
+
+        {{-- delete diklat --}}
+        <script>
+            $(document).on('click', '.delete_riwayat_diklat', function() {
+                var _this = $(this).parents('tr');
+                $('.e_id').val(_this.find('.id').text());
+                $('.d_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
+            });
+        </script>
+
         @endsection
 @endsection
