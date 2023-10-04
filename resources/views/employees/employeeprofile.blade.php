@@ -2623,7 +2623,7 @@
         </script>
 
         {{-- update pendidikan --}}
-        {{-- <script>
+        <script>
             $(document).on('click', '.edit_riwayat_pendidikan', function() {
                 var _this = $(this).parents('tr');
                 $('#e_id').val(_this.find('.id').text());
@@ -2643,10 +2643,10 @@
                     .text() + '</option>'
                 $(_option).appendTo("#e_ting_ped");
             });
-        </script> --}}
+        </script>
 
         {{-- update golongan --}}
-        {{-- <script>
+        <script>
             $(document).on('click', '.edit_riwayat_golongan', function() {
                 var _this = $(this).parents('tr');
                 $('#e_id').val(_this.find('.id').text());
@@ -2662,10 +2662,10 @@
                 $('#e_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
                 $('#e_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
             });
-        </script> --}}
+        </script>
 
         {{-- update jabatan --}}
-        {{-- <script>
+        <script>
             $(document).on('click', '.edit_riwayat_jabatan', function() {
                 var _this = $(this).parents('tr');
                 $('#e_id').val(_this.find('.id').text());
@@ -2684,7 +2684,7 @@
                     '</option>'
                 $(_option).appendTo("#e_jenis_jabatan_riwayat");
             });
-        </script> --}}
+        </script>
 
         {{-- update diklat --}}
         <script>
@@ -2708,7 +2708,7 @@
         </script>
 
         {{-- delete pendidikan --}}
-        {{-- <script>
+        <script>
             $(document).on('click', '.delete_riwayat_pendidikan', function() {
                 var _this = $(this).parents('tr');
                 $('.e_id').val(_this.find('.id').text());
@@ -2716,27 +2716,27 @@
                 $('.d_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
                 $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
             });
-        </script> --}}
+        </script>
 
         {{-- delete golongan --}}
-        {{-- <script>
+        <script>
             $(document).on('click', '.delete_riwayat_golongan', function() {
                 var _this = $(this).parents('tr');
                 $('.e_id').val(_this.find('.id').text());
                 $('.d_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
                 $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
             });
-        </script> --}}
+        </script>
 
         {{-- delete jabatan --}}
-        {{-- <script>
+        <script>
             $(document).on('click', '.delete_riwayat_jabatan', function() {
                 var _this = $(this).parents('tr');
                 $('.e_id').val(_this.find('.id').text());
                 $('.d_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
                 $('.d_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
             });
-        </script> --}}
+        </script>
 
         {{-- delete diklat --}}
         <script>
