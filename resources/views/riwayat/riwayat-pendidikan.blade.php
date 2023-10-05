@@ -24,40 +24,38 @@
             <!-- /Page Header -->
 
             <!-- Search Filter -->
-            <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" id="user_name" name="user_name">
-                        <label class="focus-label">Nama Sekolah</label>
+            <form action="{{ route('riwayat/pendidikan/cari') }}" method="GET" id="search-form">
+                <div class="row filter-row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus select-focus">
+                            <select class="form-control" id="ting_ped" name="ting_ped">
+                                <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
+                                <option value="SLTP">SLTP</option>
+                                <option value="SLTA">SLTA</option>
+                                <option value="Diploma I">Diploma I</option>
+                                <option value="Diploma II">Diploma II</option>
+                            </select>
+                            <label class="focus-label">Tingkat Pendidikan</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus select-focus">
-                        <select class="select floating" id="type_role">
-                            <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
-                            {{-- @foreach ($role_name as $name)
-                                <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
-                            @endforeach --}}
-                        </select>
-                        <label class="focus-label">Tingkat Pendidikan</label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus select-focus">
-                        <select class="select floating" id="type_status">
-                            <option selected disabled> --Pilih Jenis Pendidikan --</option>
-                            {{-- @foreach ($status_user as $status)
-                            <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
-                            @endforeach --}}
-                        </select>
-                        <label class="focus-label">Jenis Pendidikan</label>
-                    </div>
-                </div>
 
-                <div class="col-sm-6 col-md-3">
-                    <button type="sumit" class="btn btn-success btn-block btn_search"> Cari </button>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus">
+                            <input type="number" class="form-control floating" id="tahun_lulus" name="tahun_lulus">
+                            <label class="focus-label">Tahun Lulus</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" id="nama_sekolah" name="nama_sekolah">
+                            <label class="focus-label">Nama Sekolah</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <!-- Search Filter -->
             <div class="row">
@@ -83,28 +81,54 @@
                             <tbody>
                                 @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
                                     <tr>
-                                        <td><center>{{ ++$sqlpendidikan }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
-                                        <td class="ting_ped"><center>{{ $result_pendidikan->ting_ped }}</center></td>
-                                        <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
-                                        <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
-                                        <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
-                                        <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
-                                        <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
-                                        <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
-                                        <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
+                                        <td>
+                                            <center>{{ ++$sqlpendidikan }}</center>
+                                        </td>
+                                        <td hidden class="id">
+                                            <center>{{ $result_pendidikan->id }}</center>
+                                        </td>
+                                        <td class="ting_ped">
+                                            <center>{{ $result_pendidikan->ting_ped }}</center>
+                                        </td>
+                                        <td class="pendidikan">
+                                            <center>{{ $result_pendidikan->pendidikan }}</center>
+                                        </td>
+                                        <td class="tahun_lulus">
+                                            <center>{{ $result_pendidikan->tahun_lulus }}</center>
+                                        </td>
+                                        <td class="no_ijazah">
+                                            <center>{{ $result_pendidikan->no_ijazah }}</center>
+                                        </td>
+                                        <td class="nama_sekolah">
+                                            <center>{{ $result_pendidikan->nama_sekolah }}</center>
+                                        </td>
+                                        <td class="gelar_depan_pend">
+                                            <center>{{ $result_pendidikan->gelar_depan_pend }}</center>
+                                        </td>
+                                        <td class="gelar_belakang_pend">
+                                            <center>{{ $result_pendidikan->gelar_belakang_pend }}</center>
+                                        </td>
+                                        <td class="jenis_pendidikan">
+                                            <center>{{ $result_pendidikan->jenis_pendidikan }}</center>
+                                        </td>
                                         <td class="dokumen_transkrip">
-                                            <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
-                                                target="_blank">{{ $result_pendidikan->dokumen_transkrip }}</a>
-                                        </center></td>
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
+                                                    target="_blank">{{ $result_pendidikan->dokumen_transkrip }}</a>
+                                            </center>
+                                        </td>
                                         <td class="dokumen_ijazah">
-                                            <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
-                                                target="_blank">{{ $result_pendidikan->dokumen_ijazah }}</a>
-                                        </center></td>
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
+                                                    target="_blank">{{ $result_pendidikan->dokumen_ijazah }}</a>
+                                            </center>
+                                        </td>
                                         <td class="dokumen_gelar">
-                                            <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
-                                                target="_blank">{{ $result_pendidikan->dokumen_gelar }}</a>
-                                        </center></td>
+                                            <center><a
+                                                    href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
+                                                    target="_blank">{{ $result_pendidikan->dokumen_gelar }}</a>
+                                            </center>
+                                        </td>
 
 
                                         {{-- Edit dan Hapus data  --}}
@@ -155,7 +179,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                        <input type="hidden" class="form-control" name="user_id"
+                                            value="{{ Auth::user()->user_id }}">
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +301,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/pendidikan/edit-data') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/pendidikan/edit-data') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
@@ -295,7 +321,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pendidikan</label>
-                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan" value="">
+                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan"
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -303,13 +330,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tahun Lulus</label>
-                                        <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus" value="">
+                                        <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Ijazah</label>
-                                        <input type="text" class="form-control" name="no_ijazah" id="e_no_ijazah" value="">
+                                        <input type="text" class="form-control" name="no_ijazah" id="e_no_ijazah"
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -317,13 +346,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nama Sekolah</label>
-                                        <input type="text" class="form-control" name="nama_sekolah" id="e_nama_sekolah" value="">
+                                        <input type="text" class="form-control" name="nama_sekolah"
+                                            id="e_nama_sekolah" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Depan</label>
-                                        <input type="text" class="form-control" name="gelar_depan_pend" id="e_gelar_depan_pend" value="">
+                                        <input type="text" class="form-control" name="gelar_depan_pend"
+                                            id="e_gelar_depan_pend" value="">
                                     </div>
                                 </div>
                             </div>
@@ -331,13 +362,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gelar Belakang</label>
-                                        <input type="text" class="form-control" name="gelar_belakang_pend" id="e_gelar_belakang_pend" value="">
+                                        <input type="text" class="form-control" name="gelar_belakang_pend"
+                                            id="e_gelar_belakang_pend" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
-                                        <input type="text" class="form-control" name="jenis_pendidikan" id="e_jenis_pendidikan" value="">
+                                        <input type="text" class="form-control" name="jenis_pendidikan"
+                                            id="e_jenis_pendidikan" value="">
                                     </div>
                                 </div>
                             </div>
@@ -345,24 +378,30 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Transkrip</label>
-                                        <input type="file" class="form-control" id="dokumen_transkrip" name="dokumen_transkrip">
-                                        <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip" value="">
+                                        <input type="file" class="form-control" id="dokumen_transkrip"
+                                            name="dokumen_transkrip">
+                                        <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Ijazah</label>
-                                        <input type="file" class="form-control" id="dokumen_ijazah" name="dokumen_ijazah">
-                                        <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_ijazah" value="">
+                                        <input type="file" class="form-control" id="dokumen_ijazah"
+                                            name="dokumen_ijazah">
+                                        <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_ijazah"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Gelar</label>
-                                        <input type="file" class="form-control" id="dokumen_gelar" name="dokumen_gelar">
-                                        <input type="hidden" name="hidden_dokumen_gelar" id="e_dokumen_gelar" value="">
+                                        <input type="file" class="form-control" id="dokumen_gelar"
+                                            name="dokumen_gelar">
+                                        <input type="hidden" name="hidden_dokumen_gelar" id="e_dokumen_gelar"
+                                            value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
@@ -390,7 +429,8 @@
                             <form action="{{ route('riwayat/pendidikan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip" value="">
+                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip"
+                                    value="">
                                 <input type="hidden" name="dokumen_ijazah" class="d_dokumen_ijazah" value="">
                                 <input type="hidden" name="dokumen_gelar" class="d_dokumen_gelar" value="">
                                 <div class="row">

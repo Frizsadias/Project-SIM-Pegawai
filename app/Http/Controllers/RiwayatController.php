@@ -545,4 +545,80 @@ class RiwayatController extends Controller
         }
     }
     /** End Delete Riwayat Diklat */
+
+    /** SEARCH RIWAYAT */
+    public function searchRiwayatPendidikan(Request $request)
+    {
+        $ting_ped = $request->input('ting_ped');
+        $tahun_lulus = $request->input('tahun_lulus');
+        $nama_sekolah = $request->input('nama_sekolah');
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+
+        $riwayatPendidikan = DB::table('riwayat_pendidikan')
+        ->join('users', 'users.user_id', '=', 'riwayat_pendidikan.user_id')
+            ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('riwayat_pendidikan.ting_ped', 'like', '%' . $ting_ped . '%')
+            ->where('riwayat_pendidikan.tahun_lulus', 'like', '%' . $tahun_lulus . '%')
+            ->where('riwayat_pendidikan.nama_sekolah', 'like', '%' . $nama_sekolah . '%')
+            ->get();
+
+        return view('riwayat/riwayat-pendidikan', compact('riwayatPendidikan'));
+    }
+
+    //Riwayat Golongan
+    public function searchRiwayatGolongan(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $golongan = $request->input('golongan');
+        $jenis_kenaikan_pangkat = $request->input('jenis_kenaikan_pangkat');
+        $no_sk_golongan = $request->input('no_sk_golongan');
+
+        $riwayatGolongan = DB::table('riwayat_golongan')
+        ->join('users', 'users.user_id', '=', 'riwayat_golongan.user_id')
+            ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('golongan', 'like', '%' . $golongan . '%')
+            ->where('jenis_kenaikan_pangkat', 'like', '%' . $jenis_kenaikan_pangkat . '%')
+            ->where('no_sk_golongan', 'like', '%' . $no_sk_golongan . '%')
+            ->get();
+
+        return view('riwayat/riwayat-golongan', compact('riwayatGolongan'));
+    }
+
+    //Riwayat Jabatan
+    public function searchRiwayatJabatan(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $jenis_jabatan_riwayat = $request->input('jenis_jabatan_riwayat');
+        $satuan_kerja = $request->input('satuan_kerja');
+        $unit_organisasi_riwayat = $request->input('unit_organisasi_riwayat');
+
+        $riwayatJabatan = DB::table('riwayat_jabatan')
+        ->join('users', 'users.user_id', '=', 'riwayat_jabatan.user_id')
+            ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('jenis_jabatan_riwayat', 'like', '%' . $jenis_jabatan_riwayat . '%')
+            ->where('satuan_kerja', 'like', '%' . $satuan_kerja . '%')
+            ->where('unit_organisasi_riwayat', 'like', '%' . $unit_organisasi_riwayat . '%')
+            ->get();
+
+        return view('riwayat/riwayat-jabatan', compact('riwayatJabatan'));
+    }
+
+    //Riwayat Diklat
+    public function searchRiwayatDiklat(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $jenis_diklat = $request->input('jenis_diklat');
+        $nama_diklat = $request->input('nama_diklat');
+        $institusi_penyelenggara = $request->input('institusi_penyelenggara');
+
+        $riwayatDiklat = DB::table('riwayat_diklat')
+        ->join('users', 'users.user_id', '=', 'riwayat_diklat.user_id')
+            ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('jenis_diklat', 'like', '%' . $jenis_diklat . '%')
+            ->where('nama_diklat', 'like', '%' . $nama_diklat . '%')
+            ->where('institusi_penyelenggara', 'like', '%' . $institusi_penyelenggara . '%')
+            ->get();
+
+        return view('riwayat/riwayat-diklat', compact('riwayatDiklat'));
+    }
 }

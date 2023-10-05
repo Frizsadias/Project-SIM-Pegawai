@@ -2039,7 +2039,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>NIP <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $users->nip }}">
+                                                    <input type="number" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $users->nip }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -2063,13 +2063,16 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $users->tanggal_lahir }}">
+                                                    <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $users->tanggal_lahir }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $users->jenis_kelamin }}">
+                                                <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
+                                                    <option value="Laki-Laki" {{ $users->jenis_kelamin === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+                                                    <option value="Perempuan" {{ $users->jenis_kelamin === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                </select>
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-6">
@@ -2518,9 +2521,9 @@
                                                         <div class="form-group">
                                                             <label>Gaji Pokok</label>
                                                             @if (!empty($users->gaji_pokok))
-                                                            <input type="text" class="form-control" name="gaji_pokok" value="{{ $users->gaji_pokok }}">
+                                                            <input type="number" class="form-control" name="gaji_pokok" value="{{ $users->gaji_pokok }}">
                                                             @else
-                                                            <input type="text" class="form-control" name="gaji_pokok">
+                                                            <input type="number" class="form-control" name="gaji_pokok">
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2528,9 +2531,9 @@
                                                         <div class="form-group">
                                                             <label>Masa Kerja (Tahun)</label>
                                                             @if (!empty($users->masa_kerja_tahun))
-                                                            <input type="text" class="form-control" name="masa_kerja_tahun" value="{{ $users->masa_kerja_tahun }}">
+                                                            <input type="number" class="form-control" name="masa_kerja_tahun" value="{{ $users->masa_kerja_tahun }}">
                                                             @else
-                                                            <input type="text" class="form-control" name="masa_kerja_tahun">
+                                                            <input type="number" class="form-control" name="masa_kerja_tahun">
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2538,9 +2541,9 @@
                                                         <div class="form-group">
                                                             <label>Masa Kerja (Bulan)</label>
                                                             @if (!empty($users->masa_kerja_bulan))
-                                                            <input type="text" class="form-control" name="masa_kerja_bulan" value="{{ $users->masa_kerja_bulan }}">
+                                                            <input type="number" class="form-control" name="masa_kerja_bulan" value="{{ $users->masa_kerja_bulan }}">
                                                             @else
-                                                            <input type="text" class="form-control" name="masa_kerja_bulan">
+                                                            <input type="number" class="form-control" name="masa_kerja_bulan">
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2548,9 +2551,9 @@
                                                         <div class="form-group">
                                                             <label>Nomor SPMT</label>
                                                             @if (!empty($users->no_spmt))
-                                                            <input type="text" class="form-control" name="no_spmt" value="{{ $users->no_spmt }}">
+                                                            <input type="number" class="form-control" name="no_spmt" value="{{ $users->no_spmt }}">
                                                             @else
-                                                            <input type="text" class="form-control" name="no_spmt">
+                                                            <input type="number" class="form-control" name="no_spmt">
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2558,9 +2561,9 @@
                                                         <div class="form-group">
                                                             <label>Tanggal SPMT</label>
                                                             @if (!empty($users->tanggal_spmt))
-                                                            <input type="text" class="form-control" name="tanggal_spmt" value="{{ $users->tanggal_spmt }}">
+                                                            <input type="date" class="form-control" name="tanggal_spmt" value="{{ $users->tanggal_spmt }}">
                                                             @else
-                                                            <input type="text" class="form-control" name="tanggal_spmt">
+                                                            <input type="date" class="form-control" name="tanggal_spmt">
                                                             @endif
                                                         </div>
                                                     </div>

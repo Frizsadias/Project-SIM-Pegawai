@@ -24,40 +24,44 @@
             <!-- /Page Header -->
 
             <!-- Search Filter -->
-            <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" id="user_name" name="user_name">
-                        <label class="focus-label">User Name</label>
+            <form action="{{ route('riwayat/diklat/cari') }}" method="GET" id="search-form">
+                <div class="row filter-row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus select-focus">
+                            <select class="form-control" id="jenis_diklat" name="jenis_diklat">
+                                <option selected disabled>-- Pilih Jenis Diklat --</option>
+                                <option value="Diklat Fungsional">Diklat Fungsional</option>
+                                <option value="Diklat Teknis">Diklat Teknis</option>
+                                <option value="Diklat Manajerial">Diklat Manajerial</option>
+                                <option value="Diklat Sosial Kultural">Diklat Sosial Kultural</option>
+                                <option value="Sosialisasi">Sosialisasi</option>
+                                <option value="Bimbingan Teknis">Bimbingan Teknis</option>
+                                <option value="Seminar">Seminar</option>
+                                <option value="Seminar">Seminar</option>
+                                <option value="Diklat Struktural">Diklat Struktural</option>
+                                <option value="Workshop">Workshop</option>
+                            </select>
+                            <label class="focus-label">Jenis Diklat</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus select-focus">
-                        <select class="select floating" id="type_role">
-                            <option selected disabled>-- Select Role Name --</option>
-                            {{-- @foreach ($role_name as $name)
-                                <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
-                            @endforeach --}}
-                        </select>
-                        <label class="focus-label">Role Name</label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus select-focus">
-                        <select class="select floating" id="type_status">
-                            <option selected disabled> --Select --</option>
-                            {{-- @foreach ($status_user as $status)
-                                <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
-                            @endforeach --}}
-                        </select>
-                        <label class="focus-label">Status</label>
-                    </div>
-                </div>
 
-                <div class="col-sm-6 col-md-3">
-                    <button type="sumit" class="btn btn-success btn-block btn_search"> Search </button>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" id="nama_diklat" name="nama_diklat">
+                            <label class="focus-label">Nama Diklat</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" id="institusi_penyelenggara" name="institusi_penyelenggara">
+                            <label class="focus-label">Iinstitusi Penyelenggara</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <!-- Search Filter -->
             <div class="row">

@@ -371,22 +371,26 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/pendidikan/tambah-data', [RiwayatController::class, 'tambahRiwayatPendidikan'])->name('riwayat/pendidikan/tambah-data');
     Route::post('riwayat/pendidikan/edit-data', [RiwayatController::class, 'editRiwayatPendidikan'])->name('riwayat/pendidikan/edit-data');
     Route::post('riwayat/pendidikan/hapus-data', [RiwayatController::class, 'hapusRiwayatPendidikan'])->name('riwayat/pendidikan/hapus-data');
+    Route::get('riwayat/pendidikan/cari', [RiwayatController::class, 'searchRiwayatPendidikan'])->name('riwayat/pendidikan/cari');
 
     // ----------------------- Informasi Riwayat Golongan --------------------------//
     Route::get('riwayat/golongan', [RiwayatController::class, 'golongan'])->name('riwayat-golongan');
     Route::post('riwayat/golongan/tambah-data', [RiwayatController::class, 'tambahRiwayatGolongan'])->name('riwayat/golongan/tambah-data');
     Route::post('riwayat/golongan/edit-data', [RiwayatController::class, 'editRiwayatGolongan'])->name('riwayat/golongan/edit-data');
     Route::post('riwayat/golongan/hapus-data', [RiwayatController::class, 'hapusRiwayatGolongan'])->name('riwayat/golongan/hapus-data');
+    Route::get('riwayat/golongan/cari', [RiwayatController::class, 'searchRiwayatGolongan'])->name('riwayat/golongan/cari');
 
-    // ----------------------- Informasi Riwayat Gelar --------------------------//
+    // ----------------------- Informasi Riwayat Jabatan --------------------------//
     Route::get('riwayat/jabatan', [RiwayatController::class, 'jabatan'])->name('riwayat-jabatan');
     Route::post('riwayat/jabatan/tambah-data', [RiwayatController::class, 'tambahRiwayatJabatan'])->name('riwayat/jabatan/tambah-data');
     Route::post('riwayat/jabatan/edit-data', [RiwayatController::class, 'editRiwayatJabatan'])->name('riwayat/jabatan/edit-data');
     Route::post('riwayat/jabatan/hapus-data', [RiwayatController::class, 'hapusRiwayatJabatan'])->name('riwayat/jabatan/hapus-data');
+    Route::get('riwayat/jabatan/cari', [RiwayatController::class, 'searchRiwayatJabatan'])->name('riwayat/jabatan/cari');
 
     // ----------------------- Informasi Riwayat Diklat --------------------------//
     Route::get('riwayat/diklat', [RiwayatController::class, 'diklat'])->name('riwayat-diklat');
     Route::post('riwayat/diklat/tambah-data', [RiwayatController::class, 'tambahRiwayatDiklat'])->name('riwayat/diklat/tambah-data');
     Route::post('riwayat/diklat/edit-data', [RiwayatController::class, 'editRiwayatDiklat'])->name('riwayat/diklat/edit-data');
     Route::post('riwayat/diklat/hapus-data', [RiwayatController::class, 'hapusRiwayatDiklat'])->name('riwayat/diklat/hapus-data');
+    Route::get('riwayat/diklat/cari', [RiwayatController::class, 'searchRiwayatDiklat'])->name('riwayat/diklat/cari');
 });
