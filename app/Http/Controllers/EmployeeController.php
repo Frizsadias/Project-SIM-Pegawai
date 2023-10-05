@@ -375,7 +375,8 @@ class EmployeeController extends Controller
                 ->select('users.*','rd.jenis_diklat','rd.nama_diklat','rd.institusi_penyelenggara','rd.no_sertifikat',
                     'rd.tanggal_mulai','rd.tanggal_selesai','rd.tahun_diklat','rd.durasi_jam','rd.dokumen_diklat')
                 ->where('users.user_id', $user_id)->first();
-        return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans','riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats'));
+            $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+        return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans','riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions'));
     }
     
     /** page agama */

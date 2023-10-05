@@ -2072,10 +2072,21 @@
                                                     <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $users->jenis_kelamin }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Agama</label> <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $users->agama }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="agama">Agama</label>
+                                                <span class="text-danger">*</span>
+                                                <select class="select @error('agama') is-invalid @enderror" name="agama">
+                                                    @foreach($agamaOptions as $id => $namaAgama)
+                                                        <option value="{{ $id }}" {{ $id == $users->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
