@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('riwayat_golongan', function (Blueprint $table) {
             $table->id();
+            $table->string('id_gol');
             $table->string('user_id')->nullable();
             $table->string('golongan')->nullable();
             $table->string('jenis_kenaikan_pangkat')->nullable();

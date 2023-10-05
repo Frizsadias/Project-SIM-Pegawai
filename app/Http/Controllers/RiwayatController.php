@@ -135,7 +135,7 @@ class RiwayatController extends Controller
             }
 
             $update = [
-                'id'                    => $request->id,
+                'id_pend'               => $request->id_pend,
                 'ting_ped'              => $request->ting_ped,
                 'pendidikan'            => $request->pendidikan,
                 'tahun_lulus'           => $request->tahun_lulus,
@@ -149,7 +149,7 @@ class RiwayatController extends Controller
                 'dokumen_gelar'         => $dokumen_gelar,
             ];
 
-            RiwayatPendidikan::where('id', $request->id)->update($update);
+            RiwayatPendidikan::where('id_pend', $request->id_pend)->update($update);
             DB::commit();
             Toastr::success('Data riwayat pendidikan berhasil diperbaharui :)', 'Success');
             return redirect()->back();
@@ -265,7 +265,7 @@ class RiwayatController extends Controller
             }
 
             $update = [
-                'id'                        => $request->id,
+                'id_gol'                    => $request->id_gol,
                 'golongan'                  => $request->golongan,
                 'jenis_kenaikan_pangkat'    => $request->jenis_kenaikan_pangkat,
                 'masa_kerja_golongan_tahun' => $request->masa_kerja_golongan_tahun,
@@ -279,7 +279,7 @@ class RiwayatController extends Controller
                 'dokumen_teknis_kp'         => $dokumen_teknis_kp,
             ];
 
-            RiwayatGolongan::where('id', $request->id)->update($update);
+            RiwayatGolongan::where('id_gol', $request->id_gol)->update($update);
             DB::commit();
             Toastr::success('Data riwayat golongan berhasil diperbaharui :)', 'Success');
             return redirect()->back();
@@ -393,20 +393,20 @@ class RiwayatController extends Controller
             }
 
             $update = [
-                'id'                    => $request->id,
-                'jenis_jabatan_riwayat' => $request->jenis_jabatan_riwayat,
-                'satuan_kerja'          => $request->satuan_kerja,
-                'satuan_kerja_induk'    => $request->satuan_kerja_induk,
-                'unit_organisasi_riwayat'       => $request->unit_organisasi_riwayat,
-                'no_sk'                 => $request->no_sk,
-                'tanggal_sk'            => $request->tanggal_sk,
-                'tmt_jabatan'           => $request->tmt_jabatan,
-                'tmt_pelantikan'        => $request->tmt_pelantikan,
-                'dokumen_sk_jabatan'    => $dokumen_sk_jabatan,
-                'dokumen_pelantikan'    => $dokumen_pelantikan,
+                'id_jab'                    => $request->id_jab,
+                'jenis_jabatan_riwayat'     => $request->jenis_jabatan_riwayat,
+                'satuan_kerja'              => $request->satuan_kerja,
+                'satuan_kerja_induk'        => $request->satuan_kerja_induk,
+                'unit_organisasi_riwayat'   => $request->unit_organisasi_riwayat,
+                'no_sk'                     => $request->no_sk,
+                'tanggal_sk'                => $request->tanggal_sk,
+                'tmt_jabatan'               => $request->tmt_jabatan,
+                'tmt_pelantikan'            => $request->tmt_pelantikan,
+                'dokumen_sk_jabatan'        => $dokumen_sk_jabatan,
+                'dokumen_pelantikan'        => $dokumen_pelantikan,
             ];
 
-            RiwayatJabatan::where('id', $request->id)->update($update);
+            RiwayatJabatan::where('id_jab', $request->id_jab)->update($update);
             DB::commit();
             Toastr::success('Data riwayat jabatan berhasil diperbaharui :)', 'Success');
             return redirect()->back();
@@ -505,7 +505,7 @@ class RiwayatController extends Controller
             }
 
             $update = [
-                'id'                        => $request->id,
+                'id_dik'                    => $request->id_dik,
                 'jenis_diklat'              => $request->jenis_diklat,
                 'nama_diklat'               => $request->nama_diklat,
                 'institusi_penyelenggara'   => $request->institusi_penyelenggara,
@@ -517,7 +517,7 @@ class RiwayatController extends Controller
                 'dokumen_diklat'            => $dokumen_diklat,
             ];
 
-            RiwayatDiklat::where('id', $request->id)->update($update);
+            RiwayatDiklat::where('id_dik', $request->id_dik)->update($update);
             DB::commit();
             Toastr::success('Data riwayat diklat berhasil diperbaharui :)', 'Success');
             return redirect()->back();

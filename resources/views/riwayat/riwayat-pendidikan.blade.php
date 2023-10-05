@@ -81,36 +81,17 @@
                             <tbody>
                                 @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
                                     <tr>
-                                        <td>
-                                            <center>{{ ++$sqlpendidikan }}</center>
-                                        </td>
-                                        <td hidden class="id">
-                                            <center>{{ $result_pendidikan->id }}</center>
-                                        </td>
-                                        <td class="ting_ped">
-                                            <center>{{ $result_pendidikan->ting_ped }}</center>
-                                        </td>
-                                        <td class="pendidikan">
-                                            <center>{{ $result_pendidikan->pendidikan }}</center>
-                                        </td>
-                                        <td class="tahun_lulus">
-                                            <center>{{ $result_pendidikan->tahun_lulus }}</center>
-                                        </td>
-                                        <td class="no_ijazah">
-                                            <center>{{ $result_pendidikan->no_ijazah }}</center>
-                                        </td>
-                                        <td class="nama_sekolah">
-                                            <center>{{ $result_pendidikan->nama_sekolah }}</center>
-                                        </td>
-                                        <td class="gelar_depan_pend">
-                                            <center>{{ $result_pendidikan->gelar_depan_pend }}</center>
-                                        </td>
-                                        <td class="gelar_belakang_pend">
-                                            <center>{{ $result_pendidikan->gelar_belakang_pend }}</center>
-                                        </td>
-                                        <td class="jenis_pendidikan">
-                                            <center>{{ $result_pendidikan->jenis_pendidikan }}</center>
-                                        </td>
+                                        <td><center>{{ ++$sqlpendidikan }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
+                                        <td hidden class="id_pend"><center>{{ $result_pendidikan->id_pend }}</center></td>
+                                        <td class="ting_ped"><center>{{ $result_pendidikan->ting_ped }}</center></td>
+                                        <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
+                                        <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
+                                        <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
+                                        <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
+                                        <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
+                                        <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
+                                        <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
                                         <td class="dokumen_transkrip">
                                             <center><a
                                                     href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
@@ -304,7 +285,7 @@
                         <form action="{{ route('riwayat/pendidikan/edit-data') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="id" id="e_id" value="">
+                            <input type="hidden" name="id_pend" id="e_id_pend" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -459,7 +440,7 @@
     <script>
         $(document).on('click', '.edit_riwayat_pendidikan', function() {
             var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
+            $('#e_id_pend').val(_this.find('.id_pend').text());
             $('#e_pendidikan').val(_this.find('.pendidikan').text());
             $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
             $('#e_no_ijazah').val(_this.find('.no_ijazah').text());

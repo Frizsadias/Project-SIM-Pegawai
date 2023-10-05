@@ -88,6 +88,7 @@
                                     <tr>
                                         <td><center>{{ ++$sqldiklat }}</center></td>
                                         <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
+                                        <td hidden class="id_dik"><center>{{ $result_diklat->id_dik }}</center></td>
                                         <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
                                         <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
                                         <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
@@ -248,7 +249,7 @@
                     <div class="modal-body">
                         <form action="{{ route('riwayat/diklat/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="id" id="e_id" value="">
+                            <input type="hidden" name="id_dik" id="e_id_dik" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -369,7 +370,7 @@
     <script>
         $(document).on('click', '.edit_riwayat_diklat', function() {
             var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
+            $('#e_id_dik').val(_this.find('.id_dik').text());
             $('#e_nama_diklat').val(_this.find('.nama_diklat').text());
             $('#e_institusi_penyelenggara').val(_this.find('.institusi_penyelenggara').text());
             $('#e_no_sertifikat').val(_this.find('.no_sertifikat').text());

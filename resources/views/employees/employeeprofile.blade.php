@@ -498,29 +498,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($riwayatPendidikan as $sqlpendidikan => $riwayatPendidikans)
+                                            @foreach ($riwayatPendidikan as $sqlpend => $result_pendidikan)
                                                 <tr>
-                                                    <td><center>{{ ++$sqlpendidikan }}</center></td>
-                                                    <td hidden class="id"><center>{{ $riwayatPendidikans->id }}</center></td>
-                                                    <td class="ting_ped"><center>{{ $riwayatPendidikans->ting_ped }}</center></td>
-                                                    <td class="pendidikan"><center>{{ $riwayatPendidikans->pendidikan }}</center></td>
-                                                    <td class="tahun_lulus"><center>{{ $riwayatPendidikans->tahun_lulus }}</center></td>
-                                                    <td class="no_ijazah"><center>{{ $riwayatPendidikans->no_ijazah }}</center></td>
-                                                    <td class="nama_sekolah"><center>{{ $riwayatPendidikans->nama_sekolah }}</center></td>
-                                                    <td class="gelar_depan_pend"><center>{{ $riwayatPendidikans->gelar_depan_pend }}</center></td>
-                                                    <td class="gelar_belakang_pend"><center>{{ $riwayatPendidikans->gelar_belakang_pend }}</center></td>
-                                                    <td class="jenis_pendidikan"><center>{{ $riwayatPendidikans->jenis_pendidikan }}</center></td>
+                                                    <td><center>{{ ++$sqlpend }}</center></td>
+                                                    <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
+                                                    <td hidden class="id_pend"><center>{{ $result_pendidikan->id_pend }}</center></td>
+                                                    <td class="ting_ped"><center>{{ $result_pendidikan->ting_ped }}</center></td>
+                                                    <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
+                                                    <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
+                                                    <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
+                                                    <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
+                                                    <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
+                                                    <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
+                                                    <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
                                                     <td class="dokumen_transkrip">
-                                                        <center><a href="{{ asset('assets/DokumenTranskrip/' . $riwayatPendidikans->dokumen_transkrip) }}"
-                                                            target="_blank">{{ $riwayatPendidikans->dokumen_transkrip }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
+                                                            target="_blank">{{ $result_pendidikan->dokumen_transkrip }}</a>
                                                     </center></td>
                                                     <td class="dokumen_ijazah">
-                                                        <center><a href="{{ asset('assets/DokumenIjazah/' . $riwayatPendidikans->dokumen_ijazah) }}"
-                                                            target="_blank">{{ $riwayatPendidikans->dokumen_ijazah }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
+                                                            target="_blank">{{ $result_pendidikan->dokumen_ijazah }}</a>
                                                     </center></td>
                                                     <td class="dokumen_gelar">
-                                                        <center><a href="{{ asset('assets/DokumenGelar/' . $riwayatPendidikans->dokumen_gelar) }}"
-                                                            target="_blank">{{ $riwayatPendidikans->dokumen_gelar }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
+                                                            target="_blank">{{ $result_pendidikan->dokumen_gelar }}</a>
                                                     </center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
@@ -686,7 +687,7 @@
                                     <div class="modal-body">
                                         <form action="{{ route('riwayat/pendidikan/edit-data') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="hidden" name="id" id="e_id" value="">
+                                            <input type="hidden" name="id_pend" id="e_id_pend" value="">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -797,10 +798,10 @@
                                         <div class="modal-btn delete-action">
                                             <form action="{{ route('riwayat/pendidikan/hapus-data') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="id" class="e_id" value="">
-                                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip" value="">
-                                                <input type="hidden" name="dokumen_ijazah" class="d_dokumen_ijazah" value="">
-                                                <input type="hidden" name="dokumen_gelar" class="d_dokumen_gelar" value="">
+                                                <input type="hidden" name="id" class="e_id" value="{{ $result_pendidikan->id }}">
+                                                <input type="hidden" name="dokumen_transkrip" class="d_dokumen_transkrip" value="{{ $result_pendidikan->dokumen_transkrip }}">
+                                                <input type="hidden" name="dokumen_ijazah" class="d_dokumen_ijazah" value="{{ $result_pendidikan->dokumen_ijazah }}">
+                                                <input type="hidden" name="dokumen_gelar" class="d_dokumen_gelar" value="{{ $result_pendidikan->dokumen_gelar }}">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <button type="submit"
@@ -847,26 +848,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($riwayatGolongan as $sqlgolongan => $riwayatGolongans)
+                                            @foreach ($riwayatGolongan as $sqlgol => $result_golongan)
                                                 <tr>
-                                                    <td><center>{{ ++$sqlgolongan }}</center></td>
-                                                    <td hidden class="id"><center>{{ $riwayatGolongans->id }}</center></td>
-                                                    <td class="golongan"><center>{{ $riwayatGolongans->golongan }}</center></td>
-                                                    <td class="jenis_kenaikan_pangkat"><center>{{ $riwayatGolongans->jenis_kenaikan_pangkat }}</center></td>
-                                                    <td class="masa_kerja_golongan_tahun"><center>{{ $riwayatGolongans->masa_kerja_golongan_tahun }}</center></td>
-                                                    <td class="masa_kerja_golongan_bulan"><center>{{ $riwayatGolongans->masa_kerja_golongan_bulan }}</center></td>
-                                                    <td class="tmt_golongan_riwayat"><center>{{ $riwayatGolongans->tmt_golongan_riwayat }}</center></td>
-                                                    <td class="no_teknis_bkn"><center>{{ $riwayatGolongans->no_teknis_bkn }}</center></td>
-                                                    <td class="tanggal_teknis_bkn"><center>{{ $riwayatGolongans->tanggal_teknis_bkn }}</center></td>
-                                                    <td class="no_sk_golongan"><center>{{ $riwayatGolongans->no_sk_golongan }}</center></td>
-                                                    <td class="tanggal_sk_golongan"><center>{{ $riwayatGolongans->tanggal_sk_golongan }}</center></td>
+                                                    <td><center>{{ ++$sqlgol }}</center></td>
+                                                    <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
+                                                    <td hidden class="id_gol"><center>{{ $result_golongan->id_gol }}</center></td>
+                                                    <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
+                                                    <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
+                                                    <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
+                                                    <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }}</center></td>
+                                                    <td class="tmt_golongan_riwayat"><center>{{ $result_golongan->tmt_golongan_riwayat }}</center></td>
+                                                    <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
+                                                    <td class="tanggal_teknis_bkn"><center>{{ $result_golongan->tanggal_teknis_bkn }}</center></td>
+                                                    <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
+                                                    <td class="tanggal_sk_golongan"><center>{{ $result_golongan->tanggal_sk_golongan }}</center></td>
                                                     <td class="dokumen_skkp">
-                                                        <center><a href="{{ asset('assets/DokumenSKKP/' . $riwayatGolongans->dokumen_skkp) }}"
-                                                            target="_blank">{{ $riwayatGolongans->dokumen_skkp }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
+                                                            target="_blank">{{ $result_golongan->dokumen_skkp }}</a>
                                                     </center></td>
                                                     <td class="dokumen_teknis_kp">
-                                                        <center><a href="{{ asset('assets/DokumenTeknisKP/' . $riwayatGolongans->dokumen_teknis_kp) }}"
-                                                            target="_blank">{{ $riwayatGolongans->dokumen_teknis_kp }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
+                                                            target="_blank">{{ $result_golongan->dokumen_teknis_kp }}</a>
                                                     </center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
@@ -1011,7 +1013,7 @@
                                         <div class="modal-body">
                                             <form action="{{ route('riwayat/golongan/edit-data') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
-                                                <input type="hidden" name="id" id="e_id" value="">
+                                                <input type="hidden" name="id_gol" id="e_id_gol" value="">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -1114,10 +1116,9 @@
                                             <div class="modal-btn delete-action">
                                                 <form action="{{ route('riwayat/golongan/hapus-data') }}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" name="id" class="e_id" value="">
-                                                    <input type="hidden" name="dokumen_skkp" class="d_dokumen_skkp" value="">
-                                                    <input type="hidden" name="dokumen_teknis_kp" class="d_dokumen_teknis_kp"
-                                                        value="">
+                                                    <input type="hidden" name="id" class="e_id" value="{{ $result_golongan->id }}">
+                                                    <input type="hidden" name="dokumen_skkp" class="d_dokumen_skkp" value="{{ $result_golongan->dokumen_skkp }}">
+                                                    <input type="hidden" name="dokumen_teknis_kp" class="d_dokumen_teknis_kp" value="{{ $result_golongan->dokumen_teknis_kp }}">
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <button type="submit"
@@ -1163,25 +1164,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($riwayatJabatan as $sqljabatan => $riwayatJabatans)
+
+                                            @foreach ($riwayatJabatan as $sqljab => $result_jabatan)
                                                 <tr>
-                                                    <td><center>{{ ++$sqljabatan }}</center></td>
-                                                    <td hidden class="id"><center>{{ $riwayatJabatans->id }}</center></td>
-                                                    <td class="jenis_jabatan_riwayat"><center>{{ $riwayatJabatans->jenis_jabatan_riwayat }}</center></td>
-                                                    <td class="satuan_kerja"><center>{{ $riwayatJabatans->satuan_kerja }}</center></td>
-                                                    <td class="satuan_kerja_induk"><center>{{ $riwayatJabatans->satuan_kerja_induk }}</center></td>
-                                                    <td class="unit_organisasi_riwayat"><center>{{ $riwayatJabatans->unit_organisasi_riwayat }}</center></td>
-                                                    <td class="no_sk"><center>{{ $riwayatJabatans->no_sk }}</center></td>
-                                                    <td class="tanggal_sk"><center>{{ $riwayatJabatans->tanggal_sk }}</center></td>
-                                                    <td class="tmt_jabatan"><center>{{ $riwayatJabatans->tmt_jabatan }}</center></td>
-                                                    <td class="tmt_pelantikan"><center>{{ $riwayatJabatans->tmt_pelantikan }}</center></td>
+                                                    <td><center>{{ ++$sqljab }}</center></td>
+                                                    <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
+                                                    <td hidden class="id_jab"><center>{{ $result_jabatan->id_jab }}</center></td>
+                                                    <td class="jenis_jabatan_riwayat"><center>{{ $result_jabatan->jenis_jabatan_riwayat }}</center></td>
+                                                    <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
+                                                    <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
+                                                    <td class="unit_organisasi_riwayat"><center>{{ $result_jabatan->unit_organisasi_riwayat }}</center></td>
+                                                    <td class="no_sk"><center>{{ $result_jabatan->no_sk }}</center></td>
+                                                    <td class="tanggal_sk"><center>{{ $result_jabatan->tanggal_sk }}</center></td>
+                                                    <td class="tmt_jabatan"><center>{{ $result_jabatan->tmt_jabatan }}</center></td>
+                                                    <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
                                                     <td class="dokumen_sk_jabatan">
-                                                        <center><a href="{{ asset('assets/DokumenSKJabatan/' . $riwayatJabatans->dokumen_sk_jabatan) }}"
-                                                            target="_blank">{{ $riwayatJabatans->dokumen_sk_jabatan }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
+                                                            target="_blank">{{ $result_jabatan->dokumen_sk_jabatan }}</a>
                                                     </center></td>
                                                     <td class="dokumen_pelantikan">
-                                                        <center><a href="{{ asset('assets/DokumenPelantikan/' . $riwayatJabatans->dokumen_pelantikan) }}"
-                                                            target="_blank">{{ $riwayatJabatans->dokumen_pelantikan }}</a>
+                                                        <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
+                                                            target="_blank">{{ $result_jabatan->dokumen_pelantikan }}</a>
                                                     </center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
@@ -1329,7 +1332,7 @@
                                         <div class="modal-body">
                                             <form action="{{ route('riwayat/jabatan/edit-data') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
-                                                <input type="hidden" name="id" id="e_id" value="">
+                                                <input type="hidden" name="id_jab" id="e_id_jab" value="">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -1432,9 +1435,9 @@
                                             <div class="modal-btn delete-action">
                                                 <form action="{{ route('riwayat/jabatan/hapus-data') }}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" name="id" class="e_id" value="">
-                                                    <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan" value="">
-                                                    <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan" value="">
+                                                    <input type="hidden" name="id" class="e_id" value="{{ $result_jabatan->id }}">
+                                                    <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan" value="{{ $result_jabatan->dokumen_sk_jabatan }}">
+                                                    <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan" value="{{ $result_jabatan->dokumen_pelantikan }}">
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
@@ -1477,21 +1480,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($riwayatDiklat as $sqldiklat => $riwayatDiklats)
+
+                                            @foreach ($riwayatDiklat as $sqldik => $result_diklat)
                                         <tr>
-                                            <td><center>{{ ++$sqldiklat }}</center></td>
-                                            <td hidden class="id"><center>{{ $riwayatDiklats->id }}</center></td>
-                                            <td class="jenis_diklat"><center>{{ $riwayatDiklats->jenis_diklat }}</center></td>
-                                            <td class="nama_diklat"><center>{{ $riwayatDiklats->nama_diklat }}</center></td>
-                                            <td class="institusi_penyelenggara"><center>{{ $riwayatDiklats->institusi_penyelenggara }}</center></td>
-                                            <td class="no_sertifikat"><center>{{ $riwayatDiklats->no_sertifikat }}</center></td>
-                                            <td class="tanggal_mulai"><center>{{ $riwayatDiklats->tanggal_mulai }}</center></td>
-                                            <td class="tanggal_selesai"><center>{{ $riwayatDiklats->tanggal_selesai }}</center></td>
-                                            <td class="tahun_diklat"><center>{{ $riwayatDiklats->tahun_diklat }}</center></td>
-                                            <td class="durasi_jam"><center>{{ $riwayatDiklats->durasi_jam }}</center></td>
+                                            <td><center>{{ ++$sqldik }}</center></td>
+                                            <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
+                                            <td hidden class="id_dik"><center>{{ $result_diklat->id_dik }}</center></td>
+                                            <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
+                                            <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
+                                            <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
+                                            <td class="no_sertifikat"><center>{{ $result_diklat->no_sertifikat }}</center></td>
+                                            <td class="tanggal_mulai"><center>{{ $result_diklat->tanggal_mulai }}</center></td>
+                                            <td class="tanggal_selesai"><center>{{ $result_diklat->tanggal_selesai }}</center></td>
+                                            <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
+                                            <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
                                             <td class="dokumen_diklat">
-                                                <center><a href="{{ asset('assets/DokumenDiklat/' . $riwayatDiklats->dokumen_diklat) }}"
-                                                    target="_blank">{{ $riwayatDiklats->dokumen_diklat }}</a>
+                                                <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
+                                                    target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
                                             </center></td>
                                             
                                             {{-- Edit dan Hapus data  --}}
@@ -1633,7 +1638,7 @@
                                     <div class="modal-body">
                                         <form action="{{ route('riwayat/diklat/edit-data') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="hidden" name="id" id="e_id" value="">
+                                            <input type="hidden" name="id_dik" id="e_id_dik" value="">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -1727,8 +1732,8 @@
                                         <div class="modal-btn delete-action">
                                             <form action="{{ route('riwayat/diklat/hapus-data') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="id" class="e_id" value="">
-                                                <input type="hidden" name="dokumen_diklat" class="d_dokumen_diklat" value="">
+                                                <input type="hidden" name="id" class="e_id" value="{{ $result_diklat->id }}">
+                                                <input type="hidden" name="dokumen_diklat" class="d_dokumen_diklat" value="{{ $result_diklat->dokumen_diklat }}">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <button type="submit"
@@ -2590,8 +2595,8 @@
 
             <!-- /Page Content -->
         </div>
-        
-        @section('script')
+
+    @section('script')
         <script>
             $('#validation').validate({  
                 rules: {  
@@ -2635,131 +2640,9 @@
                 }  
             });  
         </script>
-
-        {{-- update pendidikan --}}
-        <script>
-            $(document).on('click', '.edit_riwayat_pendidikan', function() {
-                var _this = $(this).parents('tr');
-                $('#e_id').val(_this.find('.id').text());
-                $('#e_pendidikan').val(_this.find('.pendidikan').text());
-                $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
-                $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
-                $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
-                $('#e_gelar_depan_pend').val(_this.find('.gelar_depan_pend').text());
-                $('#e_gelar_belakang_pend').val(_this.find('.gelar_belakang_pend').text());
-                $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
-                $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
-                $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
-                $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
-    
-                var ting_ped = (_this.find(".ting_ped").text());
-                var _option = '<option selected value="' + ting_ped + '">' + _this.find('.ting_ped')
-                    .text() + '</option>'
-                $(_option).appendTo("#e_ting_ped");
-            });
-        </script>
-
-        {{-- update golongan --}}
-        <script>
-            $(document).on('click', '.edit_riwayat_golongan', function() {
-                var _this = $(this).parents('tr');
-                $('#e_id').val(_this.find('.id').text());
-                $('#e_golongan').val(_this.find('.golongan').text());
-                $('#e_jenis_kenaikan_pangkat').val(_this.find('.jenis_kenaikan_pangkat').text());
-                $('#e_masa_kerja_golongan_tahun').val(_this.find('.masa_kerja_golongan_tahun').text());
-                $('#e_masa_kerja_golongan_bulan').val(_this.find('.masa_kerja_golongan_bulan').text());
-                $('#e_tmt_golongan_riwayat').val(_this.find('.tmt_golongan_riwayat').text());
-                $('#e_no_teknis_bkn').val(_this.find('.no_teknis_bkn').text());
-                $('#e_tanggal_teknis_bkn').val(_this.find('.tanggal_teknis_bkn').text());
-                $('#e_no_sk_golongan').val(_this.find('.no_sk_golongan').text());
-                $('#e_tanggal_sk_golongan').val(_this.find('.tanggal_sk_golongan').text());
-                $('#e_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
-                $('#e_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
-            });
-        </script>
-
-        {{-- update jabatan --}}
-        <script>
-            $(document).on('click', '.edit_riwayat_jabatan', function() {
-                var _this = $(this).parents('tr');
-                $('#e_id').val(_this.find('.id').text());
-                $('#e_satuan_kerja').val(_this.find('.satuan_kerja').text());
-                $('#e_satuan_kerja_induk').val(_this.find('.satuan_kerja_induk').text());
-                $('#e_unit_organisasi_riwayat').val(_this.find('.unit_organisasi_riwayat').text());
-                $('#e_no_sk').val(_this.find('.no_sk').text());
-                $('#e_tanggal_sk').val(_this.find('.tanggal_sk').text());
-                $('#e_tmt_jabatan').val(_this.find('.tmt_jabatan').text());
-                $('#e_tmt_pelantikan').val(_this.find('.tmt_pelantikan').text());
-                $('#e_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
-                $('#e_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
-
-                var jenis_jabatan_riwayat = (_this.find(".jenis_jabatan_riwayat").text());
-                var _option = '<option selected value="' + jenis_jabatan_riwayat + '">' + _this.find('.jenis_jabatan_riwayat').text() +
-                    '</option>'
-                $(_option).appendTo("#e_jenis_jabatan_riwayat");
-            });
-        </script>
-
-        {{-- update diklat --}}
-        <script>
-            $(document).on('click', '.edit_riwayat_diklat', function() {
-                var _this = $(this).parents('tr');
-                $('#e_id').val(_this.find('.id').text());
-                $('#e_nama_diklat').val(_this.find('.nama_diklat').text());
-                $('#e_institusi_penyelenggara').val(_this.find('.institusi_penyelenggara').text());
-                $('#e_no_sertifikat').val(_this.find('.no_sertifikat').text());
-                $('#e_tanggal_mulai').val(_this.find('.tanggal_mulai').text());
-                $('#e_tanggal_selesai').val(_this.find('.tanggal_selesai').text());
-                $('#e_tahun_diklat').val(_this.find('.tahun_diklat').text());
-                $('#e_durasi_jam').val(_this.find('.durasi_jam').text());
-                $('#e_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
-
-                var jenis_diklat = (_this.find(".jenis_diklat").text());
-                var _option = '<option selected value="' + jenis_diklat + '">' + _this.find('.jenis_diklat').text() +
-                    '</option>'
-                $(_option).appendTo("#e_jenis_diklat");
-            });
-        </script>
-
-        {{-- delete pendidikan --}}
-        <script>
-            $(document).on('click', '.delete_riwayat_pendidikan', function() {
-                var _this = $(this).parents('tr');
-                $('.e_id').val(_this.find('.id').text());
-                $('.d_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
-                $('.d_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
-                $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
-            });
-        </script>
-
-        {{-- delete golongan --}}
-        <script>
-            $(document).on('click', '.delete_riwayat_golongan', function() {
-                var _this = $(this).parents('tr');
-                $('.e_id').val(_this.find('.id').text());
-                $('.d_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
-                $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
-            });
-        </script>
-
-        {{-- delete jabatan --}}
-        <script>
-            $(document).on('click', '.delete_riwayat_jabatan', function() {
-                var _this = $(this).parents('tr');
-                $('.e_id').val(_this.find('.id').text());
-                $('.d_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
-                $('.d_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
-            });
-        </script>
-
-        {{-- delete diklat --}}
-        <script>
-            $(document).on('click', '.delete_riwayat_diklat', function() {
-                var _this = $(this).parents('tr');
-                $('.e_id').val(_this.find('.id').text());
-                $('.d_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
-            });
-        </script>
-
-        @endsection
+        <script src="{{ asset('assets/js/pendidikan.js') }}"></script>
+        <script src="{{ asset('assets/js/golongan.js') }}"></script>
+        <script src="{{ asset('assets/js/jabatan.js') }}"></script>
+        <script src="{{ asset('assets/js/diklat.js') }}"></script>
+    @endsection
 @endsection

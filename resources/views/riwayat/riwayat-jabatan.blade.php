@@ -83,6 +83,7 @@
                                     <tr>
                                         <td><center>{{ ++$sqljabatan }}</center></td>
                                         <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
+                                        <td hidden class="id_jab"><center>{{ $result_jabatan->id_jab }}</center></td>
                                         <td class="jenis_jabatan_riwayat"><center>{{ $result_jabatan->jenis_jabatan_riwayat }}</center></td>
                                         <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
                                         <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
@@ -252,7 +253,7 @@
                     <div class="modal-body">
                         <form action="{{ route('riwayat/jabatan/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="id" id="e_id" value="">
+                            <input type="hidden" name="id_jab" id="e_id_jab" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -382,7 +383,7 @@
     <script>
         $(document).on('click', '.edit_riwayat_jabatan', function() {
             var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
+            $('#e_id_jab').val(_this.find('.id_jab').text());
             $('#e_satuan_kerja').val(_this.find('.satuan_kerja').text());
             $('#e_satuan_kerja_induk').val(_this.find('.satuan_kerja_induk').text());
             $('#e_unit_organisasi_riwayat').val(_this.find('.unit_organisasi_riwayat').text());

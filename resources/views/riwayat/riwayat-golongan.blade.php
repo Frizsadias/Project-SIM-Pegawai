@@ -77,6 +77,7 @@
                                     <tr>
                                         <td><center>{{ ++$sqlgolongan }}</center></td>
                                         <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
+                                        <td hidden class="id_gol"><center>{{ $result_golongan->id_gol }}</center></td>
                                         <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
                                         <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
                                         <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
@@ -250,7 +251,7 @@
                     <div class="modal-body">
                         <form action="{{ route('riwayat/golongan/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="id" id="e_id" value="">
+                            <input type="hidden" name="id_gol" id="e_id_gol" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -383,7 +384,7 @@
     <script>
         $(document).on('click', '.edit_riwayat_golongan', function() {
             var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
+            $('#e_id_gol').val(_this.find('.id_gol').text());
             $('#e_golongan').val(_this.find('.golongan').text());
             $('#e_jenis_kenaikan_pangkat').val(_this.find('.jenis_kenaikan_pangkat').text());
             $('#e_masa_kerja_golongan_tahun').val(_this.find('.masa_kerja_golongan_tahun').text());

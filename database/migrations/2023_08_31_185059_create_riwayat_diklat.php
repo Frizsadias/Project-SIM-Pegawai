@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('riwayat_diklat', function (Blueprint $table) {
             $table->id();
+            $table->string('id_dik');
             $table->string('user_id')->nullable();
             $table->string('jenis_diklat')->nullable();
             $table->string('nama_diklat')->nullable();
