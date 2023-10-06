@@ -87,7 +87,7 @@
                                     </td>
                                     <td>{{ $dafpeg->nip }}</td>
                                     <td>{{ $dafpeg->nama }}</td>
-                                    <td>{{ $dafpeg->Jabatan }}</td>
+                                    <td>{{ $dafpeg->jabatan }}</td>
                                     <td>{{ $dafpeg->pendidikan_terakhir }}</td>
                                     <td>{{ $dafpeg->no_hp }}</td>
                                     <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}">{{ $dafpeg->name }}</a></td>
