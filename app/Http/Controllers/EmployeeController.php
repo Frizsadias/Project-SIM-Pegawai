@@ -26,12 +26,13 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->leftjoin('employees','users.user_id','employees.employee_id')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
             ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
                 'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
                 'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
                 'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
                 'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'employees.name','employees.email','users.name','users.email')
+                'employees.name','employees.email','users.name','users.email','posisi_jabatan.jabatan')
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
@@ -44,12 +45,13 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->leftjoin('employees','users.user_id','employees.employee_id')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
             ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
                 'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
                 'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
                 'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
                 'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'employees.name','employees.email','users.name','users.email')
+                'employees.name','employees.email','users.name','users.email','posisi_jabatan.jabatan')
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
