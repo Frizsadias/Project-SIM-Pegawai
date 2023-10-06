@@ -81,13 +81,12 @@
                                 @if ($dafpeg->role_name == 'User')
                                 <tr>
                                     <td>{{ $dafpeg->nip }}</td>
-                                    <td>{{ $dafpeg->nama }}</td>
+                                    <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}">{{ $dafpeg->name }}</a></td>
                                     <td>{{ $dafpeg->jabatan }}</td>
                                     <td>{{ $dafpeg->pendidikan_terakhir }}</td>
                                     <td>{{ $dafpeg->no_hp }}</td>
                                     <td><h2 class="table-avatar">
                                         <a href="{{ url('user/profile/' . $dafpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $dafpeg->avatar) }}"></a>
-                                        <a href="{{ url('user/profile/' . $dafpeg->user_id) }}">{{ $dafpeg->name }}</a>
                                     </h2></td>
                                     
                                     {{-- <td class="text-right">
