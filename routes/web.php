@@ -394,3 +394,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/diklat/hapus-data', [RiwayatController::class, 'hapusRiwayatDiklat'])->name('riwayat/diklat/hapus-data');
     Route::get('riwayat/diklat/cari', [RiwayatController::class, 'searchRiwayatDiklat'])->name('riwayat/diklat/cari');
 });
+
+// ----------------------------- Pencarian Agama ------------------------------//
+Route::controller(RiwayatManagementController::class)->group(function () {
+    Route::get('get-agama-data', 'getAgamaData')->name('get-agama-data');
+});
