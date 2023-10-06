@@ -80,17 +80,16 @@
                                 @foreach ($users as $dafpeg)
                                 @if ($dafpeg->role_name == 'User')
                                 <tr>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a href="{{ url('user/profile/' . $dafpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $dafpeg->avatar) }}"></a>
-                                        </h2>
-                                    </td>
                                     <td>{{ $dafpeg->nip }}</td>
                                     <td>{{ $dafpeg->nama }}</td>
                                     <td>{{ $dafpeg->jabatan }}</td>
                                     <td>{{ $dafpeg->pendidikan_terakhir }}</td>
                                     <td>{{ $dafpeg->no_hp }}</td>
-                                    <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}">{{ $dafpeg->name }}</a></td>
+                                    <td><h2 class="table-avatar">
+                                        <a href="{{ url('user/profile/' . $dafpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $dafpeg->avatar) }}"></a>
+                                        <a href="{{ url('user/profile/' . $dafpeg->user_id) }}">{{ $dafpeg->name }}</a>
+                                    </h2></td>
+                                    
                                     {{-- <td class="text-right">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
