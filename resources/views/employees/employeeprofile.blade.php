@@ -2102,26 +2102,29 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Jenis Dokumen </label>
-                                                <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $users->jenis_dokumen }}">
+                                            <div class="form-group">
+                                                <label>Jenis Dokumen</label><span class="text-danger">*</span>
+                                                <select class="select @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen">
+                                                    <option value="Passport" {{ $users->jenis_dokumen === 'Passport' ? 'selected' : '' }}>Passport</option>
+                                                    <option value="KTP" {{ $users->jenis_dokumen === 'KTP' ? 'selected' : '' }}>KTP</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Nomor Dokumen </label>
+                                            <div class="form-group"></label> 
+                                                <label>Nomor Dokumen </label><span class="text-danger">*</span>
                                                 <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $users->no_dokumen }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Kelurahan </label>
+                                            <div class="form-group"></label>
+                                                <label>Kelurahan </label><span class="text-danger">*</span>
                                                 <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $users->kelurahan }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Kecamatan </label>
+                                            <div class="form-group"></label>
+                                                <label>Kecamatan </label><span class="text-danger">*</span>
                                                 <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $users->kecamatan }}">
                                             </div>
                                         </div>
@@ -2155,7 +2158,6 @@
                                                 <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $users->no_telp }}">
                                             </div>
                                         </div>
-    
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
@@ -2171,25 +2173,29 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $users->status_pegawai }}">
+                                                <select class="select @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
+                                                    @foreach($statusOptions as $id => $namaStatus)
+                                                        <option value="{{ $id }}" {{ $id == $users->status_pegawai ? 'selected' : '' }}>{{ $namaStatus }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>TMT PNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $users->tmt_pns }}">
+                                                <input type="date" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $users->tmt_pns }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
+                                                <label>Nomor Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $users->no_seri_karpeg }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>TMT CPNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $users->tmt_cpns }}">
+                                                <input type="date" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $users->tmt_cpns }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

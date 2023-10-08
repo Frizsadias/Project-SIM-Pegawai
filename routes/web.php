@@ -217,6 +217,12 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/agama/delete', 'deleteRecordAgama')->middleware('auth')->name('form/agama/delete');
     Route::get('form/agama/search', 'searchAgama')->middleware('auth')->name('form/agama/search');
 
+    Route::get('referensi/status', 'indexStatus')->middleware('auth')->name('referensi-status');
+    Route::post('form/status/save', 'saveRecordStatus')->middleware('auth')->name('form/status/save');
+    Route::post('form/status/update', 'updateRecordStatus')->middleware('auth')->name('form/status/update');
+    Route::post('form/status/delete', 'deleteRecordStatus')->middleware('auth')->name('form/status/delete');
+    Route::get('form/status/search', 'searchStatus')->middleware('auth')->name('form/status/search');
+
     Route::get('referensi/pendidikan', 'indexPendidikan')->middleware('auth')->name('referensi-pendidikan');
     Route::post('form/pendidikan/save', 'saveRecordPendidikan')->middleware('auth')->name('form/pendidikan/save');
     Route::post('form/pendidikan/update', 'updateRecordPendidikan')->middleware('auth')->name('form/pendidikan/update');
