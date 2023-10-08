@@ -16,7 +16,12 @@ use App\Models\RiwayatGolongan;
 use App\Models\RiwayatJabatan;
 use App\Models\RiwayatPendidikan;
 use App\Models\status;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 class EmployeeController extends Controller
@@ -401,8 +406,15 @@ class EmployeeController extends Controller
 
             $statusOptions = DB::table('status_id')->pluck('ref_status', 'ref_status');
 
+            $kedudukanOptions = DB::table('kedudukan_hukum_id')->pluck('kedudukan', 'kedudukan');
+
+            $provinsiOptions = DB::table('provinsi_id')->pluck('ref_provinsi', 'ref_provinsi');
+
+            $jenispegawaiOptions = DB::table('jenis_pegawai_id')->pluck('jenis_pegawai', 'jenis_pegawai');
+
         return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans',
-        'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'statusOptions'));
+        'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'statusOptions', 'provinsiOptions', 'kedudukanOptions',
+        'jenispegawaiOptions'));
     }
 
     /** page agama */
@@ -675,5 +687,16 @@ class EmployeeController extends Controller
             Toastr::error('Data pendidikan gagal dihapus :)', 'Error');
             return redirect()->back();
         }
+    }
+
+    public function indoRegion()
+    {
+        // Get semua data
+        $provinces = Province::pluck('name', 'id');
+        $regencies = Regency::all();
+        $districts = District::all();
+        $villages = Village::all();
+        $users = User::find(Auth::user()->id);
+        return view('employees.employeeprofile', compact('provinces', 'regencies', 'districts', 'villages', 'users'));
     }
 }

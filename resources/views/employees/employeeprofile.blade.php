@@ -2079,6 +2079,7 @@
                                             <div class="form-group">
                                                 <label>Jenis Kelamin <span class="text-danger">*</span></label>
                                                 <select class="select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
+                                                    <option value="" disabled selected>--- Pilih jenis kelamin ---</option>
                                                     <option value="Laki-Laki" {{ $users->jenis_kelamin === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
                                                     <option value="Perempuan" {{ $users->jenis_kelamin === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                 </select>
@@ -2095,6 +2096,7 @@
                                                 <label for="agama">Agama</label>
                                                 <span class="text-danger">*</span>
                                                 <select class="select @error('agama') is-invalid @enderror" name="agama">
+                                                    <option value="" disabled selected>--- Pilih agama ---</option>
                                                     @foreach($agamaOptions as $id => $namaAgama)
                                                         <option value="{{ $id }}" {{ $id == $users->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
                                                     @endforeach
@@ -2105,6 +2107,7 @@
                                             <div class="form-group">
                                                 <label>Jenis Dokumen</label><span class="text-danger">*</span>
                                                 <select class="select @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen">
+                                                    <option value="" disabled selected>--- Pilih jenis dokumen ---</option>
                                                     <option value="Passport" {{ $users->jenis_dokumen === 'Passport' ? 'selected' : '' }}>Passport</option>
                                                     <option value="KTP" {{ $users->jenis_dokumen === 'KTP' ? 'selected' : '' }}>KTP</option>
                                                 </select>
@@ -2137,7 +2140,19 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Provinsi </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}">
+                                                {{-- <select class="select @error('provinsi') is-invalid @enderror" name="provinsi">
+                                                    <option value="" disabled selected>--- Pilih provinsi ---</option>
+                                                    @foreach($provinces as $id => $namaProvinsi)
+                                                        <option value="{{ $id }}" {{ $id == $users->provinsi ? 'selected' : '' }}>{{ $namaProvinsi }}</option>
+                                                    @endforeach
+                                                </select> --}}
+                                                <select class="select @error('provinsi') is-invalid @enderror" name="provinsi">
+                                                    <option value="" disabled selected>--- Pilih provinsi ---</option>
+                                                    @foreach($provinsiOptions as $id => $namaProvinsi)
+                                                        <option value="{{ $id }}" {{ $id == $users->provinsi ? 'selected' : '' }}>{{ $namaProvinsi }}</option>
+                                                    @endforeach
+                                                </select>
+                                                {{-- <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}"> --}}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -2161,23 +2176,38 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $users->jenis_pegawai }}">
+                                                <select class="select @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
+                                                    <option value="" disabled selected>--- Pilih jenis pegawai ---</option>
+                                                    @foreach($jenispegawaiOptions as $id => $namaJenisPegawai)
+                                                        <option value="{{ $id }}" {{ $id == $users->jenis_pegawai ? 'selected' : '' }}>{{ $namaJenisPegawai }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $users->kedudukan_pns }}">
+                                                <select class="select @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns">
+                                                    <option value="" disabled selected>--- Pilih kedudukan ---</option>
+                                                    @foreach($kedudukanOptions as $id => $namaKedudukan)
+                                                        <option value="{{ $id }}" {{ $id == $users->kedudukan_pns ? 'selected' : '' }}>{{ $namaKedudukan }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                                <select class="select @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
+                                                    <select class="select @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
+                                                        <option value="" disabled selected>--- Pilih status pegawai ---</option>
+                                                        <option value="Aktif" {{ $users->status_pegawai === 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                                                        <option value="Tidak Aktif" {{ $users->status_pegawai === 'Tidak Aktif' ? 'selected' : '' }}>Tidak Aktif</option>
+                                                    </select>
+                                                {{-- <select class="select @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
                                                     @foreach($statusOptions as $id => $namaStatus)
                                                         <option value="{{ $id }}" {{ $id == $users->status_pegawai ? 'selected' : '' }}>{{ $namaStatus }}</option>
                                                     @endforeach
-                                                </select>
+                                                </select> --}}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
