@@ -13,7 +13,7 @@
             <div class="page-header">
                 <div class="row align-lists-center">
                     <div class="col">
-                        <h3 class="page-title">Pegawai</h3>
+                        <h3 class="page-title">Pegawai Pensiun</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Pegawai</li>
@@ -22,8 +22,8 @@
                     <div class="col-auto float-right ml-auto">
                         {{-- <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i class="fa fa-plus"></i> Tambah Pegawai</a> --}}
                         <div class="view-icons">
-                            <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-                            <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                            <a href="{{ route('daftar/pegawai/pensiun/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+                            <a href="{{ route('daftar/pegawai/pensiun/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
             {!! Toastr::message() !!}
             <div class="row staff-grid-row">
                 @foreach ($users as $lists )
-                @if ($lists->role_name == 'User' && (empty($lists->kedudukan_pns) || $lists->kedudukan_pns == 'Aktif'))
+                @if ($lists->role_name == 'User' && $lists->kedudukan_pns == 'Tidak Aktif')
                 <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                     <div class="profile-widget">
                         <div class="profile-img">

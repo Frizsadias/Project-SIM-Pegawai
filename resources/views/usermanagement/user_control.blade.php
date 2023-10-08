@@ -75,7 +75,6 @@
                                     <th>Email</th>
                                     <th>Tanggal Bergabung</th>
                                     <th>Role</th>
-                                    <th>No. Telepon</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -104,60 +103,53 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nama Lengkap</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text"
-                                            id="" name="name" value="{{ old('name') }}"
-                                            placeholder="Masukkan Nama Lengkap">
+                                        <input class="form-control @error('name') is-invalid @enderror" type="text" id="" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama Lengkap">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Alamat E-mail </label>
-                                    <input class="form-control" type="email" id="" name="email" placeholder="Masukkan E-mail">
+                                    <div class="form-group">
+                                        <label>Alamat E-mail </label>
+                                        <input class="form-control" type="email" id="" name="email" placeholder="Masukkan E-mail">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Peran </label>
-                                    <select class="select" name="role_name" id="role_name">
-                                        <option selected disabled> --Pilih Peran --</option>
-                                        @foreach ($role_name as $role)
-                                            <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Status</label>
-                                    <select class="select" name="status" id="status">
-                                        <option selected disabled> --Pilih Status --</option>
-                                        @foreach ($status_user as $status)
-                                            <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Nomor Telepon</label>
-                                        <input class="form-control" type="number" id="" name="phone"
-                                            placeholder="Masukkan Nomor Telepon">
+                                        <label>Peran </label>
+                                        <select class="select" name="role_name" id="role_name">
+                                            <option selected disabled> --Pilih Peran --</option>
+                                            @foreach ($role_name as $role)
+                                                <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                    <input type="hidden" class="form-control" id="image" name="image" value="photo_defaults.jpg">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="select" name="status" id="status">
+                                            <option selected disabled> --Pilih Status --</option>
+                                            @foreach ($status_user as $status)
+                                                <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <br>
                             <div class="row">
+                                <input type="hidden" class="form-control" id="image" name="image" value="photo_defaults.jpg">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Kata Sandi</label>
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Masukkan Password">
+                                        <input type="password" class="form-control" name="password" placeholder="Masukkan Kata Sandi">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Konfirmasi Kata Sandi</label>
-                                    <input type="password" class="form-control" name="password_confirmation"
-                                        placeholder="Konfirmasi Password">
+                                    <div class="form-group">
+                                        <label>Konfirmasi Kata Sandi</label>
+                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Masukkan Konfirmasi Kata Sandi">
+                                    </div>
                                 </div>
                             </div>
                             <div class="submit-section">
@@ -192,41 +184,35 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Alamat E-mail</label>
-                                    <input class="form-control" type="text" name="email" id="e_email" value="" placeholder="Masukkan E-mail"/>
+                                    <div class="form-group">
+                                        <label>Alamat E-mail</label>
+                                        <input class="form-control" type="email" name="email" id="e_email" value="" placeholder="Masukkan E-mail"/>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Peran</label>
-                                    <select class="select" name="role_name" id="e_role_name">
-                                        @foreach ($role_name as $role)
-                                            <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Status</label>
-                                    <select class="select" name="status" id="e_status">
-                                        @foreach ($status_user as $status)
-                                            <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Nomor Telepon</label>
-                                        <input class="form-control" type="number" id="e_phone_number" name="phone" placeholder="Masukkan Nomor HP">
+                                        <label>Peran</label>
+                                        <select class="select" name="role_name" id="e_role_name">
+                                            @foreach ($role_name as $role)
+                                                <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="hidden" class="form-control" id="image" name="images" value="photo_defaults.jpg">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="select" name="status" id="e_status">
+                                            @foreach ($status_user as $status)
+                                                <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
+                                <input type="hidden" class="form-control" id="image" name="images" value="photo_defaults.jpg">
                             </div>
-                            <br>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Update</button>
                             </div>
@@ -237,7 +223,7 @@
         </div>
         <!-- /Edit Salary Modal -->
 
-        <!-- Delete User Modal -->
+        {{-- <!-- Delete User Modal -->
         <div class="modal custom-modal fade" id="delete_user" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -267,7 +253,8 @@
                 </div>
             </div>
         </div>
-        <!-- /Delete User Modal -->
+        <!-- /Delete User Modal --> --}}
+
     </div>
     <!-- /Page Wrapper -->
 @section('script')
@@ -329,10 +316,6 @@
                         name: 'role_name',
                     },
                     {
-                        data: 'phone_number',
-                        name: 'phone_number',
-                    },
-                    {
                         data: 'status',
                         name: 'status',
                     },
@@ -356,7 +339,6 @@
             $('#e_name').val(_this.find('.name').text());
             $('#e_email').val(_this.find('.email').text());
             $('#e_role_name').val(_this.find('.role_name').text()).change();
-            $('#e_phone_number').val(_this.find('.phone_number').text());
             $('#e_status').val(_this.find('.status_s').text()).change();
         });
     </script>

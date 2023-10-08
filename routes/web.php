@@ -10,7 +10,6 @@ use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\EmployeeController;
@@ -198,6 +197,8 @@ Route::controller(JobController::class)->group(function () {
 Route::controller(EmployeeController::class)->group(function () {
     Route::get('daftar/pegawai/card', 'cardAllEmployee')->middleware('auth')->name('daftar/pegawai/card');
     Route::get('daftar/pegawai/list', 'listAllEmployee')->middleware('auth')->name('daftar/pegawai/list');
+    Route::get('daftar/pegawai/pensiun/card', 'cardPensiun')->middleware('auth')->name('daftar/pegawai/pensiun/card');
+    Route::get('daftar/pegawai/pensiun/list', 'listPensiun')->middleware('auth')->name('daftar/pegawai/pensiun/list');
     Route::post('daftar/pegawai/save', 'saveRecord')->middleware('auth')->name('daftar/pegawai/save');
     Route::get('daftar/pegawai/view/edit/{employee_id}', 'viewRecord');
     Route::post('daftar/pegawai/update', 'updateRecord')->middleware('auth')->name('daftar/pegawai/update');
@@ -359,10 +360,6 @@ Route::controller(PersonalInformationController::class)->group(function () {
 Route::controller(RekapitulasiController::class)->group(function () {
     Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
     Route::get('dashboard', 'indexDashboard')->middleware('auth')->name('dashboard');
-});
-
-Route::controller(DashboardController::class)->group(function () {
-    Route::get('dashboard', 'index')->middleware('auth')->name('dashboard');
 });
 
 // ----------------------- Informasi Riwayat Pendidikan --------------------------//

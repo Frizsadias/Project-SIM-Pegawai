@@ -14,7 +14,7 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Pegawai</h3>
+                        <h3 class="page-title">Pegawai Pensiun</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Pegawai</li>
@@ -23,8 +23,8 @@
                     <div class="col-auto float-right ml-auto">
                         {{-- <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i class="fa fa-plus"></i> Tambah Pegawai</a> --}}
                         <div class="view-icons">
-                            <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-                            <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                            <a href="{{ route('daftar/pegawai/pensiun/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+                            <a href="{{ route('daftar/pegawai/pensiun/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $dafpeg)
-                                @if ($dafpeg->role_name == 'User' && (empty($dafpeg->kedudukan_pns) || $dafpeg->kedudukan_pns == 'Aktif'))
+                                @if ($dafpeg->role_name == 'User' && $dafpeg->kedudukan_pns == 'Tidak Aktif')
                                 <tr>
                                     <td>{{ $dafpeg->nip }}</td>
                                     <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}" style="color:black;">{{ $dafpeg->name }}</a></td>

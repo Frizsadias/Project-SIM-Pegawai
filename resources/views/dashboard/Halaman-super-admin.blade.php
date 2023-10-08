@@ -39,7 +39,7 @@
                             <div class="card-body">
                                 <span class="dash-widget-icon"><i class="fa fa-user-plus"></i></span>
                                 <div class="dash-widget-info">
-                                    <h3>100</h3>
+                                    <h3>{{ $dataPegawai }}</h3>
                                     <span>Jumlah Pegawai</span>
                                 </div>
                             </div>

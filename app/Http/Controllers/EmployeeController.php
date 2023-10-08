@@ -20,42 +20,76 @@ use Session;
 
 class EmployeeController extends Controller
 {
-    /** all employee card view */
+    /** Daftar Pegawai Card */
     public function cardAllEmployee(Request $request)
     {
         $users = DB::table('users')
-            ->leftjoin('employees','users.user_id','employees.employee_id')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
+            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
                 'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
                 'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
                 'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
                 'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'employees.name','employees.email','users.name','users.email','posisi_jabatan.jabatan')
+                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
         return view('employees.allemployeecard', compact('users', 'userList', 'permission_lists'));
     }
 
-    /** all employee list */
+    /** Daftar Pegawai List */
     public function listAllEmployee()
     {
         $users = DB::table('users')
-            ->leftjoin('employees','users.user_id','employees.employee_id')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select('users.*','profil_pegawai.nip','profil_pegawai.nama','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
+            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
                 'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
                 'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
                 'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
                 'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'employees.name','employees.email','users.name','users.email','posisi_jabatan.jabatan')
+                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
         return view('employees.employeelist', compact('users', 'userList', 'permission_lists'));
+    }
+
+    /** Daftar Pegawai Pensiun Card */
+    public function cardPensiun(Request $request)
+    {
+        $users = DB::table('users')
+            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->get();
+        $userList = DB::table('users')->get();
+        $permission_lists = DB::table('permission_lists')->get();
+        return view('employees.datapensiuncard', compact('users', 'userList', 'permission_lists'));
+    }
+
+    /** Daftar Pegawai Pensiun List */
+    public function listPensiun()
+    {
+        $users = DB::table('users')
+            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->get();
+        $userList = DB::table('users')->get();
+        $permission_lists = DB::table('permission_lists')->get();
+        return view('employees.datapensiunlist', compact('users', 'userList', 'permission_lists'));
     }
 
     /** save data employee */
@@ -310,11 +344,11 @@ class EmployeeController extends Controller
             // ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
             ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
             ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
-            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pg.nip','pg.nama','pg.gelar_depan',
+            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pg.name','pg.email','pg.nip','pg.gelar_depan',
                 'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
                 'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
-                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pj.unit_organisasi',
-                'pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
+                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan',
+                'pj.unit_organisasi','pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
                 'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
             ->where('users.user_id', $user_id)->get();
             
@@ -326,11 +360,11 @@ class EmployeeController extends Controller
             // ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
             ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
             ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
-            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pg.nip','pg.nama','pg.gelar_depan',
+            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pg.name','pg.email','pg.nip','pg.gelar_depan',
                 'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
                 'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
-                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pj.unit_organisasi',
-                'pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
+                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan',
+                'pj.unit_organisasi','pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
                 'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
             ->where('users.user_id', $user_id)->first();
 

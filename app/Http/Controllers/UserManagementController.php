@@ -23,8 +23,6 @@ use Auth;
 use Hash;
 use DB;
 
-
-
 class UserManagementController extends Controller
 {
     /** index page */
@@ -93,7 +91,6 @@ class UserManagementController extends Controller
             $query->where('name', 'like', '%' . $searchValue . '%');
             $query->orWhere('user_id', 'like', '%' . $searchValue . '%');
             $query->orWhere('email', 'like', '%' . $searchValue . '%');
-            $query->orWhere('phone_number', 'like', '%' . $searchValue . '%');
             $query->orWhere('join_date', 'like', '%' . $searchValue . '%');
             $query->orWhere('role_name', 'like', '%' . $searchValue . '%');
             $query->orWhere('status', 'like', '%' . $searchValue . '%');
@@ -107,7 +104,6 @@ class UserManagementController extends Controller
                 $query->where('name', 'like', '%' . $searchValue . '%');
                 $query->orWhere('user_id', 'like', '%' . $searchValue . '%');
                 $query->orWhere('email', 'like', '%' . $searchValue . '%');
-                $query->orWhere('phone_number', 'like', '%' . $searchValue . '%');
                 $query->orWhere('join_date', 'like', '%' . $searchValue . '%');
                 $query->orWhere('role_name', 'like', '%' . $searchValue . '%');
                 $query->orWhere('status', 'like', '%' . $searchValue . '%');
@@ -179,8 +175,6 @@ class UserManagementController extends Controller
                 "user_id"      => '<span class="user_id">' . $record->user_id . '</span>',
                 "email"        => '<a href="mailto:' . $record->email . '"><i class="fa fa-envelope fa-2x" style="font-size: 1.6em; color: #f44336;"></i>
                 </a> || <span class="email">' . $record->email . '</span>',
-                "phone_number" => '<a href="https://api.whatsapp.com/send?phone=' . $record->phone_number . '" target="_blank">
-                <i class="fa fa-whatsapp fa-2x" style="color: #25D366;"></i>&nbsp;</a> || <span class="phone_number">' . $record->phone_number . '</span>',
                 "join_date"    => $record->join_date,
                 "role_name"    => $role_name,
                 "status"       => $status,
@@ -361,10 +355,8 @@ class UserManagementController extends Controller
         $request->validate([
             'name'      => 'required|string|max:255',
             'email'     => 'required|string|email|max:255|unique:users',
-            'phone'     => 'required|min:11|numeric',
             'role_name' => 'required|string|max:255',
             'status'    => 'required|string|max:255',
-            // 'image'     => 'required|image',
             'image'     => 'required|string|max:255',
             'password'  => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
@@ -374,14 +366,10 @@ class UserManagementController extends Controller
             $dt       = Carbon::now();
             $todayDate = $dt->toDayDateTimeString();
 
-            // $image = time() . '.' . $request->image->extension();
-            // $request->image->move(public_path('assets/images'), $image);
-
             $user = new User;
             $user->name         = $request->name;
             $user->email        = $request->email;
             $user->join_date    = $todayDate;
-            $user->phone_number = $request->phone;
             $user->role_name    = $request->role_name;
             $user->status       = $request->status;
             $user->avatar       = $request->image;
@@ -406,29 +394,11 @@ class UserManagementController extends Controller
             $name         = $request->name;
             $email        = $request->email;
             $role_name    = $request->role_name;
-            $phone        = $request->phone;
             $status       = $request->status;
             $avatar       = $request->images;
 
             $dt       = Carbon::now();
             $todayDate = $dt->toDayDateTimeString();
-
-            // $image_name = $request->hidden_image;
-            // $image = $request->file('images');
-            // if ($image_name == 'photo_defaults.jpg') {
-            //     if (empty($image)) {
-            //         $image_name = $image_name;
-            //     } else {
-            //         $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            //         $image->move(public_path('/assets/images/'), $image_name);
-            //     }
-            // } else {
-            //     if (!empty($image)) {
-            //         unlink('assets/images/' . $image_name);
-            //         $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            //         $image->move(public_path('/assets/images/'), $image_name);
-            //     }
-            // }
 
             $update = [
 
@@ -436,7 +406,6 @@ class UserManagementController extends Controller
                 'name'         => $name,
                 'role_name'    => $role_name,
                 'email'        => $email,
-                'phone_number' => $phone,
                 'status'       => $status,
                 'avatar'       => $avatar,
             ];
@@ -444,7 +413,6 @@ class UserManagementController extends Controller
             $activityLog = [
                 'user_name'    => $name,
                 'email'        => $email,
-                'phone_number' => $phone,
                 'status'       => $status,
                 'role_name'    => $role_name,
                 'modify_user'  => 'Perbaharui Data',
@@ -475,7 +443,6 @@ class UserManagementController extends Controller
             $activityLog = [
                 'user_name'    => Session::get('name'),
                 'email'        => Session::get('email'),
-                'phone_number' => Session::get('phone_number'),
                 'status'       => Session::get('status'),
                 'role_name'    => Session::get('role_name'),
                 'modify_user'  => 'Hapus Data',
@@ -523,7 +490,7 @@ class UserManagementController extends Controller
 
         User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
         DB::commit();
-        Toastr::success('Berhasil update user :)', 'Success');
+        Toastr::success('Kata sandi berhasil diperbaharui :)', 'Success');
         return redirect()->intended('home');
     }
 
@@ -532,7 +499,6 @@ class UserManagementController extends Controller
     {
         $request->validate([
             'nip'                   => 'required|string|max:255',
-            'nama'                  => 'required|string|max:255',
             'gelar_depan'           => 'required|string|max:255',
             'gelar_belakang'        => 'required|string|max:255',
             'tempat_lahir'          => 'required|string|max:255',
@@ -556,6 +522,7 @@ class UserManagementController extends Controller
             'tmt_cpns'              => 'required|string|max:255',
             'tingkat_pendidikan'    => 'required|string|max:255',
             'pendidikan_terakhir'   => 'required|string|max:255',
+            'ruangan'               => 'required|string|max:255',
         ]);
 
         DB::beginTransaction();
@@ -567,7 +534,6 @@ class UserManagementController extends Controller
          $addProfilPegawai = new ProfilPegawai();
          $addProfilPegawai->user_id                 = $request->user_id;
          $addProfilPegawai->nip                     = $request->nip;
-         $addProfilPegawai->nama                    = $request->nama;
          $addProfilPegawai->gelar_depan             = $request->gelar_depan;
          $addProfilPegawai->gelar_belakang          = $request->gelar_belakang;
          $addProfilPegawai->tempat_lahir            = $request->tempat_lahir;
@@ -591,6 +557,7 @@ class UserManagementController extends Controller
          $addProfilPegawai->tmt_cpns                = $request->tmt_cpns;
          $addProfilPegawai->tingkat_pendidikan      = $request->tingkat_pendidikan;
          $addProfilPegawai->pendidikan_terakhir     = $request->pendidikan_terakhir;
+         $addProfilPegawai->ruangan                 = $request->ruangan;
          $addProfilPegawai->save();
 
          DB::commit();
@@ -614,7 +581,6 @@ class UserManagementController extends Controller
     {
         $request->validate([
             'nip'                   => 'required|string|max:255',
-            'nama'                  => 'required|string|max:255',
             'gelar_depan'           => 'required|string|max:255',
             'gelar_belakang'        => 'required|string|max:255',
             'tempat_lahir'          => 'required|string|max:255',
@@ -638,6 +604,7 @@ class UserManagementController extends Controller
             'tmt_cpns'              => 'required|string|max:255',
             'tingkat_pendidikan'    => 'required|string|max:255',
             'pendidikan_terakhir'   => 'required|string|max:255',
+            'ruangan'               => 'required|string|max:255',
         ]);
 
         DB::beginTransaction();
@@ -645,7 +612,6 @@ class UserManagementController extends Controller
          
             $editProfilPegawai = [
             'nip'                   => $request->nip,
-            'nama'                  => $request->nama,
             'gelar_depan'           => $request->gelar_depan,
             'gelar_belakang'        => $request->gelar_belakang,
             'tempat_lahir'          => $request->tempat_lahir,
@@ -669,6 +635,7 @@ class UserManagementController extends Controller
             'tmt_cpns'              => $request->tmt_cpns,
             'tingkat_pendidikan'    => $request->tingkat_pendidikan,
             'pendidikan_terakhir'   => $request->pendidikan_terakhir,
+            'ruangan'               => $request->ruangan,
             ];
 
          DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($editProfilPegawai);

@@ -18,8 +18,8 @@
                     <form method="POST" action="{{ route('change/password/db') }}">
                         @csrf
                         <div class="form-group">
-                            <label>Password Lama</label>
-                            <input type="password" class="form-control @error('current_password') is-invalid @enderror " name="current_password" value="{{ old('current_password') }}" placeholder="Masukkan password lama">
+                            <label>Kata Sandi Lama</label>
+                            <input type="password" class="form-control @error('current_password') is-invalid @enderror " name="current_password" value="{{ old('current_password') }}" placeholder="Masukkan kata sandi lama">
                             @error('current_password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -27,8 +27,8 @@
                              @enderror
                         </div>
                         <div class="form-group">
-                            <label>Password Baru</label>
-                            <input type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" placeholder="Masukkan password baru">
+                            <label>Kata Sandi Baru</label>
+                            <input type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" placeholder="Masukkan kata sandi baru">
                             @error('new_password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -36,8 +36,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Konfirmasi Password</label>
-                            <input type="password" class="form-control @error('new_confirm_password') is-invalid @enderror" name="new_confirm_password" placeholder="Konfirmasi password baru">
+                            <label>Konfirmasi Kata Sandi</label>
+                            <input type="password" class="form-control @error('new_confirm_password') is-invalid @enderror" name="new_confirm_password" placeholder="Konfirmasi kata sandi baru">
                             @error('new_confirm_password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

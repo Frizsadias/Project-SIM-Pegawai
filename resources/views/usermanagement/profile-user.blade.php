@@ -755,13 +755,9 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Jenis Kelamin</label>
-                                                    <select class="select form-control" id="jk" name="jk">
-                                                        <option value="{{ $information->jk }}"
-                                                            {{ $information->jk == $information->jk ? 'selected' : '' }}>
-                                                            {{ $information->jk }} </option>
-                                                        <option selected disabled> --Pilih Jenis Kelamin --</option>
-                                                        <option value="Laki-Laki">Laki-Laki</option>
-                                                        <option value="Perempuan">Perempuan</option>
+                                                    <select class="select" id="jk" name="jk">
+                                                        <option value="Laki-Laki" {{ $information->jk === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+                                                        <option value="Perempuan" {{ $information->jk === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                     </select>
                                                 </div>
                                             </div>

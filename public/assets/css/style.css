@@ -8501,3 +8501,16 @@ ul.comment-list li ul.children {
 	justify-content: center;
 	font-size: 11px;
 }
+.perusahaan {
+ font-family: 'Poppins';
+}
+.alamat {
+	font-family: 'Poppins';
+	font-size: 18px;
+	font-weight: 550
+}
+.nomorhp {
+	font-family: 'Poppins';
+	font-size: 16px; 
+	font-weight: 550
+}

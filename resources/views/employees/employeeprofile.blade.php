@@ -120,8 +120,8 @@
                                         <ul class="personal-info">
                                             <li>
                                                 <div class="title">Nama</div>
-                                                @if (!empty($users->nama))
-                                                    <div class="text">{{ $users->nama }}</div>
+                                                @if (!empty($users->name))
+                                                    <div class="text">{{ $users->name }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -322,6 +322,14 @@
                                                 <div class="title">Pendidikan Terakhir</div>
                                                 @if (!empty($users->pendidikan_terakhir))
                                                     <div class="text">{{ $users->pendidikan_terakhir }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Ruangan</div>
+                                                @if (!empty($users->ruangan))
+                                                    <div class="text">{{ $users->ruangan }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -565,7 +573,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -906,7 +914,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                        <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1228,7 +1236,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                        <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1540,7 +1548,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1815,14 +1823,10 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Jenis Kelamin</label>
-                                                    <select class="select form-control" id="jk" name="jk">
+                                                    <select class="select" id="jk" name="jk">
                                                         @if (!empty($users))
-                                                            <option value="{{ $users->jk }}"
-                                                                {{ $users->jk == $users->jk ? 'selected' : '' }}>
-                                                                {{ $users->jk }} </option>
-                                                            <option selected disabled> --Pilih Jenis Kelamin --</option>
-                                                            <option value="Laki-Laki">Laki-Laki</option>
-                                                            <option value="Perempuan">Perempuan</option>
+                                                            <option value="Laki-Laki" {{ $users->jk === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+                                                            <option value="Perempuan" {{ $users->jk === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                         @else
                                                             <option value="Laki-Laki">Laki-Laki</option>
                                                             <option value="Perempuan">Perempuan</option>
@@ -2035,12 +2039,12 @@
                                     @csrf
                                     <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}" readonly>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nama <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $users->nama }}">
+                                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="nama" value="{{ $users->nama }}">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>NIP <span class="text-danger">*</span></label>
@@ -2074,7 +2078,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
+                                                <select class="select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
                                                     <option value="Laki-Laki" {{ $users->jenis_kelamin === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
                                                     <option value="Perempuan" {{ $users->jenis_kelamin === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                 </select>
@@ -2198,6 +2202,12 @@
                                             <div class="form-group">
                                                 <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $users->pendidikan_terakhir }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Ruangan </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('ruangan') is-invalid @enderror" name="ruangan" value="{{ $users->ruangan }}">
                                             </div>
                                         </div>
                                     </div>

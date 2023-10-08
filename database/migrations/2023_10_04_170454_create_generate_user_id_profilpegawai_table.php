@@ -16,7 +16,7 @@ class CreateGenerateUserIdProfilPegawaiTable extends Migration
         DB::unprepared('
             CREATE TRIGGER update_profilpegawai AFTER UPDATE ON profil_pegawai FOR EACH ROW
             BEGIN
-                UPDATE profil_pegawais SET nip=NEW.nip,nama=NEW.nama,gelar_depan=NEW.gelar_depan,
+                UPDATE profil_pegawais SET nip=NEW.nip,name=NEW.name,email=NEW.email,gelar_depan=NEW.gelar_depan,
                 gelar_belakang=NEW.gelar_belakang,tempat_lahir=NEW.tempat_lahir,
                 tanggal_lahir=NEW.tanggal_lahir,jenis_kelamin=NEW.jenis_kelamin,
                 agama=NEW.agama,jenis_dokumen=NEW.jenis_dokumen,no_dokumen=NEW.no_dokumen,

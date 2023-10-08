@@ -89,13 +89,12 @@
                             <span>Daftar Pegawai</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('daftar/pegawai/pensiun/list','daftar/pegawai/pensiun/card') || request()->routeIs('daftar/pegawai/pensiun/card') ? 'active' : '' }}">
+                        <a href="{{ route('daftar/pegawai/pensiun/list', 'daftar/pegawai/pensiun/card') }}" class="{{ request()->routeIs('daftar/pegawai/pensiun/list', 'daftar/pegawai/pensiun/card') || request()->routeIs('daftar/pegawai/pensiun/card') ? 'noti-dot' : '' }}">
                             <i class="la la-level-down"></i>
-                            <span>Daftar Pegawai Pensiun</span>
+                            <span>Pegawai Pensiun</span>
                         </a>
                     </li>
-
                     <li class="menu-title"> <span>Layanan Kepegawaian </span> </li>
                     <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
