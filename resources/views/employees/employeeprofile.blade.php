@@ -203,7 +203,7 @@
                                                 @if (!empty($users->no_dokumen))
                                                     <div class="text">{{ $users->no_dokumen }}</div>
                                                 @else
-                                                    <div class="text">N/An</div>
+                                                    <div class="text">N/A</div>
                                                 @endif
                                             </li>
                                             <li>
@@ -2231,7 +2231,12 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $users->tingkat_pendidikan }}">
+                                                <select class="select @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan">
+                                                    <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
+                                                    @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
+                                                        <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -2243,7 +2248,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Ruangan </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('ruangan') is-invalid @enderror" name="ruangan" value="{{ $users->ruangan }}">
+                                                <select class="select @error('ruangan') is-invalid @enderror" name="ruangan">
+                                                    <option value="" disabled selected>--- Pilih ruangan ---</option>
+                                                    @foreach($ruanganOptions as $id => $namaRuangan)
+                                                        <option value="{{ $id }}" {{ $id == $users->ruangan ? 'selected' : '' }}>{{ $namaRuangan }}</option>
+                                                    @endforeach
+                                                </select>
+                                                {{-- <input type="text" class="form-control @error('ruangan') is-invalid @enderror" name="ruangan" value="{{ $users->ruangan }}"> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -2491,11 +2502,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Jenis Jabatan <span class="text-danger">*</span></label>
-                                                            @if (!empty($users->jenis_jabatan))
-                                                            <input type="text" class="form-control" name="jenis_jabatan" value="{{ $users->jenis_jabatan }}">
-                                                            @else
-                                                            <input type="text" class="form-control" name="jenis_jabatan">
-                                                            @endif
+                                                            <select class="form-control" name="jenis_jabatan">
+                                                                <option value="" disabled selected>--- Pilih jenis jabatan ---</option>
+                                                                @foreach ($jenisjabatanOptions as $optionValue => $optionLabel)
+                                                                    <option value="{{ $optionValue }}" @if ($optionValue == $users->jenis_jabatan) selected @endif>
+                                                                        {{ $optionLabel }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -2522,9 +2536,9 @@
                                                         <div class="form-group">
                                                             <label>TMT</label>
                                                             @if (!empty($users->tmt))
-                                                            <input type="text" class="form-control" name="tmt" value="{{ $users->tmt }}">
+                                                            <input type="date" class="form-control" name="tmt" value="{{ $users->tmt }}">
                                                             @else
-                                                            <input type="text" class="form-control" name="tmt">
+                                                            <input type="date" class="form-control" name="tmt">
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2541,30 +2555,36 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Golongan Ruang Awal</label>
-                                                            @if (!empty($users->gol_ruang_awal))
-                                                            <input type="text" class="form-control" name="gol_ruang_awal" value="{{ $users->gol_ruang_awal }}">
-                                                            @else
-                                                            <input type="text" class="form-control" name="gol_ruang_awal">
-                                                            @endif
+                                                            <select class="form-control" name="gol_ruang_awal">
+                                                                <option value="" disabled selected>--- Pilih golongan ruang awal ---</option>
+                                                                @foreach ($golonganOptions as $optionValue => $optionLabel)
+                                                                    <option value="{{ $optionValue }}" @if ($optionValue == $users->gol_ruang_awal) selected @endif>
+                                                                        {{ $optionLabel }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Golongan Ruang Akhir</label>
-                                                            @if (!empty($users->gol_ruang_akhir))
-                                                            <input type="text" class="form-control" name="gol_ruang_akhir" value="{{ $users->gol_ruang_akhir }}">
-                                                            @else
-                                                            <input type="text" class="form-control" name="gol_ruang_akhir">
-                                                            @endif
+                                                            <select class="form-control" name="gol_ruang_akhir">
+                                                                <option value="" disabled selected>--- Pilih golongan ruang akhir ---</option>
+                                                                @foreach ($golonganOptions as $optionValue => $optionLabel)
+                                                                    <option value="{{ $optionValue }}" @if ($optionValue == $users->gol_ruang_akhir) selected @endif>
+                                                                        {{ $optionLabel }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>TMT Golongan</label>
                                                             @if (!empty($users->tmt_golongan))
-                                                            <input type="text" class="form-control" name="tmt_golongan" value="{{ $users->tmt_golongan }}">
+                                                            <input type="date" class="form-control" name="tmt_golongan" value="{{ $users->tmt_golongan }}">
                                                             @else
-                                                            <input type="text" class="form-control" name="tmt_golongan">
+                                                            <input type="date" class="form-control" name="tmt_golongan">
                                                             @endif
                                                         </div>
                                                     </div>

@@ -412,9 +412,17 @@ class EmployeeController extends Controller
 
             $jenispegawaiOptions = DB::table('jenis_pegawai_id')->pluck('jenis_pegawai', 'jenis_pegawai');
 
+            $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        
+            $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+
+            $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
+        
+            $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
+
         return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans',
         'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'statusOptions', 'provinsiOptions', 'kedudukanOptions',
-        'jenispegawaiOptions'));
+        'jenispegawaiOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions'));
     }
 
     /** page agama */
