@@ -48,8 +48,8 @@
                             <span>Status</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('kedudukan') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('kedudukan') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('referensi-kedudukan') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-kedudukan') }}" class="{{ request()->routeIs('referensi-kedudukan') ? 'noti-dot' : '' }}">
                             <i class="la la-trello"></i>
                             <span>Kedudukan</span>
                         </a>

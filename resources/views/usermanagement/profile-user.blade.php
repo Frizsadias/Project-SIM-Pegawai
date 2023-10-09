@@ -1034,16 +1034,16 @@
                                         @csrf
                                         <input type="hidden" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}" readonly>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            {{-- <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Nama <span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $result_profilpegawai->nama }}">
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>NIP <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_profilpegawai->nip }}">
+                                                        <input type="number" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_profilpegawai->nip }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1067,25 +1067,40 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_profilpegawai->tanggal_lahir }}">
+                                                        <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_profilpegawai->tanggal_lahir }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $result_profilpegawai->jenis_kelamin }}">
+                                                    <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
+                                                        <option value="" disabled selected>--- Pilih jenis kelamin ---</option>
+                                                        <option value="Laki-Laki" @if ($result_profilpegawai->jenis_kelamin === 'Laki-Laki') selected @endif>Laki-Laki</option>
+                                                        <option value="Perempuan" @if ($result_profilpegawai->jenis_kelamin === 'Perempuan') selected @endif>Perempuan</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Agama</label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $result_profilpegawai->agama }}">
+                                                    <label>Agama <span class="text-danger">*</span></label>
+                                                    <select class="form-control @error('agama') is-invalid @enderror" name="agama">
+                                                        <option value="" disabled selected>--- Pilih agama ---</option>
+                                                        @foreach ($agamaOptions as $optionValue => $optionLabel)
+                                                            <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->agama) selected @endif>
+                                                                {{ $optionLabel }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group"> <span class="text-danger">*</span></label>
-                                                    <label>Jenis Dokumen </label>
-                                                    <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $result_profilpegawai->jenis_dokumen }}">
+                                                <div class="form-group">
+                                                    <label>Jenis Dokumen <span class="text-danger">*</span></label>
+                                                    <select class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen">
+                                                        <option value="" disabled selected>--- Pilih jenis dokumen ---</option>
+                                                        <option value="Passport" @if ($result_profilpegawai->jenis_dokumen === 'Passport') selected @endif>Passport</option>
+                                                        <option value="KTP" @if ($result_profilpegawai->jenis_dokumen === 'KTP') selected @endif>KTP</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1114,8 +1129,15 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Provinsi </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_profilpegawai->provinsi }}">
+                                                    <label>Provinsi <span class="text-danger">*</span></label>
+                                                    <select class="form-control @error('provinsi') is-invalid @enderror" name="provinsi">
+                                                        <option value="" disabled selected>--- Pilih provinsi ---</option>
+                                                        @foreach ($provinsiOptions as $optionValue => $optionLabel)
+                                                            <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->provinsi) selected @endif>
+                                                                {{ $optionLabel }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1136,47 +1158,71 @@
                                                     <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_profilpegawai->no_telp }}">
                                                 </div>
                                             </div>
-
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $result_profilpegawai->jenis_pegawai }}">
+                                                    <label>Jenis Pegawai <span class="text-danger">*</span></label>
+                                                    <select class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
+                                                        <option value="" disabled selected>--- Pilih jenis pegawai ---</option>
+                                                        @foreach ($jenispegawaiOptions as $optionValue => $optionLabel)
+                                                            <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->jenis_pegawai) selected @endif>
+                                                                {{ $optionLabel }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $result_profilpegawai->kedudukan_pns }}">
+                                                    <label>Kedudukan PNS <span class="text-danger">*</span></label>
+                                                    <select class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns">
+                                                        <option value="" disabled selected>--- Pilih kedudukan ---</option>
+                                                        @foreach ($kedudukanOptions as $optionValue => $optionLabel)
+                                                            <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->kedudukan_pns) selected @endif>
+                                                                {{ $optionLabel }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $result_profilpegawai->status_pegawai }}">
+                                                    <label>Status Pegawai <span class="text-danger">*</span></label>
+                                                    <select class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
+                                                        <option value="" disabled selected>--- Pilih status pegawai ---</option>
+                                                        <option value="Aktif" @if ($result_profilpegawai->status_pegawai === 'Aktif') selected @endif>Aktif</option>
+                                                        <option value="Tidak Aktif" @if ($result_profilpegawai->status_pegawai === 'Tidak Aktif') selected @endif>Tidak Aktif</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>TMT PNS </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_profilpegawai->tmt_pns }}">
+                                                    <input type="date" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_profilpegawai->tmt_pns }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
+                                                    <label>Nomor Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
                                                     <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $result_profilpegawai->no_seri_karpeg }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>TMT CPNS </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_profilpegawai->tmt_cpns }}">
+                                                    <input type="date" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_profilpegawai->tmt_cpns }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $result_profilpegawai->tingkat_pendidikan }}">
+                                                    <label>Tingkat Pendidikan <span class="text-danger">*</span></label>
+                                                    <select class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan">
+                                                        <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
+                                                        @foreach ($tingkatpendidikanOptions as $optionValue => $optionLabel)
+                                                            <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->tingkat_pendidikan) selected @endif>
+                                                                {{ $optionLabel }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1185,6 +1231,19 @@
                                                     <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_profilpegawai->pendidikan_terakhir }}">
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Ruangan <span class="text-danger">*</span></label>
+                                                <select class="form-control @error('ruangan') is-invalid @enderror" name="ruangan">
+                                                    <option value="" disabled selected>--- Pilih ruangan ---</option>
+                                                    @foreach ($ruanganOptions as $optionValue => $optionLabel)
+                                                        <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->ruangan) selected @endif>
+                                                            {{ $optionLabel }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                         </div>
                                         <div class="submit-section">
                                             <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
@@ -1430,11 +1489,14 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Jenis Jabatan <span class="text-danger">*</span></label>
-                                                                @if (!empty($result_posisijabatan->jenis_jabatan))
-                                                                <input type="text" class="form-control" name="jenis_jabatan" value="{{ $result_posisijabatan->jenis_jabatan }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="jenis_jabatan">
-                                                                @endif
+                                                                <select class="form-control @error('jenis_jabatan') is-invalid @enderror" name="jenis_jabatan">
+                                                                    <option value="" disabled selected>--- Pilih jenis jabatan ---</option>
+                                                                    @foreach ($jenisjabatanOptions as $optionValue => $optionLabel)
+                                                                        <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->jenis_jabatan) selected @endif>
+                                                                            {{ $optionLabel }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -1461,9 +1523,9 @@
                                                             <div class="form-group">
                                                                 <label>TMT</label>
                                                                 @if (!empty($result_posisijabatan->tmt))
-                                                                <input type="text" class="form-control" name="tmt" value="{{ $result_posisijabatan->tmt }}">
+                                                                <input type="date" class="form-control" name="tmt" value="{{ $result_posisijabatan->tmt }}">
                                                                 @else
-                                                                <input type="text" class="form-control" name="tmt">
+                                                                <input type="date" class="form-control" name="tmt">
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -1480,30 +1542,36 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Golongan Ruang Awal</label>
-                                                                @if (!empty($result_posisijabatan->gol_ruang_awal))
-                                                                <input type="text" class="form-control" name="gol_ruang_awal" value="{{ $result_posisijabatan->gol_ruang_awal }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="gol_ruang_awal">
-                                                                @endif
+                                                                <select class="form-control @error('gol_ruang_awal') is-invalid @enderror" name="gol_ruang_awal">
+                                                                    <option value="" disabled selected>--- Pilih golongan ruang awal ---</option>
+                                                                    @foreach ($golonganOptions as $optionValue => $optionLabel)
+                                                                        <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->gol_ruang_awal) selected @endif>
+                                                                            {{ $optionLabel }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Golongan Ruang Akhir</label>
-                                                                @if (!empty($result_posisijabatan->gol_ruang_akhir))
-                                                                <input type="text" class="form-control" name="gol_ruang_akhir" value="{{ $result_posisijabatan->gol_ruang_akhir }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="gol_ruang_akhir">
-                                                                @endif
+                                                                <select class="form-control @error('gol_ruang_akhir') is-invalid @enderror" name="gol_ruang_akhir">
+                                                                    <option value="" disabled selected>--- Pilih golongan ruang akhir ---</option>
+                                                                    @foreach ($golonganOptions as $optionValue => $optionLabel)
+                                                                        <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->gol_ruang_akhir) selected @endif>
+                                                                            {{ $optionLabel }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>TMT Golongan</label>
                                                                 @if (!empty($result_posisijabatan->tmt_golongan))
-                                                                <input type="text" class="form-control" name="tmt_golongan" value="{{ $result_posisijabatan->tmt_golongan }}">
+                                                                <input type="date" class="form-control" name="tmt_golongan" value="{{ $result_posisijabatan->tmt_golongan }}">
                                                                 @else
-                                                                <input type="text" class="form-control" name="tmt_golongan">
+                                                                <input type="date" class="form-control" name="tmt_golongan">
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -1511,9 +1579,9 @@
                                                             <div class="form-group">
                                                                 <label>Gaji Pokok</label>
                                                                 @if (!empty($result_posisijabatan->gaji_pokok))
-                                                                <input type="text" class="form-control" name="gaji_pokok" value="{{ $result_posisijabatan->gaji_pokok }}">
+                                                                <input type="number" class="form-control" name="gaji_pokok" value="{{ $result_posisijabatan->gaji_pokok }}">
                                                                 @else
-                                                                <input type="text" class="form-control" name="gaji_pokok">
+                                                                <input type="number" class="form-control" name="gaji_pokok">
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -1521,9 +1589,9 @@
                                                             <div class="form-group">
                                                                 <label>Masa Kerja (Tahun)</label>
                                                                 @if (!empty($result_posisijabatan->masa_kerja_tahun))
-                                                                <input type="text" class="form-control" name="masa_kerja_tahun" value="{{ $result_posisijabatan->masa_kerja_tahun }}">
+                                                                <input type="number" class="form-control" name="masa_kerja_tahun" value="{{ $result_posisijabatan->masa_kerja_tahun }}">
                                                                 @else
-                                                                <input type="text" class="form-control" name="masa_kerja_tahun">
+                                                                <input type="number" class="form-control" name="masa_kerja_tahun">
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -1531,9 +1599,9 @@
                                                             <div class="form-group">
                                                                 <label>Masa Kerja (Bulan)</label>
                                                                 @if (!empty($result_posisijabatan->masa_kerja_bulan))
-                                                                <input type="text" class="form-control" name="masa_kerja_bulan" value="{{ $result_posisijabatan->masa_kerja_bulan }}">
+                                                                <input type="number" class="form-control" name="masa_kerja_bulan" value="{{ $result_posisijabatan->masa_kerja_bulan }}">
                                                                 @else
-                                                                <input type="text" class="form-control" name="masa_kerja_bulan">
+                                                                <input type="number" class="form-control" name="masa_kerja_bulan">
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -1541,9 +1609,9 @@
                                                             <div class="form-group">
                                                                 <label>Nomor SPMT</label>
                                                                 @if (!empty($result_posisijabatan->no_spmt))
-                                                                <input type="text" class="form-control" name="no_spmt" value="{{ $result_posisijabatan->no_spmt }}">
+                                                                <input type="number" class="form-control" name="no_spmt" value="{{ $result_posisijabatan->no_spmt }}">
                                                                 @else
-                                                                <input type="text" class="form-control" name="no_spmt">
+                                                                <input type="number" class="form-control" name="no_spmt">
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -1551,9 +1619,9 @@
                                                             <div class="form-group">
                                                                 <label>Tanggal SPMT</label>
                                                                 @if (!empty($result_posisijabatan->tanggal_spmt))
-                                                                <input type="text" class="form-control" name="tanggal_spmt" value="{{ $result_posisijabatan->tanggal_spmt }}">
+                                                                <input type="date" class="form-control" name="tanggal_spmt" value="{{ $result_posisijabatan->tanggal_spmt }}">
                                                                 @else
-                                                                <input type="text" class="form-control" name="tanggal_spmt">
+                                                                <input type="date" class="form-control" name="tanggal_spmt">
                                                                 @endif
                                                             </div>
                                                         </div>

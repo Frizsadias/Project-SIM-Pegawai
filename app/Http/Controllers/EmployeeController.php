@@ -19,6 +19,7 @@ use App\Models\status;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
+use App\Models\kedudukan;
 use App\Models\Village;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -595,6 +596,93 @@ class EmployeeController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data status gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** page kedudukan */
+    public function indexKedudukan()
+    {
+        $kedudukan = DB::table('kedudukan_hukum_id')->get();
+        return view('employees.kedudukan', compact('kedudukan'));
+    }
+
+    /** search for kedudukan */
+    public function searchKedudukan(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $kedudukan = DB::table('kedudukan_hukum_id')
+        ->where('kedudukan', 'like', '%' . $keyword . '%')
+            ->get();
+
+        return view('employees.kedudukan', compact('kedudukan'));
+    }
+
+    /** save record kedudukan */
+    public function saveRecordKedudukan(Request $request)
+    {
+        $request->validate([
+            'kedudukan' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $kedudukan = kedudukan::where('kedudukan', $request->kedudukan)->first();
+            if ($kedudukan === null) {
+                $kedudukan = new kedudukan;
+                $kedudukan->kedudukan = $request->kedudukan;
+                $kedudukan->save();
+
+                DB::commit();
+                Toastr::success('Data kedudukan telah ditambah :)', 'Sukses');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data kedudukan telah tersedia :(', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data kedudukan gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** update record kedudukan */
+    public function updateRecordKedudukan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $kedudukan = [
+                'id'    => $request->id,
+                'kedudukan' => $request->kedudukan,
+            ];
+            kedudukan::where('id', $request->id)->update($kedudukan);
+
+            DB::commit();
+            Toastr::success('Data kedudukan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data kedudukan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** delete record kedudukan */
+    public function deleteRecordKedudukan(Request $request)
+    {
+        try {
+
+            kedudukan::destroy($request->id);
+            Toastr::success('Data kedudukan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data kedudukan gagal dihapus :)', 'Error');
             return redirect()->back();
         }
     }

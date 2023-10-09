@@ -223,6 +223,12 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/status/delete', 'deleteRecordStatus')->middleware('auth')->name('form/status/delete');
     Route::get('form/status/search', 'searchStatus')->middleware('auth')->name('form/status/search');
 
+    Route::get('referensi/kedudukan', 'indexKedudukan')->middleware('auth')->name('referensi-kedudukan');
+    Route::post('form/kedudukan/save', 'saveRecordKedudukan')->middleware('auth')->name('form/kedudukan/save');
+    Route::post('form/kedudukan/update', 'updateRecordKedudukan')->middleware('auth')->name('form/kedudukan/update');
+    Route::post('form/kedudukan/delete', 'deleteRecordKedudukan')->middleware('auth')->name('form/kedudukan/delete');
+    Route::get('form/kedudukan/search', 'searchKedudukan')->middleware('auth')->name('form/kedudukan/search');
+
     Route::get('referensi/pendidikan', 'indexPendidikan')->middleware('auth')->name('referensi-pendidikan');
     Route::post('form/pendidikan/save', 'saveRecordPendidikan')->middleware('auth')->name('form/pendidikan/save');
     Route::post('form/pendidikan/update', 'updateRecordPendidikan')->middleware('auth')->name('form/pendidikan/update');

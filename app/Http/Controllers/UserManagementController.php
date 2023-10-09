@@ -285,20 +285,36 @@ class UserManagementController extends Controller
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
         $datadiklat = Session::get('user_id');
         $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
+
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+
+        $provinsiOptions = DB::table('provinsi_id')->pluck('ref_provinsi', 'ref_provinsi');
+
+        $jenispegawaiOptions = DB::table('jenis_pegawai_id')->pluck('jenis_pegawai', 'jenis_pegawai');
+
+        $kedudukanOptions = DB::table('kedudukan_hukum_id')->pluck('kedudukan', 'kedudukan');
+
+        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+        
+        $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
+
+        $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
         
         if(empty($employees))
         {
             $information = DB::table('profile_information')->where('user_id',$profile)->first();
-            return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser'));
+            return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'provinsiOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions'));
         } else {
             $user_id = $employees->user_id;
             if($user_id == $profile)
             {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser'));
+                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'provinsiOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser'));
+                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'provinsiOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions'));
             }
         }
     }
