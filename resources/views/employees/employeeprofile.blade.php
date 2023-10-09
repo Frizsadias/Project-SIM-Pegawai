@@ -2140,19 +2140,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Provinsi </label> <span class="text-danger">*</span></label>
-                                                {{-- <select class="select @error('provinsi') is-invalid @enderror" name="provinsi">
-                                                    <option value="" disabled selected>--- Pilih provinsi ---</option>
-                                                    @foreach($provinces as $id => $namaProvinsi)
-                                                        <option value="{{ $id }}" {{ $id == $users->provinsi ? 'selected' : '' }}>{{ $namaProvinsi }}</option>
-                                                    @endforeach
-                                                </select> --}}
-                                                <select class="select @error('provinsi') is-invalid @enderror" name="provinsi">
-                                                    <option value="" disabled selected>--- Pilih provinsi ---</option>
-                                                    @foreach($provinsiOptions as $id => $namaProvinsi)
-                                                        <option value="{{ $id }}" {{ $id == $users->provinsi ? 'selected' : '' }}>{{ $namaProvinsi }}</option>
-                                                    @endforeach
-                                                </select>
-                                                {{-- <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}"> --}}
+                                                <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

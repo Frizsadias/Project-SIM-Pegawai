@@ -15,14 +15,8 @@ use App\Models\RiwayatDiklat;
 use App\Models\RiwayatGolongan;
 use App\Models\RiwayatJabatan;
 use App\Models\RiwayatPendidikan;
-use App\Models\status;
-use App\Models\Province;
-use App\Models\Regency;
-use App\Models\District;
 use App\Models\kedudukan;
-use App\Models\Village;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Session;
 
 class EmployeeController extends Controller
@@ -405,11 +399,7 @@ class EmployeeController extends Controller
 
             $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
-            $statusOptions = DB::table('status_id')->pluck('ref_status', 'ref_status');
-
             $kedudukanOptions = DB::table('kedudukan_hukum_id')->pluck('kedudukan', 'kedudukan');
-
-            $provinsiOptions = DB::table('provinsi_id')->pluck('ref_provinsi', 'ref_provinsi');
 
             $jenispegawaiOptions = DB::table('jenis_pegawai_id')->pluck('jenis_pegawai', 'jenis_pegawai');
 
@@ -422,7 +412,7 @@ class EmployeeController extends Controller
             $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
         return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans',
-        'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'statusOptions', 'provinsiOptions', 'kedudukanOptions',
+        'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'kedudukanOptions',
         'jenispegawaiOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions'));
     }
 
@@ -513,92 +503,7 @@ class EmployeeController extends Controller
         }
     }
 
-    /** page status */
-    public function indexStatus()
-    {
-        $ref_status = DB::table('status_id')->get();
-        return view('employees.status', compact('ref_status'));
-    }
-
-    /** search for status */
-    public function searchStatus(Request $request)
-    {
-        $keyword = $request->input('keyword');
-
-        $ref_status = DB::table('status_id')
-        ->where('ref_status', 'like', '%' . $keyword . '%')
-            ->get();
-
-        return view('employees.status', compact('ref_status'));
-    }
-
-    /** save record status */
-    public function saveRecordStatus(Request $request)
-    {
-        $request->validate([
-            'ref_status' => 'required|string|max:255',
-        ]);
-
-        DB::beginTransaction();
-        try {
-
-            $ref_status = status::where('ref_status', $request->ref_status)->first();
-            if ($ref_status === null) {
-                $ref_status = new status;
-                $ref_status->ref_status = $request->ref_status;
-                $ref_status->save();
-
-                DB::commit();
-                Toastr::success('Data status telah ditambah :)', 'Sukses');
-                return redirect()->back();
-            } else {
-                DB::rollback();
-                Toastr::error('Data status telah tersedia :(', 'Error');
-                return redirect()->back();
-            }
-        } catch (\Exception $e) {
-            DB::rollback();
-            Toastr::error('Data status gagal ditambah :(', 'Error');
-            return redirect()->back();
-        }
-    }
-
-    /** update record status */
-    public function updateRecordStatus(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-
-            $ref_status = [
-                'id'    => $request->id,
-                'ref_status' => $request->ref_status,
-            ];
-            status::where('id', $request->id)->update($ref_status);
-
-            DB::commit();
-            Toastr::success('Data status berhasil diperbaharui :)', 'Success');
-            return redirect()->back();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Toastr::error('Data status gagal diperbaharui :(', 'Error');
-            return redirect()->back();
-        }
-    }
-
-    /** delete record status */
-    public function deleteRecordStatus(Request $request)
-    {
-        try {
-
-            status::destroy($request->id);
-            Toastr::success('Data status berhasil dihapus :)', 'Success');
-            return redirect()->back();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Toastr::error('Data status gagal dihapus :)', 'Error');
-            return redirect()->back();
-        }
-    }
+    
 
     /** page kedudukan */
     public function indexKedudukan()
@@ -783,16 +688,5 @@ class EmployeeController extends Controller
             Toastr::error('Data pendidikan gagal dihapus :)', 'Error');
             return redirect()->back();
         }
-    }
-
-    public function indoRegion()
-    {
-        // Get semua data
-        $provinces = Province::pluck('name', 'id');
-        $regencies = Regency::all();
-        $districts = District::all();
-        $villages = Village::all();
-        $users = User::find(Auth::user()->id);
-        return view('employees.employeeprofile', compact('provinces', 'regencies', 'districts', 'villages', 'users'));
     }
 }

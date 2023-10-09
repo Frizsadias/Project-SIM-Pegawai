@@ -42,8 +42,8 @@
                             <span>Agama</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('referensi-status') ? 'active' : '' }}">
-                        <a href="{{ route('referensi-status') }}" class="{{ request()->routeIs('referensi-status') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('#') ? 'active' : '' }}">
+                        <a href="#" class="{{ request()->routeIs('#') ? 'noti-dot' : '' }}">
                             <i class="la la-map"></i>
                             <span>Status</span>
                         </a>

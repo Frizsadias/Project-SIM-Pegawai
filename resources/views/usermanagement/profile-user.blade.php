@@ -1130,14 +1130,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Provinsi <span class="text-danger">*</span></label>
-                                                    <select class="form-control @error('provinsi') is-invalid @enderror" name="provinsi">
-                                                        <option value="" disabled selected>--- Pilih provinsi ---</option>
-                                                        @foreach ($provinsiOptions as $optionValue => $optionLabel)
-                                                            <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->provinsi) selected @endif>
-                                                                {{ $optionLabel }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_profilpegawai->provinsi }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
