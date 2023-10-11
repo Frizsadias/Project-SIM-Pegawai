@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('cuti', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_cuti');
-            $table->string('lama_cuti');
-            $table->date('tanggal_mulai_cuti');
-            $table->date('tanggal_selesai_cuti');
-            $table->string('dokumen_kelengkapan');
-            $table->string('dokumen_rekomendasi');
+            $table->string('user_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('nip')->nullable();
+            $table->string('jenis_cuti')->nullable();
+            $table->string('lama_cuti')->nullable();
+            $table->string('tanggal_mulai_cuti')->nullable();
+            $table->string('tanggal_selesai_cuti')->nullable();
+            $table->string('dokumen_kelengkapan')->nullable();
+            $table->string('dokumen_rekomendasi')->nullable();
+            $table->string('status_pengajuan')->nullable();
             $table->timestamps();
         });
     }
