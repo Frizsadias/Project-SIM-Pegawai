@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('jenis_pegawai_id')->insert([[
+        DB::table('jenis_pegawai_id')->insert([
                 ['id_jenis_pegawai' => '1', 'jenis_pegawai' => 'Umum'],
                 ['id_jenis_pegawai' => '2', 'jenis_pegawai' => 'Honorer'],
                 ['id_jenis_pegawai' => '3', 'jenis_pegawai' => 'Sekdes'],
@@ -42,7 +42,7 @@ return new class extends Migration
                 ['id_jenis_pegawai' => 'S', 'jenis_pegawai' => 'STTD Kementrian Perhubungan'],
                 ['id_jenis_pegawai' => 'U', 'jenis_pegawai' => 'BLUD'],
                 ['id_jenis_pegawai' => 'V', 'jenis_pegawai' => 'Non ASN'],
-            ]
+            
         ]);
     }
 
