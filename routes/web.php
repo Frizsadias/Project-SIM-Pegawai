@@ -408,5 +408,6 @@ Route::controller(RiwayatManagementController::class)->group(function () {
 
 // ----------------------------- Layanan ------------------------------//
 Route::controller(LayananController::class)->group(function () {
-    Route::get('layanan/cuti', [LayananController::class, 'indexCuti'])->name('layanan-cuti');
+    Route::get('layanan/cuti', 'listCuti')->middleware('auth')->name('layanan/cuti');
+    Route::post('layanan/cuti/tambah-data', 'tambahDataCuti')->middleware('auth')->name('layanan/cuti/tambah-data');
 });

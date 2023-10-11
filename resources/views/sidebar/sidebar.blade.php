@@ -120,13 +120,12 @@
                             <span>Status Kepegawaian</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('layanan-cuti') ? 'active' : '' }}">
-                        <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('layanan/cuti') ? 'active' : '' }}">
+                        <a href="{{ route('layanan/cuti') }}" class="{{ request()->routeIs('layanan/cuti') ? 'noti-dot' : '' }}">
                             <i class="las la-newspaper"></i>
                             <span>Pengajuan Cuti</span>
                         </a>
                     </li>
-
                     <li class="menu-title"> <span>Data Statistik </span> </li>
                     <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
