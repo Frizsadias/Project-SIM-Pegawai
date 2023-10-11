@@ -38,12 +38,12 @@
                     <li class="{{ request()->routeIs('referensi-agama') ? 'active' : '' }}">
                         <a href="{{ route('referensi-agama') }}"
                             class="{{ request()->routeIs('referensi-agama') ? 'noti-dot' : '' }}">
-                            <i class="la la-heart"></i>
+                            <i class="las la-star-and-crescent"></i>
                             <span>Agama</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('#') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('#') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('referensi-status') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-status') }}" class="{{ request()->routeIs('referensi-status') ? 'noti-dot' : '' }}">
                             <i class="la la-map"></i>
                             <span>Status</span>
                         </a>
@@ -79,6 +79,12 @@
                             <span>Sumpah</span>
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('referensi-ruangan') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-ruangan') }}" class="{{ request()->routeIs('referensi-ruangan') ? 'noti-dot' : '' }}">
+                            <i class="las la-warehouse"></i>
+                            <span>Raungan</span>
+                        </a>
+                    </li>
 
                     <li class="menu-title"> <span>Manajemen Pegawai</span> </li>
                     <li
@@ -112,6 +118,12 @@
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-tags"></i>
                             <span>Status Kepegawaian</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('layanan-cuti') ? 'active' : '' }}">
+                        <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
+                            <i class="las la-newspaper"></i>
+                            <span>Pengajuan Cuti</span>
                         </a>
                     </li>
 

@@ -486,6 +486,7 @@
                     <div class="tab-pane fade" id="riwayat_pendidikan">    
                         <div class="row">
                             <div class="col-auto float-right ml-auto"><a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pendidikan"><i class="fa fa-plus"></i> Tambah Riwayat Pendidikan</a></div>
+                            <br><br>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
@@ -578,18 +579,18 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Tingkat Pendidikan</label>
-                                                        <select name="ting_ped" class="select" id="ting_ped" required>
-                                                            <option selected disabled> --Pilih Tingkat Pendidikan --</option>
-                                                            <option value="SLTP">SLTP</option>
-                                                            <option value="SLTA">SLTA</option>
-                                                            <option value="Diploma I">Diploma I</option>
-                                                            <option value="Diploma II">Diploma II</option>
-                                                        </select>
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tingkat Pendidikan</label>
+                                                    <br>
+                                                    <select class="theSelect form-control" name="ting_ped" id="ting_ped">
+                                                        <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
+                                                        @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
+                                                            <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
+                                            </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Pendidikan</label>
@@ -698,16 +699,16 @@
                                             <input type="hidden" name="id_pend" id="e_id_pend" value="">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Tingkat Pendidikan</label>
-                                                        <select name="ting_ped" class="select" id="e_ting_ped">
-                                                            <option selected disabled> --Pilih Jenis Pendidikan --</option>
-                                                            <option>SLTP</option>
-                                                            <option>SLTA</option>
-                                                            <option>Diploma I</option>
-                                                            <option>Diploma II</option>
-                                                        </select>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label>Tingkat Pendidikan </label>
+                                                <br>
+                                                <select class="theSelect" name="ting_ped" id="e_ting_ped">
+                                                    <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
+                                                    @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
+                                                        <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -1244,11 +1245,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Jenis Jabatan</label>
-                                                            <select class="form-control" name="jenis_jabatan_riwayat" required>
-                                                                <option selected disabled> --Pilih Jenis Jabatan --</option>
-                                                                <option value="Jabatan Struktural">Jabatan Struktural</option>
-                                                                <option value="Jabatan Fungsional Tertentu">Jabatan Fungsional Tertentu</option>
-                                                                <option value="Jabatan Fungsional Umum">Jabatan Fungsional Umum</option>
+                                                            <br>
+                                                            <select class="theSelect form-control" name="jenis_jabatan_riwayat">
+                                                                <option value="" disabled selected>--- Pilih jenis jabatan ---</option>
+                                                                @foreach ($jenisjabatanOptions as $optionValue => $optionLabel)
+                                                                    <option value="{{ $optionValue }}" @if ($optionValue == $users->jenis_jabatan) selected @endif>
+                                                                        {{ $optionLabel }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1556,12 +1560,12 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Jenis Diklat</label>
-                                                        <select class="form-control" name="jenis_diklat" required>
+                                                        <br>
+                                                        <select class="theSelect form-control" name="jenis_diklat" required>
                                                             <option selected disabled> --Pilih Jenis Diklat --</option>
-                                                            <option value="Diklat Struktural">Diklat Struktural</option>
-                                                            <option value="Diklat Fungsional">Diklat Fungsional</option>
-                                                            <option value="Diklat Teknis">Diklat Teknis</option>
-                                                            <option value="Workshop">Workshop</option>
+                                                            @foreach($jenisdiklatOptions as $key => $value)
+                                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -2095,7 +2099,8 @@
                                             <div class="form-group">
                                                 <label for="agama">Agama</label>
                                                 <span class="text-danger">*</span>
-                                                <select class="select @error('agama') is-invalid @enderror" name="agama">
+                                                <br>
+                                                <select class="theSelect form-control @error('agama') is-invalid @enderror" name="agama">
                                                     <option value="" disabled selected>--- Pilih agama ---</option>
                                                     @foreach($agamaOptions as $id => $namaAgama)
                                                         <option value="{{ $id }}" {{ $id == $users->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
@@ -2106,7 +2111,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Jenis Dokumen</label><span class="text-danger">*</span>
-                                                <select class="select @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen">
+                                                <br>
+                                                <select class="theSelect @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen">
                                                     <option value="" disabled selected>--- Pilih jenis dokumen ---</option>
                                                     <option value="Passport" {{ $users->jenis_dokumen === 'Passport' ? 'selected' : '' }}>Passport</option>
                                                     <option value="KTP" {{ $users->jenis_dokumen === 'KTP' ? 'selected' : '' }}>KTP</option>
@@ -2164,7 +2170,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
-                                                <select class="select @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
+                                                <br>
+                                                <select class="theSelect @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
                                                     <option value="" disabled selected>--- Pilih jenis pegawai ---</option>
                                                     @foreach($jenispegawaiOptions as $id => $namaJenisPegawai)
                                                         <option value="{{ $id }}" {{ $id == $users->jenis_pegawai ? 'selected' : '' }}>{{ $namaJenisPegawai }}</option>
@@ -2175,7 +2182,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
-                                                <select class="select @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns">
+                                                <br>
+                                                <select class="theSelect @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns">
                                                     <option value="" disabled selected>--- Pilih kedudukan ---</option>
                                                     @foreach($kedudukanOptions as $id => $namaKedudukan)
                                                         <option value="{{ $id }}" {{ $id == $users->kedudukan_pns ? 'selected' : '' }}>{{ $namaKedudukan }}</option>
@@ -2186,7 +2194,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                                    <select class="select @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
+                                                <br>
+                                                    <select class="theSelect @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
                                                         <option value="" disabled selected>--- Pilih status pegawai ---</option>
                                                         <option value="Aktif" {{ $users->status_pegawai === 'Aktif' ? 'selected' : '' }}>Aktif</option>
                                                         <option value="Tidak Aktif" {{ $users->status_pegawai === 'Tidak Aktif' ? 'selected' : '' }}>Tidak Aktif</option>
@@ -2219,8 +2228,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
-                                                <select class="select @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan">
-                                                    <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
+                                                <br>
+                                                <select class="theSelect @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan">
+                                                    <option selected disabled> --Pilih Tingkat Pendidikan --</option>
                                                     @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
                                                         <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
                                                     @endforeach
@@ -2229,20 +2239,26 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $users->pendidikan_terakhir }}">
+                                                <label>Pendidikan Terakhir</label> <span class="text-danger">*</span></label>
+                                                <br>
+                                                <select class="theSelect @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir">
+                                                    <option selected disabled> --Pilih Pendidikan Terakhir --</option>
+                                                    @foreach($pendidikanterakhirOptions as $id => $namaPendidikanTerakhir)
+                                                        <option value="{{ $id }}" {{ $id == $users->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Ruangan </label> <span class="text-danger">*</span></label>
-                                                <select class="select @error('ruangan') is-invalid @enderror" name="ruangan">
+                                                <br>
+                                                <select class="theSelect  @error('ruangan') is-invalid @enderror" name="ruangan">
                                                     <option value="" disabled selected>--- Pilih ruangan ---</option>
                                                     @foreach($ruanganOptions as $id => $namaRuangan)
                                                         <option value="{{ $id }}" {{ $id == $users->ruangan ? 'selected' : '' }}>{{ $namaRuangan }}</option>
                                                     @endforeach
                                                 </select>
-                                                {{-- <input type="text" class="form-control @error('ruangan') is-invalid @enderror" name="ruangan" value="{{ $users->ruangan }}"> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -2490,7 +2506,9 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Jenis Jabatan <span class="text-danger">*</span></label>
-                                                            <select class="form-control" name="jenis_jabatan">
+                                                            <br>
+                                                            <select class="theSelect form-control" name="jenis_jabatan">
+                                                                <br>
                                                                 <option value="" disabled selected>--- Pilih jenis jabatan ---</option>
                                                                 @foreach ($jenisjabatanOptions as $optionValue => $optionLabel)
                                                                     <option value="{{ $optionValue }}" @if ($optionValue == $users->jenis_jabatan) selected @endif>
@@ -2543,7 +2561,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Golongan Ruang Awal</label>
-                                                            <select class="form-control" name="gol_ruang_awal">
+                                                            <select class="theSelect form-control" name="gol_ruang_awal">
+                                                                <br>
                                                                 <option value="" disabled selected>--- Pilih golongan ruang awal ---</option>
                                                                 @foreach ($golonganOptions as $optionValue => $optionLabel)
                                                                     <option value="{{ $optionValue }}" @if ($optionValue == $users->gol_ruang_awal) selected @endif>
@@ -2556,7 +2575,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Golongan Ruang Akhir</label>
-                                                            <select class="form-control" name="gol_ruang_akhir">
+                                                            <select class="theSelect form-control" name="gol_ruang_akhir">
+                                                                <br>
                                                                 <option value="" disabled selected>--- Pilih golongan ruang akhir ---</option>
                                                                 @foreach ($golonganOptions as $optionValue => $optionLabel)
                                                                     <option value="{{ $optionValue }}" @if ($optionValue == $users->gol_ruang_akhir) selected @endif>
@@ -2698,5 +2718,12 @@
         <script src="{{ asset('assets/js/golongan.js') }}"></script>
         <script src="{{ asset('assets/js/jabatan.js') }}"></script>
         <script src="{{ asset('assets/js/diklat.js') }}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script>
+		$(".theSelect").select2();
+	    </script>
     @endsection
 @endsection

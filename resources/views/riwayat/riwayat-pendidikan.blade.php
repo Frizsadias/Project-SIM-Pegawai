@@ -30,15 +30,13 @@
                         <div class="form-group form-focus select-focus">
                             <select class="form-control" id="ting_ped" name="ting_ped">
                                 <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
-                                <option value="SLTP">SLTP</option>
-                                <option value="SLTA">SLTA</option>
-                                <option value="Diploma I">Diploma I</option>
-                                <option value="Diploma II">Diploma II</option>
+                                @foreach($tingkatpendidikanOptions as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
                             </select>
                             <label class="focus-label">Tingkat Pendidikan</label>
                         </div>
                     </div>
-
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="number" class="form-control floating" id="tahun_lulus" name="tahun_lulus">
@@ -169,12 +167,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select name="ting_ped" class="select" id="ting_ped" required>
+                                        <select name="ting_ped" class="theSelect" id="ting_ped" required>
                                             <option selected disabled> --Pilih Tingkat Pendidikan --</option>
-                                            <option value="SLTP">SLTP</option>
-                                            <option value="SLTA">SLTA</option>
-                                            <option value="Diploma I">Diploma I</option>
-                                            <option value="Diploma II">Diploma II</option>
+                                            @foreach($tingkatpendidikanOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -469,5 +466,12 @@
             $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script>
+		$(".theSelect").select2();
+	    </script>
 @endsection
 @endsection

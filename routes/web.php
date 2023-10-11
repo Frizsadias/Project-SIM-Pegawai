@@ -19,6 +19,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeavesController;
 use App\Http\Controllers\ExpenseReportsController;
+use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\TrainersController;
@@ -229,26 +230,24 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/pendidikan/delete', 'deleteRecordPendidikan')->middleware('auth')->name('form/pendidikan/delete');
     Route::get('form/pendidikan/search', 'searchPendidikan')->middleware('auth')->name('form/pendidikan/search');
 
-    Route::get('form/designations/page', 'designationsIndex')->middleware('auth')->name('form/designations/page');
-    Route::post('form/designations/save', 'saveRecordDesignations')->middleware('auth')->name('form/designations/save');
-    Route::post('form/designations/update', 'updateRecordDesignations')->middleware('auth')->name('form/designations/update');
-    Route::post('form/designations/delete', 'deleteRecordDesignations')->middleware('auth')->name('form/designations/delete');
+    Route::get('referensi/ruangan', 'indexRuangan')->middleware('auth')->name('referensi-ruangan');
+    Route::post('form/ruangan/save', 'saveRecordRuangan')->middleware('auth')->name('form/ruangan/save');
+    Route::post('form/ruangan/update', 'updateRecordRuangan')->middleware('auth')->name('form/ruangan/update');
+    Route::post('form/ruangan/delete', 'deleteRecordRuangan')->middleware('auth')->name('form/ruangan/delete');
+    Route::get('form/ruangan/search', 'searchRuangan')->middleware('auth')->name('form/ruangan/search');
 
-    Route::get('form/timesheet/page', 'timeSheetIndex')->middleware('auth')->name('form/timesheet/page');
-    Route::post('form/timesheet/save', 'saveRecordTimeSheets')->middleware('auth')->name('form/timesheet/save');
-    Route::post('form/timesheet/update', 'updateRecordTimeSheets')->middleware('auth')->name('form/timesheet/update');
-    Route::post('form/timesheet/delete', 'deleteRecordTimeSheets')->middleware('auth')->name('form/timesheet/delete');
+    Route::get('referensi/status', 'indexStatus')->middleware('auth')->name('referensi-status');
+    Route::post('form/status/save', 'saveRecordStatus')->middleware('auth')->name('form/status/save');
+    Route::post('form/status/update', 'updateRecordStatus')->middleware('auth')->name('form/status/update');
+    Route::post('form/status/delete', 'deleteRecordStatus')->middleware('auth')->name('form/status/delete');
+    Route::get('form/status/search', 'searchStatus')->middleware('auth')->name('form/status/search');
 
-    Route::get('form/overtime/page', 'overTimeIndex')->middleware('auth')->name('form/overtime/page');
-    Route::post('form/overtime/save', 'saveRecordOverTime')->middleware('auth')->name('form/overtime/save');
-    Route::post('form/overtime/update', 'updateRecordOverTime')->middleware('auth')->name('form/overtime/update');
-    Route::post('form/overtime/delete', 'deleteRecordOverTime')->middleware('auth')->name('form/overtime/delete');
+    
 });
 
 // ------------------------- profile employee --------------------------//
 Route::controller(EmployeeController::class)->group(function () {
     Route::get('user/profile/{user_id}', 'profileEmployee')->middleware('auth');
-    // Route::get('user/profile/{user_id}', 'indoRegion')->middleware('auth');
 });
 
 // --------------------------- form holiday ---------------------------//
@@ -402,4 +401,9 @@ Route::middleware(['auth'])->group(function () {
 // ----------------------------- Pencarian Agama ------------------------------//
 Route::controller(RiwayatManagementController::class)->group(function () {
     Route::get('get-agama-data', 'getAgamaData')->name('get-agama-data');
+});
+
+// ----------------------------- Layanan ------------------------------//
+Route::controller(LayananController::class)->group(function () {
+    Route::get('layanan/cuti', [LayananController::class, 'indexCuti'])->name('layanan-cuti');
 });

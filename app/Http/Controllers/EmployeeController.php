@@ -11,11 +11,13 @@ use App\Models\User;
 use App\Models\module_permission;
 use App\Models\pendidikan;
 use App\Models\agama;
+use App\Models\jenis_pegawai;
 use App\Models\RiwayatDiklat;
 use App\Models\RiwayatGolongan;
 use App\Models\RiwayatJabatan;
 use App\Models\RiwayatPendidikan;
 use App\Models\kedudukan;
+use App\Models\ruangan;
 use Carbon\Carbon;
 use Session;
 
@@ -411,9 +413,14 @@ class EmployeeController extends Controller
         
             $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
+            $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
+
+            $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
+
         return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans',
         'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'kedudukanOptions',
-        'jenispegawaiOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions'));
+        'jenispegawaiOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions',
+        'pendidikanterakhirOptions'));
     }
 
     /** page agama */
@@ -686,6 +693,180 @@ class EmployeeController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data pendidikan gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** page ruangan */
+    public function indexRuangan()
+    {
+        $ruangan = DB::table('ruangan_id')->get();
+        return view('employees.ruangan', compact('ruangan'));
+    }
+
+    /** search for ruangan */
+    public function searchRuangan(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $ruangan = DB::table('ruangan_id')
+        ->where('ruangan', 'like', '%' . $keyword . '%')
+            ->get();
+
+        return view('employees.ruangan', compact('ruangan'));
+    }
+
+    /** save record ruangan */
+    public function saveRecordRuangan(Request $request)
+    {
+        $request->validate([
+            'ruangan' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $ruangan = ruangan::where('ruangan', $request->ruangan)->first();
+            if ($ruangan === null) {
+                $ruangan = new ruangan;
+                $ruangan->ruangan = $request->ruangan;
+                $ruangan->save();
+
+                DB::commit();
+                Toastr::success('Data ruangan telah ditambah :)', 'Sukses');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data ruangan telah tersedia :(', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data ruangan gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** update record ruangan */
+    public function updateRecordRuangan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $ruangan = [
+                'id'    => $request->id,
+                'ruangan' => $request->ruangan,
+            ];
+            ruangan::where('id', $request->id)->update($ruangan);
+
+            DB::commit();
+            Toastr::success('Data ruangan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data ruangan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** delete record ruangan */
+    public function deleteRecordRuangan(Request $request)
+    {
+        try {
+
+            ruangan::destroy($request->id);
+            Toastr::success('Data ruangan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data ruangan gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** page ruangan */
+    public function indexStatus()
+    {
+        $jenis_pegawai = DB::table('jenis_pegawai_id')->get();
+        return view('employees.status', compact('jenis_pegawai'));
+    }
+
+    /** search for ruangan */
+    public function searchStatus(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $jenis_pegawai = DB::table('jenis_pegawai_id')
+        ->where('jenis_pegawai', 'like', '%' . $keyword . '%')
+            ->get();
+
+        return view('employees.status', compact('jenis_pegawai'));
+    }
+
+    /** save record status */
+    public function saveRecordStatus(Request $request)
+    {
+        $request->validate([
+            'jenis_pegawai' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $jenis_pegawai = jenis_pegawai::where('jenis_pegawai', $request->jenis_pegawai)->first();
+            if ($jenis_pegawai === null) {
+                $jenis_pegawai = new jenis_pegawai;
+                $jenis_pegawai->jenis_pegawai = $request->jenis_pegawai;
+                $jenis_pegawai->save();
+
+                DB::commit();
+                Toastr::success('Data status telah ditambah :)', 'Sukses');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data status telah tersedia :(', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data status gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** update record status */
+    public function updateRecordStatus(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $jenis_pegawai = [
+                'id'    => $request->id,
+                'jenis_pegawai' => $request->jenis_pegawai,
+            ];
+            jenis_pegawai::where('id', $request->id)->update($jenis_pegawai);
+
+            DB::commit();
+            Toastr::success('Data status berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data status gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** delete record status */
+    public function deleteRecordStatus(Request $request)
+    {
+        try {
+
+            jenis_pegawai::destroy($request->id);
+            Toastr::success('Data status berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data status gagal dihapus :)', 'Error');
             return redirect()->back();
         }
     }

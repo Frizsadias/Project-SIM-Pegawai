@@ -27,6 +27,7 @@ return new class extends Migration
             ['tingkat_pendidikan' => 'Diploma III'],
             ['tingkat_pendidikan' => 'S1'],
             ['tingkat_pendidikan' => 'S2'],
+            ['tingkat_pendidikan' => 'S3'],
         ]);
     }
 

@@ -41,7 +41,10 @@ class RiwayatController extends Controller
     {
         $datapendidikan = Session::get('user_id');
         $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
-        return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan'));
+
+        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+
+        return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan', 'tingkatpendidikanOptions'));
     }
     /** End Tampilan Riwayat Pendidikan */
 
@@ -314,7 +317,9 @@ class RiwayatController extends Controller
     {
         $datajabatan = Session::get('user_id');
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
-        return view('riwayat.riwayat-jabatan', compact('riwayatJabatan'));
+
+        $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
+        return view('riwayat.riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions'));
     }
     /** End Tampilan Riwayat Jabatan */
 
@@ -441,7 +446,9 @@ class RiwayatController extends Controller
     {
         $datadiklat = Session::get('user_id');
         $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
-        return view('riwayat.riwayat-diklat', compact('riwayatDiklat'));
+
+        $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
+        return view('riwayat.riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions'));
     }
     /** End Tampilan Riwayat Diklat */
 

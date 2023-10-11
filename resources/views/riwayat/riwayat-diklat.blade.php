@@ -30,21 +30,13 @@
                         <div class="form-group form-focus select-focus">
                             <select class="form-control" id="jenis_diklat" name="jenis_diklat">
                                 <option selected disabled>-- Pilih Jenis Diklat --</option>
-                                <option value="Diklat Fungsional">Diklat Fungsional</option>
-                                <option value="Diklat Teknis">Diklat Teknis</option>
-                                <option value="Diklat Manajerial">Diklat Manajerial</option>
-                                <option value="Diklat Sosial Kultural">Diklat Sosial Kultural</option>
-                                <option value="Sosialisasi">Sosialisasi</option>
-                                <option value="Bimbingan Teknis">Bimbingan Teknis</option>
-                                <option value="Seminar">Seminar</option>
-                                <option value="Seminar">Seminar</option>
-                                <option value="Diklat Struktural">Diklat Struktural</option>
-                                <option value="Workshop">Workshop</option>
+                                @foreach($jenisdiklatOptions as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
                             </select>
                             <label class="focus-label">Jenis Diklat</label>
                         </div>
                     </div>
-
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" id="nama_diklat" name="nama_diklat">
@@ -158,12 +150,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Diklat</label>
-                                        <select class="form-control" name="jenis_diklat" required>
+                                        <br>
+                                        <select class="theSelect form-control" name="jenis_diklat" required>
                                             <option selected disabled> --Pilih Jenis Diklat --</option>
-                                            <option value="Diklat Struktural">Diklat Struktural</option>
-                                            <option value="Diklat Fungsional">Diklat Fungsional</option>
-                                            <option value="Diklat Teknis">Diklat Teknis</option>
-                                            <option value="Workshop">Workshop</option>
+                                            @foreach($jenisdiklatOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -395,5 +387,11 @@
             $('.d_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script>
+		$(".theSelect").select2();
+	    </script>
 @endsection
 @endsection

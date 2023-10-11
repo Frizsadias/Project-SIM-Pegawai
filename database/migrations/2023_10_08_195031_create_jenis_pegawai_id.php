@@ -19,29 +19,30 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('jenis_pegawai_id')->insert([
-            ['id_jenis_pegawai' => '1', 'jenis_pegawai' => 'UMUM'],
-            ['id_jenis_pegawai' => '2', 'jenis_pegawai' => 'HONORER'],
-            ['id_jenis_pegawai' => '3', 'jenis_pegawai' => 'SEKDES'],
-            ['id_jenis_pegawai' => '4', 'jenis_pegawai' => 'ALIH STATUS'],
-            ['id_jenis_pegawai' => '5', 'jenis_pegawai' => 'KHUSUS DOKTER'],
-            ['id_jenis_pegawai' => '6', 'jenis_pegawai' => 'TENAGA AHLI TERTENTU/KHUSUS'],
-            ['id_jenis_pegawai' => '7', 'jenis_pegawai' => 'KHUSUS SM-3T'],
-            ['id_jenis_pegawai' => '8', 'jenis_pegawai' => 'KHUSUS DISABILITAS'],
-            ['id_jenis_pegawai' => '9', 'jenis_pegawai' => 'KHUSUS PUTRA PUTRI TERBAIK'],
-            ['id_jenis_pegawai' => 'A', 'jenis_pegawai' => 'D1 STAN'],
-            ['id_jenis_pegawai' => 'B', 'jenis_pegawai' => 'DIASPORA'],
-            ['id_jenis_pegawai' => 'C', 'jenis_pegawai' => 'PPPK'],
-            ['id_jenis_pegawai' => 'D', 'jenis_pegawai' => 'GURU GARIS DEPAN'],
-            ['id_jenis_pegawai' => 'G', 'jenis_pegawai' => 'TENAGA GURU'],
-            ['id_jenis_pegawai' => 'I', 'jenis_pegawai' => 'IKATAN DINAS'],
-            ['id_jenis_pegawai' => 'K', 'jenis_pegawai' => 'PTT KEMENKES'],
-            ['id_jenis_pegawai' => 'L', 'jenis_pegawai' => 'THLTB PENYULUH PERTANIAN'],
-            ['id_jenis_pegawai' => 'O', 'jenis_pegawai' => 'UNTUK OLAHRAGAWAN BERPRESTASI DAN PELATIH BERPRESTASI'],
-            ['id_jenis_pegawai' => 'P', 'jenis_pegawai' => 'KHUSUS PUTRA/I PAPUA'],
-            ['id_jenis_pegawai' => 'S', 'jenis_pegawai' => 'STTD KEMENTRIAN PERHUBUNGAN'],
-            ['id_jenis_pegawai' => 'U', 'jenis_pegawai' => 'BLUD'],
-            ['id_jenis_pegawai' => 'V', 'jenis_pegawai' => 'NON ASN'],
+        DB::table('jenis_pegawai_id')->insert([[
+                ['id_jenis_pegawai' => '1', 'jenis_pegawai' => 'Umum'],
+                ['id_jenis_pegawai' => '2', 'jenis_pegawai' => 'Honorer'],
+                ['id_jenis_pegawai' => '3', 'jenis_pegawai' => 'Sekdes'],
+                ['id_jenis_pegawai' => '4', 'jenis_pegawai' => 'Alih Status'],
+                ['id_jenis_pegawai' => '5', 'jenis_pegawai' => 'Khusus Dokter'],
+                ['id_jenis_pegawai' => '6', 'jenis_pegawai' => 'Tenaga Ahli Tertentu/Khusus'],
+                ['id_jenis_pegawai' => '7', 'jenis_pegawai' => 'Khusus SM-3T'],
+                ['id_jenis_pegawai' => '8', 'jenis_pegawai' => 'Khusus Disabilitas'],
+                ['id_jenis_pegawai' => '9', 'jenis_pegawai' => 'Khusus Putra Putri Terbaik'],
+                ['id_jenis_pegawai' => 'A', 'jenis_pegawai' => 'D1 STAN'],
+                ['id_jenis_pegawai' => 'B', 'jenis_pegawai' => 'DIASPORA'],
+                ['id_jenis_pegawai' => 'C', 'jenis_pegawai' => 'PPPK'],
+                ['id_jenis_pegawai' => 'D', 'jenis_pegawai' => 'Guru Garis Depan'],
+                ['id_jenis_pegawai' => 'G', 'jenis_pegawai' => 'Tenaga Guru'],
+                ['id_jenis_pegawai' => 'I', 'jenis_pegawai' => 'Ikatan Dinas'],
+                ['id_jenis_pegawai' => 'K', 'jenis_pegawai' => 'PTT Kemenkes'],
+                ['id_jenis_pegawai' => 'L', 'jenis_pegawai' => 'THLTB Penyuluh Pertanian'],
+                ['id_jenis_pegawai' => 'O', 'jenis_pegawai' => 'Untuk Olahragawan Berprestasi dan Pelatih Berprestasi'],
+                ['id_jenis_pegawai' => 'P', 'jenis_pegawai' => 'Khusus Putra/I Papua'],
+                ['id_jenis_pegawai' => 'S', 'jenis_pegawai' => 'STTD Kementrian Perhubungan'],
+                ['id_jenis_pegawai' => 'U', 'jenis_pegawai' => 'BLUD'],
+                ['id_jenis_pegawai' => 'V', 'jenis_pegawai' => 'Non ASN'],
+            ]
         ]);
     }
 

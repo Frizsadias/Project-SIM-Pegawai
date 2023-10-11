@@ -29,16 +29,14 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
                             <select class="form-control" id="jenis_jabatan_riwayat" name="jenis_jabatan_riwayat">
-                                <option selected disabled>-- Pilih Jenis Jabatan --</option>
-                                <option value="Jabatan Struktural">Jabatan Struktural</option>
-                                <option value="Jabatan Fungsional Tertentu">Jabatan Fungsional Tertentu</option>
-                                <option value="Jabatan Rangkap">Jabatan Rangkap</option>
-                                <option value="Jabatan Fungsional Umum">Jabatan Fungsional Umum</option>
+                                <option selected disabled> --Pilih Jenis Jabatan --</option>
+                                            @foreach($jenisjabatanOptions as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                             </select>
                             <label class="focus-label">Jenis Jabatan</label>
                         </div>
                     </div>
-
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" id="satuan_kerja" name="satuan_kerja">
@@ -156,11 +154,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Jabatan</label>
-                                        <select class="form-control" name="jenis_jabatan_riwayat" required>
+                                        <br>
+                                        <select class="theSelect form-control" name="jenis_jabatan_riwayat" required>
                                             <option selected disabled> --Pilih Jenis Jabatan --</option>
-                                            <option value="Jabatan Struktural">Jabatan Struktural</option>
-                                            <option value="Jabatan Fungsional Tertentu">Jabatan Fungsional Tertentu</option>
-                                            <option value="Jabatan Fungsional Umum">Jabatan Fungsional Umum</option>
+                                            @foreach($jenisjabatanOptions as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -410,5 +409,12 @@
             $('.d_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script>
+		$(".theSelect").select2();
+	    </script>
 @endsection
 @endsection
