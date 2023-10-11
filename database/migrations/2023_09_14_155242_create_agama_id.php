@@ -24,8 +24,7 @@ return new class extends Migration
             ['agama' => 'Katholik'],
             ['agama' => 'Hindu'],
             ['agama' => 'Budha'],
-            ['agama' => 'Konghucu'],
-            ['agama' => 'Lainnya']
+            ['agama' => 'Konghucu']
         ]);
     }
 

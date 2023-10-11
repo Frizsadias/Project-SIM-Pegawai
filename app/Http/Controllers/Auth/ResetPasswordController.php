@@ -28,13 +28,13 @@ class ResetPasswordController extends Controller
         
         if(!$updatePassword)
         {
-            Toastr::error('Invalid token! :)','Error');
+            Toastr::error('Token tidak valid! :)','Error');
             return back();
         } else{ 
             
             $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
             DB::table('password_resets')->where(['email'=> $request->email])->delete();
-            Toastr::success('Your password has been changed! :)','Success');
+            Toastr::success('Kata sandi Anda telah diubah! :)','Success');
             return redirect('/login');
         }
        

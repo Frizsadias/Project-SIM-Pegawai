@@ -28,9 +28,8 @@
                                     <th>ID</th>
                                     <th>Nama Lengkap</th>
                                     <th>E-mail</th>
-                                    <th>Nomor Telepon</th>
                                     <th>Status</th>
-                                    <th>Role</th>
+                                    <th>Peran</th>
                                     <th>Modifikasi</th>
                                     <th>Waktu</th>
                                 </tr>
@@ -41,11 +40,10 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item->user_name }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>{{ $item->phone_number }}</td>
                                         <td>{{ $item->status }}</td>
                                         <td>{{ $item->role_name }}</td>
                                         <td>{{ $item->modify_user }}</td>
-                                        <td>{{ $item->date_time }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->date_time)->translatedFormat('l, j F Y || h:i A') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

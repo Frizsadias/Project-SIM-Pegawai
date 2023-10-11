@@ -248,6 +248,9 @@ Route::controller(EmployeeController::class)->group(function () {
 // ------------------------- profile employee --------------------------//
 Route::controller(EmployeeController::class)->group(function () {
     Route::get('user/profile/{user_id}', 'profileEmployee')->middleware('auth');
+    Route::post('/getkabupaten', 'getkabupaten')->middleware('auth')->name('getkabupaten');
+    Route::post('/getkecamatan', 'getkecamatan')->middleware('auth')->name('getkecamatan');
+    Route::post('/getdesa', 'getdesa')->middleware('auth')->name('getdesa');
 });
 
 // --------------------------- form holiday ---------------------------//

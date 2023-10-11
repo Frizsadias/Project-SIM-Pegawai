@@ -6,7 +6,7 @@
                 <!-- /Account Logo -->
                 <div class="account-box">
                     <div class="account-wrapper">
-                        <h3 class="account-title">Registrasi</h3>
+                        <h3 class="account-title">Daftar</h3>
                         
                         <!-- Account Form -->
                         <form method="POST" action="{{ route('register') }}">
@@ -21,8 +21,8 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan Email">
+                                <label>E-mail</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan E-mail">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,7 +45,6 @@
                                     </span>
                                 @enderror
                             </div>
-
                             <div class="form-group">
                                 <label>Kata Sandi</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi">

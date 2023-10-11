@@ -169,13 +169,14 @@ class UserManagementController extends Controller
                 ';
             }
 
+            $joinDate = Carbon::parse($record->join_date)->translatedFormat('l, j F Y || h:i A');
             $data_arr[] = [
                 "no"           => '<span class="id" data-id = ' . $record->id . '>' . $start + ($key + 1) . '</span>',
                 "name"         => $record->name,
                 "user_id"      => '<span class="user_id">' . $record->user_id . '</span>',
                 "email"        => '<a href="mailto:' . $record->email . '"><i class="fa fa-envelope fa-2x" style="font-size: 1.6em; color: #f44336;"></i>
                 </a> || <span class="email">' . $record->email . '</span>',
-                "join_date"    => $record->join_date,
+                "join_date"    => $joinDate,
                 "role_name"    => $role_name,
                 "status"       => $status,
                 "action"       =>
@@ -227,18 +228,26 @@ class UserManagementController extends Controller
         $profile = Session::get('user_id');
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
+        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
         if (empty($employees)) {
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
-            return view('usermanagement.profile_user', compact('information', 'user'));
+            $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
+            $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
+            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile_user', compact('information', 'user'));
+                $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
+                $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile_user', compact('information', 'user'));
+                $propeg = ProfilPegawai::all();
+                $posjab = PosisiJabatan::all();
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
             }
         }
     }
@@ -249,18 +258,26 @@ class UserManagementController extends Controller
         $profile = Session::get('user_id');
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
+        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
         if (empty($employees)) {
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
-            return view('usermanagement.profile_user', compact('information', 'user'));
+            $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
+            $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
+            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile_user', compact('information', 'user'));
+                $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
+                $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile_user', compact('information', 'user'));
+                $propeg = ProfilPegawai::all();
+                $posjab = PosisiJabatan::all();
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
             }
         }
     }
@@ -339,12 +356,23 @@ class UserManagementController extends Controller
                     }
                 }
                 $update = [
-                    'user_id' => $request->user_id,
-                    'name'   => $request->name,
-                    'avatar' => $image_name,
+                    'user_id'   => $request->user_id,
+                    'name'      => $request->name,
+                    'avatar'    => $image_name,
                 ];
                 User::where('user_id', $request->user_id)->update($update);
             }
+                $updateProfil = [
+                    'pendidikan_terakhir'   => $request->pendidikan_terakhir,
+                    'agama'                 => $request->agama,
+                    'jenis_kelamin'         => $request->jk,
+                ];
+                DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($updateProfil);
+
+                $updatePosisi = [
+                    'jabatan'               => $request->jabatan,
+                ];
+                DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($updatePosisi);
 
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;

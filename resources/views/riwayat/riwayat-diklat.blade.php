@@ -89,11 +89,15 @@
                                         <td class="tanggal_selesai"><center>{{ $result_diklat->tanggal_selesai }}</center></td>
                                         <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
                                         <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
-                                        <td class="dokumen_diklat">
-                                            <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
-                                                target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
-                                        </center></td>
-                                        
+                                        <td class="dokumen_diklat"><center>
+                                            <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank">
+                                                @if (pathinfo($result_diklat->dokumen_diklat, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @else
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                    <td hidden class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
+                                            </a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">

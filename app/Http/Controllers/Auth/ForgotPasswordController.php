@@ -34,9 +34,9 @@ class ForgotPasswordController extends Controller
         Mail::send('auth.verify',['token' => $token], function($message) use ($request) {
             $message->from($request->email);
             $message->to('your email'); /** input your email to send */
-            $message->subject('Reset Password Notification');
+            $message->subject('Pemberitahuan Reset Kata Sandi');
             });
-        Toastr::success('We have e-mailed your password reset link! :)','Success');
+        Toastr::success('Kami telah mengirimkan tautan pengaturan ulang kata sandi Anda melalui email! :)','Success');
         return back();
     }
 }

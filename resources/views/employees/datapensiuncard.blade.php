@@ -62,7 +62,7 @@
             {!! Toastr::message() !!}
             <div class="row staff-grid-row">
                 @foreach ($users as $lists )
-                @if ($lists->role_name == 'User' && $lists->kedudukan_pns == 'Tidak Aktif')
+                @if ($lists->role_name == 'User' && $lists->kedudukan_pns == 'Pensiun')
                 <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                     <div class="profile-widget">
                         <div class="profile-img">

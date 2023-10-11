@@ -36,8 +36,7 @@
                                             <div class="profile-info-left">
                                                 <h3 class="user-name m-t-0 mb-0">{{ $users->name }}</h3>
                                                 <div class="staff-id">ID Pegawai : {{ $users->user_id }}</div>
-                                                <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse($users->join_date)->locale('id')->format('d F Y, H:i') }}
-                                                </div>
+                                                <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse(Session::get('join_date'))->translatedFormat('l, j F Y || h:i A') }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-7">
@@ -520,18 +519,33 @@
                                                     <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
                                                     <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
                                                     <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
-                                                    <td class="dokumen_transkrip">
-                                                        <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
-                                                            target="_blank">{{ $result_pendidikan->dokumen_transkrip }}</a>
-                                                    </center></td>
-                                                    <td class="dokumen_ijazah">
-                                                        <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
-                                                            target="_blank">{{ $result_pendidikan->dokumen_ijazah }}</a>
-                                                    </center></td>
-                                                    <td class="dokumen_gelar">
-                                                        <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
-                                                            target="_blank">{{ $result_pendidikan->dokumen_gelar }}</a>
-                                                    </center></td>
+                                                    <td class="dokumen_transkrip"><center>
+                                                        <a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}" target="_blank">
+                                                            @if (pathinfo($result_pendidikan->dokumen_transkrip, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @else
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>
+                                                        </a></center></td>
+                                                    <td class="dokumen_ijazah"><center>
+                                                        <a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}" target="_blank">
+                                                            @if (pathinfo($result_pendidikan->dokumen_ijazah, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @else
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>
+                                                        </a></center></td>
+                                                    <td class="dokumen_gelar"><center>
+                                                        <a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}" target="_blank">
+                                                            @if (pathinfo($result_pendidikan->dokumen_gelar, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @else
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>
+                                                        </a></center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
                                                     <td class="text-right">
@@ -871,14 +885,24 @@
                                                     <td class="tanggal_teknis_bkn"><center>{{ $result_golongan->tanggal_teknis_bkn }}</center></td>
                                                     <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
                                                     <td class="tanggal_sk_golongan"><center>{{ $result_golongan->tanggal_sk_golongan }}</center></td>
-                                                    <td class="dokumen_skkp">
-                                                        <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
-                                                            target="_blank">{{ $result_golongan->dokumen_skkp }}</a>
-                                                    </center></td>
-                                                    <td class="dokumen_teknis_kp">
-                                                        <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
-                                                            target="_blank">{{ $result_golongan->dokumen_teknis_kp }}</a>
-                                                    </center></td>
+                                                    <td class="dokumen_skkp"><center>
+                                                        <a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}" target="_blank">
+                                                            @if (pathinfo($result_golongan->dokumen_skkp, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @else
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_skkp">{{ $result_golongan->dokumen_skkp }}</td>
+                                                        </a></center></td>
+                                                    <td class="dokumen_teknis_kp"><center>
+                                                        <a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}" target="_blank">
+                                                            @if (pathinfo($result_golongan->dokumen_teknis_kp, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @else
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_teknis_kp">{{ $result_golongan->dokumen_teknis_kp }}</td>
+                                                        </a></center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
                                                     <td class="text-right">
@@ -1187,14 +1211,24 @@
                                                     <td class="tanggal_sk"><center>{{ $result_jabatan->tanggal_sk }}</center></td>
                                                     <td class="tmt_jabatan"><center>{{ $result_jabatan->tmt_jabatan }}</center></td>
                                                     <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
-                                                    <td class="dokumen_sk_jabatan">
-                                                        <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
-                                                            target="_blank">{{ $result_jabatan->dokumen_sk_jabatan }}</a>
-                                                    </center></td>
-                                                    <td class="dokumen_pelantikan">
-                                                        <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
-                                                            target="_blank">{{ $result_jabatan->dokumen_pelantikan }}</a>
-                                                    </center></td>
+                                                    <td class="dokumen_sk_jabatan"><center>
+                                                        <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}" target="_blank">
+                                                            @if (pathinfo($result_jabatan->dokumen_sk_jabatan, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @else
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}</td>
+                                                        </a></center></td>
+                                                    <td class="dokumen_pelantikan"><center>
+                                                        <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}" target="_blank">
+                                                            @if (pathinfo($result_jabatan->dokumen_pelantikan, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @else
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}</td>
+                                                        </a></center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
                                                     <td class="text-right">
@@ -1506,10 +1540,15 @@
                                             <td class="tanggal_selesai"><center>{{ $result_diklat->tanggal_selesai }}</center></td>
                                             <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
                                             <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
-                                            <td class="dokumen_diklat">
-                                                <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
-                                                    target="_blank">{{ $result_diklat->dokumen_diklat }}</a>
-                                            </center></td>
+                                            <td class="dokumen_diklat"><center>
+                                                <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank">
+                                                    @if (pathinfo($result_diklat->dokumen_diklat, PATHINFO_EXTENSION) == 'pdf')
+                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                    @else
+                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                    @endif
+                                                        <td hidden class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
+                                                </a></center></td>
                                             
                                             {{-- Edit dan Hapus data  --}}
                                             <td class="text-right">

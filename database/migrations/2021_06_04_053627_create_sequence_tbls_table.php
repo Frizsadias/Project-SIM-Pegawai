@@ -16,6 +16,12 @@ class CreateSequenceTblsTable extends Migration
         Schema::create('sequence_tbls', function (Blueprint $table) {
             $table->id();
         });
+        
+        DB::table('sequence_tbls')->insert([
+            ['id' => '1'],
+            ['id' => '2'],
+            ['id' => '3']
+        ]);
     }
 
     /**

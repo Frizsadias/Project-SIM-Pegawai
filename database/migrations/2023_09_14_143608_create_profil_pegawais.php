@@ -45,6 +45,12 @@ return new class extends Migration
             $table->string('ruangan')->nullable();
             $table->timestamps();
         });
+
+        DB::table('profil_pegawais')->insert([
+            ['user_id' => 'ID_00001', 'name' => 'Kelvin', 'email' => 'kelvin.p2504@gmail.com'],
+            ['user_id' => 'ID_00002', 'name' => 'Frizsa Dias', 'email' => 'frizsadias20@gmail.com'],
+            ['user_id' => 'ID_00003', 'name' => 'Admin', 'email' => 'admin@gmail.com']
+        ]);
     }
 
     /**

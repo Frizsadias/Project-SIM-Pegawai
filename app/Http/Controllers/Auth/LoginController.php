@@ -83,10 +83,10 @@ class LoginController extends Controller
                 Session::put('position', $user->position);
                 Session::put('department', $user->department);
                 
-                $activityLog = ['name'=> Session::get('name'),'email'=> $username,'description' => 'Has log in','date_time'=> $todayDate,];
+                $activityLog = ['name'=> Session::get('name'),'email'=> $username,'description' => 'Telah masuk aplikasi','date_time'=> $todayDate,];
                 DB::table('activity_logs')->insert($activityLog);
                 
-                Toastr::success('Login berhasil :)','Success');
+                Toastr::success('Berhasil masuk aplikasi :)','Success');
                 return redirect()->intended('home');
             } else {
                 Toastr::error('Gagal, Nama Pengguna dan Kata Sandi tidak sama ✘','Error');
@@ -95,7 +95,7 @@ class LoginController extends Controller
         }catch(\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('Gagal menambah pegawai baru :)','Error');
+            Toastr::error('Pembuatan akun pegawai baru gagal :(','Error');
             return redirect()->back();
         }
     }
@@ -106,7 +106,7 @@ class LoginController extends Controller
         $dt         = Carbon::now();
         $todayDate  = $dt->toDayDateTimeString();
 
-        $activityLog = ['name'=> Session::get('name'),'email'=> Session::get('email'),'description' => 'Has log out','date_time'=> $todayDate,];
+        $activityLog = ['name'=> Session::get('name'),'email'=> Session::get('email'),'description' => 'Telah keluar aplikasi','date_time'=> $todayDate,];
         DB::table('activity_logs')->insert($activityLog);
         // forget login session
         $request->session()->forget('name');
@@ -121,7 +121,7 @@ class LoginController extends Controller
         $request->session()->forget('department');
         $request->session()->flush();
         Auth::logout();
-        Toastr::success('Logout berhasil :)','Success');
+        Toastr::success('Berhasil keluar aplikasi :)','Success');
         return redirect('login');
     }
 

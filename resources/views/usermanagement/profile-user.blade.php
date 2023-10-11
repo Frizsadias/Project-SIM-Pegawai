@@ -36,8 +36,7 @@
                                             <div class="profile-info-left">
                                                 <h3 class="user-name m-t-0 mb-0">{{ Session::get('name') }}</h3>
                                                 <div class="staff-id">ID Pegawai : {{ Session::get('user_id') }}</div>
-                                                <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse(Session::get('join_date'))->locale('id')->format('d F Y, H:i') }}
-                                                </div>
+                                                <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse(Session::get('join_date'))->translatedFormat('l, j F Y || h:i A') }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-7">
@@ -128,8 +127,8 @@
                                     <ul class="personal-info">
                                         <li>
                                             <div class="title">Nama</div>
-                                            @if (!empty($result_profilpegawai->nama))
-                                                <div class="text">{{ $result_profilpegawai->nama }}</div>
+                                            @if (!empty($result_profilpegawai->name))
+                                                <div class="text">{{ $result_profilpegawai->name }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
@@ -213,7 +212,7 @@
                                             @if (!empty($result_profilpegawai->no_dokumen))
                                                 <div class="text">{{ $result_profilpegawai->no_dokumen }}</div>
                                             @else
-                                                <div class="text">N/An</div>
+                                                <div class="text">N/A</div>
                                             @endif
                                         </li>
                                         <li>
@@ -332,6 +331,14 @@
                                             <div class="title">Pendidikan Terakhir</div>
                                             @if (!empty($result_profilpegawai->pendidikan_terakhir))
                                                 <div class="text">{{ $result_profilpegawai->pendidikan_terakhir }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Ruangan</div>
+                                            @if (!empty($result_profilpegawai->ruangan))
+                                                <div class="text">{{ $result_profilpegawai->ruangan }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
@@ -518,18 +525,18 @@
                                                             <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
                                                             <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
                                                             <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
-                                                            <td class="dokumen_transkrip">
-                                                                <center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
-                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                                            </center></td>
-                                                            <td class="dokumen_ijazah">
-                                                                <center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
-                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                                            </center></td>
-                                                            <td class="dokumen_gelar">
-                                                                <center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
-                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                                            </center></td>
+                                                            <td class="dokumen_transkrip"><center>
+                                                                <a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}" target="_blank">
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                </a></center></td>
+                                                            <td class="dokumen_ijazah"><center>
+                                                                <a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}" target="_blank">
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                </a></center></td>
+                                                            <td class="dokumen_gelar"><center>
+                                                                <a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}" target="_blank">
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                </a></center></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -576,14 +583,14 @@
                                                             <td class="tanggal_teknis_bkn"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_teknis_bkn)->formatLocalized('%d %B %Y') }}</center></td>
                                                             <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
                                                             <td class="tanggal_sk_golongan"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_sk_golongan)->formatLocalized('%d %B %Y') }}</center></td>
-                                                            <td class="dokumen_skkp">
-                                                                <center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}"
-                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                                            </center></td>
-                                                            <td class="dokumen_teknis_kp">
-                                                                <center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}"
-                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                                            </center></td>
+                                                            <td class="dokumen_skkp"><center>
+                                                                <a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}" target="_blank">
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                </a></center></td>
+                                                            <td class="dokumen_teknis_kp"><center>
+                                                                <a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}" target="_blank">
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                </a></center></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -628,14 +635,14 @@
                                                             <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_jabatan->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
                                                             <td class="tmt_jabatan"><center>{{ \Carbon\Carbon::parse($result_jabatan->tmt_jabatan)->formatLocalized('%d %B %Y') }}</center></td>
                                                             <td class="tmt_pelantikan"><center>{{ \Carbon\Carbon::parse($result_jabatan->tmt_pelantikan)->formatLocalized('%d %B %Y') }}</center></td>
-                                                            <td class="dokumen_sk_jabatan">
-                                                                <center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
-                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                                            </center></td>
-                                                            <td class="dokumen_pelantikan">
-                                                                <center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
-                                                                    target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                                            </center></td>
+                                                            <td class="dokumen_sk_jabatan"><center>
+                                                                <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}" target="_blank">
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                </a></center></td>
+                                                            <td class="dokumen_pelantikan"><center>
+                                                                <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}" target="_blank">
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                </a></center></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -679,10 +686,10 @@
                                                     <td class="tanggal_selesai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_selesai)->formatLocalized('%d %B %Y') }}</center></td>
                                                     <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
                                                     <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
-                                                    <td class="dokumen_diklat">
-                                                        <center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}"
-                                                            target="_blank"><i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i></a>
-                                                    </center></td>
+                                                    <td class="dokumen_diklat"><center>
+                                                        <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank">
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        </a></center></td>
                                                 </tr>
                                             @endforeach
                                                 </tbody>

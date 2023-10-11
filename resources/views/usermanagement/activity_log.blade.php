@@ -39,7 +39,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->description }}</td>
-                                        <td>{{ $item->date_time }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->date_time)->translatedFormat('l, j F Y || h:i A') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

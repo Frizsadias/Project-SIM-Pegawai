@@ -90,25 +90,33 @@
                                         <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
                                         <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
                                         <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
-                                        <td class="dokumen_transkrip">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}"
-                                                    target="_blank">{{ $result_pendidikan->dokumen_transkrip }}</a>
-                                            </center>
-                                        </td>
-                                        <td class="dokumen_ijazah">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}"
-                                                    target="_blank">{{ $result_pendidikan->dokumen_ijazah }}</a>
-                                            </center>
-                                        </td>
-                                        <td class="dokumen_gelar">
-                                            <center><a
-                                                    href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}"
-                                                    target="_blank">{{ $result_pendidikan->dokumen_gelar }}</a>
-                                            </center>
-                                        </td>
-
+                                        <td class="dokumen_transkrip"><center>
+                                            <a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}" target="_blank">
+                                                @if (pathinfo($result_pendidikan->dokumen_transkrip, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @else
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                    <td hidden class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>
+                                            </a></center></td>
+                                        <td class="dokumen_ijazah"><center>
+                                            <a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}" target="_blank">
+                                                @if (pathinfo($result_pendidikan->dokumen_ijazah, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @else
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                    <td hidden class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>
+                                            </a></center></td>
+                                        <td class="dokumen_gelar"><center>
+                                            <a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}" target="_blank">
+                                                @if (pathinfo($result_pendidikan->dokumen_gelar, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @else
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                    <td hidden class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>
+                                            </a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">

@@ -38,7 +38,7 @@
                                                 {{-- <h6 class="text-muted">{{ Session::get('department') }}</h6> --}}
                                                 {{-- <small class="text-muted">{{ Session::get('position') }}</small> --}}
                                                 <div class="staff-id">ID Pegawai : {{ Session::get('user_id') }}</div>
-                                                <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse(Session::get('join_date'))->locale('id')->format('d F Y, H:i') }}</div>
+                                                <div class="small doj text-muted">Tanggal Bergabung : {{ \Carbon\Carbon::parse(Session::get('join_date'))->translatedFormat('l, j F Y || h:i A') }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-7">
@@ -77,6 +77,33 @@
                                                             <div class="text">N/A</div>
                                                         @endif
                                                     </li>
+                                                    <li>
+                                                        @if (Auth::user()->user_id == $propeg->user_id)
+                                                            <div class="title">Agama :</div>
+                                                            <div class="text">{{ $propeg->agama }}</div>
+                                                        @else
+                                                            <div class="title">Agama :</div>
+                                                            <div class="text">N/A</div>
+                                                        @endif
+                                                    </li>
+                                                    <li>
+                                                        @if (Auth::user()->user_id == $propeg->user_id)
+                                                            <div class="title">Pendidikan Terakhir :</div>
+                                                            <div class="text">{{ $propeg->pendidikan_terakhir }}</div>
+                                                        @else
+                                                            <div class="title">Pendidikan Terakhir :</div>
+                                                            <div class="text">N/A</div>
+                                                        @endif
+                                                    </li>
+                                                    <li>
+                                                        @if (Auth::user()->user_id == $posjab->user_id)
+                                                            <div class="title">Jabatan :</div>
+                                                            <div class="text">{{ $posjab->jabatan }}</div>
+                                                        @else
+                                                            <div class="title">Jabatan :</div>
+                                                            <div class="text">N/A</div>
+                                                        @endif
+                                                    </li>
                                                 @else
                                                     <li>
                                                         <div class="title">Tanggal Lahir :</div>
@@ -88,6 +115,18 @@
                                                     </li>
                                                     <li>
                                                         <div class="title">Jenis Kelamin :</div>
+                                                        <div class="text">N/A</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">Agama :</div>
+                                                        <div class="text">N/A</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">Pendidikan Terakhir :</div>
+                                                        <div class="text">N/A</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">Jabatan :</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                 @endif
@@ -163,6 +202,34 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="agama">Agama</label>
+                                                    <select class="select" name="agama" id="agama">
+                                                        <option value="" disabled selected>--- Pilih Agama ---</option>
+                                                        @foreach($agamaOptions as $id => $namaAgama)
+                                                            <option value="{{ $id }}" {{ $id == $propeg->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Pendidikan Terakhir</label>
+                                                    <select class="select" name="pendidikan_terakhir" id="pendidikan_terakhir">
+                                                        <option value="" disabled selected>--- Pilih Pendidikan Terakhir ---</option>
+                                                        @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
+                                                            <option value="{{ $id }}" {{ $id == $propeg->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Jabatan</label>
+                                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $posjab->jabatan }}">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -228,6 +295,34 @@
                                                         <option value="Laki-Laki">Laki-Laki</option>
                                                         <option value="Perempuan">Perempuan</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="agama">Agama</label>
+                                                    <select class="select" name="agama" id="agama">
+                                                        <option value="" disabled selected>--- Pilih Agama ---</option>
+                                                        @foreach($agamaOptions as $id => $namaAgama)
+                                                            <option value="{{ $id }}" {{ $id == $propeg->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Pendidikan Terakhir</label>
+                                                    <select class="select" name="pendidikan_terakhir" id="pendidikan_terakhir">
+                                                        <option value="" disabled selected>--- Pilih Pendidikan Terakhir ---</option>
+                                                        @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
+                                                            <option value="{{ $id }}" {{ $id == $propeg->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Jabatan</label>
+                                                    <input type="text" class="form-control" id="jabatan" name="jabatan">
                                                 </div>
                                             </div>
                                         </div>

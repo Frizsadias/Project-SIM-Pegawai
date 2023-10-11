@@ -81,7 +81,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $dafpeg)
-                                @if ($dafpeg->role_name == 'User' && $dafpeg->kedudukan_pns == 'Tidak Aktif')
+                                @if ($dafpeg->role_name == 'User' && $dafpeg->kedudukan_pns == 'Pensiun')
                                 <tr>
                                     <td>{{ $dafpeg->nip }}</td>
                                     <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}" style="color:black;">{{ $dafpeg->name }}</a></td>

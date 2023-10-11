@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('user_id');
             $table->string('email')->unique();
-            $table->string('join_date')->unique();
+            $table->string('join_date');
             $table->string('status')->nullable();
             $table->string('role_name')->nullable();
             $table->string('avatar')->nullable();
@@ -27,6 +27,42 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            ['name' => 'Kelvin',
+             'user_id' => 'ID_00001',
+             'email' => 'kelvin.p2504@gmail.com',
+             'join_date' => now()->toDayDateTimeString(),
+             'status' => 'Active',
+             'role_name' => 'Admin',
+             'avatar' => 'photo_defaults.jpg',
+             'password' => Hash::make('Kelvin.P980425'),
+             'created_at' => now(),
+             'updated_at' => now()
+            ],
+            ['name' => 'Frizsa Dias',
+             'user_id' => 'ID_00002',
+             'email' => 'frizsadias20@gmail.com',
+             'join_date' => now()->toDayDateTimeString(),
+             'status' => 'Active',
+             'role_name' => 'Admin',
+             'avatar' => 'photo_defaults.jpg',
+             'password' => Hash::make('12345678'),
+             'created_at' => now(),
+             'updated_at' => now()
+            ],
+            ['name' => 'Admin',
+             'user_id' => 'ID_00003',
+             'email' => 'admin@gmail.com',
+             'join_date' => now()->toDayDateTimeString(),
+             'status' => 'Active',
+             'role_name' => 'Admin',
+             'avatar' => 'photo_defaults.jpg',
+             'password' => Hash::make('12345678'),
+             'created_at' => now(),
+             'updated_at' => now()
+            ]
+        ]);
     }
 
 
