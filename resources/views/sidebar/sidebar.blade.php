@@ -11,28 +11,19 @@
                 </li>
 
                 @if (Auth::user()->role_name == 'Admin')
-                    <li class="menu-title"> <span>Manajemen Sistem</span> </li>
-                    <li class="{{ request()->is('search/user/list', 'manajemen/pengguna') ? 'active' : '' }}">
-                        <a href="{{ route('manajemen-pengguna') }}"
-                            class="{{ request()->is('search/user/list', 'manajemen/pengguna') ? 'noti-dot' : '' }}">
-                            <i class="la la-user-secret"></i> <span>Daftar Pengguna</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('riwayat-aktivitas') ? 'active' : '' }}">
-                        <a href="{{ route('riwayat-aktivitas') }}"
-                            class="{{ request()->routeIs('riwayat-aktivitas') ? 'noti-dot' : '' }}">
-                            <i class="la la-caret-square-o-left"></i>
-                            <span>Riwayat Aktivitas</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('riwayat-aktivitas-otentikasi') ? 'active' : '' }}">
-                        <a href="{{ route('riwayat-aktivitas-otentikasi') }}"
-                            class="{{ request()->routeIs('riwayat-aktivitas-otentikasi') ? 'noti-dot' : '' }}">
-                            <i class="la la-line-chart"></i>
-                            <span>Aktivitas Pengguna</span>
-                        </a>
-                    </li>
-                    </li>
+
+                <li class="{{set_active(['manajemen/pengguna','riwayat/aktivitas','riwayat/aktivitas/otentikasi'])}} submenu">
+                    <a href="#" class="{{ set_active(['manajemen/pengguna','riwayat/aktivitas','riwayat/aktivitas/otentikasi']) ? 'noti-dot' : '' }}">
+                        <i class="la la-server"></i>
+                        <span> Manajemen Sistem</span> <span class="menu-arrow"></span>
+                    </a>
+                    <ul style="{{ request()->is('/*') ? 'display: block;' : 'display: none;' }}">
+                    <li><a class="{{set_active(['manajemen/pengguna','manajemen/pengguna'])}}" href="{{ route('manajemen-pengguna') }}"> <span>Daftar Pengguna</span></a></li>
+                    <li><a class="{{set_active(['riwayat/aktivitas','riwayat/aktivitas'])}}" href="{{ route('riwayat-aktivitas') }}"> <span>Riwayat Aktivitas</span></a></li>
+                    <li><a class="{{set_active(['riwayat/aktivitas/otentikasi','riwayat/aktivitas/otentikasi'])}}" href="{{ route('riwayat-aktivitas-otentikasi') }}"> <span>Aktivitas Pengguna</span></a></li>
+                    </ul>
+                </li>
+
 
                     <li class="menu-title"> <span>Data Referensi </span>
                     <li class="{{ request()->routeIs('referensi-agama') ? 'active' : '' }}">

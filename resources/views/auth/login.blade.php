@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="main-wrapper" style="background-image: url('/assets/img/bg.jpg'); background-size: cover;">
+    <div class="main-wrapper">
         <div class="account-content">
             <div class="container">         
                 {{-- message --}}
@@ -8,7 +8,7 @@
                 <!-- /Account Logo -->
                 <div class="account-box">
                     <div class="account-wrapper">
-                        <h3 class="account-title">Masuk</h3>
+                        <h3 class="account-title">Login Simpeg</h3>
                         <!-- Account Form -->
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -48,6 +48,14 @@
                             <div class="form-group text-center">
                                 <button class="btn btn-primary account-btn" type="submit">Masuk</button>
                             </div>
+                            <div class="col-auto">
+                                        <a class="text-muted" href="{{ route('forget-password') }}">
+                                        <strong>Copyright &copy;
+		<script type="text/javascript" async=""></script><script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                                        RSUD CARUBAN.</strong> All rights reserved.
+                                    </div>
                             {{-- <div class="account-footer">
                                 <p>Don't have an account yet? <a href="{{ route('register') }}">Register</a></p>
                             </div> --}}
