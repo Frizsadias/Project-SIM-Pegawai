@@ -70,11 +70,11 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>User ID</th>
-                                    <th>Email</th>
+                                    <th>Nama Pengguna</th>
+                                    <th>ID Pengguna</th>
+                                    <th>E-mail</th>
                                     <th>Tanggal Bergabung</th>
-                                    <th>Role</th>
+                                    <th>Peran</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>

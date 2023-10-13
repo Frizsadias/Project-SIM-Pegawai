@@ -49,16 +49,12 @@
                                 <button class="btn btn-primary account-btn" type="submit">Masuk</button>
                             </div>
                             <div class="col-auto">
-                                        <a class="text-muted" href="{{ route('forget-password') }}">
-                                        <strong>Copyright &copy;
-		<script type="text/javascript" async=""></script><script>
-                        document.write(new Date().getFullYear())
-                    </script>
-                                        RSUD CARUBAN.</strong> All rights reserved.
-                                    </div>
-                            {{-- <div class="account-footer">
-                                <p>Don't have an account yet? <a href="{{ route('register') }}">Register</a></p>
-                            </div> --}}
+                                <a class="text-muted" href="{{ route('forget-password') }}">
+                            </div>
+                            <div class="account-footer">
+                                <a style="color: #8e8e8e;"><strong>Copyright &copy;2023 - <script>document.write(new Date().getFullYear())</script> RSUD CARUBAN.</strong></a><br>
+                                <p style="color: #8e8e8e;">All rights reserved.</p>
+                            </div>
                         </form>
                         <!-- /Account Form -->
                     </div>

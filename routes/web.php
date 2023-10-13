@@ -138,6 +138,7 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('admin/profile', 'admin_profile')->middleware('auth')->name('admin-profile');
     Route::get('super-admin/profile', 'superadmin_profile')->middleware('auth')->name('super-admin-profile');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');
+    Route::post('profile/information/foto/save', 'fotoProfile')->name('profile/information/foto/save');
     Route::get('manajemen/pengguna', 'index')->middleware('auth')->name('manajemen-pengguna');
     Route::post('user/add/save', 'addNewUserSave')->name('user/add/save');
     Route::post('update', 'update')->name('update');
@@ -406,8 +407,12 @@ Route::controller(RiwayatManagementController::class)->group(function () {
     Route::get('get-agama-data', 'getAgamaData')->name('get-agama-data');
 });
 
-// ----------------------------- Layanan ------------------------------//
+    // ----------------------- Informasi Layanan Cuti --------------------------//
 Route::controller(LayananController::class)->group(function () {
-    Route::get('layanan/cuti', 'listCuti')->middleware('auth')->name('layanan/cuti');
-    Route::post('layanan/cuti/tambah-data', 'tambahDataCuti')->middleware('auth')->name('layanan/cuti/tambah-data');
+    Route::get('layanan/cuti', 'tampilanCutiPegawai')->name('layanan-cuti');
+    Route::get('layanan/cuti/admin', 'tampilanCutiPegawaiAdmin')->name('layanan-cuti-admin');
+    Route::post('layanan/cuti/tambah-data', 'tambahDataCuti')->name('layanan/cuti/tambah-data');
+    Route::post('layanan/cuti/edit-data', 'editDataCuti')->name('layanan/cuti/edit-data');
+    Route::get('layanan/cuti/cari', 'pencarianLayananCuti')->name('layanan/cuti/cari');
+    Route::get('layanan/cuti/cari/admin', 'pencarianLayananCutiAdmin')->name('layanan/cuti/cari/admin');
 });

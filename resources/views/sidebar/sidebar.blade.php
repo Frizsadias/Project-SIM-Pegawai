@@ -111,8 +111,8 @@
                             <span>Status Kepegawaian</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('layanan/cuti') ? 'active' : '' }}">
-                        <a href="{{ route('layanan/cuti') }}" class="{{ request()->routeIs('layanan/cuti') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('layanan-cuti-admin') ? 'active' : '' }}">
+                        <a href="{{ route('layanan-cuti-admin') }}" class="{{ request()->routeIs('layanan-cuti-admin') ? 'noti-dot' : '' }}">
                             <i class="las la-newspaper"></i>
                             <span>Pengajuan Cuti</span>
                         </a>
@@ -358,7 +358,12 @@
                             <span>Profesi</span>
                         </a>
                     </li>
-
+                    <li class="{{ request()->routeIs('layanan-cuti') ? 'active' : '' }}">
+                        <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
+                            <i class="las la-newspaper"></i>
+                            <span>Pengajuan Cuti</span>
+                        </a>
+                    </li>
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
                     <li class="{{ set_active(['user/profile']) }}">
                         <a href="{{ route('user-profile') }}"

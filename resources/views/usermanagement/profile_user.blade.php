@@ -33,6 +33,11 @@
                                 <div class="profile-basic pro-overview tab-pane fade show active">
                                     <div class="row">
                                         <div class="col-md-5">
+                                            <div class="pro-edit">
+                                                <a data-target="#profile_info_avatar" data-toggle="modal" class="edit-icon-avatar" href="#">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </div>
                                             <div class="profile-info-left">
                                                 <h3 class="user-name m-t-0 mb-0">{{ Session::get('name') }}</h3>
                                                 {{-- <h6 class="text-muted">{{ Session::get('department') }}</h6> --}}
@@ -163,14 +168,6 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
-                                            <div class="fileupload btn">
-                                                <span class="btn-text">edit</span>
-                                                <input class="upload" type="file" id="image" name="images">
-                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
-                                            </div>
-                                        </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -254,17 +251,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('profile/information/save') }}" method="POST">
+                            <form action="{{ route('profile/information/save') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
-                                            <div class="fileupload btn">
-                                                <span class="btn-text">edit</span>
-                                                <input class="upload" type="file" id="upload" name="upload">
-                                            </div>
-                                        </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -323,6 +313,96 @@
                                                 <div class="form-group">
                                                     <label>Jabatan</label>
                                                     <input type="text" class="form-control" id="jabatan" name="jabatan">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Profile Modal -->
+        @endif
+
+        @if (!empty($information))
+            <!-- Profile Modal -->
+            <div id="profile_info_avatar" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Foto Profil</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('profile/information/foto/save') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="profile-img-wrap edit-img">
+                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <div class="fileupload btn">
+                                                <span class="btn-text">edit</span>
+                                                <input class="upload" type="file" id="image" name="images">
+                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}">
+                                                    <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    <input type="hidden" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Profile Modal -->
+        @else
+            <!-- Profile Modal -->
+            <div id="profile_info_avatar" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Foto Profil</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('profile/information/foto/save') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="profile-img-wrap edit-img">
+                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <div class="fileupload btn">
+                                                <span class="btn-text">edit</span>
+                                                <input class="upload" type="file" id="image" name="images">
+                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}">
+                                                    <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    <input type="hidden" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
                                                 </div>
                                             </div>
                                         </div>

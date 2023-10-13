@@ -129,9 +129,9 @@ class UserManagementController extends Controller
             /** status */
             $full_status = '
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-success"></i> Active </a>
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-warning"></i> Inactive </a>
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-danger"></i> Disable </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-success"></i> Aktif </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-warning"></i> Tidak Aktif </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-danger"></i> Tidak Tersedia </a>
                 </div>
             ';
 
@@ -340,28 +340,6 @@ class UserManagementController extends Controller
     public function profileInformation(Request $request)
     {
         try {
-            if (!empty($request->images)) {
-                $image_name = $request->hidden_image;
-                $image      = $request->file('images');
-                if ($image_name == 'photo_defaults.jpg') {
-                    if ($image != '') {
-                        $image_name = rand() . '.' . $image->getClientOriginalExtension();
-                        $image->move(public_path('/assets/images/'), $image_name);
-                    }
-                } else {
-                    if ($image != '') {
-                        $image_name = rand() . '.' . $image->getClientOriginalExtension();
-                        $image->move(public_path('/assets/images/'), $image_name);
-                        unlink('assets/images/' . Auth::user()->avatar);
-                    }
-                }
-                $update = [
-                    'user_id'   => $request->user_id,
-                    'name'      => $request->name,
-                    'avatar'    => $image_name,
-                ];
-                User::where('user_id', $request->user_id)->update($update);
-            }
                 $updateProfil = [
                     'pendidikan_terakhir'   => $request->pendidikan_terakhir,
                     'agama'                 => $request->agama,
@@ -389,6 +367,43 @@ class UserManagementController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data profil informasi gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** save profile information */
+    public function fotoProfile(Request $request)
+    {
+        try {
+            if (!empty($request->images)) {
+                $image_name = $request->hidden_image;
+                $image      = $request->file('images');
+                if ($image_name == 'photo_defaults.jpg') {
+                    if ($image != '') {
+                        $image_name = rand() . '.' . $image->getClientOriginalExtension();
+                        $image->move(public_path('/assets/images/'), $image_name);
+                    }
+                } else {
+                    if ($image != '') {
+                        $image_name = rand() . '.' . $image->getClientOriginalExtension();
+                        $image->move(public_path('/assets/images/'), $image_name);
+                        unlink('assets/images/' . Auth::user()->avatar);
+                    }
+                }
+                $update = [
+                    'user_id'   => $request->user_id,
+                    'name'      => $request->name,
+                    'avatar'    => $image_name,
+                ];
+                User::where('user_id', $request->user_id)->update($update);
+            }
+
+            DB::commit();
+            Toastr::success('Foto profil berhasil diperbaharui :)','Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Foto profil gagal diperbaharui :(', 'Error');
             return redirect()->back();
         }
     }
