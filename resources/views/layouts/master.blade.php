@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="description" content="SoengSouy Admin Template">
-    <meta name="keywords"
-        content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
     <meta name="author" content="SoengSouy Admin Template">
     <meta name="robots" content="noindex, nofollow">
     <title>Dashboard - Sim Pegawai</title>
@@ -29,14 +28,8 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ URL::to('assets/css/style.css') }}">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-        crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-        integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-        crossorigin="anonymous"></script>
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
     {{-- message toastr --}}
     <link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
@@ -50,7 +43,6 @@
         .invalid-feedback {
             font-size: 14px;
         }
-
         .error {
             color: red;
         }
@@ -74,8 +66,7 @@
         <div class="header">
             <!-- Logo -->
             <div class="header-left">
-                <a href="{{ route('home') }}" class="logo"
-                    style="font-size: 24px; color: #3b5c03; font-weight: bold;">
+                <a href="{{ route('home') }}" class="logo" style="font-size: 24px; color: #3b5c03; font-weight: bold;">
                     <i class="fa fa-user" style="display: inline-block;"></i>
                     <span class="logo-text" style="display: inline-block;">SIMPEG</span>
                 </a>
@@ -89,21 +80,50 @@
                     <span></span>
                 </span>
             </a>
-            <!-- Header Title -->
-            <div class="page-title-box">
-
-            </div>
             <!-- /Header Title -->
             <a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
+
             <!-- Header Menu -->
             <ul class="nav user-menu">
+
+                <!-- Notifications -->
+				<li class="nav-item dropdown">
+					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+						<i class="fa fa-bell-o"></i>
+						<span class="badge badge-pill">1</span> 
+					</a>
+					<div class="dropdown-menu notifications">
+						<div class="topnav-dropdown-header">
+							<span class="notification-title">Notifikasi</span> 
+							<a href="javascript:void(0)" class="clear-noti"> Bersihkan Semua </a> 
+						</div>
+						<div class="noti-content">
+							<ul class="notification-list">
+								<li class="notification-message">
+                                    <a href="#">
+                                        <div class="media">
+                                            <span class="avatar">
+                                                <img alt="" src="{{ URL::to('/assets/images/'.Auth::user()->avatar) }}">
+                                            </span>
+                                            <div class="media-body">
+                                                <p class="noti-details"><span class="noti-title">Kelvin</span> notifikasi baru <span class="noti-title">Selamat Datang</span></p>
+                                                <p class="noti-time"><span class="notification-time">4 min ago</span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+							</ul>
+						</div>
+						<div class="topnav-dropdown-footer"> <a href="#">Lihat Semua Notifikasi</a> </div>
+					</div>
+				</li>
+				<!-- /Notifications -->
 
                 <!-- Profil -->
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img">
-                            <img src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}"
-                                alt="{{ Auth::user()->name }}">
+                            <img src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                             <span class="status online"></span>
                         </span>
                         <span>{{ Session::get('name') }}</span>

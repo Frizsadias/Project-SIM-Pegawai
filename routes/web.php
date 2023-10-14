@@ -415,4 +415,5 @@ Route::controller(LayananController::class)->group(function () {
     Route::post('layanan/cuti/edit-data', 'editDataCuti')->name('layanan/cuti/edit-data');
     Route::get('layanan/cuti/cari', 'pencarianLayananCuti')->name('layanan/cuti/cari');
     Route::get('layanan/cuti/cari/admin', 'pencarianLayananCutiAdmin')->name('layanan/cuti/cari/admin');
+    Route::patch('/update-status/{id}', 'updateStatus')->name('updateStatus');
 });

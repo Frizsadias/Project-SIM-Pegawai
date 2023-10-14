@@ -129,9 +129,9 @@ class UserManagementController extends Controller
             /** status */
             $full_status = '
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-success"></i> Aktif </a>
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-warning"></i> Tidak Aktif </a>
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-danger"></i> Tidak Tersedia </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-success"></i> Active </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-warning"></i> Inactive </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-danger"></i> Disable </a>
                 </div>
             ';
 

@@ -27,7 +27,14 @@
                                         <label>Kata Sandi</label>
                                     </div>
                                 </div>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Kata Sandi">
+                                <div class="input-group">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="katasandi" name="password" placeholder="Masukkan Kata Sandi">
+                                    <div class="input-group-append">
+                                        <button type="button" id="tampilkanPassword" class="btn btn-outline-secondary">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -62,4 +69,7 @@
             </div>
         </div>
     </div>
+    @section('script')
+        <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
+    @endsection
 @endsection

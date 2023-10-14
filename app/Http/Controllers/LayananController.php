@@ -187,4 +187,13 @@ class LayananController extends Controller
     }
     /** /Search Layanan Cuti */
 
+    public function updateStatus(Request $request, $id) {
+        $status_pengajuan = $request->input('status_pengajuan');
+        $resource = LayananCuti::find($id);
+        $resource->status_pengajuan = $status_pengajuan;
+        $resource->save();
+        Toastr::success('Data status pengajuan berhasil diperbaharui :)', 'Success');
+        return redirect()->back();
+    }
+
 }

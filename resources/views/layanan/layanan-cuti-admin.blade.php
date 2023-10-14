@@ -101,12 +101,29 @@
                                             <td class="status_pengajuan">
                                                 <div class="dropdown">
                                                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-dot-circle-o text-warning"></i>
+                                                        @if ($result_cuti->status_pengajuan == 'Disetujui')
+                                                            <i class="fa fa-dot-circle-o text-success"></i>
+                                                        @elseif ($result_cuti->status_pengajuan == 'Dalam Proses Persetujuan')
+                                                            <i class="fa fa-dot-circle-o text-warning"></i>
+                                                        @elseif ($result_cuti->status_pengajuan == 'Ditolak')
+                                                            <i class="fa fa-dot-circle-o text-danger"></i>
+                                                        @endif
                                                         <span class="dropdown_pengajuan">{{ $result_cuti->status_pengajuan }}</span>
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="statusDropdown">
-                                                        <a class="dropdown-item"><i class="fa fa-dot-circle-o text-success"></i> Disetujui </a>
-                                                        <a class="dropdown-item"><i class="fa fa-dot-circle-o text-danger"></i> Ditolak </a>
+                                                        <form action="{{ route('updateStatus', $result_cuti->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit" class="dropdown-item" name="status_pengajuan" value="Disetujui">
+                                                                <i class="fa fa-dot-circle-o text-success"></i> Disetujui
+                                                            </button>
+                                                            <button type="submit" class="dropdown-item" name="status_pengajuan" value="Dalam Proses Persetujuan">
+                                                                <i class="fa fa-dot-circle-o text-warning"></i> Dalam Proses Persetujuan
+                                                            </button>
+                                                            <button type="submit" class="dropdown-item" name="status_pengajuan" value="Ditolak">
+                                                                <i class="fa fa-dot-circle-o text-danger"></i> Ditolak
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>
