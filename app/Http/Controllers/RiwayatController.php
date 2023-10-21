@@ -12,6 +12,8 @@ use DB;
 use App\Models\RiwayatPendidikan;
 use Carbon\Carbon;
 use Session;
+use App\Models\Notification;
+use App\Notifications\UlangTahunNotification;
 
 class RiwayatController extends Controller
 {
@@ -39,12 +41,27 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Pendidikan */
     public function pendidikan()
     {
+
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
         $datapendidikan = Session::get('user_id');
         $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
 
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
 
-        return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan', 'tingkatpendidikanOptions'));
+        return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan', 'tingkatpendidikanOptions','unreadNotifications', 'readNotifications'));
     }
     /** End Tampilan Riwayat Pendidikan */
 
@@ -185,9 +202,22 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Golongan */
     public function golongan()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        
         $datagolongan = Session::get('user_id');
         $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
-        return view('riwayat.riwayat-golongan', compact('riwayatGolongan'));
+        return view('riwayat.riwayat-golongan', compact('riwayatGolongan', 'unreadNotifications', 'readNotifications'));
     }
     /** End Tampilan Riwayat Golongan */
 
@@ -315,11 +345,24 @@ class RiwayatController extends Controller
     /** Tampilan riwayat jabatan */
     public function jabatan()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        
         $datajabatan = Session::get('user_id');
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
 
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
-        return view('riwayat.riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions'));
+        return view('riwayat.riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions', 'unreadNotifications', 'readNotifications'));
     }
     /** End Tampilan Riwayat Jabatan */
 
@@ -444,11 +487,25 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Diklat */
     public function diklat()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        
+        
         $datadiklat = Session::get('user_id');
         $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
 
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
-        return view('riwayat.riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions'));
+        return view('riwayat.riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
     }
     /** End Tampilan Riwayat Diklat */
 

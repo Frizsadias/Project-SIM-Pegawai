@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\SIPDokter;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -11,6 +12,18 @@ class SIPController extends Controller
 {
     public function tampilanSIPDokter()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $user_id = auth()->user()->user_id;
         $data_sip_dokter = DB::table('sip_spk_dokter')
             ->select(
@@ -30,13 +43,25 @@ class SIPController extends Controller
             ->select('profil_pegawai.*','profil_pegawai.name','profil_pegawai.nip')
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
-        return view('transaksi.sip-dokter', compact('data_sip_dokter', 'data_profil_sip'));
+        return view('transaksi.sip-dokter', compact('data_sip_dokter', 'data_profil_sip', 'unreadNotifications', 'readNotifications'));
     }
     /** /Tampilan SIP Dokter */
 
     /** Daftar SIP Dokter */
     public function tampilanSIPDokterAdmin()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $data_sip_dokter = DB::table('sip_spk_dokter')
         ->select(
             'sip_spk_dokter.*',
@@ -59,7 +84,7 @@ class SIPController extends Controller
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
-        return view('transaksi.sip-dokter-admin', compact('data_sip_dokter', 'userList', 'ruanganOptions'));
+        return view('transaksi.sip-dokter-admin', compact('data_sip_dokter', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data SIP Dokter */
@@ -165,6 +190,18 @@ class SIPController extends Controller
     /** Daftar SPK Dokter */
     public function tampilanSPKDokterAdmin()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $data_spk_dokter = DB::table('sip_spk_dokter')
         ->select(
             'sip_spk_dokter.*',
@@ -186,7 +223,7 @@ class SIPController extends Controller
         $userList = DB::table('profil_pegawai')->get();
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
-        return view('transaksi.spk-dokter-admin', compact('data_spk_dokter', 'userList', 'ruanganOptions'));
+        return view('transaksi.spk-dokter-admin', compact('data_spk_dokter', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data SPK Dokter */
@@ -292,6 +329,18 @@ class SIPController extends Controller
     /** Daftar SPK Perawat */
     public function tampilanSPKPerawatAdmin()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $data_spk_perawat = DB::table('sip_spk_dokter')
         ->select(
             'sip_spk_dokter.*',
@@ -313,7 +362,7 @@ class SIPController extends Controller
         $userList = DB::table('profil_pegawai')->get();
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
-        return view('transaksi.spk-perawat-admin', compact('data_spk_perawat', 'userList', 'ruanganOptions'));
+        return view('transaksi.spk-perawat-admin', compact('data_spk_perawat', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data SPK Perawat */
@@ -419,6 +468,18 @@ class SIPController extends Controller
     /** Daftar SPK Nakes Lain */
     public function tampilanSPKNakesLainAdmin()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $data_spk_nakeslain = DB::table('sip_spk_dokter')
         ->select(
             'sip_spk_dokter.*',
@@ -439,7 +500,7 @@ class SIPController extends Controller
             ->get();
         $userList = DB::table('profil_pegawai')->get();
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
-        return view('transaksi.spk-nakes-lain-admin', compact('data_spk_nakeslain', 'userList', 'ruanganOptions'));
+        return view('transaksi.spk-nakes-lain-admin', compact('data_spk_nakeslain', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data SPK Nakes Lain */

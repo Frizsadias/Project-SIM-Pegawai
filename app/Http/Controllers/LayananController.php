@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\LayananCuti;
+use App\Models\Notification;
 use App\Models\PosisiJabatan;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;

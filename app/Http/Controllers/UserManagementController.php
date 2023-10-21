@@ -225,15 +225,39 @@ class UserManagementController extends Controller
     /** use activity log */
     public function activityLog()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        
         $activityLog = DB::table('user_activity_logs')->get();
-        return view('usermanagement.user_activity_log', compact('activityLog'));
+        return view('usermanagement.user_activity_log', compact('activityLog', 'unreadNotifications', 'readNotifications'));
     }
 
     /** activity log */
     public function activityLogInLogOut()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $activityLog = DB::table('activity_logs')->get();
-        return view('usermanagement.activity_log', compact('activityLog'));
+        return view('usermanagement.activity_log', compact('activityLog', 'unreadNotifications', 'readNotifications'));
     }
 
     /** profile admin */
@@ -281,6 +305,18 @@ class UserManagementController extends Controller
     /** profile super admin */
     public function superadmin_profile()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        
         $profile = Session::get('user_id');
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
@@ -291,19 +327,19 @@ class UserManagementController extends Controller
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
             $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
             $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
-            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
+            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
                 $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
                 $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
-                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications'));
             } else {
                 $information = ProfileInformation::all();
                 $propeg = ProfilPegawai::all();
                 $posjab = PosisiJabatan::all();
-                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications'));
             }
         }
     }
@@ -311,6 +347,19 @@ class UserManagementController extends Controller
     /** profile user */
     public function user_profile()
     {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        
+        
         $profile = Session::get('user_id');
         $result_profilpegawai = ProfilPegawai::where('user_id', $profile)->first();
         $user = DB::table('users')->get();
@@ -344,19 +393,18 @@ class UserManagementController extends Controller
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
-        
-        if(empty($employees))
-        {
-            $information = DB::table('profile_information')->where('user_id',$profile)->first();
-            return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
+
+        if (empty($employees)) {
+            $information = DB::table('profile_information')->where('user_id', $profile)->first();
+            return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
+                return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
+                return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
             }
         }
     }
@@ -562,7 +610,19 @@ class UserManagementController extends Controller
     /** view change password */
     public function changePasswordView()
     {
-        return view('settings.changepassword');
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('settings.changepassword', compact('unreadNotifications', 'readNotifications'));
     }
 
     /** change password in db */
@@ -665,16 +725,15 @@ class UserManagementController extends Controller
     /** Edit Data Posisi & Jabatan */
     public function profilePegawaiEdit(Request $request)
     {
-        if (auth()->user())
-        {
+        if (auth()->user()) {
             $user = User::first();
             $notification = auth()->user()->notifications->where('data.user_id', $user->id)->first();
-        
-                if (!$notification) {
-                    $notification = new UlangTahunNotification($user);
-                    $notification->data['user_id'] = $user->id;
-                    auth()->user()->notify($notification);
-                }
+
+            if (!$notification) {
+                $notification = new UlangTahunNotification($user);
+                $notification->data['user_id'] = $user->id;
+                auth()->user()->notify($notification);
+            }
         }
         $request->validate([
             'nip'                   => 'required|string|max:255',
