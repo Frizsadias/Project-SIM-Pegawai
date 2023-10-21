@@ -81,6 +81,10 @@ Auth::routes();
 // ----------------------------- main dashboard ------------------------------//
 Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
+    Route::get('/notifikasi/dibaca/{id}', 'bacaNotifikasi')->name('notifikasi.dibaca');
+    Route::post('/notifikasi/dibaca/semua', 'bacasemuaNotifikasi')->name('notifikasi.dibaca-semua');
+    Route::get('/notify', 'notify')->name('notify');
+
 });
 
 // -----------------------------settings-------------------------------------//
@@ -376,7 +380,6 @@ Route::controller(PersonalInformationController::class)->group(function () {
 // ----------------------- rekapitulasi  --------------------------//
 Route::controller(RekapitulasiController::class)->group(function () {
     Route::get('rekapitulasi', 'index')->middleware('auth')->name('rekapitulasi');
-    Route::get('dashboard', 'indexDashboard')->middleware('auth')->name('dashboard');
 });
 
 // ----------------------- Informasi Riwayat Pendidikan --------------------------//

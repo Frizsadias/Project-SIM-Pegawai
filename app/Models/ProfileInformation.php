@@ -15,5 +15,7 @@ class ProfileInformation extends Model
         'tgl_lahir',
         'jk',
         'alamat',
+        'avatar',
+        'tmpt_lahir',
     ];
 }

@@ -66,6 +66,15 @@
                                                     </li>
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
+                                                            <div class="title">Tempat Lahir :</div>
+                                                            <div class="text">{{ $information->tmpt_lahir }}</div>
+                                                        @else
+                                                            <div class="title">Tempat Lahir :</div>
+                                                            <div class="text">N/A</div>
+                                                        @endif
+                                                    </li>
+                                                    <li>
+                                                        @if (Auth::user()->user_id == $information->user_id)
                                                             <div class="title">Alamat :</div>
                                                             <div class="text">{{ $information->alamat }}</div>
                                                         @else
@@ -112,6 +121,10 @@
                                                 @else
                                                     <li>
                                                         <div class="title">Tanggal Lahir :</div>
+                                                        <div class="text">N/A</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">Tempat Lahir :</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                     <li>
@@ -186,6 +199,12 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label>Tempat Lahir</label>
+                                                    <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" value="{{ $information->tmpt_lahir }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
                                                     <label>Alamat</label>
                                                     <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $information->alamat }}">
                                                 </div>
@@ -225,6 +244,11 @@
                                                 <div class="form-group">
                                                     <label>Jabatan</label>
                                                     <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $posjab->jabatan }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="avatar" name="avatar" value="{{ $user->avatar }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -273,6 +297,12 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label>Tempat Lahir</label>
+                                                    <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
                                                     <label>Alamat</label>
                                                     <input type="text" class="form-control" id="alamat" name="alamat">
                                                 </div>
@@ -313,6 +343,11 @@
                                                 <div class="form-group">
                                                     <label>Jabatan</label>
                                                     <input type="text" class="form-control" id="jabatan" name="jabatan">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="avatar" name="avatar" value="{{ $user->avatar }}">
                                                 </div>
                                             </div>
                                         </div>

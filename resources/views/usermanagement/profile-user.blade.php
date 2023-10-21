@@ -63,6 +63,15 @@
                                                     </li>
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
+                                                        <div class="title">Tempat Lahir :</div>
+                                                        <div class="text">{{ $information->tmpt_lahir }}</div>
+                                                        @else
+                                                        <div class="title">Tempat Lahir :</div>
+                                                        <div class="text">N/A</div>
+                                                        @endif
+                                                    </li>
+                                                    <li>
+                                                        @if (Auth::user()->user_id == $information->user_id)
                                                         <div class="title">Alamat :</div>
                                                         <div class="text">{{ $information->alamat }}</div>
                                                         @else
@@ -82,6 +91,10 @@
                                                     @else
                                                     <li>
                                                         <div class="title">Tanggal Lahir :</div>
+                                                        <div class="text">N/A</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">Tempat Lahir :</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                     <li>
@@ -737,7 +750,14 @@
                                                     <label>Tanggal Lahir</label>
                                                     <div class="cal-icon">
                                                         <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate" value="{{ $information->tgl_lahir }}">
+                                                        <small class="text-danger">Example : 10-10-2013</small>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tempat Lahir</label>
+                                                    <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" value="{{ $information->tmpt_lahir }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -753,6 +773,11 @@
                                                         <option value="Laki-Laki" {{ $information->jk === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
                                                         <option value="Perempuan" {{ $information->jk === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="avatar" name="avatar" value="{{ $user->avatar }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -796,7 +821,14 @@
                                                     <label>Tanggal Lahir</label>
                                                     <div class="cal-icon">
                                                         <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate">
+                                                        <small class="text-danger">Example : 10-10-2023</small>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tempat Lahir</label>
+                                                    <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -813,6 +845,11 @@
                                                         <option value="Laki-Laki">Laki-Laki</option>
                                                         <option value="Perempuan">Perempuan</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="avatar" name="avatar" value="{{ $user->avatar }}">
                                                 </div>
                                             </div>
                                         </div>

@@ -52,7 +52,19 @@ class LayananController extends Controller
             ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
-        return view('layanan.layanan-cuti', compact('data_cuti', 'data_profilcuti'));
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        return view('layanan.layanan-cuti', compact('data_cuti', 'data_profilcuti', 'unreadNotifications', 'readNotifications'));
     }
     /** /Tampilan Layanan Cuti User */
 
@@ -74,7 +86,19 @@ class LayananController extends Controller
             )
             ->get();
         $userList = DB::table('profil_pegawai')->get();
-        return view('layanan.layanan-cuti-admin', compact('data_cuti', 'userList'));
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        return view('layanan.layanan-cuti-admin', compact('data_cuti', 'userList', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data Cuti Pegawai */

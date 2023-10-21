@@ -350,7 +350,7 @@ class EmployeeController extends Controller
             // ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
             ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
             ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
-            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pg.name','pg.email','pg.nip','pg.gelar_depan',
+            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pr.tmpt_lahir','pg.name','pg.email','pg.nip','pg.gelar_depan',
                 'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
                 'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
                 'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan',
@@ -366,7 +366,7 @@ class EmployeeController extends Controller
             // ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
             ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
             ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
-            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pg.name','pg.email','pg.nip','pg.gelar_depan',
+            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pr.tmpt_lahir','pg.name','pg.email','pg.nip','pg.gelar_depan',
                 'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
                 'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
                 'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan',
@@ -420,10 +420,22 @@ class EmployeeController extends Controller
 
             $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
+            $user = auth()->user();
+            $role = $user->role_name;
+            $unreadNotifications = Notification::where('notifiable_id', $user->id)
+                ->where('notifiable_type', get_class($user))
+                ->whereNull('read_at')
+                ->get();
+
+            $readNotifications = Notification::where('notifiable_id', $user->id)
+                ->where('notifiable_type', get_class($user))
+                ->whereNotNull('read_at')
+                ->get();
+
         return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans',
         'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'kedudukanOptions',
         'jenispegawaiOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions',
-        'pendidikanterakhirOptions'));
+        'pendidikanterakhirOptions' ,'unreadNotifications', 'readNotifications',));
     }
 
     /** page agama */

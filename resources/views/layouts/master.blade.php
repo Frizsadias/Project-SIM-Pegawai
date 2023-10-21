@@ -30,6 +30,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
 
     {{-- message toastr --}}
     <link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
@@ -87,37 +88,137 @@
             <ul class="nav user-menu">
 
                 <!-- Notifications -->
-				<li class="nav-item dropdown">
-					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-						<i class="fa fa-bell-o"></i>
-						<span class="badge badge-pill">1</span> 
-					</a>
-					<div class="dropdown-menu notifications">
-						<div class="topnav-dropdown-header">
-							<span class="notification-title">Notifikasi</span> 
-							<a href="javascript:void(0)" class="clear-noti"> Bersihkan Semua </a> 
-						</div>
-						<div class="noti-content">
-							<ul class="notification-list">
-								<li class="notification-message">
-                                    <a href="#">
-                                        <div class="media">
-                                            <span class="avatar">
-                                                <img alt="" src="{{ URL::to('/assets/images/'.Auth::user()->avatar) }}">
-                                            </span>
-                                            <div class="media-body">
-                                                <p class="noti-details"><span class="noti-title">Kelvin</span> notifikasi baru <span class="noti-title">Selamat Datang</span></p>
-                                                <p class="noti-time"><span class="notification-time">4 min ago</span></p>
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge badge-pill">{{ $unreadNotifications->count() }}</span>
+                    </a>
+                    <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span class="notification-title">Notifikasi</span>
+                            <form method="POST" action="{{ route('notifikasi.dibaca-semua') }}">
+                                @csrf
+                                <button type="submit" class="clear-noti"> Tandai Semua Dibaca </button>
+                            </form>
+                        </div>
+                        <div class="noti-content">
+                            <ul class="notification-list">
+                                @if(auth()->user()->unreadNotifications->isEmpty() && auth()->user()->readNotifications->isEmpty())
+                                    <li class="notification-message noti-unread">
+                                        <p class="noti-details" style="margin-top: 30px; text-align: center;">
+                                            <i class="fa-solid fa-bell-slash fa-2xl"></i>
+                                        </p>
+                                        <p class="noti-details" style="margin-top: 10px; text-align: center;">Tidak ada notifikasi baru</p>
+                                    </li>
+                                @else
+                                @foreach (auth()->user()->unreadNotifications as $notification)
+                                    <li class="notification-message noti-unread">
+                                        <a href="#" id="open-popup">
+                                            <div class="media">
+                                                <span class="avatar">
+                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notification->data['avatar']) }}">
+                                                </span>
+                                                <div class="media-body">
+                                                    <p class="noti-details">
+                                                        <span class="noti-title">{{ $notification->data['name'] }}</span> mendapatkan pesan baru <b>{{ $notification->data['message3'] }}</b>
+                                                    </p>
+                                                    <p class="noti-time">
+                                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </li>
-							</ul>
-						</div>
-						<div class="topnav-dropdown-footer"> <a href="#">Lihat Semua Notifikasi</a> </div>
-					</div>
-				</li>
+                                        </a>
+                                    </li>
+                                @endforeach
+                                @foreach (auth()->user()->readNotifications as $notification)
+                                    <li class="notification-message noti-read">
+                                        <a href="#" id="open-popup">
+                                            <div class="media">
+                                                <span class="avatar">
+                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notification->data['avatar']) }}">
+                                                </span>
+                                                <div class="media-body">
+                                                    <p class="noti-details">
+                                                        <span class="noti-title">{{ $notification->data['name'] }}</span> mendapatkan pesan baru <b>{{ $notification->data['message3'] }}</b>
+                                                    </p>
+                                                    <p class="noti-time">
+                                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endforeach
+                                @endif
+                            </ul>
+                        </div>
+                        <div class="topnav-dropdown-footer"><a href="#">Lihat Semua Notifikasi</a></div>
+                    </div>
+                </li>
 				<!-- /Notifications -->
+
+                <!-- Ulang Tahun Modal -->
+                <div id="popup-ulangtahun">
+                    @foreach (auth()->user()->unreadNotifications as $notification)
+                        <li class="notification-message noti-unread">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="noti-details3">
+                                        <br><br><br><b>{{ $notification->data['name'] }}</b><br>
+                                        {{ $notification->data['message'] }} / {{ $notification->data['message2'] }}
+                                    <br><br></p>
+                                    <p class="noti-details2">
+                                        <i>{{ $notification->data['message4'] }} <b>{{ $notification->data['message5'] }}</b> {{ $notification->data['message6'] }}<br>
+                                        {{ $notification->data['message7'] }} <b>{{ $notification->data['message8'] }}</b><br>
+                                        Kepada <b>{{ $notification->data['name'] }}</b> {{ $notification->data['message9'] }}</i>
+                                    <br><br></p>
+                                    <p class="logo-rsud">
+                                        <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
+                                    </p>
+                                    <p class="noti-time2">
+                                        <b>RSUD Caruban</b><br>
+                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                    @foreach (auth()->user()->readNotifications as $notification)
+                        <li class="notification-message noti-read">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="noti-details3">
+                                        <br><br><br><b>{{ $notification->data['name'] }}</b><br>
+                                        {{ $notification->data['message'] }} / {{ $notification->data['message2'] }}
+                                    <br><br></p>
+                                    <p class="noti-details2">
+                                        <i>{{ $notification->data['message4'] }} <b>{{ $notification->data['message5'] }}</b> {{ $notification->data['message6'] }}<br>
+                                        {{ $notification->data['message7'] }} <b>{{ $notification->data['message8'] }}</b><br>
+                                        Kepada <b>{{ $notification->data['name'] }}</b> {{ $notification->data['message9'] }}</i>
+                                    <br><br></p>
+                                    <p class="logo-rsud">
+                                        <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
+                                    </p>
+                                    <p class="noti-time2">
+                                        <b>RSUD Caruban</b><br>
+                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                    <div class="close-ulangtahun">
+                        @foreach (auth()->user()->unreadNotifications as $notification)
+                            <a href="{{ route('notifikasi.dibaca', $notification->id) }}"><button id="close-popup">Tutup</button></a>
+                        @endforeach
+                        @foreach (auth()->user()->readNotifications as $notification)
+                            <a href="{{ route('notifikasi.dibaca', $notification->id) }}"><button id="close-popup">Tutup</button></a>
+                        @endforeach
+                    </div>
+                    
+                    <br>
+                </div>
+                <!-- /Ulang Tahun Modal -->
 
                 <!-- Profil -->
                 <li class="nav-item dropdown has-arrow main-drop">
@@ -209,6 +310,10 @@
     <!-- Custom JS -->
     <script src="{{ URL::to('assets/js/app.js') }}"></script>
 
+    <script src="{{ asset('assets/js/master.js') }}"></script>
+
+
+
     <script>
         var toggleBtn = document.getElementById("toggle_btn");
         var logoText = document.querySelector(".logo-text");
@@ -224,9 +329,8 @@
             }
         });
     </script>
-
-
     @yield('script')
+    
 </body>
 
 </html>

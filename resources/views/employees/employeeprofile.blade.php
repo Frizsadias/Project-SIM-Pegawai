@@ -66,6 +66,16 @@
                                                     </div>
                                                 </li>
                                                 <li>
+                                                    <div class="title">Tempat Lahir :</div>
+                                                    <div class="text">
+                                                        @if (!empty($users->tmpt_lahir))
+                                                            <a>{{ $users->tmpt_lahir }}</a>
+                                                        @else
+                                                            <a>N/A</a>
+                                                        @endif
+                                                    </div>
+                                                </li>
+                                                <li>
                                                     <div class="title">Alamat :</div>
                                                     <div class="text">
                                                         @if (!empty($users->alamat))
@@ -1842,10 +1852,21 @@
                                                     <div class="cal-icon">
                                                         @if (!empty($users))
                                                             <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate" value="{{ $users->tgl_lahir }}">
+                                                            <small class="text-danger">Example : 10-10-2013</small>
                                                         @else
                                                             <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate">
                                                         @endif
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tempat Lahir</label>
+                                                    @if (!empty($users))
+                                                        <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" value="{{ $users->tmpt_lahir }}">
+                                                    @else
+                                                        <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir">
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1870,6 +1891,15 @@
                                                             <option value="Perempuan">Perempuan</option>
                                                         @endif
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @if (!empty($users))
+                                                        <input type="hidden" class="form-control" id="avatar" name="avatar" value="{{ $users->avatar }}">
+                                                    @else
+                                                        <input type="hidden" class="form-control" id="avatar" name="avatar">
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

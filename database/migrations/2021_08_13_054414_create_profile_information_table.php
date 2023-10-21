@@ -21,6 +21,8 @@ class CreateProfileInformationTable extends Migration
             $table->string('tgl_lahir')->nullable();
             $table->string('jk')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('avatar')->nullable();
+            $table->string('tmpt_lahir')->nullable();
             $table->timestamps();
         });
     }
