@@ -286,11 +286,11 @@ class UserManagementController extends Controller
     public function user_profile()
     {
         $profile = Session::get('user_id');
-        $result_profilpegawai = ProfilPegawai::where('user_id',$profile)->first();
+        $result_profilpegawai = ProfilPegawai::where('user_id', $profile)->first();
         $user = DB::table('users')->get();
-        $employees = DB::table('profile_information')->where('user_id',$profile)->first();
+        $employees = DB::table('profile_information')->where('user_id', $profile)->first();
 
-        $result_posisijabatan = PosisiJabatan::where('user_id',Session::get('user_id'))->first();
+        $result_posisijabatan = PosisiJabatan::where('user_id', Session::get('user_id'))->first();
 
         $datauser = Session::get('user_id');
         $sqluser = User::where('user_id', $datauser)->get();
@@ -312,45 +312,43 @@ class UserManagementController extends Controller
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
-        
+
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
 
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
-        
-        if(empty($employees))
-        {
-            $information = DB::table('profile_information')->where('user_id',$profile)->first();
-            return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
+
+        if (empty($employees)) {
+            $information = DB::table('profile_information')->where('user_id', $profile)->first();
+            return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
         } else {
             $user_id = $employees->user_id;
-            if($user_id == $profile)
-            {
+            if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
-                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
+                return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
             } else {
                 $information = ProfileInformation::all();
-                return view('usermanagement.profile-user', compact('information','user','result_profilpegawai','result_posisijabatan','riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
+                return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan', 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions', 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions'));
             }
         }
     }
-    
+
     /** save profile information */
     public function profileInformation(Request $request)
     {
         try {
-                $updateProfil = [
-                    'pendidikan_terakhir'   => $request->pendidikan_terakhir,
-                    'agama'                 => $request->agama,
-                    'jenis_kelamin'         => $request->jk,
-                ];
-                DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($updateProfil);
+            $updateProfil = [
+                'pendidikan_terakhir'   => $request->pendidikan_terakhir,
+                'agama'                 => $request->agama,
+                'jenis_kelamin'         => $request->jk,
+            ];
+            DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($updateProfil);
 
-                $updatePosisi = [
-                    'jabatan'               => $request->jabatan,
-                ];
-                DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($updatePosisi);
+            $updatePosisi = [
+                'jabatan'               => $request->jabatan,
+            ];
+            DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($updatePosisi);
 
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;
@@ -362,7 +360,7 @@ class UserManagementController extends Controller
             $information->save();
 
             DB::commit();
-            Toastr::success('Data profil informasi berhasil diperbaharui :)','Success');
+            Toastr::success('Data profil informasi berhasil diperbaharui :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
@@ -399,7 +397,7 @@ class UserManagementController extends Controller
             }
 
             DB::commit();
-            Toastr::success('Foto profil berhasil diperbaharui :)','Success');
+            Toastr::success('Foto profil berhasil diperbaharui :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
@@ -531,7 +529,7 @@ class UserManagementController extends Controller
             return redirect()->back();
         }
     }
-            
+
     /** view change password */
     public function changePasswordView()
     {
@@ -590,43 +588,43 @@ class UserManagementController extends Controller
             $addProfilPegawai = ProfilPegawai::where('user_id', '=', $request->user_id)->first();
             if ($addProfilPegawai === null) {
 
-         $addProfilPegawai = new ProfilPegawai();
-         $addProfilPegawai->user_id                 = $request->user_id;
-         $addProfilPegawai->nip                     = $request->nip;
-         $addProfilPegawai->gelar_depan             = $request->gelar_depan;
-         $addProfilPegawai->gelar_belakang          = $request->gelar_belakang;
-         $addProfilPegawai->tempat_lahir            = $request->tempat_lahir;
-         $addProfilPegawai->tanggal_lahir           = $request->tanggal_lahir;
-         $addProfilPegawai->jenis_kelamin           = $request->jenis_kelamin;
-         $addProfilPegawai->agama                   = $request->agama;
-         $addProfilPegawai->jenis_dokumen           = $request->jenis_dokumen;
-         $addProfilPegawai->no_dokumen              = $request->no_dokumen;
-         $addProfilPegawai->kelurahan               = $request->kelurahan;
-         $addProfilPegawai->kecamatan               = $request->kecamatan;
-         $addProfilPegawai->kota                    = $request->kota;
-         $addProfilPegawai->provinsi                = $request->provinsi;
-         $addProfilPegawai->kode_pos                = $request->kode_pos;
-         $addProfilPegawai->no_hp                   = $request->no_hp;
-         $addProfilPegawai->no_telp                 = $request->no_telp;
-         $addProfilPegawai->jenis_pegawai           = $request->jenis_pegawai;
-         $addProfilPegawai->kedudukan_pns           = $request->kedudukan_pns;
-         $addProfilPegawai->status_pegawai          = $request->status_pegawai;
-         $addProfilPegawai->tmt_pns                 = $request->tmt_pns;
-         $addProfilPegawai->no_seri_karpeg          = $request->no_seri_karpeg;
-         $addProfilPegawai->tmt_cpns                = $request->tmt_cpns;
-         $addProfilPegawai->tingkat_pendidikan      = $request->tingkat_pendidikan;
-         $addProfilPegawai->pendidikan_terakhir     = $request->pendidikan_terakhir;
-         $addProfilPegawai->ruangan                 = $request->ruangan;
-         $addProfilPegawai->save();
+                $addProfilPegawai = new ProfilPegawai();
+                $addProfilPegawai->user_id                 = $request->user_id;
+                $addProfilPegawai->nip                     = $request->nip;
+                $addProfilPegawai->gelar_depan             = $request->gelar_depan;
+                $addProfilPegawai->gelar_belakang          = $request->gelar_belakang;
+                $addProfilPegawai->tempat_lahir            = $request->tempat_lahir;
+                $addProfilPegawai->tanggal_lahir           = $request->tanggal_lahir;
+                $addProfilPegawai->jenis_kelamin           = $request->jenis_kelamin;
+                $addProfilPegawai->agama                   = $request->agama;
+                $addProfilPegawai->jenis_dokumen           = $request->jenis_dokumen;
+                $addProfilPegawai->no_dokumen              = $request->no_dokumen;
+                $addProfilPegawai->kelurahan               = $request->kelurahan;
+                $addProfilPegawai->kecamatan               = $request->kecamatan;
+                $addProfilPegawai->kota                    = $request->kota;
+                $addProfilPegawai->provinsi                = $request->provinsi;
+                $addProfilPegawai->kode_pos                = $request->kode_pos;
+                $addProfilPegawai->no_hp                   = $request->no_hp;
+                $addProfilPegawai->no_telp                 = $request->no_telp;
+                $addProfilPegawai->jenis_pegawai           = $request->jenis_pegawai;
+                $addProfilPegawai->kedudukan_pns           = $request->kedudukan_pns;
+                $addProfilPegawai->status_pegawai          = $request->status_pegawai;
+                $addProfilPegawai->tmt_pns                 = $request->tmt_pns;
+                $addProfilPegawai->no_seri_karpeg          = $request->no_seri_karpeg;
+                $addProfilPegawai->tmt_cpns                = $request->tmt_cpns;
+                $addProfilPegawai->tingkat_pendidikan      = $request->tingkat_pendidikan;
+                $addProfilPegawai->pendidikan_terakhir     = $request->pendidikan_terakhir;
+                $addProfilPegawai->ruangan                 = $request->ruangan;
+                $addProfilPegawai->save();
 
-         DB::commit();
-            Toastr::success('Data profil pegawai berhasil ditambah :)','Success');
-            return redirect()->back();
-        } else {
-            DB::rollback();
-            Toastr::error('Data profil pegawai sudah tersedia :(','Error');
-            return redirect()->back();
-        }
+                DB::commit();
+                Toastr::success('Data profil pegawai berhasil ditambah :)', 'Success');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data profil pegawai sudah tersedia :(', 'Error');
+                return redirect()->back();
+            }
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data profil pegawai gagal ditambah :(', 'Error');
@@ -668,44 +666,44 @@ class UserManagementController extends Controller
 
         DB::beginTransaction();
         try {
-         
+
             $editProfilPegawai = [
-            'nip'                   => $request->nip,
-            'gelar_depan'           => $request->gelar_depan,
-            'gelar_belakang'        => $request->gelar_belakang,
-            'tempat_lahir'          => $request->tempat_lahir,
-            'tanggal_lahir'         => $request->tanggal_lahir,
-            'jenis_kelamin'         => $request->jenis_kelamin,
-            'agama'                 => $request->agama,
-            'jenis_dokumen'         => $request->jenis_dokumen,
-            'no_dokumen'            => $request->no_dokumen,
-            'kelurahan'             => $request->kelurahan,
-            'kecamatan'             => $request->kecamatan,
-            'kota'                  => $request->kota,
-            'provinsi'              => $request->provinsi,
-            'kode_pos'              => $request->kode_pos,
-            'no_hp'                 => $request->no_hp,
-            'no_telp'               => $request->no_telp,
-            'jenis_pegawai'         => $request->jenis_pegawai,
-            'kedudukan_pns'         => $request->kedudukan_pns,
-            'status_pegawai'        => $request->status_pegawai,
-            'tmt_pns'               => $request->tmt_pns,
-            'no_seri_karpeg'        => $request->no_seri_karpeg,
-            'tmt_cpns'              => $request->tmt_cpns,
-            'tingkat_pendidikan'    => $request->tingkat_pendidikan,
-            'pendidikan_terakhir'   => $request->pendidikan_terakhir,
-            'ruangan'               => $request->ruangan,
+                'nip'                   => $request->nip,
+                'gelar_depan'           => $request->gelar_depan,
+                'gelar_belakang'        => $request->gelar_belakang,
+                'tempat_lahir'          => $request->tempat_lahir,
+                'tanggal_lahir'         => $request->tanggal_lahir,
+                'jenis_kelamin'         => $request->jenis_kelamin,
+                'agama'                 => $request->agama,
+                'jenis_dokumen'         => $request->jenis_dokumen,
+                'no_dokumen'            => $request->no_dokumen,
+                'kelurahan'             => $request->kelurahan,
+                'kecamatan'             => $request->kecamatan,
+                'kota'                  => $request->kota,
+                'provinsi'              => $request->provinsi,
+                'kode_pos'              => $request->kode_pos,
+                'no_hp'                 => $request->no_hp,
+                'no_telp'               => $request->no_telp,
+                'jenis_pegawai'         => $request->jenis_pegawai,
+                'kedudukan_pns'         => $request->kedudukan_pns,
+                'status_pegawai'        => $request->status_pegawai,
+                'tmt_pns'               => $request->tmt_pns,
+                'no_seri_karpeg'        => $request->no_seri_karpeg,
+                'tmt_cpns'              => $request->tmt_cpns,
+                'tingkat_pendidikan'    => $request->tingkat_pendidikan,
+                'pendidikan_terakhir'   => $request->pendidikan_terakhir,
+                'ruangan'               => $request->ruangan,
             ];
 
-         DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($editProfilPegawai);
+            DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($editProfilPegawai);
 
-         DB::commit();
-         Toastr::success('Data profil pegawai berhasil diperbaharui :)','Success');
-         return redirect()->back();
+            DB::commit();
+            Toastr::success('Data profil pegawai berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
         } catch (\Exception $e) {
-         DB::rollback();
-         Toastr::error('Data profil pegawai gagal diperbaharui :(', 'Error');
-         return redirect()->back();
+            DB::rollback();
+            Toastr::error('Data profil pegawai gagal diperbaharui :(', 'Error');
+            return redirect()->back();
         }
     }
     /** End Edit Data Posisi & Jabatan */
@@ -727,7 +725,7 @@ class UserManagementController extends Controller
             'gaji_pokok'            => 'required|string|max:255',
             'masa_kerja_tahun'      => 'required|string|max:255',
             'masa_kerja_bulan'      => 'required|string|max:255',
-            'no_spmt'               => 'required|string|max:255', 
+            'no_spmt'               => 'required|string|max:255',
             'tanggal_spmt'          => 'required|string|max:255',
             'kppn'                  => 'required|string|max:255',
         ]);
@@ -738,34 +736,34 @@ class UserManagementController extends Controller
             $addPosisiJabatan = PosisiJabatan::where('user_id', '=', $request->user_id)->first();
             if ($addPosisiJabatan === null) {
 
-         $addPosisiJabatan = new PosisiJabatan();
-         $addPosisiJabatan->user_id                = $request->user_id;
-         $addPosisiJabatan->unit_organisasi        = $request->unit_organisasi;
-         $addPosisiJabatan->unit_organisasi_induk  = $request->unit_organisasi_induk;
-         $addPosisiJabatan->jenis_jabatan          = $request->jenis_jabatan;
-         $addPosisiJabatan->eselon                 = $request->eselon;
-         $addPosisiJabatan->jabatan                = $request->jabatan;
-         $addPosisiJabatan->tmt                    = $request->tmt;
-         $addPosisiJabatan->lokasi_kerja           = $request->lokasi_kerja;
-         $addPosisiJabatan->gol_ruang_awal         = $request->gol_ruang_awal;
-         $addPosisiJabatan->gol_ruang_akhir        = $request->gol_ruang_akhir;
-         $addPosisiJabatan->tmt_golongan           = $request->tmt_golongan;
-         $addPosisiJabatan->gaji_pokok             = $request->gaji_pokok;
-         $addPosisiJabatan->masa_kerja_tahun       = $request->masa_kerja_tahun;
-         $addPosisiJabatan->masa_kerja_bulan       = $request->masa_kerja_bulan;
-         $addPosisiJabatan->no_spmt                = $request->no_spmt;
-         $addPosisiJabatan->tanggal_spmt           = $request->tanggal_spmt;
-         $addPosisiJabatan->kppn                   = $request->kppn;
-         $addPosisiJabatan->save();
+                $addPosisiJabatan = new PosisiJabatan();
+                $addPosisiJabatan->user_id                = $request->user_id;
+                $addPosisiJabatan->unit_organisasi        = $request->unit_organisasi;
+                $addPosisiJabatan->unit_organisasi_induk  = $request->unit_organisasi_induk;
+                $addPosisiJabatan->jenis_jabatan          = $request->jenis_jabatan;
+                $addPosisiJabatan->eselon                 = $request->eselon;
+                $addPosisiJabatan->jabatan                = $request->jabatan;
+                $addPosisiJabatan->tmt                    = $request->tmt;
+                $addPosisiJabatan->lokasi_kerja           = $request->lokasi_kerja;
+                $addPosisiJabatan->gol_ruang_awal         = $request->gol_ruang_awal;
+                $addPosisiJabatan->gol_ruang_akhir        = $request->gol_ruang_akhir;
+                $addPosisiJabatan->tmt_golongan           = $request->tmt_golongan;
+                $addPosisiJabatan->gaji_pokok             = $request->gaji_pokok;
+                $addPosisiJabatan->masa_kerja_tahun       = $request->masa_kerja_tahun;
+                $addPosisiJabatan->masa_kerja_bulan       = $request->masa_kerja_bulan;
+                $addPosisiJabatan->no_spmt                = $request->no_spmt;
+                $addPosisiJabatan->tanggal_spmt           = $request->tanggal_spmt;
+                $addPosisiJabatan->kppn                   = $request->kppn;
+                $addPosisiJabatan->save();
 
-         DB::commit();
-            Toastr::success('Data posisi & jabatan berhasil ditambah :)','Success');
-            return redirect()->back();
-        } else {
-            DB::rollback();
-            Toastr::error('Data posisi & jabatan sudah tersedia :(','Error');
-            return redirect()->back();
-        }
+                DB::commit();
+                Toastr::success('Data posisi & jabatan berhasil ditambah :)', 'Success');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data posisi & jabatan sudah tersedia :(', 'Error');
+                return redirect()->back();
+            }
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data posisi & jabatan gagal ditambah :(', 'Error');
@@ -791,42 +789,42 @@ class UserManagementController extends Controller
             'gaji_pokok'            => 'required|string|max:255',
             'masa_kerja_tahun'      => 'required|string|max:255',
             'masa_kerja_bulan'      => 'required|string|max:255',
-            'no_spmt'               => 'required|string|max:255', 
+            'no_spmt'               => 'required|string|max:255',
             'tanggal_spmt'          => 'required|string|max:255',
             'kppn'                  => 'required|string|max:255',
         ]);
 
         DB::beginTransaction();
         try {
-         
+
             $editPosisiJabatan = [
-            'unit_organisasi'        => $request->unit_organisasi,
-            'unit_organisasi_induk'  => $request->unit_organisasi_induk,
-            'jenis_jabatan'          => $request->jenis_jabatan,
-            'eselon'                 => $request->eselon,
-            'jabatan'                => $request->jabatan,
-            'tmt'                    => $request->tmt,
-            'lokasi_kerja'           => $request->lokasi_kerja,
-            'gol_ruang_awal'         => $request->gol_ruang_awal,
-            'gol_ruang_akhir'        => $request->gol_ruang_akhir,
-            'tmt_golongan'           => $request->tmt_golongan,
-            'gaji_pokok'             => $request->gaji_pokok,
-            'masa_kerja_tahun'       => $request->masa_kerja_tahun,
-            'masa_kerja_bulan'       => $request->masa_kerja_bulan,
-            'no_spmt'                => $request->no_spmt,
-            'tanggal_spmt'           => $request->tanggal_spmt,
-            'kppn'                   => $request->kppn,
+                'unit_organisasi'        => $request->unit_organisasi,
+                'unit_organisasi_induk'  => $request->unit_organisasi_induk,
+                'jenis_jabatan'          => $request->jenis_jabatan,
+                'eselon'                 => $request->eselon,
+                'jabatan'                => $request->jabatan,
+                'tmt'                    => $request->tmt,
+                'lokasi_kerja'           => $request->lokasi_kerja,
+                'gol_ruang_awal'         => $request->gol_ruang_awal,
+                'gol_ruang_akhir'        => $request->gol_ruang_akhir,
+                'tmt_golongan'           => $request->tmt_golongan,
+                'gaji_pokok'             => $request->gaji_pokok,
+                'masa_kerja_tahun'       => $request->masa_kerja_tahun,
+                'masa_kerja_bulan'       => $request->masa_kerja_bulan,
+                'no_spmt'                => $request->no_spmt,
+                'tanggal_spmt'           => $request->tanggal_spmt,
+                'kppn'                   => $request->kppn,
             ];
 
-         DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($editPosisiJabatan);
+            DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($editPosisiJabatan);
 
-         DB::commit();
-         Toastr::success('Data posisi & jabatan berhasil diperbaharui :)','Success');
-         return redirect()->back();
+            DB::commit();
+            Toastr::success('Data posisi & jabatan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
         } catch (\Exception $e) {
-         DB::rollback();
-         Toastr::error('Data posisi & jabatan gagal diperbaharui :(', 'Error');
-         return redirect()->back();
+            DB::rollback();
+            Toastr::error('Data posisi & jabatan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
         }
     }
     /** End Edit Data Posisi & Jabatan */

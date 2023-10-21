@@ -21,5 +21,12 @@ class LayananCuti extends Model
         'tanggal_selesai_cuti',
         'status_pengajuan',
         'dokumen_kelengkapan',
+        'jabatan', // Menambahkan kolom jabatan
+        'gol_ruang_awal', // Menambahkan kolom golongan/ruang awal
     ];
+
+    public function posisi_jabatan()
+    {
+        return $this->belongsTo(PosisiJabatan::class, 'jabatan', 'jabatan');
+    }
 }

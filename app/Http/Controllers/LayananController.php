@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\LayananCuti;
+use App\Models\PosisiJabatan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use DB;
@@ -31,14 +33,23 @@ class LayananController extends Controller
     {
         $user_id = auth()->user()->user_id;
         $data_cuti = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-            'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-            'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
             ->where('cuti.user_id', $user_id)
             ->get();
 
         $data_profilcuti = DB::table('profil_pegawai')
-            ->select('profil_pegawai.*','profil_pegawai.name','profil_pegawai.nip')
+            ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
         return view('layanan.layanan-cuti', compact('data_cuti', 'data_profilcuti'));
@@ -49,9 +60,18 @@ class LayananController extends Controller
     public function tampilanCutiPegawaiAdmin()
     {
         $data_cuti = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-            'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-            'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
             ->get();
         $userList = DB::table('profil_pegawai')->get();
         return view('layanan.layanan-cuti-admin', compact('data_cuti', 'userList'));
@@ -144,19 +164,28 @@ class LayananController extends Controller
         $status_pengajuan = $request->input('status_pengajuan');
 
         $data_cuti = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-            'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-            'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
             ->where('cuti.user_id', $user_id)
             ->get();
 
         $data_profilcuti = DB::table('profil_pegawai')
-            ->select('profil_pegawai.*','profil_pegawai.name','profil_pegawai.nip')
+            ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
         $pencarianDataCuti = DB::table('cuti')
-        ->join('users', 'users.user_id', '=', 'cuti.user_id')
+            ->join('users', 'users.user_id', '=', 'cuti.user_id')
             ->where('users.user_id', $user_id)
             ->where('cuti.name', 'like', '%' . $name . '%')
             ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
@@ -175,19 +204,29 @@ class LayananController extends Controller
         $status_pengajuan = $request->input('status_pengajuan');
 
         $data_cuti = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-            'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-            'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
             ->where('cuti.name', 'like', '%' . $name . '%')
             ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
             ->where('cuti.status_pengajuan', 'like', '%' . $status_pengajuan . '%')
             ->get();
-         $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('profil_pegawai')->get();
         return view('layanan.layanan-cuti-admin', compact('data_cuti', 'userList'));
     }
     /** /Search Layanan Cuti */
 
-    public function updateStatus(Request $request, $id) {
+    public function updateStatus(Request $request, $id)
+    {
         $status_pengajuan = $request->input('status_pengajuan');
         $resource = LayananCuti::find($id);
         $resource->status_pengajuan = $status_pengajuan;
@@ -196,4 +235,47 @@ class LayananController extends Controller
         return redirect()->back();
     }
 
+    public function cetakSuratCuti($id)
+    {
+        $cuti = LayananCuti::find($id);
+
+        if (!$cuti) {
+            return abort(404);
+        }
+        $profilPegawai = $cuti->profil_pegawai;
+
+        if ($profilPegawai) {
+            $nip = $profilPegawai->nip;
+            $name = $profilPegawai->name;
+        } else {
+            $nip = "Tidak Ada NIP";
+            $name = "Tidak Ada Nama";
+        }
+
+        $posisi = PosisiJabatan::find($id);
+
+        if (!$posisi) {
+            return abort(404);
+        }
+        $posisiJabatan = $posisi->profil_pegawai;
+
+        if ($posisiJabatan) {
+            $jabatan = $posisiJabatan->jabatan;
+            $gol_ruang_awal = $posisiJabatan->gol_ruang_awal;
+        } else {
+            $jabatan = "Tidak Ada Jabatan";
+            $gol_ruang_awal = "Tidak Ada Golongan";
+        }
+
+        $pdf = PDF::loadView('pdf.surat-cuti', [
+            'cuti' => $cuti,
+            'nip' => $nip,
+            'name' => $name,
+            'posisi' => $posisi,
+            'jabatan' => $jabatan,
+            'gol_ruang_awal' => $gol_ruang_awal,
+        ]);
+
+        return $pdf->stream('surat-cuti-' . $cuti->name . '.pdf');
+    }
 }

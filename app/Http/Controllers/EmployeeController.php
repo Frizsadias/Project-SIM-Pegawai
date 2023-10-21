@@ -19,6 +19,8 @@ use App\Models\RiwayatPendidikan;
 use App\Models\kedudukan;
 use App\Models\ruangan;
 use App\Models\LayananCuti;
+use App\Models\ReferensiPangkat;
+use App\Models\sipDokter;
 use Carbon\Carbon;
 use Session;
 
@@ -785,14 +787,14 @@ class EmployeeController extends Controller
         }
     }
 
-    /** page ruangan */
+    /** page status */
     public function indexStatus()
     {
         $jenis_pegawai = DB::table('jenis_pegawai_id')->get();
         return view('employees.status', compact('jenis_pegawai'));
     }
 
-    /** search for ruangan */
+    /** search for status */
     public function searchStatus(Request $request)
     {
         $keyword = $request->input('keyword');
@@ -871,4 +873,142 @@ class EmployeeController extends Controller
             return redirect()->back();
         }
     }
+
+    /** page pangkat */
+    public function indexPangkat()
+    {
+        $ref_pangkat = DB::table('referensi_pangkat')->get();
+        return view('employees.referensi-pangkat', compact('ref_pangkat'));
+    }
+
+    /** search for pangkat */
+    public function searchPangkat(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $ref_pangkat = DB::table('referensi_pangkat')
+        ->where('ref_pangkat', 'like', '%' . $keyword . '%')
+            ->get();
+
+        return view('employees.referensi-pangkat', compact('ref_pangkat'));
+    }
+
+    /** save record pangkat */
+    public function saveRecordPangkat(Request $request)
+    {
+        $request->validate([
+            'ref_pangkat' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $ref_pangkat = ReferensiPangkat::where('ref_pangkat', $request->ref_pangkat)->first();
+            if ($ref_pangkat === null) {
+                $ref_pangkat = new ReferensiPangkat;
+                $ref_pangkat->ref_pangkat = $request->ref_pangkat;
+                $ref_pangkat->save();
+
+                DB::commit();
+                Toastr::success('Data pangkat telah ditambah :)', 'Sukses');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data pangkat telah tersedia :(', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data pangkat gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** update record pangkat */
+    public function updateRecordPangkat(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $ref_pangkat = [
+                'id'    => $request->id,
+                'ref_pangkat' => $request->jenis_pegawai,
+            ];
+            ReferensiPangkat::where('id', $request->id)->update($ref_pangkat);
+
+            DB::commit();
+            Toastr::success('Data pangkat berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data pangkat gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** delete record pangkat */
+    public function deleteRecordPangkat(Request $request)
+    {
+        try {
+
+            jenis_pegawai::destroy($request->id);
+            Toastr::success('Data pangkat berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data pangkat gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** page SIP */
+    public function indexSIP()
+    {
+
+        $datasip = Session::get('user_id');
+        $sip = sipDokter::where('user_id', $datasip)->get();
+
+        return view('employees.sip_dokter', compact('datasip', 'sip'));
+    }
+
+    /** save record SIP dokter */
+    public function saveRecordSIPDokter(Request $request)
+    {
+        $request->validate([
+            'user_id'           => 'required|string|max:255',
+            'nip'               => 'required|string|max:255',
+            'name'              => 'required|string|max:255',
+            'unit_kerja'        => 'required|string|max:255',
+            'nomor_sip'         => 'required|string|max:255',
+            'tanggal_terbit'    => 'required|string|max:255',
+            'tanggal_berlaku'   => 'required|string|max:255',
+            'dokumen_sip'       => 'required|mimes:pdf|max:5120',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $dokumen_sip = time() . '.' . $request->dokumen_sip->extension();
+            $request->dokumen_sip->move(public_path('assets/DokumenSIP'), $dokumen_sip);
+
+            $sip = new sipDokter;
+            $sip->user_id               = $request->user_id;
+            $sip->nip                   = $request->nip;
+            $sip->name                  = $request->name;
+            $sip->unit_kerja            = $request->unit_kerja;
+            $sip->nomor_sip             = $request->nomor_sip;
+            $sip->tanggal_terbit        = $request->tanggal_terbit;
+            $sip->tanggal_berlaku       = $request->tanggal_berlaku;
+            $sip->dokumen_sip           = $dokumen_sip;
+            $sip->save();
+
+            DB::commit();
+            Toastr::success('Data SIP dokter telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data SIP dokter gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** end Add record SIP dokter */
 }

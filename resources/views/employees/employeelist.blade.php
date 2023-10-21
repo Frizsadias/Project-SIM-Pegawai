@@ -59,6 +59,14 @@
             </div>
         </form>
         <!-- Search Filter -->
+
+        {{-- Export Excel --}}
+        <form action="{{ route('export-daftar-pegawai') }}" method="GET">
+            <button type="submit" name="export" value="true" class="btn btn-success">
+                <i class="fa fa-file-excel"></i> Export Excel
+            </button>
+        </form>
+        <br>
         {{-- message --}}
         {!! Toastr::message() !!}
 

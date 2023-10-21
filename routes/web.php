@@ -19,6 +19,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeavesController;
 use App\Http\Controllers\ExpenseReportsController;
+use App\Http\Controllers\ExportExcelController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\TrainingController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\SIPController;
 
 /*
 |--------------------------------------------------------------------------
@@ -243,7 +245,12 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/status/delete', 'deleteRecordStatus')->middleware('auth')->name('form/status/delete');
     Route::get('form/status/search', 'searchStatus')->middleware('auth')->name('form/status/search');
 
-    
+    Route::get('referensi/pangkat', 'indexPangkat')->middleware('auth')->name('referensi-pangkat');
+    Route::post('form/pangkat/save', 'saveRecordPangkat')->middleware('auth')->name('form/pangkat/save');
+    Route::post('form/pangkat/update', 'updateRecordPangkat')->middleware('auth')->name('form/pangkat/update');
+    Route::post('form/pangkat/delete', 'deleteRecordPangkat')->middleware('auth')->name('form/pangkat/delete');
+    Route::get('form/pangkat/search', 'searchPangkat')->middleware('auth')->name('form/pangkat/search');
+
 });
 
 // ------------------------- profile employee --------------------------//
@@ -416,4 +423,42 @@ Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti/cari', 'pencarianLayananCuti')->name('layanan/cuti/cari');
     Route::get('layanan/cuti/cari/admin', 'pencarianLayananCutiAdmin')->name('layanan/cuti/cari/admin');
     Route::patch('/update-status/{id}', 'updateStatus')->name('updateStatus');
+
+    Route::get('cetak-surat-cuti/{id}', 'cetakSuratCuti')->name('cetak-surat-cuti');
+
+});
+
+// ----------------------- SIP Dokter --------------------------//
+Route::controller(SIPController::class)->group(function () {
+    Route::get('transaksi/sip-dokter', 'tampilanSIPDokter')->name('sip-dokter');
+    Route::get('transaksi/sip-dokter-admin', 'tampilanSIPDokterAdmin')->name('sip-dokter-admin');
+    Route::post('transaksi/sip-dokter/tambah-data', 'tambahDataSIPDokter')->name('transaksi/sip-dokter/tambah-data');
+    Route::post('transaksi/sip-dokter/edit-data', 'editSIPDokter')->name('transaksi/sip-dokter/edit-data');
+    Route::post('transaksi/sip-dokter/hapus-data', 'hapusDataSIPDokter')->name('transaksi/sip-dokter/hapus-data');
+
+    Route::get('transaksi/spk-dokter-admin', 'tampilanSPKDokterAdmin')->name('spk-dokter-admin');
+    Route::post('transaksi/spk-dokter/tambah-data', 'tambahDataSPKDokter')->name('transaksi/spk-dokter/tambah-data');
+    Route::post('transaksi/spk-dokter/edit-data', 'editSPKDokter')->name('transaksi/spk-dokter/edit-data');
+    Route::post('transaksi/spk-dokter/hapus-data', 'hapusDataSPKDokter')->name('transaksi/spk-dokter/hapus-data');
+
+    Route::get('transaksi/spk-perawat-admin', 'tampilanSPKPerawatAdmin')->name('spk-perawat-admin');
+    Route::post('transaksi/spk-perawat/tambah-data', 'tambahDataSPKPerawat')->name('transaksi/spk-perawat/tambah-data');
+    Route::post('transaksi/spk-perawat/edit-data', 'editSPKPerawat')->name('transaksi/spk-perawat/edit-data');
+    Route::post('transaksi/spk-perawat/hapus-data', 'hapusDataSPKPerawat')->name('transaksi/spk-perawat/hapus-data');
+
+    Route::get('transaksi/spk-nakes-lain-admin', 'tampilanSPKNakesLainAdmin')->name('spk-nakes-lain-admin');
+    Route::post('transaksi/spk-nakes-lain/tambah-data', 'tambahDataSPKNakesLain')->name('transaksi/spk-nakes-lain/tambah-data');
+    Route::post('transaksi/spk-nakes-lain/edit-data', 'editSPKNakesLain')->name('transaksi/spk-nakes-lain/edit-data');
+    Route::post('transaksi/spk-nakes-lain/hapus-data', 'hapusDataSPKNakesLain')->name('transaksi/spk-nakes-lain/hapus-data');
+
+});
+
+// ----------------------- Export Excel --------------------------//
+Route::controller(ExportExcelController::class)->group(function () {
+    Route::get('export-sip-dokter', 'exportSIPDokter')->name('export-sip-dokter');
+    Route::get('export-spk-dokter', 'exportSPKDokter')->name('export-spk-dokter');
+    Route::get('export-spk-perawat', 'exportSPKPerawat')->name('export-spk-perawat');
+    Route::get('export-spk-nakes-lain', 'exportSPKNakesLain')->name('export-spk-nakes-lain');
+
+    Route::get('export-daftar-pegawai', 'exportDaftarPegawai')->name('export-daftar-pegawai');
 });

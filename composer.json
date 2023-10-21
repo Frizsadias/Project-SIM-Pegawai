@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "niklasravnsborg/laravel-pdf": "^1.5",
+        "phpoffice/phpspreadsheet": "^1.29",
         "spatie/laravel-permission": "^5.11"
     },
     "require-dev": {

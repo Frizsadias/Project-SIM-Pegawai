@@ -103,13 +103,16 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nama Lengkap</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text" id="" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama Lengkap">
+                                        <input class="form-control @error('name') is-invalid @enderror" type="text"
+                                            id="" name="name" value="{{ old('name') }}"
+                                            placeholder="Masukkan Nama Lengkap">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Alamat E-mail </label>
-                                        <input class="form-control" type="email" id="" name="email" placeholder="Masukkan E-mail">
+                                        <input class="form-control" type="email" id="" name="email"
+                                            placeholder="Masukkan E-mail">
                                     </div>
                                 </div>
                             </div>
@@ -138,17 +141,20 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <input type="hidden" class="form-control" id="image" name="image" value="photo_defaults.jpg">
+                                <input type="hidden" class="form-control" id="image" name="image"
+                                    value="photo_defaults.jpg">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Kata Sandi</label>
-                                        <input type="password" class="form-control" name="password" placeholder="Masukkan Kata Sandi">
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="Masukkan Kata Sandi">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Konfirmasi Kata Sandi</label>
-                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Masukkan Konfirmasi Kata Sandi">
+                                        <input type="password" class="form-control" name="password_confirmation"
+                                            placeholder="Masukkan Konfirmasi Kata Sandi">
                                     </div>
                                 </div>
                             </div>
@@ -180,13 +186,15 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nama Lengkap</label>
-                                        <input class="form-control" type="text" name="name" id="e_name" value="" placeholder="Masukkan Nama Lengkap"/>
+                                        <input class="form-control" type="text" name="name" id="e_name"
+                                            value="" placeholder="Masukkan Nama Lengkap" />
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Alamat E-mail</label>
-                                        <input class="form-control" type="email" name="email" id="e_email" value="" placeholder="Masukkan E-mail"/>
+                                        <input class="form-control" type="email" name="email" id="e_email"
+                                            value="" placeholder="Masukkan E-mail" />
                                     </div>
                                 </div>
                             </div>
@@ -206,12 +214,14 @@
                                         <label>Status</label>
                                         <select class="select" name="status" id="e_status">
                                             @foreach ($status_user as $status)
-                                                <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
+                                                <option value="{{ $status->type_name }}">{{ $status->type_name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <input type="hidden" class="form-control" id="image" name="images" value="photo_defaults.jpg">
+                                <input type="hidden" class="form-control" id="image" name="images"
+                                    value="photo_defaults.jpg">
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Update</button>

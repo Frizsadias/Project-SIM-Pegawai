@@ -45,8 +45,8 @@
                             <span>Kedudukan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('pangkat') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('pangkat') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('referensi-pangkat') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-pangkat') }}" class="{{ request()->routeIs('referensi-pangkat') ? 'noti-dot' : '' }}">
                             <i class="la la-sitemap"></i>
                             <span>Pangkat</span>
                         </a>
@@ -73,7 +73,7 @@
                     <li class="{{ request()->routeIs('referensi-ruangan') ? 'active' : '' }}">
                         <a href="{{ route('referensi-ruangan') }}" class="{{ request()->routeIs('referensi-ruangan') ? 'noti-dot' : '' }}">
                             <i class="las la-warehouse"></i>
-                            <span>Raungan</span>
+                            <span>Ruangan</span>
                         </a>
                     </li>
 
@@ -115,6 +115,30 @@
                         <a href="{{ route('layanan-cuti-admin') }}" class="{{ request()->routeIs('layanan-cuti-admin') ? 'noti-dot' : '' }}">
                             <i class="las la-newspaper"></i>
                             <span>Pengajuan Cuti</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('sip-dokter-admin') ? 'active' : '' }}">
+                        <a href="{{ route('sip-dokter-admin') }}" class="{{ request()->routeIs('sip-dokter-admin') ? 'noti-dot' : '' }}">
+                            <i class="la la-file-alt"></i>
+                            <span>SIP Dokter</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('spk-dokter-admin') ? 'active' : '' }}">
+                        <a href="{{ route('spk-dokter-admin') }}" class="{{ request()->routeIs('spk-dokter-admin') ? 'noti-dot' : '' }}">
+                            <i class="la la-file-alt"></i>
+                            <span>SPK Dokter</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('spk-perawat-admin') ? 'active' : '' }}">
+                        <a href="{{ route('spk-perawat-admin') }}" class="{{ request()->routeIs('spk-perawat-admin') ? 'noti-dot' : '' }}">
+                            <i class="la la-file-alt"></i>
+                            <span>SPK Perawat</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('spk-nakes-lain-admin') ? 'active' : '' }}">
+                        <a href="{{ route('spk-nakes-lain-admin') }}" class="{{ request()->routeIs('spk-nakes-lain-admin') ? 'noti-dot' : '' }}">
+                            <i class="la la-file-alt"></i>
+                            <span>SPK Nakes Lain</span>
                         </a>
                     </li>
                     <li class="menu-title"> <span>Data Statistik </span> </li>
