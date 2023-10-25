@@ -93,28 +93,22 @@
                         </a>
                     </li>
                     <li class="menu-title"> <span>Layanan Kepegawaian </span> </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'active' : '' }}">
+                        <a href="{{ route('kenaikan-gaji-berkala') }}" class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'noti-dot' : '' }}">
                             <i class="la la-money"></i>
                             <span>Kenaikan Gaji Berkala</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
-                            <i class="la la-long-arrow-up"></i>
-                            <span>Kenaikan Pangkat</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
-                            <i class="la la-tags"></i>
-                            <span>Status Kepegawaian</span>
                         </a>
                     </li>
                     <li class="{{ request()->routeIs('layanan-cuti-admin') ? 'active' : '' }}">
                         <a href="{{ route('layanan-cuti-admin') }}" class="{{ request()->routeIs('layanan-cuti-admin') ? 'noti-dot' : '' }}">
                             <i class="las la-newspaper"></i>
                             <span>Pengajuan Cuti</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('perpanjang-kontrak') ? 'active' : '' }}">
+                        <a href="{{ route('perpanjang-kontrak') }}" class="{{ request()->routeIs('perpanjang-kontrak') ? 'noti-dot' : '' }}">
+                            <i class="la la-calendar-alt"></i>
+                            <span>Perpanjangan Kontrak</span>
                         </a>
                     </li>
                     <li class="{{ request()->routeIs('sip-dokter-admin') ? 'active' : '' }}">
@@ -386,6 +380,30 @@
                         <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
                             <i class="las la-newspaper"></i>
                             <span>Pengajuan Cuti</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('sip-dokter') ? 'active' : '' }}">
+                        <a href="{{ route('sip-dokter') }}" class="{{ request()->routeIs('sip-dokter') ? 'noti-dot' : '' }}">
+                            <i class="la la-file-alt"></i>
+                            <span>SIP Dokter</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('spk-dokter') ? 'active' : '' }}">
+                        <a href="{{ route('spk-dokter') }}" class="{{ request()->routeIs('spk-dokter') ? 'noti-dot' : '' }}">
+                            <i class="la la-file-alt"></i>
+                            <span>SPK Dokter</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('spk-perawat') ? 'active' : '' }}">
+                        <a href="{{ route('spk-perawat') }}" class="{{ request()->routeIs('spk-perawat') ? 'noti-dot' : '' }}">
+                            <i class="la la-file-alt"></i>
+                            <span>SPK Perawat</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('spk-nakes-lain') ? 'active' : '' }}">
+                        <a href="{{ route('spk-nakes-lain') }}" class="{{ request()->routeIs('spk-nakes-lain') ? 'noti-dot' : '' }}">
+                            <i class="la la-file-alt"></i>
+                            <span>SPK Nakes Lain</span>
                         </a>
                     </li>
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
