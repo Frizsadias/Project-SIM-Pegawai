@@ -369,31 +369,33 @@ class LayananController extends Controller
             $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
             $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
 
-        $posisi = PosisiJabatan::find($id);
-        if (!$posisi)
-        {
-            // Handle jika ID tidak ditemukan
-            continue;
+            $posisi = PosisiJabatan::find($id);
+            if (!$posisi)
+            {
+                // Handle jika ID tidak ditemukan
+                continue;
+            }
+                $posisiJabatan = $posisi->posisi_jabatan;
+                $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
+                $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
+
+            $pdf = PDF::loadView('pdf.surat-cuti', [
+                'cuti' => $cuti,
+                'posisi' => $posisi,
+                'nip' => $nip,
+                'name' => $name,
+                'jabatan' => $jabatan,
+                'gol_ruang_awal' => $gol_ruang_awal
+            ]);
+
+            return $pdf->stream('surat-cuti-' . $cuti->name . '.pdf');
         }
-            $posisiJabatan = $posisi->posisi_jabatan;
-            $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
-            $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
+        // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
-        $pdf = PDF::loadView('pdf.surat-cuti', [
-            'cuti' => $cuti,
-            'posisi' => $posisi,
-            'nip' => $nip,
-            'name' => $name,
-            'jabatan' => $jabatan,
-            'gol_ruang_awal' => $gol_ruang_awal
-        ]);
-
-        $nama_file = 'surat-cuti-' . $name . '.pdf';
-
-        // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
-        // $pdf->save(public_path('pdf/' . $nama_file));
-        $pdf->stream($nama_file);
-        }
+        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
+        // // $pdf->save(public_path('pdf/' . $nama_file));
+        // $pdf->stream($nama_file);
+        // }
     }
     /** /Tampilan Cetak Dokumen Rekomendasi */
 
@@ -414,31 +416,33 @@ class LayananController extends Controller
             $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
             $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
 
-        $posisi = PosisiJabatan::find($id);
-        if (!$posisi)
-        {
-            // Handle jika ID tidak ditemukan
-            continue;
+            $posisi = PosisiJabatan::find($id);
+            if (!$posisi)
+            {
+                // Handle jika ID tidak ditemukan
+                continue;
+            }
+                $posisiJabatan = $posisi->posisi_jabatan;
+                $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
+                $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
+
+            $pdf = PDF::loadView('pdf.surat-cuti', [
+                'cuti' => $cuti,
+                'posisi' => $posisi,
+                'nip' => $nip,
+                'name' => $name,
+                'jabatan' => $jabatan,
+                'gol_ruang_awal' => $gol_ruang_awal
+            ]);
+
+            return $pdf->stream('surat-cuti-' . $cuti->name . '.pdf');
         }
-            $posisiJabatan = $posisi->posisi_jabatan;
-            $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
-            $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
+        // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
-        $pdf = PDF::loadView('pdf.surat-cuti', [
-            'cuti' => $cuti,
-            'posisi' => $posisi,
-            'nip' => $nip,
-            'name' => $name,
-            'jabatan' => $jabatan,
-            'gol_ruang_awal' => $gol_ruang_awal
-        ]);
-
-        $nama_file = 'surat-cuti-' . $name . '.pdf';
-
-        // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
-        // $pdf->save(public_path('pdf/' . $nama_file));
-        $pdf->stream($nama_file);
-        }
+        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
+        // // $pdf->save(public_path('pdf/' . $nama_file));
+        // $pdf->stream($nama_file);
+        // }
     }
     /** /Tampilan Cetak Dokumen Kelengkapan */
 
