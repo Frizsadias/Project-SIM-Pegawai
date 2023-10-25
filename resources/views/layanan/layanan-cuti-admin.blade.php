@@ -1,32 +1,61 @@
 @extends('layouts.master')
 @section('content')
-    @section('style')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-    <!-- checkbox style -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-    @endsection
-    <!-- Page Wrapper -->
-    <div class="page-wrapper">
-        <!-- Page Content -->
-        <div class="content container-fluid">
-            <!-- Page Header -->
-            <div class="page-header">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h3 class="page-title">Pegawai</h3>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Pegawai</li>
-                        </ul>
-                    </div>
-                    <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_cuti"><i class="fa fa-plus"></i> Tambah Pengajuan Cuti</a>
+        @section('style')
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
+        <!-- checkbox style -->
+        <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
+        @endsection
+        <!-- Page Wrapper -->
+        <div class="page-wrapper">
+            <!-- Page Content -->
+            <div class="content container-fluid">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Pegawai</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Pegawai</li>
+                            </ul>
+                        </div>
+                        <div class="col-auto float-right ml-auto">
+                            <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_cuti"><i class="fa fa-plus"></i> Tambah Pengajuan Cuti</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- /Page Header -->
+                <!-- /Page Header -->
 
+                <!-- Cetak Dokumen Kelengkapan PDF -->
+                <div class="row filter-row">
+                    <div class="col-sm-6 col-md-3">
+                        <select id="pilihDokumenKelengkapan" class="form-control">
+                            <option selected disabled> --Pilih Dokumen Kelengkapan --</option>
+                            @foreach($data_cuti_pdf as $cuti)
+                                <option value="{{ $cuti->id }}">Dokumen Kelengkapan - {{ $cuti->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <button id="cetakDokumenKelengkapan" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan</button>
+                    </div>
+                
+                    <!-- Cetak Dokumen Rekomendasi PDF -->
+                    <div class="col-sm-6 col-md-3">
+                        <select id="pilihDokumenRekomendasi" class="form-control">
+                            <option selected disabled> --Pilih Dokumen Rekomendasi --</option>
+                            @foreach($data_cuti_pdf as $cuti)
+                                <option value="{{ $cuti->id }}">Dokumen Rekomendasi - {{ $cuti->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <button id="cetakDokumenRekomendasi" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Rekomendasi</button>
+                    </div>
+                </div>
+                <br>
+                
                 <!-- Search Filter -->
                 <form action="{{ route('layanan/cuti/cari/admin') }}" method="GET" id="search-form">
                     <div class="row filter-row">
@@ -89,15 +118,19 @@
                                             <td class="tanggal_mulai_cuti">{{ $result_cuti->tanggal_mulai_cuti }}</td>
                                             <td class="tanggal_selesai_cuti">{{ $result_cuti->tanggal_selesai_cuti }}</td>
                                             <td class="dokumen_kelengkapan">
-                                                <a href="{{ asset('assets/DokumenLayananCuti/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank">
+                                                <a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank">
                                                     @if (pathinfo($result_cuti->dokumen_kelengkapan, PATHINFO_EXTENSION) == 'pdf')
-                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                    @else
                                                         <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                     @endif
                                                         <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
                                                 </a></td>
-                                            <td class="dokumen_rekomendasi"><a href="{{ asset('assets/DokumenLayananCuti/') }}" target="_blank"></td>
+                                            <td class="dokumen_rekomendasi">
+                                                <a href="{{ asset('assets/DokumenRekomendasi/' . $result_cuti->dokumen_rekomendasi) }}" target="_blank">
+                                                    @if (pathinfo($result_cuti->dokumen_rekomendasi, PATHINFO_EXTENSION) == 'pdf')
+                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                    @endif
+                                                        <td hidden class="dokumen_rekomendasi">{{ $result_cuti->dokumen_rekomendasi }}</td>
+                                                </a></td>
                                             <td class="status_pengajuan">
                                                 <div class="dropdown">
                                                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -152,7 +185,7 @@
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Tambah Pegawai</h5>
+                                    <h5 class="modal-title">Pengajuan Cuti</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -216,15 +249,6 @@
                                                 <div class="form-group">
                                                     <label>Tanggal Selesai Cuti</label>
                                                     <input type="date" class="form-control" name="tanggal_selesai_cuti">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Dokumen Kelengkapan</label>
-                                                    <input type="file" class="form-control" name="dokumen_kelengkapan">
-                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -300,6 +324,14 @@
                                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Rekomendasi</label>
+                                                        <input type="file" class="form-control" id="dokumen_rekomendasi" name="dokumen_rekomendasi">
+                                                        <input type="hidden" name="hidden_dokumen_rekomendasi" id="e_dokumen_rekomendasi" value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="submit-section">
                                                 <button class="btn btn-primary submit-btn">Simpan</button>
@@ -314,6 +346,36 @@
     <!-- /Page Wrapper -->
 
     @section('script')
+        <script>
+            $(document).ready(function () {
+                $('#pilihDokumenRekomendasi').select2();
+                $('#cetakDokumenRekomendasi').on('click', function ()
+                {
+                    const selectedCutiId = $('#pilihDokumenRekomendasi').val();
+                    if (selectedCutiId)
+                    {
+                        const url = "{{ route('layanan-cuti-admin-rekomendasi', ['id' => ':id']) }}".replace(':id', selectedCutiId);
+                        window.open(url, '_blank');
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#pilihDokumenKelengkapan').select2();
+                $('#cetakDokumenKelengkapan').on('click', function ()
+                {
+                    const selectedCutiId = $('#pilihDokumenKelengkapan').val();
+                    if (selectedCutiId)
+                    {
+                        const url = "{{ route('layanan-cuti-admin-kelengkapan', ['id' => ':id']) }}".replace(':id', selectedCutiId);
+                        window.open(url, '_blank');
+                    }
+                });
+            });
+        </script>
+
         <script src="{{ asset('assets/js/layanancuti.js') }}"></script>
     @endsection
 @endsection

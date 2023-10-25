@@ -724,16 +724,6 @@ class UserManagementController extends Controller
     /** Edit Data Posisi & Jabatan */
     public function profilePegawaiEdit(Request $request)
     {
-        if (auth()->user()) {
-            $user = User::first();
-            $notification = auth()->user()->notifications->where('data.user_id', $user->id)->first();
-
-            if (!$notification) {
-                $notification = new UlangTahunNotification($user);
-                $notification->data['user_id'] = $user->id;
-                auth()->user()->notify($notification);
-            }
-        }
         $request->validate([
             'nip'                   => 'required|string|max:255',
             'gelar_depan'           => 'required|string|max:255',

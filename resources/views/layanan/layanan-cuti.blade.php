@@ -23,24 +23,38 @@
             </div>
             <!-- /Page Header -->
 
+            <!-- Cetak Dokumen Kelengkapan PDF -->
+            @php
+                $lastCuti = $data_cuti->last();
+            @endphp
+            @if ($lastCuti)
+                <a href="{{ route('layanan-cuti-kelengkapan', ['id' => $lastCuti->id]) }}" target="_blank" class="btn btn-success">
+                    <i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan
+                </a>
+            @else
+                <p>Data Dokumen Kelengkapan Tidak Tersedia.</p>
+            @endif
+            <br><br>
+             <!-- /Cetak Dokumen Kelengkapan PDF -->
+
             <!-- Search Filter -->
             <form action="{{ route('layanan/cuti/cari') }}" method="GET" id="search-form">
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="name" name="name">
+                            <input type="text" class="form-control floating" name="name">
                             <label class="focus-label">Nama Pegawai</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="jenis_cuti" name="jenis_cuti">
+                            <input type="text" class="form-control floating" name="jenis_cuti">
                             <label class="focus-label">Jenis Cuti</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="status_pengajuan" name="status_pengajuan">
+                            <input type="text" class="form-control floating" name="status_pengajuan">
                             <label class="focus-label">Status Pengajuan</label>
                         </div>
                     </div>
@@ -81,10 +95,8 @@
                                         <td class="tanggal_mulai_cuti">{{ $result_cuti->tanggal_mulai_cuti }}</td>
                                         <td class="tanggal_selesai_cuti">{{ $result_cuti->tanggal_selesai_cuti }}</td>
                                         <td class="dokumen_kelengkapan">
-                                            <a href="{{ asset('assets/DokumenLayananCuti/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank">
+                                            <a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank">
                                                 @if (pathinfo($result_cuti->dokumen_kelengkapan, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @else
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                     <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
@@ -180,15 +192,6 @@
                                                 <div class="form-group">
                                                     <label>Tanggal Selesai Cuti</label>
                                                     <input type="date" class="form-control" name="tanggal_selesai_cuti">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Dokumen Kelengkapan</label>
-                                                    <input type="file" class="form-control" name="dokumen_kelengkapan">
-                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

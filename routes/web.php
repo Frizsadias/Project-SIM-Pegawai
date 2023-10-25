@@ -420,15 +420,22 @@ Route::controller(RiwayatManagementController::class)->group(function () {
     // ----------------------- Informasi Layanan Cuti --------------------------//
 Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti', 'tampilanCutiPegawai')->name('layanan-cuti');
+    Route::get('layanan/cuti/kelengkapan/{id}', 'cetakDokumenKelengkapan')->name('layanan-cuti-kelengkapan');
     Route::get('layanan/cuti/admin', 'tampilanCutiPegawaiAdmin')->name('layanan-cuti-admin');
+    Route::get('layanan/cuti/admin/kelengkapan/{id}', 'cetakDokumenKelengkapan')->name('layanan-cuti-admin-kelengkapan');
+    Route::get('layanan/cuti/admin/rekomendasi/{id}', 'cetakDokumenRekomendasi')->name('layanan-cuti-admin-rekomendasi');
     Route::post('layanan/cuti/tambah-data', 'tambahDataCuti')->name('layanan/cuti/tambah-data');
     Route::post('layanan/cuti/edit-data', 'editDataCuti')->name('layanan/cuti/edit-data');
     Route::get('layanan/cuti/cari', 'pencarianLayananCuti')->name('layanan/cuti/cari');
     Route::get('layanan/cuti/cari/admin', 'pencarianLayananCutiAdmin')->name('layanan/cuti/cari/admin');
     Route::patch('/update-status/{id}', 'updateStatus')->name('updateStatus');
+    
 
-    Route::get('cetak-surat-cuti/{id}', 'cetakSuratCuti')->name('cetak-surat-cuti');
-
+    Route::get('layanan/kenaikan-gaji-berkala', 'tampilanKGB')->name('kenaikan-gaji-berkala');
+    Route::post('layanan/kgb/tambah-data', 'tambahDataKGB')->name('layanan/kgb/tambah-data');
+    Route::post('layanan/kgb/edit-data', 'editDataKGB')->name('layanan/kgb/edit-data');
+    Route::get('cetak-kgb/{id}', 'cetakKGB')->name('cetak-kgb');
+    Route::get('layanan/perpanjang-kontrak', 'tampilanPerpanjangKontrak')->name('perpanjang-kontrak');
 });
 
 // ----------------------- SIP Dokter --------------------------//
@@ -439,16 +446,19 @@ Route::controller(SIPController::class)->group(function () {
     Route::post('transaksi/sip-dokter/edit-data', 'editSIPDokter')->name('transaksi/sip-dokter/edit-data');
     Route::post('transaksi/sip-dokter/hapus-data', 'hapusDataSIPDokter')->name('transaksi/sip-dokter/hapus-data');
 
+    Route::get('transaksi/spk-dokter', 'tampilanSPKDokter')->name('spk-dokter');
     Route::get('transaksi/spk-dokter-admin', 'tampilanSPKDokterAdmin')->name('spk-dokter-admin');
     Route::post('transaksi/spk-dokter/tambah-data', 'tambahDataSPKDokter')->name('transaksi/spk-dokter/tambah-data');
     Route::post('transaksi/spk-dokter/edit-data', 'editSPKDokter')->name('transaksi/spk-dokter/edit-data');
     Route::post('transaksi/spk-dokter/hapus-data', 'hapusDataSPKDokter')->name('transaksi/spk-dokter/hapus-data');
 
+    Route::get('transaksi/spk-perawat', 'tampilanSPKPerawat')->name('spk-perawat');
     Route::get('transaksi/spk-perawat-admin', 'tampilanSPKPerawatAdmin')->name('spk-perawat-admin');
     Route::post('transaksi/spk-perawat/tambah-data', 'tambahDataSPKPerawat')->name('transaksi/spk-perawat/tambah-data');
     Route::post('transaksi/spk-perawat/edit-data', 'editSPKPerawat')->name('transaksi/spk-perawat/edit-data');
     Route::post('transaksi/spk-perawat/hapus-data', 'hapusDataSPKPerawat')->name('transaksi/spk-perawat/hapus-data');
 
+    Route::get('transaksi/spk-nakes-lain', 'tampilanSPKNakesLain')->name('spk-nakes-lain');
     Route::get('transaksi/spk-nakes-lain-admin', 'tampilanSPKNakesLainAdmin')->name('spk-nakes-lain-admin');
     Route::post('transaksi/spk-nakes-lain/tambah-data', 'tambahDataSPKNakesLain')->name('transaksi/spk-nakes-lain/tambah-data');
     Route::post('transaksi/spk-nakes-lain/edit-data', 'editSPKNakesLain')->name('transaksi/spk-nakes-lain/edit-data');

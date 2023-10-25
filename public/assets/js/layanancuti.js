@@ -6,6 +6,7 @@ $(document).on('click', '.edit_layanan_cuti', function()
     $('#e_tanggal_mulai_cuti').val(_this.find('.tanggal_mulai_cuti').text());
     $('#e_tanggal_selesai_cuti').val(_this.find('.tanggal_selesai_cuti').text());
     $('#e_dokumen_kelengkapan').val(_this.find('.dokumen_kelengkapan').text());
+    $('#e_dokumen_rekomendasi').val(_this.find('.dokumen_rekomendasi').text());
 
     var jenis_cuti = (_this.find(".jenis_cuti").text());
     var _option = '<option selected value="' + jenis_cuti + '">' + _this.find('.jenis_cuti')

@@ -141,20 +141,31 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <input type="hidden" class="form-control" id="image" name="image"
-                                    value="photo_defaults.jpg">
+                                <input type="hidden" class="form-control" id="image" name="image" value="photo_defaults.jpg">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Kata Sandi</label>
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Masukkan Kata Sandi">
+                                        <div class="input-group">
+                                            <input type="password" class="form-control" name="password"  id="katasandi" placeholder="Masukkan Kata Sandi">
+                                            <div class="input-group-append">
+                                                <button type="button" id="tampilkanPassword" class="btn btn-outline-secondary">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Konfirmasi Kata Sandi</label>
-                                        <input type="password" class="form-control" name="password_confirmation"
-                                            placeholder="Masukkan Konfirmasi Kata Sandi">
+                                        <div class="input-group">
+                                            <input type="password" class="form-control" name="password_confirmation" id="katasandikonfirmasi" placeholder="Masukkan Konfirmasi Kata Sandi">
+                                            <div class="input-group-append">
+                                                <button type="button" id="tampilkanPasswordKonfirmasi" class="btn btn-outline-secondary">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -361,5 +372,7 @@
             $('#e_avatar').val(_this.find('.avatar').data('avatar'));
         });
     </script>
+
+    <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
 @endsection
 @endsection

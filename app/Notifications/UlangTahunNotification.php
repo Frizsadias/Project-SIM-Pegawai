@@ -40,15 +40,18 @@ class UlangTahunNotification extends Notification
     public function toArray(object $notifiable): array
     {
         $profileInformation = ProfileInformation::find($notifiable->id);
+        $user = User::find($notifiable->id);
 
-        // Menghitung usia berdasarkan tanggal lahir
         $tglLahir = new \DateTime($profileInformation->tgl_lahir);
         $today = new \DateTime();
         $usia = $tglLahir->diff($today)->y;
 
+        $id_notif = mt_rand(100000, 999999);
+
         return [
-            'user_id' => $profileInformation->id,
-            'name' => $profileInformation->name,
+            'id_notif' => $id_notif,
+            'user_id' => $user->user_id,
+            'name' => $user->name,
             'tgl_lahir' => $profileInformation->tgl_lahir,
             'tmpt_lahir' => $profileInformation->tmpt_lahir,
             'message' => $profileInformation->tmpt_lahir,
@@ -60,7 +63,7 @@ class UlangTahunNotification extends Notification
             'message7' => 'Atas Nama Pemerintah Kota Caruban Mengucapkan Selamat Ulang Tahun Yang ke-',
             'message8' => ''.$usia.'',
             'message9' => 'Semoga Senantiasa Selalu Diberikan Kesehatan dan Kelancaran.',
-            'avatar' => $profileInformation->avatar
+            'avatar' => $user->avatar
         ];
     }
 }
