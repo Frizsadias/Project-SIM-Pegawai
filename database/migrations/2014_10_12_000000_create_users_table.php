@@ -50,17 +50,6 @@ class CreateUsersTable extends Migration
              'password' => Hash::make('12345678'),
              'created_at' => now(),
              'updated_at' => now()
-            ],
-            ['name' => 'Admin',
-             'user_id' => 'ID_00003',
-             'email' => 'admin@gmail.com',
-             'join_date' => now()->toDayDateTimeString(),
-             'status' => 'Active',
-             'role_name' => 'Admin',
-             'avatar' => 'photo_defaults.jpg',
-             'password' => Hash::make('12345678'),
-             'created_at' => now(),
-             'updated_at' => now()
             ]
         ]);
     }
