@@ -356,25 +356,15 @@ class LayananController extends Controller
     public function cetakDokumenRekomendasi()
     {
         // Ambil semua ID yang ingin Anda cetak
-        $semua_id = LayananCuti::pluck('id');
-        foreach ($semua_id as $id)
-        {
-            $cuti = LayananCuti::find($id);
-            if (!$cuti)
-            {
-                // Handle jika ID tidak ditemukan
-                continue;
-            }
+        $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
+            $cuti = LayananCuti::find($lastLayananCutiId);
             $profilPegawai = $cuti->profil_pegawai;
             $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
             $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
+            $jenis_cuti = $profilPegawai ? $profilPegawai->jenis_cuti : "Tidak Ada Jenis Cuti";
 
-            $posisi = PosisiJabatan::find($id);
-            if (!$posisi)
-            {
-                // Handle jika ID tidak ditemukan
-                continue;
-            }
+        $lastPosisiJabatanId = PosisiJabatan::latest('id')->first()->id;
+            $posisi = PosisiJabatan::find($lastPosisiJabatanId);
                 $posisiJabatan = $posisi->posisi_jabatan;
                 $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
                 $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
@@ -385,11 +375,11 @@ class LayananController extends Controller
                 'nip' => $nip,
                 'name' => $name,
                 'jabatan' => $jabatan,
-                'gol_ruang_awal' => $gol_ruang_awal
+                'gol_ruang_awal' => $gol_ruang_awal,
+                'jenis_cuti' => $jenis_cuti
             ]);
 
             return $pdf->stream('surat-cuti-' . $cuti->name . '.pdf');
-        }
         // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
         // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
@@ -403,30 +393,19 @@ class LayananController extends Controller
     public function cetakDokumenKelengkapan()
     {
         // Ambil semua ID yang ingin Anda cetak
-        $semua_id = LayananCuti::pluck('id');
-        foreach ($semua_id as $id)
-        {
-            $cuti = LayananCuti::find($id);
-            if (!$cuti)
-            {
-                // Handle jika ID tidak ditemukan
-                continue;
-            }
+        $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
+            $cuti = LayananCuti::find($lastLayananCutiId);
             $profilPegawai = $cuti->profil_pegawai;
             $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
             $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
 
-            $posisi = PosisiJabatan::find($id);
-            if (!$posisi)
-            {
-                // Handle jika ID tidak ditemukan
-                continue;
-            }
+        $lastPosisiJabatanId = PosisiJabatan::latest('id')->first()->id;
+            $posisi = PosisiJabatan::find($lastPosisiJabatanId);
                 $posisiJabatan = $posisi->posisi_jabatan;
                 $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
                 $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
 
-            $pdf = PDF::loadView('pdf.surat-cuti', [
+            $pdf = PDF::loadView('pdf.kelengkapan-cuti', [
                 'cuti' => $cuti,
                 'posisi' => $posisi,
                 'nip' => $nip,
@@ -435,8 +414,7 @@ class LayananController extends Controller
                 'gol_ruang_awal' => $gol_ruang_awal
             ]);
 
-            return $pdf->stream('surat-cuti-' . $cuti->name . '.pdf');
-        }
+            return $pdf->stream('kelengkapan-cuti-' . $cuti->name . '.pdf');
         // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
         // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda

@@ -24,7 +24,7 @@
     <strong><span style="font-family:Arial; ">&#xa0;</span></strong>
 </p>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:14pt">
-    <strong><u><span style="font-family:Arial; ">SURAT IZIN CUTI KARENA ALASAN PENTING</span></u></strong>
+    <strong><u><span style="font-family:Arial; ">SURAT IZIN {{ strtoupper($cuti->jenis_cuti) }}</span></u></strong>
 </p>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:200%; font-size:14pt">
     <strong><span style="font-family:Arial; ">Nomor : 857/</span></strong><strong><span
