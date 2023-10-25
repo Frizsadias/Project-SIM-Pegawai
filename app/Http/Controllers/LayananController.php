@@ -393,9 +393,7 @@ class LayananController extends Controller
         // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
         // $pdf->save(public_path('pdf/' . $nama_file));
         $pdf->stream($nama_file);
-    }
-
-        return "Semua Surat Cuti Telah Dicetak.";
+        }
     }
     /** /Tampilan Cetak Dokumen Rekomendasi */
 
@@ -440,9 +438,7 @@ class LayananController extends Controller
         // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
         // $pdf->save(public_path('pdf/' . $nama_file));
         $pdf->stream($nama_file);
-    }
-
-        return "Semua Surat Cuti Telah Dicetak.";
+        }
     }
     /** /Tampilan Cetak Dokumen Kelengkapan */
 
