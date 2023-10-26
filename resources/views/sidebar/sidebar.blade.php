@@ -76,7 +76,6 @@
                             <span>Ruangan</span>
                         </a>
                     </li>
-
                     <li class="menu-title"> <span>Manajemen Pegawai</span> </li>
                     <li
                         class="{{ request()->routeIs('daftar/pegawai/list','daftar/pegawai/card') || request()->routeIs('daftar/pegawai/card') ? 'active' : '' }}">
@@ -135,7 +134,7 @@
                             <span>SPK Nakes Lain</span>
                         </a>
                     </li>
-                    <li class="menu-title"> <span>Data Statistik </span> </li>
+                    {{-- <li class="menu-title"> <span>Data Statistik </span> </li>
                     <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-list"></i>
@@ -190,7 +189,7 @@
                         <a href="#" class="{{ set_active(['search/user/list']) ? 'noti-dot' : '' }}">
                             <i class="la la-file"></i> <span> Laporan</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- <li class="menu-title">
                         <span>Informasi Riwayat</span>
@@ -257,12 +256,12 @@
                             <span> Data Statistik</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-files-o"></i>
                             <span>Laporan</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
                     <li class="{{ set_active(['super-admin/profile']) }}">
                         <a href="{{ route('super-admin-profile') }}"
