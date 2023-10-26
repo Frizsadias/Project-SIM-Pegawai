@@ -76,8 +76,10 @@
                                         <th>NIP</th>
                                         <th>Jenis Cuti</th>
                                         <th>Lama Cuti (Hari)</th>
+                                        <th>Sisa Cuti (N2, N1, N)</th>
                                         <th>Tanggal Mulai Cuti</th>
                                         <th>Tanggal Selesai Cuti</th>
+                                        <th>Tanggal Pengajuan Cuti</th>
                                         <th>Dokumen Kelengkapan</th>
                                         <th>Status Permohonan Cuti</th>
                                         <th class="text-right no-sort">Aksi</th>
@@ -92,8 +94,14 @@
                                         <td class="nip">{{ $result_cuti->nip }}</td>
                                         <td class="jenis_cuti">{{ $result_cuti->jenis_cuti }}</td>
                                         <td class="lama_cuti">{{ $result_cuti->lama_cuti }}</td>
+                                        <td>
+                                            {{ date('Y', strtotime('-2 year')) }} = {{ $sisaCutiTwoYearsAgo }} hari,&nbsp;&nbsp;&nbsp;
+                                            {{ date('Y', strtotime('-1 year')) }} = {{ $sisaCutiLastYear }} hari,&nbsp;&nbsp;&nbsp;
+                                            {{ date('Y') }} = {{ $sisaCutiThisYear }} hari
+                                        </td>
                                         <td class="tanggal_mulai_cuti">{{ $result_cuti->tanggal_mulai_cuti }}</td>
                                         <td class="tanggal_selesai_cuti">{{ $result_cuti->tanggal_selesai_cuti }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($result_cuti->created_at)->formatLocalized('%d %B %Y') }}</td>
                                         <td class="dokumen_kelengkapan">
                                             <a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank">
                                                 @if (pathinfo($result_cuti->dokumen_kelengkapan, PATHINFO_EXTENSION) == 'pdf')
@@ -109,6 +117,9 @@
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a class="dropdown-item edit_layanan_cuti" href="#" data-toggle="modal" data-target="#edit_layanan_cuti"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                    {{-- <a href="{{ route('layanan-cuti-kelengkapan2', ['id' => $result_cuti->id]) }}" target="_blank" class="cetak-dokumen">
+                                                        <i class="fa fa-print m-r-5"></i> Cetak Dokumen
+                                                    </a> --}}
                                                 </div>
                                             </div>
                                         </td>

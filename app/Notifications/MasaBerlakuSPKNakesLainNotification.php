@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use App\Models\User;
 use App\Models\ProfileInformation;
 
-class UlangTahunNotification extends Notification
+class MasaBerlakuSPKNakesLainNotification extends Notification
 {
     use Queueable;
     public $user;

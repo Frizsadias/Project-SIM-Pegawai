@@ -83,8 +83,11 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
     Route::get('/notifikasi/dibaca/{id}', 'bacaNotifikasi')->name('notifikasi.dibaca');
     Route::post('/notifikasi/dibaca/semua', 'bacasemuaNotifikasi')->name('notifikasi.dibaca-semua');
-    Route::get('/notify', 'notify')->name('notify');
-
+    Route::get('/ulangtahun', 'ulangtahun')->name('ulangtahun');
+    Route::get('/masaberlakusip', 'masaberlakuSIP')->name('masaberlakusip');
+    Route::get('/masaberlakuspkdokter', 'masaberlakuSPKDokter')->name('masaberlakuspkdokter');
+    Route::get('/masaberlakuspkperawat', 'masaberlakuSPKPerawat')->name('masaberlakuspkperawat');
+    Route::get('/masaberlakuspknakeslain', 'masaberlakuSPKNakesLain')->name('masaberlakuspknakeslain');
 });
 
 // -----------------------------settings-------------------------------------//
@@ -421,6 +424,7 @@ Route::controller(RiwayatManagementController::class)->group(function () {
 Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti', 'tampilanCutiPegawai')->name('layanan-cuti');
     Route::get('layanan/cuti/kelengkapan/{id}', 'cetakDokumenKelengkapan')->name('layanan-cuti-kelengkapan');
+    // Route::get('layanan/cuti/kelengkapan2/{id}', 'cetakDokumenKelengkapan2')->name('layanan-cuti-kelengkapan2');
     Route::get('layanan/cuti/admin', 'tampilanCutiPegawaiAdmin')->name('layanan-cuti-admin');
     Route::get('layanan/cuti/admin/kelengkapan/{id}', 'cetakDokumenKelengkapan')->name('layanan-cuti-admin-kelengkapan');
     Route::get('layanan/cuti/admin/rekomendasi/{id}', 'cetakDokumenRekomendasi')->name('layanan-cuti-admin-rekomendasi');
@@ -436,6 +440,8 @@ Route::controller(LayananController::class)->group(function () {
     Route::post('layanan/kgb/edit-data', 'editDataKGB')->name('layanan/kgb/edit-data');
     Route::get('cetak-kgb/{id}', 'cetakKGB')->name('cetak-kgb');
     Route::get('layanan/perpanjang-kontrak', 'tampilanPerpanjangKontrak')->name('perpanjang-kontrak');
+    Route::post('layanan/kontrak/tambah-data', 'tambahDataKontrak')->name('layanan/kontrak/tambah-data');
+    Route::post('layanan/kontrak/edit-data', 'editDataKontrak')->name('layanan/kontrak/edit-data');
 });
 
 // ----------------------- SIP Dokter --------------------------//

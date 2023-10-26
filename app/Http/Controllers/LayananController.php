@@ -7,6 +7,7 @@ use App\Models\LayananCuti;
 use App\Models\Notification;
 use App\Models\PosisiJabatan;
 use App\Models\KenaikanGajiBerkala;
+use App\Models\KontrakKerja;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -68,21 +69,35 @@ class LayananController extends Controller
             })
             ->get();
 
-        // $currentYear = date('Y');
-        // $annualLeave = [
-        //     $currentYear - 2 => 12,
-        //     $currentYear - 1 => 12,
-        //     $currentYear => 12,
-        // ];
-        // $previousYears = array_filter(array_keys($annualLeave), function ($year) use ($currentYear) {
-        //     return $year < $currentYear;
-        // });
-        // $sisaCuti = 0;
-        // foreach ($previousYears as $year) {
-        //     $sisaCuti += ($annualLeave[$year] >= 6) ? 6 : $annualLeave[$year];
-        // }
-        // $sisaCuti += $annualLeave[$currentYear];
-        // , 'cutiTahun2023'
+        // $totalLamaCuti = LayananCuti::sum('lama_cuti');
+        // $sisaCuti = 18 - $totalLamaCuti;
+        //     if ($totalLamaCuti >= 18) {
+        //         $sisaCuti = 0;
+        //     }
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
 
         $user = auth()->user();
         $role = $user->role_name;
@@ -97,7 +112,7 @@ class LayananController extends Controller
             ->get();
             
         return view('layanan.layanan-cuti', compact('data_cuti', 'data_profilcuti', 'data_cuti_pdf',
-            'unreadNotifications', 'readNotifications'));
+            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
     }
     /** /Daftar Layanan Cuti User */
 
@@ -132,7 +147,41 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('profil_pegawai')
+            ->join('users','profil_pegawai.user_id','users.user_id')
+            ->select('users.*','users.role_name', 'profil_pegawai.nip')
+            ->where('role_name', '=', 'User')
+            ->get();
+
+        // $totalLamaCuti = LayananCuti::sum('lama_cuti');
+        // $sisaCuti = 18 - $totalLamaCuti;
+        //     if ($totalLamaCuti >= 18) {
+        //         $sisaCuti = 0;
+        //     }
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
 
         $user = auth()->user();
         $role = $user->role_name;
@@ -147,7 +196,7 @@ class LayananController extends Controller
             ->get();
 
         return view('layanan.layanan-cuti-admin', compact('data_cuti', 'data_cuti_pdf', 'userList',
-            'unreadNotifications','readNotifications'));
+            'unreadNotifications','readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
     }
     /** /Daftar Layanan Cuti Admin */
 
@@ -164,6 +213,23 @@ class LayananController extends Controller
             'tanggal_selesai_cuti'  => 'required|string|max:255',
             'status_pengajuan'      => 'required|string|max:255',
         ]);
+
+        // $totalLamaCuti = LayananCuti::where('user_id', $request->user_id)->sum('lama_cuti');
+        // if (($totalLamaCuti + (int)$request->lama_cuti) > 18) {
+        //     Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi 18 hari :(', 'Error');
+        //     return redirect()->back();
+        // }
+
+        $currentYear = date('Y');
+        $totalLamaCutiTahunIni = LayananCuti::where('user_id', $request->user_id)
+            ->whereYear('created_at', $currentYear)
+            ->sum('lama_cuti');
+        $batasanCutiPerTahun = 18;
+        if (($totalLamaCutiTahunIni + (int)$request->lama_cuti) > $batasanCutiPerTahun) {
+            Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi batasan per tahun :(', 'Error');
+            return redirect()->back();
+        }
+
         DB::beginTransaction();
 
         try {
@@ -200,6 +266,22 @@ class LayananController extends Controller
                 'tanggal_mulai_cuti'    => $request->tanggal_mulai_cuti,
                 'tanggal_selesai_cuti'  => $request->tanggal_selesai_cuti,
             ];
+
+            // $totalLamaCuti = LayananCuti::where('user_id', $request->user_id)->sum('lama_cuti');
+            // if (($totalLamaCuti + (int)$request->lama_cuti) > 18) {
+            //     Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi 18 hari :(', 'Error');
+            //     return redirect()->back();
+            // }
+
+            $currentYear = date('Y');
+            $totalLamaCutiTahunIni = LayananCuti::where('user_id', $request->user_id)
+                ->whereYear('created_at', $currentYear)
+                ->sum('lama_cuti');
+            $batasanCutiPerTahun = 18;
+            if (($totalLamaCutiTahunIni + (int)$request->lama_cuti) > $batasanCutiPerTahun) {
+                Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi batasan per tahun :(', 'Error');
+                return redirect()->back();
+            }
 
             if ($request->hasFile('dokumen_kelengkapan')) {
                 $dokumen_kelengkapan = time() . '.' . $request->file('dokumen_kelengkapan')->getClientOriginalExtension();
@@ -265,6 +347,36 @@ class LayananController extends Controller
             ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
             ->where('cuti.status_pengajuan', 'like', '%' . $status_pengajuan . '%')
             ->get();
+
+        // $totalLamaCuti = LayananCuti::sum('lama_cuti');
+        // $sisaCuti = 18 - $totalLamaCuti;
+        //     if ($totalLamaCuti >= 18) {
+        //         $sisaCuti = 0;
+        //     }
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
         
         $user = auth()->user();
         $role = $user->role_name;
@@ -279,7 +391,7 @@ class LayananController extends Controller
             ->get();
 
         return view('layanan.layanan-cuti', compact('pencarianDataCuti', 'data_cuti', 'data_profilcuti',
-            'unreadNotifications', 'readNotifications'));
+            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
     }
     /** /Search Layanan Cuti */
 
@@ -323,6 +435,36 @@ class LayananController extends Controller
 
         $userList = DB::table('profil_pegawai')->get();
 
+        // $totalLamaCuti = LayananCuti::sum('lama_cuti');
+        // $sisaCuti = 18 - $totalLamaCuti;
+        //     if ($totalLamaCuti >= 18) {
+        //         $sisaCuti = 0;
+        //     }
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -336,7 +478,7 @@ class LayananController extends Controller
             ->get();
         
         return view('layanan.layanan-cuti-admin', compact('data_cuti', 'userList', 'data_cuti_pdf',
-            'unreadNotifications', 'readNotifications'));
+            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
     }
     /** /Search Layanan Cuti Admin */
 
@@ -542,25 +684,6 @@ class LayananController extends Controller
     }
     /** /Edit Data Kenaikan Gaji Berkala Pegawai */
 
-    /** Tampilan Perpanjangan Kontrak */
-    public function tampilanPerpanjangKontrak()
-    {
-        $user = auth()->user();
-        $role = $user->role_name;
-        $unreadNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNull('read_at')
-            ->get();
-
-        $readNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNotNull('read_at')
-            ->get();
-
-        return view('layanan.perpanjang-kontrak', compact('unreadNotifications', 'readNotifications'));
-    }
-    /** /Tampilan Perpanjangan Kontrak */
-
     /** Cetak Kenaikan Gaji Berkala PDF */
     public function cetakKGB($id)
     {
@@ -617,4 +740,108 @@ class LayananController extends Controller
         return $pdf->stream('Kenaikan-Gaji-Berkala-' . $kgb->name . '.pdf');
     }
     /** /Cetak Kenaikan Gaji Berkala PDF */
+
+    /** Tampilan Perpanjangan Kontrak */
+    public function tampilanPerpanjangKontrak()
+    {
+        $data_kontrak = DB::table('kontrak_kerja')
+        ->select(
+            'kontrak_kerja.*',
+            'kontrak_kerja.user_id',
+            'kontrak_kerja.name',
+            'kontrak_kerja.nip',
+            'kontrak_kerja.tempat_lahir',
+            'kontrak_kerja.tanggal_lahir',
+            'kontrak_kerja.nik_blud',
+            'kontrak_kerja.pendidikan',
+            'kontrak_kerja.tahun_lulus',
+            'kontrak_kerja.jabatan',
+        )
+            ->get();
+
+        $userList = DB::table('profil_pegawai')->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.perpanjang-kontrak', compact('unreadNotifications', 'readNotifications', 'data_kontrak', 'userList'));
+    }
+    /** /Tampilan Perpanjangan Kontrak */
+
+    /** Tambah Data Perpanjangan Kontrak Pegawai */
+    public function tambahDataKontrak(Request $request)
+    {
+        $request->validate([
+            'user_id'               => 'required|string|max:255',
+            'name'                  => 'required|string|max:255',
+            'nip'                   => 'required|string|max:255',
+            'tempat_lahir'          => 'required|string|max:255',
+            'tanggal_lahir'         => 'required|string|max:255',
+            'nik_blud'              => 'required|string|max:255',
+            'pendidikan'            => 'required|string|max:255',
+            'tahun_lulus'           => 'required|string|max:255',
+            'jabatan'               => 'required|string|max:255',
+        ]);
+        DB::beginTransaction();
+
+        try {
+            $kontrak = new KontrakKerja();
+            $kontrak->user_id               = $request->user_id;
+            $kontrak->name                  = $request->name;
+            $kontrak->nip                   = $request->nip;
+            $kontrak->tempat_lahir          = $request->tempat_lahir;
+            $kontrak->tanggal_lahir         = $request->tanggal_lahir;
+            $kontrak->nik_blud              = $request->nik_blud;
+            $kontrak->pendidikan            = $request->pendidikan;
+            $kontrak->tahun_lulus           = $request->tahun_lulus;
+            $kontrak->jabatan               = $request->jabatan;
+            $kontrak->save();
+
+            DB::commit();
+            Toastr::success('Data perpanjang kontrak kerja berhasil ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perpanjang kontrak kerja gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** /Tambah Data Perpanjangan Kontrak Pegawai */
+
+    /** Edit Data Perpanjangan Kontrak Pegawai */
+    public function editDataKontrak(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $update = [
+                'name'          => $request->name,
+                'nip'           => $request->nip,
+                'tempat_lahir'  => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'nik_blud  '    => $request->nik_blud,
+                'pendidikan'    => $request->pendidikan,
+                'tahun_lulus'   => $request->tahun_lulus,
+                'jabatan'       => $request->jabatan,
+            ];
+            KontrakKerja::where('id', $request->id)->update($update);
+
+            DB::commit();
+            Toastr::success('Data perpanjang kontrak kerja berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perpanjang kontrak kerja gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** /Edit Data Perpanjangan Kontrak Pegawai */
 }

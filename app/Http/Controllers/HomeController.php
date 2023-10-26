@@ -13,6 +13,10 @@ use App\Models\Notification;
 use App\Charts\GrafikChart;
 use App\Notifications\UserFollowNotification;
 use App\Notifications\UlangTahunNotification;
+use App\Notifications\MasaBerlakuSIPNotification;
+use App\Notifications\MasaBerlakuSPKDokterNotification;
+use App\Notifications\MasaBerlakuSPKPerawatNotification;
+use App\Notifications\MasaBerlakuSPKNakesLainNotification;
 
 class HomeController extends Controller
 {
@@ -110,22 +114,6 @@ class HomeController extends Controller
         }
     }
 
-    public function notify()
-    {
-        if (auth()->user())
-        {
-            $user = User::first();
-            $notification = auth()->user()->notifications->where('data.user_id', $user->id)->first();
-        
-                if (!$notification) {
-                    $notification = new UlangTahunNotification($user);
-                    $notification->data['user_id'] = $user->id;
-                    auth()->user()->notify($notification);
-                }
-        }
-        return back();
-    }
-    
     public function bacaNotifikasi($id){
         if($id)
         {
@@ -141,5 +129,85 @@ class HomeController extends Controller
         $user->notifications->markAsRead();
         Toastr::success('Semua Notifikasi Telah Dibaca :)','Success');
         return redirect()->back();
+    }
+
+    public function ulangtahun()
+    {
+        if (auth()->user())
+        {
+            $user = User::first();
+            $notification = auth()->user()->notifications->where('data.user_id', $user->id)->first();
+        
+                if (!$notification) {
+                    $notification = new UlangTahunNotification($user);
+                    $notification->data['user_id'] = $user->id;
+                    auth()->user()->notify($notification);
+                }
+        }
+        return back();
+    }
+
+    public function masaberlakuSIP()
+    {
+        if (auth()->user())
+        {
+            $user = User::first();
+            $notification = auth()->user()->notifications->where('data.user_id', $user->id)->first();
+        
+                if (!$notification) {
+                    $notification = new MasaBerlakuSIPNotification($user);
+                    $notification->data['user_id'] = $user->id;
+                    auth()->user()->notify($notification);
+                }
+        }
+        return back();
+    }
+
+    public function masaberlakuSPKDokter()
+    {
+        if (auth()->user())
+        {
+            $user = User::first();
+            $notification = auth()->user()->notifications->where('data.user_id', $user->id)->first();
+        
+                if (!$notification) {
+                    $notification = new MasaBerlakuSPKDokterNotification($user);
+                    $notification->data['user_id'] = $user->id;
+                    auth()->user()->notify($notification);
+                }
+        }
+        return back();
+    }
+
+    public function masaberlakuSPKPerawat()
+    {
+        if (auth()->user())
+        {
+            $user = User::first();
+            $notification = auth()->user()->notifications->where('data.user_id', $user->id)->first();
+        
+                if (!$notification) {
+                    $notification = new MasaBerlakuSPKPerawatNotification($user);
+                    $notification->data['user_id'] = $user->id;
+                    auth()->user()->notify($notification);
+                }
+        }
+        return back();
+    }
+
+    public function masaberlakuSPKNakesLain()
+    {
+        if (auth()->user())
+        {
+            $user = User::first();
+            $notification = auth()->user()->notifications->where('data.user_id', $user->id)->first();
+        
+                if (!$notification) {
+                    $notification = new MasaBerlakuSPKNakesLainNotification($user);
+                    $notification->data['user_id'] = $user->id;
+                    auth()->user()->notify($notification);
+                }
+        }
+        return back();
     }
 }

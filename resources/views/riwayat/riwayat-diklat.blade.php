@@ -93,8 +93,6 @@
                                             <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank">
                                                 @if (pathinfo($result_diklat->dokumen_diklat, PATHINFO_EXTENSION) == 'pdf')
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @else
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                     <td hidden class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
                                             </a></center></td>

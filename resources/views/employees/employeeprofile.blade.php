@@ -538,8 +538,6 @@
                                                         <a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}" target="_blank">
                                                             @if (pathinfo($result_pendidikan->dokumen_transkrip, PATHINFO_EXTENSION) == 'pdf')
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @else
-                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>
                                                         </a></center></td>
@@ -547,16 +545,12 @@
                                                         <a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}" target="_blank">
                                                             @if (pathinfo($result_pendidikan->dokumen_ijazah, PATHINFO_EXTENSION) == 'pdf')
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @else
-                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>
                                                         </a></center></td>
                                                     <td class="dokumen_gelar"><center>
                                                         <a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}" target="_blank">
                                                             @if (pathinfo($result_pendidikan->dokumen_gelar, PATHINFO_EXTENSION) == 'pdf')
-                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @else
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>
@@ -904,16 +898,12 @@
                                                         <a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}" target="_blank">
                                                             @if (pathinfo($result_golongan->dokumen_skkp, PATHINFO_EXTENSION) == 'pdf')
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @else
-                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_skkp">{{ $result_golongan->dokumen_skkp }}</td>
                                                         </a></center></td>
                                                     <td class="dokumen_teknis_kp"><center>
                                                         <a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}" target="_blank">
                                                             @if (pathinfo($result_golongan->dokumen_teknis_kp, PATHINFO_EXTENSION) == 'pdf')
-                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @else
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_teknis_kp">{{ $result_golongan->dokumen_teknis_kp }}</td>
@@ -1230,16 +1220,12 @@
                                                         <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}" target="_blank">
                                                             @if (pathinfo($result_jabatan->dokumen_sk_jabatan, PATHINFO_EXTENSION) == 'pdf')
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @else
-                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}</td>
                                                         </a></center></td>
                                                     <td class="dokumen_pelantikan"><center>
                                                         <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}" target="_blank">
                                                             @if (pathinfo($result_jabatan->dokumen_pelantikan, PATHINFO_EXTENSION) == 'pdf')
-                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @else
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}</td>
@@ -1558,8 +1544,6 @@
                                             <td class="dokumen_diklat"><center>
                                                 <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank">
                                                     @if (pathinfo($result_diklat->dokumen_diklat, PATHINFO_EXTENSION) == 'pdf')
-                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                    @else
                                                         <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                     @endif
                                                         <td hidden class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
@@ -2829,7 +2813,6 @@
         <script src="{{ asset('assets/js/jabatan.js') }}"></script>
         <script src="{{ asset('assets/js/diklat.js') }}"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script>

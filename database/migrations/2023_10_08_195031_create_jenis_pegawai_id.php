@@ -42,6 +42,7 @@ return new class extends Migration
                 ['id_jenis_pegawai' => 'S', 'jenis_pegawai' => 'STTD Kementrian Perhubungan'],
                 ['id_jenis_pegawai' => 'U', 'jenis_pegawai' => 'BLUD'],
                 ['id_jenis_pegawai' => 'V', 'jenis_pegawai' => 'Non ASN'],
+                ['id_jenis_pegawai' => 'W', 'jenis_pegawai' => 'ASN'],
             
         ]);
     }

@@ -8630,3 +8630,21 @@ ul.comment-list li ul.children {
 	width: 15%;
 	margin-left: 87%;
 }
+
+.cetak-dokumen{
+	padding: 5px 10px;
+	color: #16181b;
+}
+
+.cetak-dokumen:hover{
+	color: #16181b;
+	text-decoration: none;
+    background-color: #e9ecef;
+}
+
+.cetak-dokumen:active{
+	color: white;
+	text-decoration: none;
+    background-color: #f43b48;
+}
+    

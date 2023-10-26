@@ -34,5 +34,6 @@ class ProfilPegawai extends Model
         'tmt_cpns',
         'tingkat_pendidikan',
         'pendidikan_terakhir',
+        'ruangan'
     ];
 }
