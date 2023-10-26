@@ -20,6 +20,11 @@ class KontrakKerja extends Model
         'nik_blud',
         'pendidikan',
         'tahun_lulus',
-        'jabatan',
+        'jabatan'
     ];
+    
+    public function posisi_jabatan()
+    {
+        return $this->belongsTo(PosisiJabatan::class, 'jabatan', 'jabatan');
+    }
 }

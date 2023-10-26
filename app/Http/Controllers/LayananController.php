@@ -759,7 +759,11 @@ class LayananController extends Controller
         )
             ->get();
 
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('profil_pegawai')
+            ->join('users','profil_pegawai.user_id','users.user_id')
+            ->select('users.*','users.role_name', 'profil_pegawai.nip')
+            ->where('role_name', '=', 'User')
+            ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
@@ -773,7 +777,7 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.perpanjang-kontrak', compact('unreadNotifications', 'readNotifications', 'data_kontrak', 'userList'));
+        return view('layanan.perpanjang-kontrak', compact('data_kontrak', 'userList','unreadNotifications', 'readNotifications'));
     }
     /** /Tampilan Perpanjangan Kontrak */
 
@@ -823,8 +827,6 @@ class LayananController extends Controller
         DB::beginTransaction();
         try {
             $update = [
-                'name'          => $request->name,
-                'nip'           => $request->nip,
                 'tempat_lahir'  => $request->tempat_lahir,
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'nik_blud  '    => $request->nik_blud,
@@ -832,6 +834,7 @@ class LayananController extends Controller
                 'tahun_lulus'   => $request->tahun_lulus,
                 'jabatan'       => $request->jabatan,
             ];
+
             KontrakKerja::where('id', $request->id)->update($update);
 
             DB::commit();

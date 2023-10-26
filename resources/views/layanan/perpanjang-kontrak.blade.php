@@ -65,6 +65,9 @@
                                 <th>NIK BLUD</th>
                                 <th>Tempat Lahir</th>
                                 <th>Tanggal Lahir</th>
+                                <th>Pendidikan</th>
+                                <th>Tahun Lulus</th>
+                                <th>Jabatan</th>
                                 <th class="text-right no-sort">Aksi</th>
                             </tr>
                         </thead>
@@ -78,6 +81,9 @@
                                     <td class="nik_blud">{{ $result_kontrak->nik_blud }}</td>
                                     <td class="tempat_lahir">{{ $result_kontrak->tempat_lahir }}</td>
                                     <td class="tanggal_lahir">{{ $result_kontrak->tanggal_lahir }}</td>
+                                    <td class="pendidikan">{{ $result_kontrak->pendidikan }}</td>
+                                    <td class="tahun_lulus">{{ $result_kontrak->tahun_lulus }}</td>
+                                    <td class="jabatan">{{ $result_kontrak->jabatan }}</td>
 
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
@@ -276,20 +282,7 @@
 </div>
 <!-- /Page Wrapper -->
 
-@section('script')
-<script>
-    $(document).on('click', '.edit_kontrak', function()
-{
-    var _this = $(this).parents('tr');
-    $('#e_id').val(_this.find('.id').text());
-    $('#e_tanggal_lahir').val(_this.find('.tanggal_lahir').text());
-    $('#e_tempat_lahir').val(_this.find('.tempat_lahir').text());
-    $('#e_nik_blud').val(_this.find('.nik_blud').text());
-    $('#e_pendidikan').val(_this.find('.pendidikan').text());
-    $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
-    $('#e_jabatan').val(_this.find('.jabatan').text());
-
-});
-</script>
-@endsection
+    @section('script')
+        <script src="{{ asset('assets/js/perpanjangankontrak.js') }}"></script>
+    @endsection
 @endsection
