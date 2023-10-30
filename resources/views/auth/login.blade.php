@@ -8,7 +8,8 @@
                 <!-- /Account Logo -->
                 <div class="account-box">
                     <div class="account-wrapper">
-                        <h3 class="account-title">Login Simpeg</h3>
+                        <h3 class="account-title">SILK</h3>
+                        <h3 class="account-title2">Sistem Informasi Layanan Kepegawaian</h3><br>
                         <!-- Account Form -->
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

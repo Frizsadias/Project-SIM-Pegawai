@@ -43,7 +43,7 @@ return new class extends Migration
                 ['id_jenis_pegawai' => 'U', 'jenis_pegawai' => 'BLUD'],
                 ['id_jenis_pegawai' => 'V', 'jenis_pegawai' => 'Non ASN'],
                 ['id_jenis_pegawai' => 'W', 'jenis_pegawai' => 'ASN'],
-            
+                ['id_jenis_pegawai' => 'X', 'jenis_pegawai' => 'CPNS']
         ]);
     }
 

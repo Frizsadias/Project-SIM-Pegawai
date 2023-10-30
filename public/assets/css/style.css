@@ -1861,6 +1861,13 @@ table.dataTable thead > tr > td.sorting {
 }
 .account-title {
     font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.account-title2 {
+    font-size: 16px;
     font-weight: 500;
     margin-bottom: 5px;
     text-align: center;
