@@ -94,9 +94,6 @@
                                                 <a class="dropdown-item edit_kontrak" href="#" data-toggle="modal"
                                                     data-target="#edit_kontrak"><i class="fa fa-pencil m-r-5"></i>
                                                     Edit</a>
-                                                    <a class="dropdown-item delete_perpanjangan" href="#"
-                                                    data-toggle="modal" data-target="#delete_perpanjangan"><i
-                                                        class="fa fa-trash-o m-r-5"></i>Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -124,23 +121,34 @@
                     <form action="{{ route('layanan/kontrak/tambah-data') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
-                        @foreach ($data_kontrak as $result_kontrak)
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="name"
-                                            value="{{ $result_kontrak->name }}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="nip"
-                                            value="{{ $result_kontrak->nip }}" readonly>
-                                    </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Nama Pegawai</label>
+                                    <select class="select" id="name" name="name">
+                                        <option value="">-- Pilih Nama Pegawai --</option>
+                                        @foreach ($userList as $user)
+                                            <option value="{{ $user->name }}" data-user_id="{{ $user->user_id }}"
+                                                data-nip="{{ $user->nip }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-                        @endforeach
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">ID Pengguna <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="user_id" name="user_id"
+                                        placeholder="ID pengguna otomatis terisi" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">NIP <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="nip" name="nip"
+                                        placeholder="NIP otomatis terisi" readonly>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -271,36 +279,6 @@
         </div>
     </div>
     <!-- /Edit Layanan Cuti Modal -->
-
-    <!-- Delete Perjanjian Modal -->
-    <div class="modal custom-modal fade" id="delete_perpanjangan" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="form-header">
-                        <h3>Hapus Perpanjangan Kontrak</h3>
-                        <p>Apakah anda yakin ingin menghapus data ini?</p>
-                    </div>
-                    <div class="modal-btn delete-action">
-                        <form action="{{ route('layanan/perpanjangan-kontrak/delete') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="id" class="e_id" value="">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="submit"
-                                        class="btn btn-primary continue-btn submit-btn">Hapus</button>
-                                </div>
-                                <div class="col-6">
-                                    <a href="javascript:void(0);" data-dismiss="modal"
-                                        class="btn btn-primary cancel-btn">Kembali</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- /Page Wrapper -->
 

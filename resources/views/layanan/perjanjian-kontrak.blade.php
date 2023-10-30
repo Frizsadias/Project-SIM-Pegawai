@@ -14,40 +14,46 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Perpanjangan Kontrak</h3>
+                    <h3 class="page-title">Perjanjian Kontrak</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Perpanjangan Kontrak</li>
+                        <li class="breadcrumb-item active">Perjanjian Kontrak</li>
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
                     <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_kontrak"><i
-                            class="fa fa-plus"></i> Tambah Perpanjangan Kontrak</a>
+                            class="fa fa-plus"></i> Tambah Perjanjian Kontrak</a>
                 </div>
             </div>
         </div>
         <!-- /Page Header -->
 
         <!-- Search Filter -->
-        <form action="" method="GET" id="search-form">
-            <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" name="name">
-                        <label class="focus-label">Nama Pegawai</label>
+        {{-- <form action="{{ route('layanan/cuti/cari/admin') }}" method="GET" id="search-form">
+                    <div class="row filter-row">
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating" name="name">
+                                <label class="focus-label">Nama Pegawai</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating" name="jenis_cuti">
+                                <label class="focus-label">Jenis Cuti</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group form-focus">
+                                <input type="text" class="form-control floating" name="status_pengajuan">
+                                <label class="focus-label">Status Pengajuan</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" name="jenis_cuti">
-                        <label class="focus-label">NIP</label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
-                </div>
-            </div>
-        </form>
+                </form> --}}
         <!-- Search Filter -->
 
         {{-- message --}}
@@ -68,22 +74,24 @@
                                 <th>Pendidikan</th>
                                 <th>Tahun Lulus</th>
                                 <th>Jabatan</th>
+                                <th>Tanggal Kontrak</th>
                                 <th class="text-right no-sort">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data_kontrak as $sqlkontrak => $result_kontrak)
+                            @foreach ($data_perjanjian_kontrak as $sqlkontrak => $result_perjanjian_kontrak)
                                 <tr>
                                     <td>{{ ++$sqlkontrak }}</td>
-                                    <td hidden class="id">{{ $result_kontrak->id }}</td>
-                                    <td class="name">{{ $result_kontrak->name }}</td>
-                                    <td class="nip">{{ $result_kontrak->nip }}</td>
-                                    <td class="nik_blud">{{ $result_kontrak->nik_blud }}</td>
-                                    <td class="tempat_lahir">{{ $result_kontrak->tempat_lahir }}</td>
-                                    <td class="tanggal_lahir">{{ $result_kontrak->tanggal_lahir }}</td>
-                                    <td class="pendidikan">{{ $result_kontrak->pendidikan }}</td>
-                                    <td class="tahun_lulus">{{ $result_kontrak->tahun_lulus }}</td>
-                                    <td class="jabatan">{{ $result_kontrak->jabatan }}</td>
+                                    <td hidden class="id">{{ $result_perjanjian_kontrak->id }}</td>
+                                    <td class="name">{{ $result_perjanjian_kontrak->name }}</td>
+                                    <td class="nip">{{ $result_perjanjian_kontrak->nip }}</td>
+                                    <td class="nik_blud">{{ $result_perjanjian_kontrak->nik_blud }}</td>
+                                    <td class="tempat_lahir">{{ $result_perjanjian_kontrak->tempat_lahir }}</td>
+                                    <td class="tanggal_lahir">{{ $result_perjanjian_kontrak->tanggal_lahir }}</td>
+                                    <td class="pendidikan">{{ $result_perjanjian_kontrak->pendidikan }}</td>
+                                    <td class="tahun_lulus">{{ $result_perjanjian_kontrak->tahun_lulus }}</td>
+                                    <td class="jabatan">{{ $result_perjanjian_kontrak->jabatan }}</td>
+                                    <td class="tgl_kontrak">{{ $result_perjanjian_kontrak->tgl_kontrak }}</td>
 
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
@@ -94,8 +102,8 @@
                                                 <a class="dropdown-item edit_kontrak" href="#" data-toggle="modal"
                                                     data-target="#edit_kontrak"><i class="fa fa-pencil m-r-5"></i>
                                                     Edit</a>
-                                                    <a class="dropdown-item delete_perpanjangan" href="#"
-                                                    data-toggle="modal" data-target="#delete_perpanjangan"><i
+                                                <a class="dropdown-item delete_perjanjian" href="#"
+                                                    data-toggle="modal" data-target="#delete_perjanjian"><i
                                                         class="fa fa-trash-o m-r-5"></i>Delete</a>
                                             </div>
                                         </div>
@@ -110,33 +118,33 @@
     </div>
     <!-- /Page Content -->
 
-    <!-- Tambah Layanan Cuti Modal -->
+    <!-- Tambah Perjanjian Kontrak Modal -->
     <div id="daftar_layanan_kontrak" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Perpanjangan Kontrak</h5>
+                    <h5 class="modal-title">Tambah Perjanjian Kontrak</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('layanan/kontrak/tambah-data') }}" method="POST"
+                    <form action="{{ route('layanan/perjanjian-kontrak/tambah-data') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
-                        @foreach ($data_kontrak as $result_kontrak)
+                        @foreach ($data_perjanjian_kontrak as $result_perjanjian_kontrak)
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="name"
-                                            value="{{ $result_kontrak->name }}" readonly>
+                                            value="{{ $result_perjanjian_kontrak->name }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="nip"
-                                            value="{{ $result_kontrak->nip }}" readonly>
+                                            value="{{ $result_perjanjian_kontrak->nip }}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -188,6 +196,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tanggal Berlaku Kontrak</label>
+                                    <input type="date" class="form-control" name="tgl_kontrak">
+                                </div>
+                            </div>
+                        </div>
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Simpan</button>
                         </div>
@@ -197,20 +213,20 @@
         </div>
     </div>
 
-    <!-- /Tambah Layanan Cuti Modal -->
+    <!-- /Tambah Perjanjian Kontrak Modal -->
 
-    <!-- Edit Layanan Cuti Modal -->
+    <!-- Edit Perjanjian Kontrak Modal -->
     <div id="edit_kontrak" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Perpanjangan Kontrak</h5>
+                    <h5 class="modal-title">Edit Perjanjian Kontrak</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('layanan/kontrak/edit-data') }}" method="POST"
+                    <form action="{{ route('layanan/perjanjian-kontrak/edit-data') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" id="e_id" value="">
@@ -261,6 +277,13 @@
                                         placeholder="Jabatan" value="">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tanggal Berlaku Kontrak</label>
+                                    <input type="date" class="form-control" name="tgl_kontrak" id="e_tgl_kontrak"
+                                        value="">
+                                </div>
+                            </div>
                         </div>
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Simpan</button>
@@ -273,16 +296,16 @@
     <!-- /Edit Layanan Cuti Modal -->
 
     <!-- Delete Perjanjian Modal -->
-    <div class="modal custom-modal fade" id="delete_perpanjangan" role="dialog">
+    <div class="modal custom-modal fade" id="delete_perjanjian" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="form-header">
-                        <h3>Hapus Perpanjangan Kontrak</h3>
+                        <h3>Hapus Perjanjian Kontrak</h3>
                         <p>Apakah anda yakin ingin menghapus data ini?</p>
                     </div>
                     <div class="modal-btn delete-action">
-                        <form action="{{ route('layanan/perpanjangan-kontrak/delete') }}" method="POST">
+                        <form action="{{ route('layanan/perjanjian-kontrak/delete') }}" method="POST">
                             @csrf
                             <input type="hidden" name="id" class="e_id" value="">
                             <div class="row">
@@ -304,7 +327,31 @@
 </div>
 <!-- /Page Wrapper -->
 
-    @section('script')
-        <script src="{{ asset('assets/js/perpanjangankontrak.js') }}"></script>
-    @endsection
+@section('script')
+    <script>
+        {{-- Edit --}}
+        $(document).on("click", ".edit_kontrak", function() {
+            var _this = $(this).parents("tr");
+            $("#e_id").val(_this.find(".id").text());
+            $("#e_tempat_lahir").val(_this.find(".tempat_lahir").text());
+            $("#e_tanggal_lahir").val(_this.find(".tanggal_lahir").text());
+            $("#e_nik_blud").val(_this.find(".nik_blud").text());
+            $("#e_pendidikan").val(_this.find(".pendidikan").text());
+            $("#e_tahun_lulus").val(_this.find(".tahun_lulus").text());
+            $("#e_jabatan").val(_this.find(".jabatan").text());
+            $("#e_tgl_kontrak").val(_this.find(".tgl_kontrak").text());
+        });
+
+        $('#name').on('change', function() {
+            $('#user_id').val($(this).find(':selected').data('user_id'));
+            $('#nip').val($(this).find(':selected').data('nip'));
+        });
+
+        $(document).on("click", ".delete_perjanjian", function() {
+            var _this = $(this).parents("tr");
+            $(".e_id").val(_this.find(".id").text());
+            // $("#nip").val($(this).find(":selected").data("nip"));
+        });
+    </script>
+@endsection
 @endsection
