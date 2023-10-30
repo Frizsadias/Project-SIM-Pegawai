@@ -200,18 +200,106 @@ class LayananController extends Controller
     }
     /** /Daftar Layanan Cuti Admin */
 
+    /** Daftar Layanan Cuti Super Admin */
+    public function tampilanCutiPegawaiKepalaRuangan()
+    {
+        $data_cuti = DB::table('cuti')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->get();
+
+        $data_cuti_pdf = DB::table('cuti')
+            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
+                'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
+            ->whereIn('id', function ($query)
+            {
+                $query->select(DB::raw('MAX(id)'))
+                    ->from('cuti')
+                    ->whereColumn('cuti.user_id', 'cuti.user_id')
+                    ->groupBy('cuti.user_id');
+            })
+            ->get();
+
+        $userList = DB::table('profil_pegawai')
+            ->join('users','profil_pegawai.user_id','users.user_id')
+            ->select('users.*','users.role_name', 'profil_pegawai.nip')
+            ->where('role_name', '=', 'User')
+            ->get();
+
+        // $totalLamaCuti = LayananCuti::sum('lama_cuti');
+        // $sisaCuti = 18 - $totalLamaCuti;
+        //     if ($totalLamaCuti >= 18) {
+        //         $sisaCuti = 0;
+        //     }
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_cuti_pdf', 'userList',
+            'unreadNotifications','readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+    }
+    /** /Daftar Layanan Cuti Super Admin */
+
     /** Tambah Data Cuti Pegawai */
     public function tambahDataCuti(Request $request)
     {
         $request->validate([
-            'user_id'               => 'required|string|max:255',
-            'name'                  => 'required|string|max:255',
-            'nip'                   => 'required|string|max:255',
-            'jenis_cuti'            => 'required|string|max:255',
-            'lama_cuti'             => 'required|string|max:255',
-            'tanggal_mulai_cuti'    => 'required|string|max:255',
-            'tanggal_selesai_cuti'  => 'required|string|max:255',
-            'status_pengajuan'      => 'required|string|max:255',
+            'user_id'                   => 'required|string|max:255',
+            'name'                      => 'required|string|max:255',
+            'nip'                       => 'required|string|max:255',
+            'jenis_cuti'                => 'required|string|max:255',
+            'lama_cuti'                 => 'required|string|max:255',
+            'tanggal_mulai_cuti'        => 'required|string|max:255',
+            'tanggal_selesai_cuti'      => 'required|string|max:255',
+            'status_pengajuan'          => 'required|string|max:255',
+            'persetujuan_administrasi'  => 'required|string|max:255',
+            'persetujuan_eselon3'       => 'required|string|max:255',
+            'persetujuan_eselon4'       => 'required|string|max:255',
+            'persetujuan_kepalaruangan' => 'required|string|max:255',
         ]);
 
         // $totalLamaCuti = LayananCuti::where('user_id', $request->user_id)->sum('lama_cuti');
@@ -234,14 +322,18 @@ class LayananController extends Controller
 
         try {
             $layananCutiPegawai = new LayananCuti;
-            $layananCutiPegawai->user_id               = $request->user_id;
-            $layananCutiPegawai->name                  = $request->name;
-            $layananCutiPegawai->nip                   = $request->nip;
-            $layananCutiPegawai->jenis_cuti            = $request->jenis_cuti;
-            $layananCutiPegawai->lama_cuti             = $request->lama_cuti;
-            $layananCutiPegawai->tanggal_mulai_cuti    = $request->tanggal_mulai_cuti;
-            $layananCutiPegawai->tanggal_selesai_cuti  = $request->tanggal_selesai_cuti;
-            $layananCutiPegawai->status_pengajuan      = $request->status_pengajuan;
+            $layananCutiPegawai->user_id                    = $request->user_id;
+            $layananCutiPegawai->name                       = $request->name;
+            $layananCutiPegawai->nip                        = $request->nip;
+            $layananCutiPegawai->jenis_cuti                 = $request->jenis_cuti;
+            $layananCutiPegawai->lama_cuti                  = $request->lama_cuti;
+            $layananCutiPegawai->tanggal_mulai_cuti         = $request->tanggal_mulai_cuti;
+            $layananCutiPegawai->tanggal_selesai_cuti       = $request->tanggal_selesai_cuti;
+            $layananCutiPegawai->status_pengajuan           = $request->status_pengajuan;
+            $layananCutiPegawai->persetujuan_administrasi   = $request->persetujuan_administrasi;
+            $layananCutiPegawai->persetujuan_eselon3        = $request->persetujuan_eselon3;
+            $layananCutiPegawai->persetujuan_eselon4        = $request->persetujuan_eselon4;
+            $layananCutiPegawai->persetujuan_kepalaruangan  = $request->persetujuan_kepalaruangan;
             $layananCutiPegawai->save();
 
             DB::commit();
@@ -482,12 +574,118 @@ class LayananController extends Controller
     }
     /** /Search Layanan Cuti Admin */
 
+    /** Search Layanan Cuti Super Admin */
+    public function pencarianLayananCutiKepalaRuangan(Request $request)
+    {
+        $name = $request->input('name');
+        $jenis_cuti = $request->input('jenis_cuti');
+        $status_pengajuan = $request->input('status_pengajuan');
+
+        $data_cuti = DB::table('cuti')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->where('cuti.name', 'like', '%' . $name . '%')
+            ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
+            ->where('cuti.status_pengajuan', 'like', '%' . $status_pengajuan . '%')
+            ->get();
+
+        $data_cuti_pdf = DB::table('cuti')
+            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
+                'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
+            ->whereIn('id', function ($query)
+            {
+                $query->select(DB::raw('MAX(id)'))
+                    ->from('cuti')
+                    ->whereColumn('cuti.user_id', 'cuti.user_id')
+                    ->groupBy('cuti.user_id');
+            })
+            ->get();
+
+        $userList = DB::table('profil_pegawai')->get();
+
+        // $totalLamaCuti = LayananCuti::sum('lama_cuti');
+        // $sisaCuti = 18 - $totalLamaCuti;
+        //     if ($totalLamaCuti >= 18) {
+        //         $sisaCuti = 0;
+        //     }
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+        
+        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'userList', 'data_cuti_pdf',
+            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+    }
+    /** /Search Layanan Cuti Super Admin */
+
     /** Tampilan Update Status Perhomonan */
     public function updateStatus(Request $request, $id)
     {
-        $status_pengajuan = $request->input('status_pengajuan');
         $resource = LayananCuti::find($id);
-        $resource->status_pengajuan = $status_pengajuan;
+
+        if($request->has('status_pengajuan')) {
+            $resource->status_pengajuan = $request->input('status_pengajuan');
+        }
+
+        if($request->has('persetujuan_administrasi')) {
+            $resource->persetujuan_administrasi = $request->input('persetujuan_administrasi');
+        }
+
+        if($request->has('persetujuan_eselon3')) {
+            $resource->persetujuan_eselon3 = $request->input('persetujuan_eselon3');
+        }
+
+        if($request->has('persetujuan_eselon4')) {
+            $resource->persetujuan_eselon4 = $request->input('persetujuan_eselon4');
+        }
+
+        if($request->has('persetujuan_kepalaruangan')) {
+            $resource->persetujuan_kepalaruangan = $request->input('persetujuan_kepalaruangan');
+        }
+
         $resource->save();
         Toastr::success('Data status pengajuan berhasil diperbaharui :)', 'Success');
         return redirect()->back();
@@ -565,6 +763,41 @@ class LayananController extends Controller
         // }
     }
     /** /Tampilan Cetak Dokumen Kelengkapan */
+
+    /** Tampilan Cetak Dokumen Kelengkapan Super Admin */
+    public function cetakDokumenKelengkapanKepalaRuangan()
+    {
+        // Ambil semua ID yang ingin Anda cetak
+        $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
+            $cuti = LayananCuti::find($lastLayananCutiId);
+            $profilPegawai = $cuti->profil_pegawai;
+            $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
+            $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
+
+        $lastPosisiJabatanId = PosisiJabatan::latest('id')->first()->id;
+            $posisi = PosisiJabatan::find($lastPosisiJabatanId);
+                $posisiJabatan = $posisi->posisi_jabatan;
+                $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
+                $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
+
+            $pdf = PDF::loadView('pdf.kelengkapan-cuti-super-admin', [
+                'cuti' => $cuti,
+                'posisi' => $posisi,
+                'nip' => $nip,
+                'name' => $name,
+                'jabatan' => $jabatan,
+                'gol_ruang_awal' => $gol_ruang_awal
+            ]);
+
+            return $pdf->stream('kelengkapan-cuti-super-admin-' . $cuti->name . '.pdf');
+        // $nama_file = 'surat-cuti-' . $name . '.pdf';
+
+        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
+        // // $pdf->save(public_path('pdf/' . $nama_file));
+        // $pdf->stream($nama_file);
+        // }
+    }
+    /** /Tampilan Cetak Dokumen Kelengkapan Super Admin */
 
     /** Tampilan Kenaikan Gaji Berkala */
     public function tampilanKGB()

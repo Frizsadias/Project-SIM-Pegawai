@@ -226,7 +226,7 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Nomor Dokumen</div>
+                                            <div class="title">Nomor Induk Kependudukan</div>
                                             @if (!empty($result_profilpegawai->no_dokumen))
                                                 <div class="text">{{ $result_profilpegawai->no_dokumen }}</div>
                                             @else
@@ -1202,9 +1202,9 @@
                                                     <br>
                                                     <select class="theSelect form-control @error('agama') is-invalid @enderror" name="agama">
                                                         <option value="" disabled selected>--- Pilih agama ---</option>
-                                                        @foreach ($agamaOptions as $optionValue => $optionLabel)
+                                                        @foreach ($agamaOptions as $optionValue => $namaAgama)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->agama) selected @endif>
-                                                                {{ $optionLabel }}
+                                                                {{ $namaAgama }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -1213,16 +1213,12 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Jenis Dokumen <span class="text-danger">*</span></label>
-                                                    <select class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen">
-                                                        <option value="" disabled selected>--- Pilih jenis dokumen ---</option>
-                                                        <option value="Passport" @if ($result_profilpegawai->jenis_dokumen === 'Passport') selected @endif>Passport</option>
-                                                        <option value="KTP" @if ($result_profilpegawai->jenis_dokumen === 'KTP') selected @endif>KTP</option>
-                                                    </select>
+                                                    <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="KTP" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group"> <span class="text-danger">*</span></label>
-                                                    <label>Nomor Dokumen </label>
+                                                    <label>Nomor Induk Kependudukan </label>
                                                     <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_profilpegawai->no_dokumen }}">
                                                 </div>
                                             </div>
@@ -1272,12 +1268,12 @@
                                                 <div class="form-group">
                                                     <label>Jenis Pegawai <span class="text-danger">*</span></label>
                                                     <br>
-                                                    <select class="theSelect form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
+                                                    <select class="theSelect @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
                                                         <option value="" disabled selected>--- Pilih jenis pegawai ---</option>
-                                                        @foreach ($jenispegawaiOptions as $optionValue => $optionLabel)
-                                                            <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->jenis_pegawai) selected @endif>
-                                                                {{ $optionLabel }}
-                                                            </option>
+                                                        @foreach ($jenispegawaiOptions as $id => $namaJenisPegawai)
+                                                            @if(in_array($namaJenisPegawai, ['ASN', 'Non ASN', 'PPPK', 'CPNS']))
+                                                                <option value="{{ $id }}" @if ($id == $result_profilpegawai->jenis_pegawai) selected @endif>{{ $namaJenisPegawai }}</option>
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -1288,9 +1284,9 @@
                                                     <br>
                                                     <select class="theSelect form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns">
                                                         <option value="" disabled selected>--- Pilih kedudukan ---</option>
-                                                        @foreach ($kedudukanOptions as $optionValue => $optionLabel)
+                                                        @foreach ($kedudukanOptions as $optionValue => $namaKedudukan)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->kedudukan_pns) selected @endif>
-                                                                {{ $optionLabel }}
+                                                                {{ $namaKedudukan }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -1331,9 +1327,9 @@
                                                     <br>
                                                     <select class="theSelect form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan">
                                                         <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
-                                                        @foreach ($tingkatpendidikanOptions as $optionValue => $optionLabel)
+                                                        @foreach ($tingkatpendidikanOptions as $optionValue => $namaTingkatPendidikan)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->tingkat_pendidikan) selected @endif>
-                                                                {{ $optionLabel }}
+                                                                {{ $namaTingkatPendidikan }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -1342,23 +1338,29 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_profilpegawai->pendidikan_terakhir }}">
+                                                    <br>
+                                                    <select class="theSelect @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir">
+                                                        <option selected disabled> --Pilih Pendidikan Terakhir --</option>
+                                                        @foreach($pendidikanterakhirOptions as $id => $namaPendidikanTerakhir)
+                                                            <option value="{{ $id }}" {{ $id == $result_profilpegawai->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Ruangan <span class="text-danger">*</span></label>
-                                                <br>
-                                                <select class="theSelect form-control @error('ruangan') is-invalid @enderror" name="ruangan">
-                                                    <option value="" disabled selected>--- Pilih ruangan ---</option>
-                                                    @foreach ($ruanganOptions as $optionValue => $optionLabel)
-                                                        <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->ruangan) selected @endif>
-                                                            {{ $optionLabel }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
+                                                <div class="form-group">
+                                                    <label>Ruangan <span class="text-danger">*</span></label>
+                                                    <br>
+                                                    <select class="theSelect form-control @error('ruangan') is-invalid @enderror" name="ruangan">
+                                                        <option value="" disabled selected>--- Pilih ruangan ---</option>
+                                                        @foreach ($ruanganOptions as $optionValue => $namaRuangan)
+                                                            <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->ruangan) selected @endif>
+                                                                {{ $namaRuangan }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
                                         </div>
                                         <div class="submit-section">
                                             <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
@@ -1607,9 +1609,9 @@
                                                                 <br>
                                                                 <select class="theSelect form-control @error('jenis_jabatan') is-invalid @enderror" name="jenis_jabatan">
                                                                     <option value="" disabled selected>--- Pilih jenis jabatan ---</option>
-                                                                    @foreach ($jenisjabatanOptions as $optionValue => $optionLabel)
+                                                                    @foreach ($jenisjabatanOptions as $optionValue => $jenisJabatan)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->jenis_jabatan) selected @endif>
-                                                                            {{ $optionLabel }}
+                                                                            {{ $jenisJabatan }}
                                                                         </option>
                                                                     @endforeach
                                                                 </select>
@@ -1661,9 +1663,9 @@
                                                                 <br>
                                                                 <select class="theSelect form-control @error('gol_ruang_awal') is-invalid @enderror" name="gol_ruang_awal">
                                                                     <option value="" disabled selected>--- Pilih golongan ruang awal ---</option>
-                                                                    @foreach ($golonganOptions as $optionValue => $optionLabel)
+                                                                    @foreach ($golonganOptions as $optionValue => $golAwal)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->gol_ruang_awal) selected @endif>
-                                                                            {{ $optionLabel }}
+                                                                            {{ $golAwal }}
                                                                         </option>
                                                                     @endforeach
                                                                 </select>
@@ -1675,9 +1677,9 @@
                                                                 <br>
                                                                 <select class="theSelect form-control @error('gol_ruang_akhir') is-invalid @enderror" name="gol_ruang_akhir">
                                                                     <option value="" disabled selected>--- Pilih golongan ruang akhir ---</option>
-                                                                    @foreach ($golonganOptions as $optionValue => $optionLabel)
+                                                                    @foreach ($golonganOptions as $optionValue => $golAkhir)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->gol_ruang_akhir) selected @endif>
-                                                                            {{ $optionLabel }}
+                                                                            {{ $golAkhir }}
                                                                         </option>
                                                                     @endforeach
                                                                 </select>

@@ -263,9 +263,9 @@
                         </a>
                     </li> --}}
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
-                    <li class="{{ set_active(['super-admin/profile']) }}">
-                        <a href="{{ route('super-admin-profile') }}"
-                            class="{{ set_active(['super-admin/profile']) ? 'noti-dot' : '' }}">
+                    <li class="{{ set_active(['kepala-ruangan/profile']) }}">
+                        <a href="{{ route('kepala-ruangan-profile') }}"
+                            class="{{ set_active(['kepala-ruangan/profile']) ? 'noti-dot' : '' }}">
                             <i class="la la-user"></i>
                             <span> Profil</span>
                         </a>
@@ -273,6 +273,38 @@
                     <li class="{{ set_active(['super-admin/kata-sandi']) }}">
                         <a href="{{ route('super-admin-kata-sandi') }}"
                             class="{{ set_active(['super-admin/kata-sandi']) ? 'noti-dot' : '' }}">
+                            <i class="la la-key"></i>
+                            <span> Ubah Password</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if (Auth::user()->role_name == 'Kepala Ruangan')
+                    <li class="menu-title"> <span>Layanan Kepegawaian </span> </li>
+                    <li class="{{ request()->routeIs('layanan-cuti-kepala-ruangan') ? 'active' : '' }}">
+                        <a href="{{ route('layanan-cuti-kepala-ruangan') }}" class="{{ request()->routeIs('layanan-cuti-kepala-ruangan') ? 'noti-dot' : '' }}">
+                            <i class="las la-newspaper"></i>
+                            <span>Pengajuan Cuti</span>
+                        </a>
+                    </li>
+                    <li class="menu-title"> <span>Informasi Ruangan </span> </li>
+                    <li class="{{ request()->routeIs('daftar/ruangan/pegawai/list','daftar/ruangan/pegawai/card') || request()->routeIs('daftar/ruangan/pegawai/card') ? 'active' : '' }}">
+                        <a href="{{ route('daftar/ruangan/pegawai/list', 'daftar/ruangan/pegawai/card') }}" class="{{ request()->routeIs('daftar/ruangan/pegawai/list', 'daftar/ruangan/pegawai/card') || request()->routeIs('daftar/ruangan/pegawai/card') ? 'noti-dot' : '' }}">
+                            <i class="la la-group"></i>
+                            <span>Daftar Ruangan</span>
+                        </a>
+                    </li>
+                    <li class="menu-title"> <span>Pengaturan Profil</span> </li>
+                    <li class="{{ set_active(['kepala-ruangan/profile']) }}">
+                        <a href="{{ route('kepala-ruangan-profile') }}"
+                            class="{{ set_active(['kepala-ruangan/profile']) ? 'noti-dot' : '' }}">
+                            <i class="la la-user"></i>
+                            <span> Profil</span>
+                        </a>
+                    </li>
+                    <li class="{{ set_active(['kepala-ruangan/kata-sandi']) }}">
+                        <a href="{{ route('kepala-ruangan-kata-sandi') }}"
+                            class="{{ set_active(['kepala-ruangan/kata-sandi']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
                             <span> Ubah Password</span>
                         </a>

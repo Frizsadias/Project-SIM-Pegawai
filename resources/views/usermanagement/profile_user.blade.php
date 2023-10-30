@@ -118,6 +118,15 @@
                                                             <div class="text">N/A</div>
                                                         @endif
                                                     </li>
+                                                    <li>
+                                                        @if (Auth::user()->user_id == $posjab->user_id)
+                                                            <div class="title">Ruangan :</div>
+                                                            <div class="text">{{ $propeg->ruangan }}</div>
+                                                        @else
+                                                            <div class="title">Ruangan :</div>
+                                                            <div class="text">N/A</div>
+                                                        @endif
+                                                    </li>
                                                 @else
                                                     <li>
                                                         <div class="title">Tanggal Lahir :</div>
@@ -145,6 +154,10 @@
                                                     </li>
                                                     <li>
                                                         <div class="title">Jabatan :</div>
+                                                        <div class="text">N/A</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">Ruangan :</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                 @endif
@@ -248,6 +261,18 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label>Ruangan</label>
+                                                    <br>
+                                                    <select class="select" name="ruangan" id="ruangan">
+                                                        <option value="" disabled selected>--- Pilih Ruangan ---</option>
+                                                        @foreach($ruanganOptions as $id => $optionLabel)
+                                                            <option value="{{ $id }}" {{ $id == $propeg->ruangan ? 'selected' : '' }}>{{ $optionLabel }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
                                                     <input type="hidden" class="form-control" id="avatar" name="avatar" value="{{ $user->avatar }}">
                                                 </div>
                                             </div>
@@ -343,6 +368,18 @@
                                                 <div class="form-group">
                                                     <label>Jabatan</label>
                                                     <input type="text" class="form-control" id="jabatan" name="jabatan">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Ruangan</label>
+                                                    <br>
+                                                    <select class="select" name="ruangan" id="ruangan">
+                                                        <option value="" disabled selected>--- Pilih Ruangan ---</option>
+                                                        @foreach($ruanganOptions as $id => $optionLabel)
+                                                            <option value="{{ $id }}" {{ $id == $propeg->ruangan ? 'selected' : '' }}>{{ $optionLabel }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
