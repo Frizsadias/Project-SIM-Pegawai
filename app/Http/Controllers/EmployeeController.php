@@ -147,6 +147,100 @@ class EmployeeController extends Controller
         return view('employees.datapensiunlist', compact('users', 'userList', 'permission_lists', 'unreadNotifications', 'readNotifications'));
     }
 
+    public function cardRuangan(Request $request)
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $users = DB::table('users')
+            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->get();
+        
+        $userList = DB::table('users')->get();
+        $permission_lists = DB::table('permission_lists')->get();
+
+        $superAdmin = User::where('role_name', 'Kepala Ruangan')->first();
+        if ($superAdmin) {
+            $kepalaRuang = User::where('role_name', 'User')
+                ->where('ruangan', $superAdmin->ruangan)
+                ->get();
+                
+        return view('employees.dataruangancard', [
+            'users' => $users,
+            'userList' => $userList,
+            'permission_lists' => $permission_lists,
+            'unreadNotifications' => $unreadNotifications,
+            'readNotifications' => $readNotifications,
+            'kepalaRuang' => $kepalaRuang
+                ]);
+        } else {
+            return view('employees.dataruangancard', ['kepalaRuang' => []]);
+        }
+    }
+
+    /** Daftar Ruangan List */
+    public function listRuangan()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $users = DB::table('users')
+            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->get();
+        $userList = DB::table('users')->get();
+        $permission_lists = DB::table('permission_lists')->get();
+
+        $superAdmin = User::where('role_name', 'Kepala Ruangan')->first();
+        if ($superAdmin) {
+            $kepalaRuang = User::where('role_name', 'User')
+                ->where('ruangan', $superAdmin->ruangan)
+                ->get();
+                    
+        return view('employees.dataruanganlist', [
+            'users' => $users,
+            'userList' => $userList,
+            'permission_lists' => $permission_lists,
+            'unreadNotifications' => $unreadNotifications,
+            'readNotifications' => $readNotifications,
+            'kepalaRuang' => $kepalaRuang
+            ]);
+        } else {
+            return view('employees.dataruanganlist', ['kepalaRuang' => []]);
+        }
+    }
+
     /** save data employee */
     public function saveRecord(Request $request)
     {
@@ -311,7 +405,106 @@ class EmployeeController extends Controller
                         ->where('users.name','LIKE','%'.$request->name.'%')
                         ->where('users.email','LIKE','%'.$request->email.'%')->get();
         }
-        return view('employees.allemployeecard', compact('users', 'userList'));
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.allemployeecard', compact('users', 'userList', 'unreadNotifications', 'readNotifications'));
+    }
+
+    public function employeeSearchRuangan(Request $request)
+    {
+        $users = DB::table('users')
+                    ->join('employees','users.user_id','employees.employee_id')
+                    ->select('users.*','employees.name','employees.email')->get();
+        $userList = DB::table('users')->get();
+
+        // search by id
+        if ($request->employee_id)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')->get();
+        }
+        // search by name
+        if ($request->name)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
+        }
+        // search by email
+        if ($request->email)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        }
+
+        // search by name and id
+        if ($request->employee_id && $request->name)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->get();
+        }
+        // search by email and id
+        if ($request->employee_id && $request->email)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        }
+        // search by name and email
+        if ($request->name && $request->email)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        }
+        // search by name and email and id
+        if ($request->employee_id && $request->name && $request->email)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        }
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.dataruangancard', compact('users', 'userList', 'unreadNotifications', 'readNotifications'));
     }
 
     /** list search employee */
@@ -384,7 +577,106 @@ class EmployeeController extends Controller
                         ->where('users.name','LIKE','%'.$request->name.'%')
                         ->where('users.email','LIKE','%'.$request->email.'%')->get();
         }
-        return view('employees.employeelist', compact('users', 'userList'));
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.employeelist', compact('users', 'userList', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Search */
+
+    public function employeeListSearchRuangan(Request $request)
+    {
+        $users = DB::table('users')
+                    ->join('employees','users.user_id','employees.employee_id')
+                    ->select('users.*','employees.name','employees.email')->get();
+        $userList         = DB::table('users')->get();
+
+        // search by id
+        if ($request->employee_id)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')->get();
+        }
+        // search by name
+        if ($request->name)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
+        }
+        // search by email
+        if ($request->email)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        }
+
+        // search by name and id
+        if ($request->employee_id && $request->name) 
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
+        }
+        // search by email and id
+        if ($request->employee_id && $request->email)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        }
+        // search by name and email
+        if ($request->name && $request->email)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        }
+        // search by name and email and id
+        if ($request->employee_id && $request->name && $request->email)
+        {
+            $users = DB::table('users')
+                        ->join('employees','users.user_id','employees.employee_id')
+                        ->select('users.*','employees.name','employees.email')
+                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                        ->where('users.name','LIKE','%'.$request->name.'%')
+                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        }
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.dataruanganlist', compact('users', 'userList', 'unreadNotifications', 'readNotifications'));
     }
     /** End Search */
 

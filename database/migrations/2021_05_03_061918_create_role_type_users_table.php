@@ -23,7 +23,7 @@ class CreateRoleTypeUsersTable extends Migration
         DB::table('role_type_users')->insert([
             ['role_type' => 'Admin'],
             ['role_type' => 'Super Admin'],
-            ['role_type' => 'User'],
+            ['role_type' => 'Kepala Ruangan'],
         ]);
     }
 

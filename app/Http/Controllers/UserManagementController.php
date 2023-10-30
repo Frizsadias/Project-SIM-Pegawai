@@ -133,6 +133,12 @@ class UserManagementController extends Controller
                 $role_name = '<span class="badge bg-inverse-danger role_name">' . $record->role_name . '</span>';
             } elseif ($record->role_name == 'Super Admin') {
                 $role_name = '<span class="badge bg-inverse-warning role_name">' . $record->role_name . '</span>';
+            } elseif ($record->role_name == 'Eselon 3') {
+                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
+            } elseif ($record->role_name == 'Eselon 4') {
+                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
+            } elseif ($record->role_name == 'Kepala Ruangan') {
+                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
             } elseif ($record->role_name == 'User') {
                 $role_name = '<span class="badge bg-inverse-info role_name">' . $record->role_name . '</span>';
             } else {
@@ -268,6 +274,7 @@ class UserManagementController extends Controller
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         $user = auth()->user();
         $role = $user->role_name;
@@ -285,19 +292,22 @@ class UserManagementController extends Controller
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
             $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
             $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
-            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications'));
+            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
                 $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
                 $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
-                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
             } else {
                 $information = ProfileInformation::all();
                 $propeg = ProfilPegawai::all();
                 $posjab = PosisiJabatan::all();
-                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
             }
         }
     }
@@ -310,6 +320,7 @@ class UserManagementController extends Controller
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         $user = auth()->user();
         $role = $user->role_name;
@@ -327,19 +338,67 @@ class UserManagementController extends Controller
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
             $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
             $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
-            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications'));
+            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
                 $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
                 $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
-                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
             } else {
                 $information = ProfileInformation::all();
                 $propeg = ProfilPegawai::all();
                 $posjab = PosisiJabatan::all();
-                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions', 'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications'));
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+            }
+        }
+    }
+
+    public function kepalaruangan_profile()
+    {
+        $profile = Session::get('user_id');
+        $user = DB::table('users')->get();
+        $employees = DB::table('profile_information')->where('user_id', $profile)->first();
+        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        if (empty($employees)) {
+            $information = DB::table('profile_information')->where('user_id', $profile)->first();
+            $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
+            $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
+            return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+        } else {
+            $user_id = $employees->user_id;
+            if ($user_id == $profile) {
+                $information = DB::table('profile_information')->where('user_id', $profile)->first();
+                $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
+                $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+            } else {
+                $information = ProfileInformation::all();
+                $propeg = ProfilPegawai::all();
+                $posjab = PosisiJabatan::all();
+                return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
+                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
             }
         }
     }
@@ -383,27 +442,29 @@ class UserManagementController extends Controller
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
+        $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
+
 
         if (empty($employees)) {
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
             return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan',
                 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
-                'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
+                'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
                 $information = DB::table('profile_information')->where('user_id', $profile)->first();
                 return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan',
-                'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
-                'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
-                'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
+                    'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
+                    'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
+                    'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions'));
             } else {
                 $information = ProfileInformation::all();
                 return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan',
-                'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
-                'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
-                'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
+                    'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
+                    'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
+                    'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions'));
             }
         }
     }
@@ -416,6 +477,7 @@ class UserManagementController extends Controller
                 'pendidikan_terakhir'   => $request->pendidikan_terakhir,
                 'agama'                 => $request->agama,
                 'jenis_kelamin'         => $request->jk,
+                'ruangan'               => $request->ruangan
             ];
             DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($updateProfil);
 
@@ -423,6 +485,11 @@ class UserManagementController extends Controller
                 'jabatan'               => $request->jabatan,
             ];
             DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($updatePosisi);
+
+            $updateRuangan = [
+                'ruangan'               => $request->ruangan,
+            ];
+            DB::table('users')->where('user_id', $request->user_id)->update($updateRuangan);
 
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;

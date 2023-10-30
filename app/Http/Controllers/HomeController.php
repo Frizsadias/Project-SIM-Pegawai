@@ -68,7 +68,7 @@ class HomeController extends Controller
                 'readNotifications' => $readNotifications
             ]);
         }
-        elseif ($user->role_name === 'Super Admin') 
+        elseif ($user->role_name === 'Super Admin' || $user->role_name === 'Kepala Ruangan')
         {
             $user = auth()->user();
             $role = $user->role_name;

@@ -16,8 +16,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#layanan_cuti"><i
-                                class="fa fa-plus"></i> Tambah Pengajuan Cuti</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#layanan_cuti"><i class="fa fa-plus"></i> Tambah Pengajuan Cuti</a>
                     </div>
                 </div>
             </div>
@@ -82,6 +81,10 @@
                                         <th>Tanggal Pengajuan Cuti</th>
                                         <th>Dokumen Kelengkapan</th>
                                         <th>Status Permohonan Cuti</th>
+                                        <th>Persetujuan Administrasi</th>
+                                        <th>Persetujuan Eselon 3</th>
+                                        <th>Persetujuan Eselon 4</th>
+                                        <th>Persetujuan Kepala Ruangan</th>
                                         <th class="text-right no-sort">Aksi</th>
                                     </tr>
                                 </thead>
@@ -110,6 +113,10 @@
                                                     <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
                                             </a></td>
                                         <td class="status_pengajuan">{{ $result_cuti->status_pengajuan }}</td>
+                                        <td class="persetujuan_administrasi">{{ $result_cuti->persetujuan_administrasi }}</td>
+                                        <td class="persetujuan_eselon3">{{ $result_cuti->persetujuan_eselon3 }}</td>
+                                        <td class="persetujuan_eselon4">{{ $result_cuti->persetujuan_eselon4 }}</td>
+                                        <td class="persetujuan_kepalaruangan">{{ $result_cuti->persetujuan_kepalaruangan }}</td>
 
                                         {{-- Edit Layanan Cuti--}}
                                         <td class="text-right">
@@ -208,6 +215,26 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <input type="hidden" class="form-control" name="status_pengajuan"  value="Dalam Proses Persetujuan">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="persetujuan_administrasi"  value="Dalam Proses Persetujuan">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="persetujuan_eselon3"  value="Dalam Proses Persetujuan">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="persetujuan_eselon4"  value="Dalam Proses Persetujuan">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="persetujuan_kepalaruangan"  value="Dalam Proses Persetujuan">
                                                 </div>
                                             </div>
                                         </div>

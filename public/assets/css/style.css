@@ -8654,4 +8654,18 @@ ul.comment-list li ul.children {
 	text-decoration: none;
     background-color: #f43b48;
 }
-    
+
+.status-persetujuan-superadmin{
+	font-size:.875rem;
+	line-height:1.5;
+	padding:.5rem .75rem;
+	background-color: #fff;
+    color: #333;
+	border: 1px solid #ccc;
+	border-radius: 50px;
+}
+
+.status-persetujuan-superadmin:hover{
+	color: #212529;
+	text-decoration: none;
+}

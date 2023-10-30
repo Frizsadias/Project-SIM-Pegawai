@@ -146,6 +146,7 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('user/profile', 'user_profile')->middleware('auth')->name('user-profile');
     Route::get('admin/profile', 'admin_profile')->middleware('auth')->name('admin-profile');
     Route::get('super-admin/profile', 'superadmin_profile')->middleware('auth')->name('super-admin-profile');
+    Route::get('kepala-ruangan/profile', 'kepalaruangan_profile')->middleware('auth')->name('kepala-ruangan-profile');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');
     Route::post('profile/information/foto/save', 'fotoProfile')->name('profile/information/foto/save');
     Route::get('manajemen/pengguna', 'index')->middleware('auth')->name('manajemen-pengguna');
@@ -156,6 +157,7 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('riwayat/aktivitas/otentikasi', 'activityLogInLogOut')->middleware('auth')->name('riwayat-aktivitas-otentikasi');
     Route::get('admin/kata-sandi', 'changePasswordView')->middleware('auth')->name('admin-kata-sandi');
     Route::get('super-admin/kata-sandi', 'changePasswordView')->middleware('auth')->name('super-admin-kata-sandi');
+    Route::get('kepala-ruangan/kata-sandi', 'changePasswordView')->middleware('auth')->name('kepala-ruangan-kata-sandi');
     Route::get('user/kata-sandi', 'changePasswordView')->middleware('auth')->name('user-kata-sandi');
     Route::post('change/password/db', 'changePasswordDB')->name('change/password/db');
     Route::post('user/profile/pegawai/add', 'profilePegawaiAdd')->name('user/profile/pegawai/add');
@@ -210,12 +212,16 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('daftar/pegawai/list', 'listAllEmployee')->middleware('auth')->name('daftar/pegawai/list');
     Route::get('daftar/pegawai/pensiun/card', 'cardPensiun')->middleware('auth')->name('daftar/pegawai/pensiun/card');
     Route::get('daftar/pegawai/pensiun/list', 'listPensiun')->middleware('auth')->name('daftar/pegawai/pensiun/list');
+    Route::get('daftar/ruangan/pegawai/card', 'cardRuangan')->middleware('auth')->name('daftar/ruangan/pegawai/card');
+    Route::get('daftar/ruangan/pegawai/list', 'listRuangan')->middleware('auth')->name('daftar/ruangan/pegawai/list');
     Route::post('daftar/pegawai/save', 'saveRecord')->middleware('auth')->name('daftar/pegawai/save');
     Route::get('daftar/pegawai/view/edit/{employee_id}', 'viewRecord');
     Route::post('daftar/pegawai/update', 'updateRecord')->middleware('auth')->name('daftar/pegawai/update');
     Route::get('daftar/pegawai/delete/{employee_id}', 'deleteRecord')->middleware('auth');
     Route::post('daftar/pegawai/search', 'employeeSearch')->name('daftar/pegawai/search');
+    Route::post('daftar/ruangan/search', 'employeeSearchRuangan')->name('daftar/ruangan/search');
     Route::post('daftar/pegawai/list/search', 'employeeListSearch')->name('daftar/pegawai/list/search');
+    Route::post('daftar/ruangan/pegawai/list/search', 'employeeListSearchRuangan')->name('daftar/ruangan/pegawai/list/search');
 
     Route::get('form/departments/page', 'index')->middleware('auth')->name('form/departments/page');
     Route::post('form/departments/save', 'saveRecordDepartment')->middleware('auth')->name('form/departments/save');
@@ -428,10 +434,13 @@ Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti/admin', 'tampilanCutiPegawaiAdmin')->name('layanan-cuti-admin');
     Route::get('layanan/cuti/admin/kelengkapan/{id}', 'cetakDokumenKelengkapan')->name('layanan-cuti-admin-kelengkapan');
     Route::get('layanan/cuti/admin/rekomendasi/{id}', 'cetakDokumenRekomendasi')->name('layanan-cuti-admin-rekomendasi');
+    Route::get('layanan/cuti/kepala-ruangan', 'tampilanCutiPegawaiKepalaRuangan')->name('layanan-cuti-kepala-ruangan');
+    Route::get('layanan/cuti/kepala-ruangan/kelengkapan/{id}', 'cetakDokumenKelengkapanKepalaRuangan')->name('layanan-cuti-kepala-ruangan-kelengkapan');
     Route::post('layanan/cuti/tambah-data', 'tambahDataCuti')->name('layanan/cuti/tambah-data');
     Route::post('layanan/cuti/edit-data', 'editDataCuti')->name('layanan/cuti/edit-data');
     Route::get('layanan/cuti/cari', 'pencarianLayananCuti')->name('layanan/cuti/cari');
     Route::get('layanan/cuti/cari/admin', 'pencarianLayananCutiAdmin')->name('layanan/cuti/cari/admin');
+    Route::get('layanan/cuti/cari/kepala-ruangan', 'pencarianLayananCutiKepalaRuangan')->name('layanan/cuti/cari/kepala-ruangan');
     Route::patch('/update-status/{id}', 'updateStatus')->name('updateStatus');
     
 
