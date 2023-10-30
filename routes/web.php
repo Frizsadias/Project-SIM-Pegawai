@@ -445,12 +445,23 @@ Route::controller(LayananController::class)->group(function () {
     
 
     Route::get('layanan/kenaikan-gaji-berkala', 'tampilanKGB')->name('kenaikan-gaji-berkala');
+    Route::get('layanan/kenaikan-gaji-berkala-admin', 'tampilanKGBAdmin')->name('kenaikan-gaji-berkala-admin');
     Route::post('layanan/kgb/tambah-data', 'tambahDataKGB')->name('layanan/kgb/tambah-data');
     Route::post('layanan/kgb/edit-data', 'editDataKGB')->name('layanan/kgb/edit-data');
     Route::get('cetak-kgb/{id}', 'cetakKGB')->name('cetak-kgb');
     Route::get('layanan/perpanjang-kontrak', 'tampilanPerpanjangKontrak')->name('perpanjang-kontrak');
+    Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
     Route::post('layanan/kontrak/tambah-data', 'tambahDataKontrak')->name('layanan/kontrak/tambah-data');
     Route::post('layanan/kontrak/edit-data', 'editDataKontrak')->name('layanan/kontrak/edit-data');
+    Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
+    Route::post('layanan/perpanjangan-kontrak/delete', 'hapusPerpanjanganKontrak')->name('layanan/perpanjangan-kontrak/delete');
+
+    Route::get('layanan/perjanjian-kontrak', 'tampilanPerjanjianKontrak')->name('perjanjian-kontrak');
+    Route::get('layanan/perjanjian-kontrak-admin', 'tampilanPerjanjianKontrakAdmin')->name('perjanjian-kontrak-admin');
+    Route::post('layanan/perjanjian-kontrak/tambah-data', 'tambahDataPerjanjianKontrak')->name('layanan/perjanjian-kontrak/tambah-data');
+    Route::post('layanan/perjanjian-kontrak/edit-data', 'editDataPerjanjianKontrak')->name('layanan/perjanjian-kontrak/edit-data');
+    Route::post('layanan/perjanjian-kontrak/delete', 'hapusPerjanjianKontrak')->name('layanan/perjanjian-kontrak/delete');
+    Route::get('cetak-perjanjian-kontrak/{id}', 'cetakPerjanjianKontrak')->name('cetak-perjanjian-kontrak');
 });
 
 // ----------------------- SIP Dokter --------------------------//

@@ -92,8 +92,8 @@
                         </a>
                     </li>
                     <li class="menu-title"> <span>Layanan Kepegawaian </span> </li>
-                    <li class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'active' : '' }}">
-                        <a href="{{ route('kenaikan-gaji-berkala') }}" class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('kenaikan-gaji-berkala-admin') ? 'active' : '' }}">
+                        <a href="{{ route('kenaikan-gaji-berkala-admin') }}" class="{{ request()->routeIs('kenaikan-gaji-berkala-admin') ? 'noti-dot' : '' }}">
                             <i class="la la-money"></i>
                             <span>Kenaikan Gaji Berkala</span>
                         </a>
@@ -104,8 +104,14 @@
                             <span>Pengajuan Cuti</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('perpanjang-kontrak') ? 'active' : '' }}">
-                        <a href="{{ route('perpanjang-kontrak') }}" class="{{ request()->routeIs('perpanjang-kontrak') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('perjanjian-kontrak-admin') ? 'active' : '' }}">
+                        <a href="{{ route('perjanjian-kontrak-admin') }}" class="{{ request()->routeIs('perjanjian-kontrak-admin') ? 'noti-dot' : '' }}">
+                            <i class="la la-calendar-check-o"></i>
+                            <span>Perjanjian Kontrak</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('perpanjang-kontrak-admin') ? 'active' : '' }}">
+                        <a href="{{ route('perpanjang-kontrak-admin') }}" class="{{ request()->routeIs('perpanjang-kontrak-admin') ? 'noti-dot' : '' }}">
                             <i class="la la-calendar-alt"></i>
                             <span>Perpanjangan Kontrak</span>
                         </a>
@@ -411,6 +417,24 @@
                         <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
                             <i class="las la-newspaper"></i>
                             <span>Pengajuan Cuti</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'active' : '' }}">
+                        <a href="{{ route('kenaikan-gaji-berkala') }}" class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'noti-dot' : '' }}">
+                            <i class="la la-money"></i>
+                            <span>Kenaikan Gaji Berkala</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('perjanjian-kontrak') ? 'active' : '' }}">
+                        <a href="{{ route('perjanjian-kontrak') }}" class="{{ request()->routeIs('perjanjian-kontrak') ? 'noti-dot' : '' }}">
+                            <i class="la la-calendar-check-o"></i>
+                            <span>Perjanjian Kontrak</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('perpanjang-kontrak') ? 'active' : '' }}">
+                        <a href="{{ route('perpanjang-kontrak') }}" class="{{ request()->routeIs('perpanjang-kontrak') ? 'noti-dot' : '' }}">
+                            <i class="la la-calendar-alt"></i>
+                            <span>Perpanjangan Kontrak</span>
                         </a>
                     </li>
                     <li class="{{ request()->routeIs('sip-dokter') ? 'active' : '' }}">

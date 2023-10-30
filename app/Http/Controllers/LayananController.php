@@ -8,6 +8,7 @@ use App\Models\Notification;
 use App\Models\PosisiJabatan;
 use App\Models\KenaikanGajiBerkala;
 use App\Models\KontrakKerja;
+use App\Models\PerjanjianKontrak;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -799,45 +800,93 @@ class LayananController extends Controller
     }
     /** /Tampilan Cetak Dokumen Kelengkapan Super Admin */
 
-    /** Tampilan Kenaikan Gaji Berkala */
-    public function tampilanKGB()
+    public function tampilanKGBAdmin()
     {
         $data_kgb = DB::table('kenaikan_gaji_berkala')
-            ->select(
-                'kenaikan_gaji_berkala.*',
-                'kenaikan_gaji_berkala.user_id',
-                'kenaikan_gaji_berkala.name',
-                'kenaikan_gaji_berkala.nip',
-                'kenaikan_gaji_berkala.golongan_awal',
-                'kenaikan_gaji_berkala.gapok_lama',
-                'kenaikan_gaji_berkala.tgl_sk_kgb',
-                'kenaikan_gaji_berkala.no_sk_kgb',
-                'kenaikan_gaji_berkala.tgl_berlaku',
-                'kenaikan_gaji_berkala.masa_kerja_golongan',
-                'kenaikan_gaji_berkala.gapok_baru',
-                'kenaikan_gaji_berkala.masa_kerja',
-                'kenaikan_gaji_berkala.golongan_akhir',
-                'kenaikan_gaji_berkala.tmt_kgb'
-            )
-            ->get();
+        ->select(
+            'kenaikan_gaji_berkala.*',
+            'kenaikan_gaji_berkala.user_id',
+            'kenaikan_gaji_berkala.name',
+            'kenaikan_gaji_berkala.nip',
+            'kenaikan_gaji_berkala.golongan_awal',
+            'kenaikan_gaji_berkala.gapok_lama',
+            'kenaikan_gaji_berkala.tgl_sk_kgb',
+            'kenaikan_gaji_berkala.no_sk_kgb',
+            'kenaikan_gaji_berkala.tgl_berlaku',
+            'kenaikan_gaji_berkala.masa_kerja_golongan',
+            'kenaikan_gaji_berkala.gapok_baru',
+            'kenaikan_gaji_berkala.masa_kerja',
+            'kenaikan_gaji_berkala.golongan_akhir',
+            'kenaikan_gaji_berkala.tmt_kgb'
+        )
+        ->get();
 
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->where('role_name', '=', 'User')
+        ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNull('read_at')
-            ->get();
+        ->where('notifiable_type', get_class($user))
+        ->whereNull('read_at')
+        ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNotNull('read_at')
-            ->get();
+        ->where('notifiable_type', get_class($user))
+        ->whereNotNull('read_at')
+        ->get();
+
+        return view('layanan.kenaikan-gaji-berkala-admin', compact('unreadNotifications', 'readNotifications', 'data_kgb', 'userList'));
+    }
+    /** /Tampilan Kenaikan Gaji Berkala */
+
+    /** Tampilan Kenaikan Gaji Berkala */
+    public function tampilanKGB()
+    {
+        $user_id = auth()->user()->user_id;
+        $data_kgb = DB::table('kenaikan_gaji_berkala')
+        ->select(
+            'kenaikan_gaji_berkala.*',
+            'kenaikan_gaji_berkala.user_id',
+            'kenaikan_gaji_berkala.name',
+            'kenaikan_gaji_berkala.nip',
+            'kenaikan_gaji_berkala.golongan_awal',
+            'kenaikan_gaji_berkala.gapok_lama',
+            'kenaikan_gaji_berkala.tgl_sk_kgb',
+            'kenaikan_gaji_berkala.no_sk_kgb',
+            'kenaikan_gaji_berkala.tgl_berlaku',
+            'kenaikan_gaji_berkala.masa_kerja_golongan',
+            'kenaikan_gaji_berkala.gapok_baru',
+            'kenaikan_gaji_berkala.masa_kerja',
+            'kenaikan_gaji_berkala.golongan_akhir',
+            'kenaikan_gaji_berkala.tmt_kgb'
+        )
+        ->where('kenaikan_gaji_berkala.user_id', $user_id)
+        ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNull('read_at')
+        ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNotNull('read_at')
+        ->get();
 
         return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb', 'userList'));
     }
-    /** /Tampilan Kenaikan Gaji Berkala */
 
     /** Tambah Data Kenaikan Gaji Berkala Pegawai */
     public function tambahDataKGB(Request $request)
@@ -977,6 +1026,7 @@ class LayananController extends Controller
     /** Tampilan Perpanjangan Kontrak */
     public function tampilanPerpanjangKontrak()
     {
+        $user_id = auth()->user()->user_id;
         $data_kontrak = DB::table('kontrak_kerja')
         ->select(
             'kontrak_kerja.*',
@@ -990,29 +1040,69 @@ class LayananController extends Controller
             'kontrak_kerja.tahun_lulus',
             'kontrak_kerja.jabatan',
         )
-            ->get();
+        ->where('kontrak_kerja.user_id', $user_id)
+        ->get();
 
         $userList = DB::table('profil_pegawai')
-            ->join('users','profil_pegawai.user_id','users.user_id')
-            ->select('users.*','users.role_name', 'profil_pegawai.nip')
-            ->where('role_name', '=', 'User')
-            ->get();
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->where('role_name', '=', 'User')
+        ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNull('read_at')
-            ->get();
+        ->where('notifiable_type', get_class($user))
+        ->whereNull('read_at')
+        ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNotNull('read_at')
-            ->get();
+        ->where('notifiable_type', get_class($user))
+        ->whereNotNull('read_at')
+        ->get();
 
-        return view('layanan.perpanjang-kontrak', compact('data_kontrak', 'userList','unreadNotifications', 'readNotifications'));
+        return view('layanan.perpanjang-kontrak', compact('data_kontrak', 'userList', 'unreadNotifications', 'readNotifications'));
     }
     /** /Tampilan Perpanjangan Kontrak */
+
+    /** Tampilan Perpanjangan Kontrak */
+    public function tampilanPerpanjangKontrakAdmin()
+    {
+        $data_kontrak = DB::table('kontrak_kerja')
+        ->select(
+            'kontrak_kerja.*',
+            'kontrak_kerja.user_id',
+            'kontrak_kerja.name',
+            'kontrak_kerja.nip',
+            'kontrak_kerja.tempat_lahir',
+            'kontrak_kerja.tanggal_lahir',
+            'kontrak_kerja.nik_blud',
+            'kontrak_kerja.pendidikan',
+            'kontrak_kerja.tahun_lulus',
+            'kontrak_kerja.jabatan',
+        )
+        ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNull('read_at')
+        ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNotNull('read_at')
+        ->get();
+
+        return view('layanan.perpanjang-kontrak', compact('data_kontrak', 'userList', 'unreadNotifications', 'readNotifications'));
+    }
 
     /** Tambah Data Perpanjangan Kontrak Pegawai */
     public function tambahDataKontrak(Request $request)
@@ -1060,12 +1150,12 @@ class LayananController extends Controller
         DB::beginTransaction();
         try {
             $update = [
-                'tempat_lahir'  => $request->tempat_lahir,
+                'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => $request->tanggal_lahir,
-                'nik_blud  '    => $request->nik_blud,
-                'pendidikan'    => $request->pendidikan,
-                'tahun_lulus'   => $request->tahun_lulus,
-                'jabatan'       => $request->jabatan,
+                'nik_blud' => $request->nik_blud,
+                'pendidikan' => $request->pendidikan,
+                'tahun_lulus' => $request->tahun_lulus,
+                'jabatan' => $request->jabatan,
             ];
 
             KontrakKerja::where('id', $request->id)->update($update);
@@ -1080,4 +1170,191 @@ class LayananController extends Controller
         }
     }
     /** /Edit Data Perpanjangan Kontrak Pegawai */
+
+    /** Hapus Data Perpanjangan Kontrak Pegawai */
+    public function hapusPerpanjanganKontrak(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            KontrakKerja::where('id', $request->id)->delete();
+            DB::commit();
+            Toastr::success('Data perpanjangan kontrak berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perpanjangan kontrak gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** Tampilan Perjanjian Kontrak Admin */
+    public function tampilanPerjanjianKontrakAdmin()
+    {
+        $data_perjanjian_kontrak = DB::table('perjanjian_kontrak')
+        ->select(
+            'perjanjian_kontrak.*',
+            'perjanjian_kontrak.user_id',
+            'perjanjian_kontrak.name',
+            'perjanjian_kontrak.nip',
+            'perjanjian_kontrak.tempat_lahir',
+            'perjanjian_kontrak.tanggal_lahir',
+            'perjanjian_kontrak.nik_blud',
+            'perjanjian_kontrak.pendidikan',
+            'perjanjian_kontrak.tahun_lulus',
+            'perjanjian_kontrak.jabatan',
+            'perjanjian_kontrak.tgl_kontrak',
+        )
+        ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNull('read_at')
+        ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNotNull('read_at')
+        ->get();
+
+        return view('layanan.perjanjian-kontrak-admin', compact('unreadNotifications', 'readNotifications', 'data_perjanjian_kontrak', 'userList'));
+    }
+    /** /Tampilan Kenaikan Gaji Berkala */
+
+    /** Tampilan Perjanjian Kontrak */
+    public function tampilanPerjanjianKontrak()
+    {
+        $user_id = auth()->user()->user_id;
+        $data_perjanjian_kontrak = DB::table('perjanjian_kontrak')
+        ->select(
+            'perjanjian_kontrak.*',
+            'perjanjian_kontrak.user_id',
+            'perjanjian_kontrak.name',
+            'perjanjian_kontrak.nip',
+            'perjanjian_kontrak.tempat_lahir',
+            'perjanjian_kontrak.tanggal_lahir',
+            'perjanjian_kontrak.nik_blud',
+            'perjanjian_kontrak.pendidikan',
+            'perjanjian_kontrak.tahun_lulus',
+            'perjanjian_kontrak.jabatan',
+            'perjanjian_kontrak.tgl_kontrak',
+        )
+        ->where('perjanjian_kontrak.user_id', $user_id)
+        ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNull('read_at')
+        ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNotNull('read_at')
+        ->get();
+
+        return view('layanan.perjanjian-kontrak', compact('unreadNotifications', 'readNotifications', 'data_perjanjian_kontrak', 'userList'));
+    }
+
+    /** Tambah Data Perjanjian Kontrak Pegawai */
+    public function tambahDataPerjanjianKontrak(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'nip' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|string|max:255',
+            'nik_blud' => 'required|string|max:255',
+            'pendidikan' => 'required|string|max:255',
+            'tahun_lulus' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'tgl_kontrak' => 'required|string|max:255',
+        ]);
+        DB::beginTransaction();
+
+        try {
+            $perjanjiankontrak = new PerjanjianKontrak();
+            $perjanjiankontrak->user_id = $request->user_id;
+            $perjanjiankontrak->name = $request->name;
+            $perjanjiankontrak->nip = $request->nip;
+            $perjanjiankontrak->tempat_lahir = $request->tempat_lahir;
+            $perjanjiankontrak->tanggal_lahir = $request->tanggal_lahir;
+            $perjanjiankontrak->nik_blud = $request->nik_blud;
+            $perjanjiankontrak->pendidikan = $request->pendidikan;
+            $perjanjiankontrak->tahun_lulus = $request->tahun_lulus;
+            $perjanjiankontrak->jabatan = $request->jabatan;
+            $perjanjiankontrak->tgl_kontrak = $request->tgl_kontrak;
+            $perjanjiankontrak->save();
+
+            DB::commit();
+            Toastr::success('Data perjanjian kontrak kerja berhasil ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perjanjian kontrak kerja gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** /Tambah Data Perjanjian Kontrak Pegawai */
+
+    /** Edit Data Perjanjian Kontrak Pegawai */
+    public function editDataPerjanjianKontrak(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $update = [
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'nik_blud' => $request->nik_blud,
+                'pendidikan' => $request->pendidikan,
+                'tahun_lulus' => $request->tahun_lulus,
+                'jabatan' => $request->jabatan,
+                'tgl_kontrak' => $request->tgl_kontrak,
+            ];
+
+            PerjanjianKontrak::where('id', $request->id)->update($update);
+
+            DB::commit();
+            Toastr::success('Data perjanjian kontrak kerja berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perjanjian kontrak kerja gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** /Edit Data Perjanjian Kontrak Pegawai */
+
+    /** Hapus Data Perjanjian Kontrak Pegawai */
+    public function hapusPerjanjianKontrak(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            PerjanjianKontrak::where('id', $request->id)->delete();
+            DB::commit();
+            Toastr::success('Data perjanjian kontrak berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perjanjian kontrak gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
 }
