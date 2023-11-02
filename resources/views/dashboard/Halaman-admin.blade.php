@@ -107,14 +107,15 @@
 
 
             <div class="col-md-12">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <div class="dash-widget-info">
-                                    <center><span style="font-size: 20px; font-weight: 600; font-family: Poppins;">Informasi Grafik</span></center>
-                                </div>
-                            </div>
+                <div class="card dash-widget">
+                    <div class="card-body">
+                        <div class="dash-widget-info">
+                            <center><span style="font-size: 20px; font-weight: 600; font-family: Poppins;">Informasi
+                                    Grafik</span></center>
                         </div>
                     </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-md-12">

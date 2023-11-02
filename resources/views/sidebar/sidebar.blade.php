@@ -285,7 +285,18 @@
                     </li>
                 @endif
 
-                @if (Auth::user()->role_name == 'Kepala Ruangan')
+                @if (Auth::user()->role_name == 'Kepala Ruang IGD Terpadu' || Auth::user()->role_name == 'Kepala Ruang Bedah Central'
+            || Auth::user()->role_name == 'Kepala Ruang RR' || Auth::user()->role_name == 'Kepala Ruang Rawat Jalan'
+            || Auth::user()->role_name == 'Kepala Ruang Hemodialisis (HD)' || Auth::user()->role_name == 'Kepala Ruang Kebidanan'
+            || Auth::user()->role_name == 'Kepala Ruang Pinang' || Auth::user()->role_name == 'Kepala Ruang Perinatologi'
+            || Auth::user()->role_name == 'Kepala Ruang Cemara' || Auth::user()->role_name == 'Kepala Ruang HCU Bougenvill'
+            || Auth::user()->role_name == 'Kepala Ruang ICU' || Auth::user()->role_name == 'Kepala Ruang ICCU'
+            || Auth::user()->role_name == 'Kepala Ruang Asoka' || Auth::user()->role_name == 'Kepala Ruang Wijiaya Kusuma'
+            || Auth::user()->role_name == 'Kepala Ruang Paviliun' || Auth::user()->role_name == 'Kepala Ruang Palem/PICU'
+            || Auth::user()->role_name == 'Kepala Ruang Unit Stroke' || Auth::user()->role_name == 'Kepala Ruang Bidara/Ranap Jiwa'
+            || Auth::user()->role_name == 'Kepala Ruang Lain-Lain/Non Perawatan' || Auth::user()->role_name == 'Kepala Ruang Mawar'
+            || Auth::user()->role_name == 'Kepala Ruang Flamboyan')
+                
                     <li class="menu-title"> <span>Layanan Kepegawaian </span> </li>
                     <li class="{{ request()->routeIs('layanan-cuti-kepala-ruangan') ? 'active' : '' }}">
                         <a href="{{ route('layanan-cuti-kepala-ruangan') }}" class="{{ request()->routeIs('layanan-cuti-kepala-ruangan') ? 'noti-dot' : '' }}">

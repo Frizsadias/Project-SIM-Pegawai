@@ -34,15 +34,84 @@
             <!-- /Page Header -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <div class="card dash-widget">
                             <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-user-plus"></i></span>
+                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                 <div class="dash-widget-info">
                                     <h3>{{ $dataPegawai }}</h3>
-                                    <span>Jumlah Pegawai</span>
+                                    <span>Jumlah Seluruh Pegawai</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa fa-user-circle"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $dataPNS }}</h3>
+                                    <span>Pegawai PNS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa fa-user-circle-o"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $dataCPNS }}</h3>
+                                    <span>Pegawai CPNS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa fa-user-o"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $dataPPPK }}</h3>
+                                    <span>Pegawai PPPK</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa fa-user"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $datanonASN }}</h3>
+                                    <span>Pegawai Non-ASN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa fa-bed"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $dataPegawai }}</h3>
+                                    <span>Jumlah Tempat Tidur</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="card dash-widget">
+                    <div class="card-body">
+                        <div class="dash-widget-info">
+                            <center><span style="font-size: 20px; font-weight: 600; font-family: Poppins;">Informasi
+                                    Grafik</span></center>
                         </div>
                     </div>
                 </div>

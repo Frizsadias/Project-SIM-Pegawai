@@ -74,11 +74,21 @@ class HomeController extends Controller
                 'dataPNS'=> $dataPNS,
                 'dataCPNS' => $dataCPNS,
                 'dataPPPK' => $dataPPPK,
-                'datanonASN' => $datanonASN,
+                'datanonASN' => $datanonASN
             ]);
             
         }
-        elseif ($user->role_name === 'Super Admin' || $user->role_name === 'Kepala Ruangan')
+        elseif ($user->role_name === 'Super Admin' || $user->role_name === 'Kepala Ruang IGD Terpadu' || $user->role_name === 'Kepala Ruang Bedah Central'
+            || $user->role_name === 'Kepala Ruang RR' || $user->role_name === 'Kepala Ruang Rawat Jalan'
+            || $user->role_name === 'Kepala Ruang Hemodialisis (HD)' || $user->role_name === 'Kepala Ruang Kebidanan'
+            || $user->role_name === 'Kepala Ruang Pinang' || $user->role_name === 'Kepala Ruang Perinatologi'
+            || $user->role_name === 'Kepala Ruang Cemara' || $user->role_name === 'Kepala Ruang HCU Bougenvill'
+            || $user->role_name === 'Kepala Ruang ICU' || $user->role_name === 'Kepala Ruang ICCU'
+            || $user->role_name === 'Kepala Ruang Asoka' || $user->role_name === 'Kepala Ruang Wijiaya Kusuma'
+            || $user->role_name === 'Kepala Ruang Paviliun' || $user->role_name === 'Kepala Ruang Palem/PICU'
+            || $user->role_name === 'Kepala Ruang Unit Stroke' || $user->role_name === 'Kepala Ruang Bidara/Ranap Jiwa'
+            || $user->role_name === 'Kepala Ruang Lain-Lain/Non Perawatan' || $user->role_name === 'Kepala Ruang Mawar'
+            || $user->role_name === 'Kepala Ruang Flamboyan')
         {
             $user = auth()->user();
             $role = $user->role_name;
@@ -94,6 +104,10 @@ class HomeController extends Controller
                 ->get();
 
             $dataPegawai = User::where('role_name', 'User')->count();
+            $dataPNS = ProfilPegawai::where('jenis_pegawai', 'PNS')->count();
+            $dataCPNS = ProfilPegawai::where('jenis_pegawai', 'CPNS')->count();
+            $dataPPPK = ProfilPegawai::where('jenis_pegawai', 'PPPK')->count();
+            $datanonASN = ProfilPegawai::where('jenis_pegawai', 'Non ASN')->count();
             return view('dashboard.Halaman-super-admin', [
                 'chart' => $chart->build(),
                 'grafikAgama' => $chart->grafikAgama(),
@@ -101,7 +115,11 @@ class HomeController extends Controller
                 'grafikPangkat' => $chart->grafikPangkat(),
                 'dataPegawai' => $dataPegawai,
                 'unreadNotifications' => $unreadNotifications,
-                'readNotifications' => $readNotifications
+                'readNotifications' => $readNotifications,
+                'dataPNS' => $dataPNS,
+                'dataCPNS' => $dataCPNS,
+                'dataPPPK' => $dataPPPK,
+                'datanonASN' => $datanonASN
             ]);
         }
         elseif ($user->role_name === 'User')
