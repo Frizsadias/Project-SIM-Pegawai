@@ -81,10 +81,10 @@
                                         <th>Tanggal Pengajuan Cuti</th>
                                         <th>Dokumen Kelengkapan</th>
                                         <th>Status Permohonan Cuti</th>
+                                        <th>Persetujuan Kepala Ruangan</th>
+                                        <th>Persetujuan Eselon 4</th>
                                         <th>Persetujuan Administrasi</th>
                                         <th>Persetujuan Eselon 3</th>
-                                        <th>Persetujuan Eselon 4</th>
-                                        <th>Persetujuan Kepala Ruangan</th>
                                         <th class="text-right no-sort">Aksi</th>
                                     </tr>
                                 </thead>
@@ -113,10 +113,10 @@
                                                     <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
                                             </a></td>
                                         <td class="status_pengajuan">{{ $result_cuti->status_pengajuan }}</td>
+                                        <td class="persetujuan_kepalaruangan">{{ $result_cuti->persetujuan_kepalaruangan }}</td>
+                                        <td class="persetujuan_eselon4">{{ $result_cuti->persetujuan_eselon4 }}</td>
                                         <td class="persetujuan_administrasi">{{ $result_cuti->persetujuan_administrasi }}</td>
                                         <td class="persetujuan_eselon3">{{ $result_cuti->persetujuan_eselon3 }}</td>
-                                        <td class="persetujuan_eselon4">{{ $result_cuti->persetujuan_eselon4 }}</td>
-                                        <td class="persetujuan_kepalaruangan">{{ $result_cuti->persetujuan_kepalaruangan }}</td>
 
                                         {{-- Edit Layanan Cuti--}}
                                         <td class="text-right">

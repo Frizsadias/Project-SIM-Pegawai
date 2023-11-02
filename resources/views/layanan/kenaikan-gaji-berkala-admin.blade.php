@@ -21,8 +21,7 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_kgb"><i
-                            class="fa fa-plus"></i> Tambah Kenaikan Gaji Berkala</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_kgb"><i class="fa fa-plus"></i> Tambah Kenaikan Gaji Berkala</a>
                 </div>
             </div>
         </div>
@@ -64,7 +63,14 @@
                                 <th>NIP</th>
                                 <th>Golongan Awal</th>
                                 <th>Golongan Akhir</th>
-                                <th>Tanggal Kenaikan Gaji Berkala</th>
+                                <th>Gaji Pokok Lama</th>
+                                <th>Gaji Pokok Akhir</th>
+                                <th>Tanggal SK Kenaikan Gaji Berkala</th>
+                                <th>Nomor SK Kenaikan Gaji Berkala</th>
+                                <th>Tanggal Berlaku</th>
+                                <th>Masa Kerja Golongan</th>
+                                <th>Masa Kerja</th>
+                                <th>Terhitung Mulai Tanggal Kenaikan Gaji Berkala</th>
                                 <th class="text-right no-sort">Aksi</th>
                             </tr>
                         </thead>
@@ -77,17 +83,21 @@
                                     <td class="nip">{{ $result_kgb->nip }}</td>
                                     <td class="golongan_awal">{{ $result_kgb->golongan_awal }}</td>
                                     <td class="golongan_akhir">{{ $result_kgb->golongan_akhir }}</td>
+                                    <td class="gapok_lama">{{ $result_kgb->gapok_lama }}</td>
+                                    <td class="gapok_baru">{{ $result_kgb->gapok_baru }}</td>
+                                    <td class="tgl_sk_kgb">{{ $result_kgb->tgl_sk_kgb }}</td>
+                                    <td class="no_sk_kgb">{{ $result_kgb->no_sk_kgb }}</td>
+                                    <td class="tgl_berlaku">{{ $result_kgb->tgl_berlaku }}</td>
+                                    <td class="masa_kerja_golongan">{{ $result_kgb->masa_kerja_golongan }}</td>
+                                    <td class="masa_kerja">{{ $result_kgb->masa_kerja }}</td>
                                     <td class="tmt_kgb">{{ $result_kgb->tmt_kgb }}</td>
 
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item edit_layanan_kgb" href="#"
-                                                    data-toggle="modal" data-target="#edit_layanan_kgb"><i
-                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item edit_layanan_kgb" href="#" data-toggle="modal" data-target="#edit_layanan_kgb"><i class="fa fa-pencil m-r-5"></i> Edit</a>
                                             </div>
                                         </div>
                                     </td>
@@ -217,8 +227,6 @@
         </div>
     </div>
 </div>
-
-
     <!-- /Tambah Layanan Cuti Modal -->
 
     <!-- Edit Layanan Cuti Modal -->
@@ -232,23 +240,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('layanan/kgb/edit-data') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('layanan/kgb/edit-data') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" id="e_id" value="">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Golongan Awal</label>
-                                    <input type="text" class="form-control" name="golongan_awal"
-                                        id="e_golongan_awal" placeholder="Golongan Awal" value="">
+                                    <input type="text" class="form-control" name="golongan_awal" id="e_golongan_awal" placeholder="Golongan Awal" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Golongan Akhir</label>
-                                    <input type="text" class="form-control" name="golongan_akhir"
-                                        id="e_golongan_akhir" placeholder="Golongan Akhir" value="">
+                                    <input type="text" class="form-control" name="golongan_akhir" id="e_golongan_akhir" placeholder="Golongan Akhir" value="">
                                 </div>
                             </div>
                         </div>
@@ -256,15 +261,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Lama</label>
-                                    <input type="text" class="form-control" name="gapok_lama" id="e_gapok_lama"
-                                        placeholder="Gaji Pokok Lama" value="">
+                                    <input type="text" class="form-control" name="gapok_lama" id="e_gapok_lama" placeholder="Gaji Pokok Lama" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Baru</label>
-                                    <input type="text" class="form-control" name="gapok_baru" id="e_gapok_baru"
-                                        placeholder="Gaji Pokok Baru" value="">
+                                    <input type="text" class="form-control" name="gapok_baru" id="e_gapok_baru" placeholder="Gaji Pokok Baru" value="">
                                 </div>
                             </div>
                         </div>
@@ -272,15 +275,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal SK KGB</label>
-                                    <input type="date" class="form-control" name="tgl_sk_kgb" id="e_tgl_sk_kgb"
-                                        value="">
+                                    <input type="date" class="form-control" name="tgl_sk_kgb" id="e_tgl_sk_kgb" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor SK KGB</label>
-                                    <input type="text" class="form-control" name="no_sk_kgb" id="e_no_sk_kgb"
-                                        value="">
+                                    <input type="text" class="form-control" name="no_sk_kgb" id="e_no_sk_kgb" value="">
                                 </div>
                             </div>
                         </div>
@@ -288,33 +289,27 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Berlaku</label>
-                                    <input type="date" class="form-control" name="tgl_berlaku" id="e_tgl_berlaku"
-                                        value="">
+                                    <input type="date" class="form-control" name="tgl_berlaku" id="e_tgl_berlaku" value="">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Masa Kerja Golongan</label>
-                                    <input type="text" class="form-control" name="masa_kerja_golongan"
-                                        id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Masa Kerja</label>
-                                    <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja"
-                                        placeholder="Masa Kerja" value="">
+                                    <input type="text" class="form-control" name="masa_kerja_golongan" id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label>Masa Kerja</label>
+                                    <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja" placeholder="Masa Kerja" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label>TMT KGB</label>
-                                    <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb"
-                                        value="">
+                                    <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb" value="">
                                 </div>
                             </div>
                         </div>
@@ -330,7 +325,7 @@
 </div>
 <!-- /Page Wrapper -->
 
-@section('script')
-    <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
-@endsection
+    @section('script')
+        <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
+    @endsection
 @endsection

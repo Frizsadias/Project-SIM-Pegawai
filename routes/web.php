@@ -442,8 +442,6 @@ Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti/cari/admin', 'pencarianLayananCutiAdmin')->name('layanan/cuti/cari/admin');
     Route::get('layanan/cuti/cari/kepala-ruangan', 'pencarianLayananCutiKepalaRuangan')->name('layanan/cuti/cari/kepala-ruangan');
     Route::patch('/update-status/{id}', 'updateStatus')->name('updateStatus');
-    
-
     Route::get('layanan/kenaikan-gaji-berkala', 'tampilanKGB')->name('kenaikan-gaji-berkala');
     Route::get('layanan/kenaikan-gaji-berkala-admin', 'tampilanKGBAdmin')->name('kenaikan-gaji-berkala-admin');
     Route::post('layanan/kgb/tambah-data', 'tambahDataKGB')->name('layanan/kgb/tambah-data');
@@ -455,13 +453,14 @@ Route::controller(LayananController::class)->group(function () {
     Route::post('layanan/kontrak/edit-data', 'editDataKontrak')->name('layanan/kontrak/edit-data');
     Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
     Route::post('layanan/perpanjangan-kontrak/delete', 'hapusPerpanjanganKontrak')->name('layanan/perpanjangan-kontrak/delete');
-
+    // Route::get('layanan/perpanjang-kontrak-admin/{id}', 'cetakPerjanjianKontrak')->name('layanan-perpanjang-kontrak-admin');
     Route::get('layanan/perjanjian-kontrak', 'tampilanPerjanjianKontrak')->name('perjanjian-kontrak');
     Route::get('layanan/perjanjian-kontrak-admin', 'tampilanPerjanjianKontrakAdmin')->name('perjanjian-kontrak-admin');
     Route::post('layanan/perjanjian-kontrak/tambah-data', 'tambahDataPerjanjianKontrak')->name('layanan/perjanjian-kontrak/tambah-data');
     Route::post('layanan/perjanjian-kontrak/edit-data', 'editDataPerjanjianKontrak')->name('layanan/perjanjian-kontrak/edit-data');
     Route::post('layanan/perjanjian-kontrak/delete', 'hapusPerjanjianKontrak')->name('layanan/perjanjian-kontrak/delete');
-    Route::get('cetak-perjanjian-kontrak/{id}', 'cetakPerjanjianKontrak')->name('cetak-perjanjian-kontrak');
+    Route::get('layanan/perjanjian-kontrak-admin/{id}', 'cetakPerjanjianKontrak')->name('layanan-perjanjian-kontrak-admin');
+    Route::get('layanan/peta-jabatan', 'tampilanPetaJabatan')->name('peta-jabatan');
 });
 
 // ----------------------- SIP Dokter --------------------------//

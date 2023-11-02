@@ -28,6 +28,21 @@
         </div>
         <!-- /Page Header -->
 
+        {{-- <!-- Cetak Dokumen Perpanjangan PDF -->
+        <div class="row filter-row">
+            <div class="col-sm-6 col-md-3">
+                <select id="pilihDokumenPerpanjangan" class="form-control">
+                    <option selected disabled> --Pilih Dokumen Perpanjangan --</option>
+                    @foreach($data_perjanjian_kontrak as $perjanjian)
+                        <option value="{{ $perjanjian->id }}">Dokumen Perpanjangan - {{ $perjanjian->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <button id="cetakDokumenPerpanjangan" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Perpanjangan</button>
+            </div>
+        </div><br> --}}
+
         <!-- Search Filter -->
         <form action="" method="GET" id="search-form">
             <div class="row filter-row">
@@ -284,5 +299,20 @@
 
     @section('script')
         <script src="{{ asset('assets/js/perpanjangankontrak.js') }}"></script>
+
+        {{-- <script>
+            $(document).ready(function () {
+                $('#pilihDokumenPerpanjangan').select2();
+                $('#cetakDokumenPerpanjangan').on('click', function ()
+                {
+                    const selectedCutiId = $('#pilihDokumenPerpanjangan').val();
+                    if (selectedCutiId)
+                    {
+                        const url = "{{ route('layanan-perpanjang-kontrak-admin', ['id' => ':id']) }}".replace(':id', selectedCutiId);
+                        window.open(url, '_blank');
+                    }
+                });
+            });
+        </script> --}}
     @endsection
 @endsection

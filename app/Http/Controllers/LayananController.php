@@ -9,6 +9,7 @@ use App\Models\PosisiJabatan;
 use App\Models\KenaikanGajiBerkala;
 use App\Models\KontrakKerja;
 use App\Models\PerjanjianKontrak;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -204,20 +205,20 @@ class LayananController extends Controller
     /** Daftar Layanan Cuti Super Admin */
     public function tampilanCutiPegawaiKepalaRuangan()
     {
-        $data_cuti = DB::table('cuti')
-            ->select(
-                'cuti.*',
-                'cuti.user_id',
-                'cuti.name',
-                'cuti.nip',
-                'cuti.jenis_cuti',
-                'cuti.lama_cuti',
-                'cuti.tanggal_mulai_cuti',
-                'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan',
-                'cuti.status_pengajuan'
-            )
-            ->get();
+        // $data_cuti = DB::table('cuti')
+        //     ->select(
+        //         'cuti.*',
+        //         'cuti.user_id',
+        //         'cuti.name',
+        //         'cuti.nip',
+        //         'cuti.jenis_cuti',
+        //         'cuti.lama_cuti',
+        //         'cuti.tanggal_mulai_cuti',
+        //         'cuti.tanggal_selesai_cuti',
+        //         'cuti.dokumen_kelengkapan',
+        //         'cuti.status_pengajuan'
+        //     )
+        //     ->get();
 
         $data_cuti_pdf = DB::table('cuti')
             ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
@@ -280,8 +281,40 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_cuti_pdf', 'userList',
-            'unreadNotifications','readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+        $superAdmin = User::where('role_name', 'Kepala Ruang')->first();
+        if ($superAdmin) {
+            $data_cuti = User::where('role_name', 'User')
+                ->join('cuti','users.user_id','cuti.user_id')
+                ->where('ruangan', $superAdmin->ruangan)
+                ->get();
+
+        // $superAdmin = User::where(function ($query) {
+        //     $query->where('role_name', 'Kepala Ruangan Cempaka')
+        //           ->orWhere('role_name', 'Kepala Ruangan Asoka');
+        // })->first();
+        
+        // if ($superAdmin) {
+        //     $data_cuti = User::where('role_name', 'User')
+        //         ->join('cuti', 'users.user_id', 'cuti.user_id')
+        //         ->where('ruangan', $superAdmin->ruangan)
+        //         ->get();  
+        
+        return view('layanan.layanan-cuti-kepala-ruangan', [
+            'data_cuti' => $data_cuti,
+            'data_cuti_pdf' => $data_cuti_pdf,
+            'userList' => $userList,
+            'unreadNotifications' => $unreadNotifications,
+            'readNotifications' => $readNotifications,
+            'sisaCutiThisYear' => $sisaCutiThisYear,
+            'sisaCutiLastYear' => $sisaCutiLastYear,
+            'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo,
+            ]);
+        } else {
+            return view('layanan.layanan-cuti-kepala-ruangan', ['data_cuti' => []]);
+        }
+
+        // return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_cuti_pdf', 'userList',
+        //     'unreadNotifications','readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
     }
     /** /Daftar Layanan Cuti Super Admin */
 
@@ -809,14 +842,14 @@ class LayananController extends Controller
             'kenaikan_gaji_berkala.name',
             'kenaikan_gaji_berkala.nip',
             'kenaikan_gaji_berkala.golongan_awal',
+            'kenaikan_gaji_berkala.golongan_akhir',
             'kenaikan_gaji_berkala.gapok_lama',
+            'kenaikan_gaji_berkala.gapok_baru',
             'kenaikan_gaji_berkala.tgl_sk_kgb',
             'kenaikan_gaji_berkala.no_sk_kgb',
             'kenaikan_gaji_berkala.tgl_berlaku',
             'kenaikan_gaji_berkala.masa_kerja_golongan',
-            'kenaikan_gaji_berkala.gapok_baru',
             'kenaikan_gaji_berkala.masa_kerja',
-            'kenaikan_gaji_berkala.golongan_akhir',
             'kenaikan_gaji_berkala.tmt_kgb'
         )
         ->get();
@@ -839,7 +872,7 @@ class LayananController extends Controller
         ->whereNotNull('read_at')
         ->get();
 
-        return view('layanan.kenaikan-gaji-berkala-admin', compact('unreadNotifications', 'readNotifications', 'data_kgb', 'userList'));
+        return view('layanan.kenaikan-gaji-berkala-admin', compact('data_kgb', 'userList', 'unreadNotifications', 'readNotifications'));
     }
     /** /Tampilan Kenaikan Gaji Berkala */
 
@@ -1356,5 +1389,58 @@ class LayananController extends Controller
             Toastr::error('Data perjanjian kontrak gagal dihapus :)', 'Error');
             return redirect()->back();
         }
+    }
+
+    /** Tampilan Cetak Dokumen Kelengkapan */
+    public function cetakPerjanjianKontrak()
+    {
+        // Ambil semua ID yang ingin Anda cetak
+        $lastPerjanjianId = PerjanjianKontrak::latest('id')->first()->id;
+            $perjanjian = PerjanjianKontrak::find($lastPerjanjianId);
+            $perjanjianKontrak = $perjanjian->perjanjian_kontrak;
+            $name = $perjanjianKontrak ? $perjanjianKontrak->name : "Tidak Ada Nama";
+            $tempat_lahir = $perjanjianKontrak ? $perjanjianKontrak->tempat_lahir : "Tidak Ada Tempat Lahir";
+            $tanggal_lahir = $perjanjianKontrak ? $perjanjianKontrak->tanggal_lahir : "Tidak Ada Tanggal Lahir";
+            $nik_blud = $perjanjianKontrak ? $perjanjianKontrak->nik_blud : "Tidak Ada NIK";
+            $pendidikan = $perjanjianKontrak ? $perjanjianKontrak->pendidikan : "Tidak Ada Pendidikan";
+            $tahun_lulus = $perjanjianKontrak ? $perjanjianKontrak->tahun_lulus : "Tidak Ada Tahun Lulus";
+            $jabatan = $perjanjianKontrak ? $perjanjianKontrak->jabatan : "Tidak Ada Jabatan";
+
+            $pdf = PDF::loadView('pdf.cetak-perjanjian-kontrak', [
+                'perjanjian' => $perjanjian,
+                'name' => $name,
+                'tempat_lahir' => $tempat_lahir,
+                'tanggal_lahir' => $tanggal_lahir,
+                'nik_blud' => $nik_blud,
+                'pendidikan' => $pendidikan,
+                'tahun_lulus' => $tahun_lulus,
+                'jabatan' => $jabatan,
+            ]);
+
+            return $pdf->stream('cetak-perjanjian-kontrak-' . $perjanjian->name . '.pdf');
+        // $nama_file = 'surat-cuti-' . $name . '.pdf';
+
+        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
+        // // $pdf->save(public_path('pdf/' . $nama_file));
+        // $pdf->stream($nama_file);
+        // }
+    }
+    /** /Tampilan Cetak Dokumen Kelengkapan */
+
+    public function tampilanPetaJabatan()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.peta-jabatan', compact('unreadNotifications', 'readNotifications'));
     }
 }
