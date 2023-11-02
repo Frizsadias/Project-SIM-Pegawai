@@ -9,7 +9,7 @@
         content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
     <meta name="author" content="Soeng Souy">
     <meta name="robots" content="noindex, nofollow">
-    <title>Settings - HRMS</title>
+    <title>Pengaturan</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('assets/img/favicon.png') }}">
     <!-- Bootstrap CSS -->
@@ -45,7 +45,7 @@
                 <a href="{{ route('home') }}" class="logo"
                     style="font-size: 24px; color: #3b5c03; font-weight: bold;">
                     <i class="fa fa-user" style="display: inline-block;"></i>
-                    <span class="logo-text" style="display: inline-block;">SIMPEG</span>
+                    <span class="logo-text" style="display: inline-block;">SILK</span>
                 </a>
             </div>
             <!-- /Logo -->

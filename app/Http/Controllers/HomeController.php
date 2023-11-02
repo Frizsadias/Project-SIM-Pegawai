@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\CompanySettings;
 use App\Models\Notification;
 use App\Charts\GrafikChart;
+use App\Models\ProfilPegawai;
 use App\Notifications\UserFollowNotification;
 use App\Notifications\UlangTahunNotification;
 use App\Notifications\MasaBerlakuSIPNotification;
@@ -58,6 +59,10 @@ class HomeController extends Controller
                 ->get();
 
             $dataPegawai = User::where('role_name', 'User')->count();
+            $dataPNS = ProfilPegawai::where('jenis_pegawai', 'PNS')->count();
+            $dataCPNS = ProfilPegawai::where('jenis_pegawai', 'CPNS')->count();
+            $dataPPPK = ProfilPegawai::where('jenis_pegawai', 'PPPK')->count();
+            $datanonASN = ProfilPegawai::where('jenis_pegawai', 'Non ASN')->count();
             return view('dashboard.Halaman-admin', [
                 'chart' => $chart->build(),
                 'grafikAgama' => $chart->grafikAgama(),
@@ -65,8 +70,13 @@ class HomeController extends Controller
                 'grafikPangkat' => $chart->grafikPangkat(),
                 'dataPegawai' => $dataPegawai,
                 'unreadNotifications' => $unreadNotifications,
-                'readNotifications' => $readNotifications
+                'readNotifications' => $readNotifications,
+                'dataPNS'=> $dataPNS,
+                'dataCPNS' => $dataCPNS,
+                'dataPPPK' => $dataPPPK,
+                'datanonASN' => $datanonASN,
             ]);
+            
         }
         elseif ($user->role_name === 'Super Admin' || $user->role_name === 'Kepala Ruangan')
         {
