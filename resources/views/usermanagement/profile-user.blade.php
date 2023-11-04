@@ -23,10 +23,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="profile-view">
-                                <div class="profile-img-wrap">
+                                {{-- <div class="profile-img-wrap">
                                     <div class="profile-img">
                                         <a href="#">
                                             <img alt="" src="{{ URL::to('/assets/images/'.Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                        </a>
+                                    </div>
+                                </div> --}}
+                                <div class="profile-img-wrap">
+                                    <div class="profile-img">
+                                        <a href="{{ URL::to('/assets/images/'.Auth::user()->avatar) }}" data-fancybox="foto-profil">
+                                            <img alt="{{ Auth::user()->name }}" src="{{ URL::to('/assets/images/'.Auth::user()->avatar) }}">
                                         </a>
                                     </div>
                                 </div>
@@ -140,7 +147,7 @@
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
                                     <h3 class="card-title">Profil Pegawai
-                                        {{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_tambah"><i class="fa fa-plus"></i></a></h3> --}}
+                                        <a href="#" class="edit-icon" data-toggle="modal" data-target="#unggah_dokumen_ktp"><i class="fa fa-upload"></i></a></h3>
                                         <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_edit"><i class="fa fa-pencil"></i></a></h3>
                                     <ul class="personal-info">
                                         <li>
@@ -360,6 +367,17 @@
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Dokumen KTP</div>
+                                            <a href="{{ asset('assets/DokumenKTP/' . $result_profilpegawai->dokumen_ktp) }}" target="_blank">
+                                                @if (pathinfo($result_profilpegawai->dokumen_ktp, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                                    <div hidden class="text">{{ $result_profilpegawai->dokumen_ktp }}</div>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -882,11 +900,19 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="profile-img-wrap edit-img">
+                                        {{-- <div class="profile-img-wrap edit-img">
                                             <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file" id="image" name="images">
+                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="profile-img-wrap edit-img">
+                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <div class="fileupload btn">
+                                                <span class="btn-text">Unggah</span>
+                                                <input class="upload" type="file" id="image" name="images" onchange="previewImage(event)">
                                                 <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
                                             </div>
                                         </div>
@@ -926,11 +952,19 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="profile-img-wrap edit-img">
+                                        {{-- <div class="profile-img-wrap edit-img">
                                             <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file" id="image" name="images">
+                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="profile-img-wrap edit-img">
+                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <div class="fileupload btn">
+                                                <span class="btn-text">Unggah</span>
+                                                <input class="upload" type="file" id="image" name="images" onchange="previewImage(event)">
                                                 <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
                                             </div>
                                         </div>
@@ -1148,7 +1182,7 @@
                                 <div class="modal-body">
                                     <form action="{{ route('user/profile/pegawai/edit') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}" readonly>
+                                        <input type="hidden" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}">
                                         <div class="row">
                                             {{-- <div class="col-md-6">
                                                 <div class="form-group">
@@ -1578,7 +1612,7 @@
                                             @csrf
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $result_posisijabatan->user_id }}" readonly>
+                                                        <input type="hidden" class="form-control" id="e_user_id" name="user_id" value="{{ $result_posisijabatan->user_id }}">
                                                     </div>
                                                 </div>
                                                     <div class="row">
@@ -1766,7 +1800,39 @@
                         </div>
                         <!-- /Posisi Jabatan Modal Edit -->
 
-
+        <!-- Upload Dokumen KTP Modal -->
+        <div id="unggah_dokumen_ktp" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Unggah Dokumen KTP</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('user/profile/upload-ktp') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $result_profilpegawai->user_id }}">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Dokumen KTP</label>
+                                            <input type="file" class="form-control" id="dokumen_ktp" name="dokumen_ktp">
+                                            <input type="hidden" name="hidden_dokumen_ktp" id="e_dokumen_ktp" value="">
+                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="submit-section">
+                                    <button class="btn btn-primary submit-btn">Simpan</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Upload Dokumen KTP Modal -->
 
         <!-- /Page Content -->
     </div>
@@ -1816,10 +1882,34 @@
             });  
         </script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script>
+            function previewImage(event) {
+                const input = event.target;
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('imagePreview').src = e.target.result;
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
 
+        <!-- FancyBox Foto Profil -->
+        <script>
+            $(document).ready(function() {
+                $('[data-fancybox="foto-profil"]').fancybox({
+                });
+            });
+        </script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+        <!-- /FancyBox Foto Profil -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script>
 		$(".theSelect").select2();
 	    </script>
-        @endsection
+
+    @endsection
 @endsection

@@ -10,9 +10,17 @@ $(document).on('click', '.edit_kontrak', function() {
     $('#e_tgl_kontrak').val(_this.find('.tgl_kontrak').text());
 });
 
+$(document).on("click", ".delete_perjanjian", function() {
+    var _this = $(this).parents("tr");
+    $(".e_id").val(_this.find(".id").text());
+});
+
 $('#name').on('change',function()
 {
     $('#user_id').val($(this).find(':selected').data('user_id'));
     $('#nip').val($(this).find(':selected').data('nip'));
-    $('#no_dokumen').val($(this).find(':selected').data('no_dokumen'));
+    $('#tempat_lahir').val($(this).find(':selected').data('tempat_lahir'));
+    $('#tanggal_lahir').val($(this).find(':selected').data('tanggal_lahir'));
+    $('#tingkat_pendidikan').val($(this).find(':selected').data('tingkat_pendidikan'));
+    $('#jabatan').val($(this).find(':selected').data('jabatan'));
 });

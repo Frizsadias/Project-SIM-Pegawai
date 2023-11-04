@@ -27,6 +27,22 @@
         </div>
         <!-- /Page Header -->
 
+        <!-- Cetak Dokumen KGB PDF -->
+        <div class="row filter-row">
+            <div class="col-sm-6 col-md-3">
+                <select id="pilihDokumenKGB" class="form-control">
+                    <option selected disabled> --Pilih Dokumen KBG --</option>
+                    @foreach ($data_kgb_pdf as $kgb)
+                        <option value="{{ $kgb->id }}">Dokumen KBG - {{ $kgb->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <button id="cetakDokumenKBG" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i>
+                    Dokumen KBG</button>
+            </div>
+        </div><br>
+
         <!-- Search Filter -->
         <form action="" method="GET" id="search-form">
             <div class="row filter-row">
@@ -326,6 +342,21 @@
 <!-- /Page Wrapper -->
 
     @section('script')
+        <script>
+            $(document).ready(function () {
+                $('#pilihDokumenKGB').select2();
+                $('#cetakDokumenKBG').on('click', function ()
+                {
+                    const selectedKGBId = $('#pilihDokumenKGB').val();
+                    if (selectedKGBId)
+                    {
+                        const url = "{{ route('layanan-kenaikan-gaji-berkala-admin-dokumen', ['id' => ':id']) }}".replace(':id', selectedKGBId);
+                        window.open(url, '_blank');
+                    }
+                });
+            });
+        </script>
+
         <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
     @endsection
 @endsection

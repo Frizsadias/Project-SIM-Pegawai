@@ -24,7 +24,7 @@ class CreateGenerateUserIdProfilPegawaiTable extends Migration
                 kode_pos=NEW.kode_pos,no_hp=NEW.no_hp,no_telp=NEW.no_telp,jenis_pegawai=NEW.jenis_pegawai,
                 kedudukan_pns=NEW.kedudukan_pns,status_pegawai=NEW.status_pegawai,tmt_pns=NEW.tmt_pns,
                 no_seri_karpeg=NEW.no_seri_karpeg,tmt_cpns=NEW.tmt_cpns,tingkat_pendidikan=NEW.tingkat_pendidikan,
-                pendidikan_terakhir=NEW.pendidikan_terakhir,ruangan=NEW.ruangan
+                pendidikan_terakhir=NEW.pendidikan_terakhir,ruangan=NEW.ruangan,dokumen_ktp=NEW.dokumen_ktp
             WHERE id=OLD.id;
             END
         ');

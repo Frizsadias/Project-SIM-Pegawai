@@ -112,8 +112,8 @@
             <iframe src="{{ asset('assets/PetaJabatan/' . $peta_jabatan->pdf_peta) }}" width="100%"
             height="600"></iframe>
         @endforeach
-        
-        <br>
+    </div>
+    <div class="page-wrapper">
         <div class="col-md-12">
             <div class="card dash-widget">
                 <div class="card-body">
@@ -124,14 +124,9 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
     <!--- Bagian Konten-->
 
     <body>
-
-
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/d3-org-chart@2"></script>
         <script src="https://cdn.jsdelivr.net/npm/d3-flextree@2.1.2/build/d3-flextree.js"></script>
@@ -191,6 +186,7 @@
             });
         </script>
     </body>
+</div>
     <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
     </div>
 

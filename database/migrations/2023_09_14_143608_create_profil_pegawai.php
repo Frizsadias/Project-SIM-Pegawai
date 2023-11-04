@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string('tingkat_pendidikan')->nullable();
             $table->string('pendidikan_terakhir')->nullable();
             $table->string('ruangan')->nullable();
+            $table->string('dokumen_ktp')->nullable();
             $table->timestamps();
         });
 

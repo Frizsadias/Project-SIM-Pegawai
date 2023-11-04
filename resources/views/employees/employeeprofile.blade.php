@@ -23,10 +23,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="profile-view">
-                                <div class="profile-img-wrap">
+                                {{-- <div class="profile-img-wrap">
                                     <div class="profile-img">
                                         <a href="#">
                                             <img alt="" src="{{ URL::to('/assets/images/' . $users->avatar) }}" alt="{{ $users->name }}">
+                                        </a>
+                                    </div>
+                                </div> --}}
+                                <div class="profile-img-wrap">
+                                    <div class="profile-img">
+                                        <a href="{{ URL::to('/assets/images/' . $users->avatar) }}" data-fancybox="foto-profil">
+                                            <img alt="{{ $users->name }}" src="{{ URL::to('/assets/images/' . $users->avatar) }}">
                                         </a>
                                     </div>
                                 </div>
@@ -347,6 +354,17 @@
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Dokumen KTP</div>
+                                                <a href="{{ asset('assets/DokumenKTP/' . $users->dokumen_ktp) }}" target="_blank">
+                                                    @if (pathinfo($users->dokumen_ktp, PATHINFO_EXTENSION) == 'pdf')
+                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                    @else
+                                                        <div class="text">N/A</div>
+                                                    @endif
+                                                        <div hidden class="text">{{ $users->dokumen_ktp }}</div>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -1914,11 +1932,21 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="profile-img-wrap edit-img">
+                                        {{-- <div class="profile-img-wrap edit-img">
                                             <img class="inline-block" src="{{ URL::to('/assets/images/' . $users->avatar) }}" alt="{{ $users->name }}">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file" id="image" name="images">
+                                                @if (!empty($users))
+                                                    <input type="hidden" name="hidden_image" id="e_image" value="{{ $users->avatar }}">
+                                                @endif
+                                            </div>
+                                        </div> --}}
+                                        <div class="profile-img-wrap edit-img">
+                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . $users->avatar) }}" alt="{{ $users->name }}">
+                                            <div class="fileupload btn">
+                                                <span class="btn-text">Unggah</span>
+                                                <input class="upload" type="file" id="image" name="images" onchange="previewImage(event)">
                                                 @if (!empty($users))
                                                     <input type="hidden" name="hidden_image" id="e_image" value="{{ $users->avatar }}">
                                                 @endif
@@ -2805,15 +2833,40 @@
                 }  
             });  
         </script>
+
+        <script>
+            function previewImage(event) {
+                const input = event.target;
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('imagePreview').src = e.target.result;
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+
+        <!-- FancyBox Foto Profil -->
+        <script>
+            $(document).ready(function() {
+                $('[data-fancybox="foto-profil"]').fancybox({
+                });
+            });
+        </script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+        <!-- /FancyBox Foto Profil -->
+
         <script src="{{ asset('assets/js/pendidikan.js') }}"></script>
         <script src="{{ asset('assets/js/golongan.js') }}"></script>
         <script src="{{ asset('assets/js/jabatan.js') }}"></script>
         <script src="{{ asset('assets/js/diklat.js') }}"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
         <script>
 		$(".theSelect").select2();
 	    </script>
+
     @endsection
 @endsection

@@ -694,7 +694,7 @@ class EmployeeController extends Controller
             ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pr.tmpt_lahir','pg.name','pg.email','pg.nip','pg.gelar_depan',
                 'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
                 'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
-                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan',
+                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan','pg.dokumen_ktp',
                 'pj.unit_organisasi','pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
                 'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
             ->where('users.user_id', $user_id)->get();
@@ -710,7 +710,7 @@ class EmployeeController extends Controller
             ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pr.tmpt_lahir','pg.name','pg.email','pg.nip','pg.gelar_depan',
                 'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
                 'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
-                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan',
+                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan','pg.dokumen_ktp',
                 'pj.unit_organisasi','pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
                 'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
             ->where('users.user_id', $user_id)->first();

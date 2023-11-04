@@ -828,6 +828,32 @@ class UserManagementController extends Controller
     }
     /** End Tambah Data Profil Pegawai */
 
+    /** Upload Dokumen KTP */
+    public function uploadDokumenKTP(Request $request)
+    {
+        
+        DB::beginTransaction();
+        try {
+
+            if ($request->hasFile('dokumen_ktp')) {
+                $dokumen_ktp = time() . '.' . $request->file('dokumen_ktp')->getClientOriginalExtension();
+                $request->file('dokumen_ktp')->move(public_path('assets/DokumenKTP'), $dokumen_ktp);
+                $update['dokumen_ktp'] = $dokumen_ktp;
+            }
+            
+            DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($update);
+
+            DB::commit();
+            Toastr::success('Unggah dokumen KTP berhasil :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Unggah dokumen KTP gagal :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** /Upload Dokumen KTP */
+
     /** Edit Data Posisi & Jabatan */
     public function profilePegawaiEdit(Request $request)
     {

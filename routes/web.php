@@ -165,6 +165,7 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::post('user/profile/posisi/jabatan/add', 'posisiJabatanAdd')->name('user/profile/posisi/jabatan/add');
     Route::post('user/profile/posisi/jabatan/edit', 'posisiJabatanEdit')->name('user/profile/posisi/jabatan/edit');
     Route::get('get-users-data', 'getUsersData')->name('get-users-data');
+    Route::post('user/profile/upload-ktp', 'uploadDokumenKTP')->name('user/profile/upload-ktp');
 });
 
 // --------------------------------- job ---------------------------------//
@@ -442,15 +443,16 @@ Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti/cari/admin', 'pencarianLayananCutiAdmin')->name('layanan/cuti/cari/admin');
     Route::get('layanan/cuti/cari/kepala-ruangan', 'pencarianLayananCutiKepalaRuangan')->name('layanan/cuti/cari/kepala-ruangan');
     Route::patch('/update-status/{id}', 'updateStatus')->name('updateStatus');
-    Route::get('layanan/kenaikan-gaji-berkala', 'tampilanKGB')->name('kenaikan-gaji-berkala');
-    Route::get('layanan/kenaikan-gaji-berkala-admin', 'tampilanKGBAdmin')->name('kenaikan-gaji-berkala-admin');
     Route::post('layanan/kgb/tambah-data', 'tambahDataKGB')->name('layanan/kgb/tambah-data');
     Route::post('layanan/kgb/edit-data', 'editDataKGB')->name('layanan/kgb/edit-data');
-    Route::get('cetak-kgb/{id}', 'cetakKGB')->name('cetak-kgb');
+    Route::get('layanan/kenaikan/gaji/berkala', 'tampilanKGB')->name('kenaikan-gaji-berkala');
+    Route::get('layanan/kenaikan/gaji/berkala/admin', 'tampilanKGBAdmin')->name('kenaikan-gaji-berkala-admin');
+    Route::get('layanan/kenaikan/gaji/berkala/admin/dokumen/{id}', 'cetakKGB')->name('layanan-kenaikan-gaji-berkala-admin-dokumen');
     Route::get('layanan/perpanjang-kontrak', 'tampilanPerpanjangKontrak')->name('perpanjang-kontrak');
     Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
     Route::post('layanan/kontrak/tambah-data', 'tambahDataKontrak')->name('layanan/kontrak/tambah-data');
     Route::post('layanan/kontrak/edit-data', 'editDataKontrak')->name('layanan/kontrak/edit-data');
+    Route::get('layanan/perpanjang-kontrak-admin/{id}', 'cetakPerpanjanganKontrak')->name('layanan-perpanjang-kontrak-admin');
     Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
     Route::post('layanan/perpanjangan-kontrak/delete', 'hapusPerpanjanganKontrak')->name('layanan/perpanjangan-kontrak/delete');
     // Route::get('layanan/perpanjang-kontrak-admin/{id}', 'cetakPerjanjianKontrak')->name('layanan-perpanjang-kontrak-admin');

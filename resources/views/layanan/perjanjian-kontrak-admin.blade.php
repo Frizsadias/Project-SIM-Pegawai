@@ -155,7 +155,9 @@
                                         <option value="">-- Pilih Nama Pegawai --</option>
                                         @foreach ($userList as $user)
                                             <option value="{{ $user->name }}" data-user_id="{{ $user->user_id }}"
-                                                data-nip="{{ $user->nip }}">{{ $user->name }}</option>
+                                                data-nip="{{ $user->nip }}" data-tempat_lahir="{{ $user->tempat_lahir }}"
+                                                data-tanggal_lahir="{{ $user->tanggal_lahir }}" data-tingkat_pendidikan="{{ $user->tingkat_pendidikan }}"
+                                                data-jabatan="{{ $user->jabatan }}">{{ $user->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -175,20 +177,28 @@
                                         placeholder="NIP otomatis terisi" readonly>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Tempat Lahir</label>
-                                    <input type="text" class="form-control" name="tempat_lahir"
-                                        placeholder="Tempat Lahir">
+                                    <label class="col-form-label">Tempat Lahir <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat lahir otomatis terisi" readonly>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Tanggal Lahir</label>
-                                    <input type="date" class="form-control" name="tanggal_lahir"
-                                        placeholder="Tempat Lahir">
+                                    <label class="col-form-label">Tanggal Lahir <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal lahir otomatis terisi" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Pendidikan <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="tingkat_pendidikan" name="pendidikan" placeholder="Pendidikan otomatis terisi" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Jabatan <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan otomatis terisi" readonly>
                                 </div>
                             </div>
                         </div>
@@ -196,34 +206,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>NIK BLUD</label>
-                                    <input type="number" class="form-control" name="nik_blud"
-                                        placeholder="NIK BLUD">
+                                    <input type="number" class="form-control" name="nik_blud" placeholder="NIK BLUD">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Pendidikan</label>
-                                    <input type="text" class="form-control" name="pendidikan"
-                                        placeholder="Pendidikan">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tahun Lulus</label>
-                                    <input type="number" class="form-control" name="tahun_lulus"
-                                        placeholder="Tahun Lulus">
+                                    <input type="number" class="form-control" name="tahun_lulus" placeholder="Tahun Lulus">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Jabatan</label>
-                                    <input type="text" class="form-control" name="jabatan" placeholder="Jabatan">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Berlaku Kontrak</label>
@@ -260,55 +251,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Tempat Lahir</label>
-                                    <input type="text" class="form-control" name="tempat_lahir"
-                                        id="e_tempat_lahir" placeholder="Tempat Lahir" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Tanggal Lahir</label>
-                                    <input type="date" class="form-control" name="tanggal_lahir"
-                                        id="e_tanggal_lahir" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label>NIK BLUD</label>
-                                    <input type="text" class="form-control" name="nik_blud" id="e_nik_blud"
-                                        placeholder="NIK BLUD" value="">
+                                    <input type="number" class="form-control" name="nik_blud" id="e_nik_blud" placeholder="NIK BLUD" value="">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Pendidikan</label>
-                                    <input type="text" class="form-control" name="pendidikan" id="e_pendidikan"
-                                        placeholder="Pendidikan" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tahun Lulus</label>
-                                    <input type="text" class="form-control" name="tahun_lulus" id="e_tahun_lulus"
-                                        placeholder="Tahun Lulus" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Jabatan</label>
-                                    <input type="text" class="form-control" name="jabatan" id="e_jabatan"
-                                        placeholder="Jabatan" value="">
+                                    <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus" placeholder="Tahun Lulus" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Berlaku Kontrak</label>
-                                    <input type="date" class="form-control" name="tgl_kontrak" id="e_tgl_kontrak"
-                                        value="">
+                                    <input type="date" class="form-control" name="tgl_kontrak" id="e_tgl_kontrak" value="">
                                 </div>
                             </div>
                         </div>

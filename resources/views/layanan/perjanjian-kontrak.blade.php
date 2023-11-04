@@ -133,70 +133,19 @@
                         enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
-                        @foreach ($data_perjanjian_kontrak as $result_perjanjian_kontrak)
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="name"
-                                            value="{{ $result_perjanjian_kontrak->name }}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="nip"
-                                            value="{{ $result_perjanjian_kontrak->nip }}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Tempat Lahir</label>
-                                    <input type="text" class="form-control" name="tempat_lahir"
-                                        placeholder="Tempat Lahir">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Tanggal Lahir</label>
-                                    <input type="date" class="form-control" name="tanggal_lahir"
-                                        placeholder="Tempat Lahir">
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>NIK BLUD</label>
-                                    <input type="number" class="form-control" name="nik_blud"
-                                        placeholder="NIK BLUD">
+                                    <input type="number" class="form-control" name="nik_blud" placeholder="NIK BLUD">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Pendidikan</label>
-                                    <input type="text" class="form-control" name="pendidikan"
-                                        placeholder="Pendidikan">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tahun Lulus</label>
-                                    <input type="number" class="form-control" name="tahun_lulus"
-                                        placeholder="Tahun Lulus">
+                                    <input type="number" class="form-control" name="tahun_lulus" placeholder="Tahun Lulus">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Jabatan</label>
-                                    <input type="text" class="form-control" name="jabatan" placeholder="Jabatan">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Berlaku Kontrak</label>
@@ -204,6 +153,44 @@
                                 </div>
                             </div>
                         </div>
+                        @foreach($data_profilpegawai as $profil_pegawai)
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" value="{{ $profil_pegawai->tempat_lahir }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="tanggal_lahir" placeholder="Tempat Lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="pendidikan" placeholder="Pendidikan" value="{{ $profil_pegawai->tingkat_pendidikan }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="name" value="{{ $profil_pegawai->name }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="nip" value="{{ $profil_pegawai->nip }}">
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        @foreach($data_posisijabatan as $posisi_jabatan)
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="jabatan" placeholder="Jabatan" value="{{ $posisi_jabatan->jabatan }}">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Simpan</button>
                         </div>
@@ -233,48 +220,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Tempat Lahir</label>
-                                    <input type="text" class="form-control" name="tempat_lahir"
-                                        id="e_tempat_lahir" placeholder="Tempat Lahir" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Tanggal Lahir</label>
-                                    <input type="date" class="form-control" name="tanggal_lahir"
-                                        id="e_tanggal_lahir" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label>NIK BLUD</label>
-                                    <input type="text" class="form-control" name="nik_blud" id="e_nik_blud"
+                                    <input type="number" class="form-control" name="nik_blud" id="e_nik_blud"
                                         placeholder="NIK BLUD" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Pendidikan</label>
-                                    <input type="text" class="form-control" name="pendidikan" id="e_pendidikan"
-                                        placeholder="Pendidikan" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label>Tahun Lulus</label>
-                                    <input type="text" class="form-control" name="tahun_lulus" id="e_tahun_lulus"
+                                    <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus"
                                         placeholder="Tahun Lulus" value="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Jabatan</label>
-                                    <input type="text" class="form-control" name="jabatan" id="e_jabatan"
-                                        placeholder="Jabatan" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -329,28 +284,17 @@
 
 @section('script')
     <script>
-        {{-- Edit --}}
         $(document).on("click", ".edit_kontrak", function() {
             var _this = $(this).parents("tr");
             $("#e_id").val(_this.find(".id").text());
-            $("#e_tempat_lahir").val(_this.find(".tempat_lahir").text());
-            $("#e_tanggal_lahir").val(_this.find(".tanggal_lahir").text());
             $("#e_nik_blud").val(_this.find(".nik_blud").text());
-            $("#e_pendidikan").val(_this.find(".pendidikan").text());
             $("#e_tahun_lulus").val(_this.find(".tahun_lulus").text());
-            $("#e_jabatan").val(_this.find(".jabatan").text());
             $("#e_tgl_kontrak").val(_this.find(".tgl_kontrak").text());
-        });
-
-        $('#name').on('change', function() {
-            $('#user_id').val($(this).find(':selected').data('user_id'));
-            $('#nip').val($(this).find(':selected').data('nip'));
         });
 
         $(document).on("click", ".delete_perjanjian", function() {
             var _this = $(this).parents("tr");
             $(".e_id").val(_this.find(".id").text());
-            // $("#nip").val($(this).find(":selected").data("nip"));
         });
     </script>
 @endsection

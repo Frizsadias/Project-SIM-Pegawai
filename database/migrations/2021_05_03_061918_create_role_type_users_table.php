@@ -44,7 +44,7 @@ class CreateRoleTypeUsersTable extends Migration
             ['role_type' => 'Kepala Ruang Unit Stroke'],
             ['role_type' => 'Kepala Ruang Bidara/Ranap Jiwa'],
             ['role_type' => 'Kepala Ruang Lain-Lain/Non Perawatan'],
-            ['role_type' => 'Kepala Ruang Pavilium Angrek'],
+            ['role_type' => 'Kepala Ruang Pavilium Anggrek'],
             ['role_type' => 'Kepala Ruang Mawar'],
             ['role_type' => 'Kepala Ruang Flamboyan'],
         ]);

@@ -281,23 +281,12 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        $superAdmin = User::where('role_name', 'Kepala Ruang')->first();
+        $superAdmin = User::where('role_name', 'Kepala Ruang Pinus')->first();
         if ($superAdmin) {
             $data_cuti = User::where('role_name', 'User')
                 ->join('cuti','users.user_id','cuti.user_id')
                 ->where('ruangan', $superAdmin->ruangan)
                 ->get();
-
-        // $superAdmin = User::where(function ($query) {
-        //     $query->where('role_name', 'Kepala Ruangan Cempaka')
-        //           ->orWhere('role_name', 'Kepala Ruangan Asoka');
-        // })->first();
-        
-        // if ($superAdmin) {
-        //     $data_cuti = User::where('role_name', 'User')
-        //         ->join('cuti', 'users.user_id', 'cuti.user_id')
-        //         ->where('ruangan', $superAdmin->ruangan)
-        //         ->get();  
         
         return view('layanan.layanan-cuti-kepala-ruangan', [
             'data_cuti' => $data_cuti,
@@ -309,6 +298,7 @@ class LayananController extends Controller
             'sisaCutiLastYear' => $sisaCutiLastYear,
             'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo,
             ]);
+            
         } else {
             return view('layanan.layanan-cuti-kepala-ruangan', ['data_cuti' => []]);
         }
@@ -766,6 +756,31 @@ class LayananController extends Controller
     /** Tampilan Cetak Dokumen Kelengkapan */
     public function cetakDokumenKelengkapan()
     {
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
+
         // Ambil semua ID yang ingin Anda cetak
         $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
             $cuti = LayananCuti::find($lastLayananCutiId);
@@ -785,7 +800,10 @@ class LayananController extends Controller
                 'nip' => $nip,
                 'name' => $name,
                 'jabatan' => $jabatan,
-                'gol_ruang_awal' => $gol_ruang_awal
+                'gol_ruang_awal' => $gol_ruang_awal,
+                'sisaCutiThisYear' => $sisaCutiThisYear,
+                'sisaCutiLastYear' => $sisaCutiLastYear,
+                'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo
             ]);
 
             return $pdf->stream('kelengkapan-cuti-' . $cuti->name . '.pdf');
@@ -854,6 +872,20 @@ class LayananController extends Controller
         )
         ->get();
 
+        $data_kgb_pdf = DB::table('kenaikan_gaji_berkala')
+            ->select('kenaikan_gaji_berkala.*', 'kenaikan_gaji_berkala.user_id', 'kenaikan_gaji_berkala.name',
+                'kenaikan_gaji_berkala.nip', 'kenaikan_gaji_berkala.golongan_awal', 'kenaikan_gaji_berkala.golongan_akhir', 'kenaikan_gaji_berkala.gapok_lama',
+                'kenaikan_gaji_berkala.gapok_baru', 'kenaikan_gaji_berkala.tgl_sk_kgb', 'kenaikan_gaji_berkala.no_sk_kgb', 'kenaikan_gaji_berkala.tgl_berlaku',
+                'kenaikan_gaji_berkala.masa_kerja_golongan', 'kenaikan_gaji_berkala.masa_kerja', 'kenaikan_gaji_berkala.tmt_kgb')
+            ->whereIn('id', function ($query)
+            {
+                $query->select(DB::raw('MAX(id)'))
+                    ->from('kenaikan_gaji_berkala')
+                    ->whereColumn('kenaikan_gaji_berkala.user_id', 'kenaikan_gaji_berkala.user_id')
+                    ->groupBy('kenaikan_gaji_berkala.user_id');
+            })
+            ->get();
+
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
         ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
@@ -872,7 +904,8 @@ class LayananController extends Controller
         ->whereNotNull('read_at')
         ->get();
 
-        return view('layanan.kenaikan-gaji-berkala-admin', compact('data_kgb', 'userList', 'unreadNotifications', 'readNotifications'));
+        return view('layanan.kenaikan-gaji-berkala-admin', compact('data_kgb', 'userList', 'unreadNotifications',
+            'readNotifications', 'data_kgb_pdf'));
     }
     /** /Tampilan Kenaikan Gaji Berkala */
 
@@ -1002,57 +1035,40 @@ class LayananController extends Controller
     /** Cetak Kenaikan Gaji Berkala PDF */
     public function cetakKGB($id)
     {
-        $kgb = KenaikanGajiBerkala::find($id);
-        if (!$kgb) {
-            return abort(404);
-        }
-        $KenaikanGaji = $kgb->KenaikanGaji;
-
-        if ($KenaikanGaji) {
-            $nip = $KenaikanGaji->nip;
-            $name = $KenaikanGaji->name;
-            $golongan_awal = $KenaikanGaji->golongan_awal;
-            $golongan_akhir = $KenaikanGaji->golongan_akhir;
-            $gapok_lama = $KenaikanGaji->gapok_lama;
-            $gapok_baru = $KenaikanGaji->gapok_baru;
-            $tgl_sk_kgb = $KenaikanGaji->tgl_sk_kgb;
-            $no_sk_kgb = $KenaikanGaji->no_sk_kgb;
-            $tgl_berlaku = $KenaikanGaji->tgl_berlaku;
-            $masa_kerja_golongan = $KenaikanGaji->masa_kerja_golongan;
-            $masa_kerja = $KenaikanGaji->masa_kerja;
-            $tmt_kgb = $KenaikanGaji->tmt_kgb;
-        } else {
-            $nip = "Tidak Ada NIP";
-            $name = "Tidak Ada Nama";
-            $golongan_awal = "Tidak Ada Golongan Awal";
-            $golongan_akhir = "Tidak Ada Golongan Akhir";
-            $gapok_lama = "Tidak Ada Gaji Pokok Lama";
-            $gapok_baru = "Tidak Ada Gaji Pokok Baru";
-            $tgl_sk_kgb = "Tidak Ada Tanggal SK KGB";
-            $no_sk_kgb = "Tidak Ada Nomor SK KGB";
-            $tgl_berlaku = "Tidak Ada Tanggal Berlaku";
-            $masa_kerja_golongan = "Tidak Ada Masa Kerja Golongan";
-            $masa_kerja = "Tidak Ada Masa Kerja";
-            $tmt_kgb = "Tidak Ada TMT KGB";
-        }
+        // Ambil semua ID yang ingin Anda cetak
+        $lastKGBId = KenaikanGajiBerkala::latest('id')->first()->id;
+            $kgb = KenaikanGajiBerkala::find($lastKGBId);
+            $kenaikanGaji = $kgb->kenaikan_gaji;
+            $nip = $kenaikanGaji ? $kenaikanGaji->nip :"Tidak Ada NIP";
+            $name = $kenaikanGaji ? $kenaikanGaji->name : "Tidak Ada Nama";
+            $golongan_awal = $kenaikanGaji ? $kenaikanGaji-> golongan_awal : "Tidak Ada Golongan Awal" ;
+            $golongan_akhir = $kenaikanGaji ? $kenaikanGaji-> golongan_akhir : "Tidak Ada Golongan Akhir";
+            $gapok_lama = $kenaikanGaji ? $kenaikanGaji-> gapok_lama : "Tidak Ada Gaji Pokok Lama";
+            $gapok_baru = $kenaikanGaji ? $kenaikanGaji-> gapok_baru : "Tidak Ada Gaji Pokok Baru";
+            $tgl_sk_kgb = $kenaikanGaji ? $kenaikanGaji->tgl_sk_kgb : "Tidak Ada Tanggal SK";
+            $no_sk_kgb = $kenaikanGaji ? $kenaikanGaji->no_sk_kgb : "Tidak Ada Nomr SK";
+            $tgl_berlaku = $kenaikanGaji ? $kenaikanGaji->tgl_berlaku : "Tidak Ada Tanggal Berlaku";
+            $masa_kerja_golongan = $kenaikanGaji ? $kenaikanGaji-> masa_kerja_golongan : "Tidak Ada Masa Kerja Golongan";
+            $masa_kerja = $kenaikanGaji ? $kenaikanGaji->masa_kerja : "Tidak Ada Masa Kerja";
+            $tmt_kgb = $kenaikanGaji ? $kenaikanGaji->tmt_kgb : "Tidak Ada TMT";
 
         $pdf = PDF::loadView('pdf.cetak-kgb', [
-            'kgb' => $kgb,
-            'nip' => $nip,
-            'name' => $name,
-            'golongan_awal'          => $golongan_awal,
-            'golongan_akhir'         => $golongan_akhir,
-            'gapok_lama'             => $gapok_lama,
-            'gapok_baru'             => $gapok_baru,
-            'tgl_sk_kgb'             => $tgl_sk_kgb,
-            'no_sk_kgb'              => $no_sk_kgb,
-            'tgl_berlaku'            => $tgl_berlaku,
-            'masa_kerja_golongan'    => $masa_kerja_golongan,
-            'masa_kerja'             => $masa_kerja,
-            'tmt_kgb'                => $tmt_kgb,
+            'kgb'                   => $kgb,
+            'nip'                   => $nip,
+            'name'                  => $name,
+            'golongan_awal'         => $golongan_awal,
+            'golongan_akhir'        => $golongan_akhir,
+            'gapok_lama'            => $gapok_lama,
+            'gapok_baru'            => $gapok_baru,
+            'tgl_sk_kgb'            => $tgl_sk_kgb,
+            'no_sk_kgb'             => $no_sk_kgb,
+            'tgl_berlaku'           => $tgl_berlaku,
+            'masa_kerja_golongan'   => $masa_kerja_golongan,
+            'masa_kerja'            => $masa_kerja,
+            'tmt_kgb'               => $tmt_kgb,
         ]);
 
-        return $pdf->stream('Kenaikan-Gaji-Berkala-' . $kgb->name . '.pdf');
+        return $pdf->stream('cetak-kgb-' . $kgb->name . '.pdf');
     }
     /** /Cetak Kenaikan Gaji Berkala PDF */
 
@@ -1134,7 +1150,7 @@ class LayananController extends Controller
         ->whereNotNull('read_at')
         ->get();
 
-        return view('layanan.perpanjang-kontrak', compact('data_kontrak', 'userList', 'unreadNotifications', 'readNotifications'));
+        return view('layanan.perpanjang-kontrak-admin', compact('data_kontrak', 'userList', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data Perpanjangan Kontrak Pegawai */
@@ -1221,6 +1237,42 @@ class LayananController extends Controller
         }
     }
 
+    /** Tampilan Cetak Perpanjangan Kontrak */
+    public function cetakPerpanjanganKontrak()
+    {
+        // Ambil semua ID yang ingin Anda cetak
+        $lastPerpanjanganId = KontrakKerja::latest('id')->first()->id;
+            $perpanjangan = KontrakKerja::find($lastPerpanjanganId);
+            $perpanjanganKontrak = $perpanjangan->perpanjangan_kontrak;
+            $name = $perpanjanganKontrak ? $perpanjanganKontrak->name : "Tidak Ada Nama";
+            $tempat_lahir = $perpanjanganKontrak ? $perpanjanganKontrak->tempat_lahir : "Tidak Ada Tempat Lahir";
+            $tanggal_lahir = $perpanjanganKontrak ? $perpanjanganKontrak->tanggal_lahir : "Tidak Ada Tanggal Lahir";
+            $nik_blud = $perpanjanganKontrak ? $perpanjanganKontrak->nik_blud : "Tidak Ada NIK";
+            $pendidikan = $perpanjanganKontrak ? $perpanjanganKontrak->pendidikan : "Tidak Ada Pendidikan";
+            $tahun_lulus = $perpanjanganKontrak ? $perpanjanganKontrak->tahun_lulus : "Tidak Ada Tahun Lulus";
+            $jabatan = $perpanjanganKontrak ? $perpanjanganKontrak->jabatan : "Tidak Ada Jabatan";
+
+        $pdf = PDF::loadView('pdf.cetak-perpanjangan-kontrak', [
+            'perpanjangan' => $perpanjangan,
+            'name' => $name,
+            'tempat_lahir' => $tempat_lahir,
+            'tanggal_lahir' => $tanggal_lahir,
+            'nik_blud' => $nik_blud,
+            'pendidikan' => $pendidikan,
+            'tahun_lulus' => $tahun_lulus,
+            'jabatan' => $jabatan,
+        ]);
+
+        return $pdf->stream('cetak-perpanjangan-kontrak-' . $perpanjangan->name . '.pdf');
+        // $nama_file = 'surat-cuti-' . $name . '.pdf';
+
+        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
+        // // $pdf->save(public_path('pdf/' . $nama_file));
+        // $pdf->stream($nama_file);
+        // }
+    }
+    /** /Tampilan Cetak Perpanjangan Kontrak */
+
     /** Tampilan Perjanjian Kontrak Admin */
     public function tampilanPerjanjianKontrakAdmin()
     {
@@ -1240,9 +1292,24 @@ class LayananController extends Controller
         )
         ->get();
 
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+            ->select('profil_pegawai.*', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.name', 'profil_pegawai.nip')
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+            ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+            ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
+
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip', 'profil_pegawai.tempat_lahir',
+            'profil_pegawai.tanggal_lahir', 'profil_pegawai.tingkat_pendidikan', 'posisi_jabatan.jabatan')
         ->where('role_name', '=', 'User')
         ->get();
 
@@ -1258,7 +1325,8 @@ class LayananController extends Controller
         ->whereNotNull('read_at')
         ->get();
 
-        return view('layanan.perjanjian-kontrak-admin', compact('unreadNotifications', 'readNotifications', 'data_perjanjian_kontrak', 'userList'));
+        return view('layanan.perjanjian-kontrak-admin', compact('unreadNotifications', 'readNotifications',
+            'data_perjanjian_kontrak', 'userList', 'data_profilpegawai', 'data_posisijabatan'));
     }
     /** /Tampilan Kenaikan Gaji Berkala */
 
@@ -1283,6 +1351,19 @@ class LayananController extends Controller
         ->where('perjanjian_kontrak.user_id', $user_id)
         ->get();
 
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+            ->select('profil_pegawai.*', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.name', 'profil_pegawai.nip')
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+            ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+            ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
+
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
         ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
@@ -1301,7 +1382,8 @@ class LayananController extends Controller
         ->whereNotNull('read_at')
         ->get();
 
-        return view('layanan.perjanjian-kontrak', compact('unreadNotifications', 'readNotifications', 'data_perjanjian_kontrak', 'userList'));
+        return view('layanan.perjanjian-kontrak', compact('unreadNotifications', 'readNotifications',
+            'data_perjanjian_kontrak', 'userList', 'data_profilpegawai', 'data_posisijabatan'));
     }
 
     /** Tambah Data Perjanjian Kontrak Pegawai */
@@ -1352,12 +1434,8 @@ class LayananController extends Controller
         DB::beginTransaction();
         try {
             $update = [
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
                 'nik_blud' => $request->nik_blud,
-                'pendidikan' => $request->pendidikan,
                 'tahun_lulus' => $request->tahun_lulus,
-                'jabatan' => $request->jabatan,
                 'tgl_kontrak' => $request->tgl_kontrak,
             ];
 
@@ -1429,6 +1507,10 @@ class LayananController extends Controller
 
     public function tampilanPetaJabatan()
     {
+        $result_peta_jabatan = DB::table('peta_jabatan')
+            ->select('peta_jabatan.*', 'peta_jabatan.id', 'peta_jabatan.pdf_peta')
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1441,6 +1523,6 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.peta-jabatan', compact('unreadNotifications', 'readNotifications'));
+        return view('layanan.peta-jabatan', compact('unreadNotifications', 'readNotifications', 'result_peta_jabatan'));
     }
 }

@@ -45,9 +45,14 @@ class HomeController extends Controller
         // Memeriksa peran pengguna dan mengarahkannya ke halaman yang sesuai
         if ($user->role_name === 'Admin')
         {
+            $dataPegawai = User::where('role_name', 'User')->count();
+            $dataPNS = ProfilPegawai::where('jenis_pegawai', 'PNS')->count();
+            $dataCPNS = ProfilPegawai::where('jenis_pegawai', 'CPNS')->count();
+            $dataPPPK = ProfilPegawai::where('jenis_pegawai', 'PPPK')->count();
+            $datanonASN = ProfilPegawai::where('jenis_pegawai', 'Non ASN')->count();
+
             $user = auth()->user();
             $role = $user->role_name;
-            
             $unreadNotifications = Notification::where('notifiable_id', $user->id)
                 ->where('notifiable_type', get_class($user))
                 ->whereNull('read_at')
@@ -57,42 +62,43 @@ class HomeController extends Controller
                 ->where('notifiable_type', get_class($user))
                 ->whereNotNull('read_at')
                 ->get();
-
-            $dataPegawai = User::where('role_name', 'User')->count();
-            $dataPNS = ProfilPegawai::where('jenis_pegawai', 'PNS')->count();
-            $dataCPNS = ProfilPegawai::where('jenis_pegawai', 'CPNS')->count();
-            $dataPPPK = ProfilPegawai::where('jenis_pegawai', 'PPPK')->count();
-            $datanonASN = ProfilPegawai::where('jenis_pegawai', 'Non ASN')->count();
+            
             return view('dashboard.Halaman-admin', [
                 'chart' => $chart->build(),
                 'grafikAgama' => $chart->grafikAgama(),
                 'grafikJenisKelamin' => $chart->grafikJenisKelamin(),
                 'grafikPangkat' => $chart->grafikPangkat(),
                 'dataPegawai' => $dataPegawai,
-                'unreadNotifications' => $unreadNotifications,
-                'readNotifications' => $readNotifications,
                 'dataPNS'=> $dataPNS,
                 'dataCPNS' => $dataCPNS,
                 'dataPPPK' => $dataPPPK,
-                'datanonASN' => $datanonASN
+                'datanonASN' => $datanonASN,
+                'unreadNotifications' => $unreadNotifications,
+                'readNotifications' => $readNotifications
             ]);
             
         }
-        elseif ($user->role_name === 'Super Admin' || $user->role_name === 'Kepala Ruang IGD Terpadu' || $user->role_name === 'Kepala Ruang Bedah Central'
-            || $user->role_name === 'Kepala Ruang RR' || $user->role_name === 'Kepala Ruang Rawat Jalan'
-            || $user->role_name === 'Kepala Ruang Hemodialisis (HD)' || $user->role_name === 'Kepala Ruang Kebidanan'
-            || $user->role_name === 'Kepala Ruang Pinang' || $user->role_name === 'Kepala Ruang Perinatologi'
-            || $user->role_name === 'Kepala Ruang Cemara' || $user->role_name === 'Kepala Ruang HCU Bougenvill'
-            || $user->role_name === 'Kepala Ruang ICU' || $user->role_name === 'Kepala Ruang ICCU'
-            || $user->role_name === 'Kepala Ruang Asoka' || $user->role_name === 'Kepala Ruang Wijiaya Kusuma'
-            || $user->role_name === 'Kepala Ruang Paviliun' || $user->role_name === 'Kepala Ruang Palem/PICU'
-            || $user->role_name === 'Kepala Ruang Unit Stroke' || $user->role_name === 'Kepala Ruang Bidara/Ranap Jiwa'
-            || $user->role_name === 'Kepala Ruang Lain-Lain/Non Perawatan' || $user->role_name === 'Kepala Ruang Mawar'
-            || $user->role_name === 'Kepala Ruang Flamboyan')
+        elseif ($user->role_name === 'Super Admin' || $user->role_name === 'Kepala Ruang IGD Terpadu'
+            || $user->role_name === 'Kepala Ruang Bedah Central' || $user->role_name === 'Kepala Ruang RR'
+            || $user->role_name === 'Kepala Ruang Rawat Jalan' || $user->role_name === 'Kepala Ruang Hemodialisis (HD)'
+            || $user->role_name === 'Kepala Ruang Kebidanan' || $user->role_name === 'Kepala Ruang Pinang'
+            || $user->role_name === 'Kepala Ruang Perinatologi' || $user->role_name === 'Kepala Ruang Cemara'
+            || $user->role_name === 'Kepala Ruang HCU Bougenvill' || $user->role_name === 'Kepala Ruang ICU'
+            || $user->role_name === 'Kepala Ruang ICCU' || $user->role_name === 'Kepala Ruang Asoka'
+            || $user->role_name === 'Kepala Ruang Wijiaya Kusuma' || $user->role_name === 'Kepala Ruang Paviliun'
+            || $user->role_name === 'Kepala Ruang Palem/PICU' || $user->role_name === 'Kepala Ruang Unit Stroke'
+            || $user->role_name === 'Kepala Ruang Bidara/Ranap Jiwa' || $user->role_name === 'Kepala Ruang Lain-Lain/Non Perawatan'
+            || $user->role_name === 'Kepala Ruang Mawar' || $user->role_name === 'Kepala Ruang Flamboyan'
+            || $user->role_name === 'Kepala Ruang Pinus' || $user->role_name === 'Kepala Ruang Pavilium Anggrek')
         {
+            $dataPegawai = User::where('role_name', 'User')->count();
+            $dataPNS = ProfilPegawai::where('jenis_pegawai', 'PNS')->count();
+            $dataCPNS = ProfilPegawai::where('jenis_pegawai', 'CPNS')->count();
+            $dataPPPK = ProfilPegawai::where('jenis_pegawai', 'PPPK')->count();
+            $datanonASN = ProfilPegawai::where('jenis_pegawai', 'Non ASN')->count();
+
             $user = auth()->user();
             $role = $user->role_name;
-            
             $unreadNotifications = Notification::where('notifiable_id', $user->id)
                 ->where('notifiable_type', get_class($user))
                 ->whereNull('read_at')
@@ -102,31 +108,27 @@ class HomeController extends Controller
                 ->where('notifiable_type', get_class($user))
                 ->whereNotNull('read_at')
                 ->get();
-
-            $dataPegawai = User::where('role_name', 'User')->count();
-            $dataPNS = ProfilPegawai::where('jenis_pegawai', 'PNS')->count();
-            $dataCPNS = ProfilPegawai::where('jenis_pegawai', 'CPNS')->count();
-            $dataPPPK = ProfilPegawai::where('jenis_pegawai', 'PPPK')->count();
-            $datanonASN = ProfilPegawai::where('jenis_pegawai', 'Non ASN')->count();
+            
             return view('dashboard.Halaman-super-admin', [
                 'chart' => $chart->build(),
                 'grafikAgama' => $chart->grafikAgama(),
                 'grafikJenisKelamin' => $chart->grafikJenisKelamin(),
                 'grafikPangkat' => $chart->grafikPangkat(),
                 'dataPegawai' => $dataPegawai,
-                'unreadNotifications' => $unreadNotifications,
-                'readNotifications' => $readNotifications,
                 'dataPNS' => $dataPNS,
                 'dataCPNS' => $dataCPNS,
                 'dataPPPK' => $dataPPPK,
-                'datanonASN' => $datanonASN
+                'datanonASN' => $datanonASN,
+                'unreadNotifications' => $unreadNotifications,
+                'readNotifications' => $readNotifications
             ]);
         }
         elseif ($user->role_name === 'User')
         {
+            $tampilanPerusahaan = CompanySettings::where('id',1)->first();
+
             $user = auth()->user();
             $role = $user->role_name;
-            
             $unreadNotifications = Notification::where('notifiable_id', $user->id)
                 ->where('notifiable_type', get_class($user))
                 ->whereNull('read_at')
@@ -136,8 +138,7 @@ class HomeController extends Controller
                 ->where('notifiable_type', get_class($user))
                 ->whereNotNull('read_at')
                 ->get();
-
-            $tampilanPerusahaan = CompanySettings::where('id',1)->first();
+            
             return view('dashboard.Halaman-user',compact('tampilanPerusahaan', 'unreadNotifications', 'readNotifications'));
         }
     }

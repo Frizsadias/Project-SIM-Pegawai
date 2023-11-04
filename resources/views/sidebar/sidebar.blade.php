@@ -11,20 +11,23 @@
                 </li>
 
                 @if (Auth::user()->role_name == 'Admin')
-
-                <li class="{{set_active(['manajemen/pengguna','riwayat/aktivitas','riwayat/aktivitas/otentikasi'])}} submenu">
-                    <a href="#" class="{{ set_active(['manajemen/pengguna','riwayat/aktivitas','riwayat/aktivitas/otentikasi']) ? 'noti-dot' : '' }}">
-                        <i class="la la-server"></i>
-                        <span> Manajemen Sistem</span> <span class="menu-arrow"></span>
-                    </a>
-                    <ul style="{{ request()->is('/*') ? 'display: block;' : 'display: none;' }}">
-                    <li><a class="{{set_active(['manajemen/pengguna','manajemen/pengguna'])}}" href="{{ route('manajemen-pengguna') }}"> <span>Daftar Pengguna</span></a></li>
-                    <li><a class="{{set_active(['riwayat/aktivitas','riwayat/aktivitas'])}}" href="{{ route('riwayat-aktivitas') }}"> <span>Riwayat Aktivitas</span></a></li>
-                    <li><a class="{{set_active(['riwayat/aktivitas/otentikasi','riwayat/aktivitas/otentikasi'])}}" href="{{ route('riwayat-aktivitas-otentikasi') }}"> <span>Aktivitas Pengguna</span></a></li>
-                    </ul>
-                </li>
-
-
+                    <li class="{{set_active(['manajemen/pengguna','riwayat/aktivitas','riwayat/aktivitas/otentikasi'])}} submenu">
+                        <a href="#" class="{{ set_active(['manajemen/pengguna','riwayat/aktivitas','riwayat/aktivitas/otentikasi']) ? 'noti-dot' : '' }}">
+                            <i class="la la-server"></i>
+                            <span> Manajemen Sistem</span> <span class="menu-arrow"></span>
+                        </a>
+                        <ul style="{{ request()->is('/*') ? 'display: block;' : 'display: none;' }}">
+                        <li><a class="{{set_active(['manajemen/pengguna','manajemen/pengguna'])}}" href="{{ route('manajemen-pengguna') }}"> <span>Daftar Pengguna</span></a></li>
+                        <li><a class="{{set_active(['riwayat/aktivitas','riwayat/aktivitas'])}}" href="{{ route('riwayat-aktivitas') }}"> <span>Riwayat Aktivitas</span></a></li>
+                        <li><a class="{{set_active(['riwayat/aktivitas/otentikasi','riwayat/aktivitas/otentikasi'])}}" href="{{ route('riwayat-aktivitas-otentikasi') }}"> <span>Aktivitas Pengguna</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="{{ set_active(['peta-jabatan']) }}">
+                        <a href="{{ route('peta-jabatan') }}" class="{{ set_active(['peta-jabatan']) ? 'noti-dot' : '' }}">
+                            <i class="la la-sitemap"></i>
+                            <span> Peta Jabatan</span>
+                        </a>
+                    </li>
                     <li class="menu-title"> <span>Data Referensi </span>
                     <li class="{{ request()->routeIs('referensi-agama') ? 'active' : '' }}">
                         <a href="{{ route('referensi-agama') }}"
@@ -47,7 +50,7 @@
                     </li>
                     <li class="{{ request()->routeIs('referensi-pangkat') ? 'active' : '' }}">
                         <a href="{{ route('referensi-pangkat') }}" class="{{ request()->routeIs('referensi-pangkat') ? 'noti-dot' : '' }}">
-                            <i class="la la-sitemap"></i>
+                            <i class="la la-sort-amount-up"></i>
                             <span>Pangkat</span>
                         </a>
                     </li>
@@ -286,16 +289,17 @@
                 @endif
 
                 @if (Auth::user()->role_name == 'Kepala Ruang IGD Terpadu' || Auth::user()->role_name == 'Kepala Ruang Bedah Central'
-            || Auth::user()->role_name == 'Kepala Ruang RR' || Auth::user()->role_name == 'Kepala Ruang Rawat Jalan'
-            || Auth::user()->role_name == 'Kepala Ruang Hemodialisis (HD)' || Auth::user()->role_name == 'Kepala Ruang Kebidanan'
-            || Auth::user()->role_name == 'Kepala Ruang Pinang' || Auth::user()->role_name == 'Kepala Ruang Perinatologi'
-            || Auth::user()->role_name == 'Kepala Ruang Cemara' || Auth::user()->role_name == 'Kepala Ruang HCU Bougenvill'
-            || Auth::user()->role_name == 'Kepala Ruang ICU' || Auth::user()->role_name == 'Kepala Ruang ICCU'
-            || Auth::user()->role_name == 'Kepala Ruang Asoka' || Auth::user()->role_name == 'Kepala Ruang Wijiaya Kusuma'
-            || Auth::user()->role_name == 'Kepala Ruang Paviliun' || Auth::user()->role_name == 'Kepala Ruang Palem/PICU'
-            || Auth::user()->role_name == 'Kepala Ruang Unit Stroke' || Auth::user()->role_name == 'Kepala Ruang Bidara/Ranap Jiwa'
-            || Auth::user()->role_name == 'Kepala Ruang Lain-Lain/Non Perawatan' || Auth::user()->role_name == 'Kepala Ruang Mawar'
-            || Auth::user()->role_name == 'Kepala Ruang Flamboyan')
+                    || Auth::user()->role_name == 'Kepala Ruang RR' || Auth::user()->role_name == 'Kepala Ruang Rawat Jalan'
+                    || Auth::user()->role_name == 'Kepala Ruang Hemodialisis (HD)' || Auth::user()->role_name == 'Kepala Ruang Kebidanan'
+                    || Auth::user()->role_name == 'Kepala Ruang Pinang' || Auth::user()->role_name == 'Kepala Ruang Perinatologi'
+                    || Auth::user()->role_name == 'Kepala Ruang Cemara' || Auth::user()->role_name == 'Kepala Ruang HCU Bougenvill'
+                    || Auth::user()->role_name == 'Kepala Ruang ICU' || Auth::user()->role_name == 'Kepala Ruang ICCU'
+                    || Auth::user()->role_name == 'Kepala Ruang Asoka' || Auth::user()->role_name == 'Kepala Ruang Wijiaya Kusuma'
+                    || Auth::user()->role_name == 'Kepala Ruang Paviliun' || Auth::user()->role_name == 'Kepala Ruang Palem/PICU'
+                    || Auth::user()->role_name == 'Kepala Ruang Unit Stroke' || Auth::user()->role_name == 'Kepala Ruang Bidara/Ranap Jiwa'
+                    || Auth::user()->role_name == 'Kepala Ruang Lain-Lain/Non Perawatan' || Auth::user()->role_name == 'Kepala Ruang Mawar'
+                    || Auth::user()->role_name == 'Kepala Ruang Flamboyan' || Auth::user()->role_name == 'Kepala Ruang Pinus'
+                    || Auth::user()->role_name == 'Kepala Ruang Pavilium Anggrek')
                 
                     <li class="menu-title"> <span>Layanan Kepegawaian </span> </li>
                     <li class="{{ request()->routeIs('layanan-cuti-kepala-ruangan') ? 'active' : '' }}">

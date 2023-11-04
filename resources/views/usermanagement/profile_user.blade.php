@@ -23,10 +23,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="profile-view">
-                                <div class="profile-img-wrap">
+                                {{-- <div class="profile-img-wrap">
                                     <div class="profile-img">
                                         <a href="#">
                                             <img alt="" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                        </a>
+                                    </div>
+                                </div> --}}
+                                <div class="profile-img-wrap">
+                                    <div class="profile-img">
+                                        <a href="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" data-fancybox="foto-profil">
+                                            <img alt="{{ Auth::user()->name }}" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}">
                                         </a>
                                     </div>
                                 </div>
@@ -417,11 +424,19 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="profile-img-wrap edit-img">
+                                        {{-- <div class="profile-img-wrap edit-img">
                                             <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file" id="image" name="images">
+                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="profile-img-wrap edit-img">
+                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <div class="fileupload btn">
+                                                <span class="btn-text">Unggah</span>
+                                                <input class="upload" type="file" id="image" name="images" onchange="previewImage(event)">
                                                 <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
                                             </div>
                                         </div>
@@ -461,11 +476,19 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="profile-img-wrap edit-img">
+                                        {{-- <div class="profile-img-wrap edit-img">
                                             <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file" id="image" name="images">
+                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="profile-img-wrap edit-img">
+                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <div class="fileupload btn">
+                                                <span class="btn-text">Unggah</span>
+                                                <input class="upload" type="file" id="image" name="images" onchange="previewImage(event)">
                                                 <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
                                             </div>
                                         </div>
@@ -492,33 +515,58 @@
         @endif
         <!-- /Page Content -->
     </div>
-@section('script')
-    <script>
-        $('#validation').validate({
-            rules: {
-                name_primary: 'required',
-                relationship_primary: 'required',
-                phone_primary: 'required',
-                phone_2_primary: 'required',
-                name_secondary: 'required',
-                relationship_secondary: 'required',
-                phone_secondary: 'required',
-                phone_2_secondary: 'required',
-            },
-            messages: {
-                name_primary: 'Please input name primary',
-                relationship_primary: 'Please input relationship primary',
-                phone_primary: 'Please input phone primary',
-                phone_2_primary: 'Please input phone 2 primary',
-                name_secondary: 'Please input name secondary',
-                relationship_secondary: 'Please input relationship secondary',
-                phone_secondaryr: 'Please input phone secondary',
-                phone_2_secondary: 'Please input phone 2 secondary',
-            },
-            submitHandler: function(form) {
-                form.submit();
+    @section('script')
+        <script>
+            $('#validation').validate({
+                rules: {
+                    name_primary: 'required',
+                    relationship_primary: 'required',
+                    phone_primary: 'required',
+                    phone_2_primary: 'required',
+                    name_secondary: 'required',
+                    relationship_secondary: 'required',
+                    phone_secondary: 'required',
+                    phone_2_secondary: 'required',
+                },
+                messages: {
+                    name_primary: 'Please input name primary',
+                    relationship_primary: 'Please input relationship primary',
+                    phone_primary: 'Please input phone primary',
+                    phone_2_primary: 'Please input phone 2 primary',
+                    name_secondary: 'Please input name secondary',
+                    relationship_secondary: 'Please input relationship secondary',
+                    phone_secondaryr: 'Please input phone secondary',
+                    phone_2_secondary: 'Please input phone 2 secondary',
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+        </script>
+
+        <script>
+            function previewImage(event) {
+                const input = event.target;
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('imagePreview').src = e.target.result;
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
             }
-        });
-    </script>
-@endsection
+        </script>
+
+        <!-- FancyBox Foto Profil -->
+        <script>
+            $(document).ready(function() {
+                $('[data-fancybox="foto-profil"]').fancybox({
+                });
+            });
+        </script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+        <!-- /FancyBox Foto Profil -->
+
+    @endsection
 @endsection
