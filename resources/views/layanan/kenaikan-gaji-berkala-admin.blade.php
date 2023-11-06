@@ -197,14 +197,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Lama</label>
-                                    <input type="text" class="form-control" name="gapok_lama"
+                                    <input type="number" class="form-control" name="gapok_lama"
                                         placeholder="Gapok Lama">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Baru</label>
-                                    <input type="text" class="form-control" name="gapok_baru"
+                                    <input type="number" class="form-control" name="gapok_baru"
                                         placeholder="Gapok Baru">
                                 </div>
                             </div>
@@ -298,14 +298,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Lama</label>
-                                    <input type="text" class="form-control" name="gapok_lama" id="e_gapok_lama"
+                                    <input type="number" class="form-control" name="gapok_lama" id="e_gapok_lama"
                                         placeholder="Gaji Pokok Lama" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Baru</label>
-                                    <input type="text" class="form-control" name="gapok_baru" id="e_gapok_baru"
+                                    <input type="number" class="form-control" name="gapok_baru" id="e_gapok_baru"
                                         placeholder="Gaji Pokok Baru" value="">
                                 </div>
                             </div>
