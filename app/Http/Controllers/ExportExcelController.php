@@ -291,7 +291,7 @@ class ExportExcelController extends Controller
         $sheet->setCellValue('J1', 'Jenis Kelamin');
         $sheet->setCellValue('K1', 'Agama');
         $sheet->setCellValue('L1', 'Jenis Dokumen');
-        $sheet->setCellValue('M1', 'No Dokumen');
+        $sheet->setCellValue('M1', 'Nomor Induk Kependudukan');
         $sheet->setCellValue('N1', 'Kelurahan');
         $sheet->setCellValue('O1', 'Kecamatan');
         $sheet->setCellValue('P1', 'Kota');

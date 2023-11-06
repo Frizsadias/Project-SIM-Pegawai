@@ -87,7 +87,10 @@ class SIPController extends Controller
             ->where('sip_spk_dokter.sip_spk_jabatan', 'Dokter')
             ->where('sip_spk_dokter.jenis_dokumen', 'SIP Dokter')
             ->get();
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->where('role_name', '=', 'User')
+        ->get();
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
@@ -269,7 +272,10 @@ class SIPController extends Controller
             ->where('sip_spk_dokter.sip_spk_jabatan', 'dokter')
             ->where('sip_spk_dokter.jenis_dokumen', 'SPK Dokter')
             ->get();
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->where('role_name', '=', 'User')
+        ->get();
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-dokter-admin', compact('data_spk_dokter', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
@@ -451,7 +457,10 @@ class SIPController extends Controller
             ->where('sip_spk_dokter.sip_spk_jabatan', 'perawat')
             ->where('sip_spk_dokter.jenis_dokumen', 'SPK Perawat')
             ->get();
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->where('role_name', '=', 'User')
+        ->get();
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         return view('transaksi.spk-perawat-admin', compact('data_spk_perawat', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
@@ -633,7 +642,10 @@ class SIPController extends Controller
             ->where('sip_spk_dokter.sip_spk_jabatan', 'nakes lain')
             ->where('sip_spk_dokter.jenis_dokumen', 'SPK Nakes Lain')
             ->get();
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->where('role_name', '=', 'User')
+        ->get();
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-nakes-lain-admin', compact('data_spk_nakeslain', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }

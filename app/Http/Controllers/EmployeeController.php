@@ -22,6 +22,7 @@ use App\Models\LayananCuti;
 use App\Models\Notification;
 use App\Models\ReferensiPangkat;
 use App\Models\sipDokter;
+use App\Models\Sumpah;
 use Carbon\Carbon;
 use Session;
 
@@ -149,17 +150,6 @@ class EmployeeController extends Controller
 
     public function cardRuangan(Request $request)
     {
-        $user = auth()->user();
-        $role = $user->role_name;
-        $unreadNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNull('read_at')
-            ->get();
-
-        $readNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNotNull('read_at')
-            ->get();
 
         $users = DB::table('users')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
@@ -175,9 +165,22 @@ class EmployeeController extends Controller
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
 
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $superAdmin = User::where('role_name', 'Kepala Ruangan')->first();
         if ($superAdmin) {
             $kepalaRuang = User::where('role_name', 'User')
+                ->join('cuti', 'users.user_id', 'cuti.user_id')
                 ->where('ruangan', $superAdmin->ruangan)
                 ->get();
                 
@@ -197,17 +200,6 @@ class EmployeeController extends Controller
     /** Daftar Ruangan List */
     public function listRuangan()
     {
-        $user = auth()->user();
-        $role = $user->role_name;
-        $unreadNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNull('read_at')
-            ->get();
-
-        $readNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNotNull('read_at')
-            ->get();
 
         $users = DB::table('users')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
@@ -222,9 +214,22 @@ class EmployeeController extends Controller
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
 
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $superAdmin = User::where('role_name', 'Kepala Ruangan')->first();
         if ($superAdmin) {
             $kepalaRuang = User::where('role_name', 'User')
+                ->join('cuti', 'users.user_id', 'cuti.user_id')
                 ->where('ruangan', $superAdmin->ruangan)
                 ->get();
                     
@@ -782,6 +787,8 @@ class EmployeeController extends Controller
     /** page agama */
     public function indexAgama()
     {
+        $agama = DB::table('agama_id')->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -793,8 +800,7 @@ class EmployeeController extends Controller
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
             ->get();
-
-        $agama = DB::table('agama_id')->get();
+        
         return view('employees.agama', compact('agama', 'unreadNotifications', 'readNotifications'));
     }
 
@@ -807,7 +813,19 @@ class EmployeeController extends Controller
         ->where('agama', 'like', '%' . $keyword . '%')
             ->get();
 
-        return view('employees.agama', compact('agama'));
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.agama', compact('agama', 'unreadNotifications', 'readNotifications'));
     }
 
     /** save record agama */
@@ -908,7 +926,19 @@ class EmployeeController extends Controller
         ->where('kedudukan', 'like', '%' . $keyword . '%')
             ->get();
 
-        return view('employees.kedudukan', compact('kedudukan'));
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.kedudukan', compact('kedudukan', 'unreadNotifications', 'readNotifications'));
     }
 
     /** save record kedudukan */
@@ -1007,7 +1037,19 @@ class EmployeeController extends Controller
         ->where('pendidikan', 'like', '%' . $keyword . '%')
             ->get();
 
-        return view('employees.pendidikan', compact('pendidikan'));
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.pendidikan', compact('pendidikan', 'unreadNotifications', 'readNotifications'));
     }
 
 
@@ -1117,7 +1159,19 @@ class EmployeeController extends Controller
         ->where('ruangan', 'like', '%' . $keyword . '%')
             ->get();
 
-        return view('employees.ruangan', compact('ruangan'));
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.ruangan', compact('ruangan', 'unreadNotifications', 'readNotifications'));
     }
 
     /** save record ruangan */
@@ -1125,6 +1179,7 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'ruangan' => 'required|string|max:255',
+            'jumlah_tempat_tidur' => 'nullable|string|max:255',
         ]);
 
         DB::beginTransaction();
@@ -1134,6 +1189,7 @@ class EmployeeController extends Controller
             if ($ruangan === null) {
                 $ruangan = new ruangan;
                 $ruangan->ruangan = $request->ruangan;
+                $ruangan->jumlah_tempat_tidur = $request->jumlah_tempat_tidur;
                 $ruangan->save();
 
                 DB::commit();
@@ -1160,6 +1216,7 @@ class EmployeeController extends Controller
             $ruangan = [
                 'id'    => $request->id,
                 'ruangan' => $request->ruangan,
+                'jumlah_tempat_tidur' => $request->jumlah_tempat_tidur,
             ];
             ruangan::where('id', $request->id)->update($ruangan);
 
@@ -1184,6 +1241,117 @@ class EmployeeController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data ruangan gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** page sumpah */
+    public function indexSumpah()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $sumpah = DB::table('sumpah_id')->get();
+        return view('employees.sumpah', compact('sumpah', 'unreadNotifications', 'readNotifications'));
+    }
+
+    /** search for sumpah */
+    public function searchSumpah(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $sumpah = DB::table('sumpah_id')
+        ->where('sumpah', 'like', '%' . $keyword . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.sumpah', compact('sumpah', 'unreadNotifications', 'readNotifications'));
+    }
+
+    /** save record sumpah */
+    public function saveRecordSumpah(Request $request)
+    {
+        $request->validate([
+            'sumpah' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $sumpah = Sumpah::where('sumpah', $request->sumpah)->first();
+            if ($sumpah === null) {
+                $sumpah = new Sumpah();
+                $sumpah->sumpah = $request->sumpah;
+                $sumpah->save();
+
+                DB::commit();
+                Toastr::success('Data sumpah telah ditambah :)', 'Sukses');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data sumpah telah tersedia :(', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data sumpah gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** update record sumpah */
+    public function updateRecordSumpah(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $sumpah = [
+                'id'    => $request->id,
+                'sumpah' => $request->sumpah,
+            ];
+            sumpah::where('id', $request->id)->update($sumpah);
+
+            DB::commit();
+            Toastr::success('Data sumpah berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data sumpah gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** delete record sumpah */
+    public function deleteRecordSumpah(Request $request)
+    {
+        try {
+
+            sumpah::destroy($request->id);
+            Toastr::success('Data sumpah berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data sumpah gagal dihapus :)', 'Error');
             return redirect()->back();
         }
     }
@@ -1216,7 +1384,19 @@ class EmployeeController extends Controller
         ->where('jenis_pegawai', 'like', '%' . $keyword . '%')
             ->get();
 
-        return view('employees.status', compact('jenis_pegawai'));
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.status', compact('jenis_pegawai', 'unreadNotifications', 'readNotifications'));
     }
 
     /** save record status */
@@ -1315,7 +1495,19 @@ class EmployeeController extends Controller
         ->where('ref_pangkat', 'like', '%' . $keyword . '%')
             ->get();
 
-        return view('employees.referensi-pangkat', compact('ref_pangkat'));
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.referensi-pangkat', compact('ref_pangkat', 'unreadNotifications', 'readNotifications'));
     }
 
     /** save record pangkat */

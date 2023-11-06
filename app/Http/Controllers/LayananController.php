@@ -8,7 +8,9 @@ use App\Models\Notification;
 use App\Models\PosisiJabatan;
 use App\Models\KenaikanGajiBerkala;
 use App\Models\KontrakKerja;
+use App\Models\perjanjianKinerja;
 use App\Models\PerjanjianKontrak;
+use App\Models\SuratTandaRegistrasi;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
@@ -59,11 +61,19 @@ class LayananController extends Controller
             ->get();
 
         $data_cuti_pdf = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-                'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
-            ->whereIn('id', function ($query)
-            {
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('cuti')
                     ->whereColumn('cuti.user_id', 'cuti.user_id')
@@ -112,9 +122,17 @@ class LayananController extends Controller
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
             ->get();
-            
-        return view('layanan.layanan-cuti', compact('data_cuti', 'data_profilcuti', 'data_cuti_pdf',
-            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+
+        return view('layanan.layanan-cuti', compact(
+            'data_cuti',
+            'data_profilcuti',
+            'data_cuti_pdf',
+            'unreadNotifications',
+            'readNotifications',
+            'sisaCutiThisYear',
+            'sisaCutiLastYear',
+            'sisaCutiTwoYearsAgo'
+        ));
     }
     /** /Daftar Layanan Cuti User */
 
@@ -137,11 +155,19 @@ class LayananController extends Controller
             ->get();
 
         $data_cuti_pdf = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-                'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
-            ->whereIn('id', function ($query)
-            {
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('cuti')
                     ->whereColumn('cuti.user_id', 'cuti.user_id')
@@ -150,8 +176,8 @@ class LayananController extends Controller
             ->get();
 
         $userList = DB::table('profil_pegawai')
-            ->join('users','profil_pegawai.user_id','users.user_id')
-            ->select('users.*','users.role_name', 'profil_pegawai.nip')
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
             ->where('role_name', '=', 'User')
             ->get();
 
@@ -197,10 +223,218 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.layanan-cuti-admin', compact('data_cuti', 'data_cuti_pdf', 'userList',
-            'unreadNotifications','readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+        return view('layanan.layanan-cuti-admin', compact(
+            'data_cuti',
+            'data_cuti_pdf',
+            'userList',
+            'unreadNotifications',
+            'readNotifications',
+            'sisaCutiThisYear',
+            'sisaCutiLastYear',
+            'sisaCutiTwoYearsAgo'
+        ));
     }
     /** /Daftar Layanan Cuti Admin */
+
+    /** Daftar Layanan Cuti Eselon 3 */
+    public function tampilanCutiPegawaiEselon3()
+    {
+        $data_cuti = DB::table('cuti')
+        ->select(
+            'cuti.*',
+            'cuti.user_id',
+            'cuti.name',
+            'cuti.nip',
+            'cuti.jenis_cuti',
+            'cuti.lama_cuti',
+            'cuti.tanggal_mulai_cuti',
+            'cuti.tanggal_selesai_cuti',
+            'cuti.dokumen_kelengkapan',
+            'cuti.status_pengajuan'
+        )
+            ->get();
+
+        $data_cuti_pdf = DB::table('cuti')
+        ->select(
+            'cuti.*',
+            'cuti.user_id',
+            'cuti.name',
+            'cuti.nip',
+            'cuti.jenis_cuti',
+            'cuti.lama_cuti',
+            'cuti.tanggal_mulai_cuti',
+            'cuti.tanggal_selesai_cuti',
+            'cuti.dokumen_kelengkapan',
+            'cuti.status_pengajuan'
+        )
+        ->whereIn('id', function ($query) {
+            $query->select(DB::raw('MAX(id)'))
+            ->from('cuti')
+            ->whereColumn('cuti.user_id', 'cuti.user_id')
+            ->groupBy('cuti.user_id');
+        })
+            ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        // $totalLamaCuti = LayananCuti::sum('lama_cuti');
+        // $sisaCuti = 18 - $totalLamaCuti;
+        //     if ($totalLamaCuti >= 18) {
+        //         $sisaCuti = 0;
+        //     }
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.layanan-cuti-eselon3', compact(
+            'data_cuti',
+            'data_cuti_pdf',
+            'userList',
+            'unreadNotifications',
+            'readNotifications',
+            'sisaCutiThisYear',
+            'sisaCutiLastYear',
+            'sisaCutiTwoYearsAgo'
+        ));
+    }
+    /** /Daftar Layanan Cuti Eselon 3 */
+
+    /** Daftar Layanan Cuti Eselon 4 */
+    public function tampilanCutiPegawaiEselon4()
+    {
+        $data_cuti = DB::table('cuti')
+        ->select(
+            'cuti.*',
+            'cuti.user_id',
+            'cuti.name',
+            'cuti.nip',
+            'cuti.jenis_cuti',
+            'cuti.lama_cuti',
+            'cuti.tanggal_mulai_cuti',
+            'cuti.tanggal_selesai_cuti',
+            'cuti.dokumen_kelengkapan',
+            'cuti.status_pengajuan'
+        )
+            ->get();
+
+        $data_cuti_pdf = DB::table('cuti')
+        ->select(
+            'cuti.*',
+            'cuti.user_id',
+            'cuti.name',
+            'cuti.nip',
+            'cuti.jenis_cuti',
+            'cuti.lama_cuti',
+            'cuti.tanggal_mulai_cuti',
+            'cuti.tanggal_selesai_cuti',
+            'cuti.dokumen_kelengkapan',
+            'cuti.status_pengajuan'
+        )
+        ->whereIn('id', function ($query) {
+            $query->select(DB::raw('MAX(id)'))
+            ->from('cuti')
+            ->whereColumn('cuti.user_id', 'cuti.user_id')
+            ->groupBy('cuti.user_id');
+        })
+            ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        // $totalLamaCuti = LayananCuti::sum('lama_cuti');
+        // $sisaCuti = 18 - $totalLamaCuti;
+        //     if ($totalLamaCuti >= 18) {
+        //         $sisaCuti = 0;
+        //     }
+
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.layanan-cuti-eselon4', compact(
+            'data_cuti',
+            'data_cuti_pdf',
+            'userList',
+            'unreadNotifications',
+            'readNotifications',
+            'sisaCutiThisYear',
+            'sisaCutiLastYear',
+            'sisaCutiTwoYearsAgo'
+        ));
+    }
+    /** /Daftar Layanan Cuti Eselon 4 */
 
     /** Daftar Layanan Cuti Super Admin */
     public function tampilanCutiPegawaiKepalaRuangan()
@@ -221,11 +455,19 @@ class LayananController extends Controller
         //     ->get();
 
         $data_cuti_pdf = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-                'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
-            ->whereIn('id', function ($query)
-            {
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('cuti')
                     ->whereColumn('cuti.user_id', 'cuti.user_id')
@@ -234,8 +476,8 @@ class LayananController extends Controller
             ->get();
 
         $userList = DB::table('profil_pegawai')
-            ->join('users','profil_pegawai.user_id','users.user_id')
-            ->select('users.*','users.role_name', 'profil_pegawai.nip')
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
             ->where('role_name', '=', 'User')
             ->get();
 
@@ -284,21 +526,20 @@ class LayananController extends Controller
         $superAdmin = User::where('role_name', 'Kepala Ruang Pinus')->first();
         if ($superAdmin) {
             $data_cuti = User::where('role_name', 'User')
-                ->join('cuti','users.user_id','cuti.user_id')
+                ->join('cuti', 'users.user_id', 'cuti.user_id')
                 ->where('ruangan', $superAdmin->ruangan)
                 ->get();
-        
-        return view('layanan.layanan-cuti-kepala-ruangan', [
-            'data_cuti' => $data_cuti,
-            'data_cuti_pdf' => $data_cuti_pdf,
-            'userList' => $userList,
-            'unreadNotifications' => $unreadNotifications,
-            'readNotifications' => $readNotifications,
-            'sisaCutiThisYear' => $sisaCutiThisYear,
-            'sisaCutiLastYear' => $sisaCutiLastYear,
-            'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo,
+
+            return view('layanan.layanan-cuti-kepala-ruangan', [
+                'data_cuti' => $data_cuti,
+                'data_cuti_pdf' => $data_cuti_pdf,
+                'userList' => $userList,
+                'unreadNotifications' => $unreadNotifications,
+                'readNotifications' => $readNotifications,
+                'sisaCutiThisYear' => $sisaCutiThisYear,
+                'sisaCutiLastYear' => $sisaCutiLastYear,
+                'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo,
             ]);
-            
         } else {
             return view('layanan.layanan-cuti-kepala-ruangan', ['data_cuti' => []]);
         }
@@ -404,7 +645,7 @@ class LayananController extends Controller
                 $request->file('dokumen_kelengkapan')->move(public_path('assets/DokumenKelengkapan'), $dokumen_kelengkapan);
                 $update['dokumen_kelengkapan'] = $dokumen_kelengkapan;
             }
-            
+
             if ($request->hasFile('dokumen_rekomendasi')) {
                 $dokumen_rekomendasi = time() . '.' . $request->file('dokumen_rekomendasi')->getClientOriginalExtension();
                 $request->file('dokumen_rekomendasi')->move(public_path('assets/DokumenRekomendasi'), $dokumen_rekomendasi);
@@ -432,23 +673,23 @@ class LayananController extends Controller
         $status_pengajuan = $request->input('status_pengajuan');
 
         $data_cuti = DB::table('cuti')
-        ->select(
-            'cuti.*',
-            'cuti.user_id',
-            'cuti.name',
-            'cuti.nip',
-            'cuti.jenis_cuti',
-            'cuti.lama_cuti',
-            'cuti.tanggal_mulai_cuti',
-            'cuti.tanggal_selesai_cuti',
-            'cuti.dokumen_kelengkapan',
-            'cuti.status_pengajuan'
-        )
-        ->where('cuti.user_id', '=', $user_id)
-        ->where('cuti.name', 'like', '%' . $name . '%')
-        ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
-        ->where('cuti.status_pengajuan', 'like', '%' . $status_pengajuan . '%')
-        ->get();
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->where('cuti.user_id', '=', $user_id)
+            ->where('cuti.name', 'like', '%' . $name . '%')
+            ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
+            ->where('cuti.status_pengajuan', 'like', '%' . $status_pengajuan . '%')
+            ->get();
 
 
         $data_profilcuti = DB::table('profil_pegawai')
@@ -493,7 +734,7 @@ class LayananController extends Controller
         if ($totalLamaCutiTwoYearsAgo >= 18) {
             $sisaCutiTwoYearsAgo = 0;
         }
-        
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -506,8 +747,16 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.layanan-cuti', compact('pencarianDataCuti', 'data_cuti', 'data_profilcuti',
-            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+        return view('layanan.layanan-cuti', compact(
+            'pencarianDataCuti',
+            'data_cuti',
+            'data_profilcuti',
+            'unreadNotifications',
+            'readNotifications',
+            'sisaCutiThisYear',
+            'sisaCutiLastYear',
+            'sisaCutiTwoYearsAgo'
+        ));
     }
     /** /Search Layanan Cuti */
 
@@ -537,11 +786,19 @@ class LayananController extends Controller
             ->get();
 
         $data_cuti_pdf = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-                'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
-            ->whereIn('id', function ($query)
-            {
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('cuti')
                     ->whereColumn('cuti.user_id', 'cuti.user_id')
@@ -592,9 +849,17 @@ class LayananController extends Controller
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
             ->get();
-        
-        return view('layanan.layanan-cuti-admin', compact('data_cuti', 'userList', 'data_cuti_pdf',
-            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+
+        return view('layanan.layanan-cuti-admin', compact(
+            'data_cuti',
+            'userList',
+            'data_cuti_pdf',
+            'unreadNotifications',
+            'readNotifications',
+            'sisaCutiThisYear',
+            'sisaCutiLastYear',
+            'sisaCutiTwoYearsAgo'
+        ));
     }
     /** /Search Layanan Cuti Admin */
 
@@ -624,11 +889,19 @@ class LayananController extends Controller
             ->get();
 
         $data_cuti_pdf = DB::table('cuti')
-            ->select('cuti.*', 'cuti.user_id', 'cuti.name', 'cuti.nip', 'cuti.jenis_cuti',
-                'cuti.lama_cuti', 'cuti.tanggal_mulai_cuti', 'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan', 'cuti.status_pengajuan')
-            ->whereIn('id', function ($query)
-            {
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('cuti')
                     ->whereColumn('cuti.user_id', 'cuti.user_id')
@@ -679,9 +952,17 @@ class LayananController extends Controller
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
             ->get();
-        
-        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'userList', 'data_cuti_pdf',
-            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+
+        return view('layanan.layanan-cuti-kepala-ruangan', compact(
+            'data_cuti',
+            'userList',
+            'data_cuti_pdf',
+            'unreadNotifications',
+            'readNotifications',
+            'sisaCutiThisYear',
+            'sisaCutiLastYear',
+            'sisaCutiTwoYearsAgo'
+        ));
     }
     /** /Search Layanan Cuti Super Admin */
 
@@ -690,23 +971,23 @@ class LayananController extends Controller
     {
         $resource = LayananCuti::find($id);
 
-        if($request->has('status_pengajuan')) {
+        if ($request->has('status_pengajuan')) {
             $resource->status_pengajuan = $request->input('status_pengajuan');
         }
 
-        if($request->has('persetujuan_administrasi')) {
+        if ($request->has('persetujuan_administrasi')) {
             $resource->persetujuan_administrasi = $request->input('persetujuan_administrasi');
         }
 
-        if($request->has('persetujuan_eselon3')) {
+        if ($request->has('persetujuan_eselon3')) {
             $resource->persetujuan_eselon3 = $request->input('persetujuan_eselon3');
         }
 
-        if($request->has('persetujuan_eselon4')) {
+        if ($request->has('persetujuan_eselon4')) {
             $resource->persetujuan_eselon4 = $request->input('persetujuan_eselon4');
         }
 
-        if($request->has('persetujuan_kepalaruangan')) {
+        if ($request->has('persetujuan_kepalaruangan')) {
             $resource->persetujuan_kepalaruangan = $request->input('persetujuan_kepalaruangan');
         }
 
@@ -721,29 +1002,29 @@ class LayananController extends Controller
     {
         // Ambil semua ID yang ingin Anda cetak
         $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
-            $cuti = LayananCuti::find($lastLayananCutiId);
-            $profilPegawai = $cuti->profil_pegawai;
-            $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
-            $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
-            $jenis_cuti = $profilPegawai ? $profilPegawai->jenis_cuti : "Tidak Ada Jenis Cuti";
+        $cuti = LayananCuti::find($lastLayananCutiId);
+        $profilPegawai = $cuti->profil_pegawai;
+        $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
+        $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
+        $jenis_cuti = $profilPegawai ? $profilPegawai->jenis_cuti : "Tidak Ada Jenis Cuti";
 
         $lastPosisiJabatanId = PosisiJabatan::latest('id')->first()->id;
-            $posisi = PosisiJabatan::find($lastPosisiJabatanId);
-                $posisiJabatan = $posisi->posisi_jabatan;
-                $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
-                $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
+        $posisi = PosisiJabatan::find($lastPosisiJabatanId);
+        $posisiJabatan = $posisi->posisi_jabatan;
+        $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
+        $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
 
-            $pdf = PDF::loadView('pdf.surat-cuti', [
-                'cuti' => $cuti,
-                'posisi' => $posisi,
-                'nip' => $nip,
-                'name' => $name,
-                'jabatan' => $jabatan,
-                'gol_ruang_awal' => $gol_ruang_awal,
-                'jenis_cuti' => $jenis_cuti
-            ]);
+        $pdf = PDF::loadView('pdf.surat-cuti', [
+            'cuti' => $cuti,
+            'posisi' => $posisi,
+            'nip' => $nip,
+            'name' => $name,
+            'jabatan' => $jabatan,
+            'gol_ruang_awal' => $gol_ruang_awal,
+            'jenis_cuti' => $jenis_cuti
+        ]);
 
-            return $pdf->stream('surat-cuti-' . $cuti->name . '.pdf');
+        return $pdf->stream('surat-cuti-' . $cuti->name . '.pdf');
         // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
         // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
@@ -783,30 +1064,30 @@ class LayananController extends Controller
 
         // Ambil semua ID yang ingin Anda cetak
         $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
-            $cuti = LayananCuti::find($lastLayananCutiId);
-            $profilPegawai = $cuti->profil_pegawai;
-            $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
-            $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
+        $cuti = LayananCuti::find($lastLayananCutiId);
+        $profilPegawai = $cuti->profil_pegawai;
+        $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
+        $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
 
         $lastPosisiJabatanId = PosisiJabatan::latest('id')->first()->id;
-            $posisi = PosisiJabatan::find($lastPosisiJabatanId);
-                $posisiJabatan = $posisi->posisi_jabatan;
-                $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
-                $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
+        $posisi = PosisiJabatan::find($lastPosisiJabatanId);
+        $posisiJabatan = $posisi->posisi_jabatan;
+        $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
+        $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
 
-            $pdf = PDF::loadView('pdf.kelengkapan-cuti', [
-                'cuti' => $cuti,
-                'posisi' => $posisi,
-                'nip' => $nip,
-                'name' => $name,
-                'jabatan' => $jabatan,
-                'gol_ruang_awal' => $gol_ruang_awal,
-                'sisaCutiThisYear' => $sisaCutiThisYear,
-                'sisaCutiLastYear' => $sisaCutiLastYear,
-                'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo
-            ]);
+        $pdf = PDF::loadView('pdf.kelengkapan-cuti', [
+            'cuti' => $cuti,
+            'posisi' => $posisi,
+            'nip' => $nip,
+            'name' => $name,
+            'jabatan' => $jabatan,
+            'gol_ruang_awal' => $gol_ruang_awal,
+            'sisaCutiThisYear' => $sisaCutiThisYear,
+            'sisaCutiLastYear' => $sisaCutiLastYear,
+            'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo
+        ]);
 
-            return $pdf->stream('kelengkapan-cuti-' . $cuti->name . '.pdf');
+        return $pdf->stream('kelengkapan-cuti-' . $cuti->name . '.pdf');
         // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
         // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
@@ -821,27 +1102,27 @@ class LayananController extends Controller
     {
         // Ambil semua ID yang ingin Anda cetak
         $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
-            $cuti = LayananCuti::find($lastLayananCutiId);
-            $profilPegawai = $cuti->profil_pegawai;
-            $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
-            $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
+        $cuti = LayananCuti::find($lastLayananCutiId);
+        $profilPegawai = $cuti->profil_pegawai;
+        $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
+        $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
 
         $lastPosisiJabatanId = PosisiJabatan::latest('id')->first()->id;
-            $posisi = PosisiJabatan::find($lastPosisiJabatanId);
-                $posisiJabatan = $posisi->posisi_jabatan;
-                $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
-                $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
+        $posisi = PosisiJabatan::find($lastPosisiJabatanId);
+        $posisiJabatan = $posisi->posisi_jabatan;
+        $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
+        $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
 
-            $pdf = PDF::loadView('pdf.kelengkapan-cuti-super-admin', [
-                'cuti' => $cuti,
-                'posisi' => $posisi,
-                'nip' => $nip,
-                'name' => $name,
-                'jabatan' => $jabatan,
-                'gol_ruang_awal' => $gol_ruang_awal
-            ]);
+        $pdf = PDF::loadView('pdf.kelengkapan-cuti-super-admin', [
+            'cuti' => $cuti,
+            'posisi' => $posisi,
+            'nip' => $nip,
+            'name' => $name,
+            'jabatan' => $jabatan,
+            'gol_ruang_awal' => $gol_ruang_awal
+        ]);
 
-            return $pdf->stream('kelengkapan-cuti-super-admin-' . $cuti->name . '.pdf');
+        return $pdf->stream('kelengkapan-cuti-super-admin-' . $cuti->name . '.pdf');
         // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
         // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
@@ -854,31 +1135,42 @@ class LayananController extends Controller
     public function tampilanKGBAdmin()
     {
         $data_kgb = DB::table('kenaikan_gaji_berkala')
-        ->select(
-            'kenaikan_gaji_berkala.*',
-            'kenaikan_gaji_berkala.user_id',
-            'kenaikan_gaji_berkala.name',
-            'kenaikan_gaji_berkala.nip',
-            'kenaikan_gaji_berkala.golongan_awal',
-            'kenaikan_gaji_berkala.golongan_akhir',
-            'kenaikan_gaji_berkala.gapok_lama',
-            'kenaikan_gaji_berkala.gapok_baru',
-            'kenaikan_gaji_berkala.tgl_sk_kgb',
-            'kenaikan_gaji_berkala.no_sk_kgb',
-            'kenaikan_gaji_berkala.tgl_berlaku',
-            'kenaikan_gaji_berkala.masa_kerja_golongan',
-            'kenaikan_gaji_berkala.masa_kerja',
-            'kenaikan_gaji_berkala.tmt_kgb'
-        )
-        ->get();
+            ->select(
+                'kenaikan_gaji_berkala.*',
+                'kenaikan_gaji_berkala.user_id',
+                'kenaikan_gaji_berkala.name',
+                'kenaikan_gaji_berkala.nip',
+                'kenaikan_gaji_berkala.golongan_awal',
+                'kenaikan_gaji_berkala.golongan_akhir',
+                'kenaikan_gaji_berkala.gapok_lama',
+                'kenaikan_gaji_berkala.gapok_baru',
+                'kenaikan_gaji_berkala.tgl_sk_kgb',
+                'kenaikan_gaji_berkala.no_sk_kgb',
+                'kenaikan_gaji_berkala.tgl_berlaku',
+                'kenaikan_gaji_berkala.masa_kerja_golongan',
+                'kenaikan_gaji_berkala.masa_kerja',
+                'kenaikan_gaji_berkala.tmt_kgb'
+            )
+            ->get();
 
         $data_kgb_pdf = DB::table('kenaikan_gaji_berkala')
-            ->select('kenaikan_gaji_berkala.*', 'kenaikan_gaji_berkala.user_id', 'kenaikan_gaji_berkala.name',
-                'kenaikan_gaji_berkala.nip', 'kenaikan_gaji_berkala.golongan_awal', 'kenaikan_gaji_berkala.golongan_akhir', 'kenaikan_gaji_berkala.gapok_lama',
-                'kenaikan_gaji_berkala.gapok_baru', 'kenaikan_gaji_berkala.tgl_sk_kgb', 'kenaikan_gaji_berkala.no_sk_kgb', 'kenaikan_gaji_berkala.tgl_berlaku',
-                'kenaikan_gaji_berkala.masa_kerja_golongan', 'kenaikan_gaji_berkala.masa_kerja', 'kenaikan_gaji_berkala.tmt_kgb')
-            ->whereIn('id', function ($query)
-            {
+            ->select(
+                'kenaikan_gaji_berkala.*',
+                'kenaikan_gaji_berkala.user_id',
+                'kenaikan_gaji_berkala.name',
+                'kenaikan_gaji_berkala.nip',
+                'kenaikan_gaji_berkala.golongan_awal',
+                'kenaikan_gaji_berkala.golongan_akhir',
+                'kenaikan_gaji_berkala.gapok_lama',
+                'kenaikan_gaji_berkala.gapok_baru',
+                'kenaikan_gaji_berkala.tgl_sk_kgb',
+                'kenaikan_gaji_berkala.no_sk_kgb',
+                'kenaikan_gaji_berkala.tgl_berlaku',
+                'kenaikan_gaji_berkala.masa_kerja_golongan',
+                'kenaikan_gaji_berkala.masa_kerja',
+                'kenaikan_gaji_berkala.tmt_kgb'
+            )
+            ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('kenaikan_gaji_berkala')
                     ->whereColumn('kenaikan_gaji_berkala.user_id', 'kenaikan_gaji_berkala.user_id')
@@ -887,25 +1179,30 @@ class LayananController extends Controller
             ->get();
 
         $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-        ->where('role_name', '=', 'User')
-        ->get();
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+            ->where('role_name', '=', 'User')
+            ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
 
-        return view('layanan.kenaikan-gaji-berkala-admin', compact('data_kgb', 'userList', 'unreadNotifications',
-            'readNotifications', 'data_kgb_pdf'));
+        return view('layanan.kenaikan-gaji-berkala-admin', compact(
+            'data_kgb',
+            'userList',
+            'unreadNotifications',
+            'readNotifications',
+            'data_kgb_pdf'
+        ));
     }
     /** /Tampilan Kenaikan Gaji Berkala */
 
@@ -914,42 +1211,42 @@ class LayananController extends Controller
     {
         $user_id = auth()->user()->user_id;
         $data_kgb = DB::table('kenaikan_gaji_berkala')
-        ->select(
-            'kenaikan_gaji_berkala.*',
-            'kenaikan_gaji_berkala.user_id',
-            'kenaikan_gaji_berkala.name',
-            'kenaikan_gaji_berkala.nip',
-            'kenaikan_gaji_berkala.golongan_awal',
-            'kenaikan_gaji_berkala.gapok_lama',
-            'kenaikan_gaji_berkala.tgl_sk_kgb',
-            'kenaikan_gaji_berkala.no_sk_kgb',
-            'kenaikan_gaji_berkala.tgl_berlaku',
-            'kenaikan_gaji_berkala.masa_kerja_golongan',
-            'kenaikan_gaji_berkala.gapok_baru',
-            'kenaikan_gaji_berkala.masa_kerja',
-            'kenaikan_gaji_berkala.golongan_akhir',
-            'kenaikan_gaji_berkala.tmt_kgb'
-        )
-        ->where('kenaikan_gaji_berkala.user_id', $user_id)
-        ->get();
+            ->select(
+                'kenaikan_gaji_berkala.*',
+                'kenaikan_gaji_berkala.user_id',
+                'kenaikan_gaji_berkala.name',
+                'kenaikan_gaji_berkala.nip',
+                'kenaikan_gaji_berkala.golongan_awal',
+                'kenaikan_gaji_berkala.gapok_lama',
+                'kenaikan_gaji_berkala.tgl_sk_kgb',
+                'kenaikan_gaji_berkala.no_sk_kgb',
+                'kenaikan_gaji_berkala.tgl_berlaku',
+                'kenaikan_gaji_berkala.masa_kerja_golongan',
+                'kenaikan_gaji_berkala.gapok_baru',
+                'kenaikan_gaji_berkala.masa_kerja',
+                'kenaikan_gaji_berkala.golongan_akhir',
+                'kenaikan_gaji_berkala.tmt_kgb'
+            )
+            ->where('kenaikan_gaji_berkala.user_id', $user_id)
+            ->get();
 
         $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-        ->where('role_name', '=', 'User')
-        ->get();
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+            ->where('role_name', '=', 'User')
+            ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
 
         return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb', 'userList'));
     }
@@ -1035,22 +1332,24 @@ class LayananController extends Controller
     /** Cetak Kenaikan Gaji Berkala PDF */
     public function cetakKGB($id)
     {
-        // Ambil semua ID yang ingin Anda cetak
-        $lastKGBId = KenaikanGajiBerkala::latest('id')->first()->id;
-            $kgb = KenaikanGajiBerkala::find($lastKGBId);
-            $kenaikanGaji = $kgb->kenaikan_gaji;
-            $nip = $kenaikanGaji ? $kenaikanGaji->nip :"Tidak Ada NIP";
-            $name = $kenaikanGaji ? $kenaikanGaji->name : "Tidak Ada Nama";
-            $golongan_awal = $kenaikanGaji ? $kenaikanGaji-> golongan_awal : "Tidak Ada Golongan Awal" ;
-            $golongan_akhir = $kenaikanGaji ? $kenaikanGaji-> golongan_akhir : "Tidak Ada Golongan Akhir";
-            $gapok_lama = $kenaikanGaji ? $kenaikanGaji-> gapok_lama : "Tidak Ada Gaji Pokok Lama";
-            $gapok_baru = $kenaikanGaji ? $kenaikanGaji-> gapok_baru : "Tidak Ada Gaji Pokok Baru";
-            $tgl_sk_kgb = $kenaikanGaji ? $kenaikanGaji->tgl_sk_kgb : "Tidak Ada Tanggal SK";
-            $no_sk_kgb = $kenaikanGaji ? $kenaikanGaji->no_sk_kgb : "Tidak Ada Nomr SK";
-            $tgl_berlaku = $kenaikanGaji ? $kenaikanGaji->tgl_berlaku : "Tidak Ada Tanggal Berlaku";
-            $masa_kerja_golongan = $kenaikanGaji ? $kenaikanGaji-> masa_kerja_golongan : "Tidak Ada Masa Kerja Golongan";
-            $masa_kerja = $kenaikanGaji ? $kenaikanGaji->masa_kerja : "Tidak Ada Masa Kerja";
-            $tmt_kgb = $kenaikanGaji ? $kenaikanGaji->tmt_kgb : "Tidak Ada TMT";
+        $kgb = KenaikanGajiBerkala::find($id);
+
+        if (!$kgb) {
+            return abort(404); // Atau manajemen kesalahan lain sesuai kebutuhan Anda.
+        }
+
+        $nip = $kgb->nip;
+        $name = $kgb->name;
+        $golongan_awal = $kgb->golongan_awal;
+        $golongan_akhir = $kgb->golongan_akhir;
+        $gapok_lama = $kgb->gapok_lama;
+        $gapok_baru = $kgb->gapok_baru;
+        $tgl_sk_kgb = $kgb->tgl_sk_kgb;
+        $no_sk_kgb = $kgb->no_sk_kgb;
+        $tgl_berlaku = $kgb->tgl_berlaku;
+        $masa_kerja_golongan = $kgb->masa_kerja_golongan;
+        $masa_kerja = $kgb->masa_kerja;
+        $tmt_kgb = $kgb->tmt_kgb;
 
         $pdf = PDF::loadView('pdf.cetak-kgb', [
             'kgb'                   => $kgb,
@@ -1076,7 +1375,25 @@ class LayananController extends Controller
     public function tampilanPerpanjangKontrak()
     {
         $user_id = auth()->user()->user_id;
-        $data_kontrak = DB::table('kontrak_kerja')
+        $data_perpanjang_kontrak = DB::table('kontrak_kerja')
+            ->select(
+                'kontrak_kerja.*',
+                'kontrak_kerja.user_id',
+                'kontrak_kerja.name',
+                'kontrak_kerja.nip',
+                'kontrak_kerja.tempat_lahir',
+                'kontrak_kerja.tanggal_lahir',
+                'kontrak_kerja.nik_blud',
+                'kontrak_kerja.pendidikan',
+                'kontrak_kerja.tahun_lulus',
+                'kontrak_kerja.jabatan',
+                'kontrak_kerja.mulai_kontrak',
+                'kontrak_kerja.akhir_kontrak',
+            )
+            ->where('kontrak_kerja.user_id', $user_id)
+            ->get();
+
+        $data_perpanjang_pdf = DB::table('kontrak_kerja')
         ->select(
             'kontrak_kerja.*',
             'kontrak_kerja.user_id',
@@ -1088,69 +1405,165 @@ class LayananController extends Controller
             'kontrak_kerja.pendidikan',
             'kontrak_kerja.tahun_lulus',
             'kontrak_kerja.jabatan',
+            'kontrak_kerja.mulai_kontrak',
+            'kontrak_kerja.akhir_kontrak',
         )
-        ->where('kontrak_kerja.user_id', $user_id)
-        ->get();
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                    ->from('kontrak_kerja')
+                    ->whereColumn('kontrak_kerja.user_id', 'kontrak_kerja.user_id')
+                    ->groupBy('kontrak_kerja.user_id');
+            })
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+            ->select(
+                'profil_pegawai.*',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.name',
+                'profil_pegawai.nip'
+            )
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+            ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+            ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
 
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-        ->where('role_name', '=', 'User')
-        ->get();
+        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+        ->select(
+            'users.*',
+            'users.role_name',
+            'profil_pegawai.nip',
+            'profil_pegawai.tempat_lahir',
+            'profil_pegawai.tanggal_lahir',
+            'profil_pegawai.tingkat_pendidikan',
+            'posisi_jabatan.jabatan'
+        )
+            ->where('role_name', '=', 'User')
+            ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
 
-        return view('layanan.perpanjang-kontrak', compact('data_kontrak', 'userList', 'unreadNotifications', 'readNotifications'));
+        return view('layanan.perpanjang-kontrak', compact('data_perpanjang_kontrak', 'userList', 'unreadNotifications', 'readNotifications', 'data_profilpegawai', 'data_posisijabatan', 'data_perpanjang_pdf'));
     }
     /** /Tampilan Perpanjangan Kontrak */
 
     /** Tampilan Perpanjangan Kontrak */
     public function tampilanPerpanjangKontrakAdmin()
     {
-        $data_kontrak = DB::table('kontrak_kerja')
-        ->select(
-            'kontrak_kerja.*',
-            'kontrak_kerja.user_id',
-            'kontrak_kerja.name',
-            'kontrak_kerja.nip',
-            'kontrak_kerja.tempat_lahir',
-            'kontrak_kerja.tanggal_lahir',
-            'kontrak_kerja.nik_blud',
-            'kontrak_kerja.pendidikan',
-            'kontrak_kerja.tahun_lulus',
-            'kontrak_kerja.jabatan',
-        )
-        ->get();
+        $data_perpanjang_kontrak = DB::table('kontrak_kerja')
+            ->select(
+                'kontrak_kerja.*',
+                'kontrak_kerja.user_id',
+                'kontrak_kerja.name',
+                'kontrak_kerja.nip',
+                'kontrak_kerja.tempat_lahir',
+                'kontrak_kerja.tanggal_lahir',
+                'kontrak_kerja.nik_blud',
+                'kontrak_kerja.pendidikan',
+                'kontrak_kerja.tahun_lulus',
+                'kontrak_kerja.jabatan',
+                'kontrak_kerja.mulai_kontrak',
+                'kontrak_kerja.akhir_kontrak',
+            )
+            ->get();
+
+        $data_perpanjang_pdf = DB::table('kontrak_kerja')
+            ->select(
+                'kontrak_kerja.*',
+                'kontrak_kerja.user_id',
+                'kontrak_kerja.name',
+                'kontrak_kerja.nip',
+                'kontrak_kerja.tempat_lahir',
+                'kontrak_kerja.tanggal_lahir',
+                'kontrak_kerja.nik_blud',
+                'kontrak_kerja.pendidikan',
+                'kontrak_kerja.tahun_lulus',
+                'kontrak_kerja.jabatan',
+                'kontrak_kerja.mulai_kontrak',
+                'kontrak_kerja.akhir_kontrak',
+            )
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                    ->from('kontrak_kerja')
+                    ->whereColumn('kontrak_kerja.user_id', 'kontrak_kerja.user_id')
+                    ->groupBy('kontrak_kerja.user_id');
+            })
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+            ->select(
+                'profil_pegawai.*',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.name',
+                'profil_pegawai.nip'
+            )
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+            ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+            ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
 
         $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-        ->where('role_name', '=', 'User')
-        ->get();
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+            ->select(
+                'users.*',
+                'users.role_name',
+                'profil_pegawai.nip',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.tingkat_pendidikan',
+                'posisi_jabatan.jabatan'
+            )
+            ->where('role_name', '=', 'User')
+            ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
 
-        return view('layanan.perpanjang-kontrak-admin', compact('data_kontrak', 'userList', 'unreadNotifications', 'readNotifications'));
+        return view('layanan.perpanjang-kontrak-admin', compact(
+            'unreadNotifications',
+            'readNotifications',
+            'data_perpanjang_kontrak',
+            'userList',
+            'data_profilpegawai',
+            'data_posisijabatan',
+            'data_perpanjang_pdf'
+        ));
     }
 
     /** Tambah Data Perpanjangan Kontrak Pegawai */
@@ -1166,6 +1579,8 @@ class LayananController extends Controller
             'pendidikan'            => 'required|string|max:255',
             'tahun_lulus'           => 'required|string|max:255',
             'jabatan'               => 'required|string|max:255',
+            'mulai_kontrak'         => 'required|string|max:255',
+            'akhir_kontrak'         => 'required|string|max:255',
         ]);
         DB::beginTransaction();
 
@@ -1180,6 +1595,8 @@ class LayananController extends Controller
             $kontrak->pendidikan            = $request->pendidikan;
             $kontrak->tahun_lulus           = $request->tahun_lulus;
             $kontrak->jabatan               = $request->jabatan;
+            $kontrak->mulai_kontrak         = $request->mulai_kontrak;
+            $kontrak->akhir_kontrak         = $request->akhir_kontrak;
             $kontrak->save();
 
             DB::commit();
@@ -1199,12 +1616,10 @@ class LayananController extends Controller
         DB::beginTransaction();
         try {
             $update = [
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
                 'nik_blud' => $request->nik_blud,
-                'pendidikan' => $request->pendidikan,
                 'tahun_lulus' => $request->tahun_lulus,
-                'jabatan' => $request->jabatan,
+                'mulai_kontrak' => $request->mulai_kontrak,
+                'akhir_kontrak' => $request->akhir_kontrak,
             ];
 
             KontrakKerja::where('id', $request->id)->update($update);
@@ -1238,19 +1653,23 @@ class LayananController extends Controller
     }
 
     /** Tampilan Cetak Perpanjangan Kontrak */
-    public function cetakPerpanjanganKontrak()
+    public function cetakPerpanjanganKontrak($id)
     {
-        // Ambil semua ID yang ingin Anda cetak
-        $lastPerpanjanganId = KontrakKerja::latest('id')->first()->id;
-            $perpanjangan = KontrakKerja::find($lastPerpanjanganId);
-            $perpanjanganKontrak = $perpanjangan->perpanjangan_kontrak;
-            $name = $perpanjanganKontrak ? $perpanjanganKontrak->name : "Tidak Ada Nama";
-            $tempat_lahir = $perpanjanganKontrak ? $perpanjanganKontrak->tempat_lahir : "Tidak Ada Tempat Lahir";
-            $tanggal_lahir = $perpanjanganKontrak ? $perpanjanganKontrak->tanggal_lahir : "Tidak Ada Tanggal Lahir";
-            $nik_blud = $perpanjanganKontrak ? $perpanjanganKontrak->nik_blud : "Tidak Ada NIK";
-            $pendidikan = $perpanjanganKontrak ? $perpanjanganKontrak->pendidikan : "Tidak Ada Pendidikan";
-            $tahun_lulus = $perpanjanganKontrak ? $perpanjanganKontrak->tahun_lulus : "Tidak Ada Tahun Lulus";
-            $jabatan = $perpanjanganKontrak ? $perpanjanganKontrak->jabatan : "Tidak Ada Jabatan";
+        $perpanjangan = KontrakKerja::find($id);
+
+        if (!$perpanjangan) {
+            return abort(404); // Atau manajemen kesalahan lain sesuai kebutuhan Anda.
+        }
+
+        $name = $perpanjangan->name;
+        $tempat_lahir = $perpanjangan->tempat_lahir;
+        $tanggal_lahir = $perpanjangan->tanggal_lahir;
+        $nik_blud = $perpanjangan->nik_blud;
+        $pendidikan = $perpanjangan->pendidikan;
+        $tahun_lulus = $perpanjangan->tahun_lulus;
+        $jabatan = $perpanjangan->jabatan;
+        $mulai_kontrak = $perpanjangan->mulai_kontrak;
+        $akhir_kontrak = $perpanjangan->akhir_kontrak;
 
         $pdf = PDF::loadView('pdf.cetak-perpanjangan-kontrak', [
             'perpanjangan' => $perpanjangan,
@@ -1261,15 +1680,11 @@ class LayananController extends Controller
             'pendidikan' => $pendidikan,
             'tahun_lulus' => $tahun_lulus,
             'jabatan' => $jabatan,
+            'mulai_kontrak' => $mulai_kontrak,
+            'akhir_kontrak' => $akhir_kontrak,
         ]);
 
-        return $pdf->stream('cetak-perpanjangan-kontrak-' . $perpanjangan->name . '.pdf');
-        // $nama_file = 'surat-cuti-' . $name . '.pdf';
-
-        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
-        // // $pdf->save(public_path('pdf/' . $nama_file));
-        // $pdf->stream($nama_file);
-        // }
+        return $pdf->stream('cetak-perpanjangan-kontrak-' . $name . '.pdf');
     }
     /** /Tampilan Cetak Perpanjangan Kontrak */
 
@@ -1277,6 +1692,23 @@ class LayananController extends Controller
     public function tampilanPerjanjianKontrakAdmin()
     {
         $data_perjanjian_kontrak = DB::table('perjanjian_kontrak')
+            ->select(
+                'perjanjian_kontrak.*',
+                'perjanjian_kontrak.user_id',
+                'perjanjian_kontrak.name',
+                'perjanjian_kontrak.nip',
+                'perjanjian_kontrak.tempat_lahir',
+                'perjanjian_kontrak.tanggal_lahir',
+                'perjanjian_kontrak.nik_blud',
+                'perjanjian_kontrak.pendidikan',
+                'perjanjian_kontrak.tahun_lulus',
+                'perjanjian_kontrak.jabatan',
+                'perjanjian_kontrak.mulai_kontrak',
+                'perjanjian_kontrak.akhir_kontrak',
+            )
+            ->get();
+
+        $data_perjanjian_pdf = DB::table('perjanjian_kontrak')
         ->select(
             'perjanjian_kontrak.*',
             'perjanjian_kontrak.user_id',
@@ -1288,14 +1720,27 @@ class LayananController extends Controller
             'perjanjian_kontrak.pendidikan',
             'perjanjian_kontrak.tahun_lulus',
             'perjanjian_kontrak.jabatan',
-            'perjanjian_kontrak.tgl_kontrak',
+            'perjanjian_kontrak.mulai_kontrak',
+            'perjanjian_kontrak.akhir_kontrak',
         )
-        ->get();
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                    ->from('perjanjian_kontrak')
+                    ->whereColumn('perjanjian_kontrak.user_id', 'perjanjian_kontrak.user_id')
+                    ->groupBy('perjanjian_kontrak.user_id');
+            })
+            ->get();
 
         $user_id = auth()->user()->user_id;
         $data_profilpegawai = DB::table('profil_pegawai')
-            ->select('profil_pegawai.*', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.name', 'profil_pegawai.nip')
+            ->select(
+                'profil_pegawai.*',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.name',
+                'profil_pegawai.nip'
+            )
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
@@ -1306,27 +1751,43 @@ class LayananController extends Controller
             ->get();
 
         $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip', 'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir', 'profil_pegawai.tingkat_pendidikan', 'posisi_jabatan.jabatan')
-        ->where('role_name', '=', 'User')
-        ->get();
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+            ->select(
+                'users.*',
+                'users.role_name',
+                'profil_pegawai.nip',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.tingkat_pendidikan',
+                'posisi_jabatan.jabatan'
+            )
+            ->where('role_name', '=', 'User')
+            ->get();
+
+        $perjanjian = perjanjianKinerja::find(1);
 
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
 
-        return view('layanan.perjanjian-kontrak-admin', compact('unreadNotifications', 'readNotifications',
-            'data_perjanjian_kontrak', 'userList', 'data_profilpegawai', 'data_posisijabatan'));
+        return view('layanan.perjanjian-kontrak-admin', compact(
+            'unreadNotifications',
+            'readNotifications',
+            'data_perjanjian_kontrak',
+            'userList',
+            'data_profilpegawai',
+            'data_posisijabatan', 'data_perjanjian_pdf',
+            'perjanjian'
+        ));
     }
     /** /Tampilan Kenaikan Gaji Berkala */
 
@@ -1335,26 +1796,33 @@ class LayananController extends Controller
     {
         $user_id = auth()->user()->user_id;
         $data_perjanjian_kontrak = DB::table('perjanjian_kontrak')
-        ->select(
-            'perjanjian_kontrak.*',
-            'perjanjian_kontrak.user_id',
-            'perjanjian_kontrak.name',
-            'perjanjian_kontrak.nip',
-            'perjanjian_kontrak.tempat_lahir',
-            'perjanjian_kontrak.tanggal_lahir',
-            'perjanjian_kontrak.nik_blud',
-            'perjanjian_kontrak.pendidikan',
-            'perjanjian_kontrak.tahun_lulus',
-            'perjanjian_kontrak.jabatan',
-            'perjanjian_kontrak.tgl_kontrak',
-        )
-        ->where('perjanjian_kontrak.user_id', $user_id)
-        ->get();
+            ->select(
+                'perjanjian_kontrak.*',
+                'perjanjian_kontrak.user_id',
+                'perjanjian_kontrak.name',
+                'perjanjian_kontrak.nip',
+                'perjanjian_kontrak.tempat_lahir',
+                'perjanjian_kontrak.tanggal_lahir',
+                'perjanjian_kontrak.nik_blud',
+                'perjanjian_kontrak.pendidikan',
+                'perjanjian_kontrak.tahun_lulus',
+                'perjanjian_kontrak.jabatan',
+                'perjanjian_kontrak.mulai_kontrak',
+                'perjanjian_kontrak.akhir_kontrak',
+            )
+            ->where('perjanjian_kontrak.user_id', $user_id)
+            ->get();
 
         $user_id = auth()->user()->user_id;
         $data_profilpegawai = DB::table('profil_pegawai')
-            ->select('profil_pegawai.*', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.name', 'profil_pegawai.nip')
+            ->select(
+                'profil_pegawai.*',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.name',
+                'profil_pegawai.nip'
+            )
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
@@ -1365,25 +1833,31 @@ class LayananController extends Controller
             ->get();
 
         $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-        ->where('role_name', '=', 'User')
-        ->get();
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
+            ->where('role_name', '=', 'User')
+            ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
 
-        return view('layanan.perjanjian-kontrak', compact('unreadNotifications', 'readNotifications',
-            'data_perjanjian_kontrak', 'userList', 'data_profilpegawai', 'data_posisijabatan'));
+        return view('layanan.perjanjian-kontrak', compact(
+            'unreadNotifications',
+            'readNotifications',
+            'data_perjanjian_kontrak',
+            'userList',
+            'data_profilpegawai',
+            'data_posisijabatan'
+        ));
     }
 
     /** Tambah Data Perjanjian Kontrak Pegawai */
@@ -1399,7 +1873,8 @@ class LayananController extends Controller
             'pendidikan' => 'required|string|max:255',
             'tahun_lulus' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
-            'tgl_kontrak' => 'required|string|max:255',
+            'mulai_kontrak' => 'required|string|max:255',
+            'akhir_kontrak' => 'required|string|max:255',
         ]);
         DB::beginTransaction();
 
@@ -1414,7 +1889,8 @@ class LayananController extends Controller
             $perjanjiankontrak->pendidikan = $request->pendidikan;
             $perjanjiankontrak->tahun_lulus = $request->tahun_lulus;
             $perjanjiankontrak->jabatan = $request->jabatan;
-            $perjanjiankontrak->tgl_kontrak = $request->tgl_kontrak;
+            $perjanjiankontrak->mulai_kontrak = $request->mulai_kontrak;
+            $perjanjiankontrak->akhir_kontrak = $request->akhir_kontrak;
             $perjanjiankontrak->save();
 
             DB::commit();
@@ -1436,7 +1912,8 @@ class LayananController extends Controller
             $update = [
                 'nik_blud' => $request->nik_blud,
                 'tahun_lulus' => $request->tahun_lulus,
-                'tgl_kontrak' => $request->tgl_kontrak,
+                'mulai_kontrak' => $request->mulai_kontrak,
+                'akhir_kontrak' => $request->akhir_kontrak,
             ];
 
             PerjanjianKontrak::where('id', $request->id)->update($update);
@@ -1470,32 +1947,34 @@ class LayananController extends Controller
     }
 
     /** Tampilan Cetak Dokumen Kelengkapan */
-    public function cetakPerjanjianKontrak()
+    public function cetakPerjanjianKontrak($id)
     {
-        // Ambil semua ID yang ingin Anda cetak
-        $lastPerjanjianId = PerjanjianKontrak::latest('id')->first()->id;
-            $perjanjian = PerjanjianKontrak::find($lastPerjanjianId);
-            $perjanjianKontrak = $perjanjian->perjanjian_kontrak;
-            $name = $perjanjianKontrak ? $perjanjianKontrak->name : "Tidak Ada Nama";
-            $tempat_lahir = $perjanjianKontrak ? $perjanjianKontrak->tempat_lahir : "Tidak Ada Tempat Lahir";
-            $tanggal_lahir = $perjanjianKontrak ? $perjanjianKontrak->tanggal_lahir : "Tidak Ada Tanggal Lahir";
-            $nik_blud = $perjanjianKontrak ? $perjanjianKontrak->nik_blud : "Tidak Ada NIK";
-            $pendidikan = $perjanjianKontrak ? $perjanjianKontrak->pendidikan : "Tidak Ada Pendidikan";
-            $tahun_lulus = $perjanjianKontrak ? $perjanjianKontrak->tahun_lulus : "Tidak Ada Tahun Lulus";
-            $jabatan = $perjanjianKontrak ? $perjanjianKontrak->jabatan : "Tidak Ada Jabatan";
+        $perjanjian = PerjanjianKontrak::find($id);
 
-            $pdf = PDF::loadView('pdf.cetak-perjanjian-kontrak', [
-                'perjanjian' => $perjanjian,
-                'name' => $name,
-                'tempat_lahir' => $tempat_lahir,
-                'tanggal_lahir' => $tanggal_lahir,
-                'nik_blud' => $nik_blud,
-                'pendidikan' => $pendidikan,
-                'tahun_lulus' => $tahun_lulus,
-                'jabatan' => $jabatan,
-            ]);
+        if (!$perjanjian) {
+            return abort(404); // Atau manajemen kesalahan lain sesuai kebutuhan Anda.
+        }
 
-            return $pdf->stream('cetak-perjanjian-kontrak-' . $perjanjian->name . '.pdf');
+        $name = $perjanjian->name;
+        $tempat_lahir = $perjanjian->tempat_lahir;
+        $tanggal_lahir = $perjanjian->tanggal_lahir;
+        $nik_blud = $perjanjian->nik_blud;
+        $pendidikan = $perjanjian->pendidikan;
+        $tahun_lulus = $perjanjian->tahun_lulus;
+        $jabatan = $perjanjian->jabatan;
+
+        $pdf = PDF::loadView('pdf.cetak-perjanjian-kontrak', [
+            'perjanjian' => $perjanjian,
+            'name' => $name,
+            'tempat_lahir' => $tempat_lahir,
+            'tanggal_lahir' => $tanggal_lahir,
+            'nik_blud' => $nik_blud,
+            'pendidikan' => $pendidikan,
+            'tahun_lulus' => $tahun_lulus,
+            'jabatan' => $jabatan,
+        ]);
+
+        return $pdf->stream('cetak-perjanjian-kontrak-' . $name . '.pdf');
         // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
         // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
@@ -1524,5 +2003,532 @@ class LayananController extends Controller
             ->get();
 
         return view('layanan.peta-jabatan', compact('unreadNotifications', 'readNotifications', 'result_peta_jabatan'));
+    }
+
+    /** Daftar Layanan STR Admin */
+    public function tampilanSTRAdmin()
+    {
+        $data_str = DB::table('surat_tanda_registrasi')
+            ->select(
+                'surat_tanda_registrasi.*',
+                'surat_tanda_registrasi.user_id',
+                'surat_tanda_registrasi.name',
+                'surat_tanda_registrasi.nip',
+                'surat_tanda_registrasi.nomor_reg',
+                'surat_tanda_registrasi.tempat_lahir',
+                'surat_tanda_registrasi.tanggal_lahir',
+                'surat_tanda_registrasi.jenis_kelamin',
+                'surat_tanda_registrasi.nomor_ijazah',
+                'surat_tanda_registrasi.tanggal_lulus',
+                'surat_tanda_registrasi.pendidikan_terakhir',
+                'surat_tanda_registrasi.kompetensi',
+                'surat_tanda_registrasi.no_sertifikat_kompetensi',
+                'surat_tanda_registrasi.tgl_berlaku_str',
+                'surat_tanda_registrasi.dokumen_str'
+            )
+            ->get();
+
+        $userList = DB::table('profil_pegawai')
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+            ->select(
+                'users.*',
+                'users.role_name',
+                'profil_pegawai.nip',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'posisi_jabatan.jabatan'
+            )
+            ->where('role_name', '=', 'User')
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profil_str = DB::table('profil_pegawai')
+            ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir', 'profil_pegawai.jenis_kelamin', 'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.pendidikan_terakhir')
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+            ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+            ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.surat-tanda-registrasi-admin', compact(
+            'data_str',
+            'data_profil_str',
+            'data_posisijabatan',
+            'unreadNotifications',
+            'readNotifications',
+            'userList'
+        ));
+    }
+    /** /Daftar Layanan STR Admin */
+
+    /** Daftar Layanan STR */
+    public function tampilanSTR()
+    {
+        $user_id = auth()->user()->user_id;
+        $data_str = DB::table('surat_tanda_registrasi')
+        ->select(
+            'surat_tanda_registrasi.*',
+            'surat_tanda_registrasi.user_id',
+            'surat_tanda_registrasi.name',
+            'surat_tanda_registrasi.nip',
+            'surat_tanda_registrasi.nomor_reg',
+            'surat_tanda_registrasi.tempat_lahir',
+            'surat_tanda_registrasi.tanggal_lahir',
+            'surat_tanda_registrasi.jenis_kelamin',
+            'surat_tanda_registrasi.nomor_ijazah',
+            'surat_tanda_registrasi.tanggal_lulus',
+            'surat_tanda_registrasi.pendidikan_terakhir',
+            'surat_tanda_registrasi.kompetensi',
+            'surat_tanda_registrasi.no_sertifikat_kompetensi',
+            'surat_tanda_registrasi.tgl_berlaku_str',
+            'surat_tanda_registrasi.dokumen_str'
+        )
+            ->where('surat_tanda_registrasi.user_id', $user_id)
+            ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+        ->select(
+            'users.*',
+            'users.role_name',
+            'profil_pegawai.nip',
+            'profil_pegawai.tempat_lahir',
+            'profil_pegawai.tanggal_lahir',
+            'profil_pegawai.jenis_kelamin',
+            'profil_pegawai.tingkat_pendidikan',
+            'profil_pegawai.pendidikan_terakhir',
+        )
+            ->where('role_name', '=', 'User')
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profil_str = DB::table('profil_pegawai')
+        ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir', 'profil_pegawai.jenis_kelamin', 'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.pendidikan_terakhir')
+        ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.surat-tanda-registrasi', compact(
+            'data_str',
+            'data_profil_str',
+            'unreadNotifications',
+            'readNotifications',
+            'userList'
+        ));
+    }
+    /** /Daftar Layanan STR */
+
+    /** Tambah Data STR Pegawai */
+    public function tambahDataSTR(Request $request)
+    {
+        $request->validate([
+            'name'                      => 'required|string|max:255',
+            'nip'                       => 'required|string|max:255',
+            'user_id'                   => 'required|string|max:255',
+            'tempat_lahir'              => 'required|string|max:255',
+            'tanggal_lahir'             => 'required|date',
+            'jenis_kelamin'             => 'required|string|max:255',
+            'pendidikan_terakhir'       => 'required|string|max:255',
+            'nomor_reg'                 => 'required|string|max:255',
+            'nomor_ijazah'              => 'required|string|max:255',
+            'tanggal_lulus'             => 'required|date',
+            'kompetensi'                => 'required|string|max:255',
+            'no_sertifikat_kompetensi'  => 'required|string|max:255',
+            'tgl_berlaku_str'           => 'required|date',
+            'dokumen_str'               => 'required|mimes:pdf|max:5120',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $dokumen_str = time() . '.' . $request->dokumen_str->extension();
+            $request->dokumen_str->move(public_path('assets/DokumenSTR'), $dokumen_str);
+
+            $suratregistrasi = new SuratTandaRegistrasi();
+            $suratregistrasi->name                      = $request->name;
+            $suratregistrasi->nip                       = $request->nip;
+            $suratregistrasi->user_id                   = $request->user_id;
+            $suratregistrasi->tempat_lahir              = $request->tempat_lahir;
+            $suratregistrasi->tanggal_lahir             = $request->tanggal_lahir;
+            $suratregistrasi->jenis_kelamin             = $request->jenis_kelamin;
+            $suratregistrasi->pendidikan_terakhir       = $request->pendidikan_terakhir;
+            $suratregistrasi->nomor_reg                 = $request->nomor_reg;
+            $suratregistrasi->nomor_ijazah              = $request->nomor_ijazah;
+            $suratregistrasi->tanggal_lulus             = $request->tanggal_lulus;
+            $suratregistrasi->kompetensi                = $request->kompetensi;
+            $suratregistrasi->no_sertifikat_kompetensi  = $request->no_sertifikat_kompetensi;
+            $suratregistrasi->tgl_berlaku_str           = $request->tgl_berlaku_str;
+            $suratregistrasi->dokumen_str               = $dokumen_str;
+            $suratregistrasi->save();
+
+            DB::commit();
+            Toastr::success('Data surat tanda registrasi berhasil ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data surat tanda registrasi gagal ditambah: ' . $e->getMessage(), 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** /Tambah Data STR Pegawai */
+
+    /** Edit Data STR Pegawai */
+    public function editDataSTR(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_str = $request->hidden_dokumen_str;
+            $dokumen_strs = $request->file('dokumen_str');
+
+            if ($dokumen_strs != '') {
+                $request->validate([
+                    'dokumen_str' => 'mimes:pdf|max:5120',
+                ]);
+
+                if ($dokumen_str && file_exists(public_path('assets/DokumenSTR/' . $dokumen_str))) {
+                    unlink(public_path('assets/DokumenSTR/' . $dokumen_str));
+                }
+
+                $dokumen_str = time() . '.' . $dokumen_strs->getClientOriginalExtension();
+                $dokumen_strs->move(public_path('assets/DokumenSTR'), $dokumen_str);
+            } else {
+                $dokumen_str;
+            }
+
+            $update = [
+                'nomor_reg' => $request->nomor_reg,
+                'tanggal_lulus' => $request->tanggal_lulus,
+                'kompetensi' => $request->kompetensi,
+                'no_sertifikat_kompetensi' => $request->no_sertifikat_kompetensi,
+                'nomor_ijazah' => $request->nomor_ijazah,
+                'tgl_berlaku_str' => $request->tgl_berlaku_str,
+                'dokumen_str' => $dokumen_str,
+            ];
+
+            SuratTandaRegistrasi::where('id', $request->id)->update($update);
+
+            DB::commit();
+            Toastr::success('Data surat tanda registrasi berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data surat tanda registrasi gagal diperbaharui: ' . $e->getMessage(), 'Error');
+            return redirect()->back();
+        }
+    }
+    /** /Edit Data STR Pegawai */
+
+    /** Delete Data STR */
+    public function hapusDataSTR(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            SuratTandaRegistrasi::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data surat tanda registrasi berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data surat tanda registrasi gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Data STR */
+
+    //Tampilan Perjanjian Kinerja Admin
+    public function TampilanPerjanjianKinerjaAdmin()
+    {
+        $data_perjanjian_kinerja = DB::table('perjanjian_kinerja')
+        ->select(
+            'perjanjian_kinerja.*',
+            'perjanjian_kinerja.user_id',
+            'perjanjian_kinerja.name',
+            'perjanjian_kinerja.nip',
+            'perjanjian_kinerja.jabatan',
+            'perjanjian_kinerja.bentuk_perjanjian',
+        )
+        ->get();
+
+        $data_kinerja_pdf = DB::table('perjanjian_kinerja')
+        ->select(
+            'perjanjian_kinerja.*',
+            'perjanjian_kinerja.user_id',
+            'perjanjian_kinerja.name',
+            'perjanjian_kinerja.nip',
+            'perjanjian_kinerja.jabatan',
+            'perjanjian_kinerja.bentuk_perjanjian',
+        )
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                ->from('perjanjian_kinerja')
+                ->whereColumn('perjanjian_kinerja.user_id', 'perjanjian_kinerja.user_id')
+                ->groupBy('perjanjian_kinerja.user_id');
+            })
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+        ->select(
+            'profil_pegawai.*',
+            'profil_pegawai.name',
+            'profil_pegawai.nip'
+        )
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+        ->select('posisi_jabatan.*','posisi_jabatan.jabatan')
+        ->where('posisi_jabatan.user_id', $user_id)
+        ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+        ->select(
+            'users.*',
+            'users.role_name',
+            'profil_pegawai.nip',
+            'posisi_jabatan.jabatan'
+        )
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNull('read_at')
+        ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+        ->where('notifiable_type', get_class($user))
+        ->whereNotNull('read_at')
+        ->get();
+
+        return view('layanan.perjanjian-kinerja-admin', compact(
+            'unreadNotifications',
+            'readNotifications',
+            'data_perjanjian_kinerja',
+            'userList',
+            'data_profilpegawai',
+            'data_posisijabatan',
+            'data_kinerja_pdf'
+        ));
+    }
+
+    //Tampilan Perjanjian Kinerja
+    public function TampilanPerjanjianKinerja()
+    {
+        $user_id = auth()->user()->user_id;
+        $data_perjanjian_kinerja = DB::table('perjanjian_kinerja')
+        ->select(
+            'perjanjian_kinerja.*',
+            'perjanjian_kinerja.user_id',
+            'perjanjian_kinerja.name',
+            'perjanjian_kinerja.nip',
+            'perjanjian_kinerja.jabatan',
+            'perjanjian_kinerja.bentuk_perjanjian',
+        )
+            ->where('perjanjian_kinerja.user_id', $user_id)
+            ->get();
+
+        $data_kinerja_pdf = DB::table('perjanjian_kinerja')
+        ->select(
+            'perjanjian_kinerja.*',
+            'perjanjian_kinerja.user_id',
+            'perjanjian_kinerja.name',
+            'perjanjian_kinerja.nip',
+            'perjanjian_kinerja.jabatan',
+            'perjanjian_kinerja.bentuk_perjanjian',
+        )
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                ->from('perjanjian_kinerja')
+                ->whereColumn('perjanjian_kinerja.user_id', 'perjanjian_kinerja.user_id')
+                ->groupBy('perjanjian_kinerja.user_id');
+            })
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+        ->select(
+            'profil_pegawai.*',
+            'profil_pegawai.name',
+            'profil_pegawai.nip'
+        )
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+        ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+        ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+        ->select(
+            'users.*',
+            'users.role_name',
+            'profil_pegawai.nip',
+            'posisi_jabatan.jabatan'
+        )
+            ->where('role_name', '=', 'User')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.perjanjian-kinerja', compact(
+            'unreadNotifications',
+            'readNotifications',
+            'data_perjanjian_kinerja',
+            'userList',
+            'data_profilpegawai',
+            'data_posisijabatan',
+            'data_kinerja_pdf'
+        ));
+    }
+
+    /** Tambah Data Perjanjian Kiinerja */
+    public function tambahDataPerjanjianKinerja(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nip' => 'required|string|max:255',
+            'user_id' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'bentuk_perjanjian' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $perjanjiankinerja = new perjanjianKinerja();
+            $perjanjiankinerja->name                      = $request->name;
+            $perjanjiankinerja->nip                       = $request->nip;
+            $perjanjiankinerja->user_id                   = $request->user_id;
+            $perjanjiankinerja->jabatan                   = $request->jabatan;
+            $perjanjiankinerja->bentuk_perjanjian         = $request->bentuk_perjanjian;
+            $perjanjiankinerja->save();
+
+            DB::commit();
+            Toastr::success('Data perjanjian kinerja berhasil ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perjanjian kinerja gagal ditambah: ' . $e->getMessage(), 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** Edit Data PerjanjianKinerja Pegawai */
+    public function editDataPerjanjianKinerja(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $update = [
+                'bentuk_perjanjian' => $request->bentuk_perjanjian,
+            ];
+
+            perjanjianKinerja::where('id', $request->id)->update($update);
+
+            DB::commit();
+            Toastr::success('Data perjanjian kinerja berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perjanjian kinerja gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** Delete Perjanjian Kinerja STR */
+    public function hapusDataPerjanjianKinerja(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            perjanjianKinerja::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data perjanjian kinerja berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data perjanjian kinerja gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    // Cetak Perjanjian Kinerja
+    public function cetakPerjanjianKinerja($id)
+    {
+        $kinerja = PerjanjianKinerja::find($id);
+
+        if (!$kinerja) {
+            return abort(404); // Atau manajemen kesalahan lain sesuai kebutuhan Anda.
+        }
+
+        $name = $kinerja->name;
+        $jabatan = $kinerja->jabatan;
+        $bentuk_perjanjian = $kinerja->bentuk_perjanjian;
+        $nip = $kinerja->nip;
+
+        $pdf = PDF::loadView('pdf.cetak-perjanjian-kinerja', [
+            'kinerja' => $kinerja,
+            'name' => $name,
+            'bentuk_perjanjian' => $bentuk_perjanjian,
+            'jabatan' => $jabatan,
+            'nip' => $nip,
+        ]);
+
+
+        return $pdf->stream('cetak-perjanjian-kinerja-' . $kinerja->name . '.pdf');
+        // $nama_file = 'surat-cuti-' . $name . '.pdf';
+
+        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
+        // // $pdf->save(public_path('pdf/' . $nama_file));
+        // $pdf->stream($nama_file);
+        // }
     }
 }

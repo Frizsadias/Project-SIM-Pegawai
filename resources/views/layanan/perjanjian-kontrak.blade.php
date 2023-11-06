@@ -74,7 +74,8 @@
                                 <th>Pendidikan</th>
                                 <th>Tahun Lulus</th>
                                 <th>Jabatan</th>
-                                <th>Tanggal Kontrak</th>
+                                <th>Mulai Kontrak</th>
+                                <th>Akhir Kontrak</th>
                                 <th class="text-right no-sort">Aksi</th>
                             </tr>
                         </thead>
@@ -91,7 +92,8 @@
                                     <td class="pendidikan">{{ $result_perjanjian_kontrak->pendidikan }}</td>
                                     <td class="tahun_lulus">{{ $result_perjanjian_kontrak->tahun_lulus }}</td>
                                     <td class="jabatan">{{ $result_perjanjian_kontrak->jabatan }}</td>
-                                    <td class="tgl_kontrak">{{ $result_perjanjian_kontrak->tgl_kontrak }}</td>
+                                    <td class="mulai_kontrak">{{ $result_perjanjian_kontrak->mulai_kontrak }}</td>
+                                    <td class="akhir_kontrak">{{ $result_perjanjian_kontrak->akhir_kontrak }}</td>
 
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
@@ -105,6 +107,10 @@
                                                 <a class="dropdown-item delete_perjanjian" href="#"
                                                     data-toggle="modal" data-target="#delete_perjanjian"><i
                                                         class="fa fa-trash-o m-r-5"></i>Delete</a>
+                                                <a href="{{ route('layanan-perjanjian-kontrak-admin', ['id' => $result_perjanjian_kontrak->id]) }}"
+                                                    target="_blank" class="dropdown-item cetak-kontrak">
+                                                    <i class="fa fa-print m-r-5"></i>Cetak
+                                                </a>
                                             </div>
                                         </div>
                                     </td>
@@ -143,50 +149,64 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tahun Lulus</label>
-                                    <input type="number" class="form-control" name="tahun_lulus" placeholder="Tahun Lulus">
+                                    <input type="number" class="form-control" name="tahun_lulus"
+                                        placeholder="Tahun Lulus">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Tanggal Berlaku Kontrak</label>
-                                    <input type="date" class="form-control" name="tgl_kontrak">
+                                    <label>Tanggal Mulai Kontrak</label>
+                                    <input type="date" class="form-control" name="mulai_kontrak">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tanggal Akhir Kontrak</label>
+                                    <input type="date" class="form-control" name="akhir_kontrak">
                                 </div>
                             </div>
                         </div>
-                        @foreach($data_profilpegawai as $profil_pegawai)
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" value="{{ $profil_pegawai->tempat_lahir }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" name="tanggal_lahir" placeholder="Tempat Lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" name="pendidikan" placeholder="Pendidikan" value="{{ $profil_pegawai->tingkat_pendidikan }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" name="name" value="{{ $profil_pegawai->name }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" name="nip" value="{{ $profil_pegawai->nip }}">
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        @foreach($data_posisijabatan as $posisi_jabatan)
+                        @foreach ($data_profilpegawai as $profil_pegawai)
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="jabatan" placeholder="Jabatan" value="{{ $posisi_jabatan->jabatan }}">
+                                        <input type="hidden" class="form-control" name="tempat_lahir"
+                                            placeholder="Tempat Lahir" value="{{ $profil_pegawai->tempat_lahir }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="tanggal_lahir"
+                                            placeholder="Tempat Lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="pendidikan"
+                                            placeholder="Pendidikan"
+                                            value="{{ $profil_pegawai->tingkat_pendidikan }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="name"
+                                            value="{{ $profil_pegawai->name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="nip"
+                                            value="{{ $profil_pegawai->nip }}">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        @foreach ($data_posisijabatan as $posisi_jabatan)
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="jabatan"
+                                            placeholder="Jabatan" value="{{ $posisi_jabatan->jabatan }}">
                                     </div>
                                 </div>
                             </div>
@@ -234,9 +254,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Tanggal Berlaku Kontrak</label>
-                                    <input type="date" class="form-control" name="tgl_kontrak" id="e_tgl_kontrak"
-                                        value="">
+                                    <label>Tanggal Mulai Kontrak</label>
+                                    <input type="date" class="form-control" name="mulai_kontrak"
+                                        id="e_mulai_kontrak" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tanggal Akhir Kontrak</label>
+                                    <input type="date" class="form-control" name="akhir_kontrak"
+                                        id="e_akhir_kontrak" value="">
                                 </div>
                             </div>
                         </div>
@@ -289,7 +316,8 @@
             $("#e_id").val(_this.find(".id").text());
             $("#e_nik_blud").val(_this.find(".nik_blud").text());
             $("#e_tahun_lulus").val(_this.find(".tahun_lulus").text());
-            $("#e_tgl_kontrak").val(_this.find(".tgl_kontrak").text());
+            $("#e_mulai_kontrak").val(_this.find(".mulai_kontrak").text());
+            $("#e_akhir_kontrak").val(_this.find(".akhir_kontrak").text());
         });
 
         $(document).on("click", ".delete_perjanjian", function() {

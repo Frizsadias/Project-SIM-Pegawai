@@ -21,7 +21,8 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_kgb"><i class="fa fa-plus"></i> Tambah Kenaikan Gaji Berkala</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_kgb"><i
+                            class="fa fa-plus"></i> Tambah Kenaikan Gaji Berkala</a>
                 </div>
             </div>
         </div>
@@ -111,9 +112,16 @@
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item edit_layanan_kgb" href="#" data-toggle="modal" data-target="#edit_layanan_kgb"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item edit_layanan_kgb" href="#"
+                                                    data-toggle="modal" data-target="#edit_layanan_kgb"><i
+                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
+                                                    target="_blank" class="dropdown-item cetak-kinerja">
+                                                    <i class="fa fa-print m-r-5"></i>Cetak
+                                                </a>
                                             </div>
                                         </div>
                                     </td>
@@ -129,120 +137,130 @@
 
     <!-- Tambah Layanan KGB Modal -->
     <div id="daftar_layanan_kgb" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tambah Kenaikan Gaji Berkala</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('layanan/kgb/tambah-data') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Nama Pegawai</label>
-                                <select class="select" id="name" name="name">
-                                    <option value="">-- Pilih Nama Pegawai --</option>
-                                    @foreach ($userList as $key => $user)
-                                        <option value="{{ $user->name }}" data-user_id={{ $user->user_id }} data-nip={{ $user->nip }}>{{ $user->name }}</option>
-                                    @endforeach
-                                </select>
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Kenaikan Gaji Berkala</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('layanan/kgb/tambah-data') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Nama Pegawai</label>
+                                    <select class="select" id="name" name="name">
+                                        <option value="">-- Pilih Nama Pegawai --</option>
+                                        @foreach ($userList as $key => $user)
+                                            <option value="{{ $user->name }}" data-user_id={{ $user->user_id }}
+                                                data-nip={{ $user->nip }}>{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">ID Pengguna <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="user_id" name="user_id"
+                                        placeholder="ID pengguna otomatis terisi" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">NIP <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="nip" name="nip"
+                                        placeholder="NIP otomatis terisi" readonly>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">ID Pengguna <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID pengguna otomatis terisi" readonly>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Golongan Awal</label>
+                                    <input type="text" class="form-control" name="golongan_awal"
+                                        placeholder="Golongan Awal">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Golongan Akhir</label>
+                                    <input type="text" class="form-control" name="golongan_akhir"
+                                        placeholder="Golongan Akhir">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">NIP <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" id="nip" name="nip" placeholder="NIP otomatis terisi" readonly>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Gaji Pokok Lama</label>
+                                    <input type="text" class="form-control" name="gapok_lama"
+                                        placeholder="Gapok Lama">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Gaji Pokok Baru</label>
+                                    <input type="text" class="form-control" name="gapok_baru"
+                                        placeholder="Gapok Baru">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Golongan Awal</label>
-                                <input type="text" class="form-control" name="golongan_awal" placeholder="Golongan Awal">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tanggal SK KGB</label>
+                                    <input type="date" class="form-control" name="tgl_sk_kgb">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nomor SK KGB</label>
+                                    <input type="text" class="form-control" name="no_sk_kgb" placeholder="Nomor SK KGB">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tanggal Berlaku</label>
+                                    <input type="date" class="form-control" name="tgl_berlaku">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Golongan Akhir</label>
-                                <input type="text" class="form-control" name="golongan_akhir" placeholder="Golongan Akhir">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Masa Kerja Golongan</label>
+                                    <input type="text" class="form-control" name="masa_kerja_golongan"
+                                        placeholder="Masa Kerja Golongan">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Masa Kerja</label>
+                                    <input type="text" class="form-control" name="masa_kerja"
+                                        placeholder="Masa Kerja">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Gaji Pokok Lama</label>
-                                <input type="text" class="form-control" name="gapok_lama" placeholder="Gapok Lama">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>TMT KGB</label>
+                                    <input type="date" class="form-control" name="tmt_kgb">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Gaji Pokok Baru</label>
-                                <input type="text" class="form-control" name="gapok_baru" placeholder="Gapok Baru">
-                            </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn">Simpan</button>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tanggal SK KGB</label>
-                                <input type="date" class="form-control" name="tgl_sk_kgb">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Nomor SK KGB</label>
-                                <input type="date" class="form-control" name="no_sk_kgb">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tanggal Berlaku</label>
-                                <input type="date" class="form-control" name="tgl_berlaku">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Masa Kerja Golongan</label>
-                                <input type="text" class="form-control" name="masa_kerja_golongan" placeholder="Masa Kerja Golongan">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Masa Kerja</label>
-                                <input type="text" class="form-control" name="masa_kerja" placeholder="Masa Kerja">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>TMT KGB</label>
-                                <input type="date" class="form-control" name="tmt_kgb">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="submit-section">
-                        <button class="btn btn-primary submit-btn">Simpan</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- /Tambah Layanan Cuti Modal -->
 
     <!-- Edit Layanan Cuti Modal -->
@@ -256,20 +274,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('layanan/kgb/edit-data') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('layanan/kgb/edit-data') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" id="e_id" value="">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Golongan Awal</label>
-                                    <input type="text" class="form-control" name="golongan_awal" id="e_golongan_awal" placeholder="Golongan Awal" value="">
+                                    <input type="text" class="form-control" name="golongan_awal"
+                                        id="e_golongan_awal" placeholder="Golongan Awal" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Golongan Akhir</label>
-                                    <input type="text" class="form-control" name="golongan_akhir" id="e_golongan_akhir" placeholder="Golongan Akhir" value="">
+                                    <input type="text" class="form-control" name="golongan_akhir"
+                                        id="e_golongan_akhir" placeholder="Golongan Akhir" value="">
                                 </div>
                             </div>
                         </div>
@@ -277,13 +298,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Lama</label>
-                                    <input type="text" class="form-control" name="gapok_lama" id="e_gapok_lama" placeholder="Gaji Pokok Lama" value="">
+                                    <input type="text" class="form-control" name="gapok_lama" id="e_gapok_lama"
+                                        placeholder="Gaji Pokok Lama" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Baru</label>
-                                    <input type="text" class="form-control" name="gapok_baru" id="e_gapok_baru" placeholder="Gaji Pokok Baru" value="">
+                                    <input type="text" class="form-control" name="gapok_baru" id="e_gapok_baru"
+                                        placeholder="Gaji Pokok Baru" value="">
                                 </div>
                             </div>
                         </div>
@@ -291,13 +314,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal SK KGB</label>
-                                    <input type="date" class="form-control" name="tgl_sk_kgb" id="e_tgl_sk_kgb" value="">
+                                    <input type="date" class="form-control" name="tgl_sk_kgb" id="e_tgl_sk_kgb"
+                                        value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor SK KGB</label>
-                                    <input type="text" class="form-control" name="no_sk_kgb" id="e_no_sk_kgb" value="">
+                                    <input type="text" class="form-control" name="no_sk_kgb" id="e_no_sk_kgb"
+                                        value="">
                                 </div>
                             </div>
                         </div>
@@ -305,13 +330,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Berlaku</label>
-                                    <input type="date" class="form-control" name="tgl_berlaku" id="e_tgl_berlaku" value="">
+                                    <input type="date" class="form-control" name="tgl_berlaku" id="e_tgl_berlaku"
+                                        value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Masa Kerja Golongan</label>
-                                    <input type="text" class="form-control" name="masa_kerja_golongan" id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
+                                    <input type="text" class="form-control" name="masa_kerja_golongan"
+                                        id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
                                 </div>
                             </div>
                         </div>
@@ -319,13 +346,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Masa Kerja</label>
-                                    <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja" placeholder="Masa Kerja" value="">
+                                    <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja"
+                                        placeholder="Masa Kerja" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>TMT KGB</label>
-                                    <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb" value="">
+                                    <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb"
+                                        value="">
                                 </div>
                             </div>
                         </div>
@@ -341,22 +370,22 @@
 </div>
 <!-- /Page Wrapper -->
 
-    @section('script')
-        <script>
-            $(document).ready(function () {
-                $('#pilihDokumenKGB').select2();
-                $('#cetakDokumenKBG').on('click', function ()
-                {
-                    const selectedKGBId = $('#pilihDokumenKGB').val();
-                    if (selectedKGBId)
-                    {
-                        const url = "{{ route('layanan-kenaikan-gaji-berkala-admin-dokumen', ['id' => ':id']) }}".replace(':id', selectedKGBId);
-                        window.open(url, '_blank');
-                    }
-                });
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#pilihDokumenKGB').select2();
+            $('#cetakDokumenKBG').on('click', function() {
+                const selectedKGBId = $('#pilihDokumenKGB').val();
+                if (selectedKGBId) {
+                    const url =
+                        "{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => ':id']) }}"
+                        .replace(':id', selectedKGBId);
+                    window.open(url, '_blank');
+                }
             });
-        </script>
+        });
+    </script>
 
-        <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
-    @endsection
+    <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
+@endsection
 @endsection

@@ -2,6 +2,18 @@
 @section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
+            <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Data Statistik</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Data Statistik</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">

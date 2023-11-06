@@ -136,7 +136,7 @@
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:150%;"><strong><span style="font-family:Arial;">Pasal 3</span></strong></p>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; line-height:200%;"><strong><span style="font-family:Arial;">MASA KERJA DAN PERPANJANGAN KONTRAK KERJA</span></strong></p>
 <ol type="1" style="margin:0pt; padding-left:0pt;">
-    <li style="margin-left:32.46pt; text-align:justify; line-height:150%; padding-left:2.99pt; font-family:Arial;">Hubungan kerja antara PIHAK KESATU dan PIHAK KEDUA dimulai sejak tanggal 1 Januari 2022 dan berakhir pada tanggal 31 Desember 2022.</li>
+    <li style="margin-left:32.46pt; text-align:justify; line-height:150%; padding-left:2.99pt; font-family:Arial;">Hubungan kerja antara PIHAK KESATU dan PIHAK KEDUA dimulai sejak tanggal {{ \Carbon\Carbon::parse($perjanjian->mulai_kontrak)->translatedFormat('j F Y') }} dan berakhir pada tanggal {{ \Carbon\Carbon::parse($perjanjian->akhir_kontrak)->translatedFormat('j F Y') }}.</li>
     <li style="margin-left:32.46pt; text-align:justify; line-height:150%; padding-left:2.99pt; font-family:Arial;">PIHAK KEDUA dapat diangkat kembali setelah berakhirnya masa kontrak apabila :</li>
 </ol>
 <ol type="a" style="margin:0pt; padding-left:0pt;">

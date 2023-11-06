@@ -8669,3 +8669,8 @@ ul.comment-list li ul.children {
 	color: #212529;
 	text-decoration: none;
 }
+
+.lihat-semua{
+	display: flex;
+    justify-content: center;
+}

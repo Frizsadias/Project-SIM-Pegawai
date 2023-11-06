@@ -26,7 +26,7 @@ class RekapitulasiController extends Controller
             ->get();
 
         $dataPegawai = User::where('role_name', 'User')->count();
-        return view('dashboard.Halaman-super-admin', [
+        return view('rekapitulasi.super-admin', [
             'chart' => $chart->build(),
             'grafikAgama' => $chart->grafikAgama(),
             'grafikJenisKelamin' => $chart->grafikJenisKelamin(),

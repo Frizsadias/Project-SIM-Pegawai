@@ -7,7 +7,8 @@ $(document).on('click', '.edit_kontrak', function() {
     $('#e_pendidikan').val(_this.find('.pendidikan').text());
     $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
     $('#e_jabatan').val(_this.find('.jabatan').text());
-    $('#e_tgl_kontrak').val(_this.find('.tgl_kontrak').text());
+    $('#e_mulai_kontrak').val(_this.find('.mulai_kontrak').text());
+    $("#e_akhir_kontrak").val(_this.find('.akhir_kontrak').text());
 });
 
 $(document).on("click", ".delete_perjanjian", function() {

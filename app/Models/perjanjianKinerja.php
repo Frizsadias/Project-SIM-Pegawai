@@ -5,23 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PerjanjianKontrak extends Model
+class perjanjianKinerja extends Model
 {
     use HasFactory;
 
-    protected $table = 'perjanjian_kontrak';
+    protected $table = 'perjanjian_kinerja';
 
     protected $fillable = [
         'user_id',
         'name',
         'nip',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'nik_blud',
-        'pendidikan',
-        'tahun_lulus',
         'jabatan',
-        'mulai_kontrak',
-        'akhir_kontrak'
+        'jenis_jabatan',
+        'bentuk_perjanjian',
     ];
 }

@@ -15,14 +15,29 @@ return new class extends Migration
         Schema::create('ruangan_id', function (Blueprint $table) {
             $table->id();
             $table->string('ruangan');
+            $table->string('jumlah_tempat_tidur')->nullable();
             $table->timestamps();
         });
 
         DB::table('ruangan_id')->insert([
+            ['ruangan' => '-'],
             ['ruangan' => 'Ruang IGD Terpadu'],
             ['ruangan' => 'Ruang Bedah Central'],
             ['ruangan' => 'RR'],
-            ['ruangan' => 'Ruang Rawat Jalan (POLI-POLI)'],
+            ['ruangan' => 'Ruang Poli Jantung'],
+            ['ruangan' => 'Ruang Poli Kelamin dan Kulit'],
+            ['ruangan' => 'Ruang Poli Saraf'],
+            ['ruangan' => 'Ruang Poli Gigi'],
+            ['ruangan' => 'Ruang Poli Dalam'],
+            ['ruangan' => 'Ruang Poli Mata'],
+            ['ruangan' => 'Ruang Poli THT'],
+            ['ruangan' => 'Ruang Poli Paru'],
+            ['ruangan' => 'Ruang Poli Umum'],
+            ['ruangan' => 'Ruang Poli Anak'],
+            ['ruangan' => 'Ruang Poli Kandungan'],
+            ['ruangan' => 'Ruang Poli Jiwa'],
+            ['ruangan' => 'Ruang Poli Orthopedi'],
+            ['ruangan' => 'Ruang Poli Dots'],
             ['ruangan' => 'Ruang Hemodialisis (HD)'],
             ['ruangan' => 'Ruang Kebidanan'],
             ['ruangan' => 'Ruang Pinang'],

@@ -11,19 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perjanjian_kontrak', function (Blueprint $table) {
+        Schema::create('perjanjian_kinerja', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->nullable();
             $table->string('name')->nullable();
             $table->string('nip')->nullable();
-            $table->string('tempat_lahir')->nullable();
-            $table->string('tanggal_lahir')->nullable();
-            $table->string('nik_blud')->nullable();
-            $table->string('pendidikan')->nullable();
-            $table->string('tahun_lulus')->nullable();
             $table->string('jabatan')->nullable();
-            $table->string('mulai_kontrak')->nullable();
-            $table->string('akhir_kontrak')->nullable();
+            $table->string('bentuk_perjanjian')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perjanjian_kontrak');
+        Schema::dropIfExists('perjanjian_kinerja');
     }
 };
