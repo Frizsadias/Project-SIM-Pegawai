@@ -142,11 +142,11 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="bentuk_perjanjian">Bentuk Perjanjian</label>
-                                    <textarea class="form-control" id="bentuk_perjanjian" name="bentuk_perjanjian" rows="10"
-                                        placeholder="Tulis bentuk perjanjian di sini... CONTOH:
-                1. Melaksanakan tugas sesuai dengan SPK dan RKK
-                2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien
-                3. Berperan serta dalam mewujudkan visi misi rumah sakit."></textarea>
+                                    <textarea type="text" name="bentuk_perjanjian" rows="5" class="form-control" id="bentuk_perjanjian" required=""></textarea><br>
+                                    <small class="text-danger" style="font-size: 16px;">*Nb: 1. Melaksanakan tugas sesuai dengan SPK dan RKK.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Berperan serta dalam mewujudkan visi misi rumah sakit.
+                                    </small>
                                 </div>
                             </div>
                         </div>
@@ -200,10 +200,17 @@
                     <form action="{{ route('layanan/perjanjian-kinerja/edit-data') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" id="e_id">
-                        <div class="form-group">
-                            <label>Bentuk Perjanjian</label>
-                            <textarea type="text" class="form-control" name="bentuk_perjanjian" id="e_bentuk_perjanjian" rows="10"
-                                value=""></textarea>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="bentuk_perjanjian">Bentuk Perjanjian</label>
+                                    <textarea type="text" name="bentuk_perjanjian" rows="5" class="form-control" id="e_bentuk_perjanjian" value=""></textarea><br>
+                                    <small class="text-danger" style="font-size: 16px;">*Nb: 1. Melaksanakan tugas sesuai dengan SPK dan RKK.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Berperan serta dalam mewujudkan visi misi rumah sakit.
+                                    </small>
+                                </div>
+                            </div>
                         </div>
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Simpan Perubahan</button>

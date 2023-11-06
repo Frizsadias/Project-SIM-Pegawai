@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('pendidikan')->nullable();
             $table->string('tahun_lulus')->nullable();
             $table->string('jabatan')->nullable();
+            $table->string('mulai_kontrak')->nullable();
+            $table->string('akhir_kontrak')->nullable();
             $table->timestamps();
         });
     }

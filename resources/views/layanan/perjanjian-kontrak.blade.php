@@ -177,7 +177,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" name="tanggal_lahir"
-                                            placeholder="Tempat Lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
+                                            placeholder="Tanggal Lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
