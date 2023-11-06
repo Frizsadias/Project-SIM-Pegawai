@@ -146,10 +146,10 @@
                                     <div class="form-group">
                                         <label>Kata Sandi</label>
                                         <div class="input-group">
-                                            <input type="password" class="form-control" name="password"  id="katasandi" placeholder="Masukkan Kata Sandi">
+                                            <input type="password" class="form-control" name="password"  id="passwordInput1" placeholder="Masukkan Kata Sandi">
                                             <div class="input-group-append">
-                                                <button type="button" id="tampilkanPassword" class="btn btn-outline-secondary">
-                                                    <i class="fa fa-eye"></i>
+                                                <button type="button" id="tampilkanPassword1" class="btn btn-outline-secondary">
+                                                    <i id="icon1" class="fa fa-eye-slash"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -159,10 +159,10 @@
                                     <div class="form-group">
                                         <label>Konfirmasi Kata Sandi</label>
                                         <div class="input-group">
-                                            <input type="password" class="form-control" name="password_confirmation" id="katasandikonfirmasi" placeholder="Masukkan Konfirmasi Kata Sandi">
+                                            <input type="password" class="form-control" name="password_confirmation" id="passwordInput2" placeholder="Masukkan Konfirmasi Kata Sandi">
                                             <div class="input-group-append">
-                                                <button type="button" id="tampilkanPasswordKonfirmasi" class="btn btn-outline-secondary">
-                                                    <i class="fa fa-eye"></i>
+                                                <button type="button" id="tampilkanPassword2" class="btn btn-outline-secondary">
+                                                    <i id="icon2" class="fa fa-eye-slash"></i>
                                                 </button>
                                             </div>
                                         </div>

@@ -2645,6 +2645,7 @@
                                                             @else
                                                             <input type="text" class="form-control" name="eselon">
                                                             @endif
+                                                            <small class="text-danger">*Jika bukan eselon dapat diisi tanda ( - )</small>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">

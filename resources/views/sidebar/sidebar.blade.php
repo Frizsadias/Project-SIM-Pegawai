@@ -67,8 +67,8 @@
                             <span>Unit Kerja</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('sumpah') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('sumpah') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('referensi-sumpah') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-sumpah') }}" class="{{ request()->routeIs('referensi-sumpah') ? 'noti-dot' : '' }}">
                             <i class="la la-gavel"></i>
                             <span>Sumpah</span>
                         </a>
@@ -113,6 +113,12 @@
                             <span>Perjanjian Kontrak</span>
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('perjanjian-kinerja-admin') ? 'active' : '' }}">
+                        <a href="{{ route('perjanjian-kinerja-admin') }}" class="{{ request()->routeIs('perjanjian-kinerja-admin') ? 'noti-dot' : '' }}">
+                            <i class="la la-calendar-check-o"></i>
+                            <span>Perjanjian Kinerja</span>
+                        </a>
+                    </li>
                     <li class="{{ request()->routeIs('perpanjang-kontrak-admin') ? 'active' : '' }}">
                         <a href="{{ route('perpanjang-kontrak-admin') }}" class="{{ request()->routeIs('perpanjang-kontrak-admin') ? 'noti-dot' : '' }}">
                             <i class="la la-calendar-alt"></i>
@@ -141,6 +147,12 @@
                         <a href="{{ route('spk-nakes-lain-admin') }}" class="{{ request()->routeIs('spk-nakes-lain-admin') ? 'noti-dot' : '' }}">
                             <i class="la la-file-alt"></i>
                             <span>SPK Nakes Lain</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('surat-tanda-registrasi-admin') ? 'active' : '' }}">
+                        <a href="{{ route('surat-tanda-registrasi-admin') }}" class="{{ request()->routeIs('surat-tanda-registrasi-admin') ? 'noti-dot' : '' }}">
+                            <i class="la la-folder-open"></i>
+                            <span>Surat Tanda Registrasi</span>
                         </a>
                     </li>
                     {{-- <li class="menu-title"> <span>Data Statistik </span> </li>
@@ -355,7 +367,7 @@
                             <span>Jabatan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-sliders"></i>
                             <span>Peninjauan Masa Kerja</span>
@@ -366,7 +378,7 @@
                             <i class="la la-info"></i>
                             <span>CPNS/PNS</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ request()->routeIs('riwayat-diklat') ? 'active' : '' }}">
                         <a href="{{ route('riwayat-diklat') }}"
                             class="{{ request()->routeIs('riwayat-diklat') ? 'noti-dot' : '' }}">
@@ -374,7 +386,7 @@
                             <span> Diklat/Kursus</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-users"></i>
                             <span>Keluarga</span>
@@ -427,13 +439,36 @@
                             <i class="la la-pied-piper-alt"></i>
                             <span>Profesi</span>
                         </a>
-                    </li>
-                    <li class="{{ request()->routeIs('layanan-cuti') ? 'active' : '' }}">
-                        <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
-                            <i class="las la-newspaper"></i>
-                            <span>Pengajuan Cuti</span>
-                        </a>
-                    </li>
+                    </li> --}}
+
+                    @if (Auth::user()->role_name == 'User' && Auth::user()->eselon == '-')
+                        <li class="menu-title"> <span>Layanan Kepegawaian</span></li>
+                        <li class="{{ request()->routeIs('layanan-cuti') ? 'active' : '' }}">
+                            <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
+                                <i class="las la-newspaper"></i>
+                                <span>Pengajuan Cuti</span>
+                            </a>
+                        </li>
+
+                        @elseif (Auth::user()->role_name == 'User' && Auth::user()->eselon == '3')
+                        <li class="menu-title"> <span>Layanan Kepegawaian</span></li>
+                        <li class="{{ request()->routeIs('layanan-cuti-eselon3') ? 'active' : '' }}">
+                            <a href="{{ route('layanan-cuti-eselon3') }}" class="{{ request()->routeIs('layanan-cuti-eselon3') ? 'noti-dot' : '' }}">
+                                <i class="las la-newspaper"></i>
+                                <span>Pengajuan Cuti</span>
+                            </a>
+                        </li>
+
+                        @elseif (Auth::user()->role_name == 'User' && Auth::user()->eselon == '4')
+                        <li class="menu-title"> <span>Layanan Kepegawaian</span></li>
+                        <li class="{{ request()->routeIs('layanan-cuti-eselon4') ? 'active' : '' }}">
+                            <a href="{{ route('layanan-cuti-eselon4') }}" class="{{ request()->routeIs('layanan-cuti-eselon4') ? 'noti-dot' : '' }}">
+                                <i class="las la-newspaper"></i>
+                                <span>Pengajuan Cuti</span>
+                            </a>
+                        </li>
+                    @endif
+
                     <li class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'active' : '' }}">
                         <a href="{{ route('kenaikan-gaji-berkala') }}" class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'noti-dot' : '' }}">
                             <i class="la la-money"></i>
@@ -446,36 +481,116 @@
                             <span>Perjanjian Kontrak</span>
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('perjanjian-kinerja') ? 'active' : '' }}">
+                        <a href="{{ route('perjanjian-kinerja') }}" class="{{ request()->routeIs('perjanjian-kinerja') ? 'noti-dot' : '' }}">
+                            <i class="la la-calendar-check-o"></i>
+                            <span>Perjanjian Kinerja</span>
+                        </a>
+                    </li>
                     <li class="{{ request()->routeIs('perpanjang-kontrak') ? 'active' : '' }}">
                         <a href="{{ route('perpanjang-kontrak') }}" class="{{ request()->routeIs('perpanjang-kontrak') ? 'noti-dot' : '' }}">
                             <i class="la la-calendar-alt"></i>
                             <span>Perpanjangan Kontrak</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('sip-dokter') ? 'active' : '' }}">
-                        <a href="{{ route('sip-dokter') }}" class="{{ request()->routeIs('sip-dokter') ? 'noti-dot' : '' }}">
-                            <i class="la la-file-alt"></i>
-                            <span>SIP Dokter</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('spk-dokter') ? 'active' : '' }}">
-                        <a href="{{ route('spk-dokter') }}" class="{{ request()->routeIs('spk-dokter') ? 'noti-dot' : '' }}">
-                            <i class="la la-file-alt"></i>
-                            <span>SPK Dokter</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('spk-perawat') ? 'active' : '' }}">
-                        <a href="{{ route('spk-perawat') }}" class="{{ request()->routeIs('spk-perawat') ? 'noti-dot' : '' }}">
-                            <i class="la la-file-alt"></i>
-                            <span>SPK Perawat</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('spk-nakes-lain') ? 'active' : '' }}">
-                        <a href="{{ route('spk-nakes-lain') }}" class="{{ request()->routeIs('spk-nakes-lain') ? 'noti-dot' : '' }}">
-                            <i class="la la-file-alt"></i>
-                            <span>SPK Nakes Lain</span>
-                        </a>
-                    </li>
+
+                    @if (Auth::user()->role_name == 'User' && Auth::user()->jenis_jabatan == 'Jabatan Struktural')
+                        <li class="{{ request()->routeIs('sip-dokter') ? 'active' : '' }}">
+                            <a href="{{ route('sip-dokter') }}" class="{{ request()->routeIs('sip-dokter') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SIP Dokter</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-dokter') ? 'active' : '' }}">
+                            <a href="{{ route('spk-dokter') }}" class="{{ request()->routeIs('spk-dokter') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Dokter</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-perawat') ? 'active' : '' }}">
+                            <a href="{{ route('spk-perawat') }}" class="{{ request()->routeIs('spk-perawat') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Perawat</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-nakes-lain') ? 'active' : '' }}">
+                            <a href="{{ route('spk-nakes-lain') }}" class="{{ request()->routeIs('spk-nakes-lain') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Nakes Lain</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('surat-tanda-registrasi') ? 'active' : '' }}">
+                            <a href="{{ route('surat-tanda-registrasi') }}" class="{{ request()->routeIs('surat-tanda-registrasi') ? 'noti-dot' : '' }}">
+                                <i class="la la-folder-open"></i>
+                                <span>Surat Tanda Registrasi</span>
+                            </a>
+                        </li>
+                    
+                        @elseif (Auth::user()->role_name == 'User' && Auth::user()->jenis_jabatan == 'Jabatan Fungsional Tertentu')
+                        <li class="{{ request()->routeIs('sip-dokter') ? 'active' : '' }}">
+                            <a href="{{ route('sip-dokter') }}" class="{{ request()->routeIs('sip-dokter') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SIP Dokter</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-dokter') ? 'active' : '' }}">
+                            <a href="{{ route('spk-dokter') }}" class="{{ request()->routeIs('spk-dokter') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Dokter</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-perawat') ? 'active' : '' }}">
+                            <a href="{{ route('spk-perawat') }}" class="{{ request()->routeIs('spk-perawat') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Perawat</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-nakes-lain') ? 'active' : '' }}">
+                            <a href="{{ route('spk-nakes-lain') }}" class="{{ request()->routeIs('spk-nakes-lain') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Nakes Lain</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('surat-tanda-registrasi') ? 'active' : '' }}">
+                            <a href="{{ route('surat-tanda-registrasi') }}" class="{{ request()->routeIs('surat-tanda-registrasi') ? 'noti-dot' : '' }}">
+                                <i class="la la-folder-open"></i>
+                                <span>Surat Tanda Registrasi</span>
+                            </a>
+                        </li>
+
+                        @elseif (Auth::user()->role_name == 'User' && Auth::user()->jenis_jabatan == 'Jabatan Rangkap (Struktural dan Fungsional)')
+                        <li class="{{ request()->routeIs('sip-dokter') ? 'active' : '' }}">
+                            <a href="{{ route('sip-dokter') }}" class="{{ request()->routeIs('sip-dokter') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SIP Dokter</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-dokter') ? 'active' : '' }}">
+                            <a href="{{ route('spk-dokter') }}" class="{{ request()->routeIs('spk-dokter') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Dokter</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-perawat') ? 'active' : '' }}">
+                            <a href="{{ route('spk-perawat') }}" class="{{ request()->routeIs('spk-perawat') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Perawat</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('spk-nakes-lain') ? 'active' : '' }}">
+                            <a href="{{ route('spk-nakes-lain') }}" class="{{ request()->routeIs('spk-nakes-lain') ? 'noti-dot' : '' }}">
+                                <i class="la la-file-alt"></i>
+                                <span>SPK Nakes Lain</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('surat-tanda-registrasi') ? 'active' : '' }}">
+                            <a href="{{ route('surat-tanda-registrasi') }}" class="{{ request()->routeIs('surat-tanda-registrasi') ? 'noti-dot' : '' }}">
+                                <i class="la la-folder-open"></i>
+                                <span>Surat Tanda Registrasi</span>
+                            </a>
+                        </li>
+                    @endif
+
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
                     <li class="{{ set_active(['user/profile']) }}">
                         <a href="{{ route('user-profile') }}"
@@ -492,7 +607,6 @@
                         </a>
                     </li>
                 @endif
-
             </ul>
         </div>
     </div>

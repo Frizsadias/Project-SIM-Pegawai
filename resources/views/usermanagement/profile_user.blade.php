@@ -276,6 +276,7 @@
                                                             <option value="{{ $id }}" {{ $id == $propeg->ruangan ? 'selected' : '' }}>{{ $optionLabel }}</option>
                                                         @endforeach
                                                     </select>
+                                                    <small class="text-danger">*Jika pilihan tidak tersedia dapat memilih tanda ( - )</small>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

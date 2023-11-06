@@ -29,10 +29,10 @@
                                     </div>
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="katasandi" name="password" placeholder="Masukkan Kata Sandi">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="passwordInput1" name="password" placeholder="Masukkan Kata Sandi">
                                     <div class="input-group-append">
-                                        <button type="button" id="tampilkanPassword" class="btn btn-outline-secondary">
-                                            <i class="fa fa-eye"></i>
+                                        <button type="button" id="tampilkanPassword1" class="btn btn-outline-secondary">
+                                            <i id="icon1" class="fa fa-eye-slash"></i>
                                         </button>
                                     </div>
                                 </div>

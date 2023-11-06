@@ -1037,7 +1037,13 @@ class UserManagementController extends Controller
                 'kppn'                   => $request->kppn,
             ];
 
+            $editUsers = [
+                'jenis_jabatan'          => $request->jenis_jabatan,
+                'eselon'                 => $request->eselon
+            ];
+
             DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($editPosisiJabatan);
+            DB::table('users')->where('user_id', $request->user_id)->update($editUsers);
 
             DB::commit();
             Toastr::success('Data posisi & jabatan berhasil diperbaharui :)', 'Success');

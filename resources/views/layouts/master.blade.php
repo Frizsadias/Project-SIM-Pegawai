@@ -120,7 +120,10 @@
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details">
-                                                        <span class="noti-title">{{ $notification->data['name'] }}</span> mendapatkan pesan baru <b>{{ $notification->data['message3'] }}</b>
+                                                        <span class="noti-title">
+                                                            <b>{{ $notification->data['message3'] }} {{ $notification->data['name'] }}</b>
+                                                        </span><br>
+                                                            Ada pesan baru untuk anda   !!
                                                     </p>
                                                     <p class="noti-time">
                                                         <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
