@@ -45,7 +45,7 @@
         </div><br>
 
         <!-- Search Filter -->
-        <form action="" method="GET" id="search-form">
+        <form action="{{ route('layanan/kenaikan/gaji/berkala/admin/cari') }}" method="GET" id="search-form">
             <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
@@ -64,6 +64,10 @@
                 </div>
             </div>
         </form>
+
+        <!-- Tampilkan hasil pencarian atau data KGB di sini -->
+
+
         <!-- Search Filter -->
 
         {{-- message --}}
@@ -146,7 +150,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('layanan/kgb/tambah-data') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('layanan/kgb/tambah-data') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
@@ -219,7 +224,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor SK KGB</label>
-                                    <input type="text" class="form-control" name="no_sk_kgb" placeholder="Nomor SK KGB">
+                                    <input type="text" class="form-control" name="no_sk_kgb"
+                                        placeholder="Nomor SK KGB">
                                 </div>
                             </div>
                             <div class="col-md-6">
