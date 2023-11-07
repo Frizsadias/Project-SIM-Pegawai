@@ -1794,6 +1794,15 @@ table.dataTable thead > tr > td.sorting {
     font-weight: 500;
     margin-bottom: 5px;
 }
+
+.page-title2 {
+    color: #1f1f1f;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 5px;
+
+}
+
 .page-sub-title {
 	color: #565656;
 	font-size: 18px;
@@ -8666,6 +8675,22 @@ ul.comment-list li ul.children {
 }
 
 .status-persetujuan-superadmin:hover{
+	color: #212529;
+	text-decoration: none;
+}
+
+.status-persetujuan-user{
+	font-size:.875rem;
+	line-height:1.5;
+	padding:.5rem .75rem;
+	background-color: #fff;
+    color: #333;
+	border: 1px solid #ccc;
+	border-radius: 50px;
+	margin-bottom: 5px;
+}
+
+.status-persetujuan-user:hover{
 	color: #212529;
 	text-decoration: none;
 }

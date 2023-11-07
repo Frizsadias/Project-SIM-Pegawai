@@ -119,8 +119,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Peran </label>
-                                        <select class="select" name="role_name" id="role_name">
+                                        <label>Peran </label><br>
+                                        <select class="theSelect" name="role_name" id="role_name">
                                             <option selected disabled> --Pilih Peran --</option>
                                             @foreach ($role_name as $role)
                                                 <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
@@ -212,8 +212,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Peran</label>
-                                        <select class="select" name="role_name" id="e_role_name">
+                                        <label>Peran </label><br>
+                                        <select class="theSelect" name="role_name" id="e_role_name">
                                             @foreach ($role_name as $role)
                                                 <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
                                             @endforeach
@@ -371,6 +371,10 @@
             $('.e_id').val(_this.find('.id').data('id'));
             $('#e_avatar').val(_this.find('.avatar').data('avatar'));
         });
+    </script>
+
+    <script>
+        $(".theSelect").select2();
     </script>
 
     <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>

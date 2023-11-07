@@ -29,11 +29,11 @@
 
                 <!-- Cetak Dokumen Kelengkapan PDF -->
                 <div class="row filter-row">
-                    <div class="col-sm-6 col-md-3">
+                    <div class="col-sm-6 col-md-2">
                         <select id="pilihDokumenKelengkapan" class="form-control">
                             <option selected disabled> --Pilih Dokumen Kelengkapan --</option>
-                            @foreach($data_cuti_pdf as $cuti)
-                                <option value="{{ $cuti->id }}">Dokumen Kelengkapan - {{ $cuti->name }}</option>
+                            @foreach($data_cuti_pdf_kelengkapan as $pdf_kelengkapan)
+                                <option value="{{ $pdf_kelengkapan->id }}">Dokumen Kelengkapan - {{ $pdf_kelengkapan->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -42,16 +42,27 @@
                     </div>
                 
                     <!-- Cetak Dokumen Rekomendasi PDF -->
-                    <div class="col-sm-6 col-md-3">
+                    <div class="col-sm-6 col-md-2">
                         <select id="pilihDokumenRekomendasi" class="form-control">
                             <option selected disabled> --Pilih Dokumen Rekomendasi --</option>
-                            @foreach($data_cuti_pdf as $cuti)
-                                <option value="{{ $cuti->id }}">Dokumen Rekomendasi - {{ $cuti->name }}</option>
+                            @foreach($data_cuti_pdf_rekomendasi as $pdf_rekomendasi)
+                                <option value="{{ $pdf_rekomendasi->id }}">Dokumen Rekomendasi - {{ $pdf_rekomendasi->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <button id="cetakDokumenRekomendasi" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Rekomendasi</button>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        @php
+                            $lastCuti = $data_cuti->last();
+                        @endphp
+                        @if ($lastCuti)
+                            <button type="button" class="btn btn-info" id="lihatSemua">
+                                <i id="icon2" class="fa fa-eye-slash"></i> Lihat Semua Progress
+                            </button>
+                        @else
+                        @endif
                     </div>
                 </div>
                 <br>
@@ -105,10 +116,8 @@
                                             <th>Dokumen Kelengkapan</th>
                                             <th>Dokumen Rekomendasi</th>
                                             <th>Status Permohonan Cuti</th>
-                                            <th>Pengajuan Kepala Ruangan</th>
-                                            <th>Pengajuan Eselon 4</th>
                                             <th>Pengajuan Administrasi</th>
-                                            <th>Pengajuan Eselon 3</th>
+                                            <th>Progress Persetujuan</th>
                                             <th class="text-right no-sort">Aksi</th>
                                         </tr>
                                     </thead>
@@ -172,49 +181,6 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="persetujuan_kepalaruangan">
-                                                <div class="dropdown">
-                                                    <a class="status-persetujuan-superadmin">
-                                                        @if ($result_cuti->persetujuan_kepalaruangan == 'Disetujui')
-                                                            <i class="fa fa-dot-circle-o text-success"></i>
-                                                        @elseif ($result_cuti->persetujuan_kepalaruangan == 'Dalam Proses Persetujuan')
-                                                            <i class="fa fa-dot-circle-o text-warning"></i>
-                                                        @elseif ($result_cuti->persetujuan_kepalaruangan == 'Ditolak')
-                                                            <i class="fa fa-dot-circle-o text-danger"></i>
-                                                        @endif
-                                                        <span class="dropdown_pengajuan">{{ $result_cuti->persetujuan_kepalaruangan }}</span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="persetujuan_eselon4">
-                                                <div class="dropdown">
-                                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">
-                                                        @if ($result_cuti->persetujuan_eselon4 == 'Disetujui')
-                                                            <i class="fa fa-dot-circle-o text-success"></i>
-                                                        @elseif ($result_cuti->persetujuan_eselon4 == 'Dalam Proses Persetujuan')
-                                                            <i class="fa fa-dot-circle-o text-warning"></i>
-                                                        @elseif ($result_cuti->persetujuan_eselon4 == 'Ditolak')
-                                                            <i class="fa fa-dot-circle-o text-danger"></i>
-                                                        @endif
-                                                        <span class="dropdown_pengajuan">{{ $result_cuti->persetujuan_eselon4 }}</span>
-                                                    </a>
-                                                    <div class="dropdown-menu" aria-labelledby="statusDropdown">
-                                                        <form action="{{ route('updateStatus', $result_cuti->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon4" value="Disetujui">
-                                                                <i class="fa fa-dot-circle-o text-success"></i> Disetujui
-                                                            </button>
-                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon4" value="Dalam Proses Persetujuan">
-                                                                <i class="fa fa-dot-circle-o text-warning"></i> Dalam Proses Persetujuan
-                                                            </button>
-                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon4" value="Ditolak">
-                                                                <i class="fa fa-dot-circle-o text-danger"></i> Ditolak
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </td>
                                             <td class="persetujuan_administrasi">
                                                 <div class="dropdown">
                                                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -244,33 +210,46 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="persetujuan_eselon3">
-                                                <div class="dropdown">
-                                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">
-                                                        @if ($result_cuti->persetujuan_eselon3 == 'Disetujui')
-                                                            <i class="fa fa-dot-circle-o text-success"></i>
-                                                        @elseif ($result_cuti->persetujuan_eselon3 == 'Dalam Proses Persetujuan')
-                                                            <i class="fa fa-dot-circle-o text-warning"></i>
-                                                        @elseif ($result_cuti->persetujuan_eselon3 == 'Ditolak')
-                                                            <i class="fa fa-dot-circle-o text-danger"></i>
-                                                        @endif
-                                                        <span class="dropdown_pengajuan">{{ $result_cuti->persetujuan_eselon3 }}</span>
-                                                    </a>
-                                                    <div class="dropdown-menu" aria-labelledby="statusDropdown">
-                                                        <form action="{{ route('updateStatus', $result_cuti->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon3" value="Disetujui">
-                                                                <i class="fa fa-dot-circle-o text-success"></i> Disetujui
-                                                            </button>
-                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon3" value="Dalam Proses Persetujuan">
-                                                                <i class="fa fa-dot-circle-o text-warning"></i> Dalam Proses Persetujuan
-                                                            </button>
-                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon3" value="Ditolak">
-                                                                <i class="fa fa-dot-circle-o text-danger"></i> Ditolak
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                            <td class="progress_persetujuan">
+                                                <div class="dropdown status-persetujuan-user">
+                                                    @if ($result_cuti->persetujuan_kepalaruangan == 'Disetujui')
+                                                        <i class="fa fa-dot-circle-o text-success"></i>
+                                                     @elseif ($result_cuti->persetujuan_kepalaruangan == 'Dalam Proses Persetujuan')
+                                                        <i class="fa fa-dot-circle-o text-warning"></i>
+                                                    @elseif ($result_cuti->persetujuan_kepalaruangan == 'Ditolak')
+                                                        <i class="fa fa-dot-circle-o text-danger"></i>
+                                                    @endif
+                                                    <span class="persetujuan_kepalaruangan">{{ $result_cuti->persetujuan_kepalaruangan }}</span> (Kelapa Ruangan)
+                                                </div>
+                                                <div class="dropdown status-persetujuan-user">
+                                                    @if ($result_cuti->persetujuan_eselon4 == 'Disetujui')
+                                                        <i class="fa fa-dot-circle-o text-success"></i>
+                                                    @elseif ($result_cuti->persetujuan_eselon4 == 'Dalam Proses Persetujuan')
+                                                        <i class="fa fa-dot-circle-o text-warning"></i>
+                                                    @elseif ($result_cuti->persetujuan_eselon4 == 'Ditolak')
+                                                        <i class="fa fa-dot-circle-o text-danger"></i>
+                                                    @endif
+                                                    <span class="persetujuan_eselon4">{{ $result_cuti->persetujuan_eselon4 }}</span> (Eselon 4)
+                                                </div>
+                                                <div class="dropdown status-persetujuan-user">
+                                                    @if ($result_cuti->persetujuan_administrasi == 'Disetujui')
+                                                        <i class="fa fa-dot-circle-o text-success"></i>
+                                                    @elseif ($result_cuti->persetujuan_administrasi == 'Dalam Proses Persetujuan')
+                                                        <i class="fa fa-dot-circle-o text-warning"></i>
+                                                    @elseif ($result_cuti->persetujuan_administrasi == 'Ditolak')
+                                                        <i class="fa fa-dot-circle-o text-danger"></i>
+                                                    @endif
+                                                        <span class="persetujuan_administrasi">{{ $result_cuti->persetujuan_administrasi }}</span> (Administrasi)
+                                                </div>
+                                                <div class="dropdown status-persetujuan-user">
+                                                    @if ($result_cuti->persetujuan_eselon3 == 'Disetujui')
+                                                        <i class="fa fa-dot-circle-o text-success"></i>
+                                                    @elseif ($result_cuti->persetujuan_eselon3 == 'Dalam Proses Persetujuan')
+                                                        <i class="fa fa-dot-circle-o text-warning"></i>
+                                                    @elseif ($result_cuti->persetujuan_eselon3 == 'Ditolak')
+                                                        <i class="fa fa-dot-circle-o text-danger"></i>
+                                                    @endif
+                                                        <span class="persetujuan_eselon3">{{ $result_cuti->persetujuan_eselon3 }}</span> (Eselon 3)
                                                 </div>
                                             </td>
 
@@ -280,6 +259,8 @@
                                                     <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item edit_layanan_cuti" href="#" data-toggle="modal" data-target="#edit_layanan_cuti"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                        <a href="{{ route('layanan-cuti-admin-kelengkapan2', ['id' => $result_cuti->id]) }}" target="_blank" class="dropdown-item cetak-cuti"><i class="fa fa-print m-r-5"></i> Cetak Kelengkapan</a>
+                                                        <a href="{{ route('layanan-cuti-admin-rekomendasi2', ['id' => $result_cuti->id]) }}" target="_blank" class="dropdown-item cetak-cuti"><i class="fa fa-print m-r-5"></i> Cetak Rekomendasi</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -510,5 +491,6 @@
         </script>
 
         <script src="{{ asset('assets/js/layanancuti.js') }}"></script>
+        <script src="{{ asset('assets/js/pengajuancuti.js') }}"></script>
     @endsection
 @endsection
