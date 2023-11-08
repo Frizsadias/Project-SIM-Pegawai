@@ -394,5 +394,9 @@
         <script>
 		$(".theSelect").select2();
 	    </script>
+
+        <script>
+        history.pushState({}, "", '/riwayat/diklat');
+    </script>
 @endsection
 @endsection

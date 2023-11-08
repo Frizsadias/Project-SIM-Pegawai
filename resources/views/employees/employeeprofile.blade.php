@@ -2254,7 +2254,7 @@
                                             <div class="form-group">
                                                 <label>Provinsi</label>
                                                 <span class="text-danger">*</span>
-                                                <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi">
+                                                <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" value="{{ $users->provinsi }}">
                                                         <option value="" disabled selected>-- Pilih Provinsi --</option>
                                                     @foreach ($provinces as $provinsi)
                                                         <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
@@ -2272,7 +2272,8 @@
                                             <div class="form-group">
                                                 <label>Kota/Kabupaten</label>
                                                 <span class="text-danger">*</span>
-                                                <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten">
+                                                <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kota" value="{{ $users->kota }}">
+                                               
                                                 </select>
                                             </div>
                                         </div>
@@ -2287,7 +2288,8 @@
                                             <div class="form-group">
                                                 <label>Kecamatan</label>
                                                 <span class="text-danger">*</span>
-                                                <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan">
+                                                <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan_employee" value="{{ $users->kecamatan }}">
+                                               
                                                 </select>
                                             </div>
                                         </div>
@@ -2302,7 +2304,8 @@
                                             <div class="form-group">
                                                 <label>Desa/Kelurahan</label>
                                                 <span class="text-danger">*</span>
-                                                <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan">
+                                                <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="kelurahan" value="{{ $users->kelurahan }}">
+                                               
                                                 </select>
                                             </div>
                                         </div>
@@ -2885,43 +2888,52 @@
                         let id_provinsi = $('#provinsi').val();
                         $.ajax({
                             type : 'POST',
-                            url : "{{ route('getkotakabupaten') }}",
+                            url : "{{ route('getkota') }}",
                             data : {id_provinsi:id_provinsi},
                             cache : false,
 
                             success: function(msg){
-                                $('#kotakabupaten').html(msg);
-                                $('#kecamatan').html('');
-                                $('#desakelurahan').html('');
+                                $('#kota').html(msg);
+                                $('#kecamatan_employee').html('');
+                                $('#kelurahan').html('');
+                            },
+                            error: function(data){
+                                console.log('error:', data)
                             },
                         })
                     })
 
-                    $('#kotakabupaten').on('change', function (){
-                        let id_kotakabupaten = $('#kotakabupaten').val();
+                    $('#kota').on('change', function (){
+                        let id_kota = $('#kota').val();
                         $.ajax({
                             type : 'POST',
-                            url : "{{ route('getkecamatan') }}",
-                            data : {id_kotakabupaten:id_kotakabupaten},
+                            url : "{{ route('getkecamatan_employee') }}",
+                            data : {id_kota:id_kota},
                             cache : false,
 
                             success: function(msg){
-                                $('#kecamatan').html(msg);
-                                $('#desakelurahan').html('');
+                                $('#kecamatan_employee').html(msg);
+                                $('#kelurahan').html('');
+                            },
+                            error: function(data){
+                                console.log('error:', data)
                             },
                         })
                     })
 
-                    $('#kecamatan').on('change', function (){
-                        let id_kecamatan= $('#kecamatan').val();
+                    $('#kecamatan_employee').on('change', function (){
+                        let id_kecamatan_employee= $('#kecamatan_employee').val();
                         $.ajax({
                             type : 'POST',
-                            url : "{{ route('getdesakelurahan') }}",
-                            data : {id_kecamatan:id_kecamatan},
+                            url : "{{ route('getkelurahan') }}",
+                            data : {id_kecamatan_employee:id_kecamatan_employee},
                             cache : false,
 
                             success: function(msg){
-                                $('#desakelurahan').html(msg);
+                                $('#kelurahan').html(msg);
+                            },
+                            error: function(data){
+                                console.log('error:', data)
                             },
                         })
                     })

@@ -474,5 +474,9 @@
         <script>
 		$(".theSelect").select2();
 	    </script>
+
+        <script>
+        history.pushState({}, "", '/riwayat/pendidikan');
+    </script>
 @endsection
 @endsection

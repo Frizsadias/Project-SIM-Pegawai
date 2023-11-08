@@ -545,6 +545,7 @@ class UserManagementController extends Controller
         $id_kecamatan = $request->id_kecamatan;
         $desakelurahans = Village::where('district_id', $id_kecamatan)->get();
         $option = "<option value='' disabled selected>-- Pilih Desa/Kelurahan --</option>";
+        
         foreach ($desakelurahans as $desakelurahan) {
             $option.= "<option value='$desakelurahan->id'>$desakelurahan->name</option>";
         }

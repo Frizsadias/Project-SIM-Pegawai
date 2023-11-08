@@ -23,6 +23,10 @@ use App\Models\Notification;
 use App\Models\ReferensiPangkat;
 use App\Models\sipDokter;
 use App\Models\Sumpah;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 use Carbon\Carbon;
 use Session;
 
@@ -766,6 +770,9 @@ class EmployeeController extends Controller
 
             $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
+        $provinces = Province::all();
+
+
             $user = auth()->user();
             $role = $user->role_name;
             $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -781,7 +788,43 @@ class EmployeeController extends Controller
         return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans',
         'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'kedudukanOptions',
         'jenispegawaiOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions',
-        'pendidikanterakhirOptions' ,'unreadNotifications', 'readNotifications',));
+        'pendidikanterakhirOptions' ,'unreadNotifications', 'readNotifications', 'provinces'));
+    }
+
+    public function getkota(Request $request)
+    {
+        $id_provinsi = $request->id_provinsi;
+        $kotakabupatens = Regency::where('province_id', $id_provinsi)->get();
+
+        $option = "<option value='' disabled selected>-- Pilih Kota/Kabupaten --</option>";
+        foreach ($kotakabupatens as $kotakabupaten) {
+            $option .= "<option value='$kotakabupaten->id'>$kotakabupaten->name</option>";
+        }
+        echo $option;
+    }
+
+    public function getkecamatan_employee(Request $request)
+    {
+        $id_kotakabupaten = $request->id_kotakabupaten;
+        $kecamatans = District::where('regency_id', $id_kotakabupaten)->get();
+
+        $option = "<option value='' disabled selected>-- Pilih Kecamatan --</option>";
+        foreach ($kecamatans as $kecamatan) {
+            $option .= "<option value='$kecamatan->id'>$kecamatan->name</option>";
+        }
+        echo $option;
+    }
+
+    public function getkelurahan(Request $request)
+    {
+        $id_kecamatan = $request->id_kecamatan;
+        $desakelurahans = Village::where('district_id', $id_kecamatan)->get();
+        $option = "<option value='' disabled selected>-- Pilih Desa/Kelurahan --</option>";
+
+        foreach ($desakelurahans as $desakelurahan) {
+            $option .= "<option value='$desakelurahan->id'>$desakelurahan->name</option>";
+        }
+        echo $option;
     }
 
     /** page agama */

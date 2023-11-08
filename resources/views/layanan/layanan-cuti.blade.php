@@ -369,5 +369,8 @@
     @section('script')
         <script src="{{ asset('assets/js/layanancuti.js') }}"></script>
         <script src="{{ asset('assets/js/pengajuancuti.js') }}"></script>
+        <script>
+        history.pushState({}, "", '/layanan/cuti');
+    </script>
     @endsection
 @endsection

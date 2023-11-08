@@ -414,5 +414,9 @@
             $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
         });
     </script>
+
+    <script>
+        history.pushState({}, "", '/riwayat/golongan');
+    </script>
 @endsection
 @endsection

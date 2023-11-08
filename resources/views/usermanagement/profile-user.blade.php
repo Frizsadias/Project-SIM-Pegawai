@@ -1261,8 +1261,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Provinsi</label>
-                                                    <span class="text-danger">*</span>
-                                                    <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi">
+                                                    <span class="text-danger">*</span><br>
+                                                    <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" value="{{ $result_profilpegawai->provinsi }}">
                                                             <option value="" disabled selected>-- Pilih Provinsi --</option>
                                                         @foreach ($provinces as $provinsi)
                                                             <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
@@ -1273,24 +1273,27 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Kota/Kabupaten</label>
-                                                    <span class="text-danger">*</span>
-                                                    <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten">
+                                                    <span class="text-danger">*</span><br>
+                                                    <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten" value="{{ $result_profilpegawai->kota }}">
+                                                    
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Kecamatan</label>
-                                                    <span class="text-danger">*</span>
-                                                    <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan">
+                                                    <span class="text-danger">*</span><br>
+                                                    <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan" value="{{ $result_profilpegawai->kecamatan }}">
+                                                    
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Desa/Kelurahan</label>
-                                                    <span class="text-danger">*</span>
-                                                    <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan">
+                                                    <span class="text-danger">*</span><br>
+                                                    <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan" value="{{ $result_profilpegawai->kelurahan }}">
+                                                    
                                                     </select>
                                                 </div>
                                             </div>
@@ -1933,6 +1936,9 @@
                                 $('#kecamatan').html('');
                                 $('#desakelurahan').html('');
                             },
+                            error: function(data){
+                                console.log('error:', data)
+                            },
                         })
                     })
 
@@ -1948,6 +1954,9 @@
                                 $('#kecamatan').html(msg);
                                 $('#desakelurahan').html('');
                             },
+                            error: function(data){
+                                console.log('error:', data)
+                            },
                         })
                     })
 
@@ -1961,6 +1970,9 @@
 
                             success: function(msg){
                                 $('#desakelurahan').html(msg);
+                            },
+                            error: function(data){
+                                console.log('error:', data)
                             },
                         })
                     })
