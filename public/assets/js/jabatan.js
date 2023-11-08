@@ -17,9 +17,9 @@ $(document).on('click', '.edit_riwayat_jabatan', function() {
     $(_option).appendTo("#e_jenis_jabatan_riwayat");
 });
 
-// $(document).on('click', '.delete_riwayat_jabatan', function() {
-//     var _this = $(this).parents('tr');
-//     $('.e_id').val(_this.find('.id').text());
-//     $('.d_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
-//     $('.d_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
-// });
+$(document).on('click', '.delete_riwayat_jabatan', function() {
+    var _this = $(this).parents('tr');
+    $('.e_id').val(_this.find('.id').text());
+    $('.d_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
+    $('.d_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
+});

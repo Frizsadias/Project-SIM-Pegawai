@@ -80,63 +80,33 @@
                             <tbody>
                                 @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
                                     <tr>
-                                        <td>
-                                            <center>{{ ++$sqljabatan }}</center>
-                                        </td>
-                                        <td hidden class="id">
-                                            <center>{{ $result_jabatan->id }}</center>
-                                        </td>
-                                        <td hidden class="id_jab">
-                                            <center>{{ $result_jabatan->id_jab }}</center>
-                                        </td>
-                                        <td class="jenis_jabatan_riwayat">
-                                            <center>{{ $result_jabatan->jenis_jabatan_riwayat }}</center>
-                                        </td>
-                                        <td class="satuan_kerja">
-                                            <center>{{ $result_jabatan->satuan_kerja }}</center>
-                                        </td>
-                                        <td class="satuan_kerja_induk">
-                                            <center>{{ $result_jabatan->satuan_kerja_induk }}</center>
-                                        </td>
-                                        <td class="unit_organisasi_riwayat">
-                                            <center>{{ $result_jabatan->unit_organisasi_riwayat }}</center>
-                                        </td>
-                                        <td class="no_sk">
-                                            <center>{{ $result_jabatan->no_sk }}</center>
-                                        </td>
-                                        <td class="tanggal_sk">
-                                            <center>{{ $result_jabatan->tanggal_sk }}</center>
-                                        </td>
-                                        <td class="tmt_jabatan">
-                                            <center>{{ $result_jabatan->tmt_jabatan }}</center>
-                                        </td>
-                                        <td class="tmt_pelantikan">
-                                            <center>{{ $result_jabatan->tmt_pelantikan }}</center>
-                                        </td>
-                                        <td class="dokumen_sk_jabatan">
-                                            <center>
-                                                <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}"
-                                                    target="_blank">
-                                                    @if (pathinfo($result_jabatan->dokumen_sk_jabatan, PATHINFO_EXTENSION) == 'pdf')
-                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;"
-                                                            aria-hidden="true"></i>
-                                                    @endif
-                                        <td hidden class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}
-                                        </td>
-                                        </a></center>
-                                        </td>
-                                        <td class="dokumen_pelantikan">
-                                            <center>
-                                                <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}"
-                                                    target="_blank">
-                                                    @if (pathinfo($result_jabatan->dokumen_pelantikan, PATHINFO_EXTENSION) == 'pdf')
-                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;"
-                                                            aria-hidden="true"></i>
-                                                    @endif
-                                        <td hidden class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}
-                                        </td>
-                                        </a></center>
-                                        </td>
+                                        <td><center>{{ ++$sqljabatan }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
+                                        <td hidden class="id_jab"><center>{{ $result_jabatan->id_jab }}</center></td>
+                                        <td class="jenis_jabatan_riwayat"><center>{{ $result_jabatan->jenis_jabatan_riwayat }}</center></td>
+                                        <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
+                                        <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
+                                        <td class="unit_organisasi_riwayat"><center>{{ $result_jabatan->unit_organisasi_riwayat }}</center></td>
+                                        <td class="no_sk"><center>{{ $result_jabatan->no_sk }}</center></td>
+                                        <td class="tanggal_sk"><center>{{ $result_jabatan->tanggal_sk }}</center></td>
+                                        <td class="tmt_jabatan"><center>{{ $result_jabatan->tmt_jabatan }}</center></td>
+                                        <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
+                                        <td class="dokumen_sk_jabatan"><center>
+                                            <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}" target="_blank">
+                                                @if (pathinfo($result_jabatan->dokumen_sk_jabatan, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                <td hidden class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}</td>
+                                            </a>
+                                        </center></td>
+                                        <td class="dokumen_pelantikan"><center>
+                                            <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}" target="_blank">
+                                                @if (pathinfo($result_jabatan->dokumen_pelantikan, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                <td hidden class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}</td>
+                                            </a>
+                                        </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -173,21 +143,18 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Riwayat Jabatan
-                        </h5>
+                        <h5 class="modal-title">Tambah Riwayat Jabatan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/jabatan/tambah-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/jabatan/tambah-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="user_id"
-                                            value="{{ Auth::user()->user_id }}">
+                                        <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
                                     </div>
                                 </div>
                             </div>
@@ -285,22 +252,19 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Riwayat Jabatan
-                        </h5>
+                        <h5 class="modal-title">Edit Riwayat Jabatan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/jabatan/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('riwayat/jabatan/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id_jab" id="e_id_jab" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Jabatan
-                                        </label>
+                                        <label>Jenis Jabatan</label>
                                         <select name="jenis_jabatan_riwayat" class="select" id="e_jenis_jabatan_riwayat">
                                             <option selected disabled> --Pilih Jenis Jabatan --</option>
                                             <option>Jabatan Struktural</option>
@@ -312,8 +276,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Satuan Kerja</label>
-                                        <input type="text" class="form-control" name="satuan_kerja"
-                                            id="e_satuan_kerja" value="">
+                                        <input class="form-control" type="text" name="satuan_kerja" id="e_satuan_kerja" value="">
                                     </div>
                                 </div>
                             </div>
@@ -321,15 +284,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Satuan Kerja Induk</label>
-                                        <input type="text" class="form-control" name="satuan_kerja_induk"
-                                            id="e_satuan_kerja_induk" value="">
+                                        <input class="form-control" type="text" name="satuan_kerja_induk" id="e_satuan_kerja_induk" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Unit Organisasi</label>
-                                        <input type="text" class="form-control" name="unit_organisasi_riwayat"
-                                            id="e_unit_organisasi_riwayat" value="">
+                                        <input class="form-control" type="text" name="unit_organisasi_riwayat" id="e_unit_organisasi_riwayat" value="">
                                     </div>
                                 </div>
                             </div>
@@ -337,15 +298,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input type="text" class="form-control" name="no_sk" id="e_no_sk"
-                                            value="">
+                                        <input class="form-control" type="text" name="no_sk" id="e_no_sk" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
-                                        <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk"
-                                            value="">
+                                        <input class="form-control" type="date" name="tanggal_sk" id="e_tanggal_sk" value="">
                                     </div>
                                 </div>
                             </div>
@@ -353,15 +312,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Jabatan</label>
-                                        <input type="date" class="form-control" name="tmt_jabatan" id="e_tmt_jabatan"
-                                            value="">
+                                        <input class="form-control" type="date" name="tmt_jabatan" id="e_tmt_jabatan" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>TMT Pelantikan</label>
-                                        <input type="date" class="form-control" name="tmt_pelantikan"
-                                            id="e_tmt_pelantikan" value="">
+                                        <input class="form-control" type="date" name="tmt_pelantikan" id="e_tmt_pelantikan" value="">
                                     </div>
                                 </div>
                             </div>
@@ -369,20 +326,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen SK Jabatan</label>
-                                        <input type="file" class="form-control" id="dokumen_sk_jabatan"
-                                            name="dokumen_sk_jabatan">
-                                        <input type="hidden" name="hidden_dokumen_sk_jabatan" id="e_dokumen_sk_jabatan"
-                                            value="">
+                                        <input class="form-control" type="file" id="dokumen_sk_jabatan" name="dokumen_sk_jabatan">
+                                        <input type="hidden" name="hidden_dokumen_sk_jabatan" id="e_dokumen_sk_jabatan" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Pelantikan</label>
-                                        <input type="file" class="form-control" id="dokumen_pelantikan"
-                                            name="dokumen_pelantikan">
-                                        <input type="hidden" name="hidden_dokumen_pelantikan" id="e_dokumen_pelantikan"
-                                            value="">
+                                        <input class="form-control" type="file" id="dokumen_pelantikan" name="dokumen_pelantikan">
+                                        <input type="hidden" name="hidden_dokumen_pelantikan" id="e_dokumen_pelantikan" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
@@ -435,44 +388,15 @@
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- update js --}}
-    <script>
-        $(document).on('click', '.edit_riwayat_jabatan', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id_jab').val(_this.find('.id_jab').text());
-            $('#e_satuan_kerja').val(_this.find('.satuan_kerja').text());
-            $('#e_satuan_kerja_induk').val(_this.find('.satuan_kerja_induk').text());
-            $('#e_unit_organisasi_riwayat').val(_this.find('.unit_organisasi_riwayat').text());
-            $('#e_no_sk').val(_this.find('.no_sk').text());
-            $('#e_tanggal_sk').val(_this.find('.tanggal_sk').text());
-            $('#e_tmt_jabatan').val(_this.find('.tmt_jabatan').text());
-            $('#e_tmt_pelantikan').val(_this.find('.tmt_pelantikan').text());
-            $('#e_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
-            $('#e_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
+    @section('script')
+        <script src="{{ asset('assets/js/jabatan.js') }}"></script>
 
-            var jenis_jabatan_riwayat = (_this.find(".jenis_jabatan_riwayat").text());
-            var _option = '<option selected value="' + jenis_jabatan_riwayat + '">' + _this.find(
-                    '.jenis_jabatan_riwayat').text() +
-                '</option>'
-            $(_option).appendTo("#e_jenis_jabatan_riwayat");
-        });
-    </script>
-
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_riwayat_jabatan', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_sk_jabatan').val(_this.find('.dokumen_sk_jabatan').text());
-            $('.d_dokumen_pelantikan').val(_this.find('.dokumen_pelantikan').text());
-        });
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-    <script>
-        $(".theSelect").select2();
-    </script>
-@endsection
+        <script>
+            history.pushState({}, "", '/riwayat/jabatan');
+        </script>
+        
+        <script>
+            $(".theSelect").select2();
+        </script>
+    @endsection
 @endsection

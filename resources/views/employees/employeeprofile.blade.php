@@ -228,9 +228,17 @@
                                                 @endif
                                             </li>
                                             <li>
-                                                <div class="title">Kelurahan</div>
-                                                @if (!empty($users->kelurahan))
-                                                    <div class="text">{{ $users->kelurahan }}</div>
+                                                <div class="title">Provinsi</div>
+                                                @if (!empty($users->provinsi))
+                                                    <div class="text">{{ $users->provinsi }}</div>
+                                                @else
+                                                    <div class="text">N/A</div>
+                                                @endif
+                                            </li>
+                                            <li>
+                                                <div class="title">Kota/Kabupaten</div>
+                                                @if (!empty($users->kota))
+                                                    <div class="text">{{ $users->kota }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -244,17 +252,9 @@
                                                 @endif
                                             </li>
                                             <li>
-                                                <div class="title">Kota</div>
-                                                @if (!empty($users->kota))
-                                                    <div class="text">{{ $users->kota }}</div>
-                                                @else
-                                                    <div class="text">N/A</div>
-                                                @endif
-                                            </li>
-                                            <li>
-                                                <div class="title">Provinsi</div>
-                                                @if (!empty($users->provinsi))
-                                                    <div class="text">{{ $users->provinsi }}</div>
+                                                <div class="title">Desa/Kelurahan</div>
+                                                @if (!empty($users->kelurahan))
+                                                    <div class="text">{{ $users->kelurahan }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -625,7 +625,7 @@
                                                     <label>Tingkat Pendidikan</label>
                                                     <br>
                                                     <select class="theSelect form-control" name="ting_ped" id="ting_ped">
-                                                        <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
+                                                        <option value="" disabled selected>-- Pilih Tingkat Pendidikan --</option>
                                                         @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
                                                             <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
                                                         @endforeach
@@ -744,7 +744,7 @@
                                                 <label>Tingkat Pendidikan </label>
                                                 <br>
                                                 <select class="theSelect" name="ting_ped" id="e_ting_ped">
-                                                    <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
+                                                    <option value="" disabled selected>-- Pilih Tingkat Pendidikan --</option>
                                                     @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
                                                         <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
                                                     @endforeach
@@ -1300,7 +1300,7 @@
                                                             <label>Jenis Jabatan</label>
                                                             <br>
                                                             <select class="theSelect form-control" name="jenis_jabatan_riwayat">
-                                                                <option value="" disabled selected>--- Pilih jenis jabatan ---</option>
+                                                                <option value="" disabled selected>-- Pilih Jenis Jabatan --</option>
                                                                 @foreach ($jenisjabatanOptions as $optionValue => $jenisJabatan)
                                                                     <option value="{{ $optionValue }}" @if ($optionValue == $users->jenis_jabatan) selected @endif>
                                                                         {{ $jenisJabatan }}
@@ -1404,7 +1404,7 @@
                                                             <label>Jenis Jabatan
                                                             </label>
                                                             <select name="jenis_jabatan_riwayat" class="select" id="e_jenis_jabatan_riwayat">
-                                                                <option selected disabled> --Pilih Jenis Jabatan --</option>
+                                                                <option selected disabled>-- Pilih Jenis Jabatan --</option>
                                                                 <option>Jabatan Struktural</option>
                                                                 <option>Jabatan Fungsional Tertentu</option>
                                                                 <option>Jabatan Fungsional Umum</option>
@@ -1618,7 +1618,7 @@
                                                         <label>Jenis Diklat</label>
                                                         <br>
                                                         <select class="theSelect form-control" name="jenis_diklat" required>
-                                                            <option selected disabled> --Pilih Jenis Diklat --</option>
+                                                            <option selected disabled>-- Pilih Jenis Diklat --</option>
                                                             @foreach($jenisdiklatOptions as $key => $value)
                                                                 <option value="{{ $key }}">{{ $value }}</option>
                                                             @endforeach
@@ -1712,7 +1712,7 @@
                                                     <div class="form-group">
                                                         <label>Jenis Diklat</label>
                                                         <select name="jenis_diklat" class="select" id="e_jenis_diklat">
-                                                            <option selected disabled> --Pilih Jenis Diklat --</option>
+                                                            <option selected disabled>-- Pilih Jenis Diklat --</option>
                                                             <option>Diklat Struktural</option>
                                                             <option>Diklat Fungsional</option>
                                                             <option>Diklat Teknis</option>
@@ -2205,7 +2205,7 @@
                                             <div class="form-group">
                                                 <label>Jenis Kelamin <span class="text-danger">*</span></label>
                                                 <select class="select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
-                                                    <option value="" disabled selected>--- Pilih jenis kelamin ---</option>
+                                                    <option value="" disabled selected>-- Pilih Jenis Kelamin --</option>
                                                     <option value="Laki-Laki" {{ $users->jenis_kelamin === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
                                                     <option value="Perempuan" {{ $users->jenis_kelamin === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                 </select>
@@ -2223,7 +2223,7 @@
                                                 <span class="text-danger">*</span>
                                                 <br>
                                                 <select class="theSelect form-control @error('agama') is-invalid @enderror" name="agama">
-                                                    <option value="" disabled selected>--- Pilih agama ---</option>
+                                                    <option value="" disabled selected>-- Pilih Agama --</option>
                                                     @foreach($agamaOptions as $id => $namaAgama)
                                                         <option value="{{ $id }}" {{ $id == $users->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
                                                     @endforeach
@@ -2232,38 +2232,78 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Jenis Dokumen</label><span class="text-danger">*</span>
+                                                <label>Jenis Dokumen</label>
+                                                <span class="text-danger">*</span>
                                                 <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="KTP" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group"></label> 
-                                                <label>Nomor Induk Kependudukan </label><span class="text-danger">*</span>
+                                                <label>Nomor Induk Kependudukan</label>
+                                                <span class="text-danger">*</span>
                                                 <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $users->no_dokumen }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"></label>
-                                                <label>Kelurahan </label><span class="text-danger">*</span>
-                                                <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $users->kelurahan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"></label>
-                                                <label>Kecamatan </label><span class="text-danger">*</span>
-                                                <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $users->kecamatan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kota </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $users->kota }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Provinsi </label> <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $users->provinsi }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Provinsi</label>
+                                                <span class="text-danger">*</span>
+                                                <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi">
+                                                        <option value="" disabled selected>-- Pilih Provinsi --</option>
+                                                    @foreach ($provinces as $provinsi)
+                                                        <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kota/Kabupaten </label> <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $users->kota }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kota/Kabupaten</label>
+                                                <span class="text-danger">*</span>
+                                                <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-6">
+                                            <div class="form-group"></label>
+                                                <label>Kecamatan</label>
+                                                <span class="text-danger">*</span>
+                                                <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $users->kecamatan }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kecamatan</label>
+                                                <span class="text-danger">*</span>
+                                                <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-6">
+                                            <div class="form-group"></label>
+                                                <label>Desa/Kelurahan</label>
+                                                <span class="text-danger">*</span>
+                                                <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $users->kelurahan }}">
+                                            </div>
+                                        </div> --}}
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Desa/Kelurahan</label>
+                                                <span class="text-danger">*</span>
+                                                <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan">
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -2289,7 +2329,7 @@
                                                 <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
                                                 <br>
                                                 <select class="theSelect @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
-                                                    <option value="" disabled selected>--- Pilih jenis pegawai ---</option>
+                                                    <option value="" disabled selected>-- Pilih Jenis Pegawai --</option>
                                                     @foreach($jenispegawaiOptions as $id => $namaJenisPegawai)
                                                         @if(in_array($namaJenisPegawai, ['ASN', 'Non ASN', 'PPPK', 'CPNS']))
                                                             <option value="{{ $id }}" {{ $id == $users->jenis_pegawai ? 'selected' : '' }}>{{ $namaJenisPegawai }}</option>
@@ -2303,7 +2343,7 @@
                                                 <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
                                                 <br>
                                                 <select class="theSelect @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns">
-                                                    <option value="" disabled selected>--- Pilih kedudukan ---</option>
+                                                    <option value="" disabled selected>-- Pilih Kedudukan --</option>
                                                     @foreach($kedudukanOptions as $id => $namaKedudukan)
                                                         <option value="{{ $id }}" {{ $id == $users->kedudukan_pns ? 'selected' : '' }}>{{ $namaKedudukan }}</option>
                                                     @endforeach
@@ -2315,7 +2355,7 @@
                                                 <label>Status Pegawai </label> <span class="text-danger">*</span></label>
                                                 <br>
                                                     <select class="theSelect @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
-                                                        <option value="" disabled selected>--- Pilih status pegawai ---</option>
+                                                        <option value="" disabled selected>-- Pilih Status Pegawai --</option>
                                                         <option value="Aktif" {{ $users->status_pegawai === 'Aktif' ? 'selected' : '' }}>Aktif</option>
                                                         <option value="Tidak Aktif" {{ $users->status_pegawai === 'Tidak Aktif' ? 'selected' : '' }}>Tidak Aktif</option>
                                                     </select>
@@ -2349,7 +2389,7 @@
                                                 <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
                                                 <br>
                                                 <select class="theSelect @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan">
-                                                    <option selected disabled> --Pilih Tingkat Pendidikan --</option>
+                                                    <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
                                                     @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
                                                         <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
                                                     @endforeach
@@ -2361,7 +2401,7 @@
                                                 <label>Pendidikan Terakhir</label> <span class="text-danger">*</span></label>
                                                 <br>
                                                 <select class="theSelect @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir">
-                                                    <option selected disabled> --Pilih Pendidikan Terakhir --</option>
+                                                    <option selected disabled>-- Pilih Pendidikan Terakhir --</option>
                                                     @foreach($pendidikanterakhirOptions as $id => $namaPendidikanTerakhir)
                                                         <option value="{{ $id }}" {{ $id == $users->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
                                                     @endforeach
@@ -2373,7 +2413,7 @@
                                                 <label>Ruangan </label> <span class="text-danger">*</span></label>
                                                 <br>
                                                 <select class="theSelect  @error('ruangan') is-invalid @enderror" name="ruangan">
-                                                    <option value="" disabled selected>--- Pilih ruangan ---</option>
+                                                    <option value="" disabled selected>-- Pilih Ruangan --</option>
                                                     @foreach($ruanganOptions as $id => $namaRuangan)
                                                         <option value="{{ $id }}" {{ $id == $users->ruangan ? 'selected' : '' }}>{{ $namaRuangan }}</option>
                                                     @endforeach
@@ -2628,7 +2668,7 @@
                                                             <br>
                                                             <select class="theSelect form-control" name="jenis_jabatan">
                                                                 <br>
-                                                                <option value="" disabled selected>--- Pilih jenis jabatan ---</option>
+                                                                <option value="" disabled selected>-- Pilih Jenis Jabatan --</option>
                                                                 @foreach ($jenisjabatanOptions as $optionValue => $jenisJabatan)
                                                                     <option value="{{ $optionValue }}" @if ($optionValue == $users->jenis_jabatan) selected @endif>
                                                                         {{ $jenisJabatan }}
@@ -2683,7 +2723,7 @@
                                                             <label>Golongan Ruang Awal</label>
                                                             <select class="theSelect form-control" name="gol_ruang_awal">
                                                                 <br>
-                                                                <option value="" disabled selected>--- Pilih golongan ruang awal ---</option>
+                                                                <option value="" disabled selected>-- Pilih Golongan Ruang Awal --</option>
                                                                 @foreach ($golonganOptions as $optionValue => $golAwal)
                                                                     <option value="{{ $optionValue }}" @if ($optionValue == $users->gol_ruang_awal) selected @endif>
                                                                         {{ $golAwal }}
@@ -2697,7 +2737,7 @@
                                                             <label>Golongan Ruang Akhir</label>
                                                             <select class="theSelect form-control" name="gol_ruang_akhir">
                                                                 <br>
-                                                                <option value="" disabled selected>--- Pilih golongan ruang akhir ---</option>
+                                                                <option value="" disabled selected>-- Pilih Golongan Ruang Akhir --</option>
                                                                 @foreach ($golonganOptions as $optionValue => $golAkhir)
                                                                     <option value="{{ $optionValue }}" @if ($optionValue == $users->gol_ruang_akhir) selected @endif>
                                                                         {{ $golAkhir }}
@@ -2833,6 +2873,61 @@
                     form.submit();
                 }  
             });  
+        </script>
+
+        <script>
+            $(function () {
+                $.ajaxSetup({
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+                });
+                $(function () {
+                    $('#provinsi').on('change', function (){
+                        let id_provinsi = $('#provinsi').val();
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getkotakabupaten') }}",
+                            data : {id_provinsi:id_provinsi},
+                            cache : false,
+
+                            success: function(msg){
+                                $('#kotakabupaten').html(msg);
+                                $('#kecamatan').html('');
+                                $('#desakelurahan').html('');
+                            },
+                        })
+                    })
+
+                    $('#kotakabupaten').on('change', function (){
+                        let id_kotakabupaten = $('#kotakabupaten').val();
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getkecamatan') }}",
+                            data : {id_kotakabupaten:id_kotakabupaten},
+                            cache : false,
+
+                            success: function(msg){
+                                $('#kecamatan').html(msg);
+                                $('#desakelurahan').html('');
+                            },
+                        })
+                    })
+
+                    $('#kecamatan').on('change', function (){
+                        let id_kecamatan= $('#kecamatan').val();
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getdesakelurahan') }}",
+                            data : {id_kecamatan:id_kecamatan},
+                            cache : false,
+
+                            success: function(msg){
+                                $('#desakelurahan').html(msg);
+                            },
+                        })
+                    })
+
+                })
+            });
         </script>
 
         <script>

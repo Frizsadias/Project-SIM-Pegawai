@@ -440,9 +440,8 @@
                             <span>Profesi</span>
                         </a>
                     </li> --}}
-
+                    <li class="menu-title"> <span>Layanan Kepegawaian</span></li>
                     @if (Auth::user()->role_name == 'User' && Auth::user()->eselon == '-')
-                        <li class="menu-title"> <span>Layanan Kepegawaian</span></li>
                         <li class="{{ request()->routeIs('layanan-cuti') ? 'active' : '' }}">
                             <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
                                 <i class="las la-newspaper"></i>
@@ -451,7 +450,6 @@
                         </li>
 
                         @elseif (Auth::user()->role_name == 'User' && Auth::user()->eselon == '3')
-                        <li class="menu-title"> <span>Layanan Kepegawaian</span></li>
                         <li class="{{ request()->routeIs('layanan-cuti-eselon3') ? 'active' : '' }}">
                             <a href="{{ route('layanan-cuti-eselon3') }}" class="{{ request()->routeIs('layanan-cuti-eselon3') ? 'noti-dot' : '' }}">
                                 <i class="las la-newspaper"></i>
@@ -460,7 +458,6 @@
                         </li>
 
                         @elseif (Auth::user()->role_name == 'User' && Auth::user()->eselon == '4')
-                        <li class="menu-title"> <span>Layanan Kepegawaian</span></li>
                         <li class="{{ request()->routeIs('layanan-cuti-eselon4') ? 'active' : '' }}">
                             <a href="{{ route('layanan-cuti-eselon4') }}" class="{{ request()->routeIs('layanan-cuti-eselon4') ? 'noti-dot' : '' }}">
                                 <i class="las la-newspaper"></i>

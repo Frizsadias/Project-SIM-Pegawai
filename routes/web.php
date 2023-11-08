@@ -30,6 +30,8 @@ use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SIPController;
+use AzisHapidin\IndoRegion\IndoRegion;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -144,6 +146,9 @@ Route::controller(ResetPasswordController::class)->group(function () {
 // ----------------------------- manage users ------------------------------//
 Route::controller(UserManagementController::class)->group(function () {
     Route::get('user/profile', 'user_profile')->middleware('auth')->name('user-profile');
+    Route::post('/getkotakabupaten', 'getkotakabupaten')->name('getkotakabupaten');
+    Route::post('/getkecamatan', 'getkecamatan')->name('getkecamatan');
+    Route::post('/getdesakelurahan', 'getdesakelurahan')->name('getdesakelurahan');
     Route::get('admin/profile', 'admin_profile')->middleware('auth')->name('admin-profile');
     Route::get('super-admin/profile', 'superadmin_profile')->middleware('auth')->name('super-admin-profile');
     Route::get('kepala-ruangan/profile', 'kepalaruangan_profile')->middleware('auth')->name('kepala-ruangan-profile');
@@ -531,6 +536,5 @@ Route::controller(ExportExcelController::class)->group(function () {
     Route::get('export-spk-dokter', 'exportSPKDokter')->name('export-spk-dokter');
     Route::get('export-spk-perawat', 'exportSPKPerawat')->name('export-spk-perawat');
     Route::get('export-spk-nakes-lain', 'exportSPKNakesLain')->name('export-spk-nakes-lain');
-
     Route::get('export-daftar-pegawai', 'exportDaftarPegawai')->name('export-daftar-pegawai');
 });

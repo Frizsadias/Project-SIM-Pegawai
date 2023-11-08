@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="page-wrapper">
         <!-- Page Content -->
         <div class="content container-fluid">
@@ -241,9 +242,17 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Kelurahan</div>
-                                            @if (!empty($result_profilpegawai->kelurahan))
-                                                <div class="text">{{ $result_profilpegawai->kelurahan }}</div>
+                                            <div class="title">Provinsi</div>
+                                            @if (!empty($result_profilpegawai->provinsi))
+                                                <div class="text">{{ $result_profilpegawai->provinsi }}</div>
+                                            @else
+                                                <div class="text">N/A</div>
+                                            @endif
+                                        </li>
+                                        <li>
+                                            <div class="title">Kota/Kabupaten</div>
+                                            @if (!empty($result_profilpegawai->kota))
+                                                <div class="text">{{ $result_profilpegawai->kota }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
@@ -257,17 +266,9 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Kota</div>
-                                            @if (!empty($result_profilpegawai->kota))
-                                                <div class="text">{{ $result_profilpegawai->kota }}</div>
-                                            @else
-                                                <div class="text">N/A</div>
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <div class="title">Provinsi</div>
-                                            @if (!empty($result_profilpegawai->provinsi))
-                                                <div class="text">{{ $result_profilpegawai->provinsi }}</div>
+                                            <div class="title">Desa/Kelurahan</div>
+                                            @if (!empty($result_profilpegawai->kelurahan))
+                                                <div class="text">{{ $result_profilpegawai->kelurahan }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
@@ -859,7 +860,7 @@
                                                 <div class="form-group">
                                                     <label>Jenis Kelamin</label>
                                                     <select class="select form-control" id="jk" name="jk">
-                                                        <option selected disabled> --Pilih Jenis Kelamin --</option>
+                                                        <option selected disabled>-- Pilih Jenis Kelamin --</option>
                                                         <option value="Laki-Laki">Laki-Laki</option>
                                                         <option value="Perempuan">Perempuan</option>
                                                     </select>
@@ -1223,8 +1224,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                    <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
-                                                        <option value="" disabled selected>--- Pilih jenis kelamin ---</option>
+                                                    <select class="select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
+                                                        <option value="" disabled selected>-- Pilih Jenis Kelamin --</option>
                                                         <option value="Laki-Laki" @if ($result_profilpegawai->jenis_kelamin === 'Laki-Laki') selected @endif>Laki-Laki</option>
                                                         <option value="Perempuan" @if ($result_profilpegawai->jenis_kelamin === 'Perempuan') selected @endif>Perempuan</option>
                                                     </select>
@@ -1235,7 +1236,7 @@
                                                     <label>Agama <span class="text-danger">*</span></label>
                                                     <br>
                                                     <select class="theSelect form-control @error('agama') is-invalid @enderror" name="agama">
-                                                        <option value="" disabled selected>--- Pilih agama ---</option>
+                                                        <option value="" disabled selected>-- Pilih Agama --</option>
                                                         @foreach ($agamaOptions as $optionValue => $namaAgama)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->agama) selected @endif>
                                                                 {{ $namaAgama }}
@@ -1251,59 +1252,76 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group"> <span class="text-danger">*</span></label>
-                                                    <label>Nomor Induk Kependudukan </label>
+                                                <div class="form-group">
+                                                    <label>Nomor Induk Kependudukan</label>
+                                                    <span class="text-danger">*</span>
                                                     <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_profilpegawai->no_dokumen }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group"> <span class="text-danger">*</span></label>
-                                                    <label>Kelurahan </label>
-                                                    <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $result_profilpegawai->kelurahan }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group"> <span class="text-danger">*</span></label>
-                                                    <label>Kecamatan </label>
-                                                    <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $result_profilpegawai->kecamatan }}">
+                                                <div class="form-group">
+                                                    <label>Provinsi</label>
+                                                    <span class="text-danger">*</span>
+                                                    <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi">
+                                                            <option value="" disabled selected>-- Pilih Provinsi --</option>
+                                                        @foreach ($provinces as $provinsi)
+                                                            <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Kota </label> <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $result_profilpegawai->kota }}">
+                                                    <label>Kota/Kabupaten</label>
+                                                    <span class="text-danger">*</span>
+                                                    <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten">
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Provinsi <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_profilpegawai->provinsi }}">
+                                                    <label>Kecamatan</label>
+                                                    <span class="text-danger">*</span>
+                                                    <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan">
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Kode Pos </label> <span class="text-danger">*</span></label>
+                                                    <label>Desa/Kelurahan</label>
+                                                    <span class="text-danger">*</span>
+                                                    <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Kode Pos</label>
+                                                    <span class="text-danger">*</span>
                                                     <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $result_profilpegawai->kode_pos }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Nomor HP </label> <span class="text-danger">*</span></label>
+                                                    <label>Nomor HP </label>
+                                                    <span class="text-danger">*</span>
                                                     <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $result_profilpegawai->no_hp }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
+                                                    <label>Nomor Telepon</label>
+                                                    <span class="text-danger">*</span>
                                                     <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_profilpegawai->no_telp }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Jenis Pegawai <span class="text-danger">*</span></label>
+                                                    <label>Jenis Pegawai</label>
+                                                    <span class="text-danger">*</span>
                                                     <br>
                                                     <select class="theSelect @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
-                                                        <option value="" disabled selected>--- Pilih jenis pegawai ---</option>
+                                                        <option value="" disabled selected>-- Pilih Jenis Pegawai --</option>
                                                         @foreach ($jenispegawaiOptions as $id => $namaJenisPegawai)
                                                             @if(in_array($namaJenisPegawai, ['ASN', 'Non ASN', 'PPPK', 'CPNS']))
                                                                 <option value="{{ $id }}" @if ($id == $result_profilpegawai->jenis_pegawai) selected @endif>{{ $namaJenisPegawai }}</option>
@@ -1317,7 +1335,7 @@
                                                     <label>Kedudukan PNS <span class="text-danger">*</span></label>
                                                     <br>
                                                     <select class="theSelect form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns">
-                                                        <option value="" disabled selected>--- Pilih kedudukan ---</option>
+                                                        <option value="" disabled selected>-- Pilih Kedudukan --</option>
                                                         @foreach ($kedudukanOptions as $optionValue => $namaKedudukan)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->kedudukan_pns) selected @endif>
                                                                 {{ $namaKedudukan }}
@@ -1331,7 +1349,7 @@
                                                     <label>Status Pegawai <span class="text-danger">*</span></label>
                                                     <br>
                                                     <select class="theSelect form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
-                                                        <option value="" disabled selected>--- Pilih status pegawai ---</option>
+                                                        <option value="" disabled selected>-- Pilih Status Pegawai --</option>
                                                         <option value="Aktif" @if ($result_profilpegawai->status_pegawai === 'Aktif') selected @endif>Aktif</option>
                                                         <option value="Tidak Aktif" @if ($result_profilpegawai->status_pegawai === 'Tidak Aktif') selected @endif>Tidak Aktif</option>
                                                     </select>
@@ -1360,7 +1378,7 @@
                                                     <label>Tingkat Pendidikan <span class="text-danger">*</span></label>
                                                     <br>
                                                     <select class="theSelect form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan">
-                                                        <option value="" disabled selected>--- Pilih tingkat pendidikan ---</option>
+                                                        <option value="" disabled selected>-- Pilih Tingkat Pendidikan --</option>
                                                         @foreach ($tingkatpendidikanOptions as $optionValue => $namaTingkatPendidikan)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->tingkat_pendidikan) selected @endif>
                                                                 {{ $namaTingkatPendidikan }}
@@ -1374,7 +1392,7 @@
                                                     <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
                                                     <br>
                                                     <select class="theSelect @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir">
-                                                        <option selected disabled> --Pilih Pendidikan Terakhir --</option>
+                                                        <option selected disabled>-- Pilih Pendidikan Terakhir --</option>
                                                         @foreach($pendidikanterakhirOptions as $id => $namaPendidikanTerakhir)
                                                             <option value="{{ $id }}" {{ $id == $result_profilpegawai->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
                                                         @endforeach
@@ -1386,7 +1404,7 @@
                                                     <label>Ruangan <span class="text-danger">*</span></label>
                                                     <br>
                                                     <select class="theSelect form-control @error('ruangan') is-invalid @enderror" name="ruangan">
-                                                        <option value="" disabled selected>--- Pilih ruangan ---</option>
+                                                        <option value="" disabled selected>-- Pilih Ruangan --</option>
                                                         @foreach ($ruanganOptions as $optionValue => $namaRuangan)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->ruangan) selected @endif>
                                                                 {{ $namaRuangan }}
@@ -1642,7 +1660,7 @@
                                                                 <label>Jenis Jabatan <span class="text-danger">*</span></label>
                                                                 <br>
                                                                 <select class="theSelect form-control @error('jenis_jabatan') is-invalid @enderror" name="jenis_jabatan">
-                                                                    <option value="" disabled selected>--- Pilih jenis jabatan ---</option>
+                                                                    <option value="" disabled selected>-- Pilih Jenis Jabatan --</option>
                                                                     @foreach ($jenisjabatanOptions as $optionValue => $jenisJabatan)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->jenis_jabatan) selected @endif>
                                                                             {{ $jenisJabatan }}
@@ -1697,7 +1715,7 @@
                                                                 <label>Golongan Ruang Awal</label>
                                                                 <br>
                                                                 <select class="theSelect form-control @error('gol_ruang_awal') is-invalid @enderror" name="gol_ruang_awal">
-                                                                    <option value="" disabled selected>--- Pilih golongan ruang awal ---</option>
+                                                                    <option value="" disabled selected>-- Pilih Golongan Ruang Awal --</option>
                                                                     @foreach ($golonganOptions as $optionValue => $golAwal)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->gol_ruang_awal) selected @endif>
                                                                             {{ $golAwal }}
@@ -1711,7 +1729,7 @@
                                                                 <label>Golongan Ruang Akhir</label>
                                                                 <br>
                                                                 <select class="theSelect form-control @error('gol_ruang_akhir') is-invalid @enderror" name="gol_ruang_akhir">
-                                                                    <option value="" disabled selected>--- Pilih golongan ruang akhir ---</option>
+                                                                    <option value="" disabled selected>-- Pilih Golongan Ruang Akhir --</option>
                                                                     @foreach ($golonganOptions as $optionValue => $golAkhir)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->gol_ruang_akhir) selected @endif>
                                                                             {{ $golAkhir }}
@@ -1894,6 +1912,61 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
+        </script>
+
+        <script>
+            $(function () {
+                $.ajaxSetup({
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+                });
+                $(function () {
+                    $('#provinsi').on('change', function (){
+                        let id_provinsi = $('#provinsi').val();
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getkotakabupaten') }}",
+                            data : {id_provinsi:id_provinsi},
+                            cache : false,
+
+                            success: function(msg){
+                                $('#kotakabupaten').html(msg);
+                                $('#kecamatan').html('');
+                                $('#desakelurahan').html('');
+                            },
+                        })
+                    })
+
+                    $('#kotakabupaten').on('change', function (){
+                        let id_kotakabupaten = $('#kotakabupaten').val();
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getkecamatan') }}",
+                            data : {id_kotakabupaten:id_kotakabupaten},
+                            cache : false,
+
+                            success: function(msg){
+                                $('#kecamatan').html(msg);
+                                $('#desakelurahan').html('');
+                            },
+                        })
+                    })
+
+                    $('#kecamatan').on('change', function (){
+                        let id_kecamatan= $('#kecamatan').val();
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getdesakelurahan') }}",
+                            data : {id_kecamatan:id_kecamatan},
+                            cache : false,
+
+                            success: function(msg){
+                                $('#desakelurahan').html(msg);
+                            },
+                        })
+                    })
+
+                })
+            });
         </script>
 
         <!-- FancyBox Foto Profil -->

@@ -24,6 +24,10 @@ use Session;
 use Auth;
 use Hash;
 use DB;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 
 class UserManagementController extends Controller
 {
@@ -483,14 +487,15 @@ class UserManagementController extends Controller
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
         $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
-
+        $provinces = Province::all();
 
         if (empty($employees)) {
             $information = DB::table('profile_information')->where('user_id', $profile)->first();
             return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan',
                 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
-                'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions'));
+                'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
+                'provinces'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
@@ -498,15 +503,52 @@ class UserManagementController extends Controller
                 return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan',
                     'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                     'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
-                    'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions'));
+                    'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
+                    'provinces'));
             } else {
                 $information = ProfileInformation::all();
                 return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan',
                     'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                     'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
-                    'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions'));
+                    'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
+                    'provinces'));
             }
         }
+    }
+
+    public function getkotakabupaten(Request $request)
+    {
+        $id_provinsi = $request->id_provinsi;
+        $kotakabupatens = Regency::where('province_id', $id_provinsi)->get();
+
+        $option = "<option value='' disabled selected>-- Pilih Kota/Kabupaten --</option>";
+        foreach ($kotakabupatens as $kotakabupaten) {
+            $option.= "<option value='$kotakabupaten->id'>$kotakabupaten->name</option>";
+        }
+        echo $option;
+    }
+
+    public function getkecamatan(Request $request)
+    {
+        $id_kotakabupaten = $request->id_kotakabupaten;
+        $kecamatans = District::where('regency_id', $id_kotakabupaten)->get();
+
+        $option = "<option value='' disabled selected>-- Pilih Kecamatan --</option>";
+        foreach ($kecamatans as $kecamatan) {
+            $option.= "<option value='$kecamatan->id'>$kecamatan->name</option>";
+        }
+        echo $option;
+    }
+
+    public function getdesakelurahan(Request $request)
+    {
+        $id_kecamatan = $request->id_kecamatan;
+        $desakelurahans = Village::where('district_id', $id_kecamatan)->get();
+        $option = "<option value='' disabled selected>-- Pilih Desa/Kelurahan --</option>";
+        foreach ($desakelurahans as $desakelurahan) {
+            $option.= "<option value='$desakelurahan->id'>$desakelurahan->name</option>";
+        }
+        echo $option;
     }
 
     /** save profile information */
