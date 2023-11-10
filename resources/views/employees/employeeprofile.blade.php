@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="page-wrapper">
         <!-- Page Content -->
         <div class="content container-fluid">
@@ -2253,11 +2254,11 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Provinsi</label>
-                                                <span class="text-danger">*</span>
-                                                <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" value="{{ $users->provinsi }}">
-                                                        <option value="" disabled selected>-- Pilih Provinsi --</option>
+                                                <span class="text-danger">*</span><br>
+                                                <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi">
+                                                    <option value="" disabled selected>-- Pilih Provinsi --</option>
                                                     @foreach ($provinces as $provinsi)
-                                                        <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                                                        <option value="{{ $provinsi->name }}" @if ($users->provinsi == $provinsi->name) selected @endif>{{ $provinsi->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -2271,8 +2272,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Kota/Kabupaten</label>
-                                                <span class="text-danger">*</span>
-                                                <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kota" value="{{ $users->kota }}">
+                                                <span class="text-danger">*</span><br>
+                                                <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten" value="{{ $users->kota }}">
                                                
                                                 </select>
                                             </div>
@@ -2287,8 +2288,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Kecamatan</label>
-                                                <span class="text-danger">*</span>
-                                                <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan_employee" value="{{ $users->kecamatan }}">
+                                                <span class="text-danger">*</span><br>
+                                                <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan" value="{{ $users->kecamatan }}">
                                                
                                                 </select>
                                             </div>
@@ -2303,8 +2304,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Desa/Kelurahan</label>
-                                                <span class="text-danger">*</span>
-                                                <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="kelurahan" value="{{ $users->kelurahan }}">
+                                                <span class="text-danger">*</span><br>
+                                                <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan" value="{{ $users->kelurahan }}">
                                                
                                                 </select>
                                             </div>
@@ -2879,70 +2880,6 @@
         </script>
 
         <script>
-            $(function () {
-                $.ajaxSetup({
-                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-                });
-                $(function () {
-                    $('#provinsi').on('change', function (){
-                        let id_provinsi = $('#provinsi').val();
-                        $.ajax({
-                            type : 'POST',
-                            url : "{{ route('getkota') }}",
-                            data : {id_provinsi:id_provinsi},
-                            cache : false,
-
-                            success: function(msg){
-                                $('#kota').html(msg);
-                                $('#kecamatan_employee').html('');
-                                $('#kelurahan').html('');
-                            },
-                            error: function(data){
-                                console.log('error:', data)
-                            },
-                        })
-                    })
-
-                    $('#kota').on('change', function (){
-                        let id_kota = $('#kota').val();
-                        $.ajax({
-                            type : 'POST',
-                            url : "{{ route('getkecamatan_employee') }}",
-                            data : {id_kota:id_kota},
-                            cache : false,
-
-                            success: function(msg){
-                                $('#kecamatan_employee').html(msg);
-                                $('#kelurahan').html('');
-                            },
-                            error: function(data){
-                                console.log('error:', data)
-                            },
-                        })
-                    })
-
-                    $('#kecamatan_employee').on('change', function (){
-                        let id_kecamatan_employee= $('#kecamatan_employee').val();
-                        $.ajax({
-                            type : 'POST',
-                            url : "{{ route('getkelurahan') }}",
-                            data : {id_kecamatan_employee:id_kecamatan_employee},
-                            cache : false,
-
-                            success: function(msg){
-                                $('#kelurahan').html(msg);
-                            },
-                            error: function(data){
-                                console.log('error:', data)
-                            },
-                        })
-                    })
-
-                })
-            });
-        </script>
-
-        <script>
             function previewImage(event) {
                 const input = event.target;
                 if (input.files && input.files[0]) {
@@ -2975,6 +2912,71 @@
         <script>
 		$(".theSelect").select2();
 	    </script>
+
+        <script>
+            $(function () {
+                $.ajaxSetup({
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+                });
+                $(function () {
+                    $('#provinsi').on('change', function (){
+                        let nama_provinsi = $('#provinsi option:selected').text(); // Ambil teks dari opsi yang dipilih
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getkota') }}",
+                            data : {nama_provinsi: nama_provinsi}, // Kirim nama_provinsi
+                            cache : false,
+
+                            success: function(msg){
+                                $('#kotakabupaten').html(msg);
+                                $('#kecamatan').html('');
+                                $('#desakelurahan').html('');
+                            },
+                            error: function(data){
+                                console.log('error:', data.responseText);
+                            },
+                        })
+                    })
+
+                    $('#kotakabupaten').on('change', function (){
+                        let nama_kotakabupaten = $('#kotakabupaten option:selected').text(); // Ambil teks dari opsi yang dipilih
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getkecamatan_employee') }}",
+                            data : {nama_kotakabupaten: nama_kotakabupaten}, // Kirim nama_kotakabupaten
+                            cache : false,
+
+                            success: function(msg){
+                                $('#kecamatan').html(msg);
+                                $('#desakelurahan').html('');
+                            },
+                            error: function(data){
+                                console.log('error:', data.responseText);
+                            },
+                        })
+                    })
+
+                    $('#kecamatan').on('change', function (){
+                        let nama_kecamatan= $('#kecamatan option:selected').text(); // Ambil teks dari opsi yang dipilih
+                        $.ajax({
+                            type : 'POST',
+                            url : "{{ route('getkelurahan') }}",
+                            data : {nama_kecamatan: nama_kecamatan}, // Kirim nama_kecamatan
+                            cache : false,
+
+                            success: function(msg){
+                                $('#desakelurahan').html(msg);
+                            },
+                            error: function(data){
+                                console.log('error:', data.responseText);
+                            },
+                        })
+                    })
+
+                })
+            });
+        </script>
+
 
     @endsection
 @endsection

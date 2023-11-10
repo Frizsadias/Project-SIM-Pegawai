@@ -848,38 +848,62 @@ class EmployeeController extends Controller
 
     public function getkota(Request $request)
     {
-        $id_provinsi = $request->id_provinsi;
-        $kotakabupatens = Regency::where('province_id', $id_provinsi)->get();
+        $nama_provinsi = $request->nama_provinsi;
+        $provinsi = Province::where('name', $nama_provinsi)->first();
 
-        $option = "<option value='' disabled selected>-- Pilih Kota/Kabupaten --</option>";
-        foreach ($kotakabupatens as $kotakabupaten) {
-            $option .= "<option value='$kotakabupaten->id'>$kotakabupaten->name</option>";
+        if ($provinsi) {
+            $id_provinsi = $provinsi->id;
+            $kotakabupatens = Regency::where('province_id', $id_provinsi)->get();
+
+            $option = "<option value='' disabled selected>-- Pilih Kota/Kabupaten --</option>";
+            foreach ($kotakabupatens as $kotakabupaten) {
+                $option .= "<option value='$kotakabupaten->name'>$kotakabupaten->name</option>";
+            }
+
+            echo $option;
+        } else {
+            echo "<option value='' disabled selected>-- Tidak ada data --</option>";
         }
-        echo $option;
     }
 
     public function getkecamatan_employee(Request $request)
     {
-        $id_kotakabupaten = $request->id_kotakabupaten;
-        $kecamatans = District::where('regency_id', $id_kotakabupaten)->get();
+        $nama_kotakabupaten = $request->nama_kotakabupaten;
+        $kotakabupaten = Regency::where('name', $nama_kotakabupaten)->first();
 
-        $option = "<option value='' disabled selected>-- Pilih Kecamatan --</option>";
-        foreach ($kecamatans as $kecamatan) {
-            $option .= "<option value='$kecamatan->id'>$kecamatan->name</option>";
+        if ($kotakabupaten) {
+            $id_kotakabupaten = $kotakabupaten->id;
+            $kecamatans = District::where('regency_id', $id_kotakabupaten)->get();
+
+            $option = "<option value='' disabled selected>-- Pilih Kecamatan --</option>";
+            foreach ($kecamatans as $kecamatan) {
+                $option .= "<option value='$kecamatan->name'>$kecamatan->name</option>";
+            }
+
+            echo $option;
+        } else {
+            echo "<option value='' disabled selected>-- Tidak ada data --</option>";
         }
-        echo $option;
     }
 
     public function getkelurahan(Request $request)
     {
-        $id_kecamatan = $request->id_kecamatan;
-        $desakelurahans = Village::where('district_id', $id_kecamatan)->get();
-        $option = "<option value='' disabled selected>-- Pilih Desa/Kelurahan --</option>";
+        $nama_kecamatan = $request->nama_kecamatan;
+        $kecamatan = District::where('name', $nama_kecamatan)->first();
 
-        foreach ($desakelurahans as $desakelurahan) {
-            $option .= "<option value='$desakelurahan->id'>$desakelurahan->name</option>";
+        if ($kecamatan) {
+            $id_kecamatan = $kecamatan->id;
+            $desakelurahans = Village::where('district_id', $id_kecamatan)->get();
+
+            $option = "<option value='' disabled selected>-- Pilih Desa/Kelurahan --</option>";
+            foreach ($desakelurahans as $desakelurahan) {
+                $option .= "<option value='$desakelurahan->name'>$desakelurahan->name</option>";
+            }
+
+            echo $option;
+        } else {
+            echo "<option value='' disabled selected>-- Tidak ada data --</option>";
         }
-        echo $option;
     }
 
     /** page agama */
