@@ -56,7 +56,6 @@
                             </div>
                         </div>
                     </div>
-                <div class="row">
                     <div class="col-md-4">
                         <div class="card dash-widget">
                             <div class="card-body">
@@ -79,8 +78,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-4">
                         <div class="card dash-widget">
                             <div class="card-body">
@@ -103,334 +100,310 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliGigi }}</h3>
-                                    <span>Jumlah Pegawai Poli Gigi</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliGigi }}</h3>
+                                        <span>Jumlah Pegawai Poli Gigi</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliDalam }}</h3>
-                                    <span>Jumlah Pegawai Poli Dalam</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliDalam }}</h3>
+                                        <span>Jumlah Pegawai Poli Dalam</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliMata }}</h3>
-                                    <span>Jumlah Pegawai Poli Mata</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliMata }}</h3>
+                                        <span>Jumlah Pegawai Poli Mata</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliTHT }}</h3>
-                                    <span>Jumlah Pegawai Poli THT</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliTHT }}</h3>
+                                        <span>Jumlah Pegawai Poli THT</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliParu }}</h3>
-                                    <span>Jumlah Pegawai Poli Paru</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliParu }}</h3>
+                                        <span>Jumlah Pegawai Poli Paru</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliUmum }}</h3>
-                                    <span>Jumlah Pegawai Poli Umum</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliUmum }}</h3>
+                                        <span>Jumlah Pegawai Poli Umum</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliAnak }}</h3>
-                                    <span>Jumlah Pegawai Poli Anak</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliAnak }}</h3>
+                                        <span>Jumlah Pegawai Poli Anak</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliKandungan }}</h3>
-                                    <span>Jumlah Pegawai Poli Kandungan</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliKandungan }}</h3>
+                                        <span>Jumlah Pegawai Poli Kandungan</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliJiwa }}</h3>
-                                    <span>Jumlah Pegawai Poli Jiwa</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliJiwa }}</h3>
+                                        <span>Jumlah Pegawai Poli Jiwa</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliOrthopedi }}</h3>
-                                    <span>Jumlah Pegawai Poli Orthopedi</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliOrthopedi }}</h3>
+                                        <span>Jumlah Pegawai Poli Orthopedi</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPoliDots }}</h3>
-                                    <span>Jumlah Pegawai Poli Dots</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPoliDots }}</h3>
+                                        <span>Jumlah Pegawai Poli Dots</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataHemodialisis }}</h3>
-                                    <span>Jumlah Pegawai Ruang Hemodialisis</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataHemodialisis }}</h3>
+                                        <span>Jumlah Pegawai Ruang Hemodialisis</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataKebidanan }}</h3>
-                                    <span>Jumlah Pegawai Kebidanan</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataKebidanan }}</h3>
+                                        <span>Jumlah Pegawai Kebidanan</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPinang }}</h3>
-                                    <span>Jumlah Pegawai Ruang Pinang</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPinang }}</h3>
+                                        <span>Jumlah Pegawai Ruang Pinang</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPerinatologi }}</h3>
-                                    <span>Jumlah Pegawai Perinatologi</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPerinatologi }}</h3>
+                                        <span>Jumlah Pegawai Perinatologi</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataHCU_Bougenvill }}</h3>
-                                    <span>Jumlah Pegawai Ruang HCU Bougenvill</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataHCU_Bougenvill }}</h3>
+                                        <span>Jumlah Pegawai Ruang HCU Bougenvill</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataICU }}</h3>
-                                    <span>Jumlah Pegawai Ruang ICU</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataICU }}</h3>
+                                        <span>Jumlah Pegawai Ruang ICU</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataICCU }}</h3>
-                                    <span>Jumlah Pegawai Ruang ICCU</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataICCU }}</h3>
+                                        <span>Jumlah Pegawai Ruang ICCU</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataAsoka }}</h3>
-                                    <span>Jumlah Pegawai Ruang Asoka</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataAsoka }}</h3>
+                                        <span>Jumlah Pegawai Ruang Asoka</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPinus }}</h3>
-                                    <span>Jumlah Pegawai Ruang Pinus</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPinus }}</h3>
+                                        <span>Jumlah Pegawai Ruang Pinus</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataWijayaKusuma }}</h3>
-                                    <span>Jumlah Pegawai Ruang Wijaya Kusuma</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataWijayaKusuma }}</h3>
+                                        <span>Jumlah Pegawai Ruang Wijaya Kusuma</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPaviliun }}</h3>
-                                    <span>Jumlah Pegawai Ruang Paviliun</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPaviliun }}</h3>
+                                        <span>Jumlah Pegawai Ruang Paviliun</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataPalem_PICU }}</h3>
-                                    <span>Jumlah Pegawai Ruang Palem PICU</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataPalem_PICU }}</h3>
+                                        <span>Jumlah Pegawai Ruang Palem PICU</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataUnitStroke }}</h3>
-                                    <span>Jumlah Pegawai Ruang Unit Stroke</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataUnitStroke }}</h3>
+                                        <span>Jumlah Pegawai Ruang Unit Stroke</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataBidara_RanapJiwa }}</h3>
-                                    <span>Jumlah Pegawai Ruang Ranap Jiwa</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataBidara_RanapJiwa }}</h3>
+                                        <span>Jumlah Pegawai Ruang Ranap Jiwa</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dash-widget">
-                            <div class="card-body">
-                                <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
-                                <div class="dash-widget-info">
-                                    <h3>{{ $dataLain_Lain_NonPerawatan }}</h3>
-                                    <span>Jumlah Pegawai Ruang Non Perawatan</span>
+                        <div class="col-md-4">
+                            <div class="card dash-widget">
+                                <div class="card-body">
+                                    <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
+                                    <div class="dash-widget-info">
+                                        <h3>{{ $dataLain_Lain_NonPerawatan }}</h3>
+                                        <span>Jumlah Pegawai Ruang Non Perawatan</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="lihat-semua">
-                    <button type="button" class="btn btn-info" id="lihatSemuaJenisPegawai">Lihat Semua</button>
-                </div><br>
+            </div>
+            <div class="lihat-semua">
+                <button type="button" class="btn btn-info" id="lihatSemuaJenisPegawai">Lihat Semua</button>
+            </div><br>
 
-                <div class="col-md-12">
-                    <div class="card dash-widget">
-                        <div class="card-body2">
-                            <div class="dash-widget-info">
-                                <center><span style="font-size: 20px; font-weight: 600; font-family: Poppins;"></span>
-                                </center>
-                            </div>
+            <div class="col-md-12">
+                <div class="card dash-widget">
+                    <div class="card-body2">
+                        <div class="dash-widget-info">
+                            <center><span style="font-size: 20px; font-weight: 600; font-family: Poppins;"></span></center>
                         </div>
                     </div>
                 </div>
-                <div class="container" id="dataContainer">
+            </div>
+
+            <div class="container" id="dataContainer">
                 <div class="row">
                     <div class="col-md-56">
                         <div class="card dash-widget">
@@ -797,10 +770,16 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <!-- /Page Content -->
+            <div class="lihat-semua">
+                <button type="button" class="btn btn-info" id="lihatSemuaTempatTidur">Lihat Semua</button>
+            </div><br>
         </div>
-    @section('script')
-        <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    @endsection
+    </div>
+
+    
+    <!-- /Page Content -->
+    </div>
+@section('script')
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+@endsection
 @endsection
