@@ -1262,10 +1262,10 @@
                                                 <div class="form-group">
                                                     <label>Provinsi</label>
                                                     <span class="text-danger">*</span><br>
-                                                    <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" value="{{ $result_profilpegawai->provinsi }}">
+                                                    <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi">
                                                             <option value="" disabled selected>-- Pilih Provinsi --</option>
                                                         @foreach ($provinces as $provinsi)
-                                                            <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
+                                                            <option value="{{ $provinsi->name }}" @if ($result_profilpegawai->provinsi == $provinsi->name) selected @endif>{{ $provinsi->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -1924,11 +1924,11 @@
                 });
                 $(function () {
                     $('#provinsi').on('change', function (){
-                        let id_provinsi = $('#provinsi').val();
+                        let nama_provinsi = $('#provinsi option:selected').text();
                         $.ajax({
                             type : 'POST',
                             url : "{{ route('getkotakabupaten') }}",
-                            data : {id_provinsi:id_provinsi},
+                            data : {nama_provinsi: nama_provinsi},
                             cache : false,
 
                             success: function(msg){
@@ -1937,17 +1937,17 @@
                                 $('#desakelurahan').html('');
                             },
                             error: function(data){
-                                console.log('error:', data)
+                                console.log('error:', data.responseText);
                             },
                         })
                     })
 
                     $('#kotakabupaten').on('change', function (){
-                        let id_kotakabupaten = $('#kotakabupaten').val();
+                        let nama_kotakabupaten = $('#kotakabupaten option:selected').text();
                         $.ajax({
                             type : 'POST',
                             url : "{{ route('getkecamatan') }}",
-                            data : {id_kotakabupaten:id_kotakabupaten},
+                            data : {nama_kotakabupaten: nama_kotakabupaten},
                             cache : false,
 
                             success: function(msg){
@@ -1955,28 +1955,27 @@
                                 $('#desakelurahan').html('');
                             },
                             error: function(data){
-                                console.log('error:', data)
+                                console.log('error:', data.responseText);
                             },
                         })
                     })
 
                     $('#kecamatan').on('change', function (){
-                        let id_kecamatan= $('#kecamatan').val();
+                        let nama_kecamatan= $('#kecamatan option:selected').text();
                         $.ajax({
                             type : 'POST',
                             url : "{{ route('getdesakelurahan') }}",
-                            data : {id_kecamatan:id_kecamatan},
+                            data : {nama_kecamatan: nama_kecamatan},
                             cache : false,
 
                             success: function(msg){
                                 $('#desakelurahan').html(msg);
                             },
                             error: function(data){
-                                console.log('error:', data)
+                                console.log('error:', data.responseText);
                             },
                         })
                     })
-
                 })
             });
         </script>
