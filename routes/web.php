@@ -227,10 +227,10 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('daftar/pegawai/update', 'updateRecord')->middleware('auth')->name('daftar/pegawai/update');
     Route::get('daftar/pegawai/delete/{employee_id}', 'deleteRecord')->middleware('auth');
     Route::post('daftar/pegawai/search', 'employeeSearch')->name('daftar/pegawai/search');
-    Route::post('daftar/ruangan/search', 'employeeSearchRuangan')->name('daftar/ruangan/search');
+    Route::post('daftar/ruangan/pegawai/card/search', 'employeeCardSearchRuangan')->name('daftar/ruangan/pegawai/card/search');
+    Route::post('daftar/ruangan/pegawai/list/search', 'employeeListSearchRuangan')->name('daftar/ruangan/pegawai/list/search');
     Route::post('daftar/pegawai/list/search', 'employeeListSearch')->name('daftar/pegawai/list/search');
     Route::post('daftar/pegawai/card/search', 'employeeCardSearch')->name('daftar/pegawai/card/search');
-    Route::post('daftar/ruangan/pegawai/list/search', 'employeeListSearchRuangan')->name('daftar/ruangan/pegawai/list/search');
     Route::get('form/departments/page', 'index')->middleware('auth')->name('form/departments/page');
     Route::post('form/departments/save', 'saveRecordDepartment')->middleware('auth')->name('form/departments/save');
     Route::post('form/department/update', 'updateRecordDepartment')->middleware('auth')->name('form/department/update');

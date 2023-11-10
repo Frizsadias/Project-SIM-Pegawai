@@ -28,8 +28,8 @@
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <select id="pilihDokumenKelengkapan" class="form-control">
-                            <option selected disabled> --Pilih Dokumen Kelengkapan --</option>
-                            @foreach($data_cuti_pdf as $cuti)
+                                <option selected disabled> --Pilih Dokumen Kelengkapan --</option>
+                            @foreach($data_cuti as $cuti)
                                 <option value="{{ $cuti->id }}">Dokumen Kelengkapan - {{ $cuti->name }}</option>
                             @endforeach
                         </select>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-sm-6 col-md-3">
                             <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" name="status_pengajuan">
+                                <input type="text" class="form-control floating" name="persetujuan_kepalaruangan">
                                 <label class="focus-label">Status Pengajuan</label>
                             </div>
                         </div>
@@ -173,5 +173,8 @@
         </script>
 
         <script src="{{ asset('assets/js/layanancuti.js') }}"></script>
+        <script>
+            history.pushState({}, "", '/layanan/cuti/kepala-ruangan');
+        </script>
     @endsection
 @endsection

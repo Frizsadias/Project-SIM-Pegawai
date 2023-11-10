@@ -516,27 +516,6 @@ class LayananController extends Controller
             ->where('ruangan', $ruangan)
             ->get();
 
-        $data_cuti_pdf = DB::table('cuti')
-            ->select(
-                'cuti.*',
-                'cuti.user_id',
-                'cuti.name',
-                'cuti.nip',
-                'cuti.jenis_cuti',
-                'cuti.lama_cuti',
-                'cuti.tanggal_mulai_cuti',
-                'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan',
-                'cuti.status_pengajuan'
-            )
-            ->whereIn('id', function ($query) {
-                $query->select(DB::raw('MAX(id)'))
-                    ->from('cuti')
-                    ->whereColumn('cuti.user_id', 'cuti.user_id')
-                    ->groupBy('cuti.user_id');
-            })
-            ->get();
-
         $userList = DB::table('profil_pegawai')
             ->join('users', 'profil_pegawai.user_id', 'users.user_id')
             ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
@@ -585,8 +564,8 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_cuti_pdf', 'userList',
-            'unreadNotifications','readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'userList', 'unreadNotifications',
+            'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
     }
     /** /Daftar Layanan Cuti Super Admin */
 
@@ -1163,9 +1142,12 @@ class LayananController extends Controller
     {
         $name = $request->input('name');
         $jenis_cuti = $request->input('jenis_cuti');
-        $status_pengajuan = $request->input('status_pengajuan');
+        $persetujuan_kepalaruangan = $request->input('persetujuan_kepalaruangan');
 
-        $data_cuti = DB::table('cuti')
+        $user = auth()->user();
+        $ruangan = $user->ruangan;
+        $data_cuti = User::where('role_name', 'User')
+            ->join('cuti', 'users.user_id', 'cuti.user_id')
             ->select(
                 'cuti.*',
                 'cuti.user_id',
@@ -1176,11 +1158,12 @@ class LayananController extends Controller
                 'cuti.tanggal_mulai_cuti',
                 'cuti.tanggal_selesai_cuti',
                 'cuti.dokumen_kelengkapan',
-                'cuti.status_pengajuan'
+                'cuti.persetujuan_kepalaruangan'
             )
             ->where('cuti.name', 'like', '%' . $name . '%')
             ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
-            ->where('cuti.status_pengajuan', 'like', '%' . $status_pengajuan . '%')
+            ->where('cuti.persetujuan_kepalaruangan', 'like', '%' . $persetujuan_kepalaruangan . '%')
+            ->where('ruangan', $ruangan)
             ->get();
 
         $data_cuti_pdf = DB::table('cuti')
@@ -1480,32 +1463,62 @@ class LayananController extends Controller
     }
     /** /Tampilan Cetak Dokumen Kelengkapan 2 */
 
-    /** Tampilan Cetak Dokumen Kelengkapan Super Admin */
-    public function cetakDokumenKelengkapanKepalaRuangan()
+    /** Tampilan Cetak Dokumen Kelengkapan Kepala Ruang */
+    public function cetakDokumenKelengkapanKepalaRuangan($id)
     {
+        $currentYear = date('Y');
+        $previousYear = $currentYear - 1;
+        $twoYearsAgo = $currentYear - 2;
+
+        $totalLamaCutiThisYear = LayananCuti::whereYear('created_at', $currentYear)->sum('lama_cuti');
+        $totalLamaCutiLastYear = LayananCuti::whereYear('created_at', $previousYear)->sum('lama_cuti');
+        $totalLamaCutiTwoYearsAgo = LayananCuti::whereYear('created_at', $twoYearsAgo)->sum('lama_cuti');
+
+        $sisaCutiThisYear = 18 - $totalLamaCutiThisYear;
+        $sisaCutiLastYear = 18 - $totalLamaCutiLastYear;
+        $sisaCutiTwoYearsAgo = 18 - $totalLamaCutiTwoYearsAgo;
+
+        if ($totalLamaCutiThisYear >= 18) {
+            $sisaCutiThisYear = 0;
+        }
+
+        if ($totalLamaCutiLastYear >= 18) {
+            $sisaCutiLastYear = 0;
+        }
+
+        if ($totalLamaCutiTwoYearsAgo >= 18) {
+            $sisaCutiTwoYearsAgo = 0;
+        }
+
         // Ambil semua ID yang ingin Anda cetak
-        $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
-        $cuti = LayananCuti::find($lastLayananCutiId);
+        // $lastLayananCutiId = LayananCuti::latest('id')->first()->id;
+        // $cuti = LayananCuti::find($lastLayananCutiId);
+        $cuti = LayananCuti::find($id);
         $profilPegawai = $cuti->profil_pegawai;
         $nip = $profilPegawai ? $profilPegawai->nip : "Tidak Ada NIP";
         $name = $profilPegawai ? $profilPegawai->name : "Tidak Ada Nama";
 
-        $lastPosisiJabatanId = PosisiJabatan::latest('id')->first()->id;
-        $posisi = PosisiJabatan::find($lastPosisiJabatanId);
+        // Ambil semua ID yang ingin Anda cetak
+        // $lastPosisiJabatanId = PosisiJabatan::latest('id')->first()->id;
+        // $posisi = PosisiJabatan::find($lastPosisiJabatanId);
+        $posisi = PosisiJabatan::find($id);
         $posisiJabatan = $posisi->posisi_jabatan;
         $jabatan = $posisiJabatan ? $posisiJabatan->jabatan : "Tidak Ada Jabatan";
         $gol_ruang_awal = $posisiJabatan ? $posisiJabatan->gol_ruang_awal : "Tidak Ada Golongan";
 
-        $pdf = PDF::loadView('pdf.kelengkapan-cuti-super-admin', [
+        $pdf = PDF::loadView('pdf.kelengkapan-cuti', [
             'cuti' => $cuti,
             'posisi' => $posisi,
             'nip' => $nip,
             'name' => $name,
             'jabatan' => $jabatan,
-            'gol_ruang_awal' => $gol_ruang_awal
+            'gol_ruang_awal' => $gol_ruang_awal,
+            'sisaCutiThisYear' => $sisaCutiThisYear,
+            'sisaCutiLastYear' => $sisaCutiLastYear,
+            'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo
         ]);
 
-        return $pdf->stream('kelengkapan-cuti-super-admin-' . $cuti->name . '.pdf');
+        return $pdf->stream('kelengkapan-cuti-' . $cuti->name . '.pdf');
         // $nama_file = 'surat-cuti-' . $name . '.pdf';
 
         // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
@@ -1513,7 +1526,7 @@ class LayananController extends Controller
         // $pdf->stream($nama_file);
         // }
     }
-    /** /Tampilan Cetak Dokumen Kelengkapan Super Admin */
+    /** /Tampilan Cetak Dokumen Kelengkapan Kepala Ruang */
 
     public function tampilanKGBAdmin()
     {

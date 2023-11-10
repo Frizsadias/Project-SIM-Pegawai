@@ -48,25 +48,12 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" name="email">
-                        <label class="focus-label">E-mail</label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
                     <button type="sumit" class="btn btn-success btn-block"> Cari </button>
                 </div>
             </div>
         </form>
         <!-- Search Filter -->
 
-        {{-- Export Excel --}}
-        <form action="{{ route('export-daftar-pegawai') }}" method="GET">
-            <button type="submit" name="export" value="true" class="btn btn-success">
-                <i class="fa fa-file-excel"></i> Export Excel
-            </button>
-        </form>
-        <br>
         {{-- message --}}
         {!! Toastr::message() !!}
 

@@ -641,75 +641,32 @@ class EmployeeController extends Controller
     }
     /** End Search */
 
+    /** list search employee */
     public function employeeListSearchRuangan(Request $request)
     {
-        $users = DB::table('users')
-                    ->join('employees','users.user_id','employees.employee_id')
-                    ->select('users.*','employees.name','employees.email')->get();
-        $userList         = DB::table('users')->get();
+        $user2 = auth()->user();
+        $ruangan2 = $user2->ruangan;
+        $ruangan_result = User::where('role_name', 'User')
+            ->join('cuti', 'users.user_id', '=', 'cuti.user_id')
+            ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+            ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+            ->where('users.ruangan', $ruangan2);
+        if ($request->input('nip')) {
+            $ruangan_result->where('profil_pegawai.nip', 'LIKE', '%' . $request->input('nip') . '%');
+        }
+        if ($request->input('name')) {
+            $ruangan_result->where('profil_pegawai.name', 'LIKE', '%' . $request->input('name') . '%');
+        }
+        $search_pegawairuangan = $ruangan_result->get();
 
-        // search by id
-        if ($request->employee_id)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')->get();
-        }
-        // search by name
-        if ($request->name)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
-        }
-        // search by email
-        if ($request->email)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
-        }
-
-        // search by name and id
-        if ($request->employee_id && $request->name) 
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
-        }
-        // search by email and id
-        if ($request->employee_id && $request->email)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
-        }
-        // search by name and email
-        if ($request->name && $request->email)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
-        }
-        // search by name and email and id
-        if ($request->employee_id && $request->name && $request->email)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
-        }
+        $user3 = auth()->user();
+        $ruangan3 = $user3->ruangan;
+        $data_ruangan = User::where('role_name', 'User')
+            ->join('cuti', 'users.user_id', '=', 'cuti.user_id')
+            ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+            ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+            ->where('users.ruangan', $ruangan3)
+            ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
@@ -723,7 +680,48 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('employees.dataruanganlist', compact('users', 'userList', 'unreadNotifications', 'readNotifications'));
+        return view('employees.dataruanganlist', compact('search_pegawairuangan', 'data_ruangan', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Search */
+
+    /** list search employee */
+    public function employeeCardSearchRuangan(Request $request)
+    {
+        $user2 = auth()->user();
+        $ruangan2 = $user2->ruangan;
+        $ruangan_result = User::where('role_name', 'User')
+            ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+            ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+            ->where('users.ruangan', $ruangan2);
+        if ($request->input('nip')) {
+            $ruangan_result->where('profil_pegawai.nip', 'LIKE', '%' . $request->input('nip') . '%');
+        }
+        if ($request->input('name')) {
+            $ruangan_result->where('profil_pegawai.name', 'LIKE', '%' . $request->input('name') . '%');
+        }
+        $search_pegawairuangan = $ruangan_result->get();
+
+        $user3 = auth()->user();
+        $ruangan3 = $user3->ruangan;
+        $data_ruangan = User::where('role_name', 'User')
+            ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+            ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+            ->where('users.ruangan', $ruangan3)
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.dataruangancard', compact('search_pegawairuangan', 'data_ruangan', 'unreadNotifications', 'readNotifications'));
     }
     /** End Search */
 

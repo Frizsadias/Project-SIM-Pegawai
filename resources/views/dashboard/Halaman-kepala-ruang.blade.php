@@ -40,7 +40,7 @@
                                 <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                 <div class="dash-widget-info">
                                     <h3>{{ $dataIGD }}</h3>
-                                    <span>Jumlah Pegawai Ruang IGD</span>
+                                    <span> Pegawai Ruang IGD</span>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                 <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                 <div class="dash-widget-info">
                                     <h3>{{ $dataBedahCentral }}</h3>
-                                    <span>Jumlah Pegawai Ruang Bedah Central</span>
+                                    <span> Pegawai Ruang Bedah Central</span>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                 <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                 <div class="dash-widget-info">
                                     <h3>{{ $dataRR }}</h3>
-                                    <span>Jumlah Pegawai RR</span>
+                                    <span> Pegawai RR</span>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                 <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                 <div class="dash-widget-info">
                                     <h3>{{ $dataPoliJantung }}</h3>
-                                    <span>Jumlah Pegawai Poli Jantung</span>
+                                    <span> Pegawai Poli Jantung</span>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                 <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                 <div class="dash-widget-info">
                                     <h3>{{ $dataPoliKelaminDanKulit }}</h3>
-                                    <span>Jumlah Pegawai Poli Kelamin dan Kulit</span>
+                                    <span> Pegawai Poli Kelamin dan Kulit</span>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                 <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                 <div class="dash-widget-info">
                                     <h3>{{ $dataPoliSaraf }}</h3>
-                                    <span>Jumlah Pegawai Poli Saraf</span>
+                                    <span> Pegawai Poli Saraf</span>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliGigi }}</h3>
-                                        <span>Jumlah Pegawai Poli Gigi</span>
+                                        <span> Pegawai Poli Gigi</span>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliDalam }}</h3>
-                                        <span>Jumlah Pegawai Poli Dalam</span>
+                                        <span> Pegawai Poli Dalam</span>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliMata }}</h3>
-                                        <span>Jumlah Pegawai Poli Mata</span>
+                                        <span> Pegawai Poli Mata</span>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliTHT }}</h3>
-                                        <span>Jumlah Pegawai Poli THT</span>
+                                        <span> Pegawai Poli THT</span>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliParu }}</h3>
-                                        <span>Jumlah Pegawai Poli Paru</span>
+                                        <span> Pegawai Poli Paru</span>
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliUmum }}</h3>
-                                        <span>Jumlah Pegawai Poli Umum</span>
+                                        <span> Pegawai Poli Umum</span>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliAnak }}</h3>
-                                        <span>Jumlah Pegawai Poli Anak</span>
+                                        <span> Pegawai Poli Anak</span>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliKandungan }}</h3>
-                                        <span>Jumlah Pegawai Poli Kandungan</span>
+                                        <span> Pegawai Poli Kandungan</span>
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +194,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliJiwa }}</h3>
-                                        <span>Jumlah Pegawai Poli Jiwa</span>
+                                        <span> Pegawai Poli Jiwa</span>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliOrthopedi }}</h3>
-                                        <span>Jumlah Pegawai Poli Orthopedi</span>
+                                        <span> Pegawai Poli Orthopedi</span>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPoliDots }}</h3>
-                                        <span>Jumlah Pegawai Poli Dots</span>
+                                        <span> Pegawai Poli Dots</span>
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +227,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataHemodialisis }}</h3>
-                                        <span>Jumlah Pegawai Ruang Hemodialisis</span>
+                                        <span> Pegawai Ruang Hemodialisis</span>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +238,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataKebidanan }}</h3>
-                                        <span>Jumlah Pegawai Kebidanan</span>
+                                        <span> Pegawai Kebidanan</span>
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPinang }}</h3>
-                                        <span>Jumlah Pegawai Ruang Pinang</span>
+                                        <span> Pegawai Ruang Pinang</span>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +260,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPerinatologi }}</h3>
-                                        <span>Jumlah Pegawai Perinatologi</span>
+                                        <span> Pegawai Perinatologi</span>
                                     </div>
                                 </div>
                             </div>
@@ -271,7 +271,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataHCU_Bougenvill }}</h3>
-                                        <span>Jumlah Pegawai Ruang HCU Bougenvill</span>
+                                        <span> Pegawai Ruang HCU Bougenvill</span>
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +282,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataICU }}</h3>
-                                        <span>Jumlah Pegawai Ruang ICU</span>
+                                        <span> Pegawai Ruang ICU</span>
                                     </div>
                                 </div>
                             </div>
@@ -293,7 +293,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataICCU }}</h3>
-                                        <span>Jumlah Pegawai Ruang ICCU</span>
+                                        <span> Pegawai Ruang ICCU</span>
                                     </div>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataAsoka }}</h3>
-                                        <span>Jumlah Pegawai Ruang Asoka</span>
+                                        <span> Pegawai Ruang Asoka</span>
                                     </div>
                                 </div>
                             </div>
@@ -315,7 +315,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPinus }}</h3>
-                                        <span>Jumlah Pegawai Ruang Pinus</span>
+                                        <span> Pegawai Ruang Pinus</span>
                                     </div>
                                 </div>
                             </div>
@@ -326,7 +326,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataWijayaKusuma }}</h3>
-                                        <span>Jumlah Pegawai Ruang Wijaya Kusuma</span>
+                                        <span> Pegawai Ruang Wijaya Kusuma</span>
                                     </div>
                                 </div>
                             </div>
@@ -337,7 +337,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPaviliun }}</h3>
-                                        <span>Jumlah Pegawai Ruang Paviliun</span>
+                                        <span> Pegawai Ruang Paviliun</span>
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +348,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataPalem_PICU }}</h3>
-                                        <span>Jumlah Pegawai Ruang Palem PICU</span>
+                                        <span> Pegawai Ruang Palem PICU</span>
                                     </div>
                                 </div>
                             </div>
@@ -359,7 +359,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataUnitStroke }}</h3>
-                                        <span>Jumlah Pegawai Ruang Unit Stroke</span>
+                                        <span> Pegawai Ruang Unit Stroke</span>
                                     </div>
                                 </div>
                             </div>
@@ -370,7 +370,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataBidara_RanapJiwa }}</h3>
-                                        <span>Jumlah Pegawai Ruang Ranap Jiwa</span>
+                                        <span> Pegawai Ruang Ranap Jiwa</span>
                                     </div>
                                 </div>
                             </div>
@@ -381,7 +381,7 @@
                                     <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                                     <div class="dash-widget-info">
                                         <h3>{{ $dataLain_Lain_NonPerawatan }}</h3>
-                                        <span>Jumlah Pegawai Ruang Non Perawatan</span>
+                                        <span> Pegawai Ruang Non Perawatan</span>
                                     </div>
                                 </div>
                             </div>
@@ -390,7 +390,8 @@
                 </div>
             </div>
             <div class="lihat-semua">
-                <button type="button" class="btn btn-info" id="lihatSemuaJenisPegawai">Lihat Semua</button>
+                <button type="button" class="btn btn-info" id="lihatSemuaPegawaiRuang"><i class="fa fa-eye-slash"></i> Lihat Semua</button>
+                <button type="button" class="btn btn-info" id="sembunyikanPegawaiRuang" style="display: none;"><i class="fa fa-eye"></i> Sembunyikan</button>
             </div><br>
 
             <div class="col-md-12">
@@ -771,7 +772,8 @@
                 </div>
             </div>
             <div class="lihat-semua">
-                <button type="button" class="btn btn-info" id="lihatSemuaTempatTidur">Lihat Semua</button>
+                <button type="button" class="btn btn-info" id="lihatSemuaTempatTidur"><i class="fa fa-eye-slash"></i> Lihat Semua</button>
+                <button type="button" class="btn btn-info" id="sembunyikanTempatTidur" style="display: none;"><i class="fa fa-eye"></i> Sembunyikan</button>
             </div><br>
 
             <div class="col-md-12">
@@ -784,6 +786,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
