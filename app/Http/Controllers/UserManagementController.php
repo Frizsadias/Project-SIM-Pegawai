@@ -137,51 +137,7 @@ class UserManagementController extends Controller
                 $role_name = '<span class="badge bg-inverse-danger role_name">' . $record->role_name . '</span>';
             } elseif ($record->role_name == 'Super Admin') {
                 $role_name = '<span class="badge bg-inverse-warning role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang IGD Terpadu') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Bedah Central') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang RR') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Rawat Jalan') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Hemodialisis (HD)') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Kebidanan') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Pinang') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Perinatologi') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Cemara') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang HCU Bougenvill') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang ICU') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang ICCU') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Asoka') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Pinus') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Wijaya Kusuma') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Paviliun') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Palem/PICU') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Unit Stroke') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Bidara/Ranap Jiwa') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Lain-Lain/Non Perawatan') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Pavilium Anggrek') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Mawar') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang Flamboyan') {
+            } elseif ($record->role_name == 'Kepala Ruang') {
                 $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
             } elseif ($record->role_name == 'User') {
                 $role_name = '<span class="badge bg-inverse-info role_name">' . $record->role_name . '</span>';
