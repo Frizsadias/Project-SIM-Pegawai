@@ -61,12 +61,12 @@
                             <span>Pendidikan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('unit-kerja') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('unit-kerja') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('unit-kerja') ? 'noti-dot' : '' }}">
                             <i class="la la-laptop"></i>
                             <span>Unit Kerja</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ request()->routeIs('referensi-sumpah') ? 'active' : '' }}">
                         <a href="{{ route('referensi-sumpah') }}" class="{{ request()->routeIs('referensi-sumpah') ? 'noti-dot' : '' }}">
                             <i class="la la-gavel"></i>

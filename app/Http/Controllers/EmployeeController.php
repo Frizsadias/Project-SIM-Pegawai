@@ -519,74 +519,58 @@ class EmployeeController extends Controller
     /** list search employee */
     public function employeeListSearch(Request $request)
     {
-        $users = DB::table('users')
-                    ->join('employees','users.user_id','employees.employee_id')
-                    ->select('users.*','employees.name','employees.email')->get();
-        $userList         = DB::table('users')->get();
+        $query = DB::table('users')
+        ->leftJoin('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+        ->leftJoin('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+        ->select(
+            'users.*',
+            'profil_pegawai.name as employee_name',
+            'profil_pegawai.email as employee_email',
+            'profil_pegawai.nip',
+            'profil_pegawai.gelar_depan',
+            'profil_pegawai.gelar_belakang',
+            'profil_pegawai.tempat_lahir',
+            'profil_pegawai.tanggal_lahir',
+            'profil_pegawai.jenis_kelamin',
+            'profil_pegawai.agama',
+            'profil_pegawai.jenis_dokumen',
+            'profil_pegawai.no_dokumen',
+            'profil_pegawai.kelurahan',
+            'profil_pegawai.kecamatan',
+            'profil_pegawai.kota',
+            'profil_pegawai.provinsi',
+            'profil_pegawai.kode_pos',
+            'profil_pegawai.no_hp',
+            'profil_pegawai.no_telp',
+            'profil_pegawai.jenis_pegawai',
+            'profil_pegawai.kedudukan_pns',
+            'profil_pegawai.status_pegawai',
+            'profil_pegawai.tmt_pns',
+            'profil_pegawai.no_seri_karpeg',
+            'profil_pegawai.tmt_cpns',
+            'profil_pegawai.tingkat_pendidikan',
+            'profil_pegawai.pendidikan_terakhir',
+            'profil_pegawai.ruangan',
+            'users.name as user_name',
+            'posisi_jabatan.jabatan'
+        );
 
-        // search by id
-        if ($request->employee_id)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')->get();
-        }
-        // search by name
-        if ($request->name)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
-        }
-        // search by email
-        if ($request->email)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
-        }
-
-        // search by name and id
-        if ($request->employee_id && $request->name) 
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
-        }
-        // search by email and id
-        if ($request->employee_id && $request->email)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
-        }
-        // search by name and email
-        if ($request->name && $request->email)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
-        }
-        // search by name and email and id
-        if ($request->employee_id && $request->name && $request->email)
-        {
-            $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+        // Lakukan pencarian berdasarkan input form
+        if ($request->input('nip')) {
+            $query->where('profil_pegawai.nip', 'LIKE', '%' . $request->input('nip') . '%');
         }
 
+        if ($request->input('name')) {
+            $query->where('profil_pegawai.name', 'LIKE', '%' . $request->input('name') . '%');
+        }
+
+        if ($request->input('email')) {
+            $query->where('profil_pegawai.email', 'LIKE', '%' . $request->input('email') . '%');
+        }
+
+        $users = $query->get();
+
+        // Lanjutkan dengan bagian notifikasi jika diperlukan
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -599,7 +583,7 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('employees.employeelist', compact('users', 'userList', 'unreadNotifications', 'readNotifications'));
+        return view('employees.employeelist', compact('users', 'unreadNotifications', 'readNotifications'));
     }
     /** End Search */
 
@@ -1682,4 +1666,75 @@ class EmployeeController extends Controller
         }
     }
     /** end Add record SIP dokter */
+
+    public function searchpegawaipensiunList(Request $request)
+    {
+        $query = DB::table('users')
+        ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+        ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+        ->select(
+            'users.*',
+            'profil_pegawai.name',
+            'profil_pegawai.email',
+            'profil_pegawai.nip',
+            'profil_pegawai.gelar_depan',
+            'profil_pegawai.gelar_belakang',
+            'profil_pegawai.tempat_lahir',
+            'profil_pegawai.tanggal_lahir',
+            'profil_pegawai.jenis_kelamin',
+            'profil_pegawai.agama',
+            'profil_pegawai.jenis_dokumen',
+            'profil_pegawai.no_dokumen',
+            'profil_pegawai.kelurahan',
+            'profil_pegawai.kecamatan',
+            'profil_pegawai.kota',
+            'profil_pegawai.provinsi',
+            'profil_pegawai.kode_pos',
+            'profil_pegawai.no_hp',
+            'profil_pegawai.no_telp',
+            'profil_pegawai.jenis_pegawai',
+            'profil_pegawai.kedudukan_pns',
+            'profil_pegawai.status_pegawai',
+            'profil_pegawai.tmt_pns',
+            'profil_pegawai.no_seri_karpeg',
+            'profil_pegawai.tmt_cpns',
+            'profil_pegawai.tingkat_pendidikan',
+            'profil_pegawai.pendidikan_terakhir',
+            'profil_pegawai.ruangan',
+            'users.name',
+            'posisi_jabatan.jabatan'
+        )
+            ->where('users.role_name', 'User');
+
+        if ($request->has('nip')) {
+            $query->where('profil_pegawai.nip', 'LIKE', '%' . $request->input('nip') . '%');
+        }
+
+        if ($request->has('name')) {
+            $query->where('profil_pegawai.name', 'LIKE', '%' . $request->input('name') . '%');
+        }
+
+        if ($request->has('email')) {
+            $query->where('profil_pegawai.email', 'LIKE', '%' . $request->input('email') . '%');
+        }
+
+        // Tambahkan kondisi untuk kedudukan_pns
+        $query->where('profil_pegawai.kedudukan_pns', 'Pensiun');
+
+        $users = $query->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.datapensiunlist', compact('users', 'unreadNotifications', 'readNotifications'));
+    }
 }

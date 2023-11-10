@@ -18,16 +18,16 @@ use App\Models\PersonalInformation;
 use App\Rules\MatchOldPassword;
 use App\Models\UserEmergencyContact;
 use App\Models\Notification;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 use App\Notifications\UlangTahunNotification;
 use Carbon\Carbon;
 use Session;
 use Auth;
 use Hash;
 use DB;
-use App\Models\Province;
-use App\Models\Regency;
-use App\Models\District;
-use App\Models\Village;
 
 class UserManagementController extends Controller
 {
@@ -450,6 +450,7 @@ class UserManagementController extends Controller
     /** profile user */
     public function user_profile()
     {
+        $provinces = Province::all();
         $profile = Session::get('user_id');
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
@@ -487,7 +488,6 @@ class UserManagementController extends Controller
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
         $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
-        $provinces = Province::all();
 
         if (empty($employees)) {
             $information = DB::table('profile_information')->where('user_id', $profile)->first();

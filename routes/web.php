@@ -217,7 +217,9 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('daftar/pegawai/card', 'cardAllEmployee')->middleware('auth')->name('daftar/pegawai/card');
     Route::get('daftar/pegawai/list', 'listAllEmployee')->middleware('auth')->name('daftar/pegawai/list');
     Route::get('daftar/pegawai/pensiun/card', 'cardPensiun')->middleware('auth')->name('daftar/pegawai/pensiun/card');
+    Route::post('daftar/pegawai/pensiun/card/search', 'searchpegawaipensiunCard')->middleware('auth')->name('daftar/pegawai/pensiun/card/search');
     Route::get('daftar/pegawai/pensiun/list', 'listPensiun')->middleware('auth')->name('daftar/pegawai/pensiun/list');
+    Route::post('daftar/pegawai/pensiun/list/search', 'searchpegawaipensiunList')->middleware('auth')->name('daftar/pegawai/pensiun/list/search');
     Route::get('daftar/ruangan/pegawai/card', 'cardRuangan')->middleware('auth')->name('daftar/ruangan/pegawai/card');
     Route::get('daftar/ruangan/pegawai/list', 'listRuangan')->middleware('auth')->name('daftar/ruangan/pegawai/list');
     Route::post('daftar/pegawai/save', 'saveRecord')->middleware('auth')->name('daftar/pegawai/save');
@@ -228,12 +230,10 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('daftar/ruangan/search', 'employeeSearchRuangan')->name('daftar/ruangan/search');
     Route::post('daftar/pegawai/list/search', 'employeeListSearch')->name('daftar/pegawai/list/search');
     Route::post('daftar/ruangan/pegawai/list/search', 'employeeListSearchRuangan')->name('daftar/ruangan/pegawai/list/search');
-
     Route::get('form/departments/page', 'index')->middleware('auth')->name('form/departments/page');
     Route::post('form/departments/save', 'saveRecordDepartment')->middleware('auth')->name('form/departments/save');
     Route::post('form/department/update', 'updateRecordDepartment')->middleware('auth')->name('form/department/update');
     Route::post('form/department/delete', 'deleteRecordDepartment')->middleware('auth')->name('form/department/delete');
-
     Route::get('referensi/agama', 'indexAgama')->middleware('auth')->name('referensi-agama');
     Route::post('form/agama/save', 'saveRecordAgama')->middleware('auth')->name('form/agama/save');
     Route::post('form/agama/update', 'updateRecordAgama')->middleware('auth')->name('form/agama/update');
@@ -280,9 +280,6 @@ Route::controller(EmployeeController::class)->group(function () {
 // ------------------------- profile employee --------------------------//
 Route::controller(EmployeeController::class)->group(function () {
     Route::get('user/profile/{user_id}', 'profileEmployee')->middleware('auth');
-    Route::post('/getkota', 'getkota')->name('getkota');
-    Route::post('/getkecamatan_employee', 'getkecamatan_employee')->name('getkecamatan_employee');
-    Route::post('/getkelurahan', 'getkelurahan')->name('getkelurahan');
 });
 
 // --------------------------- form holiday ---------------------------//
