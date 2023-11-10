@@ -73,7 +73,7 @@
                                     <th>Jabatan</th>
                                     <th>Pendidikan Terakhir</th>
                                     <th>Nomor HP</th>
-                                    <th>Ruangan</th>
+                                    <th>Ruang</th>
                                     <th>Kedudukan</th>
                                     <th>Foto</th>
                                     {{-- <th class="text-right no-sort">Aksi</th> --}}

@@ -87,7 +87,6 @@
                                             <th>Tanggal Selesai Cuti</th>
                                             <th>Tanggal Pengajuan Cuti</th>
                                             <th>Dokumen Kelengkapan</th>
-                                            <th>Status Permohonan Cuti</th>
                                             <th>Pengajuan Kepala Ruangan</th>
                                         </tr>
                                     </thead>
@@ -115,20 +114,6 @@
                                                     @endif
                                                         <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
                                                 </a></td>
-                                            <td class="status_pengajuan">
-                                                <div class="dropdown">
-                                                    <a class="status-persetujuan-superadmin">
-                                                        @if ($result_cuti->status_pengajuan == 'Disetujui')
-                                                            <i class="fa fa-dot-circle-o text-success"></i>
-                                                        @elseif ($result_cuti->status_pengajuan == 'Dalam Proses Persetujuan')
-                                                            <i class="fa fa-dot-circle-o text-warning"></i>
-                                                        @elseif ($result_cuti->status_pengajuan == 'Ditolak')
-                                                            <i class="fa fa-dot-circle-o text-danger"></i>
-                                                        @endif
-                                                        <span class="dropdown_pengajuan">{{ $result_cuti->status_pengajuan }}</span>
-                                                    </a>
-                                                </div>
-                                            </td>
                                             <td class="persetujuan_kepalaruangan">
                                                 <div class="dropdown">
                                                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">

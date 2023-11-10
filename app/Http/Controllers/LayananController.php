@@ -509,20 +509,12 @@ class LayananController extends Controller
     /** Daftar Layanan Cuti Super Admin */
     public function tampilanCutiPegawaiKepalaRuangan()
     {
-        // $data_cuti = DB::table('cuti')
-        //     ->select(
-        //         'cuti.*',
-        //         'cuti.user_id',
-        //         'cuti.name',
-        //         'cuti.nip',
-        //         'cuti.jenis_cuti',
-        //         'cuti.lama_cuti',
-        //         'cuti.tanggal_mulai_cuti',
-        //         'cuti.tanggal_selesai_cuti',
-        //         'cuti.dokumen_kelengkapan',
-        //         'cuti.status_pengajuan'
-        //     )
-        //     ->get();
+        $user = auth()->user();
+        $ruangan = $user->ruangan;
+        $data_cuti = User::where('role_name', 'User')
+            ->join('cuti', 'users.user_id', 'cuti.user_id')
+            ->where('ruangan', $ruangan)
+            ->get();
 
         $data_cuti_pdf = DB::table('cuti')
             ->select(
@@ -593,29 +585,8 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        $superAdmin = User::where('role_name', 'Kepala Ruang Pinus')->first();
-        if ($superAdmin) {
-            $data_cuti = User::where('role_name', 'User')
-                ->join('cuti', 'users.user_id', 'cuti.user_id')
-                ->where('ruangan', $superAdmin->ruangan)
-                ->get();
-
-            return view('layanan.layanan-cuti-kepala-ruangan', [
-                'data_cuti' => $data_cuti,
-                'data_cuti_pdf' => $data_cuti_pdf,
-                'userList' => $userList,
-                'unreadNotifications' => $unreadNotifications,
-                'readNotifications' => $readNotifications,
-                'sisaCutiThisYear' => $sisaCutiThisYear,
-                'sisaCutiLastYear' => $sisaCutiLastYear,
-                'sisaCutiTwoYearsAgo' => $sisaCutiTwoYearsAgo,
-            ]);
-        } else {
-            return view('layanan.layanan-cuti-kepala-ruangan', ['data_cuti' => []]);
-        }
-
-        // return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_cuti_pdf', 'userList',
-        //     'unreadNotifications','readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_cuti_pdf', 'userList',
+            'unreadNotifications','readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
     }
     /** /Daftar Layanan Cuti Super Admin */
 

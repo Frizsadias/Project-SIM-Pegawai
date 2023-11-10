@@ -37,8 +37,8 @@
             <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" name="employee_id">
-                        <label class="focus-label">ID Pegawai</label>
+                        <input type="text" class="form-control floating" name="nip">
+                        <label class="focus-label">NIP</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
@@ -78,19 +78,25 @@
                                 <tr>
                                     <th>NIP</th>
                                     <th>Nama Pegawai</th>
-                                    <th>Ruangan</th>
+                                    <th>Golongan Awal</th>
+                                    <th>Golongan Akhir</th>
+                                    <th>Ruang</th>
+                                    <th>Status</th>
                                     <th>Foto</th>
                                     {{-- <th class="text-right no-sort">Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($kepalaRuang as $dafpeg)
+                                @foreach ($data_ruangan as $result_ruang)
                                     <tr>
-                                        <td>{{ $dafpeg->nip }}</td>
-                                        <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}" style="color:black;">{{ $dafpeg->name }}</a></td>
-                                        <td>{{ $dafpeg->ruangan }}</td>
+                                        <td>{{ $result_ruang->nip }}</td>
+                                        <td><a href="{{ url('user/profile/' . $result_ruang->user_id) }}" style="color:black;">{{ $result_ruang->name }}</a></td>
+                                        <td>{{ $result_ruang->gol_ruang_awal }}</td>
+                                        <td>{{ $result_ruang->gol_ruang_akhir }}</td>
+                                        <td>{{ $result_ruang->ruangan }}</td>
+                                        <td>{{ $result_ruang->jenis_pegawai }}</td>
                                         <td><h2 class="table-avatar">
-                                            <a href="{{ url('user/profile/' . $dafpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $dafpeg->avatar) }}"></a>
+                                            <a href="{{ url('user/profile/' . $result_ruang->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $result_ruang->avatar) }}"></a>
                                         </h2></td>
                                     </tr>
                                 @endforeach

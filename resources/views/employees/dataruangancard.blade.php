@@ -36,8 +36,8 @@
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="employee_id" name="employee_id">
-                            <label class="focus-label">ID Pegawai</label>
+                            <input type="text" class="form-control floating" id="employee_id" name="nip">
+                            <label class="focus-label">NIP</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
@@ -61,7 +61,7 @@
             {{-- message --}}
             {!! Toastr::message() !!}
             <div class="row staff-grid-row">
-                @foreach ($kepalaRuang as $result_ruang)
+                @foreach ($data_ruangan as $result_ruang)
                     <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="profile-img">
