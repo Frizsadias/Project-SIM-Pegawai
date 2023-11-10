@@ -31,7 +31,7 @@
             <!-- /Page Header -->
 
             <!-- Search Filter -->
-            <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
+            <form action="{{ route('daftar/pegawai/card/search') }}" method="POST">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">

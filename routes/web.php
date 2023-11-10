@@ -229,6 +229,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('daftar/pegawai/search', 'employeeSearch')->name('daftar/pegawai/search');
     Route::post('daftar/ruangan/search', 'employeeSearchRuangan')->name('daftar/ruangan/search');
     Route::post('daftar/pegawai/list/search', 'employeeListSearch')->name('daftar/pegawai/list/search');
+    Route::post('daftar/pegawai/card/search', 'employeeCardSearch')->name('daftar/pegawai/card/search');
     Route::post('daftar/ruangan/pegawai/list/search', 'employeeListSearchRuangan')->name('daftar/ruangan/pegawai/list/search');
     Route::get('form/departments/page', 'index')->middleware('auth')->name('form/departments/page');
     Route::post('form/departments/save', 'saveRecordDepartment')->middleware('auth')->name('form/departments/save');
