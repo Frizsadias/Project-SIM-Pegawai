@@ -244,7 +244,7 @@
                                         <li>
                                             <div class="title">Provinsi</div>
                                             @if (!empty($result_profilpegawai->provinsi))
-                                                <div class="text">{{ $result_profilpegawai->provinsi }}</div>
+                                                <div class="text">{{ ucwords(strtolower($result_profilpegawai->provinsi)) }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
@@ -252,7 +252,7 @@
                                         <li>
                                             <div class="title">Kota/Kabupaten</div>
                                             @if (!empty($result_profilpegawai->kota))
-                                                <div class="text">{{ $result_profilpegawai->kota }}</div>
+                                                <div class="text">{{ ucwords(strtolower($result_profilpegawai->kota)) }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
@@ -260,7 +260,7 @@
                                         <li>
                                             <div class="title">Kecamatan</div>
                                             @if (!empty($result_profilpegawai->kecamatan))
-                                                <div class="text">{{ $result_profilpegawai->kecamatan }}</div>
+                                                <div class="text">{{ ucwords(strtolower($result_profilpegawai->kecamatan)) }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
@@ -268,7 +268,7 @@
                                         <li>
                                             <div class="title">Desa/Kelurahan</div>
                                             @if (!empty($result_profilpegawai->kelurahan))
-                                                <div class="text">{{ $result_profilpegawai->kelurahan }}</div>
+                                                <div class="text">{{ ucwords(strtolower($result_profilpegawai->kelurahan)) }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
@@ -356,7 +356,7 @@
                                         <li>
                                             <div class="title">Pendidikan Terakhir</div>
                                             @if (!empty($result_profilpegawai->pendidikan_terakhir))
-                                                <div class="text">{{ $result_profilpegawai->pendidikan_terakhir }}</div>
+                                                <div class="text">{{ ucwords(strtolower($result_profilpegawai->pendidikan_terakhir)) }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif

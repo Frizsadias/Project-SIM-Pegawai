@@ -231,7 +231,7 @@
                                             <li>
                                                 <div class="title">Provinsi</div>
                                                 @if (!empty($users->provinsi))
-                                                    <div class="text">{{ $users->provinsi }}</div>
+                                                    <div class="text">{{ ucwords(strtolower($users->provinsi)) }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -239,7 +239,7 @@
                                             <li>
                                                 <div class="title">Kota/Kabupaten</div>
                                                 @if (!empty($users->kota))
-                                                    <div class="text">{{ $users->kota }}</div>
+                                                    <div class="text">{{ ucwords(strtolower($users->kota)) }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -247,7 +247,7 @@
                                             <li>
                                                 <div class="title">Kecamatan</div>
                                                 @if (!empty($users->kecamatan))
-                                                    <div class="text">{{ $users->kecamatan }}</div>
+                                                    <div class="text">{{ ucwords(strtolower($users->kecamatan)) }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -255,7 +255,7 @@
                                             <li>
                                                 <div class="title">Desa/Kelurahan</div>
                                                 @if (!empty($users->kelurahan))
-                                                    <div class="text">{{ $users->kelurahan }}</div>
+                                                    <div class="text">{{ ucwords(strtolower($users->kelurahan)) }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -343,7 +343,7 @@
                                             <li>
                                                 <div class="title">Pendidikan Terakhir</div>
                                                 @if (!empty($users->pendidikan_terakhir))
-                                                    <div class="text">{{ $users->pendidikan_terakhir }}</div>
+                                                    <div class="text">{{ ucwords(strtolower($users->pendidikan_terakhir)) }}</div>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
