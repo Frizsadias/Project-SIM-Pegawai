@@ -32,7 +32,7 @@
             <!-- /Page Header -->
 
         <!-- Search Filter -->
-        <form action="{{ route('daftar/ruangan/pegawai/list/search') }}" method="POST">
+        <form action="{{ route('ruangan/pegawai/list/cari') }}" method="POST">
             @csrf
             <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">

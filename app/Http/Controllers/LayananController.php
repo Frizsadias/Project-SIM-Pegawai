@@ -3382,4 +3382,72 @@ class LayananController extends Controller
         // $pdf->stream($nama_file);
         // }
     }
+
+    /** Search Pegawai List Kepala Ruangan */
+    public function pencarianPegawaiKepalaRuanganList(Request $request)
+{
+    $name = $request->input('name');
+    $nip = $request->input('nip');
+
+    $data_ruangan = User::where('role_name', 'User')
+        ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+        ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+        ->where('users.ruangan', auth()->user()->ruangan)
+        ->where(function ($query) use ($name, $nip) {
+            $query->where('profil_pegawai.name', 'like', '%' . $name . '%')
+                  ->where('profil_pegawai.nip', 'like', '%' . $nip . '%');
+        })
+        ->get();
+
+    $unreadNotifications = Notification::where('notifiable_id', auth()->user()->id)
+        ->where('notifiable_type', get_class(auth()->user()))
+        ->whereNull('read_at')
+        ->get();
+
+    $readNotifications = Notification::where('notifiable_id', auth()->user()->id)
+        ->where('notifiable_type', get_class(auth()->user()))
+        ->whereNotNull('read_at')
+        ->get();
+
+    return view('employees.dataruanganlist', compact(
+        'data_ruangan',
+        'unreadNotifications',
+        'readNotifications',
+    ));
+}
+    /** /Search Pegawai List Kepala Ruangan */
+
+    /** Search Pegawai Card Kepala Ruangan */
+    public function pencarianPegawaiKepalaRuanganCard(Request $request)
+    {
+        $name = $request->input('name');
+        $nip = $request->input('nip');
+
+        $data_ruangan = User::where('role_name', 'User')
+        ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+        ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+        ->where('users.ruangan', auth()->user()->ruangan)
+            ->where(function ($query) use ($name, $nip) {
+                $query->where('profil_pegawai.name', 'like', '%' . $name . '%')
+                    ->where('profil_pegawai.nip', 'like', '%' . $nip . '%');
+            })
+            ->get();
+
+        $unreadNotifications = Notification::where('notifiable_id', auth()->user()->id)
+            ->where('notifiable_type', get_class(auth()->user()))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', auth()->user()->id)
+            ->where('notifiable_type', get_class(auth()->user()))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.dataruangancard', compact(
+            'data_ruangan',
+            'unreadNotifications',
+            'readNotifications',
+        ));
+    }
+    /** /Search Pegawai Card Kepala Ruangan */
 }

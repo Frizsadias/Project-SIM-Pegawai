@@ -497,6 +497,9 @@ Route::controller(LayananController::class)->group(function () {
     Route::post('layanan/perjanjian-kinerja/edit-data', 'editDataPerjanjianKinerja')->name('layanan/perjanjian-kinerja/edit-data');
     Route::post('layanan/perjanjian-kinerja/hapus-data', 'hapusDataPerjanjianKinerja')->name('layanan/perjanjian-kinerja/hapus-data');
     Route::get('layanan/perjanjian-kinerja-admin/{id}', 'cetakPerjanjianKinerja')->name('layanan-perjanjian-kinerja-admin');
+
+    Route::post('ruangan/pegawai/list/cari', 'pencarianPegawaiKepalaRuanganList')->name('ruangan/pegawai/list/cari');
+    Route::post('ruangan/pegawai/card/cari', 'pencarianPegawaiKepalaRuanganCard')->name('ruangan/pegawai/card/cari');
 });
 
 // ----------------------- SIP Dokter --------------------------//
