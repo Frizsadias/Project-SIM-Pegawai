@@ -76,12 +76,9 @@ class LoginController extends Controller
                 Session::put('email', $user->email);
                 Session::put('user_id', $user->user_id);
                 Session::put('join_date', $user->join_date);
-                Session::put('phone_number', $user->phone_number);
                 Session::put('status', $user->status);
                 Session::put('role_name', $user->role_name);
                 Session::put('avatar', $user->avatar);
-                Session::put('position', $user->position);
-                Session::put('department', $user->department);
                 
                 $activityLog = ['name'=> Session::get('name'),'email'=> $username,'description' => 'Telah masuk aplikasi','date_time'=> $todayDate,];
                 DB::table('activity_logs')->insert($activityLog);
@@ -113,12 +110,9 @@ class LoginController extends Controller
         $request->session()->forget('email');
         $request->session()->forget('user_id');
         $request->session()->forget('join_date');
-        $request->session()->forget('phone_number');
         $request->session()->forget('status');
         $request->session()->forget('role_name');
         $request->session()->forget('avatar');
-        $request->session()->forget('position');
-        $request->session()->forget('department');
         $request->session()->flush();
         Auth::logout();
         Toastr::success('Berhasil keluar aplikasi :)','Success');

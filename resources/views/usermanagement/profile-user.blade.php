@@ -194,10 +194,11 @@
                                         <li>
                                             <div class="title">Tanggal Lahir</div>
                                             @if (!empty($result_profilpegawai->tanggal_lahir))
-                                                <div class="text">{{ $result_profilpegawai->tanggal_lahir }}</div>
+                                                <div class="text">{{ date('d F Y', strtotime($result_profilpegawai->tanggal_lahir)) }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_profilpegawai->tanggal_lahir }}</div>
                                         </li>
                                         <li>
                                             <div class="title">Jenis Kelamin</div>
@@ -324,10 +325,11 @@
                                         <li>
                                             <div class="title">TMT PNS</div>
                                             @if (!empty($result_profilpegawai->tmt_pns))
-                                                <div class="text">{{ $result_profilpegawai->tmt_pns }}</div>
+                                                <div class="text">{{ date('d F Y', strtotime($result_profilpegawai->tmt_pns)) }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_profilpegawai->tmt_pns }}</div>
                                         </li>
                                         <li>
                                             <div class="title">No. Seri Kartu Pegawai</div>
@@ -340,10 +342,11 @@
                                         <li>
                                             <div class="title">TMT CPNS</div>
                                             @if (!empty($result_profilpegawai->tmt_cpns))
-                                                <div class="text">{{ $result_profilpegawai->tmt_cpns }}</div>
+                                                <div class="text">{{ date('d F Y', strtotime($result_profilpegawai->tmt_cpns)) }}</div>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_profilpegawai->tmt_cpns }}</div>
                                         </li>
                                         <li>
                                             <div class="title">Tingkat Pendidikan</div>
@@ -433,12 +436,13 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">TMT </div>
+                                            <div class="title">TMT</div>
                                             @if (!empty($result_posisijabatan->tmt))
-                                            <div class="text">{{ $result_posisijabatan->tmt }}</div>
+                                                <div class="text">{{ date('d F Y', strtotime($result_posisijabatan->tmt)) }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_posisijabatan->tmt }}</div>
                                         </li>
                                         <li>
                                             <div class="title">Lokasi Kerja </div>
@@ -465,36 +469,40 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">TMT Golongan </div>
+                                            <div class="title">TMT Golongan</div>
                                             @if (!empty($result_posisijabatan->tmt_golongan))
-                                            <div class="text">{{ $result_posisijabatan->tmt_golongan }}</div>
+                                                <div class="text">{{ date('d F Y', strtotime($result_posisijabatan->tmt_golongan)) }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_posisijabatan->tmt_golongan }}</div>
                                         </li>
                                         <li>
                                             <div class="title">Gaji Pokok </div>
                                             @if (!empty($result_posisijabatan->gaji_pokok))
-                                            <div class="text">{{ $result_posisijabatan->gaji_pokok }}</div>
+                                            <div class="text">Rp. {{ number_format($result_posisijabatan->gaji_pokok, 0, ',', '.') }}</div>
                                             @else
                                             <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_posisijabatan->gaji_pokok }}</div>
                                         </li>
                                         <li>
-                                            <div class="title">Masa Kerja (Tahun) </div>
+                                            <div class="title">Masa Kerja (Tahun)</div>
                                             @if (!empty($result_posisijabatan->masa_kerja_tahun))
-                                            <div class="text">{{ $result_posisijabatan->masa_kerja_tahun }}</div>
+                                                <div class="text">{{ $result_posisijabatan->masa_kerja_tahun }} Tahun</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_posisijabatan->masa_kerja_tahun }}</div>
                                         </li>
                                         <li>
-                                            <div class="title">Masa Kerja (Bulan) </div>
+                                            <div class="title">Masa Kerja (Bulan)</div>
                                             @if (!empty($result_posisijabatan->masa_kerja_bulan))
-                                            <div class="text">{{ $result_posisijabatan->masa_kerja_bulan }}</div>
+                                                <div class="text">{{ $result_posisijabatan->masa_kerja_bulan }} Bulan</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_posisijabatan->masa_kerja_bulan }}</div>
                                         </li>
                                         <li>
                                             <div class="title">No SPMT </div>
@@ -505,12 +513,13 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Tanggal SPMT </div>
+                                            <div class="title">Tanggal SPMT</div>
                                             @if (!empty($result_posisijabatan->tanggal_spmt))
-                                            <div class="text">{{ $result_posisijabatan->tanggal_spmt }}</div>
+                                                <div class="text">{{ date('d F Y', strtotime($result_posisijabatan->tanggal_spmt)) }}</div>
                                             @else
-                                            <div class="text">N/A</div>
+                                                <div class="text">N/A</div>
                                             @endif
+                                            <div hidden class="text">{{ $result_posisijabatan->tanggal_spmt }}</div>
                                         </li>
                                         <li>
                                             <div class="title">KPPN </div>
@@ -1268,6 +1277,7 @@
                                                             <option value="{{ $provinsi->name }}" @if ($result_profilpegawai->provinsi == $provinsi->name) selected @endif>{{ $provinsi->name }}</option>
                                                         @endforeach
                                                     </select>
+                                                    <br><small class="text-danger">*Silahkan memilih dengan pilihan yang berbeda, setelah itu Anda dapat memilih pilihan anda kembali.</small>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

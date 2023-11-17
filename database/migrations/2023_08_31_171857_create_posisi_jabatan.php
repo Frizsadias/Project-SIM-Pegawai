@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('posisi_jabatan', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->nullable();
+            $table->string('nip')->nullable();
             $table->string('unit_organisasi')->nullable();
             $table->string('unit_organisasi_induk')->nullable();
             $table->string('jenis_jabatan')->nullable();
@@ -36,8 +37,8 @@ return new class extends Migration
         });
 
         DB::table('posisi_jabatan')->insert([
-            ['user_id' => 'ID_00001'],
-            ['user_id' => 'ID_00002']
+            ['user_id' => 'ID_00001', 'nip' => '1905102006'],
+            ['user_id' => 'ID_00002', 'nip' => '1905101057']
         ]);
     }
 

@@ -39,6 +39,9 @@ class CreateUsersTable extends Migration
              'status' => 'Active',
              'role_name' => 'Admin',
              'avatar' => 'photo_defaults.jpg',
+             'ruangan' => '-',
+             'jenis_jabatan' => 'Developer',
+             'eselon' => '-',
              'password' => Hash::make('Kelvin.P980425'),
              'created_at' => now(),
              'updated_at' => now()
@@ -50,6 +53,9 @@ class CreateUsersTable extends Migration
              'status' => 'Active',
              'role_name' => 'Admin',
              'avatar' => 'photo_defaults.jpg',
+             'ruangan' => '-',
+             'jenis_jabatan' => 'Developer',
+             'eselon' => '-',
              'password' => Hash::make('12345678'),
              'created_at' => now(),
              'updated_at' => now()
