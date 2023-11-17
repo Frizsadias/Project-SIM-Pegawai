@@ -87,7 +87,7 @@
                                     <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}" style="color:black;">{{ $dafpeg->name }}</a></td>
                                     <td>{{ $dafpeg->jabatan }}</td>
                                     <td>{{ $dafpeg->pendidikan_terakhir }}</td>
-                                    <td><a href="https://api.whatsapp.com/send?phone={{ $dafpeg->no_hp }}" target="_blank"><i class="fa-brands fa-whatsapp fa-2xl" style="color: #25D366;"></i></a>&nbsp; || {{ $dafpeg->no_hp }}</td>
+                                    <td><a href="https://api.whatsapp.com/send?phone={{ $dafpeg->no_hp }}" target="_blank" style="color:black;">{{ $dafpeg->no_hp }}</a></td>
                                     <td>{{ $dafpeg->ruangan }}</td>
                                     <td>{{ $dafpeg->kedudukan_pns }}</td>
                                     <td><h2 class="table-avatar">

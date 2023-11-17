@@ -171,7 +171,6 @@ class EmployeeController extends Controller
         $user = auth()->user();
         $ruangan = $user->ruangan;
         $data_ruangan = User::where('role_name', 'User')
-            ->join('cuti', 'users.user_id', '=', 'cuti.user_id')
             ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
             ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
             ->where('users.ruangan', $ruangan)
@@ -212,7 +211,6 @@ class EmployeeController extends Controller
         $user = auth()->user();
         $ruangan = $user->ruangan;
         $data_ruangan = User::where('role_name', 'User')
-            ->join('cuti', 'users.user_id', '=', 'cuti.user_id')
             ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
             ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
             ->where('users.ruangan', $ruangan)
