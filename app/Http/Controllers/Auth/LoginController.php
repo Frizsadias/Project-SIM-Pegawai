@@ -59,40 +59,38 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $request->validate([
-            'email'    => 'required|string',
-            'password' => 'required|string',
+            'nip_or_no_dokumen' => 'required|string',
+            'password'          => 'required|string'
         ]);
         try {
-            $username = $request->email;
+            $username = $request->nip_or_no_dokumen;
             $password = $request->password;
-
             $dt         = Carbon::now();
             $todayDate  = $dt->toDayDateTimeString();
-            
-            if (Auth::attempt(['email' => $username,'password' => $password,'status' =>'Active'])) {
-                /** get session */
+            if (Auth::attempt(['nip'        => $username, 'password' => $password, 'status' => 'Active']) ||
+                Auth::attempt(['no_dokumen' => $username, 'password' => $password, 'status' => 'Active'])) {
                 $user = Auth::User();
                 Session::put('name', $user->name);
-                Session::put('email', $user->email);
+                Session::put('nip', $user->nip);
+                Session::put('no_dokumen', $user->no_dokumen);
                 Session::put('user_id', $user->user_id);
                 Session::put('join_date', $user->join_date);
                 Session::put('status', $user->status);
                 Session::put('role_name', $user->role_name);
                 Session::put('avatar', $user->avatar);
-                
-                $activityLog = ['name'=> Session::get('name'),'email'=> $username,'description' => 'Telah masuk aplikasi','date_time'=> $todayDate,];
+                $activityLog = ['name' => Session::get('name'), 'nip' => $user->nip, 'no_dokumen' => $user->no_dokumen, 'description' => 'Telah masuk aplikasi', 'date_time' => $todayDate];
                 DB::table('activity_logs')->insert($activityLog);
                 
-                Toastr::success('Berhasil masuk aplikasi :)','Success');
+                Toastr::success('Berhasil masuk aplikasi :)', 'Success');
                 return redirect()->intended('home');
             } else {
-                Toastr::error('Gagal, Nama Pengguna dan Kata Sandi tidak sama ✘','Error');
+                Toastr::error('Gagal, Nama Pengguna dan Kata Sandi tidak sama ✘', 'Error');
                 return redirect('login');
             }
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('Pembuatan akun pegawai baru gagal :(','Error');
+            Toastr::error('Pembuatan akun pegawai baru gagal :(', 'Error');
             return redirect()->back();
         }
     }
@@ -102,12 +100,11 @@ class LoginController extends Controller
     {
         $dt         = Carbon::now();
         $todayDate  = $dt->toDayDateTimeString();
-
-        $activityLog = ['name'=> Session::get('name'),'email'=> Session::get('email'),'description' => 'Telah keluar aplikasi','date_time'=> $todayDate,];
+        $activityLog = ['name' => Session::get('name'), 'nip'=> Session::get('nip'), 'no_dokumen'=> Session::get('no_dokumen'), 'description' => 'Telah keluar aplikasi', 'date_time' => $todayDate];
         DB::table('activity_logs')->insert($activityLog);
-        // forget login session
         $request->session()->forget('name');
-        $request->session()->forget('email');
+        $request->session()->forget('nip');
+        $request->session()->forget('no_dokumen');
         $request->session()->forget('user_id');
         $request->session()->forget('join_date');
         $request->session()->forget('status');
@@ -118,5 +115,4 @@ class LoginController extends Controller
         Toastr::success('Berhasil keluar aplikasi :)','Success');
         return redirect('login');
     }
-
 }

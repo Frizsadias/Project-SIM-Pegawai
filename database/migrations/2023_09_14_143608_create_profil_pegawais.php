@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('profil_pegawais', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->nullable();
             $table->string('name')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('email')->nullable();
             $table->string('nip')->nullable();
             $table->string('gelar_depan')->nullable();

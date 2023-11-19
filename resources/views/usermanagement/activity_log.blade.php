@@ -27,7 +27,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama</th>
-                                    <th>Email</th>
+                                    <th>NIP</th>
+                                    <th>NIK</th>
                                     <th>Deskripsi</th>
                                     <th>Waktu</th>
                                 </tr>
@@ -37,7 +38,8 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->nip }}</td>
+                                        <td>{{ $item->no_dokumen }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->date_time)->translatedFormat('l, j F Y || h:i A') }}</td>
                                     </tr>

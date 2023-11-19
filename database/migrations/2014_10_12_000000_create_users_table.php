@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('user_id');
             $table->string('email')->unique();
+            $table->string('nip')->nullable();
+            $table->string('no_dokumen')->nullable();
             $table->string('join_date');
             $table->string('status')->nullable();
             $table->string('role_name')->nullable();
@@ -35,13 +37,15 @@ class CreateUsersTable extends Migration
             ['name' => 'Kelvin',
              'user_id' => 'ID_00001',
              'email' => 'kelvin.p2504@gmail.com',
+             'nip' => '1905102006',
+             'no_dokumen' => NULL,
              'join_date' => now()->toDayDateTimeString(),
              'status' => 'Active',
              'role_name' => 'Admin',
              'avatar' => 'photo_defaults.jpg',
-             'ruangan' => '-',
+             'ruangan' => NULL,
              'jenis_jabatan' => 'Developer',
-             'eselon' => '-',
+             'eselon' => NULL,
              'password' => Hash::make('Kelvin.P980425'),
              'created_at' => now(),
              'updated_at' => now()
@@ -49,14 +53,16 @@ class CreateUsersTable extends Migration
             ['name' => 'Frizsa Dias',
              'user_id' => 'ID_00002',
              'email' => 'frizsadias20@gmail.com',
+             'nip' => '1905101057',
+             'no_dokumen' => NULL,
              'join_date' => now()->toDayDateTimeString(),
              'status' => 'Active',
              'role_name' => 'Admin',
              'avatar' => 'photo_defaults.jpg',
-             'ruangan' => '-',
+             'ruangan' => NULL,
              'jenis_jabatan' => 'Developer',
-             'eselon' => '-',
-             'password' => Hash::make('12345678'),
+             'eselon' => NULL,
+             'password' => Hash::make('123456789'),
              'created_at' => now(),
              'updated_at' => now()
             ]

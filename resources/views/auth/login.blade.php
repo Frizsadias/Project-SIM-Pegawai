@@ -14,9 +14,9 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">
-                                <label>E-mail</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan E-mail">
-                                @error('email')
+                                <label>NIP/NIK</label>
+                                <input type="text" class="form-control @error('nip_or_no_dokumen') is-invalid @enderror" name="nip_or_no_dokumen" value="{{ old('nip_or_no_dokumen') }}" placeholder="Masukkan NIP atau NIK">
+                                @error('nip_or_no_dokumen')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
