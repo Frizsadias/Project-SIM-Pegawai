@@ -22,6 +22,7 @@
                         <li><a class="{{set_active(['riwayat/aktivitas/otentikasi','riwayat/aktivitas/otentikasi'])}}" href="{{ route('riwayat-aktivitas-otentikasi') }}"> <span>Aktivitas Pengguna</span></a></li>
                         </ul>
                     </li>
+                    <li class="menu-title"> <span>Struktur Organisasi</span>
                     <li class="{{ set_active(['peta-jabatan']) }}">
                         <a href="{{ route('peta-jabatan') }}" class="{{ set_active(['peta-jabatan']) ? 'noti-dot' : '' }}">
                             <i class="la la-sitemap"></i>

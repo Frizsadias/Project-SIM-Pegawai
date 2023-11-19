@@ -2669,8 +2669,14 @@ class LayananController extends Controller
 
     public function tampilanPetaJabatan()
     {
-        $result_peta_jabatan = DB::table('peta_jabatan')
+        $peta_jabatan_pdf = DB::table('peta_jabatan')
             ->select('peta_jabatan.*', 'peta_jabatan.id', 'peta_jabatan.pdf_peta')
+            ->get();
+
+        $peta_jabatan_animasi = DB::table('profil_pegawai')
+            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+            ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+            ->select('profil_pegawai.*', 'profil_pegawai.name', 'posisi_jabatan.jabatan', 'users.avatar')
             ->get();
 
         $user = auth()->user();
@@ -2685,7 +2691,7 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.peta-jabatan', compact('unreadNotifications', 'readNotifications', 'result_peta_jabatan'));
+        return view('layanan.peta-jabatan', compact('peta_jabatan_pdf', 'peta_jabatan_animasi', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Daftar Layanan STR Admin */
