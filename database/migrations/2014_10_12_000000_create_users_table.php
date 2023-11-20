@@ -53,7 +53,7 @@ class CreateUsersTable extends Migration
             ['name' => 'Frizsa Dias',
              'user_id' => 'ID_00002',
              'email' => 'frizsadias20@gmail.com',
-             'nip' => '1905101057',
+             'nip' => '1905101051',
              'no_dokumen' => NULL,
              'join_date' => now()->toDayDateTimeString(),
              'status' => 'Active',

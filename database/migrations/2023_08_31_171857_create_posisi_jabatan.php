@@ -38,7 +38,7 @@ return new class extends Migration
 
         DB::table('posisi_jabatan')->insert([
             ['user_id' => 'ID_00001', 'nip' => '1905102006'],
-            ['user_id' => 'ID_00002', 'nip' => '1905101057']
+            ['user_id' => 'ID_00002', 'nip' => '1905101051']
         ]);
     }
 
