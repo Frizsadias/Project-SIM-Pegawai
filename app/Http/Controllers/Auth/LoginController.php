@@ -90,7 +90,7 @@ class LoginController extends Controller
         } catch (\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('Pembuatan akun pegawai baru gagal :(', 'Error');
+            Toastr::error('Gagal, NIP/NIK anda tidak tersedia pada aplikasi :(', 'Error');
             return redirect()->back();
         }
     }
