@@ -71,6 +71,7 @@ class LoginController extends Controller
                 Auth::attempt(['no_dokumen' => $username, 'password' => $password, 'status' => 'Active'])) {
                 $user = Auth::User();
                 Session::put('name', $user->name);
+                Session::put('email', $user->email);
                 Session::put('nip', $user->nip);
                 Session::put('no_dokumen', $user->no_dokumen);
                 Session::put('user_id', $user->user_id);
@@ -103,6 +104,7 @@ class LoginController extends Controller
         $activityLog = ['name' => Session::get('name'), 'nip'=> Session::get('nip'), 'no_dokumen'=> Session::get('no_dokumen'), 'description' => 'Telah keluar aplikasi', 'date_time' => $todayDate];
         DB::table('activity_logs')->insert($activityLog);
         $request->session()->forget('name');
+        $request->session()->forget('email');
         $request->session()->forget('nip');
         $request->session()->forget('no_dokumen');
         $request->session()->forget('user_id');
