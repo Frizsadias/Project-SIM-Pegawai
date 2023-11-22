@@ -50,12 +50,38 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->select(
+                'users.*',
+                'profil_pegawai.name',
+                'profil_pegawai.email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name',
+                'posisi_jabatan.jabatan'
+            )
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
@@ -80,12 +106,38 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->select(
+                'users.*',
+                'profil_pegawai.name',
+                'profil_pegawai.email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name',
+                'posisi_jabatan.jabatan'
+            )
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
@@ -110,12 +162,38 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->select(
+                'users.*',
+                'profil_pegawai.name',
+                'profil_pegawai.email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name',
+                'posisi_jabatan.jabatan'
+            )
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
@@ -140,12 +218,38 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->select(
+                'users.*',
+                'profil_pegawai.name',
+                'profil_pegawai.email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name',
+                'posisi_jabatan.jabatan'
+            )
             ->get();
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
@@ -157,14 +261,40 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->select(
+                'users.*',
+                'profil_pegawai.name',
+                'profil_pegawai.email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name',
+                'posisi_jabatan.jabatan'
+            )
             ->get();
-        
+
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
 
@@ -197,14 +327,40 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select('users.*','profil_pegawai.name','profil_pegawai.email','profil_pegawai.nip','profil_pegawai.gelar_depan','profil_pegawai.gelar_belakang','profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir','profil_pegawai.jenis_kelamin','profil_pegawai.agama','profil_pegawai.jenis_dokumen','profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan','profil_pegawai.kecamatan','profil_pegawai.kota','profil_pegawai.provinsi','profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp','profil_pegawai.no_telp','profil_pegawai.jenis_pegawai','profil_pegawai.kedudukan_pns','profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns','profil_pegawai.no_seri_karpeg','profil_pegawai.tmt_cpns','profil_pegawai.tingkat_pendidikan','profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan','users.name','posisi_jabatan.jabatan')
+            ->select(
+                'users.*',
+                'profil_pegawai.name',
+                'profil_pegawai.email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name',
+                'posisi_jabatan.jabatan'
+            )
             ->get();
-            
+
         $userList = DB::table('users')->get();
         $permission_lists = DB::table('permission_lists')->get();
 
@@ -328,72 +484,65 @@ class EmployeeController extends Controller
     public function employeeSearch(Request $request)
     {
         $users = DB::table('users')
-                    ->join('employees','users.user_id','employees.employee_id')
-                    ->select('users.*','employees.name','employees.email')->get();
+            ->join('employees', 'users.user_id', 'employees.employee_id')
+            ->select('users.*', 'employees.name', 'employees.email')->get();
         $userList = DB::table('users')->get();
 
         // search by id
-        if ($request->employee_id)
-        {
+        if ($request->employee_id) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')->get();
         }
         // search by name
-        if ($request->name)
-        {
+        if ($request->name) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('users.name', 'LIKE', '%' . $request->name . '%')->get();
         }
         // search by email
-        if ($request->email)
-        {
+        if ($request->email) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
 
         // search by name and id
-        if ($request->employee_id && $request->name)
-        {
+        if ($request->employee_id && $request->name) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
+                ->where('users.name', 'LIKE', '%' . $request->name . '%')
+                ->get();
         }
         // search by email and id
-        if ($request->employee_id && $request->email)
-        {
+        if ($request->employee_id && $request->email) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
+                ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
         // search by name and email
-        if ($request->name && $request->email)
-        {
+        if ($request->name && $request->email) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('users.name', 'LIKE', '%' . $request->name . '%')
+                ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
         // search by name and email and id
-        if ($request->employee_id && $request->name && $request->email)
-        {
+        if ($request->employee_id && $request->name && $request->email) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
+                ->where('users.name', 'LIKE', '%' . $request->name . '%')
+                ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
 
         $user = auth()->user();
@@ -414,72 +563,65 @@ class EmployeeController extends Controller
     public function employeeSearchRuangan(Request $request)
     {
         $users = DB::table('users')
-                    ->join('employees','users.user_id','employees.employee_id')
-                    ->select('users.*','employees.name','employees.email')->get();
+            ->join('employees', 'users.user_id', 'employees.employee_id')
+            ->select('users.*', 'employees.name', 'employees.email')->get();
         $userList = DB::table('users')->get();
 
         // search by id
-        if ($request->employee_id)
-        {
+        if ($request->employee_id) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')->get();
         }
         // search by name
-        if ($request->name)
-        {
+        if ($request->name) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.name','LIKE','%'.$request->name.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('users.name', 'LIKE', '%' . $request->name . '%')->get();
         }
         // search by email
-        if ($request->email)
-        {
+        if ($request->email) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
 
         // search by name and id
-        if ($request->employee_id && $request->name)
-        {
+        if ($request->employee_id && $request->name) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
+                ->where('users.name', 'LIKE', '%' . $request->name . '%')
+                ->get();
         }
         // search by email and id
-        if ($request->employee_id && $request->email)
-        {
+        if ($request->employee_id && $request->email) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
+                ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
         // search by name and email
-        if ($request->name && $request->email)
-        {
+        if ($request->name && $request->email) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('users.name', 'LIKE', '%' . $request->name . '%')
+                ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
         // search by name and email and id
-        if ($request->employee_id && $request->name && $request->email)
-        {
+        if ($request->employee_id && $request->name && $request->email) {
             $users = DB::table('users')
-                        ->join('employees','users.user_id','employees.employee_id')
-                        ->select('users.*','employees.name','employees.email')
-                        ->where('employee_id','LIKE','%'.$request->employee_id.'%')
-                        ->where('users.name','LIKE','%'.$request->name.'%')
-                        ->where('users.email','LIKE','%'.$request->email.'%')->get();
+                ->join('employees', 'users.user_id', 'employees.employee_id')
+                ->select('users.*', 'employees.name', 'employees.email')
+                ->where('employee_id', 'LIKE', '%' . $request->employee_id . '%')
+                ->where('users.name', 'LIKE', '%' . $request->name . '%')
+                ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
 
         $user = auth()->user();
@@ -501,40 +643,40 @@ class EmployeeController extends Controller
     public function employeeListSearch(Request $request)
     {
         $query = DB::table('users')
-        ->leftJoin('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
-        ->leftJoin('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'profil_pegawai.name as employee_name',
-            'profil_pegawai.email as employee_email',
-            'profil_pegawai.nip',
-            'profil_pegawai.gelar_depan',
-            'profil_pegawai.gelar_belakang',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.jenis_kelamin',
-            'profil_pegawai.agama',
-            'profil_pegawai.jenis_dokumen',
-            'profil_pegawai.no_dokumen',
-            'profil_pegawai.kelurahan',
-            'profil_pegawai.kecamatan',
-            'profil_pegawai.kota',
-            'profil_pegawai.provinsi',
-            'profil_pegawai.kode_pos',
-            'profil_pegawai.no_hp',
-            'profil_pegawai.no_telp',
-            'profil_pegawai.jenis_pegawai',
-            'profil_pegawai.kedudukan_pns',
-            'profil_pegawai.status_pegawai',
-            'profil_pegawai.tmt_pns',
-            'profil_pegawai.no_seri_karpeg',
-            'profil_pegawai.tmt_cpns',
-            'profil_pegawai.tingkat_pendidikan',
-            'profil_pegawai.pendidikan_terakhir',
-            'profil_pegawai.ruangan',
-            'users.name as user_name',
-            'posisi_jabatan.jabatan'
-        );
+            ->leftJoin('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+            ->leftJoin('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+            ->select(
+                'users.*',
+                'profil_pegawai.name as employee_name',
+                'profil_pegawai.email as employee_email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name as user_name',
+                'posisi_jabatan.jabatan'
+            );
 
         // Lakukan pencarian berdasarkan input form
         if ($request->input('nip')) {
@@ -572,40 +714,40 @@ class EmployeeController extends Controller
     public function employeeCardSearch(Request $request)
     {
         $query = DB::table('users')
-        ->leftJoin('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
-        ->leftJoin('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'profil_pegawai.name as employee_name',
-            'profil_pegawai.email as employee_email',
-            'profil_pegawai.nip',
-            'profil_pegawai.gelar_depan',
-            'profil_pegawai.gelar_belakang',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.jenis_kelamin',
-            'profil_pegawai.agama',
-            'profil_pegawai.jenis_dokumen',
-            'profil_pegawai.no_dokumen',
-            'profil_pegawai.kelurahan',
-            'profil_pegawai.kecamatan',
-            'profil_pegawai.kota',
-            'profil_pegawai.provinsi',
-            'profil_pegawai.kode_pos',
-            'profil_pegawai.no_hp',
-            'profil_pegawai.no_telp',
-            'profil_pegawai.jenis_pegawai',
-            'profil_pegawai.kedudukan_pns',
-            'profil_pegawai.status_pegawai',
-            'profil_pegawai.tmt_pns',
-            'profil_pegawai.no_seri_karpeg',
-            'profil_pegawai.tmt_cpns',
-            'profil_pegawai.tingkat_pendidikan',
-            'profil_pegawai.pendidikan_terakhir',
-            'profil_pegawai.ruangan',
-            'users.name as user_name',
-            'posisi_jabatan.jabatan'
-        );
+            ->leftJoin('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
+            ->leftJoin('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+            ->select(
+                'users.*',
+                'profil_pegawai.name as employee_name',
+                'profil_pegawai.email as employee_email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name as user_name',
+                'posisi_jabatan.jabatan'
+            );
 
         // Lakukan pencarian berdasarkan input form
         if ($request->input('nip')) {
@@ -727,102 +869,265 @@ class EmployeeController extends Controller
     public function profileEmployee($user_id)
     {
         $user = DB::table('users')
-            ->leftJoin('profile_information as pr','pr.user_id','users.user_id')
+            ->leftJoin('profile_information as pr', 'pr.user_id', 'users.user_id')
             // ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
             // ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
             // ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
             // ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
-            ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
-            ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
-            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pr.tmpt_lahir','pg.name','pg.email','pg.nip','pg.gelar_depan',
-                'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
-                'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
-                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan','pg.dokumen_ktp',
-                'pj.unit_organisasi','pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
-                'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
+            ->leftJoin('profil_pegawai as pg', 'pg.user_id', 'users.user_id')
+            ->leftJoin('posisi_jabatan as pj', 'pj.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'pr.tgl_lahir',
+                'pr.jk',
+                'pr.alamat',
+                'pr.tmpt_lahir',
+                'pg.name',
+                'pg.email',
+                'pg.nip',
+                'pg.gelar_depan',
+                'pg.gelar_belakang',
+                'pg.tempat_lahir',
+                'pg.tanggal_lahir',
+                'pg.jenis_kelamin',
+                'pg.agama',
+                'pg.jenis_dokumen',
+                'pg.no_dokumen',
+                'pg.kelurahan',
+                'pg.kecamatan',
+                'pg.kota',
+                'pg.provinsi',
+                'pg.kode_pos',
+                'pg.no_hp',
+                'pg.no_telp',
+                'pg.jenis_pegawai',
+                'pg.kedudukan_pns',
+                'pg.status_pegawai',
+                'pg.tmt_pns',
+                'pg.no_seri_karpeg',
+                'pg.tmt_cpns',
+                'pg.tingkat_pendidikan',
+                'pg.pendidikan_terakhir',
+                'pg.ruangan',
+                'pg.dokumen_ktp',
+                'pj.unit_organisasi',
+                'pj.unit_organisasi_induk',
+                'pj.jenis_jabatan',
+                'pj.eselon',
+                'pj.jabatan',
+                'pj.tmt',
+                'pj.lokasi_kerja',
+                'pj.gol_ruang_awal',
+                'pj.gol_ruang_akhir',
+                'pj.tmt_golongan',
+                'pj.gaji_pokok',
+                'pj.masa_kerja_tahun',
+                'pj.masa_kerja_bulan',
+                'pj.no_spmt',
+                'pj.tanggal_spmt',
+                'pj.kppn'
+            )
             ->where('users.user_id', $user_id)->get();
-            
+
         $users = DB::table('users')
-            ->leftJoin('profile_information as pr','pr.user_id','users.user_id')
+            ->leftJoin('profile_information as pr', 'pr.user_id', 'users.user_id')
             // ->leftJoin('riwayat_pendidikan as rp','rp.user_id','users.user_id')
             // ->leftJoin('riwayat_golongan as rg','rg.user_id','users.user_id')
             // ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
             // ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
-            ->leftJoin('profil_pegawai as pg','pg.user_id','users.user_id')
-            ->leftJoin('posisi_jabatan as pj','pj.user_id','users.user_id')
-            ->select('users.*','pr.tgl_lahir','pr.jk','pr.alamat','pr.tmpt_lahir','pg.name','pg.email','pg.nip','pg.gelar_depan',
-                'pg.gelar_belakang','pg.tempat_lahir','pg.tanggal_lahir','pg.jenis_kelamin','pg.agama','pg.jenis_dokumen','pg.no_dokumen',
-                'pg.kelurahan','pg.kecamatan','pg.kota','pg.provinsi','pg.kode_pos','pg.no_hp','pg.no_telp','pg.jenis_pegawai','pg.kedudukan_pns',
-                'pg.status_pegawai','pg.tmt_pns','pg.no_seri_karpeg','pg.tmt_cpns','pg.tingkat_pendidikan','pg.pendidikan_terakhir','pg.ruangan','pg.dokumen_ktp',
-                'pj.unit_organisasi','pj.unit_organisasi_induk','pj.jenis_jabatan','pj.eselon','pj.jabatan','pj.tmt','pj.lokasi_kerja','pj.gol_ruang_awal','pj.gol_ruang_akhir',
-                'pj.tmt_golongan','pj.gaji_pokok','pj.masa_kerja_tahun','pj.masa_kerja_bulan','pj.no_spmt','pj.tanggal_spmt','pj.kppn')
+            ->leftJoin('profil_pegawai as pg', 'pg.user_id', 'users.user_id')
+            ->leftJoin('posisi_jabatan as pj', 'pj.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'pr.tgl_lahir',
+                'pr.jk',
+                'pr.alamat',
+                'pr.tmpt_lahir',
+                'pg.name',
+                'pg.email',
+                'pg.nip',
+                'pg.gelar_depan',
+                'pg.gelar_belakang',
+                'pg.tempat_lahir',
+                'pg.tanggal_lahir',
+                'pg.jenis_kelamin',
+                'pg.agama',
+                'pg.jenis_dokumen',
+                'pg.no_dokumen',
+                'pg.kelurahan',
+                'pg.kecamatan',
+                'pg.kota',
+                'pg.provinsi',
+                'pg.kode_pos',
+                'pg.no_hp',
+                'pg.no_telp',
+                'pg.jenis_pegawai',
+                'pg.kedudukan_pns',
+                'pg.status_pegawai',
+                'pg.tmt_pns',
+                'pg.no_seri_karpeg',
+                'pg.tmt_cpns',
+                'pg.tingkat_pendidikan',
+                'pg.pendidikan_terakhir',
+                'pg.ruangan',
+                'pg.dokumen_ktp',
+                'pj.unit_organisasi',
+                'pj.unit_organisasi_induk',
+                'pj.jenis_jabatan',
+                'pj.eselon',
+                'pj.jabatan',
+                'pj.tmt',
+                'pj.lokasi_kerja',
+                'pj.gol_ruang_awal',
+                'pj.gol_ruang_akhir',
+                'pj.tmt_golongan',
+                'pj.gaji_pokok',
+                'pj.masa_kerja_tahun',
+                'pj.masa_kerja_bulan',
+                'pj.no_spmt',
+                'pj.tanggal_spmt',
+                'pj.kppn'
+            )
             ->where('users.user_id', $user_id)->first();
 
-            $riwayatPendidikan = DB::table('users')
+        $riwayatPendidikan = DB::table('users')
             ->leftJoin('riwayat_pendidikan as rp', 'rp.user_id', 'users.user_id')
-            ->select('users.*', 'rp.id', 'rp.id_pend', 'rp.ting_ped', 'rp.pendidikan', 'rp.tahun_lulus', 'rp.no_ijazah', 'rp.nama_sekolah', 'rp.gelar_depan_pend', 'rp.gelar_belakang_pend',
-                'rp.jenis_pendidikan', 'rp.dokumen_transkrip', 'rp.dokumen_ijazah', 'rp.dokumen_gelar')
+            ->select(
+                'users.*',
+                'rp.id',
+                'rp.id_pend',
+                'rp.ting_ped',
+                'rp.pendidikan',
+                'rp.tahun_lulus',
+                'rp.no_ijazah',
+                'rp.nama_sekolah',
+                'rp.gelar_depan_pend',
+                'rp.gelar_belakang_pend',
+                'rp.jenis_pendidikan',
+                'rp.dokumen_transkrip',
+                'rp.dokumen_ijazah',
+                'rp.dokumen_gelar'
+            )
             ->where('users.user_id', $user_id)->get();
-            $riwayatPendidikans = $riwayatPendidikan->first();
+        $riwayatPendidikans = $riwayatPendidikan->first();
 
-            $riwayatGolongan = DB::table('users')
+        $riwayatGolongan = DB::table('users')
             ->leftJoin('riwayat_golongan as rg', 'rg.user_id', 'users.user_id')
-            ->select('users.*', 'rg.id', 'rg.id_gol','rg.golongan','rg.jenis_kenaikan_pangkat','rg.masa_kerja_golongan_tahun','rg.masa_kerja_golongan_bulan',
-                'rg.tmt_golongan_riwayat','rg.no_teknis_bkn','rg.tanggal_teknis_bkn','rg.no_sk_golongan','rg.tanggal_sk_golongan','rg.dokumen_skkp','rg.dokumen_teknis_kp')
+            ->select(
+                'users.*',
+                'rg.id',
+                'rg.id_gol',
+                'rg.golongan',
+                'rg.jenis_kenaikan_pangkat',
+                'rg.masa_kerja_golongan_tahun',
+                'rg.masa_kerja_golongan_bulan',
+                'rg.tmt_golongan_riwayat',
+                'rg.no_teknis_bkn',
+                'rg.tanggal_teknis_bkn',
+                'rg.no_sk_golongan',
+                'rg.tanggal_sk_golongan',
+                'rg.dokumen_skkp',
+                'rg.dokumen_teknis_kp'
+            )
             ->where('users.user_id', $user_id)->get();
-            $riwayatGolongans = $riwayatGolongan->first();
+        $riwayatGolongans = $riwayatGolongan->first();
 
-            $riwayatJabatan = DB::table('users')
-            ->leftJoin('riwayat_jabatan as rj','rj.user_id','users.user_id')
-            ->select('users.*','rj.id', 'rj.id_jab','rj.jenis_jabatan_riwayat','rj.satuan_kerja','rj.satuan_kerja_induk','rj.unit_organisasi_riwayat',
-                    'rj.no_sk','rj.tanggal_sk','rj.tmt_jabatan','rj.tmt_pelantikan','rj.dokumen_sk_jabatan','rj.dokumen_pelantikan')
+        $riwayatJabatan = DB::table('users')
+            ->leftJoin('riwayat_jabatan as rj', 'rj.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'rj.id',
+                'rj.id_jab',
+                'rj.jenis_jabatan_riwayat',
+                'rj.satuan_kerja',
+                'rj.satuan_kerja_induk',
+                'rj.unit_organisasi_riwayat',
+                'rj.no_sk',
+                'rj.tanggal_sk',
+                'rj.tmt_jabatan',
+                'rj.tmt_pelantikan',
+                'rj.dokumen_sk_jabatan',
+                'rj.dokumen_pelantikan'
+            )
             ->where('users.user_id', $user_id)->get();
-            $riwayatJabatans = $riwayatJabatan->first();
+        $riwayatJabatans = $riwayatJabatan->first();
 
-            $riwayatDiklat = DB::table('users')
-            ->leftJoin('riwayat_diklat as rd','rd.user_id','users.user_id')
-            ->select('users.*','rd.id','rd.id_dik','rd.jenis_diklat','rd.nama_diklat','rd.institusi_penyelenggara','rd.no_sertifikat',
-                    'rd.tanggal_mulai','rd.tanggal_selesai','rd.tahun_diklat','rd.durasi_jam','rd.dokumen_diklat')
+        $riwayatDiklat = DB::table('users')
+            ->leftJoin('riwayat_diklat as rd', 'rd.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'rd.id',
+                'rd.id_dik',
+                'rd.jenis_diklat',
+                'rd.nama_diklat',
+                'rd.institusi_penyelenggara',
+                'rd.no_sertifikat',
+                'rd.tanggal_mulai',
+                'rd.tanggal_selesai',
+                'rd.tahun_diklat',
+                'rd.durasi_jam',
+                'rd.dokumen_diklat'
+            )
             ->where('users.user_id', $user_id)->get();
-            $riwayatDiklats = $riwayatDiklat->first();
+        $riwayatDiklats = $riwayatDiklat->first();
 
-            $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
-            $kedudukanOptions = DB::table('kedudukan_hukum_id')->pluck('kedudukan', 'kedudukan');
+        $kedudukanOptions = DB::table('kedudukan_hukum_id')->pluck('kedudukan', 'kedudukan');
 
-            $jenispegawaiOptions = DB::table('jenis_pegawai_id')->pluck('jenis_pegawai', 'jenis_pegawai');
+        $jenispegawaiOptions = DB::table('jenis_pegawai_id')->pluck('jenis_pegawai', 'jenis_pegawai');
 
-            $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
-        
-            $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
 
-            $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
-        
-            $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
-            $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
+        $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
 
-            $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
+        $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
+
+        $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
+
+        $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
         $provinces = Province::all();
 
 
-            $user = auth()->user();
-            $role = $user->role_name;
-            $unreadNotifications = Notification::where('notifiable_id', $user->id)
-                ->where('notifiable_type', get_class($user))
-                ->whereNull('read_at')
-                ->get();
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
 
-            $readNotifications = Notification::where('notifiable_id', $user->id)
-                ->where('notifiable_type', get_class($user))
-                ->whereNotNull('read_at')
-                ->get();
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
 
-        return view('employees.employeeprofile', compact('user', 'users','riwayatPendidikan','riwayatPendidikans','riwayatGolongan','riwayatGolongans',
-        'riwayatJabatan','riwayatJabatans','riwayatDiklat','riwayatDiklats','agamaOptions', 'kedudukanOptions',
-        'jenispegawaiOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions', 'golonganOptions', 'jenisdiklatOptions',
-        'pendidikanterakhirOptions' ,'unreadNotifications', 'readNotifications', 'provinces'));
+        return view('employees.employeeprofile', compact(
+            'user',
+            'users',
+            'riwayatPendidikan',
+            'riwayatPendidikans',
+            'riwayatGolongan',
+            'riwayatGolongans',
+            'riwayatJabatan',
+            'riwayatJabatans',
+            'riwayatDiklat',
+            'riwayatDiklats',
+            'agamaOptions',
+            'kedudukanOptions',
+            'jenispegawaiOptions',
+            'tingkatpendidikanOptions',
+            'ruanganOptions',
+            'jenisjabatanOptions',
+            'golonganOptions',
+            'jenisdiklatOptions',
+            'pendidikanterakhirOptions',
+            'unreadNotifications',
+            'readNotifications',
+            'provinces'
+        ));
     }
 
     public function getkota(Request $request)
@@ -901,7 +1206,7 @@ class EmployeeController extends Controller
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
             ->get();
-        
+
         return view('employees.agama', compact('agama', 'unreadNotifications', 'readNotifications'));
     }
 
@@ -911,7 +1216,7 @@ class EmployeeController extends Controller
         $keyword = $request->input('keyword');
 
         $agama = DB::table('agama_id')
-        ->where('agama', 'like', '%' . $keyword . '%')
+            ->where('agama', 'like', '%' . $keyword . '%')
             ->get();
 
         $user = auth()->user();
@@ -997,7 +1302,7 @@ class EmployeeController extends Controller
         }
     }
 
-    
+
 
     /** page kedudukan */
     public function indexKedudukan()
@@ -1018,13 +1323,73 @@ class EmployeeController extends Controller
         return view('employees.kedudukan', compact('kedudukan', 'unreadNotifications', 'readNotifications'));
     }
 
+    public function getKedudukanData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'kedudukan'
+        );
+
+        $totalData = kedudukan::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $kedudukan = Kedudukan::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $kedudukan =  Kedudukan::where('kedudukan', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = Kedudukan::where('kedudukan', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($kedudukan)) {
+            foreach ($kedudukan as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['kedudukan'] = $value->kedudukan;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_kedudukan' href='#' data-toggle='modal' data-target='#edit_kedudukan' data-id='" . $value->id . "' data-kedudukan='" . $value->kedudukan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_kedudukan' data-toggle='modal' data-target='#delete_kedudukan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
+
     /** search for kedudukan */
     public function searchKedudukan(Request $request)
     {
         $keyword = $request->input('keyword');
 
         $kedudukan = DB::table('kedudukan_hukum_id')
-        ->where('kedudukan', 'like', '%' . $keyword . '%')
+            ->where('kedudukan', 'like', '%' . $keyword . '%')
             ->get();
 
         $user = auth()->user();
@@ -1135,7 +1500,7 @@ class EmployeeController extends Controller
         $keyword = $request->input('keyword');
 
         $pendidikan = DB::table('pendidikan_id')
-        ->where('pendidikan', 'like', '%' . $keyword . '%')
+            ->where('pendidikan', 'like', '%' . $keyword . '%')
             ->get();
 
         $user = auth()->user();
@@ -1257,7 +1622,7 @@ class EmployeeController extends Controller
         $keyword = $request->input('keyword');
 
         $ruangan = DB::table('ruangan_id')
-        ->where('ruangan', 'like', '%' . $keyword . '%')
+            ->where('ruangan', 'like', '%' . $keyword . '%')
             ->get();
 
         $user = auth()->user();
@@ -1371,7 +1736,7 @@ class EmployeeController extends Controller
         $keyword = $request->input('keyword');
 
         $sumpah = DB::table('sumpah_id')
-        ->where('sumpah', 'like', '%' . $keyword . '%')
+            ->where('sumpah', 'like', '%' . $keyword . '%')
             ->get();
 
         $user = auth()->user();
@@ -1482,7 +1847,7 @@ class EmployeeController extends Controller
         $keyword = $request->input('keyword');
 
         $jenis_pegawai = DB::table('jenis_pegawai_id')
-        ->where('jenis_pegawai', 'like', '%' . $keyword . '%')
+            ->where('jenis_pegawai', 'like', '%' . $keyword . '%')
             ->get();
 
         $user = auth()->user();
@@ -1593,7 +1958,7 @@ class EmployeeController extends Controller
         $keyword = $request->input('keyword');
 
         $ref_pangkat = DB::table('referensi_pangkat')
-        ->where('ref_pangkat', 'like', '%' . $keyword . '%')
+            ->where('ref_pangkat', 'like', '%' . $keyword . '%')
             ->get();
 
         $user = auth()->user();
@@ -1744,40 +2109,40 @@ class EmployeeController extends Controller
     public function searchpegawaipensiunList(Request $request)
     {
         $query = DB::table('users')
-        ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-        ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'profil_pegawai.name',
-            'profil_pegawai.email',
-            'profil_pegawai.nip',
-            'profil_pegawai.gelar_depan',
-            'profil_pegawai.gelar_belakang',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.jenis_kelamin',
-            'profil_pegawai.agama',
-            'profil_pegawai.jenis_dokumen',
-            'profil_pegawai.no_dokumen',
-            'profil_pegawai.kelurahan',
-            'profil_pegawai.kecamatan',
-            'profil_pegawai.kota',
-            'profil_pegawai.provinsi',
-            'profil_pegawai.kode_pos',
-            'profil_pegawai.no_hp',
-            'profil_pegawai.no_telp',
-            'profil_pegawai.jenis_pegawai',
-            'profil_pegawai.kedudukan_pns',
-            'profil_pegawai.status_pegawai',
-            'profil_pegawai.tmt_pns',
-            'profil_pegawai.no_seri_karpeg',
-            'profil_pegawai.tmt_cpns',
-            'profil_pegawai.tingkat_pendidikan',
-            'profil_pegawai.pendidikan_terakhir',
-            'profil_pegawai.ruangan',
-            'users.name',
-            'posisi_jabatan.jabatan'
-        )
+            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+            ->select(
+                'users.*',
+                'profil_pegawai.name',
+                'profil_pegawai.email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name',
+                'posisi_jabatan.jabatan'
+            )
             ->where('users.role_name', 'User');
 
         if ($request->has('nip')) {
@@ -1815,40 +2180,40 @@ class EmployeeController extends Controller
     public function searchpegawaipensiunCard(Request $request)
     {
         $query = DB::table('users')
-        ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-        ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'profil_pegawai.name',
-            'profil_pegawai.email',
-            'profil_pegawai.nip',
-            'profil_pegawai.gelar_depan',
-            'profil_pegawai.gelar_belakang',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.jenis_kelamin',
-            'profil_pegawai.agama',
-            'profil_pegawai.jenis_dokumen',
-            'profil_pegawai.no_dokumen',
-            'profil_pegawai.kelurahan',
-            'profil_pegawai.kecamatan',
-            'profil_pegawai.kota',
-            'profil_pegawai.provinsi',
-            'profil_pegawai.kode_pos',
-            'profil_pegawai.no_hp',
-            'profil_pegawai.no_telp',
-            'profil_pegawai.jenis_pegawai',
-            'profil_pegawai.kedudukan_pns',
-            'profil_pegawai.status_pegawai',
-            'profil_pegawai.tmt_pns',
-            'profil_pegawai.no_seri_karpeg',
-            'profil_pegawai.tmt_cpns',
-            'profil_pegawai.tingkat_pendidikan',
-            'profil_pegawai.pendidikan_terakhir',
-            'profil_pegawai.ruangan',
-            'users.name',
-            'posisi_jabatan.jabatan'
-        )
+            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+            ->select(
+                'users.*',
+                'profil_pegawai.name',
+                'profil_pegawai.email',
+                'profil_pegawai.nip',
+                'profil_pegawai.gelar_depan',
+                'profil_pegawai.gelar_belakang',
+                'profil_pegawai.tempat_lahir',
+                'profil_pegawai.tanggal_lahir',
+                'profil_pegawai.jenis_kelamin',
+                'profil_pegawai.agama',
+                'profil_pegawai.jenis_dokumen',
+                'profil_pegawai.no_dokumen',
+                'profil_pegawai.kelurahan',
+                'profil_pegawai.kecamatan',
+                'profil_pegawai.kota',
+                'profil_pegawai.provinsi',
+                'profil_pegawai.kode_pos',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.no_telp',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.status_pegawai',
+                'profil_pegawai.tmt_pns',
+                'profil_pegawai.no_seri_karpeg',
+                'profil_pegawai.tmt_cpns',
+                'profil_pegawai.tingkat_pendidikan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.ruangan',
+                'users.name',
+                'posisi_jabatan.jabatan'
+            )
             ->where('users.role_name', 'User');
 
         if ($request->has('nip')) {

@@ -242,6 +242,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('form/agama/search', 'searchAgama')->middleware('auth')->name('form/agama/search');
 
     Route::get('referensi/kedudukan', 'indexKedudukan')->middleware('auth')->name('referensi-kedudukan');
+    Route::get('get-kedudukan-data', 'getKedudukanData')->name('get-kedudukan-data');
     Route::post('form/kedudukan/save', 'saveRecordKedudukan')->middleware('auth')->name('form/kedudukan/save');
     Route::post('form/kedudukan/update', 'updateRecordKedudukan')->middleware('auth')->name('form/kedudukan/update');
     Route::post('form/kedudukan/delete', 'deleteRecordKedudukan')->middleware('auth')->name('form/kedudukan/delete');
@@ -275,7 +276,6 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/pangkat/update', 'updateRecordPangkat')->middleware('auth')->name('form/pangkat/update');
     Route::post('form/pangkat/delete', 'deleteRecordPangkat')->middleware('auth')->name('form/pangkat/delete');
     Route::get('form/pangkat/search', 'searchPangkat')->middleware('auth')->name('form/pangkat/search');
-
 });
 
 // ------------------------- profile employee --------------------------//
@@ -438,7 +438,7 @@ Route::controller(RiwayatManagementController::class)->group(function () {
     Route::get('get-agama-data', 'getAgamaData')->name('get-agama-data');
 });
 
-    // ----------------------- Informasi Layanan Cuti --------------------------//
+// ----------------------- Informasi Layanan Cuti --------------------------//
 Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti', 'tampilanCutiPegawai')->name('layanan-cuti');
     Route::get('layanan/cuti/kelengkapan/{id}', 'cetakDokumenKelengkapan')->name('layanan-cuti-kelengkapan');
@@ -531,7 +531,6 @@ Route::controller(SIPController::class)->group(function () {
     Route::post('transaksi/spk-nakes-lain/tambah-data', 'tambahDataSPKNakesLain')->name('transaksi/spk-nakes-lain/tambah-data');
     Route::post('transaksi/spk-nakes-lain/edit-data', 'editSPKNakesLain')->name('transaksi/spk-nakes-lain/edit-data');
     Route::post('transaksi/spk-nakes-lain/hapus-data', 'hapusDataSPKNakesLain')->name('transaksi/spk-nakes-lain/hapus-data');
-
 });
 
 // ----------------------- Export Excel --------------------------//
