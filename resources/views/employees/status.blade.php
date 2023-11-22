@@ -16,8 +16,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_status"><i
-                                class="fa fa-plus"></i> Tambah Status</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_status"><i class="fa fa-plus"></i> Tambah Status</a>
                     </div>
                 </div>
             </div>
@@ -25,53 +24,33 @@
             {{-- Fungsi Seacrh --}}
             <form action="{{ route('form/status/search') }}" method="GET" id="search-form">
                 <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" id="keyword" name="keyword">
-                        <label class="focus-label">Nama Status</label>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" id="keyword" name="keyword">
+                            <label class="focus-label">Nama Status</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
-                </div>
+                    <div class="col-sm-6 col-md-3">
+                        <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
+                    </div>
                 </div>
             </form>
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table datatable" id="tableStatus">
+                        <table class="table table-striped custom-table" id="tableStatus" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th style="width: 30px;">No</th>
+                                    <th class="no">No</th>
+                                    <th>ID Status</th>
                                     <th>Nama Status</th>
-                                    <th class="text-right">Aksi</th>
+                                    <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($jenis_pegawai as $key => $items)
-                                    <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td hidden class="id">{{ $items->id }}</td>
-                                        <td class="jenis_pegawai">{{ $items->jenis_pegawai }}</td>
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item  edit_status" href="#" data-toggle="modal"
-                                                        data-target="#edit_status"><i class="fa fa-pencil m-r-5"></i>Edit</a>
-                                                    <a class="dropdown-item delete_status" href="#" data-toggle="modal"
-                                                        data-target="#delete_status"><i
-                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -93,9 +72,17 @@
                         <form action="{{ route('form/status/save') }}" method="POST">
                             @csrf
                             <div class="form-group">
+                                <label>ID Status <span class="text-danger">*</span></label>
+                                <input class="form-control @error('id_jenis_pegawai') is-invalid @enderror" type="text" id="id_jenis_pegawai" name="id_jenis_pegawai">
+                                @error('id_jenis_pegawai')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label>Nama Status <span class="text-danger">*</span></label>
-                                <input class="form-control @error('jenis_pegawai') is-invalid @enderror" type="text"
-                                    id="jenis_pegawai" name="jenis_pegawai">
+                                <input class="form-control @error('jenis_pegawai') is-invalid @enderror" type="text" id="jenis_pegawai" name="jenis_pegawai">
                                 @error('jenis_pegawai')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -110,10 +97,9 @@
                 </div>
             </div>
         </div>
+        <!-- /Add Status Modal -->
 
-        <!-- /Add Department Modal -->
-
-        <!-- Edit Department Modal -->
+        <!-- Edit Status Modal -->
         <div id="edit_status" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -128,6 +114,10 @@
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="form-group">
+                                <label>ID Status <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="id_status_edit" name="id_jenis_pegawai" value="">
+                            </div>
+                            <div class="form-group">
                                 <label>Nama Status <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="status_edit" name="jenis_pegawai" value="">
                             </div>
@@ -139,9 +129,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Department Modal -->
+        <!-- /Edit Status Modal -->
 
-        <!-- Delete Department Modal -->
+        <!-- Delete Status Modal -->
         <div class="modal custom-modal fade" id="delete_status" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -170,26 +160,87 @@
                 </div>
             </div>
         </div>
-        <!-- /Delete Department Modal -->
+        <!-- /Delete Status Modal -->
     </div>
 
     <!-- /Page Wrapper -->
-@section('script')
-    {{-- update js --}}
-    <script>
-        $(document).on('click', '.edit_status', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#status_edit').val(_this.find('.jenis_pegawai').text());
-        });
-    </script>
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_status', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-        });
-    </script>
+    @section('script')
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var table = $('#tableStatus').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "{{ route('get-status-data') }}",
+                        "data": function(d) {
+                            d.keyword = $('#keyword').val();
+                            d._token = "{{ csrf_token() }}";
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "id"
+                        },
+                        {
+                            "data": "id_jenis_pegawai"
+                        },
+                        {
+                            "data": "jenis_pegawai"
+                        },
+                        {
+                            "data": "action"
+                        },
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "Data tidak ditemukan",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Tidak ada data",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<<",
+                            "last": ">>",
+                        }
+                    },
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
+
+                // Live search
+                $('#search-form').on('submit', function(e) {
+                    e.preventDefault();
+                    table
+                        .search($('#keyword').val())
+                        .draw();
+                })
+            });
+        </script>
+
+        {{-- update js --}}
+        <script>
+            $(document).on('click', '.edit_status', function() {
+                var id = $(this).data('id');
+                var jenis_pegawai = $(this).data('jenis_pegawai');
+                var id_jenis_pegawai = $(this).data('id_jenis_pegawai');
+                $("#e_id").val(id);
+                $("#id_status_edit").val(id_jenis_pegawai);
+                $("#status_edit").val(jenis_pegawai);
+            });
+        </script>
+
+        {{-- delete model --}}
+        <script>
+            $(document).on('click', '.delete_status', function() {
+                var id = $(this).data('id');
+                $(".e_id").val(id);
+            });
+        </script>
     
 @endsection
 @endsection

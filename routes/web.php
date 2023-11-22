@@ -236,6 +236,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/department/update', 'updateRecordDepartment')->middleware('auth')->name('form/department/update');
     Route::post('form/department/delete', 'deleteRecordDepartment')->middleware('auth')->name('form/department/delete');
     Route::get('referensi/agama', 'indexAgama')->middleware('auth')->name('referensi-agama');
+    Route::get('get-agama-data', 'getAgamaData')->name('get-agama-data');
     Route::post('form/agama/save', 'saveRecordAgama')->middleware('auth')->name('form/agama/save');
     Route::post('form/agama/update', 'updateRecordAgama')->middleware('auth')->name('form/agama/update');
     Route::post('form/agama/delete', 'deleteRecordAgama')->middleware('auth')->name('form/agama/delete');
@@ -249,6 +250,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('form/kedudukan/search', 'searchKedudukan')->middleware('auth')->name('form/kedudukan/search');
 
     Route::get('referensi/pendidikan', 'indexPendidikan')->middleware('auth')->name('referensi-pendidikan');
+    Route::get('get-pendidikan-data', 'getPendidikanData')->name('get-pendidikan-data');
     Route::post('form/pendidikan/save', 'saveRecordPendidikan')->middleware('auth')->name('form/pendidikan/save');
     Route::post('form/pendidikan/update', 'updateRecordPendidikan')->middleware('auth')->name('form/pendidikan/update');
     Route::post('form/pendidikan/delete', 'deleteRecordPendidikan')->middleware('auth')->name('form/pendidikan/delete');
@@ -266,12 +268,14 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('form/sumpah/search', 'searchSumpah')->middleware('auth')->name('form/sumpah/search');
 
     Route::get('referensi/status', 'indexStatus')->middleware('auth')->name('referensi-status');
+    Route::get('get-status-data', 'getStatusData')->name('get-status-data');
     Route::post('form/status/save', 'saveRecordStatus')->middleware('auth')->name('form/status/save');
     Route::post('form/status/update', 'updateRecordStatus')->middleware('auth')->name('form/status/update');
     Route::post('form/status/delete', 'deleteRecordStatus')->middleware('auth')->name('form/status/delete');
     Route::get('form/status/search', 'searchStatus')->middleware('auth')->name('form/status/search');
 
     Route::get('referensi/pangkat', 'indexPangkat')->middleware('auth')->name('referensi-pangkat');
+    Route::get('get-pangkat-data', 'getPangkatData')->name('get-pangkat-data');
     Route::post('form/pangkat/save', 'saveRecordPangkat')->middleware('auth')->name('form/pangkat/save');
     Route::post('form/pangkat/update', 'updateRecordPangkat')->middleware('auth')->name('form/pangkat/update');
     Route::post('form/pangkat/delete', 'deleteRecordPangkat')->middleware('auth')->name('form/pangkat/delete');
@@ -431,11 +435,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/diklat/edit-data', [RiwayatController::class, 'editRiwayatDiklat'])->name('riwayat/diklat/edit-data');
     Route::post('riwayat/diklat/hapus-data', [RiwayatController::class, 'hapusRiwayatDiklat'])->name('riwayat/diklat/hapus-data');
     Route::get('riwayat/diklat/cari', [RiwayatController::class, 'searchRiwayatDiklat'])->name('riwayat/diklat/cari');
-});
 
-// ----------------------------- Pencarian Agama ------------------------------//
-Route::controller(RiwayatManagementController::class)->group(function () {
-    Route::get('get-agama-data', 'getAgamaData')->name('get-agama-data');
+    // ----------------------- Informasi Riwayat PMK --------------------------//
+    Route::get('riwayat/pmk', [RiwayatController::class, 'pmk'])->name('riwayat-pmk');
+    Route::post('riwayat/pmk/tambah-data', [RiwayatController::class, 'tambahRiwayatPMK'])->name('riwayat/pmk/tambah-data');
+    Route::post('riwayat/pmk/edit-data', [RiwayatController::class, 'editRiwayatPMK'])->name('riwayat/pmk/edit-data');
+    Route::post('riwayat/pmk/hapus-data', [RiwayatController::class, 'hapusRiwayatPMK'])->name('riwayat/pmk/hapus-data');
 });
 
 // ----------------------- Informasi Layanan Cuti --------------------------//

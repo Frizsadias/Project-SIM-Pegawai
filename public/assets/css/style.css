@@ -8699,3 +8699,11 @@ ul.comment-list li ul.children {
 	display: flex;
     justify-content: center;
 }
+
+.aksi{
+	width: 10px !important;
+}
+
+.no {
+	width: 21.6406px;
+}

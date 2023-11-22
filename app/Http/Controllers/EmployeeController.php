@@ -1210,6 +1210,66 @@ class EmployeeController extends Controller
         return view('employees.agama', compact('agama', 'unreadNotifications', 'readNotifications'));
     }
 
+    public function getAgamaData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'agama',
+        );
+
+        $totalData = agama::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $agama = agama::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $agama =  agama::where('agama', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = agama::where('agama', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($agama)) {
+            foreach ($agama as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['agama'] = $value->agama;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_agama' href='#' data-toggle='modal' data-target='#edit_agama' data-id='" . $value->id . "' data-agama='" . $value->agama . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_agama' data-toggle='modal' data-target='#delete_agama' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
+
     /** search for agama */
     public function searchAgama(Request $request)
     {
@@ -1301,8 +1361,6 @@ class EmployeeController extends Controller
             return redirect()->back();
         }
     }
-
-
 
     /** page kedudukan */
     public function indexKedudukan()
@@ -1492,6 +1550,70 @@ class EmployeeController extends Controller
 
         $pendidikan = DB::table('pendidikan_id')->get();
         return view('employees.pendidikan', compact('pendidikan', 'unreadNotifications', 'readNotifications'));
+    }
+
+    public function getPendidikanData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'pendidikan',
+            2 => 'tk_pendidikan_id',
+            3 => 'status_pendidikan'
+        );
+
+        $totalData = pendidikan::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $pendidikan = pendidikan::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $pendidikan =  pendidikan::where('pendidikan', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = pendidikan::where('pendidikan', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($pendidikan)) {
+            foreach ($pendidikan as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['pendidikan'] = $value->pendidikan;
+                $nestedData['tk_pendidikan_id'] = $value->tk_pendidikan_id;
+                $nestedData['status_pendidikan'] = $value->status_pendidikan;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_pendidikan' href='#' data-toggle='modal' data-target='#edit_pendidikan' data-id='" . $value->id . "' data-pendidikan='" . $value->pendidikan ."' data-tk_pendidikan_id='" . $value->tk_pendidikan_id ."' data-status_pendidikan='" . $value->status_pendidikan ."'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_pendidikan' data-toggle='modal' data-target='#delete_pendidikan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
     }
 
     /** search for pendidikan */
@@ -1841,6 +1963,68 @@ class EmployeeController extends Controller
         return view('employees.status', compact('jenis_pegawai', 'unreadNotifications', 'readNotifications'));
     }
 
+    public function getStatusData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'id_jenis_pegawai',
+            2 => 'jenis_pegawai'
+        );
+
+        $totalData = jenis_pegawai::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $jenis_pegawai = jenis_pegawai::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $jenis_pegawai =  jenis_pegawai::where('jenis_pegawai', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = jenis_pegawai::where('jenis_pegawai', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($jenis_pegawai)) {
+            foreach ($jenis_pegawai as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['id_jenis_pegawai'] = $value->id_jenis_pegawai;
+                $nestedData['jenis_pegawai'] = $value->jenis_pegawai;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_status' href='#' data-toggle='modal' data-target='#edit_status' data-id='" . $value->id . "' data-jenis_pegawai='" . $value->jenis_pegawai . "' data-id_jenis_pegawai='" . $value->id_jenis_pegawai . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_status' data-toggle='modal' data-target='#delete_status' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
+
     /** search for status */
     public function searchStatus(Request $request)
     {
@@ -1869,7 +2053,8 @@ class EmployeeController extends Controller
     public function saveRecordStatus(Request $request)
     {
         $request->validate([
-            'jenis_pegawai' => 'required|string|max:255',
+            'id_jenis_pegawai'  => 'required|string|max:255',
+            'jenis_pegawai'     => 'required|string|max:255',
         ]);
 
         DB::beginTransaction();
@@ -1878,7 +2063,8 @@ class EmployeeController extends Controller
             $jenis_pegawai = jenis_pegawai::where('jenis_pegawai', $request->jenis_pegawai)->first();
             if ($jenis_pegawai === null) {
                 $jenis_pegawai = new jenis_pegawai;
-                $jenis_pegawai->jenis_pegawai = $request->jenis_pegawai;
+                $jenis_pegawai->id_jenis_pegawai    = $request->id_jenis_pegawai;
+                $jenis_pegawai->jenis_pegawai       = $request->jenis_pegawai;
                 $jenis_pegawai->save();
 
                 DB::commit();
@@ -1951,6 +2137,65 @@ class EmployeeController extends Controller
         $ref_pangkat = DB::table('referensi_pangkat')->get();
         return view('employees.referensi-pangkat', compact('ref_pangkat', 'unreadNotifications', 'readNotifications'));
     }
+    public function getPangkatData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'ref_pangkat'
+        );
+
+        $totalData = ReferensiPangkat::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $referensi_pangkat = ReferensiPangkat::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $referensi_pangkat =  ReferensiPangkat::where('ref_pangkat', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = ReferensiPangkat::where('ref_pangkat', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($referensi_pangkat)) {
+            foreach ($referensi_pangkat as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['ref_pangkat'] = $value->ref_pangkat;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_pangkat' href='#' data-toggle='modal' data-target='#edit_pangkat' data-id='" . $value->id . "' data-ref_pangkat='" . $value->ref_pangkat . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_pangkat' data-toggle='modal' data-target='#delete_pangkat' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
 
     /** search for pangkat */
     public function searchPangkat(Request $request)
@@ -2015,7 +2260,7 @@ class EmployeeController extends Controller
 
             $ref_pangkat = [
                 'id'    => $request->id,
-                'ref_pangkat' => $request->jenis_pegawai,
+                'ref_pangkat' => $request->ref_pangkat,
             ];
             ReferensiPangkat::where('id', $request->id)->update($ref_pangkat);
 
@@ -2034,7 +2279,7 @@ class EmployeeController extends Controller
     {
         try {
 
-            jenis_pegawai::destroy($request->id);
+            ReferensiPangkat::destroy($request->id);
             Toastr::success('Data pangkat berhasil dihapus :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {

@@ -23,8 +23,8 @@
                         </ul>
                     </li>
                     <li class="menu-title"> <span>Struktur Organisasi</span>
-                    <li class="{{ set_active(['peta-jabatan']) }}">
-                        <a href="{{ route('peta-jabatan') }}" class="{{ set_active(['peta-jabatan']) ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('peta-jabatan') ? 'active' : '' }}">
+                        <a href="{{ route('peta-jabatan') }}" class="{{ request()->routeIs('peta-jabatan') ? 'noti-dot' : '' }}">
                             <i class="la la-sitemap"></i>
                             <span> Peta Jabatan</span>
                         </a>

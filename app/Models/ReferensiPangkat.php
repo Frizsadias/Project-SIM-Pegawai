@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ReferensiPangkat extends Model
 {
     use HasFactory;
+
+    protected $table = 'referensi_pangkat';
 }

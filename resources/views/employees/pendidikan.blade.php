@@ -39,44 +39,20 @@
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
+
             <div class="row">
                 <div class="col-md-12">
-                    <div>
-                        <table class="table table-striped custom-table mb-0 datatable">
+                    <div class="table-responsive">
+                        <table class="table table-striped custom-table" id="tablePendidikan" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th style="width: 30px;">No</th>
+                                    <th class="no">No</th>
                                     <th>Nama Pendidikan</th>
                                     <th>Tingkat Pendidikan ID</th>
                                     <th>Status</th>
-                                    <th class="text-right">Aksi</th>
+                                    <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($pendidikan as $key => $items)
-                                    <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td hidden class="id">{{ $items->id }}</td>
-                                        <td class="pendidikan">{{ $items->pendidikan }}</td>
-                                        <td class="tk_pendidikan_id">{{ $items->tk_pendidikan_id }}</td>
-                                        <td class="status_pendidikan">{{ $items->status_pendidikan }}</td>
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item  edit_pendidikan" href="#"
-                                                        data-toggle="modal" data-target="#edit_pendidikan"><i
-                                                            class="fa fa-pencil m-r-5"></i>Edit</a>
-                                                    <a class="dropdown-item delete_pendidikan" href="#"
-                                                        data-toggle="modal" data-target="#delete_pendidikan"><i
-                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -211,24 +187,88 @@
     </div>
 
     <!-- /Page Wrapper -->
-@section('script')
-    {{-- update js --}}
-    <script>
-        $(document).on('click', '.edit_pendidikan', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#pendidikan_edit').val(_this.find('.pendidikan').text());
-            $('#tk_pendidikan_id_edit').val(_this.find('.tk_pendidikan_id').text());
-            $('#status_pendidikan_edit').val(_this.find('.status_pendidikan').text());
-        });
-    </script>
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_pendidikan', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-        });
-    </script>
+    @section('script')
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var table = $('#tablePendidikan').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "{{ route('get-pendidikan-data') }}",
+                        "data": function(d) {
+                            d.keyword = $('#keyword').val();
+                            d._token = "{{ csrf_token() }}";
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "id"
+                        },
+                        {
+                            "data": "pendidikan"
+                        },
+                        {
+                            "data": "tk_pendidikan_id"
+                        },
+                        {
+                            "data": "status_pendidikan"
+                        },
+                        {
+                            "data": "action"
+                        },
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "Data tidak ditemukan",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Tidak ada data",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<<",
+                            "last": ">>",
+                        }
+                    },
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
 
-@endsection
+                // Live search
+                $('#search-form').on('submit', function(e) {
+                    e.preventDefault();
+                    table
+                        .search($('#keyword').val())
+                        .draw();
+                })
+            });
+        </script>
+
+        {{-- update js --}}
+        <script>
+            $(document).on('click', '.edit_pendidikan', function() {
+                var id = $(this).data('id');
+                var pendidikan = $(this).data('pendidikan');
+                var tk_pendidikan_id = $(this).data('tk_pendidikan_id');
+                var status_pendidikan = $(this).data('status_pendidikan');
+                $("#e_id").val(id);
+                $("#pendidikan_edit").val(pendidikan);
+                $("#tk_pendidikan_id_edit").val(tk_pendidikan_id);
+                $("#status_pendidikan_edit").val(status_pendidikan);
+            });
+        </script>
+
+        {{-- delete model --}}
+        <script>
+            $(document).on('click', '.delete_pendidikan', function() {
+                var id = $(this).data('id');
+                $(".e_id").val(id);
+            });
+        </script>
+
+    @endsection
 @endsection

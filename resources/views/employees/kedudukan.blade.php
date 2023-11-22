@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -38,20 +39,18 @@
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table" id="tableKedudukan">
+                        <table class="table table-striped custom-table" id="tableKedudukan" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th style="width: 30px;">No</th>
+                                    <th class="no">No</th>
                                     <th>Nama Kedudukan</th>
-                                    <th style="width: 80px;">Aksi</th>
+                                    <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -74,8 +73,7 @@
                             @csrf
                             <div class="form-group">
                                 <label>Nama Kedudukan <span class="text-danger">*</span></label>
-                                <input class="form-control @error('kedudukan') is-invalid @enderror" type="text"
-                                    id="kedudukan" name="kedudukan">
+                                <input class="form-control @error('kedudukan') is-invalid @enderror" type="text" id="kedudukan" name="kedudukan">
                                 @error('kedudukan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,10 +88,9 @@
                 </div>
             </div>
         </div>
+        <!-- /Add Kedudukan Modal -->
 
-        <!-- /Add Department Modal -->
-
-        <!-- Edit Department Modal -->
+        <!-- Edit Kedudukan Modal -->
         <div id="edit_kedudukan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -120,9 +117,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Department Modal -->
+        <!-- /Edit Kedudukan Modal -->
 
-        <!-- Delete Department Modal -->
+        <!-- Delete Kedudukan Modal -->
         <div class="modal custom-modal fade" id="delete_kedudukan" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -155,81 +152,78 @@
     </div>
 
     <!-- /Page Wrapper -->
+    @section('script')
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var table = $('#tableKedudukan').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "{{ route('get-kedudukan-data') }}",
+                        "data": function(d) {
+                            d.keyword = $('#keyword').val();
+                            d._token = "{{ csrf_token() }}";
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "id"
+                        },
+                        {
+                            "data": "kedudukan"
+                        },
+                        {
+                            "data": "action"
+                        },
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "Data tidak ditemukan",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Tidak ada data",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<<",
+                            "last": ">>",
+                        }
+                    },
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
 
-@section('script')
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Custom Script -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var table = $('#tableKedudukan').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": "{{ route('get-kedudukan-data') }}",
-                    "data": function(d) {
-                        d.keyword = $('#keyword').val();
-                        d._token = "{{ csrf_token() }}";
-                    }
-                },
-                "columns": [{
-                        "data": "id"
-                    },
-                    {
-                        "data": "kedudukan"
-                    },
-                    {
-                        "data": "action"
-                    },
-                ],
-                "language": {
-                    "lengthMenu": "Show _MENU_ entries",
-                    "zeroRecords": "Data tidak ditemukan",
-                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                    "infoEmpty": "Tidak ada data",
-                    "infoFiltered": "(filtered from _MAX_ total records)",
-                    "search": "Cari:",
-                    "paginate": {
-                        "previous": "Previous",
-                        "next": "Next",
-                        "first": "<<",
-                        "last": ">>",
-                    }
-                },
-                "order": [
-                    [0, "asc"]
-                ]
+                // Live search
+                $('#search-form').on('submit', function(e) {
+                    e.preventDefault();
+                    table
+                        .search($('#keyword').val())
+                        .draw();
+                })
             });
+        </script>
 
-            // Live search
-            $('#search-form').on('submit', function(e) {
-                e.preventDefault();
-                table
-                    .search($('#keyword').val())
-                    .draw();
-            })
-        });
-    </script>
+        {{-- edit model --}}
+        <script>
+            $(document).on('click', '.edit_kedudukan', function() {
+                var id = $(this).data('id');
+                var kedudukan = $(this).data('kedudukan');
+                $("#e_id").val(id);
+                $("#kedudukan_edit").val(kedudukan);
+            });
+        </script>
 
-    {{-- edit model --}}
-    <script>
-        $(document).on('click', '.edit_kedudukan', function() {
-            var id = $(this).data('id');
-            var kedudukan = $(this).data('kedudukan');
+        {{-- delete model --}}
+        <script>
+            $(document).on('click', '.delete_kedudukan', function() {
+                var id = $(this).data('id');
+                $(".e_id").val(id);
+            });
+        </script>
 
-            $("#e_id").val(id);
-            $("#kedudukan_edit").val(kedudukan);
-        });
-    </script>
-
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_kedudukan', function() {
-            var id = $(this).data('id');
-
-            $(".e_id").val(id);
-        });
-    </script>
-@endsection
+    @endsection
 @endsection

@@ -25,53 +25,32 @@
             {{-- Fungsi Seacrh --}}
             <form action="{{ route('form/pangkat/search') }}" method="GET" id="search-form">
                 <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" id="keyword" name="keyword">
-                        <label class="focus-label">Nama Pangkat</label>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" id="keyword" name="keyword">
+                            <label class="focus-label">Nama Pangkat</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
-                </div>
+                    <div class="col-sm-6 col-md-3">
+                        <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
+                    </div>
                 </div>
             </form>
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table datatable" id="tablePangkat">
+                        <table class="table table-striped custom-table" id="tableReferensiPangkat" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th style="width: 30px;">No</th>
+                                    <th class="no">No</th>
                                     <th>Nama Pangkat</th>
-                                    <th class="text-right">Aksi</th>
+                                    <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($ref_pangkat as $key => $items)
-                                    <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td hidden class="id">{{ $items->id }}</td>
-                                        <td class="ref_pangkat">{{ $items->ref_pangkat }}</td>
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item  edit_pangkat" href="#" data-toggle="modal"
-                                                        data-target="#edit_pangkat"><i class="fa fa-pencil m-r-5"></i>Edit</a>
-                                                    <a class="dropdown-item delete_pangkat" href="#" data-toggle="modal"
-                                                        data-target="#delete_pangkat"><i
-                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -110,10 +89,9 @@
                 </div>
             </div>
         </div>
+        <!-- /Add Pangkat Modal -->
 
-        <!-- /Add Department Modal -->
-
-        <!-- Edit Department Modal -->
+        <!-- Edit Pangkat Modal -->
         <div id="edit_pangkat" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -129,7 +107,7 @@
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="form-group">
                                 <label>Nama Pangkat <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="pangkat_edit" name="ref_pangkat" value="">
+                                <input type="text" class="form-control" id="ref_pangkat_edit" name="ref_pangkat" value="">
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Save</button>
@@ -139,9 +117,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Department Modal -->
+        <!-- /Edit Pangkat Modal -->
 
-        <!-- Delete Department Modal -->
+        <!-- Delete Pangkat Modal -->
         <div class="modal custom-modal fade" id="delete_pangkat" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -174,22 +152,78 @@
     </div>
 
     <!-- /Page Wrapper -->
-@section('script')
-    {{-- update js --}}
-    <script>
-        $(document).on('click', '.edit_pangkat', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#pangkat_edit').val(_this.find('.ref_pangkat').text());
-        });
-    </script>
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_pangkat', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-        });
-    </script>
+    @section('script')
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var table = $('#tableReferensiPangkat').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "{{ route('get-pangkat-data') }}",
+                        "data": function(d) {
+                            d.keyword = $('#keyword').val();
+                            d._token = "{{ csrf_token() }}";
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "id"
+                        },
+                        {
+                            "data": "ref_pangkat"
+                        },
+                        {
+                            "data": "action"
+                        },
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "Data tidak ditemukan",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Tidak ada data",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<<",
+                            "last": ">>",
+                        }
+                    },
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
+
+                // Live search
+                $('#search-form').on('submit', function(e) {
+                    e.preventDefault();
+                    table
+                        .search($('#keyword').val())
+                        .draw();
+                })
+            });
+        </script>
+
+        {{-- update js --}}
+        <script>
+            $(document).on('click', '.edit_pangkat', function() {
+                var id = $(this).data('id');
+                var ref_pangkat = $(this).data('ref_pangkat');
+                $("#e_id").val(id);
+                $("#ref_pangkat_edit").val(ref_pangkat);
+            });
+        </script>
+
+        {{-- delete model --}}
+        <script>
+            $(document).on('click', '.delete_pangkat', function() {
+                var id = $(this).data('id');
+                $(".e_id").val(id);
+            });
+        </script>
     
 @endsection
 @endsection
