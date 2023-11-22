@@ -13,6 +13,7 @@ use App\Models\RiwayatPendidikan;
 use Carbon\Carbon;
 use Session;
 use App\Models\Notification;
+use App\Models\RiwayatPMK;
 use App\Notifications\UlangTahunNotification;
 
 class RiwayatController extends Controller
@@ -740,5 +741,219 @@ class RiwayatController extends Controller
             ->get();
 
         return view('riwayat/riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
+    }
+
+    /** --------------------------------- Riwayat PMK --------------------------------- */
+    /** Tampilan Riwayat PMK */
+    public function pmk()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $datapmk = Session::get('user_id');
+        $riwayatPMK = RiwayatPMK::where('user_id', $datapmk)->get();
+
+        return view('riwayat.riwayat-pmk', compact('riwayatPMK', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat PMK */
+
+    /** Tambah Data Riwayat PMK */
+    public function tambahRiwayatPMK(Request $request)
+    {
+        $request->validate([
+            'user_id'          => 'required|string|max:255',
+            'jenis_pmk'        => 'required|string|max:255',
+            'instansi'         => 'required|string|max:255',
+            'tanggal_awal'     => 'required|string|max:255',
+            'tanggal_akhir'    => 'required|string|max:255',
+            'no_sk'            => 'required|string|max:255',
+            'tanggal_sk'       => 'required|string|max:255',
+            'no_bkn'           => 'required|string|max:255',
+            'tanggal_bkn'      => 'required|string|max:255',
+            'masa_tahun'       => 'required|string|max:255',
+            'masa_bulan'       => 'required|string|max:255',
+            'dokumen_pmk'      => 'required|mimes:pdf|max:5120',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $dokumen_pmk = time() . '.' . $request->dokumen_pmk->extension();
+            $request->dokumen_pmk->move(public_path('assets/DokumenPMK'), $dokumen_pmk);
+
+            $riw_pmk = new RiwayatPMK();
+            $riw_pmk->user_id          = $request->user_id;
+            $riw_pmk->jenis_pmk        = $request->jenis_pmk;
+            $riw_pmk->instansi         = $request->instansi;
+            $riw_pmk->tanggal_awal     = $request->tanggal_awal;
+            $riw_pmk->tanggal_akhir    = $request->tanggal_akhir;
+            $riw_pmk->no_sk            = $request->no_sk;
+            $riw_pmk->tanggal_sk       = $request->tanggal_sk;
+            $riw_pmk->no_bkn           = $request->no_bkn;
+            $riw_pmk->tanggal_bkn      = $request->tanggal_bkn;
+            $riw_pmk->masa_tahun       = $request->masa_tahun;
+            $riw_pmk->masa_bulan       = $request->masa_bulan;
+            $riw_pmk->dokumen_pmk      = $dokumen_pmk;
+            $riw_pmk->save();
+
+            DB::commit();
+            Toastr::success('Data riwayat PMK telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat PMK gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat PMK */
+
+    /** Edit Data Riwayat PMK */
+    public function editRiwayatPMK(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_pmk = $request->hidden_dokumen_pmk;
+            $dokumen_pmks  = $request->file('dokumen_pmk');
+            if ($dokumen_pmks != '') {
+                unlink('assets/DokumenPMK/' . $dokumen_pmk);
+                $dokumen_pmk = time() . '.' . $dokumen_pmks->getClientOriginalExtension();
+                $dokumen_pmks->move(public_path('assets/DokumenPMK'), $dokumen_pmk);
+            } else {
+                $dokumen_pmk;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'jenis_pmk'                 => $request->jenis_pmk,
+                'instansi'                  => $request->instansi,
+                'tanggal_awal'              => $request->tanggal_awal,
+                'tanggal_akhir'             => $request->tanggal_akhir,
+                'no_sk'                     => $request->no_sk,
+                'tanggal_sk'                => $request->tanggal_sk,
+                'no_bkn'                    => $request->no_bkn,
+                'tanggal_bkn'               => $request->tanggal_bkn,
+                'masa_tahun'                => $request->masa_tahun,
+                'masa_bulan'                => $request->masa_bulan,
+                'dokumen_pmk'               => $dokumen_pmk,
+            ];
+
+            RiwayatPMK::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat PMK berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat PMK gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat PMK */
+
+    /** Delete Riwayat PMK */
+    public function hapusRiwayatPMK(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatPMK::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat PMK berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat PMK gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat PMK */
+
+    /** Pagination Riwayat PMK */
+    public function getPMKData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'jenis_pmk',
+            2 => 'instansi',
+            3 => 'tanggal_awal',
+            4 => 'tanggal_akhir',
+            5 => 'no_sk',
+            6 => 'tanggal_sk',
+            7 => 'no_bkn',
+            8 => 'tanggal_bkn',
+            9 => 'masa_tahun',
+            10 => 'masa_bulan',
+            11 => 'dokumen_pmk',
+        );
+
+        $totalData = RiwayatPMK::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $jenis_pmk = RiwayatPMK::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $jenis_pmk =  RiwayatPMK::where('jenis_pmk', 'like', "%{$search}%")
+            ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = RiwayatPMK::where('jenis_pmk', 'like', "%{$search}%")
+            ->count();
+        }
+
+        $data = array();
+        if (!empty($jenis_pmk)) {
+            foreach ($jenis_pmk as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['jenis_pmk'] = $value->jenis_pmk;
+                $nestedData['instansi'] = $value->instansi;
+                $nestedData['tanggal_awal'] = $value->tanggal_awal;
+                $nestedData['tanggal_akhir'] = $value->tanggal_akhir;
+                $nestedData['no_sk'] = $value->no_sk;
+                $nestedData['tanggal_sk'] = $value->tanggal_sk;
+                $nestedData['no_bkn'] = $value->no_bkn;
+                $nestedData['tanggal_bkn'] = $value->tanggal_bkn;
+                $nestedData['masa_tahun'] = $value->masa_tahun;
+                $nestedData['masa_bulan'] = $value->masa_bulan;
+                $nestedData['dokumen_pmk'] = $value->dokumen_pmk;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_riwayat_pmk' href='#' data-toggle='modal' data-target='#edit_riwayat_pmk' data-id='" . $value->id . "' data-jenis_pmk='" . $value->jenis_pmk . "' data-instansi='" . $value->instansi . "' data-tanggal_awal='" . $value->tanggal_awal . "' data-tanggal_akhir='" . $value->tanggal_akhir . "' data-no_sk='" . $value->no_sk . "' data-tanggal_sk='" . $value->tanggal_sk . "' data-no_bkn='" . $value->no_bkn . "' data-tanggal_bkn='" . $value->tanggal_bkn . "' data-masa_tahun='" . $value->masa_tahun . "' data-masa_bulan='" . $value->masa_bulan . "' data-dokumen_pmk='" . $value->dokumen_pmk . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_riwayat_pmk' data-toggle='modal' data-target='#delete_riwayat_pmk' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
     }
 }
