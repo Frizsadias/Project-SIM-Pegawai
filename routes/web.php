@@ -257,11 +257,13 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('form/pendidikan/search', 'searchPendidikan')->middleware('auth')->name('form/pendidikan/search');
 
     Route::get('referensi/ruangan', 'indexRuangan')->middleware('auth')->name('referensi-ruangan');
+    Route::get('get-ruangan-data', 'getRuanganData')->name('get-ruangan-data');
     Route::post('form/ruangan/save', 'saveRecordRuangan')->middleware('auth')->name('form/ruangan/save');
     Route::post('form/ruangan/update', 'updateRecordRuangan')->middleware('auth')->name('form/ruangan/update');
     Route::post('form/ruangan/delete', 'deleteRecordRuangan')->middleware('auth')->name('form/ruangan/delete');
     Route::get('form/ruangan/search', 'searchRuangan')->middleware('auth')->name('form/ruangan/search');
     Route::get('referensi/sumpah', 'indexSumpah')->middleware('auth')->name('referensi-sumpah');
+    Route::get('get-sumpah-data', 'getSumpahData')->name('get-sumpah-data');
     Route::post('form/sumpah/save', 'saveRecordSumpah')->middleware('auth')->name('form/sumpah/save');
     Route::post('form/sumpah/update', 'updateRecordSumpah')->middleware('auth')->name('form/sumpah/update');
     Route::post('form/sumpah/delete', 'deleteRecordSumpah')->middleware('auth')->name('form/sumpah/delete');
@@ -438,6 +440,7 @@ Route::middleware(['auth'])->group(function () {
 
     // ----------------------- Informasi Riwayat PMK --------------------------//
     Route::get('riwayat/pmk', [RiwayatController::class, 'pmk'])->name('riwayat-pmk');
+    Route::get('get-pmk-data', [RiwayatController::class, 'getPMKData'])->name('get-pmk-data');
     Route::post('riwayat/pmk/tambah-data', [RiwayatController::class, 'tambahRiwayatPMK'])->name('riwayat/pmk/tambah-data');
     Route::post('riwayat/pmk/edit-data', [RiwayatController::class, 'editRiwayatPMK'])->name('riwayat/pmk/edit-data');
     Route::post('riwayat/pmk/hapus-data', [RiwayatController::class, 'hapusRiwayatPMK'])->name('riwayat/pmk/hapus-data');

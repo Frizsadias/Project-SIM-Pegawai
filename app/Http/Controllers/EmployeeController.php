@@ -1738,6 +1738,68 @@ class EmployeeController extends Controller
         return view('employees.ruangan', compact('ruangan', 'unreadNotifications', 'readNotifications'));
     }
 
+    public function getRuanganData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'ruangan',
+            2 => 'jumlah_tempat_tidur'
+        );
+
+        $totalData = ruangan::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $ruanganRSUD = ruangan::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $ruanganRSUD =  ruangan::where('ruangan', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = ruangan::where('ruangan', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($ruanganRSUD)) {
+            foreach ($ruanganRSUD as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['ruangan'] = $value->ruangan;
+                $nestedData['jumlah_tempat_tidur'] = $value->jumlah_tempat_tidur;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_ruangan' href='#' data-toggle='modal' data-target='#edit_ruangan' data-id='" . $value->id . "' data-ruangan='" . $value->ruangan . "' data-jumlah_tempat_tidur='" . $value->jumlah_tempat_tidur . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_ruangan' data-toggle='modal' data-target='#delete_ruangan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
+
     /** search for ruangan */
     public function searchRuangan(Request $request)
     {
@@ -1850,6 +1912,66 @@ class EmployeeController extends Controller
 
         $sumpah = DB::table('sumpah_id')->get();
         return view('employees.sumpah', compact('sumpah', 'unreadNotifications', 'readNotifications'));
+    }
+
+    public function getSumpahData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'sumpah'
+        );
+
+        $totalData = sumpah::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $sumpah = sumpah::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $sumpah =  sumpah::where('sumpah', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = sumpah::where('sumpah', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($sumpah)) {
+            foreach ($sumpah as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['sumpah'] = $value->sumpah;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_sumpah' href='#' data-toggle='modal' data-target='#edit_sumpah' data-id='" . $value->id . "' data-sumpah='" . $value->sumpah . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_sumpah' data-toggle='modal' data-target='#delete_sumpah' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
     }
 
     /** search for sumpah */
