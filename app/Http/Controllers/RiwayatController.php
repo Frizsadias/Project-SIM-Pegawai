@@ -15,6 +15,8 @@ use Session;
 use App\Models\Notification;
 use App\Models\RiwayatAngkaKredit;
 use App\Models\RiwayatHukumanDisiplin;
+use App\Models\RiwayatOrganisasi;
+use App\Models\RiwayatPenghargaan;
 use App\Models\RiwayatPMK;
 use App\Notifications\UlangTahunNotification;
 
@@ -1263,7 +1265,7 @@ class RiwayatController extends Controller
 
         try {
             $dokumen_sk_hukuman = $request->hidden_dokumen_sk_hukuman;
-            $dokumen_sk_hukumans  = $request->file('dokumen_ijazah');
+            $dokumen_sk_hukumans  = $request->file('dokumen_sk_hukuman');
             if ($dokumen_sk_hukumans != '') {
                 unlink('assets/DokumenSKHukuman/' . $dokumen_sk_hukuman);
                 $dokumen_sk_hukuman = time() . '.' . $dokumen_sk_hukumans->getClientOriginalExtension();
@@ -1275,9 +1277,9 @@ class RiwayatController extends Controller
             $dokumen_sk_pengaktifan = $request->hidden_dokumen_sk_pengaktifan;
             $dokumen_sk_pengaktifans  = $request->file('dokumen_sk_pengaktifan');
             if ($dokumen_sk_pengaktifans != '') {
-                unlink('assets/DokumenGelar/' . $dokumen_sk_pengaktifan);
+                unlink('assets/DokumenSKPengaktifan/' . $dokumen_sk_pengaktifan);
                 $dokumen_sk_pengaktifan = time() . '.' . $dokumen_sk_pengaktifans->getClientOriginalExtension();
-                $dokumen_sk_pengaktifans->move(public_path('assets/DokumenGelar'), $dokumen_sk_pengaktifan);
+                $dokumen_sk_pengaktifans->move(public_path('assets/DokumenSKPengaktifan'), $dokumen_sk_pengaktifan);
             } else {
                 $dokumen_sk_pengaktifan;
             }
@@ -1330,5 +1332,250 @@ class RiwayatController extends Controller
         }
     }
     /** End Delete Riwayat Hukuman Disiplin */
+
+    /** --------------------------------- Riwayat Penghargaan --------------------------------- */
+    /** Tampilan Riwayat Penghargaan */
+    public function penghargaan()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $dataPenghargaan = Session::get('user_id');
+        $riwayatPenghargaan = RiwayatPenghargaan::where('user_id', $dataPenghargaan)->get();
+
+        return view('riwayat.riwayat-penghargaan', compact('riwayatPenghargaan', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat Penghargaan */
+
+    /** Tambah Data Riwayat Penghargaan */
+    public function tambahRiwayatPenghargaan(Request $request)
+    {
+        $request->validate([
+            'user_id'                   => 'required|string|max:255',
+            'jenis_penghargaan'         => 'required|string|max:255',
+            'tahun_perolehan'           => 'required|string|max:255',
+            'no_surat'                  => 'required|string|max:255',
+            'tanggal_keputusan'         => 'required|string|max:255',
+            'dokumen_penghargaan'       => 'required|mimes:pdf|max:5120',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $dokumen_penghargaan = time() . '.' . $request->dokumen_penghargaan->extension();
+            $request->dokumen_penghargaan->move(public_path('assets/DokumenPenghargaan'), $dokumen_penghargaan);
+
+            $riwayatPenghargaan = new RiwayatPenghargaan();
+            $riwayatPenghargaan->user_id = $request->user_id;
+            $riwayatPenghargaan->jenis_penghargaan = $request->jenis_penghargaan;
+            $riwayatPenghargaan->tahun_perolehan = $request->tahun_perolehan;
+            $riwayatPenghargaan->no_surat = $request->no_surat;
+            $riwayatPenghargaan->tanggal_keputusan = $request->tanggal_keputusan;
+            $riwayatPenghargaan->dokumen_penghargaan = $dokumen_penghargaan;
+            $riwayatPenghargaan->save();
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Penghargaan telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Toastr::error('Data riwayat Penghargaan gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat Penghargaan */
+
+    /** Edit Data Riwayat Penghargaan */
+    public function editRiwayatPenghargaan(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            $dokumen_penghargaan = $request->hidden_dokumen_penghargaan;
+            $dokumen_penghargaans  = $request->file('dokumen_penghargaan');
+            if ($dokumen_penghargaans != '') {
+                unlink('assets/DokumenPenghargaan/' . $dokumen_penghargaan);
+                $dokumen_penghargaan = time() . '.' . $dokumen_penghargaans->getClientOriginalExtension();
+                $dokumen_penghargaans->move(public_path('assets/DokumenPenghargaan'), $dokumen_penghargaan);
+            } else {
+                $dokumen_penghargaan;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'jenis_penghargaan'         => $request->jenis_penghargaan,
+                'tahun_perolehan'           => $request->tahun_perolehan,
+                'no_surat'                  => $request->no_surat,
+                'tanggal_keputusan'         => $request->tanggal_keputusan,
+                'dokumen_penghargaan'       => $dokumen_penghargaan,
+            ];
+
+            RiwayatPenghargaan::where('id', $request->id)->update($update);
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Penghargaan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            Toastr::error('Data riwayat Penghargaan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Penghargaan */
+
+    /** Delete Riwayat Penghargaan */
+    public function hapusRiwayatPenghargaan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatPenghargaan::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat Penghargaan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Penghargaan gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** --------------------------------- Riwayat Hukuman Organisasi --------------------------------- */
+    /** Tampilan Riwayat Organisasi */
+    public function organisasi()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $dataOrganisasi = Session::get('user_id');
+        $riwayatOrganisasi = RiwayatOrganisasi::where('user_id', $dataOrganisasi)->get();
+
+        return view('riwayat.riwayat-organisasi', compact('riwayatOrganisasi', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat Organisasi */
+
+    /** Tambah Data Riwayat Organisasi */
+    public function tambahRiwayatOrganisasi(Request $request)
+    {
+        $request->validate([
+            'user_id'                   => 'required|string|max:255',
+            'nama_organisasi'           => 'required|string|max:255',
+            'jabatan_organisasi'        => 'required|string|max:255',
+            'tanggal_gabung'            => 'required|string|max:255',
+            'tanggal_selesai'           => 'required|string|max:255',
+            'no_anggota'                => 'required|string|max:255',
+            'dokumen_organisasi'        => 'required|mimes:pdf|max:5120',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $dokumen_organisasi = time() . '.' . $request->dokumen_organisasi->extension();
+            $request->dokumen_organisasi->move(public_path('assets/DokumenOrganisasi'), $dokumen_organisasi);
+
+            $riwayatOrganisasi = new RiwayatOrganisasi();
+            $riwayatOrganisasi->user_id = $request->user_id;
+            $riwayatOrganisasi->nama_organisasi = $request->nama_organisasi;
+            $riwayatOrganisasi->jabatan_organisasi = $request->jabatan_organisasi;
+            $riwayatOrganisasi->tanggal_gabung = $request->tanggal_gabung;
+            $riwayatOrganisasi->tanggal_selesai = $request->tanggal_selesai;
+            $riwayatOrganisasi->no_anggota = $request->no_anggota;
+            $riwayatOrganisasi->dokumen_organisasi = $dokumen_organisasi;
+            $riwayatOrganisasi->save();
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Organisasi telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Toastr::error('Data riwayat Organisasi gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat Organisasi */
+
+    /** Edit Data Riwayat Organisasi */
+    public function editRiwayatOrganisasi(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            $dokumen_organisasi = $request->hidden_dokumen_organisasi;
+            $dokumen_organisasis  = $request->file('dokumen_organisasi');
+            if ($dokumen_organisasis != '') {
+                unlink('assets/DokumenOrganisasi/' . $dokumen_organisasi);
+                $dokumen_organisasi = time() . '.' . $dokumen_organisasis->getClientOriginalExtension();
+                $dokumen_organisasis->move(public_path('assets/DokumenOrganisasi'), $dokumen_organisasi);
+            } else {
+                $dokumen_organisasi;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'nama_organisasi'           => $request->nama_organisasi,
+                'jabatan_organisasi'        => $request->jabatan_organisasi,
+                'tanggal_gabung'            => $request->tanggal_gabung,
+                'tanggal_selesai'           => $request->tanggal_selesai,
+                'no_anggota'                => $request->no_anggota,
+                'dokumen_organisasi'        => $dokumen_organisasi,
+            ];
+
+            RiwayatOrganisasi::where('id', $request->id)->update($update);
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Organisasi berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            Toastr::error('Data riwayat Organisasi gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Organisasi */
+
+    /** Delete Riwayat Organisasi */
+    public function hapusRiwayatOrganisasi(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatOrganisasi::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat Organisasi berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Organisasi gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
 
 }

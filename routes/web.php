@@ -457,6 +457,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/hukumandisiplin/tambah-data', [RiwayatController::class, 'tambahRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/tambah-data');
     Route::post('riwayat/hukumandisiplin/edit-data', [RiwayatController::class, 'editRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/edit-data');
     Route::post('riwayat/hukumandisiplin/hapus-data', [RiwayatController::class, 'hapusRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/hapus-data');
+
+    // ----------------------- Informasi Riwayat Penghargaan --------------------------//
+    Route::get('riwayat/penghargaan', [RiwayatController::class, 'penghargaan'])->name('riwayat-penghargaan');
+    Route::post('riwayat/penghargaan/tambah-data', [RiwayatController::class, 'tambahRiwayatPenghargaan'])->name('riwayat/penghargaan/tambah-data');
+    Route::post('riwayat/penghargaan/edit-data', [RiwayatController::class, 'editRiwayatPenghargaan'])->name('riwayat/penghargaan/edit-data');
+    Route::post('riwayat/penghargaan/hapus-data', [RiwayatController::class, 'hapusRiwayatPenghargaan'])->name('riwayat/penghargaan/hapus-data');
+
+    // ----------------------- Informasi Riwayat Organisasi --------------------------//
+    Route::get('riwayat/organisasi', [RiwayatController::class, 'organisasi'])->name('riwayat-organisasi');
+    Route::post('riwayat/organisasi/tambah-data', [RiwayatController::class, 'tambahRiwayatOrganisasi'])->name('riwayat/organisasi/tambah-data');
+    Route::post('riwayat/organisasi/edit-data', [RiwayatController::class, 'editRiwayatOrganisasi'])->name('riwayat/organisasi/edit-data');
+    Route::post('riwayat/organisasi/hapus-data', [RiwayatController::class, 'hapusRiwayatOrganisasi'])->name('riwayat/organisasi/hapus-data');
 });
 
 // ----------------------- Informasi Layanan Cuti --------------------------//
