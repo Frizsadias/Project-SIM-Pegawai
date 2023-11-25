@@ -13,6 +13,8 @@ use App\Models\RiwayatPendidikan;
 use Carbon\Carbon;
 use Session;
 use App\Models\Notification;
+use App\Models\RiwayatAngkaKredit;
+use App\Models\RiwayatHukumanDisiplin;
 use App\Models\RiwayatPMK;
 use App\Notifications\UlangTahunNotification;
 
@@ -956,4 +958,377 @@ class RiwayatController extends Controller
 
         return response()->json($json_data);
     }
+
+    /** --------------------------------- Riwayat Angka Kredit --------------------------------- */
+    /** Tampilan Riwayat Angka Kredit */
+    public function angkakredit()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $dataAK = Session::get('user_id');
+        $riwayatAK = RiwayatAngkaKredit::where('user_id', $dataAK)->get();
+        $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
+
+        return view('riwayat.riwayat-angka-kredit', compact('riwayatAK', 'jenisjabatanOptions', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat Angka Kredit */
+
+    /** Tambah Data Riwayat Angka Kredit */
+    public function tambahRiwayatAngkaKredit(Request $request)
+    {
+        $request->validate([
+            'user_id'                   => 'required|string|max:255',
+            'nama_jabatan'              => 'required|string|max:255',
+            'nomor_sk'                  => 'required|string|max:255',
+            'tanggal_sk'                => 'required|date|max:255',
+            'angka_kredit_pertama'      => 'nullable|string|max:255',
+            'integrasi'                 => 'nullable|string|max:255',
+            'konversi'                  => 'nullable|string|max:255',
+            'bulan_mulai'               => 'required|string|max:255',
+            'tahun_mulai'               => 'required|string|max:255',
+            'bulan_selesai'             => 'required|string|max:255',
+            'tahun_selesai'             => 'required|string|max:255',
+            'angka_kredit_utama'        => 'nullable|string|max:255',
+            'angka_kredit_penunjang'    => 'nullable|string|max:255',
+            'total_angka_kredit'        => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $riw_ak = new RiwayatAngkaKredit();
+            $riw_ak->user_id                = $request->user_id;
+            $riw_ak->nama_jabatan           = $request->nama_jabatan;
+            $riw_ak->nomor_sk               = $request->nomor_sk;
+            $riw_ak->tanggal_sk             = $request->tanggal_sk;
+            $riw_ak->angka_kredit_pertama   = $request->angka_kredit_pertama;
+            $riw_ak->integrasi              = $request->integrasi;
+            $riw_ak->konversi               = $request->konversi;
+            $riw_ak->bulan_mulai            = $request->bulan_mulai;
+            $riw_ak->tahun_mulai            = $request->tahun_mulai;
+            $riw_ak->bulan_selesai          = $request->bulan_selesai;
+            $riw_ak->tahun_selesai          = $request->tahun_selesai;
+            $riw_ak->angka_kredit_utama     = $request->angka_kredit_utama;
+            $riw_ak->angka_kredit_penunjang = $request->angka_kredit_penunjang;
+            $riw_ak->total_angka_kredit     = $request->total_angka_kredit;
+            $riw_ak->save();
+
+            DB::commit();
+            Toastr::success('Data riwayat Angka Kredit telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Angka Kredit gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat Angka Kredit */
+
+    /** Edit Data Riwayat Angka Kredit */
+    public function editRiwayatAngkaKredit(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $update = [
+                'id'                    => $request->id,
+                'nama_jabatan'          => $request->nama_jabatan,
+                'nomor_sk'              => $request->nomor_sk,
+                'tanggal_sk'            => $request->tanggal_sk,
+                'angka_kredit_pertama'  => $request->angka_kredit_pertama,
+                'integrasi'             => $request->integrasi,
+                'konversi'              => $request->konversi,
+                'bulan_mulai'           => $request->bulan_mulai,
+                'tahun_mulai'           => $request->tahun_mulai,
+                'bulan_selesai'         => $request->bulan_selesai,
+                'tahun_selesai'         => $request->tahun_selesai,
+                'angka_kredit_utama'    => $request->angka_kredit_utama,
+                'angka_kredit_penunjang'=> $request->angka_kredit_penunjang,
+                'total_angka_kredit'    => $request->total_angka_kredit,
+            ];
+
+            RiwayatAngkaKredit::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat Angka Kredit berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Angka Kredit gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Angka Kredit */
+
+    /** Delete Riwayat Angka Kredit */
+    public function hapusRiwayatAngkaKredit(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatAngkaKredit::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat Angka Kredit berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Angka Kredit gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Angka Kredit */
+
+    /** Pagination Riwayat Angka Kredit */
+    // public function getAngkaKreditData(Request $request)
+    // {
+    //     $columns = array(
+    //         0 => 'id',
+    //         1 => 'nama_jabatan',
+    //         2 => 'nomor_sk',
+    //         3 => 'tanggal_sk',
+    //         4 => 'angka_kredit_pertama',
+    //         5 => 'integrasi',
+    //         6 => 'konversi',
+    //         7 => 'bulan_mulai',
+    //         8 => 'tahun_mulai',
+    //         9 => 'bulan_selesai',
+    //         10 => 'tahun_selesai',
+    //         11 => 'angka_kredit_utama',
+    //         12 => 'angka_kredit_penunjang',
+    //         13 => 'total_angka_kredit'
+    //     );
+
+    //     $totalData = RiwayatAngkaKredit::count();
+
+    //     $totalFiltered = $totalData;
+
+    //     $limit = $request->length;
+    //     $start = $request->start;
+    //     $order = $columns[$request->input('order.0.column')];
+    //     $dir = $request->input('order.0.dir');
+
+    //     $search = $request->input('search.value');
+
+    //     if (empty($search)) {
+    //         $jenis_ak = RiwayatAngkaKredit::offset($start)
+    //             ->limit($limit)
+    //             ->orderBy($order, $dir)
+    //             ->get();
+    //     } else {
+    //         $jenis_ak =  RiwayatAngkaKredit::where('nama_jabatan', 'like', "%{$search}%")
+    //         ->offset($start)
+    //             ->limit($limit)
+    //             ->orderBy($order, $dir)
+    //             ->get();
+
+    //         $totalFiltered = RiwayatAngkaKredit::where('nama_jabatan', 'like', "%{$search}%")
+    //         ->count();
+    //     }
+
+    //     $data = array();
+    //     if (!empty($jenis_ak)) {
+    //         foreach ($jenis_ak as $key => $value) {
+    //             $nestedData['id'] = $value->id;
+    //             $nestedData['nama_jabatan'] = $value->nama_jabatan;
+    //             $nestedData['nomor_sk'] = $value->nomor_sk;
+    //             $nestedData['tanggal_sk'] = date('d/m/Y', strtotime($value->tanggal_sk));
+    //             $nestedData['angka_kredit_pertama'] = $value->angka_kredit_pertama;
+    //             $nestedData['integrasi'] = $value->integrasi;
+    //             $nestedData['konversi'] = $value->konversi;
+    //             $nestedData['bulan_mulai'] = $value->bulan_mulai;
+    //             $nestedData['tahun_mulai'] = $value->tahun_mulai;
+    //             $nestedData['bulan_selesai'] = $value->bulan_selesai;
+    //             $nestedData['tahun_selesai'] = $value->tahun_selesai;
+    //             $nestedData['angka_kredit_utama'] = $value->angka_kredit_utama;
+    //             $nestedData['angka_kredit_penunjang'] = $value->angka_kredit_penunjang;
+    //             $nestedData['total_angka_kredit'] = $value->total_angka_kredit;
+    //             $nestedData['action'] = "<div class='dropdown dropdown-action'>
+    //                                         <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+    //                                     <div class='dropdown-menu dropdown-menu-right'>
+    //                                         <a class='dropdown-item edit_riwayat_angka_kredit' href='#' data-toggle='modal' data-target='#edit_riwayat_angka_kredit' data-id='" . $value->id . "' data-nama_jabatan='" . $value->nama_jabatan . "' data-nomor_sk='" . $value->nomor_sk . "' data-tanggal_sk='" . $value->tanggal_sk . "' data-angka_kredit_pertama='" . $value->angka_kredit_pertama . "' data-integrasi='" . $value->integrasi . "' data-konversi='" . $value->konversi . "' data-bulan_mulai='" . $value->bulan_mulai . "' data-tahun_mulai='" . $value->tahun_mulai . "' data-bulan_selesai='" . $value->bulan_selesai . "' data-tahun_selesai='" . $value->tahun_selesai . "' data-angka_kredit_utama='" . $value->angka_kredit_utama . "'' data-angka_kredit_penunjang='" . $value->angka_kredit_penunjang . "'' data-total_angka_kredit='" . $value->total_angka_kredit . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+    //                                         <a class='dropdown-item delete_riwayat_angka_kredit' data-toggle='modal' data-target='#delete_riwayat_angka_kredit' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+    //                                     </div>
+    //                                  </div>";
+    //             $data[] = $nestedData;
+    //         }
+    //     }
+
+    //     $json_data = array(
+    //         "draw"            => intval($request->input('draw')),
+    //         "recordsTotal"    => intval($totalData),
+    //         "recordsFiltered" => intval($totalFiltered),
+    //         "data"            => $data
+    //     );
+
+    //     return response()->json($json_data);
+    // }
+
+    /** --------------------------------- Riwayat Hukuman Disiplin --------------------------------- */
+    /** Tampilan Riwayat Hukuman Disiplin */
+    public function hukumandisiplin()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $dataHD = Session::get('user_id');
+        $riwayatHD = RiwayatHukumanDisiplin::where('user_id', $dataHD)->get();
+
+        return view('riwayat.riwayat-hukuman-disiplin', compact('riwayatHD', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat Hukuman Disiplin */
+
+    /** Tambah Data Riwayat Hukuman Disiplin */
+    public function tambahRiwayatHukumanDisiplin(Request $request)
+    {
+        $request->validate([
+            'user_id'                   => 'required|string|max:255',
+            'kategori_hukuman'          => 'required|string|max:255',
+            'tingkat_hukuman'           => 'required|string|max:255',
+            'jenis_hukuman'             => 'required|string|max:255',
+            'no_sk_hukuman'             => 'required|string|max:255',
+            'no_peraturan'              => 'required|string|max:255',
+            'alasan'                    => 'required|string|max:255',
+            'tanggal_sk_hukuman'        => 'required|string|max:255',
+            'masa_hukuman_tahun'        => 'required|string|max:255',
+            'tmt_hukuman'               => 'required|string|max:255',
+            'masa_hukuman_bulan'        => 'required|string|max:255',
+            'keterangan'                => 'required|string|max:255',
+            'dokumen_sk_hukuman'        => 'required|mimes:pdf|max:5120',
+            'dokumen_sk_pengaktifan'    => 'required|mimes:pdf|max:5120',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $dokumen_sk_hukuman = time() . '.' . $request->dokumen_sk_hukuman->extension();
+            $request->dokumen_sk_hukuman->move(public_path('assets/DokumenSKHukuman'), $dokumen_sk_hukuman);
+
+            $dokumen_sk_pengaktifan = time() . '.' . $request->dokumen_sk_pengaktifan->extension();
+            $request->dokumen_sk_pengaktifan->move(public_path('assets/DokumenSKPengaktifan'), $dokumen_sk_pengaktifan);
+            
+            $riwayatHukuman = new RiwayatHukumanDisiplin;
+            $riwayatHukuman->user_id = $request->user_id;
+            $riwayatHukuman->kategori_hukuman = $request->kategori_hukuman;
+            $riwayatHukuman->tingkat_hukuman = $request->tingkat_hukuman;
+            $riwayatHukuman->jenis_hukuman = $request->jenis_hukuman;
+            $riwayatHukuman->no_sk_hukuman = $request->no_sk_hukuman;
+            $riwayatHukuman->no_peraturan = $request->no_peraturan;
+            $riwayatHukuman->alasan = $request->alasan;
+            $riwayatHukuman->tanggal_sk_hukuman = $request->tanggal_sk_hukuman;
+            $riwayatHukuman->masa_hukuman_tahun = $request->masa_hukuman_tahun;
+            $riwayatHukuman->tmt_hukuman = $request->tmt_hukuman;
+            $riwayatHukuman->masa_hukuman_bulan = $request->masa_hukuman_bulan;
+            $riwayatHukuman->keterangan = $request->keterangan;
+            $riwayatHukuman->dokumen_sk_hukuman = $dokumen_sk_hukuman;
+            $riwayatHukuman->dokumen_sk_pengaktifan = $dokumen_sk_pengaktifan;
+
+            $riwayatHukuman->save();
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Hukuman Disiplin telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Toastr::error('Data riwayat Hukuman Disiplin gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat Hukuman Disiplin */
+
+    /** Edit Data Riwayat Hukuman Disiplin */
+    public function editRiwayatHukumanDisiplin(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            $dokumen_sk_hukuman = $request->hidden_dokumen_sk_hukuman;
+            $dokumen_sk_hukumans  = $request->file('dokumen_ijazah');
+            if ($dokumen_sk_hukumans != '') {
+                unlink('assets/DokumenSKHukuman/' . $dokumen_sk_hukuman);
+                $dokumen_sk_hukuman = time() . '.' . $dokumen_sk_hukumans->getClientOriginalExtension();
+                $dokumen_sk_hukumans->move(public_path('assets/DokumenSKHukuman'), $dokumen_sk_hukuman);
+            } else {
+                $dokumen_sk_hukuman;
+            }
+
+            $dokumen_sk_pengaktifan = $request->hidden_dokumen_sk_pengaktifan;
+            $dokumen_sk_pengaktifans  = $request->file('dokumen_sk_pengaktifan');
+            if ($dokumen_sk_pengaktifans != '') {
+                unlink('assets/DokumenGelar/' . $dokumen_sk_pengaktifan);
+                $dokumen_sk_pengaktifan = time() . '.' . $dokumen_sk_pengaktifans->getClientOriginalExtension();
+                $dokumen_sk_pengaktifans->move(public_path('assets/DokumenGelar'), $dokumen_sk_pengaktifan);
+            } else {
+                $dokumen_sk_pengaktifan;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'kategori_hukuman'          => $request->kategori_hukuman,
+                'tingkat_hukuman'           => $request->tingkat_hukuman,
+                'jenis_hukuman'             => $request->jenis_hukuman,
+                'no_sk_hukuman'             => $request->no_sk_hukuman,
+                'no_peraturan'              => $request->no_peraturan,
+                'alasan'                    => $request->alasan,
+                'tanggal_sk_hukuman'        => $request->tanggal_sk_hukuman,
+                'masa_hukuman_tahun'        => $request->masa_hukuman_tahun,
+                'tmt_hukuman'               => $request->tmt_hukuman,
+                'masa_hukuman_bulan'        => $request->masa_hukuman_bulan,
+                'keterangan'                => $request->keterangan,
+                'dokumen_sk_hukuman'        => $dokumen_sk_hukuman,
+                'dokumen_sk_pengaktifan'    => $dokumen_sk_pengaktifan,
+            ];
+
+            RiwayatHukumanDisiplin::where('id', $request->id)->update($update);
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Hukuman Disiplin berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            Toastr::error('Data riwayat Hukuman Disiplin gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Hukuman Disiplin */
+
+    /** Delete Riwayat Hukuman Disiplin */
+    public function hapusRiwayatHukumanDisiplin(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatHukumanDisiplin::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat Hukuman Disiplin berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Hukuman Disiplin gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Hukuman Disiplin */
+
 }

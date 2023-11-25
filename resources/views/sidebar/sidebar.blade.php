@@ -357,13 +357,13 @@
                             <span>Jabatan</span>
                         </a>
                     </li>
-                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-pmk') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-pmk') }}" class="{{ request()->routeIs('riwayat-pmk') ? 'noti-dot' : '' }}">
                             <i class="la la-sliders"></i>
                             <span>Peninjauan Masa Kerja</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-info"></i>
                             <span>CPNS/PNS</span>

@@ -444,6 +444,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/pmk/tambah-data', [RiwayatController::class, 'tambahRiwayatPMK'])->name('riwayat/pmk/tambah-data');
     Route::post('riwayat/pmk/edit-data', [RiwayatController::class, 'editRiwayatPMK'])->name('riwayat/pmk/edit-data');
     Route::post('riwayat/pmk/hapus-data', [RiwayatController::class, 'hapusRiwayatPMK'])->name('riwayat/pmk/hapus-data');
+
+    // ----------------------- Informasi Riwayat Angka Kredit --------------------------//
+    Route::get('riwayat/angka/kredit', [RiwayatController::class, 'angkakredit'])->name('riwayat-angka-kredit');
+    // Route::get('get-angkakredit-data', [RiwayatController::class, 'getAngkaKreditData'])->name('get-angkakredit-data');
+    Route::post('riwayat/angkakredit/tambah-data', [RiwayatController::class, 'tambahRiwayatAngkaKredit'])->name('riwayat/angkakredit/tambah-data');
+    Route::post('riwayat/angkakredit/edit-data', [RiwayatController::class, 'editRiwayatAngkaKredit'])->name('riwayat/angkakredit/edit-data');
+    Route::post('riwayat/angkakredit/hapus-data', [RiwayatController::class, 'hapusRiwayatAngkaKredit'])->name('riwayat/angkakredit/hapus-data');
+
+    // ----------------------- Informasi Riwayat Hukuman Disiplin --------------------------//
+    Route::get('riwayat/hukuman/disiplin', [RiwayatController::class, 'hukumandisiplin'])->name('riwayat-hukuman-disiplin');
+    Route::post('riwayat/hukumandisiplin/tambah-data', [RiwayatController::class, 'tambahRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/tambah-data');
+    Route::post('riwayat/hukumandisiplin/edit-data', [RiwayatController::class, 'editRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/edit-data');
+    Route::post('riwayat/hukumandisiplin/hapus-data', [RiwayatController::class, 'hapusRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/hapus-data');
 });
 
 // ----------------------- Informasi Layanan Cuti --------------------------//
