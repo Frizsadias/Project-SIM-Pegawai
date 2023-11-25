@@ -469,6 +469,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/organisasi/tambah-data', [RiwayatController::class, 'tambahRiwayatOrganisasi'])->name('riwayat/organisasi/tambah-data');
     Route::post('riwayat/organisasi/edit-data', [RiwayatController::class, 'editRiwayatOrganisasi'])->name('riwayat/organisasi/edit-data');
     Route::post('riwayat/organisasi/hapus-data', [RiwayatController::class, 'hapusRiwayatOrganisasi'])->name('riwayat/organisasi/hapus-data');
+
+    // ----------------------- Informasi Riwayat Tugas Belajar --------------------------//
+    Route::get('riwayat/tugas/belajar', [RiwayatController::class, 'tugasbelajar'])->name('riwayat-tugas-belajar');
+    Route::post('riwayat/tugasbelajar/tambah-data', [RiwayatController::class, 'tambahRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/tambah-data');
+    Route::post('riwayat/tugasbelajar/edit-data', [RiwayatController::class, 'editRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/edit-data');
+    Route::post('riwayat/tugasbelajar/hapus-data', [RiwayatController::class, 'hapusRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/hapus-data');
 });
 
 // ----------------------- Informasi Layanan Cuti --------------------------//

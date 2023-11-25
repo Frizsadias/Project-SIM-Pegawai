@@ -18,6 +18,7 @@ use App\Models\RiwayatHukumanDisiplin;
 use App\Models\RiwayatOrganisasi;
 use App\Models\RiwayatPenghargaan;
 use App\Models\RiwayatPMK;
+use App\Models\RiwayatTugasBelajar;
 use App\Notifications\UlangTahunNotification;
 
 class RiwayatController extends Controller
@@ -1454,7 +1455,7 @@ class RiwayatController extends Controller
         }
     }
 
-    /** --------------------------------- Riwayat Hukuman Organisasi --------------------------------- */
+    /** --------------------------------- Riwayat Organisasi --------------------------------- */
     /** Tampilan Riwayat Organisasi */
     public function organisasi()
     {
@@ -1574,6 +1575,131 @@ class RiwayatController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data riwayat Organisasi gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** --------------------------------- Riwayat Tugas Belajar --------------------------------- */
+    /** Tampilan Riwayat Tugas Belajar */
+    public function tugasbelajar()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $dataTB = Session::get('user_id');
+        $riwayatTB = RiwayatTugasBelajar::where('user_id', $dataTB)->get();
+        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $pendidikanOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
+
+        return view('riwayat.riwayat-tugas-belajar', compact('riwayatTB', 'tingkatpendidikanOptions', 'pendidikanOptions', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat Tugas Belajar */
+
+    /** Tambah Data Riwayat Tugas Belajar */
+    public function tambahRiwayatTugasBelajar(Request $request)
+    {
+        $request->validate([
+            'user_id'                       => 'required|string|max:255',
+            'jenis_tugas_belajar'           => 'required|string|max:255',
+            'nama_sekolah'                  => 'required|string|max:255',
+            'tingkat_pendidikan'            => 'required|string|max:255',
+            'pendidikan'                    => 'required|string|max:255',
+            'predikat_akreditasi_jurusan'   => 'required|string|max:255',
+            'no_akreditasi_jurusan'         => 'required|string|max:255',
+            'gelar_depan'                   => 'nullable|string|max:255',
+            'gelar_belakang'                => 'nullable|string|max:255',
+            'tanggal_mulai'                 => 'required|string|max:255',
+            'tanggal_selesai'               => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $riwayatTugasBelajar = new RiwayatTugasBelajar();
+            $riwayatTugasBelajar->user_id                       = $request->user_id;
+            $riwayatTugasBelajar->jenis_tugas_belajar           = $request->jenis_tugas_belajar;
+            $riwayatTugasBelajar->nama_sekolah                  = $request->nama_sekolah;
+            $riwayatTugasBelajar->tingkat_pendidikan            = $request->tingkat_pendidikan;
+            $riwayatTugasBelajar->pendidikan                    = $request->pendidikan;
+            $riwayatTugasBelajar->predikat_akreditasi_jurusan   = $request->predikat_akreditasi_jurusan;
+            $riwayatTugasBelajar->no_akreditasi_jurusan         = $request->no_akreditasi_jurusan;
+            $riwayatTugasBelajar->gelar_depan                   = $request->gelar_depan;
+            $riwayatTugasBelajar->gelar_belakang                = $request->gelar_belakang;
+            $riwayatTugasBelajar->tanggal_mulai                 = $request->tanggal_mulai;
+            $riwayatTugasBelajar->tanggal_selesai               = $request->tanggal_selesai;
+            $riwayatTugasBelajar->save();
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Tugas Belajar telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Toastr::error('Data riwayat Tugas Belajar gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat Tugas Belajar */
+
+    /** Edit Data Riwayat Tugas Belajar */
+    public function editRiwayatTugasBelajar(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            $update = [
+                'id'                            => $request->id,
+                'jenis_tugas_belajar'           => $request->jenis_tugas_belajar,
+                'nama_sekolah'                  => $request->nama_sekolah,
+                'tingkat_pendidikan'            => $request->tingkat_pendidikan,
+                'pendidikan'                    => $request->pendidikan,
+                'predikat_akreditasi_jurusan'   => $request->predikat_akreditasi_jurusan,
+                'no_akreditasi_jurusan'         => $request->no_akreditasi_jurusan,
+                'gelar_depan'                   => $request->gelar_depan,
+                'gelar_belakang'                => $request->gelar_belakang,
+                'tanggal_mulai'                 => $request->tanggal_mulai,
+                'tanggal_selesai'               => $request->tanggal_selesai,
+            ];
+
+            RiwayatTugasBelajar::where('id', $request->id)->update($update);
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Tugas Belajar berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            Toastr::error('Data riwayat Tugas Belajar gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Tugas Belajar */
+
+    /** Delete Riwayat Tugas Belajar */
+    public function hapusRiwayatTugasBelajar(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatTugasBelajar::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat Tugas Belajar berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Tugas Belajar gagal dihapus :(', 'Error');
             return redirect()->back();
         }
     }
