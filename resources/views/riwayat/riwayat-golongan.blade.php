@@ -156,8 +156,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Golongan</label>
-                                        <input type="text" class="form-control" name="golongan" required>
+                                        <label>Golongan</label><br>
+                                        <select name="golongan" class="theSelect" id="golongan" required>
+                                            <option selected disabled> --Pilih Golongan Awal--</option>
+                                            @foreach ($golonganOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -414,6 +419,12 @@
             $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script>
+		$(".theSelect").select2();
+	    </script>
 
     <script>
         history.pushState({}, "", '/riwayat/golongan');

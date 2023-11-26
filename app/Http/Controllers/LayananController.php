@@ -1592,7 +1592,10 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
+
         return view('layanan.kenaikan-gaji-berkala-admin', compact(
+            'golonganOptions',
             'data_kgb',
             'userList',
             'unreadNotifications',
@@ -1714,7 +1717,9 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb', 'userList'));
+        $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
+
+        return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb', 'userList', 'golonganOptions'));
     }
 
     /** Tambah Data Kenaikan Gaji Berkala Pegawai */

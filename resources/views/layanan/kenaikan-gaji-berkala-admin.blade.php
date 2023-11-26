@@ -185,16 +185,24 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Golongan Awal</label>
-                                    <input type="text" class="form-control" name="golongan_awal"
-                                        placeholder="Golongan Awal">
+                                    <label>Golongan Awal</label><br>
+                                    <select name="golongan_awal" class="theSelect" id="golongan_awal" required>
+                                        <option selected disabled> --Pilih Golongan Awal--</option>
+                                        @foreach ($golonganOptions as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Golongan Akhir</label>
-                                    <input type="text" class="form-control" name="golongan_akhir"
-                                        placeholder="Golongan Akhir">
+                                    <label>Golongan Akhir</label><br>
+                                    <select name="golongan_akhir" class="theSelect" id="golongan_akhir" required>
+                                        <option selected disabled> --Pilih Golongan Akhir--</option>
+                                        @foreach ($golonganOptions as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -391,6 +399,12 @@
             });
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script>
+		$(".theSelect").select2();
+	    </script>
 
     <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
 @endsection

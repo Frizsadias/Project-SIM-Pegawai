@@ -66,8 +66,9 @@ class RiwayatController extends Controller
         $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
 
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
-        return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan', 'tingkatpendidikanOptions','unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan', 'tingkatpendidikanOptions', 'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications'));
     }
     /** End Tampilan Riwayat Pendidikan */
 
@@ -223,7 +224,8 @@ class RiwayatController extends Controller
         
         $datagolongan = Session::get('user_id');
         $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
-        return view('riwayat.riwayat-golongan', compact('riwayatGolongan', 'unreadNotifications', 'readNotifications'));
+        $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
+        return view('riwayat.riwayat-golongan', compact('riwayatGolongan', 'golonganOptions', 'unreadNotifications', 'readNotifications'));
     }
     /** End Tampilan Riwayat Golongan */
 

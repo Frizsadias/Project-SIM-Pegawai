@@ -49,8 +49,8 @@
                             <span>Kedudukan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('referensi-pangkat') ? 'active' : '' }}">
-                        <a href="{{ route('referensi-pangkat') }}" class="{{ request()->routeIs('referensi-pangkat') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('referensi-golongan') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-golongan') }}" class="{{ request()->routeIs('referensi-golongan') ? 'noti-dot' : '' }}">
                             <i class="la la-sort-amount-up"></i>
                             <span>Pangkat</span>
                         </a>
@@ -381,50 +381,50 @@
                             <i class="la la-users"></i>
                             <span>Keluarga</span>
                         </a>
-                    </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                    </li> --}}
+                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-quote-left"></i>
                             <span>SKP</span>
                         </a>
-                    </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
+                    </li> --}}
+                    <li class="{{ request()->routeIs('riwayat-penghargaan') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-penghargaan') }}" class="{{ request()->routeIs('riwayat-penghargaan') ? 'noti-dot' : '' }}">
                             <i class="la la-certificate"></i>
                             <span>Penghargaan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-organisasi') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-organisasi') }}" class="{{ request()->routeIs('riwayat-organisasi') ? 'noti-dot' : '' }}">
                             <i class="la la-building-o"></i>
                             <span>Organisasi</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-bookmark-o"></i>
                             <span>Pencantuman Gelar</span>
                         </a>
-                    </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
+                    </li> --}}
+                    <li class="{{ request()->routeIs('riwayat-hukuman-disiplin') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-hukuman-disiplin') }}" class="{{ request()->routeIs('riwayat-hukuman-disiplin') ? 'noti-dot' : '' }}">
                             <i class="la la-gavel"></i>
                             <span>Hukuman Disiplin</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('riwayat-angka-kredit') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-angka-kredit') }}" class="{{ request()->routeIs('riwayat-angka-kredit') ? 'noti-dot' : '' }}">
                             <i class="la la-bank"></i>
                             <span>Angka Kredit</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-wrench"></i>
                             <span>Kinerja</span>
                         </a>
-                    </li>
-                    <li class="{{ request()->routeIs('') ? 'active' : '' }}">
+                    </li> --}}
+                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-pied-piper-alt"></i>
                             <span>Profesi</span>

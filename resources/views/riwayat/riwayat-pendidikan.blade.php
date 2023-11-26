@@ -168,7 +168,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Pendidikan</label>
+                                        <label>Tingkat Pendidikan</label><br>
                                         <select name="ting_ped" class="theSelect" id="ting_ped" required>
                                             <option selected disabled> --Pilih Tingkat Pendidikan --</option>
                                             @foreach($tingkatpendidikanOptions as $key => $value)
@@ -179,8 +179,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pendidikan</label>
-                                        <input type="text" class="form-control" name="pendidikan" required>
+                                        <label>Pendidikan</label><br>
+                                        <select name="pendidikan" class="theSelect" id="pendidikan" required>
+                                            <option selected disabled> --Pilih Pendidikan --</option>
+                                            @foreach($pendidikanterakhirOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>

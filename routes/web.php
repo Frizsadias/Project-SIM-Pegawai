@@ -282,6 +282,13 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/pangkat/update', 'updateRecordPangkat')->middleware('auth')->name('form/pangkat/update');
     Route::post('form/pangkat/delete', 'deleteRecordPangkat')->middleware('auth')->name('form/pangkat/delete');
     Route::get('form/pangkat/search', 'searchPangkat')->middleware('auth')->name('form/pangkat/search');
+
+    Route::get('referensi/golongan', 'indexGolongan')->middleware('auth')->name('referensi-golongan');
+    Route::get('get-golongan-data', 'getGolonganData')->name('get-golongan-data');
+    Route::post('form/golongan/save', 'saveRecordGolongan')->middleware('auth')->name('form/golongan/save');
+    Route::post('form/golongan/update', 'updateRecordGolongan')->middleware('auth')->name('form/golongan/update');
+    Route::post('form/golongan/delete', 'deleteRecordGolongan')->middleware('auth')->name('form/golongan/delete');
+    Route::get('form/golongan/search', 'searchGolongan')->middleware('auth')->name('form/golongan/search');
 });
 
 // ------------------------- profile employee --------------------------//

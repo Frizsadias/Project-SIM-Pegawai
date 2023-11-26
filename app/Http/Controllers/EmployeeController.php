@@ -26,6 +26,7 @@ use App\Models\Sumpah;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
+use App\Models\golongan_id;
 use App\Models\Village;
 use Carbon\Carbon;
 use Session;
@@ -2407,6 +2408,188 @@ class EmployeeController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Data pangkat gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** page golongan */
+    public function indexGolongan()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $golongan = DB::table('golongan_id')->get();
+        return view('employees.golongan', compact('golongan', 'unreadNotifications', 'readNotifications'));
+    }
+
+    public function getGolonganData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'nama',
+            2 => 'nama_golongan',
+        );
+
+        $totalData = golongan_id::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $golongan = golongan_id::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $golongan =  golongan_id::where('nama_golongan', 'like', "%{$search}%")
+            ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = golongan_id::where('nama_golongan', 'like', "%{$search}%")
+            ->count();
+        }
+
+        $data = array();
+        if (!empty($golongan)) {
+            foreach ($golongan as $key => $value) {
+                $nestedData['id'] = $value->id;
+                $nestedData['nama'] = $value->nama;
+                $nestedData['nama_golongan'] = $value->nama_golongan;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a class='dropdown-item edit_golongan' href='#' data-toggle='modal' data-target='#edit_golongan' data-id='" . $value->id . "' data-nama='" . $value->nama . "' data-nama_golongan='" . $value->nama_golongan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_golongan' data-toggle='modal' data-target='#delete_golongan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
+
+    /** search for golongan */
+    public function searchGolongan(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $golongan = DB::table('golongan_id')
+        ->where('nama_golongan', 'like', '%' . $keyword . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('employees.golongan', compact('golongan', 'unreadNotifications', 'readNotifications'));
+    }
+
+
+    /** save record goloongan */
+    public function saveRecordGolongan(Request $request)
+    {
+        $request->validate([
+            'nama'          => 'required|string|max:255',
+            'nama_golongan' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $golongan = golongan_id::where('nama_golongan', $request->nama_golongan)->first();
+            if ($golongan === null) {
+                $golongan = new golongan_id();
+                $golongan->nama             = $request->nama;
+                $golongan->nama_golongan    = $request->nama_golongan;
+                $golongan->save();
+
+                DB::commit();
+                Toastr::success('Data golongan telah ditambah :)', 'Sukses');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data golongan telah tersedia :(', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data golongan gagal ditambah :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** update record golongan */
+    public function updateRecordGolongan(Request $request)
+    {
+        $request->validate([
+            'nama'        => 'required|string|max:255',
+            'nama_golongan'  => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $golongan = [
+                'nama'        => $request->nama,
+                'nama_golongan'  => $request->nama_golongan,
+            ];
+
+            DB::table('golongan_id')->where('id', $request->id)->update($golongan);
+
+            DB::commit();
+            Toastr::success('Data golongan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data golongan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** delete record golongan */
+    public function deleteRecordGolongan(Request $request)
+    {
+        try {
+
+            pendidikan::destroy($request->id);
+            Toastr::success('Data golongan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data golongan gagal dihapus :)', 'Error');
             return redirect()->back();
         }
     }
