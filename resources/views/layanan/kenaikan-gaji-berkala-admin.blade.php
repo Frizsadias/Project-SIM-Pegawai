@@ -92,6 +92,7 @@
                                 <th>Masa Kerja Golongan</th>
                                 <th>Masa Kerja</th>
                                 <th>Terhitung Mulai Tanggal Kenaikan Gaji Berkala</th>
+                                <th>Dokumen KGB</th>
                                 <th class="text-right no-sort">Aksi</th>
                             </tr>
                         </thead>
@@ -112,6 +113,13 @@
                                     <td class="masa_kerja_golongan">{{ $result_kgb->masa_kerja_golongan }}</td>
                                     <td class="masa_kerja">{{ $result_kgb->masa_kerja }}</td>
                                     <td class="tmt_kgb">{{ $result_kgb->tmt_kgb }}</td>
+                                    <td class="dokumen_kgb"><center>
+                                            <a href="{{ asset('assets/DokumenKGB/' . $result_kgb->dokumen_kgb) }}" target="_blank">
+                                                @if (pathinfo($result_kgb->dokumen_kgb, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                    <td hidden class="dokumen_kgb">{{ $result_kgb->dokumen_kgb }}</td>
+                                            </a></center></td>
 
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
@@ -369,6 +377,18 @@
                                     <label>TMT KGB</label>
                                     <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb"
                                         value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Dokumen KGB</label>
+                                    <input type="file" class="form-control" id="dokumen_kgb"
+                                        name="dokumen_kgb">
+                                    <input type="hidden" name="hidden_dokumen_kgb"
+                                        id="e_dokumen_kgb" value="">
+                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
                         </div>

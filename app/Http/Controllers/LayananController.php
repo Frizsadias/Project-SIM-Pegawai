@@ -1787,6 +1787,12 @@ class LayananController extends Controller
                 'masa_kerja'             => $request->masa_kerja,
                 'tmt_kgb'                => $request->tmt_kgb,
             ];
+
+            if ($request->hasFile('dokumen_kgb')) {
+                $dokumen_kgb = time() . '.' . $request->file('dokumen_kgb')->getClientOriginalExtension();
+                $request->file('dokumen_kgb')->move(public_path('assets/DokumenKGB'), $dokumen_kgb);
+                $update['dokumen_kgb'] = $dokumen_kgb;
+            }
             KenaikanGajiBerkala::where('id', $request->id)->update($update);
 
             DB::commit();

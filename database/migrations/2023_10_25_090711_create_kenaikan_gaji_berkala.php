@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('masa_kerja_golongan')->nullable();
             $table->string('masa_kerja')->nullable();
             $table->string('tmt_kgb')->nullable();
+            $table->string('dokumen_kgb')->nullable();
             $table->timestamps();
         });
     }

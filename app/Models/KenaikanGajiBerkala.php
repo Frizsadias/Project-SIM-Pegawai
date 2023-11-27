@@ -25,5 +25,6 @@ class KenaikanGajiBerkala extends Model
         'masa_kerja_golongan',
         'masa_kerja',
         'tmt_kgb',
+        'dokumen_kgb'
     ];
 }

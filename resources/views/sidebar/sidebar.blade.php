@@ -376,12 +376,24 @@
                             <span> Diklat/Kursus</span>
                         </a>
                     </li>
-                    {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
-                            <i class="la la-users"></i>
-                            <span>Keluarga</span>
+                    <li class="{{ request()->routeIs('riwayat-orangtua') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-orangtua') }}" class="{{ request()->routeIs('riwayat-orangtua') ? 'noti-dot' : '' }}">
+                            <i class="la la-user"></i>
+                            <span>Orang Tua</span>
                         </a>
-                    </li> --}}
+                    </li>
+                    <li class="{{ request()->routeIs('riwayat-pasangan') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-pasangan') }}" class="{{ request()->routeIs('riwayat-pasangan') ? 'noti-dot' : '' }}">
+                            <i class="la la-heart"></i>
+                            <span>Pasangan</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('riwayat-anak') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-anak') }}" class="{{ request()->routeIs('riwayat-anak') ? 'noti-dot' : '' }}">
+                            <i class="la la-child"></i>
+                            <span>Anak</span>
+                        </a>
+                    </li>
                     {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-quote-left"></i>
