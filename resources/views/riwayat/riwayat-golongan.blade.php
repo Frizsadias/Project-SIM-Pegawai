@@ -158,7 +158,7 @@
                                     <div class="form-group">
                                         <label>Golongan</label><br>
                                         <select name="golongan" class="theSelect" id="golongan" required>
-                                            <option selected disabled> --Pilih Golongan Awal--</option>
+                                            <option selected disabled> --Pilih Golongan--</option>
                                             @foreach ($golonganOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
                                             @endforeach

@@ -13,9 +13,11 @@ use App\Models\RiwayatPendidikan;
 use Carbon\Carbon;
 use Session;
 use App\Models\Notification;
+use App\Models\RiwayatAnak;
 use App\Models\RiwayatAngkaKredit;
 use App\Models\RiwayatHukumanDisiplin;
 use App\Models\RiwayatOrganisasi;
+use App\Models\RiwayatPasangan;
 use App\Models\RiwayatPenghargaan;
 use App\Models\RiwayatPMK;
 use App\Models\RiwayatTugasBelajar;
@@ -1706,4 +1708,331 @@ class RiwayatController extends Controller
         }
     }
 
+    /** --------------------------------- Riwayat Pasangan --------------------------------- */
+    /** Tampilan Riwayat Pasangan */
+    public function pasangan()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $dataPasangan = Session::get('user_id');
+        $riwayatPasangan = RiwayatPasangan::where('user_id', $dataPasangan)->get();
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+
+        return view('riwayat.riwayat-pasangan', compact('riwayatPasangan', 'agamaOptions', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat Pasangan */
+
+    /** Tambah Data Riwayat Pasangan */
+    public function tambahRiwayatPasangan(Request $request)
+    {
+        $request->validate([
+            'user_id'                       => 'required|string|max:255',
+            'suami_istri_ke'                => 'required|string|max:255',
+            'status_pekerjaan_pasangan'     => 'required|string|max:255',
+            'nip'                           => 'nullable|string|max:255',
+            'nama'                          => 'required|string|max:255',
+            'tanggal_lahir'                 => 'required|string|max:255',
+            'jenis_kelamin'                 => 'required|string|max:255',
+            'jenis_identitas'               => 'required|string|max:255',
+            'no_hp'                         => 'required|string|max:255',
+            'no_telepon'                    => 'required|string|max:255',
+            'agama'                         => 'required|string|max:255',
+            'status_pernikahan'             => 'required|string|max:255',
+            'status_hidup'                  => 'required|string|max:255',
+            'email'                         => 'required|string|max:255',
+            'no_karis_karsu'                => 'required|string|max:255',
+            'alamat'                        => 'required|string|max:255',
+            'dokumen_nikah'                 => 'required|mimes:pdf|max:2048',
+            'pas_foto'                      => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $dokumen_nikah = time() . '.' . $request->dokumen_nikah->extension();
+            $request->dokumen_nikah->move(public_path('assets/DokumenNikah'), $dokumen_nikah);
+
+            $pas_foto = time() . '.' . $request->pas_foto->extension();
+            $request->pas_foto->move(public_path('assets/DokumenPasFotoPasangan'), $pas_foto);
+
+            $riwayatPasangan = new RiwayatPasangan();
+            $riwayatPasangan->user_id                  = $request->user_id;
+            $riwayatPasangan->suami_istri_ke           = $request->suami_istri_ke;
+            $riwayatPasangan->status_pekerjaan_pasangan    = $request->status_pekerjaan_pasangan;
+            $riwayatPasangan->nip                      = $request->nip;
+            $riwayatPasangan->nama                     = $request->nama;
+            $riwayatPasangan->tanggal_lahir            = $request->tanggal_lahir;
+            $riwayatPasangan->jenis_kelamin            = $request->jenis_kelamin;
+            $riwayatPasangan->jenis_identitas          = $request->jenis_identitas;
+            $riwayatPasangan->no_hp                    = $request->no_hp;
+            $riwayatPasangan->no_telepon               = $request->no_telepon;
+            $riwayatPasangan->agama                    = $request->agama;
+            $riwayatPasangan->status_pernikahan        = $request->status_pernikahan;
+            $riwayatPasangan->status_hidup             = $request->status_hidup;
+            $riwayatPasangan->email                    = $request->email;
+            $riwayatPasangan->no_karis_karsu           = $request->no_karis_karsu;
+            $riwayatPasangan->alamat                   = $request->alamat;
+            $riwayatPasangan->dokumen_nikah            = $dokumen_nikah;
+            $riwayatPasangan->pas_foto                 = $pas_foto;
+            $riwayatPasangan->save();
+
+            DB::commit();
+
+            Toastr::success('Data riwayat Pasangan telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Toastr::error('Data riwayat Pasangan gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat Pasangan */
+
+    /** Edit Data Riwayat Pasangan */
+    public function editRiwayatPasangan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_nikah = $request->hidden_dokumen_nikah;
+            $dokumen_nikahs  = $request->file('dokumen_nikah');
+            if ($dokumen_nikahs != '') {
+                unlink('assets/DokumenNikah/' . $dokumen_nikah);
+                $dokumen_nikah = time() . '.' . $dokumen_nikahs->getClientOriginalExtension();
+                $dokumen_nikahs->move(public_path('assets/DokumenNikah'), $dokumen_nikah);
+            } else {
+                $dokumen_nikah;
+            }
+
+            $pas_foto = $request->hidden_pas_foto;
+            $pas_fotos  = $request->file('pas_foto');
+            if ($pas_fotos != '') {
+                unlink('assets/DokumenPasFotoPasangan/' . $pas_foto);
+                $pas_foto = time() . '.' . $pas_fotos->getClientOriginalExtension();
+                $pas_fotos->move(public_path('assets/DokumenPasFotoPasangan'), $pas_foto);
+            } else {
+                $pas_foto;
+            }
+
+            $update = [
+                'id'                            => $request->id,
+                'suami_istri_ke'                => $request->suami_istri_ke,
+                'status_pekerjaan_pasangan'     => $request->status_pekerjaan_pasangan,
+                'nip'                           => $request->nip,
+                'nama'                          => $request->nama,
+                'tanggal_lahir'                 => $request->tanggal_lahir,
+                'jenis_kelamin'                 => $request->jenis_kelamin,
+                'jenis_identitas'               => $request->jenis_identitas,
+                'no_hp'                         => $request->no_hp,
+                'no_telepon'                    => $request->no_telepon,
+                'agama'                         => $request->agama,
+                'status_pernikahan'             => $request->status_pernikahan,
+                'status_hidup'                  => $request->status_hidup,
+                'email'                         => $request->email,
+                'no_karis_karsu'                => $request->no_karis_karsu,
+                'alamat'                        => $request->alamat,
+                'dokumen_nikah'                 => $dokumen_nikah,
+                'pas_foto'                      => $pas_foto,
+            ];
+
+            RiwayatPasangan::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat pasangan berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat pasangan gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Pasangan */
+
+    /** Delete Riwayat Pasangan */
+    public function hapusRiwayatPasangan(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatPasangan::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat Pasangan berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Pasangan gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Pasangan */
+
+    /** --------------------------------- Riwayat Anak --------------------------------- */
+    /** Tampilan Riwayat Anak */
+    public function anak()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $dataAnak = Session::get('user_id');
+        $riwayatAnak = RiwayatAnak::where('user_id', $dataAnak)->get();
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+        $userList = DB::table('riwayat_pasangan')
+            ->join('riwayat_anak', 'riwayat_pasangan.user_id', 'riwayat_anak.user_id')
+            ->select('riwayat_anak.*', 'riwayat_pasangan.nama')
+            ->get();
+
+        return view('riwayat.riwayat-anak', compact('userList', 'riwayatAnak', 'agamaOptions', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat Anak */
+
+    /** Tambah Data Riwayat Anak */
+    public function tambahRiwayatAnak(Request $request)
+    {
+        $request->validate([
+            'user_id'                       => 'required|string|max:255',
+            'orang_tua'                     => 'required|string|max:255',
+            'status_pekerjaan_anak'         => 'required|string|max:255',
+            'nama_anak'                     => 'required|string|max:255',
+            'jenis_kelamin'                 => 'required|string|max:255',
+            'tanggal_lahir'                 => 'required|string|max:255',
+            'status_anak'                   => 'required|string|max:255',
+            'jenis_dokumen'                 => 'required|string|max:255',
+            'no_dokumen'                    => 'required|string|max:255',
+            'agama'                         => 'required|string|max:255',
+            'status_hidup'                  => 'required|string|max:255',
+            'no_akta_kelahiran'             => 'required|string|max:255',
+            'dokumen_akta_kelahiran'        => 'required|mimes:pdf|max:2048',
+            'pas_foto'                      => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $dokumen_akta_kelahiran = time() . '.' . $request->dokumen_akta_kelahiran->extension();
+            $request->dokumen_akta_kelahiran->move(public_path('assets/DokumenAktaKelahiran'), $dokumen_akta_kelahiran);
+
+            $pas_foto = time() . '.' . $request->pas_foto->extension();
+            $request->pas_foto->move(public_path('assets/DokumenPasFotoAnak'), $pas_foto);
+
+            $riwayatAnak = new RiwayatAnak();
+            $riwayatAnak->user_id                   = $request->user_id;
+            $riwayatAnak->orang_tua                 = $request->orang_tua;
+            $riwayatAnak->status_pekerjaan_anak     = $request->status_pekerjaan_anak;
+            $riwayatAnak->nama_anak                 = $request->nama_anak;
+            $riwayatAnak->jenis_kelamin             = $request->jenis_kelamin;
+            $riwayatAnak->tanggal_lahir             = $request->tanggal_lahir;
+            $riwayatAnak->status_anak               = $request->status_anak;
+            $riwayatAnak->jenis_dokumen             = $request->jenis_dokumen;
+            $riwayatAnak->no_dokumen                = $request->no_dokumen;
+            $riwayatAnak->agama                     = $request->agama;
+            $riwayatAnak->status_hidup              = $request->status_hidup;
+            $riwayatAnak->no_akta_kelahiran         = $request->no_akta_kelahiran;
+            $riwayatAnak->dokumen_akta_kelahiran    = $dokumen_akta_kelahiran;
+            $riwayatAnak->pas_foto                  = $pas_foto;
+            $riwayatAnak->save();
+
+            DB::commit();
+
+            Toastr::success('Data riwayat anak telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Toastr::error('Data riwayat anak gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat Anak */
+
+    /** Edit Data Riwayat Anak */
+    public function editRiwayatAnak(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $dokumen_akta_kelahiran = $request->hidden_dokumen_akta_kelahiran;
+            $dokumen_akta_kelahirans  = $request->file('dokumen_akta_kelahiran');
+            if ($dokumen_akta_kelahirans != '') {
+                unlink('assets/DokumenAktaKelahiran/' . $dokumen_akta_kelahiran);
+                $dokumen_akta_kelahiran = time() . '.' . $dokumen_akta_kelahirans->getClientOriginalExtension();
+                $dokumen_akta_kelahirans->move(public_path('assets/DokumenAktaKelahiran'), $dokumen_akta_kelahiran);
+            } else {
+                $dokumen_akta_kelahiran;
+            }
+
+            $pas_foto = $request->hidden_pas_foto;
+            $pas_fotos  = $request->file('pas_foto');
+            if ($pas_fotos != '') {
+                unlink('assets/DokumenPasFotoAnak/' . $pas_foto);
+                $pas_foto = time() . '.' . $pas_fotos->getClientOriginalExtension();
+                $pas_fotos->move(public_path('assets/DokumenPasFotoAnak'), $pas_foto);
+            } else {
+                $pas_foto;
+            }
+
+            $update = [
+                'id'                        => $request->id,
+                'orang_tua'                 => $request->orang_tua,
+                'status_pekerjaan_anak'     => $request->status_pekerjaan_anak,
+                'nama_anak'                 => $request->nama_anak,
+                'jenis_kelamin'             => $request->jenis_kelamin,
+                'tanggal_lahir'             => $request->tanggal_lahir,
+                'status_anak'               => $request->status_anak,
+                'jenis_dokumen'             => $request->jenis_dokumen,
+                'no_dokumen'                => $request->no_dokumen,
+                'agama'                     => $request->agama,
+                'status_hidup'              => $request->status_hidup,
+                'no_akta_kelahiran'         => $request->no_akta_kelahiran,
+                'dokumen_akta_kelahiran'    => $dokumen_akta_kelahiran,
+                'pas_foto'                  => $pas_foto,
+            ];
+
+            RiwayatAnak::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat anak berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat anak gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Anak */
+
+    /** Delete Riwayat Anak */
+    public function hapusRiwayatAnak(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatAnak::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat anak berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat anak gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Anak */
 }

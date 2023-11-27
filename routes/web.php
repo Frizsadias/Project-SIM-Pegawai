@@ -482,6 +482,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/tugasbelajar/tambah-data', [RiwayatController::class, 'tambahRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/tambah-data');
     Route::post('riwayat/tugasbelajar/edit-data', [RiwayatController::class, 'editRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/edit-data');
     Route::post('riwayat/tugasbelajar/hapus-data', [RiwayatController::class, 'hapusRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/hapus-data');
+
+    // ----------------------- Informasi Riwayat Pasangan --------------------------//
+    Route::get('riwayat/pasangan', [RiwayatController::class, 'pasangan'])->name('riwayat-pasangan');
+    Route::post('riwayat/pasangan/tambah-data', [RiwayatController::class, 'tambahRiwayatPasangan'])->name('riwayat/pasangan/tambah-data');
+    Route::post('riwayat/pasangan/edit-data', [RiwayatController::class, 'editRiwayatPasangan'])->name('riwayat/pasangan/edit-data');
+    Route::post('riwayat/pasangan/hapus-data', [RiwayatController::class, 'hapusRiwayatPasangan'])->name('riwayat/pasangan/hapus-data');
+
+    // ----------------------- Informasi Riwayat Anak --------------------------//
+    Route::get('riwayat/anak', [RiwayatController::class, 'anak'])->name('riwayat-anak');
+    Route::post('riwayat/anak/tambah-data', [RiwayatController::class, 'tambahRiwayatAnak'])->name('riwayat/anak/tambah-data');
+    Route::post('riwayat/anak/edit-data', [RiwayatController::class, 'editRiwayatAnak'])->name('riwayat/anak/edit-data');
+    Route::post('riwayat/anak/hapus-data', [RiwayatController::class, 'hapusRiwayatAnak'])->name('riwayat/anak/hapus-data');
 });
 
 // ----------------------- Informasi Layanan Cuti --------------------------//
