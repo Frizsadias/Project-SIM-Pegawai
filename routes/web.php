@@ -494,6 +494,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/anak/tambah-data', [RiwayatController::class, 'tambahRiwayatAnak'])->name('riwayat/anak/tambah-data');
     Route::post('riwayat/anak/edit-data', [RiwayatController::class, 'editRiwayatAnak'])->name('riwayat/anak/edit-data');
     Route::post('riwayat/anak/hapus-data', [RiwayatController::class, 'hapusRiwayatAnak'])->name('riwayat/anak/hapus-data');
+
+    // ----------------------- Informasi Riwayat Orang Tua --------------------------//
+    Route::get('riwayat/orangtua', [RiwayatController::class, 'orangtua'])->name('riwayat-orangtua');
+    Route::post('riwayat/orangtua/tambah-data', [RiwayatController::class, 'tambahRiwayatOrangTua'])->name('riwayat/orangtua/tambah-data');
+    Route::post('riwayat/orangtua/edit-data', [RiwayatController::class, 'editRiwayatOrangTua'])->name('riwayat/orangtua/edit-data');
+    Route::post('riwayat/orangtua/hapus-data', [RiwayatController::class, 'hapusRiwayatOrangTua'])->name('riwayat/orangtua/hapus-data');
 });
 
 // ----------------------- Informasi Layanan Cuti --------------------------//

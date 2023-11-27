@@ -166,6 +166,7 @@
                                     <div class="form-group">
                                         <label>Kategori Hukuman</label><small class="text-danger">*</small>
                                         <select class="form-control" name="kategori_hukuman" required>
+                                            <option disabled selected value="">-- Pilih Kategori Hukuman --</option>
                                             <option value="Penetapan">Penetapan</option>
                                             <option value="Pengaktifan Kembali">Pengaktifan Kembali</option>
                                         </select>
@@ -175,6 +176,7 @@
                                     <div class="form-group">
                                         <label>Tingkat Hukuman</label><small class="text-danger">*</small>
                                         <select class="form-control" name="tingkat_hukuman" required>
+                                            <option disabled selected value="">-- Pilih Tingkat Hukuman --</option>
                                             <option value="Berat">Berat</option>
                                             <option value="Ringan">Ringan</option>
                                             <option value="Sedang">Sedang</option>
@@ -187,6 +189,7 @@
                                     <div class="form-group">
                                         <label>Jenis Hukuman</label><small class="text-danger">*</small>
                                         <select class="form-control" name="jenis_hukuman" required>
+                                            <option disabled selected value="">-- Pilih Jenis Hukuman --</option>
                                             <option value="Pembebasan Dari Jabatan">Pembebasan Dari Jabatan</option>
                                             <option value="Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri">Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri</option>
                                             <option value="Pemberhentian Tidak Dengan Hormat Sebagai PNS">Pemberhentian Tidak Dengan Hormat Sebagai PNS</option>
@@ -211,6 +214,7 @@
                                     <div class="form-group">
                                         <label>Alasan</label>
                                         <select class="form-control" name="alasan">
+                                            <option disabled selected value="">-- Pilih Alasan --</option>
                                             <option value="Tidak Mengucapkan Sumpah/Janji PNS">Tidak Mengucapkan Sumpah/Janji PNS</option>
                                             <option value="Tidak Mengucapkan Sumpah/Janji Jabatan">Tidak Mengucapkan Sumpah/Janji Jabatan</option>
                                             <option value="Tidak Mentaati Segala Ketentuan Peraturan Perundang-undangan">Tidak Mentaati Segala Ketentuan Peraturan Perundang-undangan</option>
@@ -298,6 +302,7 @@
                                     <div class="form-group">
                                         <label>Kategori Hukuman</label><small class="text-danger">*</small>
                                         <select class="form-control" name="kategori_hukuman" id="e_kategori_hukuman" required>
+                                            <option disabled selected value="">-- Pilih Kategori Hukuman --</option>
                                             <option value="Penetapan">Penetapan</option>
                                             <option value="Pengaktifan Kembali">Pengaktifan Kembali</option>
                                         </select>
@@ -307,6 +312,7 @@
                                     <div class="form-group">
                                         <label>Tingkat Hukuman</label><small class="text-danger">*</small>
                                         <select class="form-control" name="tingkat_hukuman" id="e_tingkat_hukuman" required>
+                                            <option disabled selected value="">-- Pilih Tingkat Hukuman --</option>
                                             <option value="Berat">Berat</option>
                                             <option value="Ringan">Ringan</option>
                                             <option value="Sedang">Sedang</option>
@@ -319,6 +325,7 @@
                                     <div class="form-group">
                                         <label>Jenis Hukuman</label><small class="text-danger">*</small>
                                         <select class="form-control" name="jenis_hukuman" id="e_jenis_hukuman" required>
+                                            <option disabled selected value="">-- Pilih Jenis Hukuman --</option>
                                             <option value="Pembebasan Dari Jabatan">Pembebasan Dari Jabatan</option>
                                             <option value="Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri">Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri</option>
                                             <option value="Pemberhentian Tidak Dengan Hormat Sebagai PNS">Pemberhentian Tidak Dengan Hormat Sebagai PNS</option>
@@ -343,6 +350,7 @@
                                     <div class="form-group">
                                         <label>Alasan</label>
                                         <select class="form-control" name="alasan" id="e_alasan">
+                                            <option disabled selected value="">-- Pilih Alasan --</option>
                                             <option value="Tidak Mengucapkan Sumpah/Janji PNS">Tidak Mengucapkan Sumpah/Janji PNS</option>
                                             <option value="Tidak Mengucapkan Sumpah/Janji Jabatan">Tidak Mengucapkan Sumpah/Janji Jabatan</option>
                                             <option value="Tidak Mentaati Segala Ketentuan Peraturan Perundang-undangan">Tidak Mentaati Segala Ketentuan Peraturan Perundang-undangan</option>

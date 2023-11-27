@@ -8,15 +8,15 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title"> Riwayat Pasangan</h3>
+                        <h3 class="page-title"> Riwayat Orang Tua</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Riwayat Pasangan</li>
+                            <li class="breadcrumb-item active">Riwayat Orang Tua</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pasangan"><i
-                                class="fa fa-plus"></i> Tambah Riwayat Pasangan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_ortu"><i
+                                class="fa fa-plus"></i> Tambah Riwayat Orang Tua</a>
                     </div>
                 </div>
             </div>
@@ -65,49 +65,64 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pasangan</th>
-                                    <th>Status Pekerjaan Pasangan</th>
-                                    <th>Status Pernikahan</th>
                                     <th>Status Hidup</th>
-                                    <th>Dokumen Nikah</th>
-                                    <th>Pas Foto</th>
+                                    <th>Nama Orang Tua</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Status Pernikahan</th>
+                                    <th>Dokumen Kartu Keluarga</th>
+                                    <th>Dokumen Akta Anak</th>
+                                    <th>Pas Foto Ayah</th>
+                                    <th>Pas Foto Ibu</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($riwayatPasangan as $sqlPasangan => $result_pasangan)
+                                @foreach ($riwayatOrtu as $sqlOrtu => $result_Ortu)
                                     <tr>
-                                        <td><center>{{ ++$sqlPasangan }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_pasangan->id }}</center></td>
-                                        <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
-                                        <td class="status_pekerjaan_pasangan"><center>{{ $result_pasangan->status_pekerjaan_pasangan }}</center></td>
-                                        <td class="status_pernikahan"><center>{{ $result_pasangan->status_pernikahan }}</center></td>
-                                        <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
-                                        <td class="dokumen_nikah"><center>
-                                            <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
-                                                @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
+                                        <td><center>{{ ++$sqlOrtu }}</center></td>
+                                        <td hidden class="id"><center>{{ $result_Ortu->id }}</center></td>
+                                        <td class="status_hidup"><center>{{ $result_Ortu->status_hidup }}</center></td>
+                                        <td class="nama"><center>{{ $result_Ortu->nama }}</center></td>
+                                        <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
+                                        <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
+                                        <td hidden class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
+                                        <td class="dokumen_kk"><center>
+                                            <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
+                                                @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
-                                                    <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
+                                                    <td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>
                                             </a></center></td>
-                                            <td class="pas_foto"><center>
-                                            <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
-                                                @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                        <td class="dokumen_akta_lahir_anak"><center>
+                                            <a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank">
+                                                @if (pathinfo($result_Ortu->dokumen_akta_lahir_anak, PATHINFO_EXTENSION) == 'pdf')
+                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                    <td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>
+                                            </a></center></td>
+                                        <td class="pas_foto_ayah"><center>
+                                            <a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank">
+                                                @if (in_array(pathinfo($result_Ortu->pas_foto_ayah, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                     <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
-                                                <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
+                                                <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
                                             </a>
-                                            <td hidden class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
-                                            <td hidden class="nip"><center>{{ $result_pasangan->nip }}</center></td>
-                                            <td hidden class="tanggal_lahir"><center>{{ $result_pasangan->tanggal_lahir }}</center></td>
-                                            <td hidden class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
-                                            <td hidden class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
-                                            <td hidden class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
-                                            <td hidden class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
-                                            <td hidden class="agama"><center>{{ $result_pasangan->agama }}</center></td>
-                                            <td hidden class="email"><center>{{ $result_pasangan->email }}</center></td>
-                                            <td hidden class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
-                                            <td hidden class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
+                                        <td class="pas_foto_ibu"><center>
+                                            <a href="{{ asset('assets/DokumenPasFotoIbu/' . $result_Ortu->pas_foto_ibu) }}" target="_blank">
+                                                @if (in_array(pathinfo($result_Ortu->pas_foto_ibu, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                @endif
+                                                <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
+                                            </a>
+                                            <td hidden class="nip"><center>{{ $result_Ortu->nip }}</center></td>
+                                            <td hidden class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
+                                            <td hidden class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
+                                            <td hidden class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
+                                            <td hidden class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
+                                            <td hidden class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
+                                            <td hidden class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
+                                            <td hidden class="agama"><center>{{ $result_Ortu->agama }}</center></td>
+                                            <td hidden class="email"><center>{{ $result_Ortu->email }}</center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -115,12 +130,12 @@
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_pasangan" href="#"
-                                                        data-toggle="modal" data-target="#edit_pasangan"><i
+                                                    <a class="dropdown-item edit_ortu" href="#"
+                                                        data-toggle="modal" data-target="#edit_ortu"><i
                                                             class="fa fa-pencil m-r-5"></i>
                                                         Edit</a>
-                                                    <a class="dropdown-item delete_pasangan" href="#"
-                                                        data-toggle="modal" data-target="#delete_pasangan"><i
+                                                    <a class="dropdown-item delete_ortu" href="#"
+                                                        data-toggle="modal" data-target="#delete_ortu"><i
                                                             class="fa fa-trash-o m-r-5"></i>
                                                         Delete</a>
                                                 </div>
@@ -136,18 +151,18 @@
         </div>
         <!-- /Page Content -->
 
-        <!-- Tambah Riwayat Pasangan -->
-        <div id="add_riwayat_pasangan" class="modal custom-modal fade" role="dialog">
+        <!-- Tambah Riwayat Orang Tua -->
+        <div id="add_riwayat_ortu" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Riwayat Pasangan</h5>
+                        <h5 class="modal-title">Tambah Riwayat Orang Tua</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('riwayat/pasangan/tambah-data') }}" method="POST"
+                        <form action="{{ route('riwayat/orangtua/tambah-data') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
@@ -161,35 +176,34 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Suami/Istri ke</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="suami_istri_ke" required>
-                                            <option disabled selected value="">-- Pilih Suami/Istri ke --</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
+                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="status_hidup" value="Hidup" required>
+                                                Hidup
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="status_hidup" value="Meninggal" required>
+                                                Meninggal
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pekerjaan Pasangan</label><small class="text-danger">*</small>
+                                        <label>Status Pekerjaan Orang Tua</label><small class="text-danger">*</small>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan"
-                                             value="Bukan PNS" required>
+                                            <input class="form-check-input" type="radio" name="status_pekerjaan_ortu"
+                                                value="Bukan PNS" required>
                                             <label class="form-check-label">
                                                 Bukan PNS
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan"
-                                             value="PNS" required>
+                                            <input class="form-check-input" type="radio" name="status_pekerjaan_ortu"
+                                                value="PNS" required>
                                             <label class="form-check-label">
                                                 PNS
                                             </label>
@@ -203,16 +217,10 @@
                                             placeholder="Masukkan NIP">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="tanggal-meninggal" style="display:none;">
                                     <div class="form-group">
-                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="status_pernikahan" required>
-                                            <option disabled selected value="">-- Pilih Status Pernikahan --</option>
-                                            <option value="Menikah">Menikah</option>
-                                            <option value="Belum Menikah">Belum Menikah</option>
-                                            <option value="Cerai Hidup">Cerai Hidup</option>
-                                            <option value="Cerai Mati">Cerai Mati</option>
-                                        </select>
+                                        <label>Tanggal Meninggal</label>
+                                        <input class="form-control" type="date" name="tanggal_meninggal">
                                     </div>
                                 </div>
                             </div>
@@ -221,7 +229,7 @@
                                     <div class="form-group">
                                         <label>Nama</label><small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nama"
-                                            placeholder="Masukkan nama pasangan" required>
+                                            placeholder="Masukkan nama orang tua" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -274,160 +282,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Hidup</label><small class="text-danger">*</small>
-                                        <div>
-                                            <label>
-                                                <input type="radio" name="status_hidup" value="Hidup" required>
-                                                Hidup
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label>
-                                                <input type="radio" name="status_hidup" value="Meninggal" required>
-                                                Meninggal
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nomor Karsu/Karis</label><small class="text-danger">*</small>
-                                        <input class="form-control" type="text" name="no_karis_karsu"
-                                            placeholder="Masukkan nomor karsu/karis" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Alamat</label><small class="text-danger">*</small>
-                                        <input class="form-control" type="text" name="alamat"
-                                            placeholder="Masukkan alamat pasangan" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nomor HP</label><small class="text-danger">*</small>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">+62</span>
-                                            </div>
-                                            <input class="form-control" type="number" name="no_hp"
-                                                placeholder="Masukkan nomor HP pasangan" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">+62</span>
-                                            </div>
-                                            <input class="form-control" type="number" name="no_telepon"
-                                                placeholder="Masukkan nomor telepon pasangan" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Email</label><small class="text-danger">*</small>
-                                        <input class="form-control" type="email" name="email" placeholder="Masukkan email pasangan" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Dokumen Nikah</label><small class="text-danger">*</small>
-                                        <input class="form-control" type="file" name="dokumen_nikah">
-                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Pas Foto</label><small class="text-danger">*</small>
-                                        <input class="form-control" type="file" name="pas_foto">
-                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Tambah Riwayat Pasangan Modal -->
-
-        <!-- Edit Riwayat Pasangan Modal -->
-        <div id="edit_pasangan" class="modal custom-modal fade" role="dialog">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit Riwayat Pasangan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('riwayat/pasangan/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="id" id="e_id" value="">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Suami/Istri ke</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="suami_istri_ke" id="e_suami_istri_ke" required>
-                                            <option disabled selected value="">-- Pilih Suami/Istri ke --</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Status Pekerjaan Pasangan</label><small class="text-danger">*</small>
-                                        <div>
-                                            <label>
-                                                <input type="radio" name="status_pekerjaan_pasangan" id="bukan_pns" value="Bukan PNS" required>
-                                                Bukan PNS
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label>
-                                                <input type="radio" name="status_pekerjaan_pasangan" id="pns" value="PNS" required>
-                                                PNS
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>NIP</label>
-                                        <input class="form-control" type="text" name="nip" id="e_nip"
-                                            placeholder="Jika status pasangan bukan PNS isi dengan -" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label>Status Pernikahan</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="status_pernikahan" id="e_status_pernikahan" required>
+                                        <select class="form-control" name="status_pernikahan" required>
                                             <option disabled selected value="">-- Pilih Status Pernikahan --</option>
                                             <option value="Menikah">Menikah</option>
                                             <option value="Belum Menikah">Belum Menikah</option>
@@ -440,9 +296,155 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label>Alamat</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="text" name="alamat"
+                                            placeholder="Masukkan alamat orang tua" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="email" name="email"
+                                            placeholder="Masukkan email orang tua" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">+62</span>
+                                            </div>
+                                            <input class="form-control" type="number" name="no_hp"
+                                                placeholder="Masukkan nomor HP orang tua" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">+62</span>
+                                            </div>
+                                            <input class="form-control" type="number" name="no_telepon"
+                                                placeholder="Masukkan nomor telepon orang tua" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="file" name="dokumen_kk">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="file" name="dokumen_akta_lahir_anak">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Pas Foto Ayah</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="file" name="pas_foto_ayah">
+                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Pas Foto Ibu</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="file" name="pas_foto_ibu">
+                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit-section">
+                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Tambah Riwayat Orang Tua Modal -->
+
+        <!-- Edit Riwayat Orang Tua Modal -->
+        <div id="edit_ortu" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Riwayat Orang Tua</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('riwayat/orangtua/edit-data') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id" id="e_id" value="">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="status_hidup" value="Hidup" id="e_hidup" required>
+                                                Hidup
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="status_hidup" value="Meninggal" id="e_meninggal" required>
+                                                Meninggal
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Status Pekerjaan Orang Tua</label><small class="text-danger">*</small>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="status_pekerjaan_ortu" value="Bukan PNS" id="bukan_pns" required>
+                                                Bukan PNS
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="status_pekerjaan_ortu" value="PNS" id="e_pns" required>
+                                                PNS
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>NIP</label>
+                                        <input class="form-control" type="text" name="nip" id="e_nip"
+                                            placeholder="Masukkan NIP">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tanggal Meninggal</label>
+                                        <input class="form-control" type="date" name="tanggal_meninggal" id="e_tanggal_meninggal">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label>Nama</label><small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nama" id="e_nama"
-                                            placeholder="Masukkan nama pasangan" required>
+                                            placeholder="Masukkan nama orang tua" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -468,13 +470,13 @@
                                         <label>Jenis Kelamin</label><small class="text-danger">*</small>
                                         <div>
                                             <label>
-                                                <input type="radio" name="jenis_kelamin" id="laki_laki" value="Laki-Laki" required>
+                                                <input type="radio" name="jenis_kelamin" value="Laki-Laki" id="e_laki_laki" required>
                                                 Laki-Laki
                                             </label>
                                         </div>
                                         <div>
                                             <label>
-                                                <input type="radio" name="jenis_kelamin" id="perempuan" value="Perempuan" required>
+                                                <input type="radio" name="jenis_kelamin" value="Perempuan" id="e_perempuan" required>
                                                 Perempuan
                                             </label>
                                         </div>
@@ -495,35 +497,30 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Hidup</label><small class="text-danger">*</small>
-                                        <div>
-                                            <label>
-                                                <input type="radio" name="status_hidup" id="hidup" value="Hidup" required>
-                                                Hidup
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label>
-                                                <input type="radio" name="status_hidup" id="meninggal" value="Meninggal" required>
-                                                Meninggal
-                                            </label>
-                                        </div>
+                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
+                                        <select class="form-control" name="status_pernikahan" id="e_status_pernikahan" required>
+                                            <option disabled selected value="">-- Pilih Status Pernikahan --</option>
+                                            <option value="Menikah">Menikah</option>
+                                            <option value="Belum Menikah">Belum Menikah</option>
+                                            <option value="Cerai Hidup">Cerai Hidup</option>
+                                            <option value="Cerai Mati">Cerai Mati</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Karsu/Karis</label><small class="text-danger">*</small>
-                                        <input class="form-control" type="text" name="no_karis_karsu" id="e_no_karis_karsu"
-                                            placeholder="Masukkan nomor karsu/karis" required>
+                                        <label>Alamat</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="text" name="alamat" id="e_alamat"
+                                            placeholder="Masukkan alamat orang tua" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Alamat</label><small class="text-danger">*</small>
-                                        <input class="form-control" type="text" name="alamat" id="e_alamat"
-                                            placeholder="Masukkan alamat pasangan" required>
+                                        <label>Email</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="email" name="email" id="e_email"
+                                            placeholder="Masukkan email orang tua" required>
                                     </div>
                                 </div>
                             </div>
@@ -536,7 +533,7 @@
                                                 <span class="input-group-text">+62</span>
                                             </div>
                                             <input class="form-control" type="number" name="no_hp" id="e_no_hp"
-                                                placeholder="Masukkan nomor HP pasangan" required>
+                                                placeholder="Masukkan nomor HP orang tua" required>
                                         </div>
                                     </div>
                                 </div>
@@ -548,7 +545,7 @@
                                                 <span class="input-group-text">+62</span>
                                             </div>
                                             <input class="form-control" type="number" name="no_telepon" id="e_no_telepon"
-                                                placeholder="Masukkan nomor telepon pasangan" required>
+                                            placeholder="Masukkan nomor telepon orang tua" required>
                                         </div>
                                     </div>
                                 </div>
@@ -556,30 +553,38 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Email</label><small class="text-danger">*</small>
-                                        <input class="form-control" type="email" name="email" id="e_email" placeholder="Masukkan email pasangan" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Dokumen Nikah</label><small class="text-danger">*</small>
-                                        <input type="file" class="form-control" id="dokumen_nikah"
-                                            name="dokumen_nikah">
-                                        <input type="hidden" name="hidden_dokumen_nikah" id="e_dokumen_nikah"
+                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="file" name="dokumen_kk" id="dokumen_kk">
+                                        <input type="hidden" name="hidden_dokumen_kk" id="e_dokumen_kk"
                                             value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto</label><small class="text-danger">*</small>
-                                        <input type="file" class="form-control" id="pas_foto"
-                                            name="pas_foto">
-                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto"
+                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="file" name="dokumen_akta_lahir_anak" id="dokumen_akta_lahir_anak">
+                                        <input type="hidden" name="hidden_dokumen_akta_lahir_anak" id="e_dokumen_akta_lahir_anak"
                                             value="">
-                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Pas Foto Ayah</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="file" name="pas_foto_ayah" id="pas_foto_ayah">
+                                        <input type="hidden" name="hidden_pas_foto_ayah" id="e_pas_foto_ayah"
+                                            value="">
+                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Pas Foto Ibu</label><small class="text-danger">*</small>
+                                        <input class="form-control" type="file" name="pas_foto_ibu" id="pas_foto_ibu">
+                                        <input type="hidden" name="hidden_pas_foto_ibu" id="e_pas_foto_ibu"
+                                            value="">
+                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                     </div>
                                 </div>
                             </div>
@@ -591,23 +596,25 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Riwayat Pasangan Modal -->
+        <!-- /Edit Riwayat Orang Tua Modal -->
 
-        <!-- Delete Riwayat Pasangan Modal -->
-        <div class="modal custom-modal fade" id="delete_pasangan" role="dialog">
+        <!-- Delete Riwayat Orang Tua Modal -->
+        <div class="modal custom-modal fade" id="delete_ortu" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-header">
-                            <h3>Hapus Riwayat Pasangan</h3>
+                            <h3>Hapus Riwayat Orang Tua</h3>
                             <p>Apakah anda yakin ingin menghapus data ini?</p>
                         </div>
                         <div class="modal-btn delete-action">
-                            <form action="{{ route('riwayat/pasangan/hapus-data') }}" method="POST">
+                            <form action="{{ route('riwayat/orangtua/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_nikah" class="d_dokumen_nikah" value="">
-                                <input type="hidden" name="pas_foto" class="d_pas_foto" value="">
+                                <input type="hidden" name="dokumen_kk" class="d_dokumen_kk" value="">
+                                <input type="hidden" name="dokumen_akta_lahir_anak" class="d_dokumen_akta_lahir_anak" value="">
+                                <input type="hidden" name="pas_foto_ayah" class="d_pas_foto_ayah" value="">
+                                <input type="hidden" name="pas_foto_ibu" class="d_pas_foto_ibu" value="">
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit"
@@ -624,7 +631,7 @@
                 </div>
             </div>
         </div>
-        <!-- End Delete Riwayat Pasangan Modal -->
+        <!-- End Delete Riwayat Orang Tua Modal -->
 
     </div>
     <!-- /Page Wrapper -->
@@ -721,55 +728,71 @@
         </script> --}}
     {{-- update --}}
     <script>
-    $(document).on('click', '.edit_pasangan', function() {
-        var _this = $(this).parents('tr');
-        $('#e_id').val(_this.find('.id').text());
-        $('#e_suami_istri_ke').val(_this.find('.suami_istri_ke').text());
-        var statusPekerjaan = _this.find('.status_pekerjaan_pasangan').text();
-        if (statusPekerjaan === 'Bukan PNS') {
-            $('#bukan_pns').prop('checked', true);
-        } else if (statusPekerjaan === 'PNS') {
-            $('#pns').prop('checked', true);
-        }
-        $('#e_nip').val(_this.find('.nip').text());
-        $('#e_status_pernikahan').val(_this.find('.status_pernikahan').text());
-        $('#e_nama').val(_this.find('.nama').text());
-        $('#e_tanggal_lahir').val(_this.find('.tanggal_lahir').text());
-        $('#e_jenis_identitas').val(_this.find('.jenis_identitas').text());
-        var jenisKelamin = _this.find('.jenis_kelamin').text();
-        if (jenisKelamin === 'Laki-Laki') {
-            $('#laki_laki').prop('checked', true);
-        } else if (jenisKelamin === 'Perempuan') {
-            $('#perempuan').prop('checked', true);
-        }
-        $('#e_agama').val(_this.find('.agama').text());
-        var statusHidup = _this.find('.status_hidup').text();
-        if (statusHidup === 'Hidup') {
-            $('#hidup').prop('checked', true);
-        } else if (statusHidup === 'Meninggal') {
-            $('#meninggal').prop('checked', true);
-        }
-        $('#e_no_karis_karsu').val(_this.find('.no_karis_karsu').text());
-        $('#e_alamat').val(_this.find('.alamat').text());
-        $('#e_no_hp').val(_this.find('.no_hp').text());
-        $('#e_no_telepon').val(_this.find('.no_telepon').text());
-        $('#e_email').val(_this.find('.email').text());
-        // Assuming the dokumen_nikah and pas_foto are stored in hidden fields as file names
-        $('#e_dokumen_nikah').val(_this.find('.dokumen_nikah').text());
-        $('#e_pas_foto').val(_this.find('.pas_foto').text());
+    $(document).on('click', '.edit_ortu', function() {
+    var _this = $(this).parents('tr');
+ 
+    // Isi nilai `id` dari input hidden pada form dengan nilai `id` dari row yang dipilih
+    $('#e_id').val(_this.find('.id').text());
+    $('#e_nama').val(_this.find('.nama').text());
+    $('#e_tanggal_lahir').val(_this.find('.tanggal_lahir').text());
+    $('#e_jenis_identitas').val(_this.find('.jenis_identitas').text());
+ 
+    // Isi nilai radio button jenis kelamin berdasarkan nilai dari row yang dipilih
+    var jenisKelamin = _this.find('.jenis_kelamin').text();
+    if (jenisKelamin === 'Laki-Laki') {
+        $('#e_laki_laki').prop('checked', true);
+    } else if (jenisKelamin === 'Perempuan') {
+        $('#e_perempuan').prop('checked', true);
+    }
+ 
+    $('#e_agama').val(_this.find('.agama').text());
+    $('#e_status_pernikahan').val(_this.find('.status_pernikahan').text());
+    $('#e_alamat').val(_this.find('.alamat').text());
+    $('#e_email').val(_this.find('.email').text());
+    $('#e_nip').val(_this.find('.nip').text());
+    $('#e_tanggal_meninggal').val(_this.find('.tanggal_meninggal').text());
+    $('#e_no_hp').val(_this.find('.no_hp').text());
+    $('#e_no_telepon').val(_this.find('.no_telepon').text());
+    var statusHidup = _this.find('.status_hidup').text();
+    if (statusHidup === 'Hidup') {
+        $('#e_hidup').prop('checked', true);
+    } else if (statusHidup === 'Meninggal') {
+        $('#e_meninggal').prop('checked', true);
+    }
 
-        // Your existing code for the other fields...
-    });
-</script>
+    var statusPekerjaan = _this.find('.status_pekerjaan_ortu').text();
+if (statusPekerjaan === 'Bukan PNS') {
+    $('#bukan_pns').prop('checked', true);
+} else if (statusPekerjaan === 'PNS') {
+    $('#e_pns').prop('checked', true);
+}
+
+
+
+    $('#e_dokumen_kk').val(_this.find('.dokumen_kk').text());
+    $('#e_hidden_dokumen_kk').val(_this.find('.dokumen_kk').text());
+ 
+    $('#e_dokumen_akta_lahir_anak').val(_this.find('.dokumen_akta_lahir_anak').text());
+    $('#e_hidden_dokumen_akta_lahir_anak').val(_this.find('.dokumen_akta_lahir_anak').text());
+ 
+    $('#e_pas_foto_ayah').val(_this.find('.pas_foto_ayah').text());
+    $('#e_hidden_pas_foto_ayah').val(_this.find('.pas_foto_ayah').text());
+ 
+    $('#e_pas_foto_ibu').val(_this.find('.pas_foto_ibu').text());
+    $('#e_hidden_pas_foto_ibu').val(_this.find('.pas_foto_ibu').text());
+});
+    </script>
 
 
     {{-- delete model --}}
     <script>
-        $(document).on('click', '.delete_pasangan', function() {
+        $(document).on('click', '.delete_ortu', function() {
             var _this = $(this).parents('tr');
             $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_nikah').val(_this.find('.dokumen_nikah').text());
-            $('.d_pas_foto').val(_this.find('.pas_foto').text());
+            $('.d_dokumen_kk').val(_this.find('.dokumen_kk').text());
+            $('.d_dokumen_akta_lahir_anak').val(_this.find('.dokumen_akta_lahir_anak').text());
+            $('.d_pas_foto_ayah').val(_this.find('.pas_foto_ayah').text());
+            $('.d_pas_foto_ibu').val(_this.find('.pas_foto_ibu').text());
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -778,12 +801,26 @@
     </script>
 
     <script>
-        history.pushState({}, "", '/riwayat/pasangan');
+        history.pushState({}, "", '/riwayat/orangtua');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('input[name="status_hidup"]').click(function() {
+                if ($(this).val() == 'Hidup') {
+                    $('#tanggal-meninggal').hide();
+                } else {
+                    $('#tanggal-meninggal').show();
+                }
+            });
+        });
     </script>
 
     <script>
         $(document).ready(function() {
-            $('input[name="status_pekerjaan_pasangan"]').click(function() {
+            $('input[name="status_pekerjaan_ortu"]').click(function() {
                 if ($(this).val() === "PNS") {
                     $('#show_nip').show();
                 } else {

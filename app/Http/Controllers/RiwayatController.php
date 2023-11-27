@@ -16,6 +16,7 @@ use App\Models\Notification;
 use App\Models\RiwayatAnak;
 use App\Models\RiwayatAngkaKredit;
 use App\Models\RiwayatHukumanDisiplin;
+use App\Models\RiwayatOrangTua;
 use App\Models\RiwayatOrganisasi;
 use App\Models\RiwayatPasangan;
 use App\Models\RiwayatPenghargaan;
@@ -2035,4 +2036,204 @@ class RiwayatController extends Controller
         }
     }
     /** End Delete Riwayat Anak */
+
+    /** --------------------------------- Riwayat Orang Tua --------------------------------- */
+    /** Tampilan Riwayat Orang Tua */
+    public function orangtua()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+
+        $dataOrtu = Session::get('user_id');
+        $riwayatOrtu = RiwayatOrangTua::where('user_id', $dataOrtu)->get();
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+
+        return view('riwayat.riwayat-orang-tua', compact('riwayatOrtu', 'agamaOptions', 'unreadNotifications', 'readNotifications'));
+    }
+    /** End Tampilan Riwayat Orang Tua */
+
+    /** Tambah Data Riwayat Orang Tua */
+    public function tambahRiwayatOrangTua(Request $request)
+    {
+        $request->validate([
+            'user_id'                       => 'required|string|max:255',
+            'status_hidup'                  => 'required|string|max:255',
+            'status_pekerjaan_ortu'         => 'required|string|max:255',
+            'nip'                           => 'nullable|string|max:255',
+            'nama'                          => 'required|string|max:255',
+            'tanggal_lahir'                 => 'required|string|max:255',
+            'jenis_kelamin'                 => 'required|string|max:255',
+            'tanggal_meninggal'             => 'nullable|string|max:255',
+            'jenis_identitas'               => 'required|string|max:255',
+            'no_hp'                         => 'required|string|max:255',
+            'no_telepon'                    => 'required|string|max:255',
+            'agama'                         => 'required|string|max:255',
+            'status_pernikahan'             => 'required|string|max:255',
+            'email'                         => 'required|string|max:255',
+            'alamat'                        => 'required|string|max:255',
+            'dokumen_kk'                    => 'required|mimes:pdf|max:2048',
+            'dokumen_akta_lahir_anak'       => 'required|mimes:pdf|max:2048',
+            'pas_foto_ayah'                 => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'pas_foto_ibu'                  => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $dokumen_kk = time() . '.' . $request->dokumen_kk->extension();
+            $request->dokumen_kk->move(public_path('assets/DokumenKartuKeluarga'), $dokumen_kk);
+
+            $dokumen_akta_lahir_anak = time() . '.' . $request->dokumen_akta_lahir_anak->extension();
+            $request->dokumen_akta_lahir_anak->move(public_path('assets/DokumenAktaLahirAnak'), $dokumen_akta_lahir_anak);
+
+            $pas_foto_ayah = time() . '.' . $request->pas_foto_ayah->extension();
+            $request->pas_foto_ayah->move(public_path('assets/DokumenPasFotoAyah'), $pas_foto_ayah);
+
+            $pas_foto_ibu = time() . '.' . $request->pas_foto_ibu->extension();
+            $request->pas_foto_ibu->move(public_path('assets/DokumenPasFotoIbu'), $pas_foto_ibu);
+
+            $riwayatOrtu = new RiwayatOrangTua();
+            $riwayatOrtu->user_id                  = $request->user_id;
+            $riwayatOrtu->status_hidup             = $request->status_hidup;
+            $riwayatOrtu->status_pekerjaan_ortu    = $request->status_pekerjaan_ortu;
+            $riwayatOrtu->nip                      = $request->nip;
+            $riwayatOrtu->nama                     = $request->nama;
+            $riwayatOrtu->tanggal_lahir            = $request->tanggal_lahir;
+            $riwayatOrtu->jenis_kelamin            = $request->jenis_kelamin;
+            $riwayatOrtu->tanggal_meninggal        = $request->tanggal_meninggal;
+            $riwayatOrtu->jenis_identitas          = $request->jenis_identitas;
+            $riwayatOrtu->no_hp                    = $request->no_hp;
+            $riwayatOrtu->no_telepon               = $request->no_telepon;
+            $riwayatOrtu->agama                    = $request->agama;
+            $riwayatOrtu->status_pernikahan        = $request->status_pernikahan;
+            $riwayatOrtu->email                    = $request->email;
+            $riwayatOrtu->alamat                   = $request->alamat;
+            $riwayatOrtu->dokumen_kk               = $dokumen_kk;
+            $riwayatOrtu->dokumen_akta_lahir_anak  = $dokumen_akta_lahir_anak;
+            $riwayatOrtu->pas_foto_ayah            = $pas_foto_ayah;
+            $riwayatOrtu->pas_foto_ibu             = $pas_foto_ibu;
+            $riwayatOrtu->save();
+
+            DB::commit();
+
+            Toastr::success('Data riwayat orang tua telah ditambah :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Toastr::error('Data riwayat orang tua gagal ditambah :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Tambah Data Riwayat Orang Tua */
+
+    /** Edit Data Riwayat Orang Tua */
+    public function editRiwayatOrangTua(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $dokumen_kk = $request->hidden_dokumen_kk;
+            $dokumen_kks = $request->file('dokumen_kk');
+            if ($dokumen_kks) {
+                if ($dokumen_kk && file_exists('assets/DokumenKartuKeluarga/' . $dokumen_kk) && is_file('assets/DokumenKartuKeluarga/' . $dokumen_kk)) {
+                    unlink('assets/DokumenKartuKeluarga/' . $dokumen_kk);
+                }
+                $dokumen_kk = time() . '.' . $dokumen_kks->getClientOriginalExtension();
+                $dokumen_kks->move(public_path('assets/DokumenKartuKeluarga'), $dokumen_kk);
+            }
+
+            $dokumen_akta_lahir_anak = $request->hidden_dokumen_akta_lahir_anak;
+            $dokumen_akta_lahir_anaks = $request->file('dokumen_akta_lahir_anak');
+            if ($dokumen_akta_lahir_anaks) {
+                if ($dokumen_akta_lahir_anak && file_exists('assets/DokumenAktaLahirAnak/' . $dokumen_akta_lahir_anak) && is_file('assets/DokumenAktaLahirAnak/' . $dokumen_akta_lahir_anak)) {
+                    unlink('assets/DokumenAktaLahirAnak/' . $dokumen_akta_lahir_anak);
+                }
+                $dokumen_akta_lahir_anak = time() . '.' . $dokumen_akta_lahir_anaks->getClientOriginalExtension();
+                $dokumen_akta_lahir_anaks->move(public_path('assets/DokumenAktaLahirAnak'), $dokumen_akta_lahir_anak);
+            }
+
+            $pas_foto_ayah = $request->hidden_pas_foto_ayah;
+            $pas_foto_ayahs = $request->file('pas_foto_ayah');
+            if ($pas_foto_ayahs) {
+                if ($pas_foto_ayah && file_exists('assets/DokumenPasFotoAyah/' . $pas_foto_ayah) && is_file('assets/DokumenPasFotoAyah/' . $pas_foto_ayah)) {
+                    unlink('assets/DokumenPasFotoAyah/' . $pas_foto_ayah);
+                }
+                $pas_foto_ayah = time() . '.' . $pas_foto_ayahs->getClientOriginalExtension();
+                $pas_foto_ayahs->move(public_path('assets/DokumenPasFotoAyah'), $pas_foto_ayah);
+            }
+
+            $pas_foto_ibu = $request->hidden_pas_foto_ibu;
+            $pas_foto_ibus = $request->file('pas_foto_ibu');
+            if ($pas_foto_ibus) {
+                if ($pas_foto_ibu && file_exists('assets/DokumenPasFotoIbu/' . $pas_foto_ibu) && is_file('assets/DokumenPasFotoIbu/' . $pas_foto_ibu)) {
+                    unlink('assets/DokumenPasFotoIbu/' . $pas_foto_ibu);
+                }
+                $pas_foto_ibu = time() . '.' . $pas_foto_ibus->getClientOriginalExtension();
+                $pas_foto_ibus->move(public_path('assets/DokumenPasFotoIbu'), $pas_foto_ibu);
+            }
+
+            
+            $update = [
+                'id'                            => $request->id,
+                'status_hidup'                  => $request->status_hidup,
+                'status_pekerjaan_ortu'         => $request->status_pekerjaan_ortu,
+                'nip'                           => $request->nip,
+                'nama'                          => $request->nama,
+                'tanggal_lahir'                 => $request->tanggal_lahir,
+                'jenis_kelamin'                 => $request->jenis_kelamin,
+                'tanggal_meninggal'             => $request->tanggal_meninggal,
+                'jenis_identitas'               => $request->jenis_identitas,
+                'no_hp'                         => $request->no_hp,
+                'no_telepon'                    => $request->no_telepon,
+                'agama'                         => $request->agama,
+                'status_pernikahan'             => $request->status_pernikahan,
+                'email'                         => $request->email,
+                'alamat'                        => $request->alamat,
+                'dokumen_kk'                    => $dokumen_kk,
+                'dokumen_akta_lahir_anak'       => $dokumen_akta_lahir_anak,
+                'pas_foto_ayah'                 => $pas_foto_ayah,
+                'pas_foto_ibu'                  => $pas_foto_ibu,
+            ];
+
+            RiwayatOrangTua::where('id', $request->id)->update($update);
+            DB::commit();
+            Toastr::success('Data riwayat Orang Tua berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Orang Tua gagal diperbaharui :(', 'Error');
+            dd($e->getMessage());
+            return redirect()->back();
+        }
+    }
+    /** End Edit Data Riwayat Orang Tua */
+
+    /** Delete Riwayat Orang Tua */
+    public function hapusRiwayatOrangTua(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            RiwayatOrangTua::destroy($request->id);
+            DB::commit();
+            Toastr::success('Data riwayat Orang Tua berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data riwayat Orang Tua gagal dihapus :(', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** End Delete Riwayat Orang Tua */
 }
