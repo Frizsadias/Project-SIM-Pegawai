@@ -412,6 +412,12 @@
                             <span>Organisasi</span>
                         </a>
                     </li>
+                    <li class="{{ request()->routeIs('riwayat-tugas-belajar') ? 'active' : '' }}">
+                        <a href="{{ route('riwayat-tugas-belajar') }}" class="{{ request()->routeIs('riwayat-tugas-belajar') ? 'noti-dot' : '' }}">
+                            <i class="la la-bookmark-o"></i>
+                            <span>Tugas Belajar</span>
+                        </a>
+                    </li>
                     {{-- <li class="{{ request()->routeIs('') ? 'active' : '' }}">
                         <a href="#" class="{{ request()->routeIs('') ? 'noti-dot' : '' }}">
                             <i class="la la-bookmark-o"></i>
