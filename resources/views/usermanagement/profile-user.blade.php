@@ -55,62 +55,62 @@
                                         <div class="col-md-7">
                                             <ul class="personal-info">
                                                 <li>
-                                                    <div class="title">E-mail :</div>
+                                                    <div class="title">E-mail</div>
                                                     <div class="text"><a href="mailto:{{ Session::get('email') }}">{{ Session::get('email') }}</a></div>
                                                 </li>
                                                 @if (!empty($information))
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
-                                                        <div class="title">Tanggal Lahir :</div>
+                                                        <div class="title">Tanggal Lahir</div>
                                                         <div class="text">{{ date('d F Y', strtotime($information->tgl_lahir)) }}
                                                         </div>
                                                         @else
-                                                        <div class="title">Tanggal Lahir :</div>
+                                                        <div class="title">Tanggal Lahir</div>
                                                         <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
-                                                        <div class="title">Tempat Lahir :</div>
+                                                        <div class="title">Tempat Lahir</div>
                                                         <div class="text">{{ $information->tmpt_lahir }}</div>
                                                         @else
-                                                        <div class="title">Tempat Lahir :</div>
+                                                        <div class="title">Tempat Lahir</div>
                                                         <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
-                                                        <div class="title">Alamat :</div>
+                                                        <div class="title">Alamat</div>
                                                         <div class="text">{{ $information->alamat }}</div>
                                                         @else
-                                                        <div class="title">Alamat :</div>
+                                                        <div class="title">Alamat</div>
                                                         <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     <li>
                                                         @if (Auth::user()->user_id == $information->user_id)
-                                                        <div class="title">Jenis Kelamin :</div>
+                                                        <div class="title">Jenis Kelamin</div>
                                                         <div class="text">{{ $information->jk }}</div>
                                                         @else
-                                                        <div class="title">Jenis Kelamin :</div>
+                                                        <div class="title">Jenis Kelamin</div>
                                                         <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     @else
                                                     <li>
-                                                        <div class="title">Tanggal Lahir :</div>
+                                                        <div class="title">Tanggal Lahir</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                     <li>
-                                                        <div class="title">Tempat Lahir :</div>
+                                                        <div class="title">Tempat Lahir</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                     <li>
-                                                        <div class="title">Alamat :</div>
+                                                        <div class="title">Alamat</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                     <li>
-                                                        <div class="title">Jenis Kelamin :</div>
+                                                        <div class="title">Jenis Kelamin</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                 @endif

@@ -272,7 +272,7 @@ class UserManagementController extends Controller
         $profile = Session::get('user_id');
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
-        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
@@ -293,7 +293,7 @@ class UserManagementController extends Controller
             $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
             $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
             return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
@@ -301,13 +301,13 @@ class UserManagementController extends Controller
                 $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
                 $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
             } else {
                 $information = ProfileInformation::all();
                 $propeg = ProfilPegawai::all();
                 $posjab = PosisiJabatan::all();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
             }
         }
     }
@@ -318,7 +318,7 @@ class UserManagementController extends Controller
         $profile = Session::get('user_id');
         $user = DB::table('users')->get();
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
-        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
@@ -339,7 +339,7 @@ class UserManagementController extends Controller
             $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
             $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
             return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
@@ -347,13 +347,13 @@ class UserManagementController extends Controller
                 $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
                 $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
             } else {
                 $information = ProfileInformation::all();
                 $propeg = ProfilPegawai::all();
                 $posjab = PosisiJabatan::all();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'tingkatpendidikanOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
             }
         }
     }

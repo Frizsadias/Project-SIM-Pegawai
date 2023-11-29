@@ -154,7 +154,7 @@
                                         <label>Jenis Diklat</label>
                                         <br>
                                         <select class="theSelect form-control" name="jenis_diklat" required>
-                                            <option selected disabled> --Pilih Jenis Diklat --</option>
+                                            <option selected disabled>-- Pilih Jenis Diklat --</option>
                                             @foreach($jenisdiklatOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
                                             @endforeach

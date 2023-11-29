@@ -170,7 +170,7 @@
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label><br>
                                         <select name="ting_ped" class="theSelect" id="ting_ped" required>
-                                            <option selected disabled> --Pilih Tingkat Pendidikan --</option>
+                                            <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
                                             @foreach($tingkatpendidikanOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
                                             @endforeach
@@ -181,7 +181,7 @@
                                     <div class="form-group">
                                         <label>Pendidikan</label><br>
                                         <select name="pendidikan" class="theSelect" id="pendidikan" required>
-                                            <option selected disabled> --Pilih Pendidikan --</option>
+                                            <option selected disabled>-- Pilih Pendidikan --</option>
                                             @foreach($pendidikanterakhirOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
                                             @endforeach

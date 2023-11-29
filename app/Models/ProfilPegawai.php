@@ -10,7 +10,7 @@ class ProfilPegawai extends Model
     use HasFactory;
     protected $fillable = [
         'nip',
-        'nama',
+        'name',
         'gelar_depan',
         'gelar_belakang',
         'tempat_lahir',

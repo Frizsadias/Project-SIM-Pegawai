@@ -527,8 +527,11 @@
                     <!-- Riwayat Pendidikan Tab -->
                     <div class="tab-pane fade" id="riwayat_pendidikan">    
                         <div class="row">
-                            <div class="col-auto float-right ml-auto"><a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pendidikan"><i class="fa fa-plus"></i> Tambah Riwayat Pendidikan</a></div>
-                            <br><br>
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pendidikan">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Pendidikan
+                                </a>
+                            </div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
@@ -625,27 +628,33 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                    <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Tingkat Pendidikan</label>
-                                                    <br>
-                                                    <select class="theSelect form-control" name="ting_ped" id="ting_ped">
-                                                        <option value="" disabled selected>-- Pilih Tingkat Pendidikan --</option>
-                                                        @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
-                                                            <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tingkat Pendidikan</label>
+                                                        <br>
+                                                        <select class="theSelect form-control" name="ting_ped" id="ting_ped">
+                                                            <option value="" disabled selected>-- Pilih Tingkat Pendidikan --</option>
+                                                            @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
+                                                                <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Pendidikan</label>
-                                                        <input type="text" class="form-control" name="pendidikan" required>
+                                                        <br>
+                                                        <select class="theSelect" name="pendidikan" required>
+                                                                <option selected disabled>-- Pilih Pendidikan --</option>
+                                                            @foreach($pendidikanterakhirOptions as $key => $value)
+                                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -980,7 +989,13 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Golongan</label>
-                                                            <input type="text" class="form-control" name="golongan" required>
+                                                            <br>
+                                                            <select class="theSelect" name="golongan" required>
+                                                                    <option selected disabled>-- Pilih Golongan --</option>
+                                                                @foreach ($golonganOptions as $key => $value)
+                                                                    <option value="{{ $key }}">{{ $value }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">

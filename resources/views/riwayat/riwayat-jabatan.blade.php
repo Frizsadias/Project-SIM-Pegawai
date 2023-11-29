@@ -164,7 +164,7 @@
                                         <label>Jenis Jabatan</label>
                                         <br>
                                         <select class="theSelect form-control" name="jenis_jabatan_riwayat" required>
-                                            <option selected disabled> --Pilih Jenis Jabatan --</option>
+                                            <option selected disabled>-- Pilih Jenis Jabatan --</option>
                                             @foreach ($jenisjabatanOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
                                             @endforeach
