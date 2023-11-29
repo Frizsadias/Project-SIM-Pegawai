@@ -1,12 +1,5 @@
 @extends('layouts.master')
 @section('content')
-    @section('style')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-
-    <!-- checkbox style -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-    @endsection
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
@@ -14,7 +7,7 @@
         <div class="content container-fluid">
             <!-- Page Header -->
             <div class="page-header">
-                <div class="row align-items-center">
+                <div class="row align-lists-center">
                     <div class="col">
                         <h3 class="page-title">Pegawai</h3>
                         <ul class="breadcrumb">
@@ -23,7 +16,6 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        {{-- <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_pegawai"><i class="fa fa-plus"></i> Tambah Pegawai</a> --}}
                         <div class="view-icons">
                             <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                             <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -111,44 +103,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- /Page Content -->
 
     </div>
     <!-- /Page Wrapper -->
 
-    @section('script')
-        <script>
-            $("input:checkbox").on('click', function()
-            {
-                var $box = $(this);
-                if ($box.is(":checked"))
-                {
-                    var group = "input:checkbox[class='" + $box.attr("class") + "']";
-                    $(group).prop("checked", false);
-                    $box.prop("checked", true);
-                } else {
-                    $box.prop("checked", false);
-                }
-            });
-        </script>
-
-        <script>
-            $(document).ready(function() {
-                $('.select2s-hidden-accessible').select2({
-                    closeOnSelect: false
-                });
-            });
-        </script>
-
-        <script>
-            $('#name').on('change',function()
-            {
-                $('#employee_id').val($(this).find(':selected').data('employee_id'));
-                $('#email').val($(this).find(':selected').data('email'));
-            });
-        </script>
-
-    @endsection
 @endsection
