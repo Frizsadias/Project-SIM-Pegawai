@@ -14,8 +14,8 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">
-                                <label>NIP/NIK</label>
-                                <input type="text" class="form-control @error('nip_or_no_dokumen') is-invalid @enderror" name="nip_or_no_dokumen" value="{{ old('nip_or_no_dokumen') }}" placeholder="Masukkan NIP atau NIK">
+                                <label>NIP/NIKB</label>
+                                <input type="text" class="form-control @error('nip_or_no_dokumen') is-invalid @enderror" name="nip_or_no_dokumen" value="{{ old('nip_or_no_dokumen') }}" placeholder="Masukkan NIP atau NIKB">
                                 @error('nip_or_no_dokumen')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
