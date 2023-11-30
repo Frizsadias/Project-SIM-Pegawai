@@ -99,8 +99,8 @@
                         <tbody>
                             @foreach ($data_kgb as $sqlkgb => $result_kgb)
                                 <tr>
-                                    <td>{{ ++$sqlkgb }}</td>
-                                    <td hidden class="id">{{ $result_kgb->id }}</td>
+                                    {{-- <td>{{ ++$sqlkgb }}</td> --}}
+                                    <td class="id">{{ $result_kgb->id }}</td>
                                     <td class="name">{{ $result_kgb->name }}</td>
                                     <td class="nip">{{ $result_kgb->nip }}</td>
                                     <td class="golongan_awal">{{ $result_kgb->golongan_awal }}</td>

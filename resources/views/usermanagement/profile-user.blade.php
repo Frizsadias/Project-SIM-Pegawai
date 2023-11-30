@@ -129,12 +129,21 @@
             <div class="card tab-box">
                 <div class="row user-tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
-                        <ul class="nav nav-tabs nav-tabs-bottom">
+                        <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                             <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
-                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Riwayat Pendidikan</a></li>
-                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Riwayat Golongan</a></li>
-                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Riwayat Jabatan</a></li>
-                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Riwayat Diklat</a></li>
+                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Golongan</a></li>
+                            <li class="nav-item"><a href="#kenaikan_gaji" data-toggle="tab" class="nav-link">KGB</a></li>
+                            <li class="nav-item"><a href="#riwayat_pmk" data-toggle="tab" class="nav-link">PMK</a></li>
+                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Pendidikan</a></li>
+                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Jabatan</a></li>
+                            <li class="nav-item"><a href="#riwayat_angka_kredit" data-toggle="tab" class="nav-link">Angka Kredit</a></li>
+                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Diklat</a></li>
+                            <li class="nav-item"><a href="#riwayat_orang_tua" data-toggle="tab" class="nav-link">Orang Tua</a></li>
+                            <li class="nav-item"><a href="#riwayat_pasangan" data-toggle="tab" class="nav-link">Pasangan</a></li>
+                            <li class="nav-item"><a href="#riwayat_anak" data-toggle="tab" class="nav-link">Anak</a></li>
+                            <li class="nav-item"><a href="#riwayat_penghargaan" data-toggle="tab" class="nav-link">Penghargaan</a></li>
+                            <li class="nav-item"><a href="#riwayat_organisasi" data-toggle="tab" class="nav-link">Organisasi</a></li>
+                            <li class="nav-item"><a href="#riwayat_hukum_disiplin" data-toggle="tab" class="nav-link">Hukuman Disiplin</a></li>
                         </ul>
                     </div>
                 </div>
@@ -745,6 +754,527 @@
                                 </div>
                             </div>
                             <!-- /Riwayat Diklat Tab -->
+
+                            <!-- Layanan KGB Tab -->
+                            <div class="tab-pane fade" id="kenaikan_gaji">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped custom-table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Pegawai</th>
+                                                    <th>NIP</th>
+                                                    <th>Golongan Awal</th>
+                                                    <th>Golongan Akhir</th>
+                                                    <th>Gaji Pokok Lama</th>
+                                                    <th>Gaji Pokok Akhir</th>
+                                                    <th>Tanggal SK Kenaikan Gaji Berkala</th>
+                                                    <th>Nomor SK Kenaikan Gaji Berkala</th>
+                                                    <th>Tanggal Berlaku</th>
+                                                    <th>Masa Kerja Golongan</th>
+                                                    <th>Masa Kerja</th>
+                                                    <th>Terhitung Mulai Tanggal Kenaikan Gaji Berkala</th>
+                                                    <th>Dokumen KGB</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data_kgb as $sqlPMK => $result_pmk)
+                                                    <tr>
+                                                        <td>{{ ++$sqlPMK }}</td>
+                                                        <td hidden class="id">{{ $result_pmk->id }}</td>
+                                                        <td class="name">{{ $result_pmk->name }}</td>
+                                                        <td class="nip">{{ $result_pmk->nip }}</td>
+                                                        <td class="golongan_awal">{{ $result_pmk->golongan_awal }}</td>
+                                                        <td class="golongan_akhir">{{ $result_pmk->golongan_akhir }}</td>
+                                                        <td class="gapok_lama">{{ $result_pmk->gapok_lama }}</td>
+                                                        <td class="gapok_baru">{{ $result_pmk->gapok_baru }}</td>
+                                                        <td class="tgl_sk_kgb"><center>{{ \Carbon\Carbon::parse($result_pmk->tgl_sk_kgb)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="no_sk_kgb">{{ $result_pmk->no_sk_kgb }}</td>
+                                                        <td class="tgl_berlaku"><center>{{ \Carbon\Carbon::parse($result_pmk->tgl_berlaku)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="masa_kerja_golongan">{{ $result_pmk->masa_kerja_golongan }}</td>
+                                                        <td class="masa_kerja">{{ $result_pmk->masa_kerja }}</td>
+                                                        <td class="tmt_kgb"><center>{{ \Carbon\Carbon::parse($result_pmk->tmt_kgb)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="dokumen_kgb"><center>
+                                                                <a href="{{ asset('assets/DokumenKGB/' . $result_pmk->dokumen_kgb) }}" target="_blank">
+                                                                    @if (pathinfo($result_pmk->dokumen_kgb, PATHINFO_EXTENSION) == 'pdf')
+                                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                    @endif
+                                                                        <td hidden class="dokumen_kgb">{{ $result_pmk->dokumen_kgb }}</td>
+                                                                </a></center></td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Layanan KGB Tab -->
+
+                            <!-- Riwayat PMK Tab -->
+                            <div class="tab-pane fade" id="riwayat_pmk">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped custom-table" id="tablePMK" style="width: 100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="no">No</th>
+                                                    <th>Jenis Peninjauan Masa Kerja</th>
+                                                    <th>Instansi</th>
+                                                    <th>Tanggal Awal</th>
+                                                    <th>Tanggal Akhir</th>
+                                                    <th>Nomor SK</th>
+                                                    <th>Tanggal SK</th>
+                                                    <th>Nomor BKN</th>
+                                                    <th>Tanggal BKN</th>
+                                                    <th>Masa Kerja (Tahun)</th>
+                                                    <th>Masa Kerja (Bulan)</th>
+                                                    <th>Dokumen PMK</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($riwayatPMK as $sqlPMK => $result_pmk)
+                                                    <tr>
+                                                        <td>{{ ++$sqlPMK }}</td>
+                                                        <td hidden class="id">{{ $result_pmk->id }}</td>
+                                                        <td class="jenis_pmk">{{ $result_pmk->jenis_pmk }}</td>
+                                                        <td class="instansi">{{ $result_pmk->instansi }}</td>
+                                                        <td class="tanggal_awal">{{ $result_pmk->tanggal_awal }}</td>
+                                                        <td class="tanggal_akhir">{{ $result_pmk->tanggal_akhir }}</td>
+                                                        <td class="no_sk">{{ $result_pmk->no_sk }}</td>
+                                                        <td class="tanggal_sk">{{ $result_pmk->tanggal_sk }}</td>
+                                                        <td class="no_bkn"><center>{{ $result_pmk->no_bkn }}</center></td>
+                                                        <td class="tanggal_bkn">{{ $result_pmk->tanggal_bkn }}</td>
+                                                        <td class="masa_tahun"><center>{{ $result_pmk->masa_tahun }}</center></td>
+                                                        <td class="masa_bulan">{{ $result_pmk->masa_bulan }}</td>
+                                                        <td class="dokumen_pmk"><center>
+                                                                <a href="{{ asset('assets/DokumenPMK/' . $result_pmk->dokumen_pmk) }}" target="_blank">
+                                                                    @if (pathinfo($result_pmk->dokumen_pmk, PATHINFO_EXTENSION) == 'pdf')
+                                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                    @endif
+                                                                        <td hidden class="dokumen_pmk">{{ $result_pmk->dokumen_pmk }}</td>
+                                                                </a></center></td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Riwayat PMK Tab -->
+
+                            <!-- Riwayat Angka Kredit Tab -->
+                            <div class="tab-pane fade" id="riwayat_angka_kredit">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped custom-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Jenis Jabatan</th>
+                                                    <th>Nomor SK</th>
+                                                    <th>Tanggal SK</th>
+                                                    <th>Total Angka Kredit</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($riwayatAK as $sqlAK => $result_angka_kredit)
+                                                    <tr>
+                                                        <td><center>{{ ++$sqlAK }}</center></td>
+                                                        <td hidden class="id"><center>{{ $result_angka_kredit->id }}</center></td>
+                                                        <td class="nama_jabatan"><center>{{ $result_angka_kredit->nama_jabatan }}</center></td>
+                                                        <td class="nomor_sk"><center>{{ $result_angka_kredit->nomor_sk }}</center></td>
+                                                        <td class="tanggal_sk"><center>{{ $result_angka_kredit->tanggal_sk }}</center></td>
+                                                        <td hidden class="angka_kredit_pertama"><center>{{ $result_angka_kredit->angka_kredit_pertama }}</center></td>
+                                                        <td hidden class="integrasi"><center>{{ $result_angka_kredit->integrasi }}</center></td>
+                                                        <td hidden class="konversi"><center>{{ $result_angka_kredit->konversi }}</center></td>
+                                                        <td hidden class="bulan_mulai"><center>{{ $result_angka_kredit->bulan_mulai }}</center></td>
+                                                        <td hidden class="tahun_mulai"><center>{{ $result_angka_kredit->tahun_mulai }}</center></td>
+                                                        <td hidden class="bulan_selesai"><center>{{ $result_angka_kredit->bulan_selesai }}</center></td>
+                                                        <td hidden class="tahun_selesai"><center>{{ $result_angka_kredit->tahun_selesai }}</center></td>
+                                                        <td hidden class="angka_kredit_utama"><center>{{ $result_angka_kredit->angka_kredit_utama }}</center></td>
+                                                        <td hidden class="angka_kredit_penunjang"><center>{{ $result_angka_kredit->angka_kredit_penunjang }}</center></td>
+                                                        <td class="total_angka_kredit"><center>{{ $result_angka_kredit->total_angka_kredit }}</center></td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Riwayat Angka Kredit Tab -->
+
+                            <!-- Riwayat OrangTua Tab -->
+                            <div class="tab-pane fade" id="riwayat_orang_tua">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped custom-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Status Hidup</th>
+                                                    <th>Nama Orang Tua</th>
+                                                    <th>Jenis Kelamin</th>
+                                                    <th>Status Pernikahan</th>
+                                                    <th>Dokumen Kartu Keluarga</th>
+                                                    <th>Dokumen Akta Anak</th>
+                                                    <th>Pas Foto Ayah</th>
+                                                    <th>Pas Foto Ibu</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($riwayatOrtu as $sqlOrtu => $result_Ortu)
+                                                    <tr>
+                                                        <td><center>{{ ++$sqlOrtu }}</center></td>
+                                                        <td hidden class="id"><center>{{ $result_Ortu->id }}</center></td>
+                                                        <td class="status_hidup"><center>{{ $result_Ortu->status_hidup }}</center></td>
+                                                        <td class="nama"><center>{{ $result_Ortu->nama }}</center></td>
+                                                        <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
+                                                        <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
+                                                        <td hidden class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
+                                                        <td class="dokumen_kk"><center>
+                                                            <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
+                                                                @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                                    <td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>
+                                                            </a></center></td>
+                                                        <td class="dokumen_akta_lahir_anak"><center>
+                                                            <a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank">
+                                                                @if (pathinfo($result_Ortu->dokumen_akta_lahir_anak, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                                    <td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>
+                                                            </a></center></td>
+                                                        <td class="pas_foto_ayah"><center>
+                                                            <a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank">
+                                                                @if (in_array(pathinfo($result_Ortu->pas_foto_ayah, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                                <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
+                                                            </a>
+                                                        <td class="pas_foto_ibu"><center>
+                                                            <a href="{{ asset('assets/DokumenPasFotoIbu/' . $result_Ortu->pas_foto_ibu) }}" target="_blank">
+                                                                @if (in_array(pathinfo($result_Ortu->pas_foto_ibu, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                                <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
+                                                            </a>
+                                                            <td hidden class="nip"><center>{{ $result_Ortu->nip }}</center></td>
+                                                            <td hidden class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
+                                                            <td hidden class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
+                                                            <td hidden class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
+                                                            <td hidden class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
+                                                            <td hidden class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
+                                                            <td hidden class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
+                                                            <td hidden class="agama"><center>{{ $result_Ortu->agama }}</center></td>
+                                                            <td hidden class="email"><center>{{ $result_Ortu->email }}</center></td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Riwayat Orang Tua Tab -->
+
+                            <!-- Riwayat Pasangan Tab -->
+                            <div class="tab-pane fade" id="riwayat_pasangan">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped custom-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Pasangan</th>
+                                                    <th>Status Pekerjaan Pasangan</th>
+                                                    <th>Status Pernikahan</th>
+                                                    <th>Status Hidup</th>
+                                                    <th>Dokumen Nikah</th>
+                                                    <th>Pas Foto</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($riwayatPasangan as $sqlPasangan => $result_pasangan)
+                                                    <tr>
+                                                        <td><center>{{ ++$sqlPasangan }}</center></td>
+                                                        <td hidden class="id"><center>{{ $result_pasangan->id }}</center></td>
+                                                        <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
+                                                        <td class="status_pekerjaan_pasangan"><center>{{ $result_pasangan->status_pekerjaan_pasangan }}</center></td>
+                                                        <td class="status_pernikahan"><center>{{ $result_pasangan->status_pernikahan }}</center></td>
+                                                        <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
+                                                        <td class="dokumen_nikah"><center>
+                                                            <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
+                                                                @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                                    <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
+                                                            </a></center></td>
+                                                            <td class="pas_foto"><center>
+                                                            <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
+                                                                @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                                <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
+                                                            </a>
+                                                            <td hidden class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
+                                                            <td hidden class="nip"><center>{{ $result_pasangan->nip }}</center></td>
+                                                            <td hidden class="tanggal_lahir"><center>{{ $result_pasangan->tanggal_lahir }}</center></td>
+                                                            <td hidden class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
+                                                            <td hidden class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
+                                                            <td hidden class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
+                                                            <td hidden class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
+                                                            <td hidden class="agama"><center>{{ $result_pasangan->agama }}</center></td>
+                                                            <td hidden class="email"><center>{{ $result_pasangan->email }}</center></td>
+                                                            <td hidden class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
+                                                            <td hidden class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div></div>
+                            <!-- Riwayat Pasangan Tab -->
+
+                            <!-- Riwayat Anak Tab -->
+                            <div class="tab-pane fade" id="riwayat_anak">
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table" id="tableAngkaKredit">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Orang Tua</th>
+                                                <th>Nama Anak</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Tanggal Lahir</th>
+                                                <th>Status Anak</th>
+                                                <th>Dokumen Akta Kelahiran</th>
+                                                <th>Pas Foto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatAnak as $sqlAnak => $result_anak)
+                                                <tr>
+                                                    <td><center>{{ ++$sqlAnak }}</center></td>
+                                                    <td hidden class="id"><center>{{ $result_anak->id }}</center></td>
+                                                    <td class="orang_tua"><center>{{ $result_anak->orang_tua }}</center></td>
+                                                    <td class="nama_anak"><center>{{ $result_anak->nama_anak }}</center></td>
+                                                    <td class="jenis_kelamin"><center>{{ $result_anak->jenis_kelamin }}</center></td>
+                                                    <td class="tanggal_lahir"><center>{{ $result_anak->tanggal_lahir }}</center></td>
+                                                    <td class="status_anak"><center>{{ $result_anak->status_anak }}</center></td>
+                                                    <td class="dokumen_akta_kelahiran"><center>
+                                                        <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
+                                                            @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_akta_kelahiran">{{ $result_anak->dokumen_akta_kelahiran }}</td>
+                                                        </a></center></td>
+                                                        <td class="pas_foto"><center>
+                                                        <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
+                                                            @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                                <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                            <td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>
+                                                        </a>
+                                                        <td hidden class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
+                                                        <td hidden class="jenis_dokumen"><center>{{ $result_anak->jenis_dokumen }}</center></td>
+                                                        <td hidden class="no_dokumen"><center>{{ $result_anak->no_dokumen }}</center></td>
+                                                        <td hidden class="agama"><center>{{ $result_anak->agama }}</center></td>
+                                                        <td hidden class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
+                                                        <td hidden class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
+
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                            <!-- Riwayat Anak Tab -->
+
+                            <!-- Riwayat Penghargaan Tab -->
+                            <div class="tab-pane fade" id="riwayat_penghargaan">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped custom-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Jenis Penghargaan</th>
+                                                    <th>Tahun Perolehan</th>
+                                                    <th>Nomor Surat</th>
+                                                    <th>Tanggal SK</th>
+                                                    <th>Dokumen Penghargaan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($riwayatPenghargaan as $sqlPenghargaan => $result_penghargaan)
+                                                    <tr>
+                                                        <td><center>{{ ++$sqlPenghargaan }}</center></td>
+                                                        <td hidden class="id"><center>{{ $result_penghargaan->id }}</center></td>
+                                                        <td class="jenis_penghargaan"><center>{{ $result_penghargaan->jenis_penghargaan }}</center></td>
+                                                        <td class="tahun_perolehan"><center>{{ $result_penghargaan->tahun_perolehan }}</center></td>
+                                                        <td class="no_surat"><center>{{ $result_penghargaan->no_surat }}</center></td>
+                                                        <td class="tanggal_keputusan"><center>{{ $result_penghargaan->tanggal_keputusan }}</center></td>
+                                                        <td class="dokumen_penghargaan"><center>
+                                                            <a href="{{ asset('assets/DokumenPenghargaan/' . $result_penghargaan->dokumen_penghargaan) }}" target="_blank">
+                                                                @if (pathinfo($result_penghargaan->dokumen_penghargaan, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                                    <td hidden class="dokumen_penghargaan">{{ $result_penghargaan->dokumen_penghargaan }}</td>
+                                                            </a></center></td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Riwayat Penghargaan Tab -->
+
+                            <!-- Riwayat Organisasi Tab -->
+                            <div class="tab-pane fade" id="riwayat_organisasi">
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table" id="tableAngkaKredit">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Organisasi</th>
+                                                <th>Jabatan Organisasi</th>
+                                                <th>Tanggal Gabung</th>
+                                                <th>Tanggal Selesai</th>
+                                                <th>Nomor Anggota</th>
+                                                <th>Dokumen Organisasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatOrganisasi as $sqlOrganisasi => $result_organisasi)
+                                                <tr>
+                                                    <td><center>{{ ++$sqlOrganisasi }}</center></td>
+                                                    <td hidden class="id"><center>{{ $result_organisasi->id }}</center></td>
+                                                    <td class="nama_organisasi"><center>{{ $result_organisasi->nama_organisasi }}</center></td>
+                                                    <td class="jabatan_organisasi"><center>{{ $result_organisasi->jabatan_organisasi }}</center></td>
+                                                    <td class="tanggal_gabung"><center>{{ $result_organisasi->tanggal_gabung }}</center></td>
+                                                    <td class="tanggal_selesai"><center>{{ $result_organisasi->tanggal_selesai }}</center></td>
+                                                    <td class="no_anggota"><center>{{ $result_organisasi->no_anggota }}</center></td>
+                                                    <td class="dokumen_organisasi"><center>
+                                                        <a href="{{ asset('assets/DokumenOrganisasi/' . $result_organisasi->dokumen_organisasi) }}" target="_blank">
+                                                            @if (pathinfo($result_organisasi->dokumen_organisasi, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_organisasi">{{ $result_organisasi->dokumen_organisasi }}</td>
+                                                        </a></center></td>
+
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                            <!-- Riwayat Organisasi Tab -->
+
+                            <!-- Riwayat Hukum Disiplin Tab -->
+                            <div class="tab-pane fade" id="riwayat_hukum_disiplin">
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table" id="tableAngkaKredit">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Kategori Hukuman Disiplin</th>
+                                                <th>Tingkat Hukuman</th>
+                                                <th>Jenis Tingkat Hukuman</th>
+                                                <th>Nomor SK Hukuman</th>
+                                                <th>Tanggal SK Hukuman</th>
+                                                <th>Nomor Peraturan</th>
+                                                <th>Alasan Hukuman</th>
+                                                <th>Masa Hukuman Tahun</th>
+                                                <th>Masa Hukuman Bulan</th>
+                                                <th>TMT Hukuman</th>
+                                                <th>Keterangan</th>
+                                                <th>Dokumen Hukuman Disiplin</th>
+                                                <th>Dokumen SK Pengaktifan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatHD as $sqlHD => $result_hukuman_disiplin)
+                                                <tr>
+                                                    <td><center>{{ ++$sqlHD }}</center></td>
+                                                    <td hidden class="id"><center>{{ $result_hukuman_disiplin->id }}</center></td>
+                                                    <td class="kategori_hukuman"><center>{{ $result_hukuman_disiplin->kategori_hukuman }}</center></td>
+                                                    <td class="tingkat_hukuman"><center>{{ $result_hukuman_disiplin->tingkat_hukuman }}</center></td>
+                                                    <td class="jenis_hukuman"><center>{{ $result_hukuman_disiplin->jenis_hukuman }}</center></td>
+                                                    <td class="no_sk_hukuman"><center>{{ $result_hukuman_disiplin->no_sk_hukuman }}</center></td>
+                                                    <td class="tanggal_sk_hukuman"><center>{{ $result_hukuman_disiplin->tanggal_sk_hukuman }}</center></td>
+                                                    <td class="no_peraturan"><center>{{ $result_hukuman_disiplin->no_peraturan }}</center></td>
+                                                    <td class="alasan"><center>{{ $result_hukuman_disiplin->alasan }}</center></td>
+                                                    <td class="masa_hukuman_tahun"><center>{{ $result_hukuman_disiplin->masa_hukuman_tahun }}</center></td>
+                                                    <td class="masa_hukuman_bulan"><center>{{ $result_hukuman_disiplin->masa_hukuman_bulan }}</center></td>
+                                                    <td class="tmt_hukuman"><center>{{ $result_hukuman_disiplin->tmt_hukuman }}</center></td>
+                                                    <td class="keterangan"><center>{{ $result_hukuman_disiplin->keterangan }}</center></td>
+                                                    <td class="dokumen_sk_hukuman"><center>
+                                                        <a href="{{ asset('assets/DokumenSKHukuman/' . $result_hukuman_disiplin->dokumen_sk_hukuman) }}" target="_blank">
+                                                            @if (pathinfo($result_hukuman_disiplin->dokumen_sk_hukuman, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_sk_hukuman">{{ $result_hukuman_disiplin->dokumen_sk_hukuman }}</td>
+                                                        </a></center></td>
+                                                    <td class="dokumen_sk_pengaktifan">
+    <center>
+        <a href="{{ asset('assets/DokumenSKPengaktifan/' . $result_hukuman_disiplin->dokumen_sk_pengaktifan) }}" target="_blank">
+            @if (pathinfo($result_hukuman_disiplin->dokumen_sk_pengaktifan, PATHINFO_EXTENSION) == 'pdf')
+                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+            @endif
+        </a>
+    </center>
+    <td hidden class="dokumen_sk_pengaktifan">{{ $result_hukuman_disiplin->dokumen_sk_pengaktifan }}</td>
+</td>
+
+
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div></div>
+                        <!-- Riwayat Hukum Disiplin Tab -->
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
         <!-- /Page Content -->

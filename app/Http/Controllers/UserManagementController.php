@@ -21,6 +21,14 @@ use App\Models\Notification;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
+use App\Models\RiwayatAnak;
+use App\Models\RiwayatAngkaKredit;
+use App\Models\RiwayatHukumanDisiplin;
+use App\Models\RiwayatOrangTua;
+use App\Models\RiwayatOrganisasi;
+use App\Models\RiwayatPasangan;
+use App\Models\RiwayatPenghargaan;
+use App\Models\RiwayatPMK;
 use App\Models\Village;
 use App\Notifications\UlangTahunNotification;
 use Carbon\Carbon;
@@ -412,6 +420,51 @@ class UserManagementController extends Controller
         $employees = DB::table('profile_information')->where('user_id', $profile)->first();
         $result_profilpegawai = ProfilPegawai::where('user_id', $profile)->first();
 
+        $user_id = auth()->user()->user_id;
+        $data_kgb = DB::table('kenaikan_gaji_berkala')
+        ->select(
+            'kenaikan_gaji_berkala.*',
+            'kenaikan_gaji_berkala.user_id',
+            'kenaikan_gaji_berkala.name',
+            'kenaikan_gaji_berkala.nip',
+            'kenaikan_gaji_berkala.golongan_awal',
+            'kenaikan_gaji_berkala.gapok_lama',
+            'kenaikan_gaji_berkala.tgl_sk_kgb',
+            'kenaikan_gaji_berkala.no_sk_kgb',
+            'kenaikan_gaji_berkala.tgl_berlaku',
+            'kenaikan_gaji_berkala.masa_kerja_golongan',
+            'kenaikan_gaji_berkala.gapok_baru',
+            'kenaikan_gaji_berkala.masa_kerja',
+            'kenaikan_gaji_berkala.golongan_akhir',
+            'kenaikan_gaji_berkala.tmt_kgb'
+        )
+            ->where('kenaikan_gaji_berkala.user_id', $user_id)
+            ->get();
+
+        $datapmk = Session::get('user_id');
+        $riwayatPMK = RiwayatPMK::where('user_id', $datapmk)->get();
+
+        $dataAK = Session::get('user_id');
+        $riwayatAK = RiwayatAngkaKredit::where('user_id', $dataAK)->get();
+
+        $dataOrtu = Session::get('user_id');
+        $riwayatOrtu = RiwayatOrangTua::where('user_id', $dataOrtu)->get();
+
+        $dataAnak = Session::get('user_id');
+        $riwayatPasangan = RiwayatPasangan::where('user_id', $dataAnak)->get();
+
+        $dataAnak = Session::get('user_id');
+        $riwayatAnak = RiwayatAnak::where('user_id', $dataAnak)->get();
+
+        $dataPenghargaan = Session::get('user_id');
+        $riwayatPenghargaan = RiwayatPenghargaan::where('user_id', $dataPenghargaan)->get();
+
+        $dataOrganisasi = Session::get('user_id');
+        $riwayatOrganisasi = RiwayatOrganisasi::where('user_id', $dataOrganisasi)->get();
+
+        $dataHD = Session::get('user_id');
+        $riwayatHD = RiwayatHukumanDisiplin::where('user_id', $dataHD)->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -451,7 +504,7 @@ class UserManagementController extends Controller
                 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
                 'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
-                'provinces'));
+                'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK', 'riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan', 'riwayatOrganisasi', 'riwayatHD'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
@@ -460,14 +513,14 @@ class UserManagementController extends Controller
                     'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                     'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
                     'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
-                    'provinces'));
+                    'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK', 'riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan', 'riwayatOrganisasi', 'riwayatHD'));
             } else {
                 $information = ProfileInformation::all();
                 return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan',
                     'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                     'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
                     'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
-                    'provinces'));
+                    'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK','riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan', 'riwayatOrganisasi', 'riwayatHD'));
             }
         }
     }

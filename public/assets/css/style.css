@@ -7984,7 +7984,7 @@ ul.comment-list li ul.children {
 	.nav-tabs.nav-tabs-bottom > li > a.active, 
 	.nav-tabs.nav-tabs-bottom > li > a.active:hover, 
 	.nav-tabs.nav-tabs-bottom > li > a.active:focus {
-		border-bottom-width: 2px;
+		border-bottom-width: 4px;
 		border-color: transparent;
 		border-bottom-color: #f43b48;
 		background-color: transparent;
@@ -8707,3 +8707,34 @@ ul.comment-list li ul.children {
 .no {
 	width: 21.6406px;
 }
+
+.card.tab-box {
+  overflow-x: auto;
+}
+
+.user-tabs ul.nav-tabs-bottom {
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.user-tabs ul.nav-tabs-bottom li {
+  display: inline-block;
+  float: none;
+}
+
+ul.nav-tabs {
+    display: table;
+    width: 100%;
+    white-space: nowrap;
+}
+
+ul.nav-tabs > li {
+    display: table-cell;
+}
+
+ul.nav-tabs > li > a {
+    white-space: nowrap;
+}
+
+
+

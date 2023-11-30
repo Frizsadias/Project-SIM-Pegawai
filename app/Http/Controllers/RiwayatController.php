@@ -914,21 +914,25 @@ class RiwayatController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
+        $user_id = auth()->user()->user_id;
 
         if (empty($search)) {
-            $jenis_pmk = RiwayatPMK::offset($start)
+            $jenis_pmk = RiwayatPMK::where('user_id', $user_id)
+                ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
         } else {
-            $jenis_pmk =  RiwayatPMK::where('jenis_pmk', 'like', "%{$search}%")
-            ->offset($start)
+            $jenis_pmk = RiwayatPMK::where('user_id', $user_id)
+                ->where('jenis_pmk', 'like', "%{$search}%")
+                ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
 
-            $totalFiltered = RiwayatPMK::where('jenis_pmk', 'like', "%{$search}%")
-            ->count();
+            $totalFiltered = RiwayatPMK::where('user_id', $user_id)
+                ->where('jenis_pmk', 'like', "%{$search}%")
+                ->count();
         }
 
         $data = array();
@@ -1899,9 +1903,9 @@ class RiwayatController extends Controller
         $riwayatAnak = RiwayatAnak::where('user_id', $dataAnak)->get();
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $userList = DB::table('riwayat_pasangan')
-            ->join('riwayat_anak', 'riwayat_pasangan.user_id', 'riwayat_anak.user_id')
-            ->select('riwayat_anak.*', 'riwayat_pasangan.nama')
-            ->get();
+        ->where('riwayat_pasangan.user_id', $dataAnak)
+        ->select('riwayat_pasangan.nama') // Adjust this line based on the actual column you want to retrieve
+        ->get();
 
         return view('riwayat.riwayat-anak', compact('userList', 'riwayatAnak', 'agamaOptions', 'unreadNotifications', 'readNotifications'));
     }
