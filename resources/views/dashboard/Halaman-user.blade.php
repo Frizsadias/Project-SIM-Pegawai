@@ -41,19 +41,19 @@
                                 <span class="dash-widget-icon"><i class="fa fa-building"></i></span>
                                 <div class="dash-widget-info">
                                     @if (!empty($tampilanPerusahaan->company_name))
-                                        <h3 class="perusahaan">{{ $tampilanPerusahaan->company_name }}</h3>
+                                        <h3 class="namaperusahaan">{{ $tampilanPerusahaan->company_name }}</h3>
                                     @else
                                         <h3>Nama Instansi</h3>
                                     @endif
 
                                     @if (!empty($tampilanPerusahaan->address))
-                                        <p class="alamat"><i class="fa-solid fa-location-dot fa-xl" style="color: #f43b48;"></i> : {{ $tampilanPerusahaan->address }}</p>
+                                        <p class="alamatperusahaan"><i class="fa-solid fa-location-dot fa-xl" style="color: #f43b48;"></i> : {{ $tampilanPerusahaan->address }}</p>
                                     @else
                                         <p>Alamat : Alamat Instansi</p>
                                     @endif
 
                                     @if (!empty($tampilanPerusahaan->phone_number))
-                                        <p class="nomorhp"><i class="fa-solid fa-mobile fa-xl" style="color: #f43b48;"></i> : {{ $tampilanPerusahaan->phone_number }}</p>
+                                        <p class="nomorhpperusahaan"><i class="fa-solid fa-mobile fa-xl" style="color: #f43b48;"></i> : {{ $tampilanPerusahaan->phone_number }}</p>
                                     @else
                                         <p>No. Telepon : Nomor Telepon Instansi</p>
                                     @endif

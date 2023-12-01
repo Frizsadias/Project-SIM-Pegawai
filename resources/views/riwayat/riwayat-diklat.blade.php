@@ -25,6 +25,7 @@
 
             <!-- Search Filter -->
             <form action="{{ route('riwayat/diklat/cari') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
@@ -54,8 +55,11 @@
                     </div>
                 </div>
             </form>
-
             <!-- Search Filter -->
+
+            {{-- message --}}
+            {!! Toastr::message() !!}
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -121,9 +125,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- message --}}
-            {!! Toastr::message() !!}
         </div>
         <!-- /Page Content -->
 
@@ -248,12 +249,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Diklat</label>
-                                        <select name="jenis_diklat" class="select" id="e_jenis_diklat">
-                                            <option selected disabled> --Pilih Jenis Diklat --</option>
-                                            <option>Diklat Struktural</option>
-                                            <option>Diklat Fungsional</option>
-                                            <option>Diklat Teknis</option>
-                                            <option>Workshop</option>
+                                        <br>
+                                        <select class="theSelect" name="jenis_diklat" id="e_jenis_diklat">
+                                            @foreach($jenisdiklatOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -359,44 +359,17 @@
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- update js --}}
-    <script>
-        $(document).on('click', '.edit_riwayat_diklat', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id_dik').val(_this.find('.id_dik').text());
-            $('#e_nama_diklat').val(_this.find('.nama_diklat').text());
-            $('#e_institusi_penyelenggara').val(_this.find('.institusi_penyelenggara').text());
-            $('#e_no_sertifikat').val(_this.find('.no_sertifikat').text());
-            $('#e_tanggal_mulai').val(_this.find('.tanggal_mulai').text());
-            $('#e_tanggal_selesai').val(_this.find('.tanggal_selesai').text());
-            $('#e_tahun_diklat').val(_this.find('.tahun_diklat').text());
-            $('#e_durasi_jam').val(_this.find('.durasi_jam').text());
-            $('#e_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
-
-            var jenis_diklat = (_this.find(".jenis_diklat").text());
-            var _option = '<option selected value="' + jenis_diklat + '">' + _this.find('.jenis_diklat').text() +
-                '</option>'
-            $(_option).appendTo("#e_jenis_diklat");
-        });
-    </script>
-
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_riwayat_diklat', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
-        });
-    </script>
+    @section('script')
+        <script src="{{ asset('assets/js/diklat.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script>
-		$(".theSelect").select2();
-	    </script>
+            $(".theSelect").select2();
+        </script>
 
         <script>
-        history.pushState({}, "", '/riwayat/diklat');
-    </script>
-@endsection
+            history.pushState({}, "", '/riwayat/diklat');
+        </script>
+
+    @endsection
 @endsection

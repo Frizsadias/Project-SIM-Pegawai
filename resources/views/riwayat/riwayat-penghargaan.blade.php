@@ -53,24 +53,24 @@
                     </div>
                 </div>
             </form> --}}
+            <!-- Search Filter -->
 
             {{-- message --}}
             {!! Toastr::message() !!}
-
-            <!-- Search Filter -->
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped custom-table" id="tableAngkaKredit">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Jenis Penghargaan</th>
-                                    <th>Tahun Perolehan</th>
-                                    <th>Nomor Surat</th>
-                                    <th>Tanggal SK</th>
-                                    <th>Dokumen Penghargaan</th>
-                                    <th>Aksi</th>
+                                    <th><center>No</center></th>
+                                    <th><center>Jenis Penghargaan</center></th>
+                                    <th><center>Tahun Perolehan</center></th>
+                                    <th><center>Nomor Surat</center></th>
+                                    <th><center>Tanggal SK</center></th>
+                                    <th><center>Dokumen Penghargaan</center></th>
+                                    <th><center>Aksi</center></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,10 +88,11 @@
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                     <td hidden class="dokumen_penghargaan">{{ $result_penghargaan->dokumen_penghargaan }}</td>
-                                            </a></center></td>
+                                            </a>
+                                        </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
-                                        <td class="text-right">
+                                        <td class="text-center">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -117,7 +118,7 @@
         </div>
         <!-- /Page Content -->
 
-        <!-- Tambah Riwayat PMK Modal -->
+        <!-- Tambah Riwayat Penghargaan Modal -->
         <div id="add_riwayat_penghargaan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -142,8 +143,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Penghargaan</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="jenis_penghargaan" required>
+                                        <label>Jenis Penghargaan</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="jenis_penghargaan" required>
                                             <option disabled selected value="">-- Pilih Jenis Penghargaan --</option>
                                             <option value="Bintang">Bintang</option>
                                             <option value="R.I Adipurna">R.I Adipurna</option>
@@ -156,7 +158,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tahun Perolehan</label><small class="text-danger">*</small>
+                                        <label>Tahun Perolehan</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="number" name="tahun_perolehan" required>
                                     </div>
                                 </div>
@@ -164,13 +167,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Surat</label><small class="text-danger">*</small>
+                                        <label>Nomor Surat</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_surat" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal SK</label><small class="text-danger">*</small>
+                                        <label>Tanggal SK</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_keputusan" required>
                                     </div>
                                 </div>
@@ -180,6 +185,7 @@
                                     <div class="form-group">
                                         <label>Dokumen Penghargaan</label>
                                         <input class="form-control" type="file" name="dokumen_penghargaan">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -191,9 +197,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Tambah Riwayat Diklat Modal -->
+        <!-- /Tambah Riwayat Penghargaan Modal -->
 
-        <!-- Edit Riwayat Diklat Modal -->
+        <!-- Edit Riwayat Penghargaan Modal -->
         <div id="edit_riwayat_penghargaan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -211,7 +217,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Penghargaan</label><small class="text-danger">*</small>
+                                        <label>Jenis Penghargaan</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="jenis_penghargaan" id="e_jenis_penghargaan" required>
                                             <option value="Bintang">Bintang</option>
                                             <option value="R.I Adipurna">R.I Adipurna</option>
@@ -224,7 +231,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tahun Perolehan</label><small class="text-danger">*</small>
+                                        <label>Tahun Perolehan</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="number" name="tahun_perolehan" id="e_tahun_perolehan" required>
                                     </div>
                                 </div>
@@ -232,13 +240,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Surat</label><small class="text-danger">*</small>
+                                        <label>Nomor Surat</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_surat" id="e_no_surat" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal SK</label><small class="text-danger">*</small>
+                                        <label>Tanggal SK</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_keputusan" id="e_tanggal_keputusan" required>
                                     </div>
                                 </div>
@@ -246,11 +256,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Penghargaan</label><small class="text-danger">*</small>
-                                        <input type="file" class="form-control" id="dokumen_penghargaan"
-                                            name="dokumen_penghargaan">
-                                        <input type="hidden" name="hidden_dokumen_penghargaan" id="e_dokumen_penghargaan"
-                                            value="">
+                                        <label>Dokumen Penghargaan</label>
+                                        <small class="text-danger">*</small>
+                                        <input type="file" class="form-control" id="dokumen_penghargaan" name="dokumen_penghargaan">
+                                        <input type="hidden" name="hidden_dokumen_penghargaan" id="e_dokumen_penghargaan" value="">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -262,9 +272,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Riwayat Diklat Modal -->
+        <!-- /Edit Riwayat Penghargaan Modal -->
 
-        <!-- Delete Riwayat Diklat Modal -->
+        <!-- Delete Riwayat Penghargaan Modal -->
         <div class="modal custom-modal fade" id="delete_riwayat_penghargaan" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -294,141 +304,22 @@
                 </div>
             </div>
         </div>
-        <!-- End Delete Riwayat Diklat Modal -->
+        <!-- End Delete Riwayat Penghargaan Modal -->
 
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var table = $('#tableAngkaKredit').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "{{ route('get-angkakredit-data') }}",
-                        "data": function(d) {
-                            d.keyword = $('#keyword').val();
-                            d._token = "{{ csrf_token() }}";
-                        }
-                    },
-                    "columns": [
-                        {
-                            "data": "id"
-                        },
-                        {
-                            "data": "nama_jabatan"
-                        },
-                        {
-                            "data": "nomor_sk"
-                        },
-                        {
-                            "data": "tanggal_sk"
-                        },
-                        {
-                            "data": "angka_kredit_pertama"
-                        },
-                        {
-                            "data": "integrasi"
-                        },
-                        {
-                            "data": "konversi"
-                        },
-                        {
-                            "data": "bulan_mulai"
-                        },
-                        {
-                            "data": "tahun_mulai"
-                        },
-                        {
-                            "data": "bulan_selesai"
-                        },
-                        {
-                            "data": "tahun_selesai"
-                        },
-                        {
-                            "data": "angka_kredit_utama"
-                        },
-                        {
-                            "data": "angka_kredit_penunjang"
-                        },
-                        {
-                            "data": "total_angka_kredit"
-                        },
-                        {
-                            "data": "action"
-                        },
-                    ],
-                    "language": {
-                        "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
-                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
-                        "infoFiltered": "(filtered from _MAX_ total records)",
-                        "search": "Cari:",
-                        "paginate": {
-                            "previous": "Previous",
-                            "next": "Next",
-                            "first": "<<",
-                            "last": ">>",
-                        }
-                    },
-                    "order": [
-                        [0, "asc"]
-                    ]
-                });
+    @section('script')
+        <script src="{{ asset('assets/js/penghargaan.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-                // Live search
-                $('#search-form').on('submit', function(e) {
-                    e.preventDefault();
-                    table
-                        .search($('#keyword').val())
-                        .draw();
-                })
-            });
-        </script> --}}
-    {{-- update --}}
-    <script>
-        $(document).on('click', '.edit_riwayat_penghargaan', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#e_jenis_penghargaan').val(_this.find('.jenis_penghargaan').text());
-            $('#e_tahun_perolehan').val(_this.find('.tahun_perolehan').text());
-            $('#e_no_surat').val(_this.find('.no_surat').text());
-            $('#e_tanggal_keputusan').val(_this.find('.tanggal_keputusan').text());
-            $('#e_dokumen_penghargaan').val(_this.find('.dokumen_penghargaan').text());
-        });
-    </script>
+        <script>
+            $(".theSelect").select2();
+        </script>
 
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_riwayat_penghargaan', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_penghargaan').val(_this.find('.dokumen_penghargaan').text());
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script>
-        $(".theSelect").select2();
-    </script>
+        <script>
+            history.pushState({}, "", '/riwayat/penghargaan');
+        </script>
 
-    <script>
-        history.pushState({}, "", '/riwayat/penghargaan');
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.exclusive').change(function() {
-                if ($(this).prop('checked')) {
-                    $('.exclusive').not(this).prop('disabled', true);
-                } else {
-                    $('.exclusive').prop('disabled', false);
-                }
-            });
-        });
-    </script>
-@endsection
+    @endsection
 @endsection

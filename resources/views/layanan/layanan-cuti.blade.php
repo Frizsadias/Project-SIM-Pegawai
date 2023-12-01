@@ -66,6 +66,9 @@
             </form>
             <!-- Search Filter -->
 
+                {{-- message --}}
+                {!! Toastr::message() !!}
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
@@ -185,9 +188,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- message --}}
-            {!! Toastr::message() !!}
             </div>
             <!-- /Page Content -->
 
@@ -368,9 +368,12 @@
     
     @section('script')
         <script src="{{ asset('assets/js/layanancuti.js') }}"></script>
+
         <script src="{{ asset('assets/js/pengajuancuti.js') }}"></script>
+
         <script>
-        history.pushState({}, "", '/layanan/cuti');
-    </script>
+            history.pushState({}, "", '/layanan/cuti');
+        </script>
+
     @endsection
 @endsection

@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('style')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-    <!-- checkbox style -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-@endsection
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
     <!-- Page Content -->
@@ -21,8 +16,7 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_str"><i
-                            class="fa fa-plus"></i> Tambah Surat Tanda Registrasi</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_str"><i class="fa fa-plus"></i> Tambah Surat Tanda Registrasi</a>
                 </div>
             </div>
         </div>
@@ -97,20 +91,16 @@
                                     <td class="tanggal_lulus">{{ $result_str->tanggal_lulus }}</td>
                                     <td class="pendidikan_terakhir">{{ $result_str->pendidikan_terakhir }}</td>
                                     <td class="kompetensi">{{ $result_str->kompetensi }}</td>
-                                    <td class="no_sertifikat_kompetensi">{{ $result_str->no_sertifikat_kompetensi }}
-                                    </td>
+                                    <td class="no_sertifikat_kompetensi">{{ $result_str->no_sertifikat_kompetensi }}</td>
                                     <td class="tgl_berlaku_str">{{ $result_str->tgl_berlaku_str }}</td>
-                                    <td class="dokumen_str">
-                                        <center>
-                                            <a href="{{ asset('assets/DokumenSTR/' . $result_str->dokumen_str) }}"
-                                                target="_blank">
-                                                @if (pathinfo($result_str->dokumen_str, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;"
-                                                        aria-hidden="true"></i>
-                                                @endif
-                                    <td hidden class="dokumen_str">{{ $result_str->dokumen_str }}</td>
-                                    </a></center>
-                                    </td>
+                                    <td class="dokumen_str"><center>
+                                        <a href="{{ asset('assets/DokumenSTR/' . $result_str->dokumen_str) }}" target="_blank">
+                                            @if (pathinfo($result_str->dokumen_str, PATHINFO_EXTENSION) == 'pdf')
+                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                            @endif
+                                                <td hidden class="dokumen_str">{{ $result_str->dokumen_str }}</td>
+                                        </a>
+                                    </center></td>
 
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
@@ -154,16 +144,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('layanan/surat-tanda-registrasi/tambah-data') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('layanan/surat-tanda-registrasi/tambah-data') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor Registrasi</label>
-                                    <input type="text" class="form-control" name="nomor_reg"
-                                        placeholder="Nomor Registrasi">
+                                    <input type="text" class="form-control" name="nomor_reg" placeholder="Nomor Registrasi">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -175,22 +163,19 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kompetensi</label>
-                                    <input type="text" class="form-control" name="kompetensi"
-                                        placeholder="Kompetensi">
+                                    <input type="text" class="form-control" name="kompetensi" placeholder="Kompetensi">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor Sertifikat Kompetensi</label>
-                                    <input type="text" class="form-control" name="no_sertifikat_kompetensi"
-                                        placeholder="Nomor Sertifikat Kompetensi">
+                                    <input type="text" class="form-control" name="no_sertifikat_kompetensi" placeholder="Nomor Sertifikat Kompetensi">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor Ijazah</label>
-                                    <input type="text" class="form-control" name="nomor_ijazah"
-                                        placeholder="Nomor Ijazah">
+                                    <input type="text" class="form-control" name="nomor_ijazah" placeholder="Nomor Ijazah">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -211,38 +196,32 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="tempat_lahir"
-                                            value="{{ $profil_pegawai->tempat_lahir }}">
+                                        <input type="hidden" class="form-control" name="tempat_lahir" value="{{ $profil_pegawai->tempat_lahir }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="tanggal_lahir"
-                                            value="{{ $profil_pegawai->tanggal_lahir }}">
+                                        <input type="hidden" class="form-control" name="tanggal_lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="jenis_kelamin"
-                                            value="{{ $profil_pegawai->jenis_kelamin }}">
+                                        <input type="hidden" class="form-control" name="jenis_kelamin" value="{{ $profil_pegawai->jenis_kelamin }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="pendidikan_terakhir"
-                                            value="{{ $profil_pegawai->pendidikan_terakhir }}">
+                                        <input type="hidden" class="form-control" name="pendidikan_terakhir" value="{{ $profil_pegawai->pendidikan_terakhir }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="name"
-                                            value="{{ $profil_pegawai->name }}">
+                                        <input type="hidden" class="form-control" name="name" value="{{ $profil_pegawai->name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="nip"
-                                            value="{{ $profil_pegawai->nip }}">
+                                        <input type="hidden" class="form-control" name="nip" value="{{ $profil_pegawai->nip }}">
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +234,6 @@
             </div>
         </div>
     </div>
-
     <!-- /Tambah Surat Tanda Perjanjian Kontrak Modal -->
 
     <!-- Edit Surat Tanda Perjanjian Kontrak Modal -->
@@ -374,29 +352,8 @@
 </div>
 <!-- /Page Wrapper -->
 
-@section('script')
-    <script>
-        $(document).on('click', '.edit_str', function() {
-            var _this = $(this).closest('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#e_tempat_lahir').val(_this.find('.tempat_lahir').text());
-            $('#e_tanggal_lahir').val(_this.find('.tanggal_lahir').text());
-            $('#e_jenis_kelamin').val(_this.find('.jenis_kelamin').text());
-            $('#e_pendidikan_terakhir').val(_this.find('.pendidikan_terakhir').text());
-            $('#e_nomor_reg').val(_this.find('.nomor_reg').text());
-            $('#e_tanggal_lulus').val(_this.find('.tanggal_lulus').text());
-            $('#e_kompetensi').val(_this.find('.kompetensi').text());
-            $('#e_no_sertifikat_kompetensi').val(_this.find('.no_sertifikat_kompetensi').text());
-            $('#e_nomor_ijazah').val(_this.find('.nomor_ijazah').text());
-            $('#e_tgl_berlaku_str').val(_this.find('.tgl_berlaku_str').text());
-            $('#e_dokumen_str').val(_this.find('.dokumen_str').text());
-        });
+    @section('script')
+        <script src="{{ asset('assets/js/str.js') }}"></script>
 
-        $(document).on('click', '.delete_str', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_str').val(_this.find('.dokumen_str').text());
-        });
-    </script>
-@endsection
+    @endsection
 @endsection

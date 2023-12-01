@@ -25,6 +25,7 @@
 
             <!-- Search Filter -->
             <form action="{{ route('riwayat/golongan/cari') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
@@ -49,8 +50,11 @@
                 </div>
                 </div>
             </form>
-
             <!-- Search Filter -->
+
+            {{-- message --}}
+            {!! Toastr::message() !!}
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -126,9 +130,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- message --}}
-            {!! Toastr::message() !!}
         </div>
         <!-- /Page Content -->
 
@@ -267,7 +268,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Golongan</label>
-                                        <input type="text" class="form-control" name="golongan" id="e_golongan" value="">
+                                        <br>
+                                        <select class="theSelect" name="golongan" id="e_golongan">
+                                            @foreach ($golonganOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -336,7 +342,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Teknis KP</label>
+                                        <label>Dokumen Pertimbangan Teknis KP</label>
                                         <input type="file" class="form-control" id="dokumen_teknis_kp" name="dokumen_teknis_kp">
                                         <input type="hidden" name="hidden_dokumen_teknis_kp" id="e_dokumen_teknis_kp" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
@@ -390,44 +396,17 @@
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- update js --}}
-    <script>
-        $(document).on('click', '.edit_riwayat_golongan', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id_gol').val(_this.find('.id_gol').text());
-            $('#e_golongan').val(_this.find('.golongan').text());
-            $('#e_jenis_kenaikan_pangkat').val(_this.find('.jenis_kenaikan_pangkat').text());
-            $('#e_masa_kerja_golongan_tahun').val(_this.find('.masa_kerja_golongan_tahun').text());
-            $('#e_masa_kerja_golongan_bulan').val(_this.find('.masa_kerja_golongan_bulan').text());
-            $('#e_tmt_golongan_riwayat').val(_this.find('.tmt_golongan_riwayat').text());
-            $('#e_no_teknis_bkn').val(_this.find('.no_teknis_bkn').text());
-            $('#e_tanggal_teknis_bkn').val(_this.find('.tanggal_teknis_bkn').text());
-            $('#e_no_sk_golongan').val(_this.find('.no_sk_golongan').text());
-            $('#e_tanggal_sk_golongan').val(_this.find('.tanggal_sk_golongan').text());
-            $('#e_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
-            $('#e_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
-        });
-    </script>
-
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_riwayat_golongan', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
-            $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
-        });
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    @section('script')
+        <script src="{{ asset('assets/js/golongan.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script>
-		$(".theSelect").select2();
-	    </script>
+            $(".theSelect").select2();
+        </script>
 
-    <script>
-        history.pushState({}, "", '/riwayat/golongan');
-    </script>
-@endsection
+        <script>
+            history.pushState({}, "", '/riwayat/golongan');
+        </script>
+
+    @endsection
 @endsection

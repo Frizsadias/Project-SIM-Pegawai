@@ -1291,7 +1291,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('profile/information/save') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('profile/information/save2') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -1308,7 +1308,7 @@
                                                     <label>Tanggal Lahir</label>
                                                     <div class="cal-icon">
                                                         <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate" value="{{ $information->tgl_lahir }}">
-                                                        <small class="text-danger">Example : 10-10-2013</small>
+                                                        <small class="text-danger">Example : 10-10-2023</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1362,7 +1362,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('profile/information/save') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('profile/information/save2') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -2532,6 +2532,7 @@
         <!-- /FancyBox Foto Profil -->
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        
         <script>
 		$(".theSelect").select2();
 	    </script>

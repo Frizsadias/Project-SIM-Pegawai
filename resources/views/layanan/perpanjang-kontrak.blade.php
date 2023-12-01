@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('style')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-    <!-- checkbox style -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-@endsection
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
     <!-- Page Content -->
@@ -28,21 +23,18 @@
         </div>
         <!-- /Page Header -->
 
-        <!-- Cetak Dokumen Perpanjangan PDF -->
-        <div class="row filter-row">
-            <div class="col-sm-6 col-md-3">
-                <select id="pilihDokumenPerpanjangan" class="form-control">
-                    <option selected disabled> --Pilih Dokumen Perpanjangan --</option>
-                    @foreach ($data_perpanjang_pdf as $kontrak)
-                        <option value="{{ $kontrak->id }}">Dokumen Perpanjangan - {{ $kontrak->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <button id="cetakDokumenPerpanjangan" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i>
-                    Dokumen Perpanjangan</button>
-            </div>
-        </div><br>
+        <!-- Cetak Dokumen Perpanjangan Kontrak PDF -->
+        @php
+            $lastperpanjangan = $data_perpanjang_kontrak->last();
+        @endphp
+        @if ($lastperpanjangan)
+            <a href="{{ route('layanan-perpanjang-kontrak', ['id' => $lastperpanjangan->id]) }}" target="_blank" class="btn btn-success">
+                <i class="fa-solid fa-file-pdf"></i> Dokumen Perpanjangan Kontrak
+            </a>
+        @else
+        @endif
+        <br><br>
+        <!-- /Cetak Dokumen Perpanjangan Kontrak PDF -->
 
         <!-- Search Filter -->
         <form action="" method="GET" id="search-form">
@@ -92,8 +84,8 @@
                         <tbody>
                             @foreach ($data_perpanjang_kontrak as $sqlkontrak => $result_kontrak)
                                 <tr>
-                                    <td>{{ ++$sqlkontrak }}</td>
-                                    <td hidden class="id">{{ $result_kontrak->id }}</td>
+                                    {{-- <td>{{ ++$sqlkontrak }}</td> --}}
+                                    <td class="id">{{ $result_kontrak->id }}</td>
                                     <td class="name">{{ $result_kontrak->name }}</td>
                                     <td class="nip">{{ $result_kontrak->nip }}</td>
                                     <td class="nik_blud">{{ $result_kontrak->nik_blud }}</td>
@@ -105,7 +97,7 @@
                                     <td class="mulai_kontrak">{{ $result_kontrak->mulai_kontrak }}</td>
                                     <td class="akhir_kontrak">{{ $result_kontrak->akhir_kontrak }}</td>
 
-                                    {{-- Edit Layanan KGB --}}
+                                    {{-- Edit Perpanjangan Kontrak --}}
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
@@ -134,7 +126,7 @@
     </div>
     <!-- /Page Content -->
 
-    <!-- Tambah Layanan Cuti Modal -->
+    <!-- Tambah Perpanjangan Kontrak Modal -->
     <div id="daftar_layanan_kontrak" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -152,36 +144,29 @@
                             @foreach ($data_profilpegawai as $profil_pegawai)
                                 <div class="row">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="name"
-                                            value="{{ $profil_pegawai->name }}">
+                                        <input type="hidden" class="form-control" name="name" value="{{ $profil_pegawai->name }}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="nip"
-                                            value="{{ $profil_pegawai->nip }}">
+                                        <input type="hidden" class="form-control" name="nip" value="{{ $profil_pegawai->nip }}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="user_id"
-                                            value="{{ $profil_pegawai->user_id }}">
+                                        <input type="hidden" class="form-control" name="user_id" value="{{ $profil_pegawai->user_id }}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="tempat_lahir"
-                                            value="{{ $profil_pegawai->tempat_lahir }}">
+                                        <input type="hidden" class="form-control" name="tempat_lahir" value="{{ $profil_pegawai->tempat_lahir }}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="tanggal_lahir"
-                                            value="{{ $profil_pegawai->tanggal_lahir }}">
+                                        <input type="hidden" class="form-control" name="tanggal_lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="pendidikan"
-                                            value="{{ $profil_pegawai->tingkat_pendidikan }}">
+                                        <input type="hidden" class="form-control" name="pendidikan" value="{{ $profil_pegawai->tingkat_pendidikan }}">
                                     </div>
                                 </div>
                             @endforeach
                             @foreach ($data_posisijabatan as $posisi_jabatan)
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="jabatan"
-                                            value="{{ $posisi_jabatan->jabatan }}">
+                                        <input type="hidden" class="form-control" name="jabatan" value="{{ $posisi_jabatan->jabatan }}">
                                     </div>
                                 </div>
                             @endforeach
@@ -190,15 +175,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>NIK BLUD</label>
-                                    <input type="number" class="form-control" name="nik_blud"
-                                        placeholder="NIK BLUD">
+                                    <input type="number" class="form-control" name="nik_blud" placeholder="NIK BLUD">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tahun Lulus</label>
-                                    <input type="number" class="form-control" name="tahun_lulus"
-                                        placeholder="Tahun Lulus">
+                                    <input type="number" class="form-control" name="tahun_lulus" placeholder="Tahun Lulus">
                                 </div>
                             </div>
                         </div>
@@ -224,10 +207,9 @@
             </div>
         </div>
     </div>
+    <!-- /Tambah Perpanjangan Kontrak Modal -->
 
-    <!-- /Tambah Layanan Cuti Modal -->
-
-    <!-- Edit Layanan Cuti Modal -->
+    <!-- Edit Perpanjangan Kontrak Modal -->
     <div id="edit_kontrak" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -282,9 +264,9 @@
             </div>
         </div>
     </div>
-    <!-- /Edit Layanan Cuti Modal -->
+    <!-- /Edit Perpanjangan Kontrak Modal -->
 
-    <!-- Delete Perjanjian Modal -->
+    <!-- Delete Perpanjangan Kontrak Modal -->
     <div class="modal custom-modal fade" id="delete_kontrak" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -313,31 +295,26 @@
             </div>
         </div>
     </div>
+    <!-- /End Delete Perpanjangan Kontrak Modal -->
 </div>
 <!-- /Page Wrapper -->
 
 @section('script')
-    <script src="{{ asset('assets/js/perpanjangankontrak.js') }}"></script>
+        <script src="{{ asset('assets/js/perpanjangankontrak.js') }}"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#pilihDokumenPerpanjangan').select2();
-            $('#cetakDokumenPerpanjangan').on('click', function() {
-                const selectedCutiId = $('#pilihDokumenPerpanjangan').val();
-                if (selectedCutiId) {
-                    const url = "{{ route('layanan-perpanjang-kontrak-admin', ['id' => ':id']) }}".replace(
-                        ':id', selectedCutiId);
-                    window.open(url, '_blank');
-                }
+        <script>
+            $(document).ready(function() {
+                $('#pilihDokumenPerpanjangan').select2();
+                $('#cetakDokumenPerpanjangan').on('click', function() {
+                    const selectedCutiId = $('#pilihDokumenPerpanjangan').val();
+                    if (selectedCutiId) {
+                        const url = "{{ route('layanan-perpanjang-kontrak-admin', ['id' => ':id']) }}".replace(
+                            ':id', selectedCutiId);
+                        window.open(url, '_blank');
+                    }
+                });
             });
-        });
-    </script>
+        </script>
 
-    <script>
-        $(document).on("click", ".delete_kontrak", function() {
-            var _this = $(this).parents("tr");
-            $(".e_id").val(_this.find(".id").text());
-        });
-    </script>
-@endsection
+    @endsection
 @endsection

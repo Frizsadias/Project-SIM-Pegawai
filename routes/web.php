@@ -153,6 +153,7 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::get('super-admin/profile', 'superadmin_profile')->middleware('auth')->name('super-admin-profile');
     Route::get('kepala-ruangan/profile', 'kepalaruangan_profile')->middleware('auth')->name('kepala-ruangan-profile');
     Route::post('profile/information/save', 'profileInformation')->name('profile/information/save');
+    Route::post('profile/information/save2', 'profileInformation2')->name('profile/information/save2');
     Route::post('profile/information/foto/save', 'fotoProfile')->name('profile/information/foto/save');
     Route::get('manajemen/pengguna', 'index')->middleware('auth')->name('manajemen-pengguna');
     Route::post('user/add/save', 'addNewUserSave')->name('user/add/save');
@@ -529,23 +530,24 @@ Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/kenaikan/gaji/berkala', 'tampilanKGB')->name('kenaikan-gaji-berkala');
     Route::get('layanan/kenaikan/gaji/berkala/admin', 'tampilanKGBAdmin')->name('kenaikan-gaji-berkala-admin');
     Route::get('layanan/kenaikan/gaji/berkala/admin/cari', 'filterKGBAdmin')->name('layanan/kenaikan/gaji/berkala/admin/cari');
-    Route::get('layanan/kenaikan/gaji/berkala/admin/dokumen/{id}', 'cetakKGB')->name('layanan-kenaikan-gaji-berkala-admin-dokumen');
+    Route::get('layanan/kenaikan/gaji/berkala/{id}', 'cetakKGB2')->name('layanan-kenaikan-gaji-berkala');
     Route::get('layanan/kenaikan/gaji/berkala/admin/{id}', 'cetakKGB')->name('layanan-kenaikan-gaji-berkala-admin');
     Route::get('layanan/perpanjang-kontrak', 'tampilanPerpanjangKontrak')->name('perpanjang-kontrak');
     Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
     Route::get('layanan/perpanjang-kontrak-admin-cari', 'filterPerpanjangKontrakAdmin')->name('layanan/perpanjang-kontrak-admin-cari');
     Route::post('layanan/kontrak/tambah-data', 'tambahDataKontrak')->name('layanan/kontrak/tambah-data');
     Route::post('layanan/kontrak/edit-data', 'editDataKontrak')->name('layanan/kontrak/edit-data');
+    Route::get('layanan/perpanjang-kontrak/{id}', 'cetakPerpanjanganKontrak2')->name('layanan-perpanjang-kontrak');
     Route::get('layanan/perpanjang-kontrak-admin/{id}', 'cetakPerpanjanganKontrak')->name('layanan-perpanjang-kontrak-admin');
     Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
     Route::post('layanan/perpanjangan-kontrak/hapus-data', 'hapusPerpanjanganKontrak')->name('layanan/perpanjangan-kontrak/hapus-data');
-    // Route::get('layanan/perpanjang-kontrak-admin/{id}', 'cetakPerjanjianKontrak')->name('layanan-perpanjang-kontrak-admin');
     Route::get('layanan/perjanjian-kontrak', 'tampilanPerjanjianKontrak')->name('perjanjian-kontrak');
     Route::get('layanan/perjanjian-kontrak-admin', 'tampilanPerjanjianKontrakAdmin')->name('perjanjian-kontrak-admin');
     Route::get('layanan/perjanjian-kontrak-admin-cari', 'filterPerjanjianKontrakAdmin')->name('layanan/perjanjian-kontrak-admin-cari');
     Route::post('layanan/perjanjian-kontrak/tambah-data', 'tambahDataPerjanjianKontrak')->name('layanan/perjanjian-kontrak/tambah-data');
     Route::post('layanan/perjanjian-kontrak/edit-data', 'editDataPerjanjianKontrak')->name('layanan/perjanjian-kontrak/edit-data');
     Route::post('layanan/perjanjian-kontrak/delete', 'hapusPerjanjianKontrak')->name('layanan/perjanjian-kontrak/delete');
+    Route::get('layanan/perjanjian-kontrak/{id}', 'cetakPerjanjianKontrak2')->name('layanan-perjanjian-kontrak');
     Route::get('layanan/perjanjian-kontrak-admin/{id}', 'cetakPerjanjianKontrak')->name('layanan-perjanjian-kontrak-admin');
     Route::get('layanan/peta-jabatan', 'tampilanPetaJabatan')->name('peta-jabatan');
     Route::get('layanan/surat-tanda-registrasi-admin', 'tampilanSTRAdmin')->name('surat-tanda-registrasi-admin');
@@ -560,8 +562,8 @@ Route::controller(LayananController::class)->group(function () {
     Route::post('layanan/perjanjian-kinerja/tambah-data', 'tambahDataPerjanjianKinerja')->name('layanan/perjanjian-kinerja/tambah-data');
     Route::post('layanan/perjanjian-kinerja/edit-data', 'editDataPerjanjianKinerja')->name('layanan/perjanjian-kinerja/edit-data');
     Route::post('layanan/perjanjian-kinerja/hapus-data', 'hapusDataPerjanjianKinerja')->name('layanan/perjanjian-kinerja/hapus-data');
+    Route::get('layanan/perjanjian-kinerja/{id}', 'cetakPerjanjianKinerja2')->name('layanan-perjanjian-kinerja');
     Route::get('layanan/perjanjian-kinerja-admin/{id}', 'cetakPerjanjianKinerja')->name('layanan-perjanjian-kinerja-admin');
-
     Route::post('ruangan/pegawai/list/cari', 'pencarianPegawaiKepalaRuanganList')->name('ruangan/pegawai/list/cari');
     Route::post('ruangan/pegawai/card/cari', 'pencarianPegawaiKepalaRuanganCard')->name('ruangan/pegawai/card/cari');
 });

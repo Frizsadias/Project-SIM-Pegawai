@@ -20,7 +20,9 @@ class KontrakKerja extends Model
         'nik_blud',
         'pendidikan',
         'tahun_lulus',
-        'jabatan'
+        'jabatan',
+        'mulai_kontrak',
+        'akhir_kontrak'
     ];
     
     public function posisi_jabatan()

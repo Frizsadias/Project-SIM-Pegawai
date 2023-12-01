@@ -1497,7 +1497,8 @@ table.dataTable thead > tr > td.sorting {
 -----------------------*/
 
 .sidebar {
-    background-color: #34444c;
+    /* background-color: #34444c; */
+	background-color: #3a5b03;
     border-right: 1px solid transparent;
     bottom: 0;
     left: 0;
@@ -1681,7 +1682,7 @@ table.dataTable thead > tr > td.sorting {
 	background-color: #f43b48;
 	z-index: 10;
 	position: absolute;
-	right: 37px;
+	right: 7px;
 	top: 15px;
 }
 .noti-dot:after {
@@ -1701,7 +1702,7 @@ table.dataTable thead > tr > td.sorting {
 	animation-iteration-count: infinite;
 	position: absolute;
 	top: 8px;
-	right: 30px;
+	right: 0px;
 	z-index: 1;
 	opacity: 0;
 }
@@ -8580,15 +8581,18 @@ ul.comment-list li ul.children {
 	justify-content: center;
 	font-size: 11px;
 }
-.perusahaan {
+
+.namaperusahaan {
  font-family: 'Poppins';
 }
-.alamat {
+
+.alamatperusahaan {
 	font-family: 'Poppins';
 	font-size: 18px;
 	font-weight: 550
 }
-.nomorhp {
+
+.nomorhpperusahaan {
 	font-family: 'Poppins';
 	font-size: 16px; 
 	font-weight: 550
@@ -8736,5 +8740,6 @@ ul.nav-tabs > li > a {
     white-space: nowrap;
 }
 
-
-
+.bentuk_perjanjian {
+	white-space: pre-line;
+}

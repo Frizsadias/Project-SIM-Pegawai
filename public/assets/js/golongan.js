@@ -14,9 +14,9 @@ $(document).on('click', '.edit_riwayat_golongan', function() {
     $('#e_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
 });
 
-// $(document).on('click', '.delete_riwayat_golongan', function() {
-//     var _this = $(this).parents('tr');
-//     $('.e_id').val(_this.find('.id').text());
-//     $('.d_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
-//     $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
-// });
+$(document).on('click', '.delete_riwayat_golongan', function() {
+    var _this = $(this).parents('tr');
+    $('.e_id').val(_this.find('.id').text());
+    $('.d_dokumen_skkp').val(_this.find('.dokumen_skkp').text());
+    $('.d_dokumen_teknis_kp').val(_this.find('.dokumen_teknis_kp').text());
+});

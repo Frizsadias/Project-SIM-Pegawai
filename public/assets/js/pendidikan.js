@@ -18,10 +18,10 @@ $(document).on('click', '.edit_riwayat_pendidikan', function() {
     $(_option).appendTo("#e_ting_ped");
 });
 
-// $(document).on('click', '.delete_riwayat_pendidikan', function() {
-//     var _this = $(this).parents('tr');
-//     $('.e_id').val(_this.find('.id').text());
-//     $('.d_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
-//     $('.d_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
-//     $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
-// });
+$(document).on('click', '.delete_riwayat_pendidikan', function() {
+    var _this = $(this).parents('tr');
+    $('.e_id').val(_this.find('.id').text());
+    $('.d_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
+    $('.d_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
+    $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
+});

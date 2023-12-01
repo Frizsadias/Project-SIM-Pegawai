@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('style')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-    <!-- checkbox style -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-@endsection
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
     <!-- Page Content -->
@@ -27,6 +22,19 @@
             </div>
         </div>
         <!-- /Page Header -->
+
+        <!-- Cetak Dokumen Perjanjian Kontrak PDF -->
+        @php
+            $lastperjanjian = $data_perjanjian_kontrak->last();
+        @endphp
+        @if ($lastperjanjian)
+            <a href="{{ route('layanan-perjanjian-kontrak', ['id' => $lastperjanjian->id]) }}" target="_blank" class="btn btn-success">
+                <i class="fa-solid fa-file-pdf"></i> Dokumen Perjanjian Kontrak
+            </a>
+        @else
+        @endif
+        <br><br>
+        <!-- /Cetak Dokumen Perjanjian Kontrak PDF -->
 
         <!-- Search Filter -->
         {{-- <form action="{{ route('layanan/cuti/cari/admin') }}" method="GET" id="search-form">
@@ -82,8 +90,8 @@
                         <tbody>
                             @foreach ($data_perjanjian_kontrak as $sqlkontrak => $result_perjanjian_kontrak)
                                 <tr>
-                                    <td>{{ ++$sqlkontrak }}</td>
-                                    <td hidden class="id">{{ $result_perjanjian_kontrak->id }}</td>
+                                    {{-- <td>{{ ++$sqlkontrak }}</td> --}}
+                                    <td class="id">{{ $result_perjanjian_kontrak->id }}</td>
                                     <td class="name">{{ $result_perjanjian_kontrak->name }}</td>
                                     <td class="nip">{{ $result_perjanjian_kontrak->nip }}</td>
                                     <td class="nik_blud">{{ $result_perjanjian_kontrak->nik_blud }}</td>
@@ -149,8 +157,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tahun Lulus</label>
-                                    <input type="number" class="form-control" name="tahun_lulus"
-                                        placeholder="Tahun Lulus">
+                                    <input type="number" class="form-control" name="tahun_lulus" placeholder="Tahun Lulus">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -170,33 +177,27 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="tempat_lahir"
-                                            placeholder="Tempat Lahir" value="{{ $profil_pegawai->tempat_lahir }}">
+                                        <input type="hidden" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" value="{{ $profil_pegawai->tempat_lahir }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="tanggal_lahir"
-                                            placeholder="Tanggal Lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
+                                        <input type="hidden" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ $profil_pegawai->tanggal_lahir }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="pendidikan"
-                                            placeholder="Pendidikan"
-                                            value="{{ $profil_pegawai->tingkat_pendidikan }}">
+                                        <input type="hidden" class="form-control" name="pendidikan" placeholder="Pendidikan" value="{{ $profil_pegawai->tingkat_pendidikan }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="name"
-                                            value="{{ $profil_pegawai->name }}">
+                                        <input type="hidden" class="form-control" name="name" value="{{ $profil_pegawai->name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="nip"
-                                            value="{{ $profil_pegawai->nip }}">
+                                        <input type="hidden" class="form-control" name="nip" value="{{ $profil_pegawai->nip }}">
                                     </div>
                                 </div>
                             </div>
@@ -205,8 +206,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" class="form-control" name="jabatan"
-                                            placeholder="Jabatan" value="{{ $posisi_jabatan->jabatan }}">
+                                        <input type="hidden" class="form-control" name="jabatan" placeholder="Jabatan" value="{{ $posisi_jabatan->jabatan }}">
                                     </div>
                                 </div>
                             </div>
@@ -309,21 +309,8 @@
 </div>
 <!-- /Page Wrapper -->
 
-@section('script')
-    <script>
-        $(document).on("click", ".edit_kontrak", function() {
-            var _this = $(this).parents("tr");
-            $("#e_id").val(_this.find(".id").text());
-            $("#e_nik_blud").val(_this.find(".nik_blud").text());
-            $("#e_tahun_lulus").val(_this.find(".tahun_lulus").text());
-            $("#e_mulai_kontrak").val(_this.find(".mulai_kontrak").text());
-            $("#e_akhir_kontrak").val(_this.find(".akhir_kontrak").text());
-        });
-
-        $(document).on("click", ".delete_perjanjian", function() {
-            var _this = $(this).parents("tr");
-            $(".e_id").val(_this.find(".id").text());
-        });
-    </script>
-@endsection
+    @section('script')
+        <script src="{{ asset('assets/js/perjanjiankontrak.js') }}"></script>
+        
+    @endsection
 @endsection

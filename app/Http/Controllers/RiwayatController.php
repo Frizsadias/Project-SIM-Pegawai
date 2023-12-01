@@ -627,17 +627,18 @@ class RiwayatController extends Controller
         $ting_ped = $request->input('ting_ped');
         $tahun_lulus = $request->input('tahun_lulus');
         $nama_sekolah = $request->input('nama_sekolah');
-        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $user_id = auth()->user()->user_id;
 
         $riwayatPendidikan = DB::table('riwayat_pendidikan')
         ->join('users', 'users.user_id', '=', 'riwayat_pendidikan.user_id')
-            ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('users.user_id', $user_id)
             ->where('riwayat_pendidikan.ting_ped', 'like', '%' . $ting_ped . '%')
             ->where('riwayat_pendidikan.tahun_lulus', 'like', '%' . $tahun_lulus . '%')
             ->where('riwayat_pendidikan.nama_sekolah', 'like', '%' . $nama_sekolah . '%')
             ->get();
 
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
         $user = auth()->user();
         $role = $user->role_name;
@@ -651,7 +652,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-pendidikan', compact('riwayatPendidikan', 'unreadNotifications', 'readNotifications', 'tingkatpendidikanOptions'));
+        return view('riwayat/riwayat-pendidikan', compact('riwayatPendidikan', 'unreadNotifications', 'readNotifications',
+            'tingkatpendidikanOptions', 'pendidikanterakhirOptions'));
     }
 
     //Riwayat Golongan
@@ -661,6 +663,8 @@ class RiwayatController extends Controller
         $golongan = $request->input('golongan');
         $jenis_kenaikan_pangkat = $request->input('jenis_kenaikan_pangkat');
         $no_sk_golongan = $request->input('no_sk_golongan');
+
+        $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
         $riwayatGolongan = DB::table('riwayat_golongan')
         ->join('users', 'users.user_id', '=', 'riwayat_golongan.user_id')
@@ -682,7 +686,7 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-golongan', compact('riwayatGolongan', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat/riwayat-golongan', compact('riwayatGolongan', 'unreadNotifications', 'readNotifications', 'golonganOptions'));
     }
 
     //Riwayat Jabatan

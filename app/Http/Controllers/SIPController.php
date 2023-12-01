@@ -212,6 +212,7 @@ class SIPController extends Controller
                 'nomor_sip'             => $request->nomor_sip,
                 'tanggal_terbit'        => $request->tanggal_terbit,
                 'tanggal_berlaku'       => $request->tanggal_berlaku,
+                'ruangan'               => $request->ruangan,
                 'dokumen_sip'           => $dokumen_sip,
             ];
 
@@ -444,6 +445,7 @@ class SIPController extends Controller
                 'nomor_sip'             => $request->nomor_sip,
                 'tanggal_terbit'        => $request->tanggal_terbit,
                 'tanggal_berlaku'       => $request->tanggal_berlaku,
+                'ruangan'               => $request->ruangan,
                 'dokumen_sip'           => $dokumen_sip,
             ];
 
@@ -676,6 +678,7 @@ class SIPController extends Controller
                 'nomor_sip'             => $request->nomor_sip,
                 'tanggal_terbit'        => $request->tanggal_terbit,
                 'tanggal_berlaku'       => $request->tanggal_berlaku,
+                'ruangan'               => $request->ruangan,
                 'dokumen_sip'           => $dokumen_sip,
             ];
 
@@ -906,6 +909,7 @@ class SIPController extends Controller
                 'nomor_sip'             => $request->nomor_sip,
                 'tanggal_terbit'        => $request->tanggal_terbit,
                 'tanggal_berlaku'       => $request->tanggal_berlaku,
+                'ruangan'               => $request->ruangan,
                 'dokumen_sip'           => $dokumen_sip,
             ];
 

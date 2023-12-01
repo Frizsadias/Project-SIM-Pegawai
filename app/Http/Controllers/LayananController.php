@@ -1686,17 +1686,22 @@ class LayananController extends Controller
                 'kenaikan_gaji_berkala.name',
                 'kenaikan_gaji_berkala.nip',
                 'kenaikan_gaji_berkala.golongan_awal',
+                'kenaikan_gaji_berkala.golongan_akhir',
                 'kenaikan_gaji_berkala.gapok_lama',
+                'kenaikan_gaji_berkala.gapok_baru',
                 'kenaikan_gaji_berkala.tgl_sk_kgb',
                 'kenaikan_gaji_berkala.no_sk_kgb',
                 'kenaikan_gaji_berkala.tgl_berlaku',
                 'kenaikan_gaji_berkala.masa_kerja_golongan',
-                'kenaikan_gaji_berkala.gapok_baru',
                 'kenaikan_gaji_berkala.masa_kerja',
-                'kenaikan_gaji_berkala.golongan_akhir',
                 'kenaikan_gaji_berkala.tmt_kgb'
             )
             ->where('kenaikan_gaji_berkala.user_id', $user_id)
+            ->get();
+
+        $data_kgb_result = DB::table('profil_pegawai')
+            ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
+            ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
         $userList = DB::table('profil_pegawai')
@@ -1719,7 +1724,8 @@ class LayananController extends Controller
 
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
-        return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb', 'userList', 'golonganOptions'));
+        return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb',
+            'userList', 'golonganOptions', 'data_kgb_result'));
     }
 
     /** Tambah Data Kenaikan Gaji Berkala Pegawai */
@@ -1730,14 +1736,14 @@ class LayananController extends Controller
             'name'                  => 'required|string|max:255',
             'nip'                   => 'required|string|max:255',
             'golongan_awal'         => 'required|string|max:255',
-            'gapok_lama'            => 'required|string|max:255',
-            'tgl_sk_kgb'            => 'required|string|max:255',
-            'tgl_berlaku'           => 'required|string|max:255',
-            'no_sk_kgb'             => 'required|string|max:255',
-            'masa_kerja_golongan'   => 'required|string|max:255',
-            'gapok_baru'            => 'required|string|max:255',
-            'masa_kerja'            => 'required|string|max:255',
             'golongan_akhir'        => 'required|string|max:255',
+            'gapok_lama'            => 'required|string|max:255',
+            'gapok_baru'            => 'required|string|max:255',
+            'tgl_sk_kgb'            => 'required|string|max:255',
+            'no_sk_kgb'             => 'required|string|max:255',
+            'tgl_berlaku'           => 'required|string|max:255',
+            'masa_kerja_golongan'   => 'required|string|max:255',
+            'masa_kerja'            => 'required|string|max:255',
             'tmt_kgb'               => 'required|string|max:255',
         ]);
         DB::beginTransaction();
@@ -1748,14 +1754,14 @@ class LayananController extends Controller
             $kgb->name                  = $request->name;
             $kgb->nip                   = $request->nip;
             $kgb->golongan_awal         = $request->golongan_awal;
+            $kgb->golongan_akhir        = $request->golongan_akhir;
             $kgb->gapok_lama            = $request->gapok_lama;
+            $kgb->gapok_baru            = $request->gapok_baru;
             $kgb->tgl_sk_kgb            = $request->tgl_sk_kgb;
             $kgb->no_sk_kgb             = $request->no_sk_kgb;
             $kgb->tgl_berlaku           = $request->tgl_berlaku;
             $kgb->masa_kerja_golongan   = $request->masa_kerja_golongan;
-            $kgb->gapok_baru            = $request->gapok_baru;
             $kgb->masa_kerja            = $request->masa_kerja;
-            $kgb->golongan_akhir        = $request->golongan_akhir;
             $kgb->tmt_kgb               = $request->tmt_kgb;
             $kgb->save();
 
@@ -1806,27 +1812,23 @@ class LayananController extends Controller
     }
     /** /Edit Data Kenaikan Gaji Berkala Pegawai */
 
-    /** Cetak Kenaikan Gaji Berkala PDF */
+    /** Cetak Kenaikan Gaji Berkala Admin PDF */
     public function cetakKGB($id)
     {
         $kgb = KenaikanGajiBerkala::find($id);
-
-        if (!$kgb) {
-            return abort(404); // Atau manajemen kesalahan lain sesuai kebutuhan Anda.
-        }
-
-        $nip = $kgb->nip;
-        $name = $kgb->name;
-        $golongan_awal = $kgb->golongan_awal;
-        $golongan_akhir = $kgb->golongan_akhir;
-        $gapok_lama = $kgb->gapok_lama;
-        $gapok_baru = $kgb->gapok_baru;
-        $tgl_sk_kgb = $kgb->tgl_sk_kgb;
-        $no_sk_kgb = $kgb->no_sk_kgb;
-        $tgl_berlaku = $kgb->tgl_berlaku;
-        $masa_kerja_golongan = $kgb->masa_kerja_golongan;
-        $masa_kerja = $kgb->masa_kerja;
-        $tmt_kgb = $kgb->tmt_kgb;
+        $KGB = $kgb->kenaikan_gaji;
+        $nip = $KGB ? $KGB->nip : "Tidak Ada NIP";
+        $name = $KGB ? $KGB->name : "Tidak Ada Nama";
+        $golongan_awal = $KGB ? $KGB->golongan_awal : "Tidak Ada Golongan Awal";
+        $golongan_akhir = $KGB ? $KGB->golongan_akhir : "Tidak Ada Golongan Akhir";
+        $gapok_lama = $KGB ? $KGB->gapok_lama : "Tidak Ada Gaji Pokok Lama";
+        $gapok_baru = $KGB ? $KGB->gapok_baru : "Tidak Ada Gaji Pokok Baru";
+        $tgl_sk_kgb = $KGB ? $KGB->tgl_sk_kgb : "Tidak Ada Tanggal SK";
+        $no_sk_kgb = $KGB ? $KGB->no_sk_kgb : "Tidak Ada No SK";
+        $tgl_berlaku = $KGB ? $KGB->tgl_berlaku : "Tidak Ada Tanggal Berlaku";
+        $masa_kerja_golongan = $KGB ? $KGB->masa_kerja_golongan : "Tidak Ada Masa Kerja Golongan";
+        $masa_kerja = $KGB ? $KGB->masa_kerja : "Tidak Ada Masa Kerja";
+        $tmt_kgb = $KGB ? $KGB->tmt_kgb : "Tidak Ada TMT KGB";
 
         $pdf = PDF::loadView('pdf.cetak-kgb', [
             'kgb'                   => $kgb,
@@ -1846,7 +1848,45 @@ class LayananController extends Controller
 
         return $pdf->stream('cetak-kgb-' . $kgb->name . '.pdf');
     }
-    /** /Cetak Kenaikan Gaji Berkala PDF */
+    /** /Cetak Kenaikan Gaji Berkala Admin PDF */
+
+    /** Cetak Kenaikan Gaji Berkala User PDF */
+    public function cetakKGB2($id)
+    {
+        $kgb = KenaikanGajiBerkala::find($id);
+        $KGB = $kgb->kenaikan_gaji;
+        $nip = $KGB ? $KGB->nip : "Tidak Ada NIP";
+        $name = $KGB ? $KGB->name : "Tidak Ada Nama";
+        $golongan_awal = $KGB ? $KGB->golongan_awal : "Tidak Ada Golongan Awal";
+        $golongan_akhir = $KGB ? $KGB->golongan_akhir : "Tidak Ada Golongan Akhir";
+        $gapok_lama = $KGB ? $KGB->gapok_lama : "Tidak Ada Gaji Pokok Lama";
+        $gapok_baru = $KGB ? $KGB->gapok_baru : "Tidak Ada Gaji Pokok Baru";
+        $tgl_sk_kgb = $KGB ? $KGB->tgl_sk_kgb : "Tidak Ada Tanggal SK";
+        $no_sk_kgb = $KGB ? $KGB->no_sk_kgb : "Tidak Ada No SK";
+        $tgl_berlaku = $KGB ? $KGB->tgl_berlaku : "Tidak Ada Tanggal Berlaku";
+        $masa_kerja_golongan = $KGB ? $KGB->masa_kerja_golongan : "Tidak Ada Masa Kerja Golongan";
+        $masa_kerja = $KGB ? $KGB->masa_kerja : "Tidak Ada Masa Kerja";
+        $tmt_kgb = $KGB ? $KGB->tmt_kgb : "Tidak Ada TMT KGB";
+
+        $pdf = PDF::loadView('pdf.cetak-kgb', [
+            'kgb'                   => $kgb,
+            'nip'                   => $nip,
+            'name'                  => $name,
+            'golongan_awal'         => $golongan_awal,
+            'golongan_akhir'        => $golongan_akhir,
+            'gapok_lama'            => $gapok_lama,
+            'gapok_baru'            => $gapok_baru,
+            'tgl_sk_kgb'            => $tgl_sk_kgb,
+            'no_sk_kgb'             => $no_sk_kgb,
+            'tgl_berlaku'           => $tgl_berlaku,
+            'masa_kerja_golongan'   => $masa_kerja_golongan,
+            'masa_kerja'            => $masa_kerja,
+            'tmt_kgb'               => $tmt_kgb,
+        ]);
+
+        return $pdf->stream('cetak-kgb-' . $kgb->name . '.pdf');
+    }
+    /** /Cetak Kenaikan Gaji Berkala User PDF */
 
     /** Tampilan Perpanjangan Kontrak */
     public function tampilanPerpanjangKontrak()
@@ -2235,24 +2275,20 @@ class LayananController extends Controller
         }
     }
 
-    /** Tampilan Cetak Perpanjangan Kontrak */
+    /** Tampilan Cetak Perpanjangan Kontrak Admin */
     public function cetakPerpanjanganKontrak($id)
     {
         $perpanjangan = KontrakKerja::find($id);
-
-        if (!$perpanjangan) {
-            return abort(404); // Atau manajemen kesalahan lain sesuai kebutuhan Anda.
-        }
-
-        $name = $perpanjangan->name;
-        $tempat_lahir = $perpanjangan->tempat_lahir;
-        $tanggal_lahir = $perpanjangan->tanggal_lahir;
-        $nik_blud = $perpanjangan->nik_blud;
-        $pendidikan = $perpanjangan->pendidikan;
-        $tahun_lulus = $perpanjangan->tahun_lulus;
-        $jabatan = $perpanjangan->jabatan;
-        $mulai_kontrak = $perpanjangan->mulai_kontrak;
-        $akhir_kontrak = $perpanjangan->akhir_kontrak;
+        $perpanjanganKontrak = $perpanjangan->perpanjangan_kontrak;
+        $name = $perpanjanganKontrak ? $perpanjanganKontrak->name : "Tidak Ada Nama";
+        $tempat_lahir = $perpanjanganKontrak ? $perpanjanganKontrak->tempat_lahir : "Tidak Ada Tempat Lahir";
+        $tanggal_lahir = $perpanjanganKontrak ? $perpanjanganKontrak->tanggal_lahir : "Tidak Ada Tanggal Lahir";
+        $nik_blud = $perpanjanganKontrak ? $perpanjanganKontrak->nik_blud : "Tidak Ada NIK Blud";
+        $pendidikan = $perpanjanganKontrak ? $perpanjanganKontrak->pendidikan : "Tidak Ada Pendidikan";
+        $tahun_lulus = $perpanjanganKontrak ? $perpanjanganKontrak->tahun_lulus : "Tidak Ada Tahun Lulus";
+        $jabatan = $perpanjanganKontrak ? $perpanjanganKontrak->jabatan : "Tidak Ada Jabatan";
+        $mulai_kontrak = $perpanjanganKontrak ? $perpanjanganKontrak->mulai_kontrak : "Tidak Ada Mulai Kontrak";
+        $akhir_kontrak = $perpanjanganKontrak ? $perpanjanganKontrak->akhir_kontrak : "Tidak Ada Akhir Kontrak";
 
         $pdf = PDF::loadView('pdf.cetak-perpanjangan-kontrak', [
             'perpanjangan' => $perpanjangan,
@@ -2269,7 +2305,39 @@ class LayananController extends Controller
 
         return $pdf->stream('cetak-perpanjangan-kontrak-' . $name . '.pdf');
     }
-    /** /Tampilan Cetak Perpanjangan Kontrak */
+    /** /Tampilan Cetak Perpanjangan Kontrak Admin*/
+
+    /** Tampilan Cetak Perpanjangan Kontrak User */
+    public function cetakPerpanjanganKontrak2($id)
+    {
+        $perpanjangan = KontrakKerja::find($id);
+        $perpanjanganKontrak = $perpanjangan->perpanjangan_kontrak;
+        $name = $perpanjanganKontrak ? $perpanjanganKontrak->name : "Tidak Ada Nama";
+        $tempat_lahir = $perpanjanganKontrak ? $perpanjanganKontrak->tempat_lahir : "Tidak Ada Tempat Lahir";
+        $tanggal_lahir = $perpanjanganKontrak ? $perpanjanganKontrak->tanggal_lahir : "Tidak Ada Tanggal Lahir";
+        $nik_blud = $perpanjanganKontrak ? $perpanjanganKontrak->nik_blud : "Tidak Ada NIK Blud";
+        $pendidikan = $perpanjanganKontrak ? $perpanjanganKontrak->pendidikan : "Tidak Ada Pendidikan";
+        $tahun_lulus = $perpanjanganKontrak ? $perpanjanganKontrak->tahun_lulus : "Tidak Ada Tahun Lulus";
+        $jabatan = $perpanjanganKontrak ? $perpanjanganKontrak->jabatan : "Tidak Ada Jabatan";
+        $mulai_kontrak = $perpanjanganKontrak ? $perpanjanganKontrak->mulai_kontrak : "Tidak Ada Mulai Kontrak";
+        $akhir_kontrak = $perpanjanganKontrak ? $perpanjanganKontrak->akhir_kontrak : "Tidak Ada Akhir Kontrak";
+
+        $pdf = PDF::loadView('pdf.cetak-perpanjangan-kontrak', [
+            'perpanjangan' => $perpanjangan,
+            'name' => $name,
+            'tempat_lahir' => $tempat_lahir,
+            'tanggal_lahir' => $tanggal_lahir,
+            'nik_blud' => $nik_blud,
+            'pendidikan' => $pendidikan,
+            'tahun_lulus' => $tahun_lulus,
+            'jabatan' => $jabatan,
+            'mulai_kontrak' => $mulai_kontrak,
+            'akhir_kontrak' => $akhir_kontrak,
+        ]);
+
+        return $pdf->stream('cetak-perpanjangan-kontrak-' . $name . '.pdf');
+    }
+    /** /Tampilan Cetak Perpanjangan Kontrak User */
 
     /** Tampilan Perjanjian Kontrak Admin */
     public function tampilanPerjanjianKontrakAdmin()
@@ -2640,22 +2708,18 @@ class LayananController extends Controller
         }
     }
 
-    /** Tampilan Cetak Dokumen Kelengkapan */
+    /** Tampilan Cetak Dokumen Perjanjian Kontrak Admin */
     public function cetakPerjanjianKontrak($id)
     {
         $perjanjian = PerjanjianKontrak::find($id);
-
-        if (!$perjanjian) {
-            return abort(404); // Atau manajemen kesalahan lain sesuai kebutuhan Anda.
-        }
-
-        $name = $perjanjian->name;
-        $tempat_lahir = $perjanjian->tempat_lahir;
-        $tanggal_lahir = $perjanjian->tanggal_lahir;
-        $nik_blud = $perjanjian->nik_blud;
-        $pendidikan = $perjanjian->pendidikan;
-        $tahun_lulus = $perjanjian->tahun_lulus;
-        $jabatan = $perjanjian->jabatan;
+        $perjanjianKontrak = $perjanjian->perjanjian_kontrak;
+        $name = $perjanjianKontrak ? $perjanjianKontrak->name : "Tidak Ada Nama";
+        $tempat_lahir = $perjanjianKontrak ? $perjanjianKontrak->tempat_lahir : "Tidak Ada Tempat Lahir";
+        $tanggal_lahir = $perjanjianKontrak ? $perjanjianKontrak->tanggal_lahir : "Tidak Ada Tanggal Lahir";
+        $nik_blud = $perjanjianKontrak ? $perjanjianKontrak->nik_blud : "Tidak Ada NIK Blud";
+        $pendidikan = $perjanjianKontrak ? $perjanjianKontrak->pendidikan : "Tidak Ada Pendidikan";
+        $tahun_lulus = $perjanjianKontrak ? $perjanjianKontrak->tahun_lulus : "Tidak Ada Tahun Lulus";
+        $jabatan = $perjanjianKontrak ? $perjanjianKontrak->jabatan : "Tidak Ada Jabatan";
 
         $pdf = PDF::loadView('pdf.cetak-perjanjian-kontrak', [
             'perjanjian' => $perjanjian,
@@ -2669,14 +2733,36 @@ class LayananController extends Controller
         ]);
 
         return $pdf->stream('cetak-perjanjian-kontrak-' . $name . '.pdf');
-        // $nama_file = 'surat-cuti-' . $name . '.pdf';
-
-        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
-        // // $pdf->save(public_path('pdf/' . $nama_file));
-        // $pdf->stream($nama_file);
-        // }
     }
-    /** /Tampilan Cetak Dokumen Kelengkapan */
+    /** /Tampilan Cetak Dokumen Perjanjian Kontrak Admin */
+
+    /** Tampilan Cetak Dokumen Perjanjian Kontrak User */
+    public function cetakPerjanjianKontrak2($id)
+    {
+        $perjanjian = PerjanjianKontrak::find($id);
+        $perjanjianKontrak = $perjanjian->perjanjian_kontrak;
+        $name = $perjanjianKontrak ? $perjanjianKontrak->name : "Tidak Ada Nama";
+        $tempat_lahir = $perjanjianKontrak ? $perjanjianKontrak->tempat_lahir : "Tidak Ada Tempat Lahir";
+        $tanggal_lahir = $perjanjianKontrak ? $perjanjianKontrak->tanggal_lahir : "Tidak Ada Tanggal Lahir";
+        $nik_blud = $perjanjianKontrak ? $perjanjianKontrak->nik_blud : "Tidak Ada NIK Blud";
+        $pendidikan = $perjanjianKontrak ? $perjanjianKontrak->pendidikan : "Tidak Ada Pendidikan";
+        $tahun_lulus = $perjanjianKontrak ? $perjanjianKontrak->tahun_lulus : "Tidak Ada Tahun Lulus";
+        $jabatan = $perjanjianKontrak ? $perjanjianKontrak->jabatan : "Tidak Ada Jabatan";
+
+        $pdf = PDF::loadView('pdf.cetak-perjanjian-kontrak', [
+            'perjanjian' => $perjanjian,
+            'name' => $name,
+            'tempat_lahir' => $tempat_lahir,
+            'tanggal_lahir' => $tanggal_lahir,
+            'nik_blud' => $nik_blud,
+            'pendidikan' => $pendidikan,
+            'tahun_lulus' => $tahun_lulus,
+            'jabatan' => $jabatan,
+        ]);
+
+        return $pdf->stream('cetak-perjanjian-kontrak-' . $name . '.pdf');
+    }
+    /** /Tampilan Cetak Dokumen Perjanjian Kontrak User */
 
     public function tampilanPetaJabatan()
     {
@@ -3368,37 +3454,49 @@ class LayananController extends Controller
         }
     }
 
-    // Cetak Perjanjian Kinerja
+    /** Cetak Perjanjian Kinerja Admin */
     public function cetakPerjanjianKinerja($id)
     {
         $kinerja = PerjanjianKinerja::find($id);
-
-        if (!$kinerja) {
-            return abort(404); // Atau manajemen kesalahan lain sesuai kebutuhan Anda.
-        }
-
-        $name = $kinerja->name;
-        $jabatan = $kinerja->jabatan;
-        $bentuk_perjanjian = $kinerja->bentuk_perjanjian;
-        $nip = $kinerja->nip;
+        $perjanjianKinerja = $kinerja->perjanjian_kinerja;
+        $name = $perjanjianKinerja ? $perjanjianKinerja->name : "Tidak Ada Nama";
+        $nip = $perjanjianKinerja ? $perjanjianKinerja->nip : "Tidak Ada NIP";
+        $jabatan = $perjanjianKinerja ? $perjanjianKinerja->jabatan : "Tidak Ada Jabatan";
+        $bentuk_perjanjian = $perjanjianKinerja ? $perjanjianKinerja->bentuk_perjanjian : "Tidak Ada Bentuk Perjanjian";
 
         $pdf = PDF::loadView('pdf.cetak-perjanjian-kinerja', [
             'kinerja' => $kinerja,
             'name' => $name,
-            'bentuk_perjanjian' => $bentuk_perjanjian,
-            'jabatan' => $jabatan,
             'nip' => $nip,
+            'jabatan' => $jabatan,
+            'bentuk_perjanjian' => $bentuk_perjanjian
         ]);
 
+        return $pdf->stream('cetak-perjanjian-kinerja-' . $kinerja->name . '.pdf');
+    }
+    /** End Cetak Perjanjian Kinerja Admin */
+
+    /** Cetak Perjanjian Kinerja User */
+    public function cetakPerjanjianKinerja2($id)
+    {
+        $kinerja = PerjanjianKinerja::find($id);
+        $perjanjianKinerja = $kinerja->perjanjian_kinerja;
+        $name = $perjanjianKinerja ? $perjanjianKinerja->name : "Tidak Ada Nama";
+        $nip = $perjanjianKinerja ? $perjanjianKinerja->nip : "Tidak Ada NIP";
+        $jabatan = $perjanjianKinerja ? $perjanjianKinerja->jabatan : "Tidak Ada Jabatan";
+        $bentuk_perjanjian = $perjanjianKinerja ? $perjanjianKinerja->bentuk_perjanjian : "Tidak Ada Bentuk Perjanjian";
+
+        $pdf = PDF::loadView('pdf.cetak-perjanjian-kinerja', [
+            'kinerja' => $kinerja,
+            'name' => $name,
+            'nip' => $nip,
+            'jabatan' => $jabatan,
+            'bentuk_perjanjian' => $bentuk_perjanjian
+        ]);
 
         return $pdf->stream('cetak-perjanjian-kinerja-' . $kinerja->name . '.pdf');
-        // $nama_file = 'surat-cuti-' . $name . '.pdf';
-
-        // // Simpan atau tampilkan (stream) PDF, tergantung pada kebutuhan Anda
-        // // $pdf->save(public_path('pdf/' . $nama_file));
-        // $pdf->stream($nama_file);
-        // }
     }
+    /** End Cetak Perjanjian Kinerja User */
 
     /** Search Pegawai List Kepala Ruangan */
     public function pencarianPegawaiKepalaRuanganList(Request $request)

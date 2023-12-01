@@ -55,8 +55,11 @@
                     </div>
                 </div>
             </form>
-
             <!-- Search Filter -->
+
+            {{-- message --}}
+            {!! Toastr::message() !!}
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -132,9 +135,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- message --}}
-            {!! Toastr::message() !!}
         </div>
         <!-- /Page Content -->
 
@@ -265,11 +265,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Jabatan</label>
-                                        <select name="jenis_jabatan_riwayat" class="select" id="e_jenis_jabatan_riwayat">
-                                            <option selected disabled> --Pilih Jenis Jabatan --</option>
-                                            <option>Jabatan Struktural</option>
-                                            <option>Jabatan Fungsional Tertentu</option>
-                                            <option>Jabatan Fungsional Umum</option>
+                                        <br>
+                                        <select class="theSelect" name="jenis_jabatan_riwayat" id="e_jenis_jabatan_riwayat">
+                                            @foreach ($jenisjabatanOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -363,18 +363,14 @@
                             <form action="{{ route('riwayat/jabatan/hapus-data') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" class="e_id" value="">
-                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan"
-                                    value="">
-                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan"
-                                    value="">
+                                <input type="hidden" name="dokumen_sk_jabatan" class="d_dokumen_sk_jabatan" value="">
+                                <input type="hidden" name="dokumen_pelantikan" class="d_dokumen_pelantikan" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>

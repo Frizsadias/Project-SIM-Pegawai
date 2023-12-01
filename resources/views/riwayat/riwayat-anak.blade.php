@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -53,11 +54,11 @@
                     </div>
                 </div>
             </form> --}}
+            <!-- Search Filter -->
 
             {{-- message --}}
             {!! Toastr::message() !!}
-
-            <!-- Search Filter -->
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -66,10 +67,16 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Orang Tua</th>
+                                    <th>Status Pekerjaan Anak</th>
                                     <th>Nama Anak</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Tanggal Lahir</th>
                                     <th>Status Anak</th>
+                                    <th>Jenis Dokumen</th>
+                                    <th>Nomor Dokumen</th>
+                                    <th>Agama</th>
+                                    <th>Status Hidup</th>
+                                    <th>Nomor Akta Kelahiran</th>
                                     <th>Dokumen Akta Kelahiran</th>
                                     <th>Pas Foto</th>
                                     <th>Aksi</th>
@@ -81,30 +88,32 @@
                                         <td><center>{{ ++$sqlAnak }}</center></td>
                                         <td hidden class="id"><center>{{ $result_anak->id }}</center></td>
                                         <td class="orang_tua"><center>{{ $result_anak->orang_tua }}</center></td>
+                                        <td class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
                                         <td class="nama_anak"><center>{{ $result_anak->nama_anak }}</center></td>
                                         <td class="jenis_kelamin"><center>{{ $result_anak->jenis_kelamin }}</center></td>
                                         <td class="tanggal_lahir"><center>{{ $result_anak->tanggal_lahir }}</center></td>
                                         <td class="status_anak"><center>{{ $result_anak->status_anak }}</center></td>
+                                        <td class="jenis_dokumen"><center>{{ $result_anak->jenis_dokumen }}</center></td>
+                                        <td class="no_dokumen"><center>{{ $result_anak->no_dokumen }}</center></td>
+                                        <td class="agama"><center>{{ $result_anak->agama }}</center></td>
+                                        <td class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
+                                        <td class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
                                         <td class="dokumen_akta_kelahiran"><center>
                                             <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
                                                 @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                     <td hidden class="dokumen_akta_kelahiran">{{ $result_anak->dokumen_akta_kelahiran }}</td>
-                                            </a></center></td>
-                                            <td class="pas_foto"><center>
+                                            </a>
+                                        </center></td>
+                                        <td class="pas_foto"><center>
                                             <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
                                                 @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                     <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
-                                                <td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>
+                                                    <td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>
                                             </a>
-                                            <td hidden class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
-                                            <td hidden class="jenis_dokumen"><center>{{ $result_anak->jenis_dokumen }}</center></td>
-                                            <td hidden class="no_dokumen"><center>{{ $result_anak->no_dokumen }}</center></td>
-                                            <td hidden class="agama"><center>{{ $result_anak->agama }}</center></td>
-                                            <td hidden class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
-                                            <td hidden class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
+                                        </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -157,10 +166,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-form-label">Orang Tua (Pasangan)</label><small
-                                            class="text-danger">*</small><br>
+                                        <label class="col-form-label">Orang Tua (Pasangan)</label>
+                                        <small class="text-danger">*</small>
+                                        <br>
                                         <select class="select form-control" name="orang_tua">
-                                            <option value="">-- Pilih Nama Orang Tua --</option>
+                                            <option disabled selected value="">-- Pilih Nama Orang Tua --</option>
                                             @foreach ($userList as $user)
                                                 <option value="{{ $user->nama }}">{{ $user->nama }}</option>
                                             @endforeach
@@ -169,7 +179,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pekerjaan Anak</label><small class="text-danger">*</small>
+                                        <label>Status Pekerjaan Anak</label>
+                                        <small class="text-danger">*</small>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status_pekerjaan_anak"
                                                 value="Bukan PNS" required>
@@ -195,7 +206,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                        <label>Jenis Kelamin</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="jenis_kelamin" value="Laki-Laki" required>
@@ -214,13 +226,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                        <label>Tanggal Lahir</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_lahir" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Anak</label><small class="text-danger">*</small><br>
+                                        <label>Status Anak</label>
+                                        <small class="text-danger">*</small><br>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="status_anak"
                                                 value="Kandung" required>
@@ -241,8 +255,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Dokumen</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="jenis_dokumen" required>
+                                        <label>Jenis Dokumen</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="jenis_dokumen" required>
                                             <option disabled selected value="">-- Pilih Jenis Dokumen --</option>
                                             <option value="KTP/KIA">KTP/KIA</option>
                                             <option value="Passport">Passport</option>
@@ -251,7 +266,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Dokumen</label><small class="text-danger">*</small>
+                                        <label>Nomor Dokumen</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_dokumen"
                                             placeholder="Masukkan nomor dokumen " required>
                                     </div>
@@ -260,8 +276,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Agama</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="agama" required>
+                                        <label>Agama</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="agama" required>
                                             <option disabled selected value="">-- Pilih Agama --</option>
                                             @foreach ($agamaOptions as $agama)
                                                 <option value="{{ $agama }}">{{ $agama }}</option>
@@ -271,7 +288,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                        <label>Status Hidup</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="status_hidup" value="Hidup" required>
@@ -290,7 +308,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Akta Kelahiran</label><small class="text-danger">*</small>
+                                        <label>Nomor Akta Kelahiran</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_akta_kelahiran"
                                             placeholder="Masukkan nomor akta kelahiran" required>
                                     </div>
@@ -299,14 +318,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Akta Kelahiran</label><small class="text-danger">*</small>
+                                        <label>Dokumen Akta Kelahiran</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_akta_kelahiran">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto</label><small class="text-danger">*</small>
+                                        <label>Pas Foto</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="pas_foto">
                                         <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                     </div>
@@ -340,10 +361,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-form-label">Orang Tua (Pasangan)</label><small
-                                            class="text-danger">*</small><br>
-                                        <select class="select form-control" name="orang_tua" id="e_orang_tua">
-                                            <option value="">-- Pilih Nama Orang Tua --</option>
+                                        <label class="col-form-label">Orang Tua (Pasangan)</label>
+                                        <small class="text-danger">*</small>
+                                        <br>
+                                        <select class="form-control" name="orang_tua" id="e_orang_tua">
+                                            <option disabled selected value="">-- Pilih Nama Orang Tua --</option>
                                             @foreach ($userList as $user)
                                                 <option value="{{ $user->nama }}">{{ $user->nama }}</option>
                                             @endforeach
@@ -352,7 +374,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pekerjaan Anak</label><small class="text-danger">*</small>
+                                        <label>Status Pekerjaan Anak</label>
+                                        <small class="text-danger">*</small>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status_pekerjaan_anak" id="bukan_pns"
                                                 value="Bukan PNS" required>
@@ -378,7 +401,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                        <label>Jenis Kelamin</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="jenis_kelamin" id="laki_laki" value="Laki-Laki" required>
@@ -397,13 +421,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                        <label>Tanggal Lahir</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_lahir" id="e_tanggal_lahir" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Anak</label><small class="text-danger">*</small><br>
+                                        <label>Status Anak</label>
+                                        <small class="text-danger">*</small><br>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="status_anak" id="kandung"
                                                 value="Kandung" required>
@@ -425,9 +451,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Dokumen</label><small class="text-danger">*</small>
+                                        <label>Jenis Dokumen</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="jenis_dokumen" id="e_jenis_dokumen" required>
-                                            <option disabled selected value="">-- Pilih Jenis Dokumen --</option>
                                             <option value="KTP/KIA">KTP/KIA</option>
                                             <option value="Passport">Passport</option>
                                         </select>
@@ -435,7 +461,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Dokumen</label><small class="text-danger">*</small>
+                                        <label>Nomor Dokumen</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_dokumen" id="e_no_dokumen"
                                             placeholder="Masukkan nomor dokumen " required>
                                     </div>
@@ -444,9 +471,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Agama</label><small class="text-danger">*</small>
+                                        <label>Agama</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="agama" id="e_agama" required>
-                                            <option disabled selected value="">-- Pilih Agama --</option>
                                             @foreach ($agamaOptions as $agama)
                                                 <option value="{{ $agama }}">{{ $agama }}</option>
                                             @endforeach
@@ -455,7 +482,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                        <label>Status Hidup</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="status_hidup" id="hidup" value="Hidup" required>
@@ -474,7 +502,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Akta Kelahiran</label><small class="text-danger">*</small>
+                                        <label>Nomor Akta Kelahiran</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_akta_kelahiran" id="e_no_akta_kelahiran"
                                             placeholder="Masukkan nomor akta kelahiran" required>
                                     </div>
@@ -483,7 +512,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Akta Kelahiran</label><small class="text-danger">*</small>
+                                        <label>Dokumen Akta Kelahiran</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_akta_kelahiran" id="dokumen_akta_kelahiran">
                                         <input type="hidden" name="hidden_dokumen_akta_kelahiran" id="e_dokumen_akta_kelahiran"
                                             value="">
@@ -492,7 +522,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto</label><small class="text-danger">*</small>
+                                        <label>Pas Foto</label>
+                                        <small class="text-danger">*</small>
                                         <input type="file" class="form-control" id="pas_foto"
                                             name="pas_foto">
                                         <input type="hidden" name="hidden_pas_foto" id="e_pas_foto"
@@ -542,174 +573,22 @@
                 </div>
             </div>
         </div>
-        <!-- End Delete Riwayat Pasangan Modal -->
+        <!-- End Delete Riwayat Anak Modal -->
 
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var table = $('#tableAngkaKredit').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "{{ route('get-angkakredit-data') }}",
-                        "data": function(d) {
-                            d.keyword = $('#keyword').val();
-                            d._token = "{{ csrf_token() }}";
-                        }
-                    },
-                    "columns": [
-                        {
-                            "data": "id"
-                        },
-                        {
-                            "data": "nama_jabatan"
-                        },
-                        {
-                            "data": "nomor_sk"
-                        },
-                        {
-                            "data": "tanggal_sk"
-                        },
-                        {
-                            "data": "angka_kredit_pertama"
-                        },
-                        {
-                            "data": "integrasi"
-                        },
-                        {
-                            "data": "konversi"
-                        },
-                        {
-                            "data": "bulan_mulai"
-                        },
-                        {
-                            "data": "tahun_mulai"
-                        },
-                        {
-                            "data": "bulan_selesai"
-                        },
-                        {
-                            "data": "tahun_selesai"
-                        },
-                        {
-                            "data": "angka_kredit_utama"
-                        },
-                        {
-                            "data": "angka_kredit_penunjang"
-                        },
-                        {
-                            "data": "total_angka_kredit"
-                        },
-                        {
-                            "data": "action"
-                        },
-                    ],
-                    "language": {
-                        "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
-                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
-                        "infoFiltered": "(filtered from _MAX_ total records)",
-                        "search": "Cari:",
-                        "paginate": {
-                            "previous": "Previous",
-                            "next": "Next",
-                            "first": "<<",
-                            "last": ">>",
-                        }
-                    },
-                    "order": [
-                        [0, "asc"]
-                    ]
-                });
+    @section('script')
+        <script src="{{ asset('assets/js/anak.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-                // Live search
-                $('#search-form').on('submit', function(e) {
-                    e.preventDefault();
-                    table
-                        .search($('#keyword').val())
-                        .draw();
-                })
-            });
-        </script> --}}
-    {{-- update --}}
-    <script>
-        $(document).on('click', '.edit_anak', function() {
-    var _this = $(this).parents('tr');
-    $('#e_id').val(_this.find('.id').text());
-    $('#e_orang_tua').val(_this.find('.orang_tua').text());
-    var statusPekerjaanAnak = _this.find('.status_pekerjaan_anak').text();
-    if (statusPekerjaanAnak === 'Bukan PNS') {
-        $('#bukan_pns').prop('checked', true);
-    } else if (statusPekerjaanAnak === 'PNS') {
-        $('#pns').prop('checked', true);
-    }
-    $('#e_nama_anak').val(_this.find('.nama_anak').text());
-    var jenisKelamin = _this.find('.jenis_kelamin').text();
-        if (jenisKelamin === 'Laki-Laki') {
-            $('#laki_laki').prop('checked', true);
-        } else if (jenisKelamin === 'Perempuan') {
-            $('#perempuan').prop('checked', true);
-        }
-    $('#e_tanggal_lahir').val(_this.find('.tanggal_lahir').text());
-    var statusAnak = _this.find('.status_anak').text();
-    if (statusAnak === 'Kandung') {
-        $('#kandung').prop('checked', true);
-    } else if (statusAnak === 'Tiri') {
-        $('#tiri').prop('checked', true);
-    } else if (statusAnak === 'Angkat') {
-        $('#angkat').prop('checked', true);
-    }
-    $('#e_jenis_dokumen').val(_this.find('.jenis_dokumen').text());
-    $('#e_no_dokumen').val(_this.find('.no_dokumen').text());
-    $('#e_agama').val(_this.find('.agama').text());
-    var statusHidup = _this.find('.status_hidup').text();
-    if (statusHidup === 'Hidup') {
-        $('#hidup').prop('checked', true);
-    } else if (statusHidup === 'Meninggal') {
-        $('#meninggal').prop('checked', true);
-    }
-    $('#e_no_akta_kelahiran').val(_this.find('.no_akta_kelahiran').text());
-    $('#e_dokumen_akta_kelahiran').val(_this.find('.dokumen_akta_kelahiran').text());
-    $('#e_pas_foto').val(_this.find('.pas_foto').text());
-});
+        <script>
+            $(".theSelect").select2();
+        </script>
 
-    </script>
+        <script>
+            history.pushState({}, "", '/riwayat/anak');
+        </script>
 
-
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_anak', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_akta_kelahiran').val(_this.find('.dokumen_akta_kelahiran').text());
-            $('.d_pas_foto').val(_this.find('.pas_foto').text());
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script>
-        $(".theSelect").select2();
-    </script>
-
-    <script>
-        history.pushState({}, "", '/riwayat/anak');
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.exclusive').change(function() {
-                if ($(this).prop('checked')) {
-                    $('.exclusive').not(this).prop('disabled', true);
-                } else {
-                    $('.exclusive').prop('disabled', false);
-                }
-            });
-        });
-    </script>
-@endsection
+    @endsection
 @endsection

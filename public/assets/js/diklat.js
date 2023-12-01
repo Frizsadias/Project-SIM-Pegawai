@@ -16,8 +16,8 @@ $(document).on('click', '.edit_riwayat_diklat', function() {
     $(_option).appendTo("#e_jenis_diklat");
 });
 
-// $(document).on('click', '.delete_riwayat_diklat', function() {
-//     var _this = $(this).parents('tr');
-//     $('.e_id').val(_this.find('.id').text());
-//     $('.d_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
-// });
+$(document).on('click', '.delete_riwayat_diklat', function() {
+    var _this = $(this).parents('tr');
+    $('.e_id').val(_this.find('.id').text());
+    $('.d_dokumen_diklat').val(_this.find('.dokumen_diklat').text());
+});

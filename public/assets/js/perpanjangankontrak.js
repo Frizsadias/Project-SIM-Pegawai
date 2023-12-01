@@ -11,7 +11,7 @@ $(document).on("click", ".edit_kontrak", function () {
     $("#e_akhir_kontrak").val(_this.find(".akhir_kontrak").text());
 });
 
-$(document).on("click", ".delete_perpanjangan", function () {
+$(document).on("click", ".delete_kontrak", function() {
     var _this = $(this).parents("tr");
     $(".e_id").val(_this.find(".id").text());
 });

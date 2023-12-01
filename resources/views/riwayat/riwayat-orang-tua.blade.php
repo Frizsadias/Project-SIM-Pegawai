@@ -66,9 +66,19 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Status Hidup</th>
+                                    <th>Status Pekerjaan Orang Tua</th>
+                                    <th>NIP</th>
+                                    <th>Tanggal Meninggal</th>
                                     <th>Nama Orang Tua</th>
+                                    <th>Tanggal Lahir</th>
+                                    <th>Jenis Identitas</th>
                                     <th>Jenis Kelamin</th>
+                                    <th>Agama</th>
                                     <th>Status Pernikahan</th>
+                                    <th>Alamat</th>
+                                    <th>E-Mail</th>
+                                    <th>No HP</th>
+                                    <th>No Telp</th>
                                     <th>Dokumen Kartu Keluarga</th>
                                     <th>Dokumen Akta Anak</th>
                                     <th>Pas Foto Ayah</th>
@@ -82,47 +92,53 @@
                                         <td><center>{{ ++$sqlOrtu }}</center></td>
                                         <td hidden class="id"><center>{{ $result_Ortu->id }}</center></td>
                                         <td class="status_hidup"><center>{{ $result_Ortu->status_hidup }}</center></td>
+                                        <td class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
+                                        <td class="nip"><center>{{ $result_Ortu->nip }}</center></td>
+                                        <td class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
                                         <td class="nama"><center>{{ $result_Ortu->nama }}</center></td>
+                                        <td class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
+                                        <td class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
                                         <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
+                                        <td class="agama"><center>{{ $result_Ortu->agama }}</center></td>
                                         <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
-                                        <td hidden class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
+                                        <td class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
+                                        <td class="email"><center>
+                                            <a href="mailto:{{ $result_Ortu->email }}" style="color:black">{{ $result_Ortu->email }}</a>
+                                        </center></td>
+                                        <td class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
+                                        <td class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
                                         <td class="dokumen_kk"><center>
                                             <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
                                                 @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                     <td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>
-                                            </a></center></td>
+                                            </a>
+                                        </center></td>
                                         <td class="dokumen_akta_lahir_anak"><center>
                                             <a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank">
                                                 @if (pathinfo($result_Ortu->dokumen_akta_lahir_anak, PATHINFO_EXTENSION) == 'pdf')
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                     <td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>
-                                            </a></center></td>
+                                            </a>
+                                        </center></td>
                                         <td class="pas_foto_ayah"><center>
                                             <a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank">
                                                 @if (in_array(pathinfo($result_Ortu->pas_foto_ayah, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                     <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
-                                                <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
+                                                    <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
                                             </a>
+                                        </center></td>
                                         <td class="pas_foto_ibu"><center>
                                             <a href="{{ asset('assets/DokumenPasFotoIbu/' . $result_Ortu->pas_foto_ibu) }}" target="_blank">
                                                 @if (in_array(pathinfo($result_Ortu->pas_foto_ibu, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                     <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
-                                                <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
+                                                    <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
                                             </a>
-                                            <td hidden class="nip"><center>{{ $result_Ortu->nip }}</center></td>
-                                            <td hidden class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
-                                            <td hidden class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
-                                            <td hidden class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
-                                            <td hidden class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
-                                            <td hidden class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
-                                            <td hidden class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
-                                            <td hidden class="agama"><center>{{ $result_Ortu->agama }}</center></td>
-                                            <td hidden class="email"><center>{{ $result_Ortu->email }}</center></td>
+                                        </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -176,7 +192,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                        <label>Status Hidup</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="status_hidup" value="Hidup" required>
@@ -193,7 +210,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pekerjaan Orang Tua</label><small class="text-danger">*</small>
+                                        <label>Status Pekerjaan Orang Tua</label>
+                                        <small class="text-danger">*</small>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status_pekerjaan_ortu"
                                                 value="Bukan PNS" required>
@@ -227,14 +245,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama</label><small class="text-danger">*</small>
+                                        <label>Nama</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nama"
                                             placeholder="Masukkan nama orang tua" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                        <label>Tanggal Lahir</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_lahir" required>
                                     </div>
                                 </div>
@@ -242,8 +262,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Identitas</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="jenis_identitas" required>
+                                        <label>Jenis Identitas</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="jenis_identitas" required>
                                             <option disabled selected value="">-- Pilih Jenis Identitas --</option>
                                             <option value="KTP/KIA">KTP/KIA</option>
                                             <option value="Passport">Passport</option>
@@ -252,7 +273,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                        <label>Jenis Kelamin</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="jenis_kelamin" value="Laki-Laki" required>
@@ -271,8 +293,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Agama</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="agama" required>
+                                        <label>Agama</label>
+                                        <small class="text-danger">*</small>
+                                        <br>
+                                        <select class="theSelect" name="agama" required>
                                             <option disabled selected value="">-- Pilih Agama --</option>
                                             @foreach ($agamaOptions as $agama)
                                                 <option value="{{ $agama }}">{{ $agama }}</option>
@@ -282,8 +306,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="status_pernikahan" required>
+                                        <label>Status Pernikahan</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="status_pernikahan" required>
                                             <option disabled selected value="">-- Pilih Status Pernikahan --</option>
                                             <option value="Menikah">Menikah</option>
                                             <option value="Belum Menikah">Belum Menikah</option>
@@ -296,14 +321,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Alamat</label><small class="text-danger">*</small>
+                                        <label>Alamat</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="alamat"
                                             placeholder="Masukkan alamat orang tua" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Email</label><small class="text-danger">*</small>
+                                        <label>Email</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="email" name="email"
                                             placeholder="Masukkan email orang tua" required>
                                     </div>
@@ -312,7 +339,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                        <label>Nomor HP</label>
+                                        <small class="text-danger">*</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
@@ -324,7 +352,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                        <label>Nomor Telepon</label>
+                                        <small class="text-danger">*</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
@@ -338,28 +367,32 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                        <label>Dokumen Kartu Keluarga</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_kk">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                        <label>Dokumen Kartu Keluarga</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_akta_lahir_anak">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto Ayah</label><small class="text-danger">*</small>
+                                        <label>Pas Foto Ayah</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="pas_foto_ayah">
                                         <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto Ibu</label><small class="text-danger">*</small>
+                                        <label>Pas Foto Ibu</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="pas_foto_ibu">
                                         <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                     </div>
@@ -393,7 +426,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                        <label>Status Hidup</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="status_hidup" value="Hidup" id="e_hidup" required>
@@ -410,7 +444,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pekerjaan Orang Tua</label><small class="text-danger">*</small>
+                                        <label>Status Pekerjaan Orang Tua</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="status_pekerjaan_ortu" value="Bukan PNS" id="bukan_pns" required>
@@ -442,14 +477,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama</label><small class="text-danger">*</small>
+                                        <label>Nama</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nama" id="e_nama"
                                             placeholder="Masukkan nama orang tua" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                        <label>Tanggal Lahir</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_lahir" id="e_tanggal_lahir" required>
                                     </div>
                                 </div>
@@ -457,7 +494,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Identitas</label><small class="text-danger">*</small>
+                                        <label>Jenis Identitas</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="jenis_identitas" id="e_jenis_identitas" required>
                                             <option disabled selected value="">-- Pilih Jenis Identitas --</option>
                                             <option value="KTP/KIA">KTP/KIA</option>
@@ -467,7 +505,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                        <label>Jenis Kelamin</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="jenis_kelamin" value="Laki-Laki" id="e_laki_laki" required>
@@ -486,9 +525,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Agama</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="agama" id="e_agama" required>
-                                            <option disabled selected value="">-- Pilih Agama --</option>
+                                        <label>Agama</label>
+                                        <small class="text-danger">*</small>
+                                        <br>
+                                        <select class="theSelect" name="agama" id="e_agama" required>
                                             @foreach ($agamaOptions as $agama)
                                                 <option value="{{ $agama }}">{{ $agama }}</option>
                                             @endforeach
@@ -497,7 +537,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
+                                        <label>Status Pernikahan</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="status_pernikahan" id="e_status_pernikahan" required>
                                             <option disabled selected value="">-- Pilih Status Pernikahan --</option>
                                             <option value="Menikah">Menikah</option>
@@ -511,14 +552,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Alamat</label><small class="text-danger">*</small>
+                                        <label>Alamat</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="alamat" id="e_alamat"
                                             placeholder="Masukkan alamat orang tua" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Email</label><small class="text-danger">*</small>
+                                        <label>Email</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="email" name="email" id="e_email"
                                             placeholder="Masukkan email orang tua" required>
                                     </div>
@@ -527,7 +570,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                        <label>Nomor HP</label>
+                                        <small class="text-danger">*</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
@@ -539,7 +583,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                        <label>Nomor Telepon</label>
+                                        <small class="text-danger">*</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
@@ -553,7 +598,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                        <label>Dokumen Kartu Keluarga</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_kk" id="dokumen_kk">
                                         <input type="hidden" name="hidden_dokumen_kk" id="e_dokumen_kk"
                                             value="">
@@ -562,7 +608,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                        <label>Dokumen Kartu Keluarga</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_akta_lahir_anak" id="dokumen_akta_lahir_anak">
                                         <input type="hidden" name="hidden_dokumen_akta_lahir_anak" id="e_dokumen_akta_lahir_anak"
                                             value="">
@@ -571,7 +618,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto Ayah</label><small class="text-danger">*</small>
+                                        <label>Pas Foto Ayah</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="pas_foto_ayah" id="pas_foto_ayah">
                                         <input type="hidden" name="hidden_pas_foto_ayah" id="e_pas_foto_ayah"
                                             value="">
@@ -580,7 +628,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto Ibu</label><small class="text-danger">*</small>
+                                        <label>Pas Foto Ibu</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="pas_foto_ibu" id="pas_foto_ibu">
                                         <input type="hidden" name="hidden_pas_foto_ibu" id="e_pas_foto_ibu"
                                             value="">
@@ -636,196 +685,17 @@
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var table = $('#tableAngkaKredit').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "{{ route('get-angkakredit-data') }}",
-                        "data": function(d) {
-                            d.keyword = $('#keyword').val();
-                            d._token = "{{ csrf_token() }}";
-                        }
-                    },
-                    "columns": [
-                        {
-                            "data": "id"
-                        },
-                        {
-                            "data": "nama_jabatan"
-                        },
-                        {
-                            "data": "nomor_sk"
-                        },
-                        {
-                            "data": "tanggal_sk"
-                        },
-                        {
-                            "data": "angka_kredit_pertama"
-                        },
-                        {
-                            "data": "integrasi"
-                        },
-                        {
-                            "data": "konversi"
-                        },
-                        {
-                            "data": "bulan_mulai"
-                        },
-                        {
-                            "data": "tahun_mulai"
-                        },
-                        {
-                            "data": "bulan_selesai"
-                        },
-                        {
-                            "data": "tahun_selesai"
-                        },
-                        {
-                            "data": "angka_kredit_utama"
-                        },
-                        {
-                            "data": "angka_kredit_penunjang"
-                        },
-                        {
-                            "data": "total_angka_kredit"
-                        },
-                        {
-                            "data": "action"
-                        },
-                    ],
-                    "language": {
-                        "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
-                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
-                        "infoFiltered": "(filtered from _MAX_ total records)",
-                        "search": "Cari:",
-                        "paginate": {
-                            "previous": "Previous",
-                            "next": "Next",
-                            "first": "<<",
-                            "last": ">>",
-                        }
-                    },
-                    "order": [
-                        [0, "asc"]
-                    ]
-                });
+    @section('script')
+        <script src="{{ asset('assets/js/orangtua.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-                // Live search
-                $('#search-form').on('submit', function(e) {
-                    e.preventDefault();
-                    table
-                        .search($('#keyword').val())
-                        .draw();
-                })
-            });
-        </script> --}}
-    {{-- update --}}
-    <script>
-    $(document).on('click', '.edit_ortu', function() {
-    var _this = $(this).parents('tr');
- 
-    // Isi nilai `id` dari input hidden pada form dengan nilai `id` dari row yang dipilih
-    $('#e_id').val(_this.find('.id').text());
-    $('#e_nama').val(_this.find('.nama').text());
-    $('#e_tanggal_lahir').val(_this.find('.tanggal_lahir').text());
-    $('#e_jenis_identitas').val(_this.find('.jenis_identitas').text());
- 
-    // Isi nilai radio button jenis kelamin berdasarkan nilai dari row yang dipilih
-    var jenisKelamin = _this.find('.jenis_kelamin').text();
-    if (jenisKelamin === 'Laki-Laki') {
-        $('#e_laki_laki').prop('checked', true);
-    } else if (jenisKelamin === 'Perempuan') {
-        $('#e_perempuan').prop('checked', true);
-    }
- 
-    $('#e_agama').val(_this.find('.agama').text());
-    $('#e_status_pernikahan').val(_this.find('.status_pernikahan').text());
-    $('#e_alamat').val(_this.find('.alamat').text());
-    $('#e_email').val(_this.find('.email').text());
-    $('#e_nip').val(_this.find('.nip').text());
-    $('#e_tanggal_meninggal').val(_this.find('.tanggal_meninggal').text());
-    $('#e_no_hp').val(_this.find('.no_hp').text());
-    $('#e_no_telepon').val(_this.find('.no_telepon').text());
-    var statusHidup = _this.find('.status_hidup').text();
-    if (statusHidup === 'Hidup') {
-        $('#e_hidup').prop('checked', true);
-    } else if (statusHidup === 'Meninggal') {
-        $('#e_meninggal').prop('checked', true);
-    }
+        <script>
+            $(".theSelect").select2();
+        </script>
 
-    var statusPekerjaan = _this.find('.status_pekerjaan_ortu').text();
-if (statusPekerjaan === 'Bukan PNS') {
-    $('#bukan_pns').prop('checked', true);
-} else if (statusPekerjaan === 'PNS') {
-    $('#e_pns').prop('checked', true);
-}
+        <script>
+            history.pushState({}, "", '/riwayat/orangtua');
+        </script>
 
-
-
-    $('#e_dokumen_kk').val(_this.find('.dokumen_kk').text());
-    $('#e_hidden_dokumen_kk').val(_this.find('.dokumen_kk').text());
- 
-    $('#e_dokumen_akta_lahir_anak').val(_this.find('.dokumen_akta_lahir_anak').text());
-    $('#e_hidden_dokumen_akta_lahir_anak').val(_this.find('.dokumen_akta_lahir_anak').text());
- 
-    $('#e_pas_foto_ayah').val(_this.find('.pas_foto_ayah').text());
-    $('#e_hidden_pas_foto_ayah').val(_this.find('.pas_foto_ayah').text());
- 
-    $('#e_pas_foto_ibu').val(_this.find('.pas_foto_ibu').text());
-    $('#e_hidden_pas_foto_ibu').val(_this.find('.pas_foto_ibu').text());
-});
-    </script>
-
-
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_ortu', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_kk').val(_this.find('.dokumen_kk').text());
-            $('.d_dokumen_akta_lahir_anak').val(_this.find('.dokumen_akta_lahir_anak').text());
-            $('.d_pas_foto_ayah').val(_this.find('.pas_foto_ayah').text());
-            $('.d_pas_foto_ibu').val(_this.find('.pas_foto_ibu').text());
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script>
-        $(".theSelect").select2();
-    </script>
-
-    <script>
-        history.pushState({}, "", '/riwayat/orangtua');
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('input[name="status_hidup"]').click(function() {
-                if ($(this).val() == 'Hidup') {
-                    $('#tanggal-meninggal').hide();
-                } else {
-                    $('#tanggal-meninggal').show();
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('input[name="status_pekerjaan_ortu"]').click(function() {
-                if ($(this).val() === "PNS") {
-                    $('#show_nip').show();
-                } else {
-                    $('#show_nip').hide();
-                }
-            });
-        });
-    </script>
-@endsection
+    @endsection
 @endsection

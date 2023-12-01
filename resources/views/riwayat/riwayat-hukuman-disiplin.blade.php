@@ -53,11 +53,11 @@
                     </div>
                 </div>
             </form> --}}
+            <!-- Search Filter -->
 
             {{-- message --}}
             {!! Toastr::message() !!}
-
-            <!-- Search Filter -->
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -139,7 +139,7 @@
         </div>
         <!-- /Page Content -->
 
-        <!-- Tambah Riwayat PMK Modal -->
+        <!-- Tambah Riwayat Hukuman Disiplin Modal -->
         <div id="add_riwayat_angka_hukuman" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -164,8 +164,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Kategori Hukuman</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="kategori_hukuman" required>
+                                        <label>Kategori Hukuman</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="kategori_hukuman" required>
                                             <option disabled selected value="">-- Pilih Kategori Hukuman --</option>
                                             <option value="Penetapan">Penetapan</option>
                                             <option value="Pengaktifan Kembali">Pengaktifan Kembali</option>
@@ -174,8 +175,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Hukuman</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="tingkat_hukuman" required>
+                                        <label>Tingkat Hukuman</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="tingkat_hukuman" required>
                                             <option disabled selected value="">-- Pilih Tingkat Hukuman --</option>
                                             <option value="Berat">Berat</option>
                                             <option value="Ringan">Ringan</option>
@@ -187,8 +189,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Hukuman</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="jenis_hukuman" required>
+                                        <label>Jenis Hukuman</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="jenis_hukuman" required>
                                             <option disabled selected value="">-- Pilih Jenis Hukuman --</option>
                                             <option value="Pembebasan Dari Jabatan">Pembebasan Dari Jabatan</option>
                                             <option value="Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri">Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri</option>
@@ -198,7 +201,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor SK Hukuman</label><small class="text-danger">*</small>
+                                        <label>Nomor SK Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_sk_hukuman" required>
                                     </div>
                                 </div>
@@ -213,7 +217,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Alasan</label>
-                                        <select class="form-control" name="alasan">
+                                        <select class="select form-control" name="alasan">
                                             <option disabled selected value="">-- Pilih Alasan --</option>
                                             <option value="Tidak Mengucapkan Sumpah/Janji PNS">Tidak Mengucapkan Sumpah/Janji PNS</option>
                                             <option value="Tidak Mengucapkan Sumpah/Janji Jabatan">Tidak Mengucapkan Sumpah/Janji Jabatan</option>
@@ -225,13 +229,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal SK Hukuman</label><small class="text-danger">*</small>
+                                        <label>Tanggal SK Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_sk_hukuman" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Masa Hukuman Tahun</label>
+                                        <label>Masa Hukuman (Tahun)</label>
                                         <input class="form-control" type="text" name="masa_hukuman_tahun">
                                     </div>
                                 </div>
@@ -239,13 +244,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>TMT Hukuman</label><small class="text-danger">*</small>
+                                        <label>TMT Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tmt_hukuman" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Masa Hukuman Bulan</label>
+                                        <label>Masa Hukuman (Bulan)</label>
                                         <input class="form-control" type="text" name="masa_hukuman_bulan">
                                     </div>
                                 </div>
@@ -253,7 +259,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Keterangan</label><small class="text-danger">*</small>
+                                        <label>Keterangan</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="keterangan" required>
                                     </div>
                                 </div>
@@ -261,14 +268,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen SK Hukuman</label><small class="text-danger">*</small>
+                                        <label>Dokumen SK Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_sk_hukuman" required>
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen SK Pengaktifan</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_sk_pengaktifan">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -280,9 +291,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Tambah Riwayat Diklat Modal -->
+        <!-- /Tambah Riwayat Hukuman Disiplin Modal -->
 
-        <!-- Edit Riwayat Diklat Modal -->
+        <!-- Edit Riwayat Hukuman Disiplin Modal -->
         <div id="edit_riwayat_hukuman" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -300,7 +311,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Kategori Hukuman</label><small class="text-danger">*</small>
+                                        <label>Kategori Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="kategori_hukuman" id="e_kategori_hukuman" required>
                                             <option disabled selected value="">-- Pilih Kategori Hukuman --</option>
                                             <option value="Penetapan">Penetapan</option>
@@ -310,7 +322,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tingkat Hukuman</label><small class="text-danger">*</small>
+                                        <label>Tingkat Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="tingkat_hukuman" id="e_tingkat_hukuman" required>
                                             <option disabled selected value="">-- Pilih Tingkat Hukuman --</option>
                                             <option value="Berat">Berat</option>
@@ -323,7 +336,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Hukuman</label><small class="text-danger">*</small>
+                                        <label>Jenis Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="jenis_hukuman" id="e_jenis_hukuman" required>
                                             <option disabled selected value="">-- Pilih Jenis Hukuman --</option>
                                             <option value="Pembebasan Dari Jabatan">Pembebasan Dari Jabatan</option>
@@ -334,7 +348,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor SK Hukuman</label><small class="text-danger">*</small>
+                                        <label>Nomor SK Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_sk_hukuman" id="e_no_sk_hukuman" required>
                                     </div>
                                 </div>
@@ -361,13 +376,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal SK Hukuman</label><small class="text-danger">*</small>
+                                        <label>Tanggal SK Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_sk_hukuman" id="e_tanggal_sk_hukuman" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Masa Hukuman Tahun</label>
+                                        <label>Masa Hukuman (Tahun)</label>
                                         <input class="form-control" type="text" name="masa_hukuman_tahun" id="e_masa_hukuman_tahun">
                                     </div>
                                 </div>
@@ -375,13 +391,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>TMT Hukuman</label><small class="text-danger">*</small>
+                                        <label>TMT Hukuman</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tmt_hukuman" id="e_tmt_hukuman" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Masa Hukuman Bulan</label>
+                                        <label>Masa Hukuman (Bulan)</label>
                                         <input class="form-control" type="text" name="masa_hukuman_bulan" id="e_masa_hukuman_bulan">
                                     </div>
                                 </div>
@@ -389,7 +406,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Keterangan</label><small class="text-danger">*</small>
+                                        <label>Keterangan</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="keterangan" id="e_keterangan" required>
                                     </div>
                                 </div>
@@ -397,20 +415,20 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen SK Hukuman</label><small class="text-danger">*</small>
-                                        <input type="file" class="form-control" id="dokumen_sk_hukuman"
-                                            name="dokumen_sk_hukuman">
-                                        <input type="hidden" name="hidden_dokumen_sk_hukuman" id="e_dokumen_sk_hukuman"
-                                            value="">
+                                        <label>Dokumen SK Hukuman</label>
+                                        <small class="text-danger">*</small>
+                                        <input type="file" class="form-control" id="dokumen_sk_hukuman" name="dokumen_sk_hukuman">
+                                        <input type="hidden" name="hidden_dokumen_sk_hukuman" id="e_dokumen_sk_hukuman" value="">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen SK Pengaktifan</label><small class="text-danger">*</small>
-                                        <input type="file" class="form-control" id="dokumen_sk_pengaktifan"
-                                            name="dokumen_sk_pengaktifan">
-                                        <input type="hidden" name="hidden_dokumen_sk_pengaktifan" id="e_dokumen_sk_pengaktifan"
-                                            value="">
+                                        <label>Dokumen SK Pengaktifan</label>
+                                        <small class="text-danger">*</small>
+                                        <input type="file" class="form-control" id="dokumen_sk_pengaktifan" name="dokumen_sk_pengaktifan">
+                                        <input type="hidden" name="hidden_dokumen_sk_pengaktifan" id="e_dokumen_sk_pengaktifan" value="">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -422,9 +440,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Riwayat Diklat Modal -->
+        <!-- /Edit Riwayat Hukuman Disiplin Modal -->
 
-        <!-- Delete Riwayat Diklat Modal -->
+        <!-- Delete Riwayat Hukuman Disiplin Modal -->
         <div class="modal custom-modal fade" id="delete_riwayat_hukuman" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -455,149 +473,22 @@
                 </div>
             </div>
         </div>
-        <!-- End Delete Riwayat Diklat Modal -->
+        <!-- End Delete Riwayat Hukuman Disiplin Modal -->
 
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var table = $('#tableAngkaKredit').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "{{ route('get-angkakredit-data') }}",
-                        "data": function(d) {
-                            d.keyword = $('#keyword').val();
-                            d._token = "{{ csrf_token() }}";
-                        }
-                    },
-                    "columns": [
-                        {
-                            "data": "id"
-                        },
-                        {
-                            "data": "nama_jabatan"
-                        },
-                        {
-                            "data": "nomor_sk"
-                        },
-                        {
-                            "data": "tanggal_sk"
-                        },
-                        {
-                            "data": "angka_kredit_pertama"
-                        },
-                        {
-                            "data": "integrasi"
-                        },
-                        {
-                            "data": "konversi"
-                        },
-                        {
-                            "data": "bulan_mulai"
-                        },
-                        {
-                            "data": "tahun_mulai"
-                        },
-                        {
-                            "data": "bulan_selesai"
-                        },
-                        {
-                            "data": "tahun_selesai"
-                        },
-                        {
-                            "data": "angka_kredit_utama"
-                        },
-                        {
-                            "data": "angka_kredit_penunjang"
-                        },
-                        {
-                            "data": "total_angka_kredit"
-                        },
-                        {
-                            "data": "action"
-                        },
-                    ],
-                    "language": {
-                        "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
-                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
-                        "infoFiltered": "(filtered from _MAX_ total records)",
-                        "search": "Cari:",
-                        "paginate": {
-                            "previous": "Previous",
-                            "next": "Next",
-                            "first": "<<",
-                            "last": ">>",
-                        }
-                    },
-                    "order": [
-                        [0, "asc"]
-                    ]
-                });
+    @section('script')
+        <script src="{{ asset('assets/js/hukumandisiplin.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-                // Live search
-                $('#search-form').on('submit', function(e) {
-                    e.preventDefault();
-                    table
-                        .search($('#keyword').val())
-                        .draw();
-                })
-            });
-        </script> --}}
-    {{-- update --}}
-    <script>
-        $(document).on('click', '.edit_riwayat_hukuman', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#e_kategori_hukuman').val(_this.find('.kategori_hukuman').text());
-            $('#e_tingkat_hukuman').val(_this.find('.tingkat_hukuman').text());
-            $('#e_jenis_hukuman').val(_this.find('.jenis_hukuman').text());
-            $('#e_no_sk_hukuman').val(_this.find('.no_sk_hukuman').text());
-            $('#e_no_peraturan').val(_this.find('.no_peraturan').text());
-            $('#e_alasan').val(_this.find('.alasan').text());
-            $('#e_tanggal_sk_hukuman').val(_this.find('.tanggal_sk_hukuman').text());
-            $('#e_masa_hukuman_tahun').val(_this.find('.masa_hukuman_tahun').text());
-            $('#e_tmt_hukuman').val(_this.find('.tmt_hukuman').text());
-            $('#e_masa_hukuman_bulan').val(_this.find('.masa_hukuman_bulan').text());
-            $('#e_keterangan').val(_this.find('.keterangan').text());
-            $('#e_dokumen_sk_hukuman').val(_this.find('.dokumen_sk_hukuman').text());
-            $('#e_dokumen_sk_pengaktifan').val(_this.find('.dokumen_sk_pengaktifan').text());
-                });
-    </script>
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_riwayat_hukuman', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_sk_hukuman').val(_this.find('.dokumen_sk_hukuman').text());
-            $('.d_dokumen_sk_pengaktifan').val(_this.find('.dokumen_sk_pengaktifan').text());
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script>
-        $(".theSelect").select2();
-    </script>
+        <script>
+            $(".theSelect").select2();
+        </script>
 
-    <script>
-        history.pushState({}, "", '/riwayat/hukuman/disiplin');
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.exclusive').change(function() {
-                if ($(this).prop('checked')) {
-                    $('.exclusive').not(this).prop('disabled', true);
-                } else {
-                    $('.exclusive').prop('disabled', false);
-                }
-            });
-        });
-    </script>
-@endsection
+        <script>
+            history.pushState({}, "", '/riwayat/hukuman/disiplin');
+        </script>
+        
+    @endsection
 @endsection

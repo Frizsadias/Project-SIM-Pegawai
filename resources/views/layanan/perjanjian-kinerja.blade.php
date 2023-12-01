@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('style')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-    <!-- checkbox style -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-@endsection
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
     <!-- Page Content -->
@@ -28,22 +23,18 @@
         </div>
         <!-- /Page Header -->
 
-        <!-- Cetak Dokumen Perjanjian PDF -->
-        <div class="row filter-row">
-            <div class="col-sm-6 col-md-3">
-                <select id="pilihDokumenPerjanjianKinerja" class="form-control">
-                    <option selected disabled> --Pilih Dokumen Perjanjian Kinerja --</option>
-                    @foreach ($data_kinerja_pdf as $kinerja)
-                        <option value="{{ $kinerja->id }}">Dokumen Kinerja - {{ $kinerja->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <button id="cetakDokumenPerjanjianKinerja" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i>
-                    Dokumen
-                    Perjanjian Kinerja</button>
-            </div>
-        </div><br>
+        <!-- Cetak Dokumen Perjanjian Kinerja PDF -->
+        @php
+            $lastperjanjian = $data_perjanjian_kinerja->last();
+        @endphp
+        @if ($lastperjanjian)
+            <a href="{{ route('layanan-perjanjian-kinerja', ['id' => $lastperjanjian->id]) }}" target="_blank" class="btn btn-success">
+                <i class="fa-solid fa-file-pdf"></i> Dokumen Perjanjian Kinerja
+            </a>
+        @else
+        @endif
+        <br><br>
+        <!-- /Cetak Dokumen Perjanjian Kinerja PDF -->
 
         <!-- Search Filter -->
         <form action="" method="GET" id="search-form">
@@ -77,22 +68,22 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Pegawai</th>
+                                <th>Nama</th>
                                 <th>NIP</th>
                                 <th>Jabatan</th>
+                                <th>Bentuk Perjanjian</th>
                                 <th class="text-right no-sort">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data_perjanjian_kinerja as $sqlkinerja => $result_perjanjian_kinerja)
                                 <tr>
-                                    <td>{{ ++$sqlkinerja }}</td>
-                                    <td hidden class="id">{{ $result_perjanjian_kinerja->id }}</td>
+                                    {{-- <td>{{ ++$sqlkinerja }}</td> --}}
+                                    <td class="id">{{ $result_perjanjian_kinerja->id }}</td>
                                     <td class="name">{{ $result_perjanjian_kinerja->name }}</td>
                                     <td class="nip">{{ $result_perjanjian_kinerja->nip }}</td>
                                     <td class="jabatan">{{ $result_perjanjian_kinerja->jabatan }}</td>
-                                    <td hidden class="bentuk_perjanjian">
-                                        {{ $result_perjanjian_kinerja->bentuk_perjanjian }}</td>
+                                    <td class="bentuk_perjanjian">{{ $result_perjanjian_kinerja->bentuk_perjanjian }}</td>
 
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
@@ -123,7 +114,7 @@
     </div>
     <!-- /Page Content -->
 
-    <!-- Tambah Layanan Cuti Modal -->
+    <!-- Tambah Perjanjian Kinerja Modal -->
     <div id="daftar_layanan_Kinerja" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -134,15 +125,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('layanan/perjanjian-kinerja/tambah-data') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('layanan/perjanjian-kinerja/tambah-data') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="bentuk_perjanjian">Bentuk Perjanjian</label>
-                                    <textarea type="text" name="bentuk_perjanjian" rows="5" class="form-control" id="bentuk_perjanjian" required=""></textarea><br>
+                                    <br>
+                                    <textarea id="bentuk_perjanjian" name="bentuk_perjanjian" rows="10" cols="50" class="form-control"></textarea>
                                     <small class="text-danger" style="font-size: 16px;">*Nb: 1. Melaksanakan tugas sesuai dengan SPK dan RKK.<br>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien.<br>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Berperan serta dalam mewujudkan visi misi rumah sakit.
@@ -164,7 +155,6 @@
                             </div>
                         </div>
                         @endforeach
-
                         @foreach($data_posisijabatan as $posisi_jabatan)
                             <div class="row">
                                 <div class="col-md-6">
@@ -174,7 +164,6 @@
                                 </div>
                             </div>
                         @endforeach
-
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Simpan</button>
                         </div>
@@ -183,8 +172,7 @@
             </div>
         </div>
     </div>
-
-    <!-- /Tambah Layanan Cuti Modal -->
+    <!-- /Tambah Perjanjian Kinerja Modal -->
 
     <!-- Edit Layanan Cuti Modal -->
     <div id="edit_Kinerja" class="modal custom-modal fade" role="dialog">
@@ -204,7 +192,8 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="bentuk_perjanjian">Bentuk Perjanjian</label>
-                                    <textarea type="text" name="bentuk_perjanjian" rows="5" class="form-control" id="e_bentuk_perjanjian" value=""></textarea><br>
+                                    <br>
+                                    <textarea id="e_bentuk_perjanjian" name="bentuk_perjanjian" rows="10" cols="50" class="form-control"  value=""></textarea>
                                     <small class="text-danger" style="font-size: 16px;">*Nb: 1. Melaksanakan tugas sesuai dengan SPK dan RKK.<br>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien.<br>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Berperan serta dalam mewujudkan visi misi rumah sakit.
@@ -220,9 +209,9 @@
             </div>
         </div>
     </div>
-    <!-- /Edit Layanan Cuti Modal -->
+    <!-- /Edit Perjanjian Kinerja Modal -->
 
-    <!-- Delete Perjanjian Modal -->
+    <!-- Delete Perjanjian Kinerja Modal -->
     <div class="modal custom-modal fade" id="delete_kinerja" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -251,46 +240,26 @@
             </div>
         </div>
     </div>
-    <!-- /Delete Perjanjian Modal -->
+    <!-- /Delete Perjanjian Kinerja Modal -->
 </div>
 <!-- /Page Wrapper -->
 
-@section('script')
-    <script>
-        $('#name').on('change', function() {
-            $('#user_id').val($(this).find(':selected').data('user_id'));
-            $('#nip').val($(this).find(':selected').data('nip'));
-            $('#jabatan').val($(this).find(':selected').data('jabatan'));
-        });
-    </script>
+    @section('script')
+        <script src="{{ asset('assets/js/perjanjiankinerja.js') }}"></script>
 
-    <script>
-        $(document).on('click', '.edit_Kinerja', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#e_bentuk_perjanjian').val(_this.find('.bentuk_perjanjian').text());
-        });
-    </script>
-
-    <script>
-        $(document).on("click", ".delete_kinerja", function() {
-            var _this = $(this).parents("tr");
-            $(".e_id").val(_this.find(".id").text());
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#pilihDokumenPerjanjianKinerja').select2();
-            $('#cetakDokumenPerjanjianKinerja').on('click', function() {
-                const selectedKinerjaId = $('#pilihDokumenPerjanjianKinerja').val();
-                if (selectedKinerjaId) {
-                    const url = "{{ route('layanan-perjanjian-kinerja-admin', ['id' => ':id']) }}".replace(
-                        ':id', selectedKinerjaId);
-                    window.open(url, '_blank');
-                }
+        <script>
+            $(document).ready(function() {
+                $('#pilihDokumenPerjanjianKinerja').select2();
+                $('#cetakDokumenPerjanjianKinerja').on('click', function() {
+                    const selectedKinerjaId = $('#pilihDokumenPerjanjianKinerja').val();
+                    if (selectedKinerjaId) {
+                        const url = "{{ route('layanan-perjanjian-kinerja-admin', ['id' => ':id']) }}".replace(
+                            ':id', selectedKinerjaId);
+                        window.open(url, '_blank');
+                    }
+                });
             });
-        });
-    </script>
-@endsection
+        </script>
+        
+    @endsection
 @endsection

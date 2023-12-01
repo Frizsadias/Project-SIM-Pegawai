@@ -25,6 +25,7 @@
 
             <!-- Search Filter -->
             <form action="{{ route('riwayat/pendidikan/cari') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
@@ -54,8 +55,11 @@
                     </div>
                 </div>
             </form>
-
             <!-- Search Filter -->
+
+            {{-- message --}}
+            {!! Toastr::message() !!}
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -137,9 +141,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- message --}}
-            {!! Toastr::message() !!}
         </div>
         <!-- /Page Content -->
 
@@ -228,17 +229,13 @@
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
                                         <br>
-                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Pertama">
-                                        Pendidikan Pertama
+                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Pertama"> Pendidikan Pertama
                                         <br>
-                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Kedua">
-                                        Pendidikan Kedua
+                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Kedua"> Pendidikan Kedua
                                         <br>
-                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Ketiga">
-                                        Pendidikan Ketiga
+                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Ketiga"> Pendidikan Ketiga
                                         <br>
-                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Keempat">
-                                        Pendidikan Keempat
+                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Keempat"> Pendidikan Keempat
                                     </div>
                                 </div>
                             </div>
@@ -294,20 +291,23 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
-                                        <select name="ting_ped" class="select" id="e_ting_ped">
-                                            <option selected disabled> --Pilih Jenis Pendidikan --</option>
-                                            <option>SLTP</option>
-                                            <option>SLTA</option>
-                                            <option>Diploma I</option>
-                                            <option>Diploma II</option>
+                                        <br>
+                                        <select name="ting_ped" class="theSelect" id="e_ting_ped">
+                                            @foreach($tingkatpendidikanOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pendidikan</label>
-                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan"
-                                            value="">
+                                        <br>
+                                        <select class="theSelect" name="pendidikan" id="e_pendidikan">
+                                            @foreach($pendidikanterakhirOptions as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -351,18 +351,26 @@
                                             id="e_gelar_belakang_pend" value="">
                                     </div>
                                 </div>
+                                @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
-                                        <input type="text" class="form-control" name="jenis_pendidikan"
-                                            id="e_jenis_pendidikan" value="">
+                                        <br>
+                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Pertama" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Pertama' ? 'checked' : '' }}> Pendidikan Pertama
+                                        <br>
+                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Kedua" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Kedua' ? 'checked' : '' }}> Pendidikan Kedua
+                                        <br>
+                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Ketiga" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Ketiga' ? 'checked' : '' }}> Pendidikan Ketiga
+                                        <br>
+                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Keempat" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Keempat' ? 'checked' : '' }}> Pendidikan Keempat
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Transkrip</label>
+                                        <label>Dokumen Transkrip Nilai</label>
                                         <input type="file" class="form-control" id="dokumen_transkrip"
                                             name="dokumen_transkrip">
                                         <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip"
@@ -382,7 +390,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Gelar</label>
+                                        <label>Dokumen Pencantuman Gelar</label>
                                         <input type="file" class="form-control" id="dokumen_gelar"
                                             name="dokumen_gelar">
                                         <input type="hidden" name="hidden_dokumen_gelar" id="e_dokumen_gelar"
@@ -439,49 +447,17 @@
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- update js --}}
-    <script>
-        $(document).on('click', '.edit_riwayat_pendidikan', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id_pend').val(_this.find('.id_pend').text());
-            $('#e_pendidikan').val(_this.find('.pendidikan').text());
-            $('#e_tahun_lulus').val(_this.find('.tahun_lulus').text());
-            $('#e_no_ijazah').val(_this.find('.no_ijazah').text());
-            $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
-            $('#e_gelar_depan_pend').val(_this.find('.gelar_depan_pend').text());
-            $('#e_gelar_belakang_pend').val(_this.find('.gelar_belakang_pend').text());
-            $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
-            $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
-            $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
-            $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
-
-            var ting_ped = (_this.find(".ting_ped").text());
-            var _option = '<option selected value="' + ting_ped + '">' + _this.find('.ting_ped')
-                .text() + '</option>'
-            $(_option).appendTo("#e_ting_ped");
-        });
-    </script>
-
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_riwayat_pendidikan', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
-            $('.d_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
-            $('.d_dokumen_gelar').val(_this.find('.dokumen_gelar').text());
-        });
-    </script>
-
+    @section('script')
+        <script src="{{ asset('assets/js/pendidikan.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script>
-		$(".theSelect").select2();
-	    </script>
+            $(".theSelect").select2();
+        </script>
 
         <script>
-        history.pushState({}, "", '/riwayat/pendidikan');
-    </script>
-@endsection
+            history.pushState({}, "", '/riwayat/pendidikan');
+        </script>
+        
+    @endsection
 @endsection

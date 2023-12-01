@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -53,11 +54,11 @@
                     </div>
                 </div>
             </form> --}}
+            <!-- Search Filter -->
 
             {{-- message --}}
             {!! Toastr::message() !!}
-
-            <!-- Search Filter -->
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -68,6 +69,15 @@
                                     <th>Jenis Jabatan</th>
                                     <th>Nomor SK</th>
                                     <th>Tanggal SK</th>
+                                    <th>Angka Kredit Pertama</th>
+                                    <th>Integrasi</th>
+                                    <th>Konversi</th>
+                                    <th>Bulan Mulai</th>
+                                    <th>Tahun Mulai</th>
+                                    <th>Bulan Selesai</th>
+                                    <th>Tahun Selesai</th>
+                                    <th>Angka Kredit Utama</th>
+                                    <th>Angka Kredit Penunjang</th>
                                     <th>Total Angka Kredit</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -80,15 +90,15 @@
                                         <td class="nama_jabatan"><center>{{ $result_angka_kredit->nama_jabatan }}</center></td>
                                         <td class="nomor_sk"><center>{{ $result_angka_kredit->nomor_sk }}</center></td>
                                         <td class="tanggal_sk"><center>{{ $result_angka_kredit->tanggal_sk }}</center></td>
-                                        <td hidden class="angka_kredit_pertama"><center>{{ $result_angka_kredit->angka_kredit_pertama }}</center></td>
-                                        <td hidden class="integrasi"><center>{{ $result_angka_kredit->integrasi }}</center></td>
-                                        <td hidden class="konversi"><center>{{ $result_angka_kredit->konversi }}</center></td>
-                                        <td hidden class="bulan_mulai"><center>{{ $result_angka_kredit->bulan_mulai }}</center></td>
-                                        <td hidden class="tahun_mulai"><center>{{ $result_angka_kredit->tahun_mulai }}</center></td>
-                                        <td hidden class="bulan_selesai"><center>{{ $result_angka_kredit->bulan_selesai }}</center></td>
-                                        <td hidden class="tahun_selesai"><center>{{ $result_angka_kredit->tahun_selesai }}</center></td>
-                                        <td hidden class="angka_kredit_utama"><center>{{ $result_angka_kredit->angka_kredit_utama }}</center></td>
-                                        <td hidden class="angka_kredit_penunjang"><center>{{ $result_angka_kredit->angka_kredit_penunjang }}</center></td>
+                                        <td class="angka_kredit_pertama"><center>{{ $result_angka_kredit->angka_kredit_pertama }}</center></td>
+                                        <td class="integrasi"><center>{{ $result_angka_kredit->integrasi }}</center></td>
+                                        <td class="konversi"><center>{{ $result_angka_kredit->konversi }}</center></td>
+                                        <td class="bulan_mulai"><center>{{ $result_angka_kredit->bulan_mulai }}</center></td>
+                                        <td class="tahun_mulai"><center>{{ $result_angka_kredit->tahun_mulai }}</center></td>
+                                        <td class="bulan_selesai"><center>{{ $result_angka_kredit->bulan_selesai }}</center></td>
+                                        <td class="tahun_selesai"><center>{{ $result_angka_kredit->tahun_selesai }}</center></td>
+                                        <td class="angka_kredit_utama"><center>{{ $result_angka_kredit->angka_kredit_utama }}</center></td>
+                                        <td class="angka_kredit_penunjang"><center>{{ $result_angka_kredit->angka_kredit_penunjang }}</center></td>
                                         <td class="total_angka_kredit"><center>{{ $result_angka_kredit->total_angka_kredit }}</center></td>
 
                                         {{-- Edit dan Hapus data  --}}
@@ -118,7 +128,7 @@
         </div>
         <!-- /Page Content -->
 
-        <!-- Tambah Riwayat PMK Modal -->
+        <!-- Tambah Riwayat Angka Kredit Modal -->
         <div id="add_riwayat_angka_kredit" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -143,7 +153,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama Jabatan</label><small class="text-danger">*</small>
+                                        <label>Nama Jabatan</label>
+                                        <small class="text-danger">*</small>
                                         <br>
                                         <select class="theSelect form-control" name="nama_jabatan" required>
                                             <option selected disabled> --Pilih Nama Jabatan --</option>
@@ -157,13 +168,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor SK</label><small class="text-danger">*</small>
+                                        <label>Nomor SK</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nomor_sk" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal SK</label><small class="text-danger">*</small>
+                                        <label>Tanggal SK</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_sk" required>
                                     </div>
                                 </div>
@@ -171,30 +184,29 @@
                             <div class="row">
                                 <div class="form-group" style="margin-left: 15px;">
                                     <label>Angka Kredit Pertama</label><br>
-                                    <input type="checkbox" class="exclusive" name="angka_kredit_pertama"
-                                        value="Angka Kredit Pertama">
-                                    Angka Kredit Pertama
+                                    <input type="checkbox" class="riwayat-angka-kredit" name="angka_kredit_pertama" value="Angka Kredit Pertama"> Angka Kredit Pertama
                                 </div>
                                 <div class="form-group" style="margin-left: 20px;">
                                     <label>Integrasi</label><br>
-                                    <input type="checkbox" class="exclusive" name="integrasi" value="Integrasi">
-                                    Integrasi
+                                    <input type="checkbox" class="riwayat-angka-kredit" name="integrasi" value="Integrasi"> Integrasi
                                 </div>
                                 <div class="form-group" style="margin-left: 20px;">
                                     <label>Konversi</label><br>
-                                    <input type="checkbox" class="exclusive" name="konversi" value="Konversi"> Konversi
+                                    <input type="checkbox" class="riwayat-angka-kredit" name="konversi" value="Konversi"> Konversi
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Bulan Mulai Penilaian</label><small class="text-danger">*</small>
+                                        <label>Bulan Mulai Penilaian</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="bulan_mulai" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tahun Mulai Penilaian</label><small class="text-danger">*</small>
+                                        <label>Tahun Mulai Penilaian</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="number" name="tahun_mulai" required>
                                     </div>
                                 </div>
@@ -202,13 +214,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Bulan Selesai Penilaian</label><small class="text-danger">*</small>
+                                        <label>Bulan Selesai Penilaian</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="bulan_selesai" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tahun Selesai Penilaian</label><small class="text-danger">*</small>
+                                        <label>Tahun Selesai Penilaian</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="number" name="tahun_selesai" required>
                                     </div>
                                 </div>
@@ -234,7 +248,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Total Angka Kredit</label><small class="text-danger">*</small>
+                                        <label>Total Angka Kredit</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="number" step="any"
                                             name="total_angka_kredit" pattern="^\d+(\.\d{1,2})?$" required>
                                         <small class="text-danger">Koma ditulis dengan titik. Contoh: 102.5</small>
@@ -249,9 +264,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Tambah Riwayat Diklat Modal -->
+        <!-- /Tambah Riwayat Angka Kredit Modal -->
 
-        <!-- Edit Riwayat Diklat Modal -->
+        <!-- Edit Riwayat Angka Kredit Modal -->
         <div id="edit_riwayat_angka_kredit" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -269,7 +284,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama Jabatan</label><small class="text-danger">*</small>
+                                        <label>Nama Jabatan</label>
+                                        <small class="text-danger">*</small>
                                         <br>
                                         <select class="theSelect form-control" name="nama_jabatan" id="e_nama_jabatan"
                                             required>
@@ -285,45 +301,44 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor SK</label>
-                                        <input type="text" class="form-control" name="nomor_sk" id="e_nomor_sk"
-                                            value="">
+                                        <small class="text-danger">*</small>
+                                        <input type="text" class="form-control" name="nomor_sk" id="e_nomor_sk" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal SK</label>
-                                        <input type="date" class="form-control" name="tanggal_sk"
-                                            id="e_tanggal_sk" value="">
+                                        <small class="text-danger">*</small>
+                                        <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk" value="">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group" style="margin-left: 15px;">
                                     <label>Angka Kredit Pertama</label><br>
-                                    <input type="checkbox" class="exclusive" name="angka_kredit_pertama" id="e_angka_kredit_pertama"
-                                        value="Angka Kredit Pertama">
-                                    Angka Kredit Pertama
+                                    <input type="checkbox" class="riwayat-angka-kredit" name="angka_kredit_pertama" id="e_angka_kredit_pertama" value="Angka Kredit Pertama"> Angka Kredit Pertama
                                 </div>
                                 <div class="form-group" style="margin-left: 20px;">
                                     <label>Integrasi</label><br>
-                                    <input type="checkbox" class="exclusive" name="integrasi" id="e_integrasi" value="Integrasi">
-                                    Integrasi
+                                    <input type="checkbox" class="riwayat-angka-kredit" name="integrasi" id="e_integrasi" value="Integrasi"> Integrasi
                                 </div>
                                 <div class="form-group" style="margin-left: 20px;">
                                     <label>Konversi</label><br>
-                                    <input type="checkbox" class="exclusive" name="konversi" id="e_konversi" value="Konversi"> Konversi
+                                    <input type="checkbox" class="riwayat-angka-kredit" name="konversi" id="e_konversi" value="Konversi"> Konversi
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Bulan Mulai Penilaian</label><small class="text-danger">*</small>
+                                        <label>Bulan Mulai Penilaian</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="bulan_mulai" id="e_bulan_mulai" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tahun Mulai Penilaian</label><small class="text-danger">*</small>
+                                        <label>Tahun Mulai Penilaian</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="number" name="tahun_mulai" id="e_tahun_mulai" required>
                                     </div>
                                 </div>
@@ -331,13 +346,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Bulan Selesai Penilaian</label><small class="text-danger">*</small>
+                                        <label>Bulan Selesai Penilaian</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="bulan_selesai" id="e_bulan_selesai" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tahun Selesai Penilaian</label><small class="text-danger">*</small>
+                                        <label>Tahun Selesai Penilaian</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="number" name="tahun_selesai" id="e_tahun_selesai" required>
                                     </div>
                                 </div>
@@ -363,7 +380,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Total Angka Kredit</label><small class="text-danger">*</small>
+                                        <label>Total Angka Kredit</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="number" step="any"
                                             name="total_angka_kredit" id="e_total_angka_kredit" pattern="^\d+(\.\d{1,2})?$" required>
                                         <small class="text-danger">Koma ditulis dengan titik. Contoh: 102.5</small>
@@ -378,9 +396,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Riwayat Diklat Modal -->
+        <!-- /Edit Riwayat Angka Kredit Modal -->
 
-        <!-- Delete Riwayat Diklat Modal -->
+        <!-- Delete Riwayat Angka Kredit Modal -->
         <div class="modal custom-modal fade" id="delete_riwayat_angka_kredit" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -410,152 +428,22 @@
                 </div>
             </div>
         </div>
-        <!-- End Delete Riwayat Diklat Modal -->
+        <!-- End Delete Riwayat Angka Kredit Modal -->
 
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-{{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var table = $('#tableAngkaKredit').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "{{ route('get-angkakredit-data') }}",
-                        "data": function(d) {
-                            d.keyword = $('#keyword').val();
-                            d._token = "{{ csrf_token() }}";
-                        }
-                    },
-                    "columns": [
-                        {
-                            "data": "id"
-                        },
-                        {
-                            "data": "nama_jabatan"
-                        },
-                        {
-                            "data": "nomor_sk"
-                        },
-                        {
-                            "data": "tanggal_sk"
-                        },
-                        {
-                            "data": "angka_kredit_pertama"
-                        },
-                        {
-                            "data": "integrasi"
-                        },
-                        {
-                            "data": "konversi"
-                        },
-                        {
-                            "data": "bulan_mulai"
-                        },
-                        {
-                            "data": "tahun_mulai"
-                        },
-                        {
-                            "data": "bulan_selesai"
-                        },
-                        {
-                            "data": "tahun_selesai"
-                        },
-                        {
-                            "data": "angka_kredit_utama"
-                        },
-                        {
-                            "data": "angka_kredit_penunjang"
-                        },
-                        {
-                            "data": "total_angka_kredit"
-                        },
-                        {
-                            "data": "action"
-                        },
-                    ],
-                    "language": {
-                        "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
-                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
-                        "infoFiltered": "(filtered from _MAX_ total records)",
-                        "search": "Cari:",
-                        "paginate": {
-                            "previous": "Previous",
-                            "next": "Next",
-                            "first": "<<",
-                            "last": ">>",
-                        }
-                    },
-                    "order": [
-                        [0, "asc"]
-                    ]
-                });
+    @section('script')
+        <script src="{{ asset('assets/js/angkakredit.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-                // Live search
-                $('#search-form').on('submit', function(e) {
-                    e.preventDefault();
-                    table
-                        .search($('#keyword').val())
-                        .draw();
-                })
-            });
-        </script> --}}
-    {{-- update --}}
-    <script>
-        $(document).on('click', '.edit_riwayat_angka_kredit', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#e_nomor_sk').val(_this.find('.nomor_sk').text());
-            $('#e_tanggal_sk').val(_this.find('.tanggal_sk').text());
-            $('#e_angka_kredit_pertama').prop('checked', _this.find('.angka_kredit_pertama').text() === 'Angka Kredit Pertama');
-            $('#e_integrasi').prop('checked', _this.find('.integrasi').text() === 'Integrasi');
-            $('#e_konversi').prop('checked', _this.find('.konversi').text() === 'Konversi');
-            $('#e_bulan_mulai').val(_this.find('.bulan_mulai').text());
-            $('#e_tahun_mulai').val(_this.find('.tahun_mulai').text());
-            $('#e_bulan_selesai').val(_this.find('.bulan_selesai').text());
-            $('#e_tahun_selesai').val(_this.find('.tahun_selesai').text());
-            $('#e_angka_kredit_utama').val(_this.find('.angka_kredit_utama').text());
-            $('#e_angka_kredit_penunjang').val(_this.find('.angka_kredit_penunjang').text());
-            $('#e_total_angka_kredit').val(_this.find('.total_angka_kredit').text());
+        <script>
+            $(".theSelect").select2();
+        </script>
 
-            var nama_jabatan = (_this.find(".nama_jabatan").text());
-            var _option = '<option selected value="' + nama_jabatan + '">' + _this.find(
-                    '.nama_jabatan').text() +
-                '</option>'
-            $(_option).appendTo("#e_nama_jabatan");
-        });
-    </script>
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_riwayat_angka_kredit', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script>
-        $(".theSelect").select2();
-    </script>
+        <script>
+            history.pushState({}, "", '/riwayat/angka/kredit');
+        </script>
 
-    <script>
-        history.pushState({}, "", '/riwayat/angka/kredit');
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.exclusive').change(function() {
-                if ($(this).prop('checked')) {
-                    $('.exclusive').not(this).prop('disabled', true);
-                } else {
-                    $('.exclusive').prop('disabled', false);
-                }
-            });
-        });
-    </script>
-@endsection
+    @endsection
 @endsection

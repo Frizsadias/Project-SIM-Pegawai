@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('style')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-    <!-- checkbox style -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-@endsection
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
     <!-- Page Content -->
@@ -27,6 +22,19 @@
             </div>
         </div>
         <!-- /Page Header -->
+
+        <!-- Cetak Dokumen KGB PDF -->
+        @php
+            $lastKGB = $data_kgb->last();
+        @endphp
+        @if ($lastKGB)
+            <a href="{{ route('layanan-kenaikan-gaji-berkala', ['id' => $lastKGB->id]) }}" target="_blank" class="btn btn-success">
+                <i class="fa-solid fa-file-pdf"></i> Dokumen KGB
+            </a>
+        @else
+        @endif
+        <br><br>
+        <!-- /Cetak Dokumen KGB PDF -->
 
         <!-- Search Filter -->
         <form action="{{ route('layanan/kenaikan/gaji/berkala/admin/cari') }}" method="GET" id="search-form">
@@ -94,12 +102,13 @@
                                     <td class="masa_kerja">{{ $result_kgb->masa_kerja }}</td>
                                     <td class="tmt_kgb">{{ $result_kgb->tmt_kgb }}</td>
                                     <td class="dokumen_kgb"><center>
-                                            <a href="{{ asset('assets/DokumenKGB/' . $result_kgb->dokumen_kgb) }}" target="_blank">
-                                                @if (pathinfo($result_kgb->dokumen_kgb, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_kgb">{{ $result_kgb->dokumen_kgb }}</td>
-                                            </a></center></td>
+                                        <a href="{{ asset('assets/DokumenKGB/' . $result_kgb->dokumen_kgb) }}" target="_blank">
+                                            @if (pathinfo($result_kgb->dokumen_kgb, PATHINFO_EXTENSION) == 'pdf')
+                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                            @endif
+                                                <td hidden class="dokumen_kgb">{{ $result_kgb->dokumen_kgb }}</td>
+                                        </a>
+                                    </center></td>
 
                                     {{-- Edit Layanan KGB --}}
                                     <td class="text-right">
@@ -143,23 +152,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" name="user_id"
-                                        value="{{ Auth::user()->user_id }}">
+                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->user_id }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @foreach ($data_kgb as $gaji)
-                                        <input type="hidden" class="form-control" name="nip"
-                                            value="{{ $gaji->nip }}">
+                                    @foreach ($data_kgb_result as $res_nip)
+                                        <input type="hidden" class="form-control" name="nip" value="{{ $res_nip->nip }}">
                                     @endforeach
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @foreach ($data_kgb as $gaji)
-                                        <input type="hidden" class="form-control" name="name"
-                                            value="{{ $gaji->name }}">
+                                    @foreach ($data_kgb_result as $res_name)
+                                        <input type="hidden" class="form-control" name="name" value="{{ $res_name->name }}">
                                     @endforeach
                                 </div>
                             </div>
@@ -169,7 +175,7 @@
                                 <div class="form-group">
                                     <label>Golongan Awal</label><br>
                                     <select name="golongan_awal" class="theSelect" id="golongan_awal" required>
-                                        <option selected disabled> --Pilih Golongan Awal--</option>
+                                        <option selected disabled>-- Pilih Golongan Awal --</option>
                                         @foreach ($golonganOptions as $key => $value)
                                             <option value="{{ $key }}">{{ $value }}</option>
                                         @endforeach
@@ -180,7 +186,7 @@
                                 <div class="form-group">
                                     <label>Golongan Akhir</label><br>
                                     <select name="golongan_akhir" class="theSelect" id="golongan_akhir" required>
-                                        <option selected disabled> --Pilih Golongan Akhir--</option>
+                                        <option selected disabled>-- Pilih Golongan Akhir --</option>
                                         @foreach ($golonganOptions as $key => $value)
                                             <option value="{{ $key }}">{{ $value }}</option>
                                         @endforeach
@@ -192,15 +198,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Lama</label>
-                                    <input type="number" class="form-control" name="gapok_lama"
-                                        placeholder="Gapok Lama">
+                                    <input type="number" class="form-control" name="gapok_lama" placeholder="Gapok Lama">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Baru</label>
-                                    <input type="number" class="form-control" name="gapok_baru"
-                                        placeholder="Gapok Baru">
+                                    <input type="number" class="form-control" name="gapok_baru" placeholder="Gapok Baru">
                                 </div>
                             </div>
                         </div>
@@ -228,8 +232,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Masa Kerja Golongan</label>
-                                    <input type="text" class="form-control" name="masa_kerja_golongan"
-                                        placeholder="Masa Kerja Golongan">
+                                    <input type="text" class="form-control" name="masa_kerja_golongan" placeholder="Masa Kerja Golongan">
                                 </div>
                             </div>
                         </div>
@@ -237,8 +240,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Masa Kerja</label>
-                                    <input type="text" class="form-control" name="masa_kerja"
-                                        placeholder="Masa Kerja">
+                                    <input type="text" class="form-control" name="masa_kerja" placeholder="Masa Kerja">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -256,11 +258,9 @@
             </div>
         </div>
     </div>
+    <!-- /Tambah Layanan KGB Modal -->
 
-
-    <!-- /Tambah Layanan Cuti Modal -->
-
-    <!-- Edit Layanan Cuti Modal -->
+    <!-- Edit Layanan KGB Modal -->
     <div id="edit_layanan_kgb" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -279,15 +279,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Golongan Awal</label>
-                                    <input type="text" class="form-control" name="golongan_awal"
-                                        id="e_golongan_awal" placeholder="Golongan Awal" value="">
+                                    <br>
+                                    <select name="golongan_awal" class="theSelect" id="e_golongan_awal">
+                                        <option selected disabled>-- Pilih Golongan Awal --</option>
+                                        @foreach ($golonganOptions as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Golongan Akhir</label>
-                                    <input type="text" class="form-control" name="golongan_akhir"
-                                        id="e_golongan_akhir" placeholder="Golongan Akhir" value="">
+                                    <br>
+                                    <select name="golongan_akhir" class="theSelect" id="e_golongan_akhir">
+                                        <option selected disabled>-- Pilih Golongan Akhir --</option>
+                                        @foreach ($golonganOptions as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -302,8 +312,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gaji Pokok Baru</label>
-                                    <input type="number" class="form-control" name="gapok_baru" id="e_gapok_baru"
-                                        placeholder="Gaji Pokok Baru" value="">
+                                    <input type="number" class="form-control" name="gapok_baru" id="e_gapok_baru" placeholder="Gaji Pokok Baru" value="">
                                 </div>
                             </div>
                         </div>
@@ -311,15 +320,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal SK KGB</label>
-                                    <input type="date" class="form-control" name="tgl_sk_kgb" id="e_tgl_sk_kgb"
-                                        value="">
+                                    <input type="date" class="form-control" name="tgl_sk_kgb" id="e_tgl_sk_kgb" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor SK KGB</label>
-                                    <input type="text" class="form-control" name="no_sk_kgb" id="e_no_sk_kgb"
-                                        value="">
+                                    <input type="text" class="form-control" name="no_sk_kgb" id="e_no_sk_kgb" value="">
                                 </div>
                             </div>
                         </div>
@@ -327,15 +334,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Berlaku</label>
-                                    <input type="date" class="form-control" name="tgl_berlaku" id="e_tgl_berlaku"
-                                        value="">
+                                    <input type="date" class="form-control" name="tgl_berlaku" id="e_tgl_berlaku" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Masa Kerja Golongan</label>
-                                    <input type="text" class="form-control" name="masa_kerja_golongan"
-                                        id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
+                                    <input type="text" class="form-control" name="masa_kerja_golongan" id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
                                 </div>
                             </div>
                         </div>
@@ -343,15 +348,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Masa Kerja</label>
-                                    <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja"
-                                        placeholder="Masa Kerja" value="">
+                                    <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja" placeholder="Masa Kerja" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>TMT KGB</label>
-                                    <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb"
-                                        value="">
+                                    <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb" value="">
                                 </div>
                             </div>
                         </div>
@@ -361,8 +364,7 @@
                                     <label>Dokumen KGB</label>
                                     <input type="file" class="form-control" id="dokumen_kgb"
                                         name="dokumen_kgb">
-                                    <input type="hidden" name="hidden_dokumen_kgb"
-                                        id="e_dokumen_kgb" value="">
+                                    <input type="hidden" name="hidden_dokumen_kgb" id="e_dokumen_kgb" value="">
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
@@ -375,21 +377,22 @@
             </div>
         </div>
     </div>
-    <!-- /Edit Layanan Cuti Modal -->
+    <!-- /Edit Layanan KGB Modal -->
 </div>
 <!-- /Page Wrapper -->
 
-@section('script')
-    <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
+    @section('script')
+        <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-    <script>
-        $(".theSelect").select2();
-    </script>
+        <script>
+            $(".theSelect").select2();
+        </script>
 
-    <script>
-        history.pushState({}, "", '/layanan/kenaikan/gaji/berkala');
-    </script>
-@endsection
+        <script>
+            history.pushState({}, "", '/layanan/kenaikan/gaji/berkala');
+        </script>
+        
+    @endsection
 @endsection

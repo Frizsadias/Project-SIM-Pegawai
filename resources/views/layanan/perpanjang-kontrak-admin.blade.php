@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@section('style')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-    <!-- checkbox style -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-@endsection
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
     <!-- Page Content -->
@@ -250,7 +245,6 @@
             </div>
         </div>
     </div>
-
     <!-- /Tambah Layanan Cuti Modal -->
 
     <!-- Edit Layanan Cuti Modal -->
@@ -342,28 +336,22 @@
 </div>
 <!-- /Page Wrapper -->
 
-@section('script')
-    <script src="{{ asset('assets/js/perpanjangankontrak.js') }}"></script>
+    @section('script')
+        <script src="{{ asset('assets/js/perpanjangankontrak.js') }}"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#pilihDokumenPerpanjangan').select2();
-            $('#cetakDokumenPerpanjangan').on('click', function() {
-                const selectedCutiId = $('#pilihDokumenPerpanjangan').val();
-                if (selectedCutiId) {
-                    const url = "{{ route('layanan-perpanjang-kontrak-admin', ['id' => ':id']) }}".replace(
-                        ':id', selectedCutiId);
-                    window.open(url, '_blank');
-                }
+        <script>
+            $(document).ready(function() {
+                $('#pilihDokumenPerpanjangan').select2();
+                $('#cetakDokumenPerpanjangan').on('click', function() {
+                    const selectedCutiId = $('#pilihDokumenPerpanjangan').val();
+                    if (selectedCutiId) {
+                        const url = "{{ route('layanan-perpanjang-kontrak-admin', ['id' => ':id']) }}".replace(
+                            ':id', selectedCutiId);
+                        window.open(url, '_blank');
+                    }
+                });
             });
-        });
-    </script>
+        </script>
 
-    <script>
-        $(document).on("click", ".delete_kontrak", function() {
-            var _this = $(this).parents("tr");
-            $(".e_id").val(_this.find(".id").text());
-        });
-    </script>
-@endsection
+    @endsection
 @endsection

@@ -214,6 +214,7 @@
                                                     <label>Tanggal Lahir</label>
                                                     <div class="cal-icon">
                                                         <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate" value="{{ $information->tgl_lahir }}">
+                                                        <small class="text-danger">Example : 10-10-2023</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -326,6 +327,7 @@
                                                     <label>Tanggal Lahir</label>
                                                     <div class="cal-icon">
                                                         <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate">
+                                                        <small class="text-danger">Example : 10-10-2023</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -365,10 +367,10 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Pendidikan Terakhir</label>
-                                                    <select class="select" name="pendidikan_terakhir" id="pendidikan_terakhir">
+                                                    <select class="theSelect" name="pendidikan_terakhir" id="pendidikan_terakhir">
                                                         <option value="" disabled selected>-- Pilih Pendidikan Terakhir --</option>
-                                                        @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
-                                                            <option value="{{ $id }}" {{ $id == $propeg->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                        @foreach($pendidikanterakhirOptions as $id => $namaPendidikanTerakhir)
+                                                            <option value="{{ $id }}" {{ $id == $propeg->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

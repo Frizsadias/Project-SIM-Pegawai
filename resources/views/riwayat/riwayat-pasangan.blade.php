@@ -65,10 +65,21 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pasangan</th>
+                                    <th>Suami/Istri Ke</th>
                                     <th>Status Pekerjaan Pasangan</th>
+                                    <th>NIP</th>
                                     <th>Status Pernikahan</th>
+                                    <th>Nama Pasangan</th>
+                                    <th>Tanggal Lahir</th>
+                                    <th>Jenis Identitas</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Agama</th>
                                     <th>Status Hidup</th>
+                                    <th>Nomor Karsu/Karis</th>
+                                    <th>Alamat</th>
+                                    <th>No HP</th>
+                                    <th>No Telp</th>
+                                    <th>Email</th>
                                     <th>Dokumen Nikah</th>
                                     <th>Pas Foto</th>
                                     <th>Aksi</th>
@@ -79,35 +90,39 @@
                                     <tr>
                                         <td><center>{{ ++$sqlPasangan }}</center></td>
                                         <td hidden class="id"><center>{{ $result_pasangan->id }}</center></td>
-                                        <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
+                                        <td class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
                                         <td class="status_pekerjaan_pasangan"><center>{{ $result_pasangan->status_pekerjaan_pasangan }}</center></td>
+                                        <td class="nip"><center>{{ $result_pasangan->nip }}</center></td>
                                         <td class="status_pernikahan"><center>{{ $result_pasangan->status_pernikahan }}</center></td>
+                                        <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
+                                        <td class="tanggal_lahir"><center>{{ $result_pasangan->tanggal_lahir }}</center></td>
+                                        <td class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
+                                        <td class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
+                                        <td class="agama"><center>{{ $result_pasangan->agama }}</center></td>
                                         <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
+                                        <td class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
+                                        <td class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
+                                        <td class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
+                                        <td class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
+                                        <td class="email"><center>
+                                            <a href="mailto:{{ $result_pasangan->email }}" style="color:black">{{ $result_pasangan->email }}</a>
+                                        </center></td>
                                         <td class="dokumen_nikah"><center>
                                             <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
                                                 @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                     <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
-                                            </a></center></td>
-                                            <td class="pas_foto"><center>
+                                            </a>
+                                        </center></td>
+                                        <td class="pas_foto"><center>
                                             <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
                                                 @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                     <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                 <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
                                             </a>
-                                            <td hidden class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
-                                            <td hidden class="nip"><center>{{ $result_pasangan->nip }}</center></td>
-                                            <td hidden class="tanggal_lahir"><center>{{ $result_pasangan->tanggal_lahir }}</center></td>
-                                            <td hidden class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
-                                            <td hidden class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
-                                            <td hidden class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
-                                            <td hidden class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
-                                            <td hidden class="agama"><center>{{ $result_pasangan->agama }}</center></td>
-                                            <td hidden class="email"><center>{{ $result_pasangan->email }}</center></td>
-                                            <td hidden class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
-                                            <td hidden class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
+                                        </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -161,9 +176,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Suami/Istri ke</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="suami_istri_ke" required>
-                                            <option disabled selected value="">-- Pilih Suami/Istri ke --</option>
+                                        <label>Suami/Istri ke</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="suami_istri_ke" required>
+                                            <option disabled selected value="">-- Pilih Suami/Istri Ke --</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -179,7 +195,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pekerjaan Pasangan</label><small class="text-danger">*</small>
+                                        <label>Status Pekerjaan Pasangan</label>
+                                        <small class="text-danger">*</small>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan"
                                              value="Bukan PNS" required>
@@ -205,8 +222,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="status_pernikahan" required>
+                                        <label>Status Pernikahan</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="status_pernikahan" required>
                                             <option disabled selected value="">-- Pilih Status Pernikahan --</option>
                                             <option value="Menikah">Menikah</option>
                                             <option value="Belum Menikah">Belum Menikah</option>
@@ -219,14 +237,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama</label><small class="text-danger">*</small>
+                                        <label>Nama</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nama"
                                             placeholder="Masukkan nama pasangan" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                        <label>Tanggal Lahir</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_lahir" required>
                                     </div>
                                 </div>
@@ -234,8 +254,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Identitas</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="jenis_identitas" required>
+                                        <label>Jenis Identitas</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="jenis_identitas" required>
                                             <option disabled selected value="">-- Pilih Jenis Identitas --</option>
                                             <option value="KTP/KIA">KTP/KIA</option>
                                             <option value="Passport">Passport</option>
@@ -244,7 +265,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                        <label>Jenis Kelamin</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="jenis_kelamin" value="Laki-Laki" required>
@@ -263,8 +285,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Agama</label><small class="text-danger">*</small>
-                                        <select class="form-control" name="agama" required>
+                                        <label>Agama</label>
+                                        <small class="text-danger">*</small>
+                                        <select class="select form-control" name="agama" required>
                                             <option disabled selected value="">-- Pilih Agama --</option>
                                             @foreach ($agamaOptions as $agama)
                                                 <option value="{{ $agama }}">{{ $agama }}</option>
@@ -274,7 +297,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                        <label>Status Hidup</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="status_hidup" value="Hidup" required>
@@ -293,14 +317,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Karsu/Karis</label><small class="text-danger">*</small>
+                                        <label>Nomor Karsu/Karis</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_karis_karsu"
                                             placeholder="Masukkan nomor karsu/karis" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Alamat</label><small class="text-danger">*</small>
+                                        <label>Alamat</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="alamat"
                                             placeholder="Masukkan alamat pasangan" required>
                                     </div>
@@ -309,7 +335,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                        <label>Nomor HP</label>
+                                        <small class="text-danger">*</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
@@ -321,7 +348,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                        <label>Nomor Telepon</label>
+                                        <small class="text-danger">*</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
@@ -335,7 +363,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Email</label><small class="text-danger">*</small>
+                                        <label>Email</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="email" name="email" placeholder="Masukkan email pasangan" required>
                                     </div>
                                 </div>
@@ -343,14 +372,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Nikah</label><small class="text-danger">*</small>
+                                        <label>Dokumen Nikah</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_nikah">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto</label><small class="text-danger">*</small>
+                                        <label>Pas Foto</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="pas_foto">
                                         <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
                                     </div>
@@ -384,7 +415,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Suami/Istri ke</label><small class="text-danger">*</small>
+                                        <label>Suami/Istri ke</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="suami_istri_ke" id="e_suami_istri_ke" required>
                                             <option disabled selected value="">-- Pilih Suami/Istri ke --</option>
                                             <option value="1">1</option>
@@ -402,7 +434,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pekerjaan Pasangan</label><small class="text-danger">*</small>
+                                        <label>Status Pekerjaan Pasangan</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="status_pekerjaan_pasangan" id="bukan_pns" value="Bukan PNS" required>
@@ -421,12 +454,13 @@
                                     <div class="form-group">
                                         <label>NIP</label>
                                         <input class="form-control" type="text" name="nip" id="e_nip"
-                                            placeholder="Jika status pasangan bukan PNS isi dengan -" required>
+                                            placeholder="Jika status pasangan bukan PNS isi dengan -">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
+                                        <label>Status Pernikahan</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="status_pernikahan" id="e_status_pernikahan" required>
                                             <option disabled selected value="">-- Pilih Status Pernikahan --</option>
                                             <option value="Menikah">Menikah</option>
@@ -440,14 +474,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama</label><small class="text-danger">*</small>
+                                        <label>Nama</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nama" id="e_nama"
                                             placeholder="Masukkan nama pasangan" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                        <label>Tanggal Lahir</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_lahir" id="e_tanggal_lahir" required>
                                     </div>
                                 </div>
@@ -455,7 +491,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Identitas</label><small class="text-danger">*</small>
+                                        <label>Jenis Identitas</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="jenis_identitas" id="e_jenis_identitas" required>
                                             <option disabled selected value="">-- Pilih Jenis Identitas --</option>
                                             <option value="KTP/KIA">KTP/KIA</option>
@@ -465,7 +502,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                        <label>Jenis Kelamin</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="jenis_kelamin" id="laki_laki" value="Laki-Laki" required>
@@ -484,7 +522,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Agama</label><small class="text-danger">*</small>
+                                        <label>Agama</label>
+                                        <small class="text-danger">*</small>
                                         <select class="form-control" name="agama" id="e_agama" required>
                                             <option disabled selected value="">-- Pilih Agama --</option>
                                             @foreach ($agamaOptions as $agama)
@@ -495,7 +534,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                        <label>Status Hidup</label>
+                                        <small class="text-danger">*</small>
                                         <div>
                                             <label>
                                                 <input type="radio" name="status_hidup" id="hidup" value="Hidup" required>
@@ -514,14 +554,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Karsu/Karis</label><small class="text-danger">*</small>
+                                        <label>Nomor Karsu/Karis</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_karis_karsu" id="e_no_karis_karsu"
                                             placeholder="Masukkan nomor karsu/karis" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Alamat</label><small class="text-danger">*</small>
+                                        <label>Alamat</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="alamat" id="e_alamat"
                                             placeholder="Masukkan alamat pasangan" required>
                                     </div>
@@ -530,7 +572,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                        <label>Nomor HP</label>
+                                        <small class="text-danger">*</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
@@ -542,7 +585,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                        <label>Nomor Telepon</label>
+                                        <small class="text-danger">*</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
@@ -556,7 +600,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Email</label><small class="text-danger">*</small>
+                                        <label>Email</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="email" name="email" id="e_email" placeholder="Masukkan email pasangan" required>
                                     </div>
                                 </div>
@@ -564,7 +609,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Nikah</label><small class="text-danger">*</small>
+                                        <label>Dokumen Nikah</label>
+                                        <small class="text-danger">*</small>
                                         <input type="file" class="form-control" id="dokumen_nikah"
                                             name="dokumen_nikah">
                                         <input type="hidden" name="hidden_dokumen_nikah" id="e_dokumen_nikah"
@@ -574,7 +620,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Pas Foto</label><small class="text-danger">*</small>
+                                        <label>Pas Foto</label>
+                                        <small class="text-danger">*</small>
                                         <input type="file" class="form-control" id="pas_foto"
                                             name="pas_foto">
                                         <input type="hidden" name="hidden_pas_foto" id="e_pas_foto"
@@ -630,149 +677,9 @@
     <!-- /Page Wrapper -->
 
 @section('script')
-    {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var table = $('#tableAngkaKredit').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "{{ route('get-angkakredit-data') }}",
-                        "data": function(d) {
-                            d.keyword = $('#keyword').val();
-                            d._token = "{{ csrf_token() }}";
-                        }
-                    },
-                    "columns": [
-                        {
-                            "data": "id"
-                        },
-                        {
-                            "data": "nama_jabatan"
-                        },
-                        {
-                            "data": "nomor_sk"
-                        },
-                        {
-                            "data": "tanggal_sk"
-                        },
-                        {
-                            "data": "angka_kredit_pertama"
-                        },
-                        {
-                            "data": "integrasi"
-                        },
-                        {
-                            "data": "konversi"
-                        },
-                        {
-                            "data": "bulan_mulai"
-                        },
-                        {
-                            "data": "tahun_mulai"
-                        },
-                        {
-                            "data": "bulan_selesai"
-                        },
-                        {
-                            "data": "tahun_selesai"
-                        },
-                        {
-                            "data": "angka_kredit_utama"
-                        },
-                        {
-                            "data": "angka_kredit_penunjang"
-                        },
-                        {
-                            "data": "total_angka_kredit"
-                        },
-                        {
-                            "data": "action"
-                        },
-                    ],
-                    "language": {
-                        "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
-                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
-                        "infoFiltered": "(filtered from _MAX_ total records)",
-                        "search": "Cari:",
-                        "paginate": {
-                            "previous": "Previous",
-                            "next": "Next",
-                            "first": "<<",
-                            "last": ">>",
-                        }
-                    },
-                    "order": [
-                        [0, "asc"]
-                    ]
-                });
-
-                // Live search
-                $('#search-form').on('submit', function(e) {
-                    e.preventDefault();
-                    table
-                        .search($('#keyword').val())
-                        .draw();
-                })
-            });
-        </script> --}}
-    {{-- update --}}
-    <script>
-    $(document).on('click', '.edit_pasangan', function() {
-        var _this = $(this).parents('tr');
-        $('#e_id').val(_this.find('.id').text());
-        $('#e_suami_istri_ke').val(_this.find('.suami_istri_ke').text());
-        var statusPekerjaan = _this.find('.status_pekerjaan_pasangan').text();
-        if (statusPekerjaan === 'Bukan PNS') {
-            $('#bukan_pns').prop('checked', true);
-        } else if (statusPekerjaan === 'PNS') {
-            $('#pns').prop('checked', true);
-        }
-        $('#e_nip').val(_this.find('.nip').text());
-        $('#e_status_pernikahan').val(_this.find('.status_pernikahan').text());
-        $('#e_nama').val(_this.find('.nama').text());
-        $('#e_tanggal_lahir').val(_this.find('.tanggal_lahir').text());
-        $('#e_jenis_identitas').val(_this.find('.jenis_identitas').text());
-        var jenisKelamin = _this.find('.jenis_kelamin').text();
-        if (jenisKelamin === 'Laki-Laki') {
-            $('#laki_laki').prop('checked', true);
-        } else if (jenisKelamin === 'Perempuan') {
-            $('#perempuan').prop('checked', true);
-        }
-        $('#e_agama').val(_this.find('.agama').text());
-        var statusHidup = _this.find('.status_hidup').text();
-        if (statusHidup === 'Hidup') {
-            $('#hidup').prop('checked', true);
-        } else if (statusHidup === 'Meninggal') {
-            $('#meninggal').prop('checked', true);
-        }
-        $('#e_no_karis_karsu').val(_this.find('.no_karis_karsu').text());
-        $('#e_alamat').val(_this.find('.alamat').text());
-        $('#e_no_hp').val(_this.find('.no_hp').text());
-        $('#e_no_telepon').val(_this.find('.no_telepon').text());
-        $('#e_email').val(_this.find('.email').text());
-        // Assuming the dokumen_nikah and pas_foto are stored in hidden fields as file names
-        $('#e_dokumen_nikah').val(_this.find('.dokumen_nikah').text());
-        $('#e_pas_foto').val(_this.find('.pas_foto').text());
-
-        // Your existing code for the other fields...
-    });
-</script>
-
-
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_pasangan', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_nikah').val(_this.find('.dokumen_nikah').text());
-            $('.d_pas_foto').val(_this.find('.pas_foto').text());
-        });
-    </script>
+    <script src="{{ asset('assets/js/pasangan.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
     <script>
         $(".theSelect").select2();
     </script>
@@ -781,16 +688,5 @@
         history.pushState({}, "", '/riwayat/pasangan');
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('input[name="status_pekerjaan_pasangan"]').click(function() {
-                if ($(this).val() === "PNS") {
-                    $('#show_nip').show();
-                } else {
-                    $('#show_nip').hide();
-                }
-            });
-        });
-    </script>
 @endsection
 @endsection

@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -53,25 +54,25 @@
                     </div>
                 </div>
             </form> --}}
+            <!-- Search Filter -->
 
             {{-- message --}}
             {!! Toastr::message() !!}
 
-            <!-- Search Filter -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped custom-table" id="tableAngkaKredit">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Organisasi</th>
-                                    <th>Jabatan Organisasi</th>
-                                    <th>Tanggal Gabung</th>
-                                    <th>Tanggal Selesai</th>
-                                    <th>Nomor Anggota</th>
-                                    <th>Dokumen Organisasi</th>
-                                    <th>Aksi</th>
+                                    <th><center>No</center></th>
+                                    <th><center>Nama Organisasi</center></th>
+                                    <th><center>Jabatan Organisasi</center></th>
+                                    <th><center>Tanggal Gabung</center></th>
+                                    <th><center>Tanggal Selesai</center></th>
+                                    <th><center>Nomor Anggota</center></th>
+                                    <th><center>Dokumen Organisasi</center></th>
+                                    <th><center>Aksi</center></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,7 +94,7 @@
                                             </a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
-                                        <td class="text-right">
+                                        <td class="text-center">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -144,13 +145,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama Organisasi</label><small class="text-danger">*</small>
+                                        <label>Nama Organisasi</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nama_organisasi" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jabatan di Organisasi</label><small class="text-danger">*</small>
+                                        <label>Jabatan di Organisasi</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="jabatan_organisasi" required>
                                     </div>
                                 </div>
@@ -158,13 +161,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Bergabung</label><small class="text-danger">*</small>
+                                        <label>Tanggal Bergabung</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_gabung" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Selesai</label><small class="text-danger">*</small>
+                                        <label>Tanggal Selesai</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_selesai" required>
                                     </div>
                                 </div>
@@ -172,14 +177,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Anggota</label><small class="text-danger">*</small>
+                                        <label>Nomor Anggota</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_anggota" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen Organisasi</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="file" name="dokumen_organisasi">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -211,13 +219,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Penghargaan</label><small class="text-danger">*</small>
+                                        <label>Nama Organisasi</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="nama_organisasi" id="e_nama_organisasi" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jabatan di Organisasi</label><small class="text-danger">*</small>
+                                        <label>Jabatan di Organisasi</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="jabatan_organisasi" id="e_jabatan_organisasi" required>
                                     </div>
                                 </div>
@@ -225,13 +235,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Bergabung</label><small class="text-danger">*</small>
+                                        <label>Tanggal Bergabung</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_gabung" id="e_tanggal_gabung" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Tanggal Selesai</label><small class="text-danger">*</small>
+                                        <label>Tanggal Selesai</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="date" name="tanggal_selesai" id="e_tanggal_selesai" required>
                                     </div>
                                 </div>
@@ -239,17 +251,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nomor Anggota</label><small class="text-danger">*</small>
+                                        <label>Nomor Anggota</label>
+                                        <small class="text-danger">*</small>
                                         <input class="form-control" type="text" name="no_anggota" id="e_no_anggota" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Dokumen Organisasi</label><small class="text-danger">*</small>
-                                        <input type="file" class="form-control" id="dokumen_organisasi"
-                                            name="dokumen_organisasi">
-                                        <input type="hidden" name="hidden_dokumen_organisasi" id="e_dokumen_organisasi"
-                                            value="">
+                                        <label>Dokumen Organisasi</label>
+                                        <small class="text-danger">*</small>
+                                        <input type="file" class="form-control" id="dokumen_organisasi" name="dokumen_organisasi">
+                                        <input type="hidden" name="hidden_dokumen_organisasi" id="e_dokumen_organisasi" value="">
+                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
                             </div>
@@ -298,137 +311,17 @@
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var table = $('#tableAngkaKredit').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "{{ route('get-angkakredit-data') }}",
-                        "data": function(d) {
-                            d.keyword = $('#keyword').val();
-                            d._token = "{{ csrf_token() }}";
-                        }
-                    },
-                    "columns": [
-                        {
-                            "data": "id"
-                        },
-                        {
-                            "data": "nama_jabatan"
-                        },
-                        {
-                            "data": "nomor_sk"
-                        },
-                        {
-                            "data": "tanggal_sk"
-                        },
-                        {
-                            "data": "angka_kredit_pertama"
-                        },
-                        {
-                            "data": "integrasi"
-                        },
-                        {
-                            "data": "konversi"
-                        },
-                        {
-                            "data": "bulan_mulai"
-                        },
-                        {
-                            "data": "tahun_mulai"
-                        },
-                        {
-                            "data": "bulan_selesai"
-                        },
-                        {
-                            "data": "tahun_selesai"
-                        },
-                        {
-                            "data": "angka_kredit_utama"
-                        },
-                        {
-                            "data": "angka_kredit_penunjang"
-                        },
-                        {
-                            "data": "total_angka_kredit"
-                        },
-                        {
-                            "data": "action"
-                        },
-                    ],
-                    "language": {
-                        "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
-                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
-                        "infoFiltered": "(filtered from _MAX_ total records)",
-                        "search": "Cari:",
-                        "paginate": {
-                            "previous": "Previous",
-                            "next": "Next",
-                            "first": "<<",
-                            "last": ">>",
-                        }
-                    },
-                    "order": [
-                        [0, "asc"]
-                    ]
-                });
+    @section('script')
+        <script src="{{ asset('assets/js/organisasi.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-                // Live search
-                $('#search-form').on('submit', function(e) {
-                    e.preventDefault();
-                    table
-                        .search($('#keyword').val())
-                        .draw();
-                })
-            });
-        </script> --}}
-    {{-- update --}}
-    <script>
-        $(document).on('click', '.edit_organisasi', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.id').text());
-            $('#e_nama_organisasi').val(_this.find('.nama_organisasi').text());
-            $('#e_jabatan_organisasi').val(_this.find('.jabatan_organisasi').text());
-            $('#e_tanggal_gabung').val(_this.find('.tanggal_gabung').text());
-            $('#e_tanggal_selesai').val(_this.find('.tanggal_selesai').text());
-            $('#e_no_anggota').val(_this.find('.no_anggota').text());
-            $('#e_dokumen_organisasi').val(_this.find('.dokumen_organisasi').text());
-        });
-    </script>
+        <script>
+            $(".theSelect").select2();
+        </script>
 
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_organisasi', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').text());
-            $('.d_dokumen_organisasi').val(_this.find('.dokumen_organisasi').text());
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script>
-        $(".theSelect").select2();
-    </script>
+        <script>
+            history.pushState({}, "", '/riwayat/organisasi');
+        </script>
 
-    <script>
-        history.pushState({}, "", '/riwayat/organisasi');
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.exclusive').change(function() {
-                if ($(this).prop('checked')) {
-                    $('.exclusive').not(this).prop('disabled', true);
-                } else {
-                    $('.exclusive').prop('disabled', false);
-                }
-            });
-        });
-    </script>
-@endsection
+    @endsection
 @endsection
