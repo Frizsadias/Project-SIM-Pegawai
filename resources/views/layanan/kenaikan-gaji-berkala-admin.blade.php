@@ -130,6 +130,9 @@
                                                 <a class="dropdown-item edit_layanan_kgb" href="#"
                                                     data-toggle="modal" data-target="#edit_layanan_kgb"><i
                                                         class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item delete_kgb" href="#"
+                                                    data-toggle="modal" data-target="#delete_kgb"><i
+                                                        class="fa fa-trash-o m-r-5"></i>Delete</a>
                                                 <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
                                                     target="_blank" class="dropdown-item cetak-kinerja">
                                                     <i class="fa fa-print m-r-5"></i>Cetak
@@ -147,7 +150,7 @@
     </div>
     <!-- /Page Content -->
 
-    <!-- Tambah Layanan KGB Modal -->
+    <!-- Tambah Kenaikan Gaji Berkala Modal -->
     <div id="daftar_layanan_kgb" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -283,9 +286,9 @@
             </div>
         </div>
     </div>
-    <!-- /Tambah Layanan Cuti Modal -->
+    <!-- /Tambah Kenaikan Gaji Berkala Modal -->
 
-    <!-- Edit Layanan Cuti Modal -->
+    <!-- Edit Kenaikan Gaji Berkala Modal -->
     <div id="edit_layanan_kgb" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -400,7 +403,39 @@
             </div>
         </div>
     </div>
-    <!-- /Edit Layanan Cuti Modal -->
+    <!-- /Edit Kenaikan Gaji Berkala Modal -->
+
+    <!-- Delete Kenaikan Gaji Berkala Modal -->
+    <div class="modal custom-modal fade" id="delete_kgb" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-header">
+                        <h3>Hapus Kenaikan Gaji Berkala</h3>
+                        <p>Apakah anda yakin ingin menghapus data ini?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <form action="{{ route('layanan/kenaikan-gaji-berkala/hapus-data') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" class="e_id" value="">
+                            <input type="hidden" name="dokumen_kgb" class="d_dokumen_kgb" value="">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit"
+                                        class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="javascript:void(0);" data-dismiss="modal"
+                                        class="btn btn-primary cancel-btn">Kembali</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Delete Kenaikan Gaji Berkala Modal -->
 </div>
 <!-- /Page Wrapper -->
 

@@ -1812,6 +1812,24 @@ class LayananController extends Controller
     }
     /** /Edit Data Kenaikan Gaji Berkala Pegawai */
 
+    /** Hapus Data Kenaikan Gaji Berkala Pegawai */
+    public function hapusKenaikanGajiBerkala(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            KenaikanGajiBerkala::where('id', $request->id)->delete();
+            DB::commit();
+            Toastr::success('Data kenaikan gaji berkala berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data kenaikan gaji berkala gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
+    }
+    /** /End Hapus Data Kenaikan Gaji Berkala Pegawai */
+
     /** Cetak Kenaikan Gaji Berkala Admin PDF */
     public function cetakKGB($id)
     {

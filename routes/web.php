@@ -532,6 +532,7 @@ Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/kenaikan/gaji/berkala/admin/cari', 'filterKGBAdmin')->name('layanan/kenaikan/gaji/berkala/admin/cari');
     Route::get('layanan/kenaikan/gaji/berkala/{id}', 'cetakKGB2')->name('layanan-kenaikan-gaji-berkala');
     Route::get('layanan/kenaikan/gaji/berkala/admin/{id}', 'cetakKGB')->name('layanan-kenaikan-gaji-berkala-admin');
+    Route::post('layanan/kenaikan/gaji/berkala/hapus-data', 'hapusKenaikanGajiBerkala')->name('layanan/kenaikan-gaji-berkala/hapus-data');
     Route::get('layanan/perpanjang-kontrak', 'tampilanPerpanjangKontrak')->name('perpanjang-kontrak');
     Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
     Route::get('layanan/perpanjang-kontrak-admin-cari', 'filterPerpanjangKontrakAdmin')->name('layanan/perpanjang-kontrak-admin-cari');

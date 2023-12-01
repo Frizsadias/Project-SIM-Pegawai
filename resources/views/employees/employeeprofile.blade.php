@@ -1932,10 +1932,13 @@
                                                             <a class="dropdown-item edit_layanan_kgb" href="#"
                                                                 data-toggle="modal" data-target="#edit_layanan_kgb"><i
                                                                     class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                            <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
+                                                            <a class="dropdown-item delete_kgb" href="#"
+                                                                data-toggle="modal" data-target="#delete_kgb"><i
+                                                                    class="fa fa-trash-o m-r-5"></i>Delete</a>
+                                                            {{-- <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
                                                                 target="_blank" class="dropdown-item cetak-kinerja">
                                                                 <i class="fa fa-print m-r-5"></i>Cetak
-                                                            </a>
+                                                            </a> --}}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2201,6 +2204,38 @@
                             </div>
                         </div>
                         <!-- /Edit Kenaikan Gaji Modal -->
+
+                        <!-- Delete Kenaikan Gaji Berkala Modal -->
+                        <div class="modal custom-modal fade" id="delete_kgb" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Kenaikan Gaji Berkala</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('layanan/kenaikan-gaji-berkala/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id" value="">
+                                                <input type="hidden" name="dokumen_kgb" class="d_dokumen_kgb" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Delete Kenaikan Gaji Berkala Modal -->
                     </div>
                     <!-- /Riwayat Kenaikan Gaji Berkala Tab -->
 
@@ -2263,10 +2298,10 @@
                                                             <a class="dropdown-item edit_riwayat_pmk" href="#"
                                                                 data-toggle="modal" data-target="#edit_riwayat_pmk"><i
                                                                     class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                            <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
+                                                            {{-- <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
                                                                 target="_blank" class="dropdown-item cetak-kinerja">
                                                                 <i class="fa fa-print m-r-5"></i>Cetak
-                                                            </a>
+                                                            </a> --}}
                                                             <a class="dropdown-item delete_riwayat_pmk" href="#"
                                                         data-toggle="modal" data-target="#delete_riwayat_pmk"><i
                                                             class="fa fa-trash-o m-r-5"></i>Delete</a>
@@ -2553,6 +2588,15 @@
                                             <th>Jenis Jabatan</th>
                                             <th>Nomor SK</th>
                                             <th>Tanggal SK</th>
+                                            <th>Angka Kredit Pertama</th>
+                                            <th>Integrasi</th>
+                                            <th>Konversi</th>
+                                            <th>Bulan Mulai</th>
+                                            <th>Tahun Mulai</th>
+                                            <th>Bulan Selesai</th>
+                                            <th>Tahun Selesai</th>
+                                            <th>Angka Kredit Utama</th>
+                                            <th>Angka Kredit Penunjang</th>
                                             <th>Total Angka Kredit</th>
                                             <th>Aksi</th>
                                             </tr>
@@ -2565,15 +2609,15 @@
                                                 <td class="nama_jabatan"><center>{{ $result_angka_kredit->nama_jabatan }}</center></td>
                                                 <td class="nomor_sk"><center>{{ $result_angka_kredit->nomor_sk }}</center></td>
                                                 <td class="tanggal_sk"><center>{{ $result_angka_kredit->tanggal_sk }}</center></td>
-                                                <td hidden class="angka_kredit_pertama"><center>{{ $result_angka_kredit->angka_kredit_pertama }}</center></td>
-                                                <td hidden class="integrasi"><center>{{ $result_angka_kredit->integrasi }}</center></td>
-                                                <td hidden class="konversi"><center>{{ $result_angka_kredit->konversi }}</center></td>
-                                                <td hidden class="bulan_mulai"><center>{{ $result_angka_kredit->bulan_mulai }}</center></td>
-                                                <td hidden class="tahun_mulai"><center>{{ $result_angka_kredit->tahun_mulai }}</center></td>
-                                                <td hidden class="bulan_selesai"><center>{{ $result_angka_kredit->bulan_selesai }}</center></td>
-                                                <td hidden class="tahun_selesai"><center>{{ $result_angka_kredit->tahun_selesai }}</center></td>
-                                                <td hidden class="angka_kredit_utama"><center>{{ $result_angka_kredit->angka_kredit_utama }}</center></td>
-                                                <td hidden class="angka_kredit_penunjang"><center>{{ $result_angka_kredit->angka_kredit_penunjang }}</center></td>
+                                                <td class="angka_kredit_pertama"><center>{{ $result_angka_kredit->angka_kredit_pertama }}</center></td>
+                                                <td class="integrasi"><center>{{ $result_angka_kredit->integrasi }}</center></td>
+                                                <td class="konversi"><center>{{ $result_angka_kredit->konversi }}</center></td>
+                                                <td class="bulan_mulai"><center>{{ $result_angka_kredit->bulan_mulai }}</center></td>
+                                                <td class="tahun_mulai"><center>{{ $result_angka_kredit->tahun_mulai }}</center></td>
+                                                <td class="bulan_selesai"><center>{{ $result_angka_kredit->bulan_selesai }}</center></td>
+                                                <td class="tahun_selesai"><center>{{ $result_angka_kredit->tahun_selesai }}</center></td>
+                                                <td class="angka_kredit_utama"><center>{{ $result_angka_kredit->angka_kredit_utama }}</center></td>
+                                                <td class="angka_kredit_penunjang"><center>{{ $result_angka_kredit->angka_kredit_penunjang }}</center></td>
                                                 <td class="total_angka_kredit"><center>{{ $result_angka_kredit->total_angka_kredit }}</center></td>
 
                                                 {{-- Edit dan Hapus data  --}}
@@ -2904,9 +2948,19 @@
                                         <thead>
                                             <th>No</th>
                                             <th>Status Hidup</th>
+                                            <th>Status Pekerjaan Orang Tua</th>
                                             <th>Nama Orang Tua</th>
+                                            <th>NIP</th>
+                                            <th>Tanggal Lahir</th>
                                             <th>Jenis Kelamin</th>
+                                            <th>Tanggal Meninggal</th>
+                                            <th>Jenis Identitas</th>
+                                            <th>Nomor HP</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Agama</th>
                                             <th>Status Pernikahan</th>
+                                            <th>Email</th>
+                                            <th>Alamat</th>
                                             <th>Dokumen Kartu Keluarga</th>
                                             <th>Dokumen Akta Anak</th>
                                             <th>Pas Foto Ayah</th>
@@ -2920,10 +2974,19 @@
                                                 <td><center>{{ ++$sqlOrtu }}</center></td>
                                                 <td hidden class="id"><center>{{ $result_Ortu->id }}</center></td>
                                                 <td class="status_hidup"><center>{{ $result_Ortu->status_hidup }}</center></td>
+                                                <td class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
                                                 <td class="nama"><center>{{ $result_Ortu->nama }}</center></td>
+                                                <td class="nip"><center>{{ $result_Ortu->nip }}</center></td>
+                                                <td class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
                                                 <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
+                                                <td class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
+                                                <td class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
+                                                <td class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
+                                                <td class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
+                                                <td class="agama"><center>{{ $result_Ortu->agama }}</center></td>
                                                 <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
-                                                <td hidden class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
+                                                <td class="email"><center>{{ $result_Ortu->email }}</center></td>
+                                                <td ><center>{{ $result_Ortu->alamat }}</center></td>
                                                 <td class="dokumen_kk"><center>
                                                     <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
                                                         @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
@@ -2952,15 +3015,6 @@
                                                         @endif
                                                         <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
                                                     </a>
-                                                    <td hidden class="nip"><center>{{ $result_Ortu->nip }}</center></td>
-                                                    <td hidden class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
-                                                    <td hidden class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
-                                                    <td hidden class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
-                                                    <td hidden class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
-                                                    <td hidden class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
-                                                    <td hidden class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
-                                                    <td hidden class="agama"><center>{{ $result_Ortu->agama }}</center></td>
-                                                    <td hidden class="email"><center>{{ $result_Ortu->email }}</center></td>
 
                                                 {{-- Edit dan Hapus data  --}}
                                                 <td class="text-right">
@@ -3478,72 +3532,81 @@
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
                                             <th>No</th>
+                                            <th>Suami/Istri ke</th>
+                                            <th>Status Pekerjaan</th>
+                                            <th>NIP</th>
                                             <th>Nama Pasangan</th>
-                                            <th>Status Pekerjaan Pasangan</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Jenis Identitas</th>
+                                            <th>Nomor HP</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Agama</th>
                                             <th>Status Pernikahan</th>
                                             <th>Status Hidup</th>
+                                            <th>Email</th>
+                                            <th>Nomor Karis/Karsu</th>
+                                            <th>Alamat</th>
                                             <th>Dokumen Nikah</th>
                                             <th>Pas Foto</th>
                                             <th>Aksi</th>
-                                            </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($riwayatPasangan as $sqlPasangan => $result_pasangan)
-                                            <tr>
-                                                <td><center>{{ ++$sqlPasangan }}</center></td>
-                                                <td hidden class="id"><center>{{ $result_pasangan->id }}</center></td>
-                                                <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
-                                                <td class="status_pekerjaan_pasangan"><center>{{ $result_pasangan->status_pekerjaan_pasangan }}</center></td>
-                                                <td class="status_pernikahan"><center>{{ $result_pasangan->status_pernikahan }}</center></td>
-                                                <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
-                                                <td class="dokumen_nikah"><center>
-                                                    <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
-                                                        @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
-                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                        @endif
-                                                            <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
-                                                    </a></center></td>
-                                                    <td class="pas_foto"><center>
-                                                    <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
-                                                        @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                            <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                        @endif
-                                                        <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
-                                                    </a>
-                                                    <td hidden class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
-                                                    <td hidden class="nip"><center>{{ $result_pasangan->nip }}</center></td>
-                                                    <td hidden class="tanggal_lahir"><center>{{ $result_pasangan->tanggal_lahir }}</center></td>
-                                                    <td hidden class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
-                                                    <td hidden class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
-                                                    <td hidden class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
-                                                    <td hidden class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
-                                                    <td hidden class="agama"><center>{{ $result_pasangan->agama }}</center></td>
-                                                    <td hidden class="email"><center>{{ $result_pasangan->email }}</center></td>
-                                                    <td hidden class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
-                                                    <td hidden class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
+                                                <tr>
+                                                    <td><center>{{ ++$sqlPasangan }}</center></td>
+                                                    <td class="suami_istri_ke">{{ $result_pasangan->suami_istri_ke }}</td>
+                                                    <td class="status_pekerjaan_pasangan">{{ $result_pasangan->status_pekerjaan_pasangan }}</td>
+                                                    <td class="nip">{{ $result_pasangan->nip }}</td>
+                                                    <td class="nama">{{ $result_pasangan->nama }}</td>
+                                                    <td class="tanggal_lahir">{{ $result_pasangan->tanggal_lahir }}</td>
+                                                    <td class="jenis_kelamin">{{ $result_pasangan->jenis_kelamin }}</td>
+                                                    <td class="jenis_identitas">{{ $result_pasangan->jenis_identitas }}</td>
+                                                    <td class="no_hp">{{ $result_pasangan->no_hp }}</td>
+                                                    <td class="no_telepon">{{ $result_pasangan->no_telepon }}</td>
+                                                    <td class="agama">{{ $result_pasangan->agama }}</td>
+                                                    <td class="status_pernikahan">{{ $result_pasangan->status_pernikahan }}</td>
+                                                    <td class="status_hidup">{{ $result_pasangan->status_hidup }}</td>
+                                                    <td class="email">{{ $result_pasangan->email }}</td>
+                                                    <td class="no_karis_karsu">{{ $result_pasangan->no_karis_karsu }}</td>
+                                                    <td>{{ $result_pasangan->alamat }}</td>
+                                                    <td class="dokumen_nikah">
+                                                        <center>
+                                                            <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
+                                                                @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                            </a>
+                                                        </center>
+                                                    </td>
+                                                    <td class="pas_foto">
+                                                        <center>
+                                                            <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
+                                                                @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                            </a>
+                                                        </center>
+                                                    </td>
 
-                                                {{-- Edit dan Hapus data  --}}
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item edit_riwayat_pasangan" href="#"
-                                                                data-toggle="modal" data-target="#edit_riwayat_pasangan"><i
-                                                                    class="fa fa-pencil m-r-5"></i>
-                                                                Edit</a>
-                                                            <a class="dropdown-item delete_pasangan" href="#"
-                                                                data-toggle="modal" data-target="#delete_pasangan"><i
-                                                                    class="fa fa-trash-o m-r-5"></i>
-                                                                Delete</a>
+                                                    {{-- Edit dan Hapus data  --}}
+                                                    <td class="text-right">
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                                <i class="material-icons">more_vert</i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <a class="dropdown-item edit_riwayat_pasangan" href="#" data-toggle="modal" data-target="#edit_riwayat_pasangan">
+                                                                    <i class="fa fa-pencil m-r-5"></i>Edit</a>
+                                                                <a class="dropdown-item delete_pasangan" href="#" data-toggle="modal" data-target="#delete_pasangan">
+                                                                    <i class="fa fa-trash-o m-r-5"></i>Delete</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
-                                </div>
                             </div>
                         </div>
                         <!-- Tambah Riwayat Pasangan Modal -->
@@ -4032,6 +4095,7 @@
                         </div>
                     <!-- End Delete Riwayat Pasangan Modal -->
                     </div>
+                    </div>
 
                     <!-- Riwayat Anak Tab -->
                     <div class="tab-pane fade" id="riwayat_anak">    
@@ -4047,65 +4111,70 @@
                                         <thead>
                                             <th>No</th>
                                             <th>Nama Orang Tua</th>
+                                            <th>Status Pekerjaan Anak</th>
                                             <th>Nama Anak</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Status Anak</th>
+                                            <th>Jenis Dokumen</th>
+                                            <th>Nomor Dokumen</th>
+                                            <th>Agama</th>
+                                            <th>Status Hidup</th>
+                                            <th>Nomor Akta Lahir</th>
                                             <th>Dokumen Akta Kelahiran</th>
                                             <th>Pas Foto</th>
                                             <th>Aksi</th>
-                                            </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($riwayatAnak as $sqlAnak => $result_anak)
-                                            <tr>
-                                                <td><center>{{ ++$sqlAnak }}</center></td>
-                                                <td hidden class="id"><center>{{ $result_anak->id }}</center></td>
-                                                <td class="orang_tua"><center>{{ $result_anak->orang_tua }}</center></td>
-                                                <td class="nama_anak"><center>{{ $result_anak->nama_anak }}</center></td>
-                                                <td class="jenis_kelamin"><center>{{ $result_anak->jenis_kelamin }}</center></td>
-                                                <td class="tanggal_lahir"><center>{{ $result_anak->tanggal_lahir }}</center></td>
-                                                <td class="status_anak"><center>{{ $result_anak->status_anak }}</center></td>
-                                                <td class="dokumen_akta_kelahiran"><center>
-                                                    <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
-                                                        @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
-                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                        @endif
-                                                            <td hidden class="dokumen_akta_kelahiran">{{ $result_anak->dokumen_akta_kelahiran }}</td>
-                                                    </a></center></td>
-                                                    <td class="pas_foto"><center>
-                                                    <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
-                                                        @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                            <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                        @endif
-                                                        <td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>
-                                                    </a>
-                                                    <td hidden class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
-                                                    <td hidden class="jenis_dokumen"><center>{{ $result_anak->jenis_dokumen }}</center></td>
-                                                    <td hidden class="no_dokumen"><center>{{ $result_anak->no_dokumen }}</center></td>
-                                                    <td hidden class="agama"><center>{{ $result_anak->agama }}</center></td>
-                                                    <td hidden class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
-                                                    <td hidden class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
+                                                <tr>
+                                                    <td><center>{{ ++$sqlAnak }}</center></td>
+                                                    <td class="orang_tua"><center>{{ $result_anak->orang_tua }}</center></td>
+                                                    <td class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
+                                                    <td class="nama_anak"><center>{{ $result_anak->nama_anak }}</center></td>
+                                                    <td class="jenis_kelamin"><center>{{ $result_anak->jenis_kelamin }}</center></td>
+                                                    <td class="tanggal_lahir"><center>{{ $result_anak->tanggal_lahir }}</center></td>
+                                                    <td class="status_anak"><center>{{ $result_anak->status_anak }}</center></td>
+                                                    <td class="jenis_dokumen"><center>{{ $result_anak->jenis_dokumen }}</center></td>
+                                                    <td class="no_dokumen"><center>{{ $result_anak->no_dokumen }}</center></td>
+                                                    <td class="agama"><center>{{ $result_anak->agama }}</center></td>
+                                                    <td class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
+                                                    <td class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
+                                                    <td class="dokumen_akta_kelahiran">
+                                                        <center>
+                                                            <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
+                                                                @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                            </a>
+                                                        </center>
+                                                    </td>
+                                                    <td class="pas_foto">
+                                                        <center>
+                                                            <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
+                                                                @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                            </a>
+                                                        </center>
+                                                    </td>
 
-                                                {{-- Edit dan Hapus data  --}}
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item edit_anak" href="#"
-                                                                data-toggle="modal" data-target="#edit_anak"><i
-                                                                    class="fa fa-pencil m-r-5"></i>
-                                                                Edit</a>
-                                                            <a class="dropdown-item delete_anak" href="#"
-                                                                data-toggle="modal" data-target="#delete_anak"><i
-                                                                    class="fa fa-trash-o m-r-5"></i>
-                                                                Delete</a>
+                                                    {{-- Edit dan Hapus data  --}}
+                                                    <td class="text-right">
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                                <i class="material-icons">more_vert</i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <a class="dropdown-item edit_anak" href="#" data-toggle="modal" data-target="#edit_anak">
+                                                                    <i class="fa fa-pencil m-r-5"></i>Edit</a>
+                                                                <a class="dropdown-item delete_anak" href="#" data-toggle="modal" data-target="#delete_anak">
+                                                                    <i class="fa fa-trash-o m-r-5"></i>Delete</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
