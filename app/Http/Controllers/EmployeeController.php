@@ -1072,6 +1072,202 @@ class EmployeeController extends Controller
             ->where('users.user_id', $user_id)->get();
         $riwayatDiklats = $riwayatDiklat->first();
 
+        $kenaikanGaji = DB::table('users')
+            ->leftJoin('kenaikan_gaji_berkala as kgb', 'kgb.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'kgb.id',
+                'kgb.name',
+                'kgb.nip',
+                'kgb.golongan_awal',
+                'kgb.golongan_akhir',
+                'kgb.gapok_lama',
+                'kgb.gapok_baru',
+                'kgb.tgl_sk_kgb',
+                'kgb.no_sk_kgb',
+                'kgb.tgl_berlaku',
+                'kgb.masa_kerja_golongan',
+                'kgb.masa_kerja',
+                'kgb.tmt_kgb',
+                'kgb.dokumen_kgb'
+            )
+            ->where('users.user_id', $user_id)->get();
+        $kenaikanGajis = $kenaikanGaji->first();
+
+        $riwayatPMK = DB::table('users')
+            ->leftJoin('riwayat_pmk as pmk', 'pmk.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'pmk.id',
+                'pmk.jenis_pmk',
+                'pmk.instansi',
+                'pmk.tanggal_awal',
+                'pmk.tanggal_akhir',
+                'pmk.no_sk',
+                'pmk.tanggal_sk',
+                'pmk.no_bkn',
+                'pmk.tanggal_bkn',
+                'pmk.masa_tahun',
+                'pmk.masa_bulan',
+                'pmk.dokumen_pmk',
+            )
+            ->where('users.user_id', $user_id)->get();
+        $riwayatPMKs = $riwayatPMK->first();
+
+        $riwayatAngkaKredit = DB::table('users')
+            ->leftJoin('riwayat_angka_kredit as angkakredit', 'angkakredit.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'angkakredit.id',
+                'angkakredit.nama_jabatan',
+                'angkakredit.nomor_sk',
+                'angkakredit.tanggal_sk',
+                'angkakredit.angka_kredit_pertama',
+                'angkakredit.konversi',
+                'angkakredit.integrasi',
+                'angkakredit.bulan_mulai',
+                'angkakredit.tahun_mulai',
+                'angkakredit.bulan_selesai',
+                'angkakredit.tahun_selesai',
+                'angkakredit.angka_kredit_utama',
+                'angkakredit.angka_kredit_penunjang',
+                'angkakredit.total_angka_kredit',
+            )
+            ->where('users.user_id', $user_id)->get();
+        $riwayatAngkaKredits = $riwayatAngkaKredit->first();
+
+        $riwayatOrangTua = DB::table('users')
+            ->leftJoin('riwayat_orang_tua as ortu', 'ortu.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'ortu.id',
+                'ortu.status_hidup',
+                'ortu.status_pekerjaan_ortu',
+                'ortu.nip',
+                'ortu.nama',
+                'ortu.tanggal_lahir',
+                'ortu.jenis_kelamin',
+                'ortu.tanggal_meninggal',
+                'ortu.jenis_identitas',
+                'ortu.no_hp',
+                'ortu.no_telepon',
+                'ortu.agama',
+                'ortu.status_pernikahan',
+                'ortu.email',
+                'ortu.alamat',
+                'ortu.dokumen_kk',
+                'ortu.dokumen_akta_lahir_anak',
+                'ortu.pas_foto_ayah',
+                'ortu.pas_foto_ibu',
+            )
+            ->where('users.user_id', $user_id)->get();
+        $riwayatOrangTuas = $riwayatOrangTua->first();
+
+        $riwayatPasangan = DB::table('users')
+            ->leftJoin('riwayat_pasangan as pasangan', 'pasangan.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'pasangan.id',
+                'pasangan.suami_istri_ke',
+                'pasangan.status_pekerjaan_pasangan',
+                'pasangan.nip',
+                'pasangan.nama',
+                'pasangan.status_hidup',
+                'pasangan.tanggal_lahir',
+                'pasangan.jenis_kelamin',
+                'pasangan.jenis_identitas',
+                'pasangan.no_hp',
+                'pasangan.no_telepon',
+                'pasangan.agama',
+                'pasangan.status_pernikahan',
+                'pasangan.email',
+                'pasangan.no_karis_karsu',
+                'pasangan.alamat',
+                'pasangan.dokumen_nikah',
+                'pasangan.pas_foto',
+            )
+            ->where('users.user_id', $user_id)->get();
+        $riwayatPasangans = $riwayatPasangan->first();
+
+        $riwayatAnak = DB::table('users')
+            ->leftJoin('riwayat_anak as anak', 'anak.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'anak.id',
+                'anak.orang_tua',
+                'anak.status_pekerjaan_anak',
+                'anak.nama_anak',
+                'anak.jenis_kelamin',
+                'anak.tanggal_lahir',
+                'anak.status_anak',
+                'anak.jenis_dokumen',
+                'anak.no_dokumen',
+                'anak.agama',
+                'anak.status_hidup',
+                'anak.no_akta_kelahiran',
+                'anak.dokumen_akta_kelahiran',
+                'anak.pas_foto',
+            )
+            ->where('users.user_id', $user_id)->get();
+        $riwayatAnaks = $riwayatAnak->first();
+        $dataAnak = Session::get('user_id');
+        $userList = DB::table('riwayat_pasangan')
+            ->join('riwayat_anak', 'riwayat_pasangan.user_id', '=', 'riwayat_anak.user_id')
+            ->where('riwayat_anak.user_id', '=', $user_id)
+            ->select('riwayat_pasangan.nama')
+            ->get();
+
+        $riwayatPenghargaan = DB::table('users')
+            ->leftJoin('riwayat_penghargaan as penghargaan', 'penghargaan.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'penghargaan.id',
+                'penghargaan.jenis_penghargaan',
+                'penghargaan.tahun_perolehan',
+                'penghargaan.no_surat',
+                'penghargaan.tanggal_keputusan',
+                'penghargaan.dokumen_penghargaan',
+            )
+            ->where('users.user_id', $user_id)->get();
+        $riwayatPenghargaans = $riwayatPenghargaan->first();
+
+        $riwayatOrganisasi = DB::table('users')
+            ->leftJoin('riwayat_organisasi as organisasi', 'organisasi.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'organisasi.id',
+                'organisasi.nama_organisasi',
+                'organisasi.jabatan_organisasi',
+                'organisasi.tanggal_gabung',
+                'organisasi.tanggal_selesai',
+                'organisasi.no_anggota',
+                'organisasi.dokumen_organisasi',
+            )
+            ->where('users.user_id', $user_id)->get();
+        $riwayatOrganisasis = $riwayatOrganisasi->first();
+
+        $riwayatHukumDisiplin = DB::table('users')
+            ->leftJoin('riwayat_hukuman_disiplin as hukum', 'hukum.user_id', 'users.user_id')
+            ->select(
+                'users.*',
+                'hukum.id',
+                'hukum.kategori_hukuman',
+                'hukum.tingkat_hukuman',
+                'hukum.jenis_hukuman',
+                'hukum.no_sk_hukuman',
+                'hukum.no_peraturan',
+                'hukum.alasan',
+                'hukum.tanggal_sk_hukuman',
+                'hukum.masa_hukuman_tahun',
+                'hukum.tmt_hukuman',
+                'hukum.masa_hukuman_bulan',
+                'hukum.keterangan',
+                'hukum.dokumen_sk_hukuman',
+                'hukum.dokumen_sk_pengaktifan',
+            )
+            ->where('users.user_id', $user_id)->get();
+        $riwayatHukumDisiplins = $riwayatHukumDisiplin->first();
+
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
         $kedudukanOptions = DB::table('kedudukan_hukum_id')->pluck('kedudukan', 'kedudukan');
@@ -1127,7 +1323,26 @@ class EmployeeController extends Controller
             'pendidikanterakhirOptions',
             'unreadNotifications',
             'readNotifications',
-            'provinces'
+            'provinces',
+            'kenaikanGaji',
+            'kenaikanGajis',
+            'riwayatPMK',
+            'riwayatPMKs',
+            'riwayatAngkaKredit',
+            'riwayatAngkaKredits',
+            'riwayatOrangTua',
+            'riwayatOrangTuas',
+            'riwayatPasangan',
+            'riwayatPasangans',
+            'riwayatAnak',
+            'riwayatAnaks',
+            'userList',
+            'riwayatPenghargaan',
+            'riwayatPenghargaans',
+            'riwayatOrganisasi',
+            'riwayatOrganisasis',
+            'riwayatHukumDisiplin',
+            'riwayatHukumDisiplins'
         ));
     }
 
@@ -1599,7 +1814,7 @@ class EmployeeController extends Controller
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
                                             <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_pendidikan' href='#' data-toggle='modal' data-target='#edit_pendidikan' data-id='" . $value->id . "' data-pendidikan='" . $value->pendidikan ."' data-tk_pendidikan_id='" . $value->tk_pendidikan_id ."' data-status_pendidikan='" . $value->status_pendidikan ."'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item edit_pendidikan' href='#' data-toggle='modal' data-target='#edit_pendidikan' data-id='" . $value->id . "' data-pendidikan='" . $value->pendidikan . "' data-tk_pendidikan_id='" . $value->tk_pendidikan_id . "' data-status_pendidikan='" . $value->status_pendidikan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
                                             <a class='dropdown-item delete_pendidikan' data-toggle='modal' data-target='#delete_pendidikan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
@@ -2457,13 +2672,13 @@ class EmployeeController extends Controller
                 ->get();
         } else {
             $golongan =  golongan_id::where('nama_golongan', 'like', "%{$search}%")
-            ->offset($start)
+                ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
 
             $totalFiltered = golongan_id::where('nama_golongan', 'like', "%{$search}%")
-            ->count();
+                ->count();
         }
 
         $data = array();
@@ -2499,7 +2714,7 @@ class EmployeeController extends Controller
         $keyword = $request->input('keyword');
 
         $golongan = DB::table('golongan_id')
-        ->where('nama_golongan', 'like', '%' . $keyword . '%')
+            ->where('nama_golongan', 'like', '%' . $keyword . '%')
             ->get();
 
         $user = auth()->user();

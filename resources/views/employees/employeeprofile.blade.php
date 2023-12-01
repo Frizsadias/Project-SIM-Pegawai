@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-                <div class="card tab-box">
+                {{-- <div class="card tab-box">
                     <div class="row user-tabs">
                         <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                             <ul class="nav nav-tabs nav-tabs-bottom">
@@ -127,7 +127,30 @@
                             </ul>
                         </div>
                     </div>
+                </div> --}}
+
+                <div class="card tab-box">
+                <div class="row user-tabs">
+                    <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                        <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                            <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
+                            <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Golongan</a></li>
+                            <li class="nav-item"><a href="#kenaikan_gaji" data-toggle="tab" class="nav-link">KGB</a></li>
+                            <li class="nav-item"><a href="#riwayat_pmk" data-toggle="tab" class="nav-link">PMK</a></li>
+                            <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Pendidikan</a></li>
+                            <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Jabatan</a></li>
+                            <li class="nav-item"><a href="#riwayat_angka_kredit" data-toggle="tab" class="nav-link">Angka Kredit</a></li>
+                            <li class="nav-item"><a href="#riwayat_diklat" data-toggle="tab" class="nav-link">Diklat</a></li>
+                            <li class="nav-item"><a href="#riwayat_orang_tua" data-toggle="tab" class="nav-link">Orang Tua</a></li>
+                            <li class="nav-item"><a href="#riwayat_pasangan" data-toggle="tab" class="nav-link">Pasangan</a></li>
+                            <li class="nav-item"><a href="#riwayat_anak" data-toggle="tab" class="nav-link">Anak</a></li>
+                            <li class="nav-item"><a href="#riwayat_penghargaan" data-toggle="tab" class="nav-link">Penghargaan</a></li>
+                            <li class="nav-item"><a href="#riwayat_organisasi" data-toggle="tab" class="nav-link">Organisasi</a></li>
+                            <li class="nav-item"><a href="#riwayat_hukum_disiplin" data-toggle="tab" class="nav-link">Hukuman Disiplin</a></li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
 
                 <div class="tab-content">
                     <!-- Profile Pegawai Tab -->
@@ -1846,7 +1869,3537 @@
                     </div>
                     <!-- /Riwayat Diklat Tab -->
 
+                    <!-- Kenaikan Gaji Berkala Tab -->
+                    <div class="tab-pane fade" id="kenaikan_gaji">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_kenaikan_gaji">
+                                    <i class="fa fa-plus"></i> Tambah Kenaikan Gaji Berkala
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th class="name">Nama Pegawai</th>
+                                            <th class="nip">NIP</th>
+                                            <th class="golongan_awal">Golongan Awal</th>
+                                            <th class="golongan_akhir">Golongan Akhir</th>
+                                            <th class="gapok_lama">Gaji Pokok Lama</th>
+                                            <th class="gapok_baru">Gaji Pokok Akhir</th>
+                                            <th class="tgl_sk_kgb">Tanggal SK Kenaikan Gaji Berkala</th>
+                                            <th class="no_sk_kgb">Nomor SK Kenaikan Gaji Berkala</th>
+                                            <th class="tgl_berlaku">Tanggal Berlaku</th>
+                                            <th class="masa_kerja_golongan">Masa Kerja Golongan</th>
+                                            <th class="masa_kerja">Masa Kerja</th>
+                                            <th class="tmt_kgb">Terhitung Mulai Tanggal Kenaikan Gaji Berkala</th>
+                                            <th class="dokumen_kgb">Dokumen KGB</th>
+                                            <th class="text-right no-sort">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($kenaikanGaji as $sqlkgb => $result_kgb)
+                                            <tr>
+                                                <td>{{ ++$sqlkgb }}</td>
+                                                <td hidden class="id">{{ $result_kgb->id }}</td>
+                                                <td class="name">{{ $result_kgb->name }}</td>
+                                                <td class="nip">{{ $result_kgb->nip }}</td>
+                                                <td class="golongan_awal">{{ $result_kgb->golongan_awal }}</td>
+                                                <td class="golongan_akhir">{{ $result_kgb->golongan_akhir }}</td>
+                                                <td class="gapok_lama">{{ $result_kgb->gapok_lama }}</td>
+                                                <td class="gapok_baru">{{ $result_kgb->gapok_baru }}</td>
+                                                <td class="tgl_sk_kgb">{{ $result_kgb->tgl_sk_kgb }}</td>
+                                                <td class="no_sk_kgb">{{ $result_kgb->no_sk_kgb }}</td>
+                                                <td class="tgl_berlaku">{{ $result_kgb->tgl_berlaku }}</td>
+                                                <td class="masa_kerja_golongan">{{ $result_kgb->masa_kerja_golongan }}</td>
+                                                <td class="masa_kerja">{{ $result_kgb->masa_kerja }}</td>
+                                                <td class="tmt_kgb">{{ $result_kgb->tmt_kgb }}</td>
+                                                <td class="dokumen_kgb"><center>
+                                                        <a href="{{ asset('assets/DokumenKGB/' . $result_kgb->dokumen_kgb) }}" target="_blank">
+                                                            @if (pathinfo($result_kgb->dokumen_kgb, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_kgb">{{ $result_kgb->dokumen_kgb }}</td>
+                                                        </a></center></td>
+
+                                                {{-- Edit Layanan KGB --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_layanan_kgb" href="#"
+                                                                data-toggle="modal" data-target="#edit_layanan_kgb"><i
+                                                                    class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                            <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
+                                                                target="_blank" class="dropdown-item cetak-kinerja">
+                                                                <i class="fa fa-print m-r-5"></i>Cetak
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Kenaikan Gaji Modal -->
+                        <div id="add_kenaikan_gaji" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Kenaikan Gaji Berkala</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('layanan/kgb/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @foreach ($kenaikanGaji as $gaji)
+                                                            <input type="hidden" class="form-control" name="nip"
+                                                                value="{{ $gaji->nip }}">
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @foreach ($kenaikanGaji as $gaji)
+                                                            <input type="hidden" class="form-control" name="name"
+                                                                value="{{ $gaji->name }}">
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Golongan Awal</label><br>
+                                                        <select name="golongan_awal" class="theSelect" id="golongan_awal" required>
+                                                            <option selected disabled> --Pilih Golongan Awal--</option>
+                                                            @foreach ($golonganOptions as $key => $value)
+                                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Golongan Akhir</label><br>
+                                                        <select name="golongan_akhir" class="theSelect" id="golongan_akhir" required>
+                                                            <option selected disabled> --Pilih Golongan Akhir--</option>
+                                                            @foreach ($golonganOptions as $key => $value)
+                                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Gaji Pokok Lama</label>
+                                                        <input type="number" class="form-control" name="gapok_lama"
+                                                            placeholder="Gapok Lama">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Gaji Pokok Baru</label>
+                                                        <input type="number" class="form-control" name="gapok_baru"
+                                                            placeholder="Gapok Baru">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK KGB</label>
+                                                        <input type="date" class="form-control" name="tgl_sk_kgb">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor SK KGB</label>
+                                                        <input type="text" class="form-control" name="no_sk_kgb">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Berlaku</label>
+                                                        <input type="date" class="form-control" name="tgl_berlaku">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Kerja Golongan</label>
+                                                        <input type="text" class="form-control" name="masa_kerja_golongan"
+                                                            placeholder="Masa Kerja Golongan">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Kerja</label>
+                                                        <input type="text" class="form-control" name="masa_kerja"
+                                                            placeholder="Masa Kerja">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>TMT KGB</label>
+                                                        <input type="date" class="form-control" name="tmt_kgb">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Kenaikan Gaji Modal -->
+                        <!-- Edit Kenaikan Gaji Modal -->
+                        <div id="edit_layanan_kgb" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Kenaikan Gaji Berkala</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('layanan/kgb/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Golongan Awal</label><br>
+                                                        <select name="golongan_awal" class="theSelect" id="e_golongan_awal">
+                                                            <option selected disabled> --Pilih Golongan Awal--</option>
+                                                            @foreach ($golonganOptions as $key => $value)
+                                                                <option value="{{ $key }}"{{ $key == $kenaikanGajis->golongan_awal ? 'selected' : '' }}>{{ $value }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Golongan Akhir</label><br>
+                                                        <select name="golongan_akhir" class="theSelect" id="e_golongan_akhir">
+                                                            <option selected disabled> --Pilih Golongan Akhir--</option>
+                                                            @foreach ($golonganOptions as $key => $value)
+                                                                <option value="{{ $key }}"{{ $key == $kenaikanGajis->golongan_akhir ? 'selected' : '' }}>{{ $value }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Gaji Pokok Lama</label>
+                                                        <input type="number" class="form-control" name="gapok_lama" id="e_gapok_lama"
+                                                            placeholder="Gaji Pokok Lama" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Gaji Pokok Baru</label>
+                                                        <input type="number" class="form-control" name="gapok_baru" id="e_gapok_baru"
+                                                            placeholder="Gaji Pokok Baru" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK KGB</label>
+                                                        <input type="date" class="form-control" name="tgl_sk_kgb" id="e_tgl_sk_kgb"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor SK KGB</label>
+                                                        <input type="text" class="form-control" name="no_sk_kgb" id="e_no_sk_kgb"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Berlaku</label>
+                                                        <input type="date" class="form-control" name="tgl_berlaku" id="e_tgl_berlaku"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Kerja Golongan</label>
+                                                        <input type="text" class="form-control" name="masa_kerja_golongan"
+                                                            id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Kerja</label>
+                                                        <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja"
+                                                            placeholder="Masa Kerja" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>TMT KGB</label>
+                                                        <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen KGB</label>
+                                                        <input type="file" class="form-control" id="dokumen_kgb"
+                                                            name="dokumen_kgb">
+                                                        <input type="hidden" name="hidden_dokumen_kgb"
+                                                            id="e_dokumen_kgb" value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Kenaikan Gaji Modal -->
+                    </div>
+                    <!-- /Riwayat Kenaikan Gaji Berkala Tab -->
+
+                    <!-- Riwayat PMK Tab -->
+                    <div class="tab-pane fade" id="riwayat_pmk">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pmk">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat PMK
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th class="jenis_pmk">Jenis Peninjauan Masa Kerja</th>
+                                            <th class="instansi">Instansi</th>
+                                            <th class="tanggal_awal">Tanggal Awal</th>
+                                            <th class="tanggal_akhir">Tanggal Akhir</th>
+                                            <th class="no_sk">Nomor SK</th>
+                                            <th class="tanggal_sk">Tanggal SK</th>
+                                            <th class="no_bkn">Nomor BKN</th>
+                                            <th class="tanggal_bkn">Tanggal BKN</th>
+                                            <th class="masa_tahun">Masa Kerja (Tahun)</th>
+                                            <th class="masa_bulan">Masa Kerja (Bulan)</th>
+                                            <th class="dokumen_pmk">Dokumen PMK</th>
+                                            <th class="aksi">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatPMK as $sqlPMK => $result_pmk)
+                                            <tr>
+                                                <td>{{ ++$sqlPMK }}</td>
+                                                <td hidden class="id">{{ $result_pmk->id }}</td>
+                                                <td class="jenis_pmk">{{ $result_pmk->jenis_pmk }}</td>
+                                                <td class="instansi">{{ $result_pmk->instansi }}</td>
+                                                <td class="tanggal_awal">{{ $result_pmk->tanggal_awal }}</td>
+                                                <td class="tanggal_akhir">{{ $result_pmk->tanggal_akhir }}</td>
+                                                <td class="no_sk">{{ $result_pmk->no_sk }}</td>
+                                                <td class="tanggal_sk">{{ $result_pmk->tanggal_sk }}</td>
+                                                <td class="no_bkn">{{ $result_pmk->no_bkn }}</td>
+                                                <td class="tanggal_bkn">{{ $result_pmk->tanggal_bkn }}</td>
+                                                <td class="masa_tahun">{{ $result_pmk->masa_tahun }}</td>
+                                                <td class="masa_bulan">{{ $result_pmk->masa_bulan }}</td>
+                                                <td class="dokumen_pmk"><center>
+                                                        <a href="{{ asset('assets/DokumenPMK/' . $result_pmk->dokumen_pmk) }}" target="_blank">
+                                                            @if (pathinfo($result_pmk->dokumen_pmk, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_pmk">{{ $result_pmk->dokumen_pmk }}</td>
+                                                        </a></center></td>
+
+                                                {{-- Edit Riwayat PMK --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_riwayat_pmk" href="#"
+                                                                data-toggle="modal" data-target="#edit_riwayat_pmk"><i
+                                                                    class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                            <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
+                                                                target="_blank" class="dropdown-item cetak-kinerja">
+                                                                <i class="fa fa-print m-r-5"></i>Cetak
+                                                            </a>
+                                                            <a class="dropdown-item delete_riwayat_pmk" href="#"
+                                                        data-toggle="modal" data-target="#delete_riwayat_pmk"><i
+                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Riwayat PMK Modal -->
+                        <div id="add_riwayat_pmk" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat PMK</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/pmk/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Jenis PMK</label>
+                                                    <input class="form-control" type="text" name="jenis_pmk" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Instansi</label>
+                                                    <input class="form-control" type="text" name="instansi" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tanggal Awal</label>
+                                                    <input class="form-control" type="date" name="tanggal_awal" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tanggal Akhir</label>
+                                                    <input class="form-control" type="date" name="tanggal_akhir" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nomor SK</label>
+                                                    <input class="form-control" type="text" name="no_sk" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tanggal SK</label>
+                                                    <input class="form-control" type="date" name="tanggal_sk" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nomor BKN</label>
+                                                    <input class="form-control" type="text" name="no_bkn" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tanggal BKN</label>
+                                                    <input class="form-control" type="date" name="tanggal_bkn" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Masa Kerja (Tahun)</label>
+                                                    <input class="form-control" type="number" name="masa_tahun" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Masa Kerja (Bulan)</label>
+                                                    <input class="form-control" type="number" name="masa_bulan" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Dokumen PMK</label>
+                                                    <input class="form-control" type="file" name="dokumen_pmk" required>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah PMK Modal -->
+                        <!-- Edit PMK Modal -->
+                        <div id="edit_riwayat_pmk" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Peninjauan Masa Kerja</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/pmk/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id_pmk" value="">
+                                            <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Jenis PMK</label>
+                                                    <input type="text" class="form-control" name="jenis_pmk" id="e_jenis_pmk"
+                                                        value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Instansi</label>
+                                                    <input type="text" class="form-control" name="instansi" id="e_instansi"
+                                                        value="">
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Awal</label>
+                                                        <input type="date" class="form-control" name="tanggal_awal"
+                                                            id="e_tanggal_awal" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Akhir</label>
+                                                        <input type="date" class="form-control" name="tanggal_akhir"
+                                                            id="e_tanggal_akhir" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor SK</label>
+                                                        <input type="text" class="form-control" name="no_sk" id="e_no_sk_pmk"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK</label>
+                                                        <input type="date" class="form-control" name="tanggal_sk" id="e_tanggal_sk_pmk"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor BKN</label>
+                                                        <input type="text" class="form-control" name="no_bkn" id="e_no_bkn"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal BKN</label>
+                                                        <input type="date" class="form-control" name="tanggal_bkn" id="e_tanggal_bkn"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Kerja (Tahun)</label>
+                                                        <input type="number" class="form-control" name="masa_tahun" id="e_masa_tahun"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Kerja (Bulan)</label>
+                                                        <input type="number" class="form-control" name="masa_bulan" id="e_masa_bulan"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen PMK</label>
+                                                        <input type="file" class="form-control" name="dokumen_pmk"
+                                                            id="dokumen_pmk">
+                                                        <input type="hidden" name="hidden_dokumen_pmk" id="e_dokumen_pmk"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat PMK Modal -->
+                        <!-- Delete Riwayat PMK Modal -->
+                        <div class="modal custom-modal fade" id="delete_riwayat_pmk" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat PMK</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/pmk/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id" value="">
+                                                <input type="hidden" name="dokumen_pmk" class="d_dokumen_pmk" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Riwayat PMK Modal -->
+                    </div>
+
+                    <!-- Riwayat Angka Kredit Tab -->
+                    <div class="tab-pane fade" id="riwayat_angka_kredit">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_angka_kredit">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Angka Kredit
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th>Jenis Jabatan</th>
+                                            <th>Nomor SK</th>
+                                            <th>Tanggal SK</th>
+                                            <th>Total Angka Kredit</th>
+                                            <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatAngkaKredit as $sqlAK => $result_angka_kredit)
+                                            <tr>
+                                                <td><center>{{ ++$sqlAK }}</center></td>
+                                                <td hidden class="id"><center>{{ $result_angka_kredit->id }}</center></td>
+                                                <td class="nama_jabatan"><center>{{ $result_angka_kredit->nama_jabatan }}</center></td>
+                                                <td class="nomor_sk"><center>{{ $result_angka_kredit->nomor_sk }}</center></td>
+                                                <td class="tanggal_sk"><center>{{ $result_angka_kredit->tanggal_sk }}</center></td>
+                                                <td hidden class="angka_kredit_pertama"><center>{{ $result_angka_kredit->angka_kredit_pertama }}</center></td>
+                                                <td hidden class="integrasi"><center>{{ $result_angka_kredit->integrasi }}</center></td>
+                                                <td hidden class="konversi"><center>{{ $result_angka_kredit->konversi }}</center></td>
+                                                <td hidden class="bulan_mulai"><center>{{ $result_angka_kredit->bulan_mulai }}</center></td>
+                                                <td hidden class="tahun_mulai"><center>{{ $result_angka_kredit->tahun_mulai }}</center></td>
+                                                <td hidden class="bulan_selesai"><center>{{ $result_angka_kredit->bulan_selesai }}</center></td>
+                                                <td hidden class="tahun_selesai"><center>{{ $result_angka_kredit->tahun_selesai }}</center></td>
+                                                <td hidden class="angka_kredit_utama"><center>{{ $result_angka_kredit->angka_kredit_utama }}</center></td>
+                                                <td hidden class="angka_kredit_penunjang"><center>{{ $result_angka_kredit->angka_kredit_penunjang }}</center></td>
+                                                <td class="total_angka_kredit"><center>{{ $result_angka_kredit->total_angka_kredit }}</center></td>
+
+                                                {{-- Edit dan Hapus data  --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_riwayat_angka_kredit" href="#"
+                                                                data-toggle="modal" data-target="#edit_riwayat_angka_kredit"><i
+                                                                    class="fa fa-pencil m-r-5"></i>
+                                                                Edit</a>
+                                                            <a class="dropdown-item delete_riwayat_angka_kredit" href="#"
+                                                                data-toggle="modal" data-target="#delete_riwayat_angka_kredit"><i
+                                                                    class="fa fa-trash-o m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Riwayat Angka Kredit Modal -->
+                        <div id="add_riwayat_angka_kredit" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Angka Kredit</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/angkakredit/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Jabatan</label><small class="text-danger">*</small>
+                                                        <br>
+                                                        <select class="theSelect form-control" name="nama_jabatan" required>
+                                                            <option selected disabled> --Pilih Nama Jabatan --</option>
+                                                            @foreach ($jenisjabatanOptions as $key => $value)
+                                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor SK</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="nomor_sk" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_sk" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group" style="margin-left: 15px;">
+                                                    <label>Angka Kredit Pertama</label><br>
+                                                    <input type="checkbox" class="exclusive" name="angka_kredit_pertama"
+                                                        value="Angka Kredit Pertama">
+                                                    Angka Kredit Pertama
+                                                </div>
+                                                <div class="form-group" style="margin-left: 20px;">
+                                                    <label>Integrasi</label><br>
+                                                    <input type="checkbox" class="exclusive" name="integrasi" value="Integrasi">
+                                                    Integrasi
+                                                </div>
+                                                <div class="form-group" style="margin-left: 20px;">
+                                                    <label>Konversi</label><br>
+                                                    <input type="checkbox" class="exclusive" name="konversi" value="Konversi"> Konversi
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Bulan Mulai Penilaian</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="bulan_mulai" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Mulai Penilaian</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="number" name="tahun_mulai" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Bulan Selesai Penilaian</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="bulan_selesai" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Selesai Penilaian</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="number" name="tahun_selesai" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Angka Kredit Utama</label>
+                                                        <input class="form-control" type="number" step="any"
+                                                            name="angka_kredit_utama" pattern="^\d+(\.\d{1,2})?$">
+                                                        <small class="text-danger">Koma ditulis dengan titik. Contoh: 102.5</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Angka Kredit Penunjang</label>
+                                                        <input class="form-control" type="number" step="any"
+                                                            name="angka_kredit_penunjang" pattern="^\d+(\.\d{1,2})?$">
+                                                        <small class="text-danger">Koma ditulis dengan titik. Contoh: 102.5</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Total Angka Kredit</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="number" step="any"
+                                                            name="total_angka_kredit" pattern="^\d+(\.\d{1,2})?$" required>
+                                                        <small class="text-danger">Koma ditulis dengan titik. Contoh: 102.5</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Angka Kredit Modal -->
+                        <!-- Edit Angka Kredit Modal -->
+                        <div id="edit_riwayat_angka_kredit" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Angka Kredit</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/angkakredit/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id_ak" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Jabatan</label><small class="text-danger">*</small>
+                                                        <br>
+                                                        <select class="theSelect form-control" name="nama_jabatan" id="e_nama_jabatan"
+                                                            required>
+                                                            <option selected disabled> --Pilih Nama Jabatan --</option>
+                                                            @foreach ($jenisjabatanOptions as $key => $value)
+                                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor SK</label>
+                                                        <input type="text" class="form-control" name="nomor_sk" id="e_nomor_sk"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK</label>
+                                                        <input type="date" class="form-control" name="tanggal_sk"
+                                                            id="e_tanggal_sk_ak" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group" style="margin-left: 15px;">
+                                                    <label>Angka Kredit Pertama</label><br>
+                                                    <input type="checkbox" class="exclusive" name="angka_kredit_pertama" id="e_angka_kredit_pertama"
+                                                        value="Angka Kredit Pertama">
+                                                    Angka Kredit Pertama
+                                                </div>
+                                                <div class="form-group" style="margin-left: 20px;">
+                                                    <label>Integrasi</label><br>
+                                                    <input type="checkbox" class="exclusive" name="integrasi" id="e_integrasi" value="Integrasi">
+                                                    Integrasi
+                                                </div>
+                                                <div class="form-group" style="margin-left: 20px;">
+                                                    <label>Konversi</label><br>
+                                                    <input type="checkbox" class="exclusive" name="konversi" id="e_konversi" value="Konversi"> Konversi
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Bulan Mulai Penilaian</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="bulan_mulai" id="e_bulan_mulai" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Mulai Penilaian</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="number" name="tahun_mulai" id="e_tahun_mulai" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Bulan Selesai Penilaian</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="bulan_selesai" id="e_bulan_selesai" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Selesai Penilaian</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="number" name="tahun_selesai" id="e_tahun_selesai" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Angka Kredit Utama</label>
+                                                        <input class="form-control" type="number" step="any"
+                                                            name="angka_kredit_utama" id="e_angka_kredit_utama" pattern="^\d+(\.\d{1,2})?$">
+                                                        <small class="text-danger">Koma ditulis dengan titik. Contoh: 102.5</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Angka Kredit Penunjang</label>
+                                                        <input class="form-control" type="number" step="any"
+                                                            name="angka_kredit_penunjang" id="e_angka_kredit_penunjang" pattern="^\d+(\.\d{1,2})?$">
+                                                        <small class="text-danger">Koma ditulis dengan titik. Contoh: 102.5</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Total Angka Kredit</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="number" step="any"
+                                                            name="total_angka_kredit" id="e_total_angka_kredit" pattern="^\d+(\.\d{1,2})?$" required>
+                                                        <small class="text-danger">Koma ditulis dengan titik. Contoh: 102.5</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Angka Kredit Modal -->
+                        <!-- Delete Riwayat Angka Kredit Modal -->
+                        <div class="modal custom-modal fade" id="delete_riwayat_angka_kredit" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Angka Kredit</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/angkakredit/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id_ak" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Riwayat Angka Kredit Modal -->
+                    </div>
+
+                    <!-- Riwayat Orang Tua Tab -->
+                    <div class="tab-pane fade" id="riwayat_orang_tua">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_orang_tua">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Orang Tua
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th>Status Hidup</th>
+                                            <th>Nama Orang Tua</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Status Pernikahan</th>
+                                            <th>Dokumen Kartu Keluarga</th>
+                                            <th>Dokumen Akta Anak</th>
+                                            <th>Pas Foto Ayah</th>
+                                            <th>Pas Foto Ibu</th>
+                                            <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatOrangTua as $sqlOrtu => $result_Ortu)
+                                            <tr>
+                                                <td><center>{{ ++$sqlOrtu }}</center></td>
+                                                <td hidden class="id"><center>{{ $result_Ortu->id }}</center></td>
+                                                <td class="status_hidup"><center>{{ $result_Ortu->status_hidup }}</center></td>
+                                                <td class="nama"><center>{{ $result_Ortu->nama }}</center></td>
+                                                <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
+                                                <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
+                                                <td hidden class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
+                                                <td class="dokumen_kk"><center>
+                                                    <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
+                                                        @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                            <td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>
+                                                    </a></center></td>
+                                                <td class="dokumen_akta_lahir_anak"><center>
+                                                    <a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank">
+                                                        @if (pathinfo($result_Ortu->dokumen_akta_lahir_anak, PATHINFO_EXTENSION) == 'pdf')
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                            <td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>
+                                                    </a></center></td>
+                                                <td class="pas_foto_ayah"><center>
+                                                    <a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank">
+                                                        @if (in_array(pathinfo($result_Ortu->pas_foto_ayah, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                            <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                        <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
+                                                    </a>
+                                                <td class="pas_foto_ibu"><center>
+                                                    <a href="{{ asset('assets/DokumenPasFotoIbu/' . $result_Ortu->pas_foto_ibu) }}" target="_blank">
+                                                        @if (in_array(pathinfo($result_Ortu->pas_foto_ibu, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                            <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                        <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
+                                                    </a>
+                                                    <td hidden class="nip"><center>{{ $result_Ortu->nip }}</center></td>
+                                                    <td hidden class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
+                                                    <td hidden class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
+                                                    <td hidden class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
+                                                    <td hidden class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
+                                                    <td hidden class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
+                                                    <td hidden class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
+                                                    <td hidden class="agama"><center>{{ $result_Ortu->agama }}</center></td>
+                                                    <td hidden class="email"><center>{{ $result_Ortu->email }}</center></td>
+
+                                                {{-- Edit dan Hapus data  --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_riwayat_orang_tua" href="#"
+                                                                data-toggle="modal" data-target="#edit_riwayat_orang_tua"><i
+                                                                    class="fa fa-pencil m-r-5"></i>
+                                                                Edit</a>
+                                                            <a class="dropdown-item delete_ortu" href="#"
+                                                                data-toggle="modal" data-target="#delete_ortu"><i
+                                                                    class="fa fa-trash-o m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Riwayat Orang Tua Modal -->
+                        <div id="add_riwayat_orang_tua" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Orang Tua</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/orangtua/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" value="Hidup" required>
+                                                                Hidup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" value="Meninggal" required>
+                                                                Meninggal
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pekerjaan Orang Tua</label><small class="text-danger">*</small>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status_pekerjaan_ortu"
+                                                                value="Bukan PNS" required>
+                                                            <label class="form-check-label">
+                                                                Bukan PNS
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status_pekerjaan_ortu"
+                                                                value="PNS" required>
+                                                            <label class="form-check-label">
+                                                                PNS
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" id="show_nip" style="display:none;">
+                                                    <div class="form-group">
+                                                        <label>NIP</label>
+                                                        <input class="form-control" type="text" name="nip"
+                                                            placeholder="Masukkan NIP">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" id="tanggal-meninggal" style="display:none;">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Meninggal</label>
+                                                        <input class="form-control" type="date" name="tanggal_meninggal">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="nama"
+                                                            placeholder="Masukkan nama orang tua" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_lahir" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Identitas</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_identitas" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Identitas --</option>
+                                                            <option value="KTP/KIA">KTP/KIA</option>
+                                                            <option value="Passport">Passport</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" value="Laki-Laki" required>
+                                                                Laki-Laki
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" value="Perempuan" required>
+                                                                Perempuan
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Agama</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="agama" required>
+                                                            <option disabled selected value="">-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $agama)
+                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="status_pernikahan" required>
+                                                            <option disabled selected value="">-- Pilih Status Pernikahan --</option>
+                                                            <option value="Menikah">Menikah</option>
+                                                            <option value="Belum Menikah">Belum Menikah</option>
+                                                            <option value="Cerai Hidup">Cerai Hidup</option>
+                                                            <option value="Cerai Mati">Cerai Mati</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Alamat</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="alamat"
+                                                            placeholder="Masukkan alamat orang tua" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="email" name="email"
+                                                            placeholder="Masukkan email orang tua" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input class="form-control" type="number" name="no_hp"
+                                                                placeholder="Masukkan nomor HP orang tua" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input class="form-control" type="number" name="no_telepon"
+                                                                placeholder="Masukkan nomor telepon orang tua" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="dokumen_kk">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="dokumen_akta_lahir_anak">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pas Foto Ayah</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="pas_foto_ayah">
+                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pas Foto Ibu</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="pas_foto_ibu">
+                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Orang Tua Modal -->
+                        <!-- Edit Orang Tua Modal -->
+                        <div id="edit_riwayat_orang_tua" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Orang Tua</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/orangtua/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id_ortu" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" value="Hidup" id="e_hidup" required>
+                                                                Hidup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" value="Meninggal" id="e_meninggal" required>
+                                                                Meninggal
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pekerjaan Orang Tua</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_pekerjaan_ortu" value="Bukan PNS" id="bukan_pns" required>
+                                                                Bukan PNS
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_pekerjaan_ortu" value="PNS" id="e_pns" required>
+                                                                PNS
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>NIP</label>
+                                                        <input class="form-control" type="text" name="nip" id="e_nip"
+                                                            placeholder="Masukkan NIP">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Meninggal</label>
+                                                        <input class="form-control" type="date" name="tanggal_meninggal" id="e_tanggal_meninggal">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="nama" id="e_nama"
+                                                            placeholder="Masukkan nama orang tua" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_lahir" id="e_tanggal_lahir" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Identitas</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_identitas" id="e_jenis_identitas" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Identitas --</option>
+                                                            <option value="KTP/KIA">KTP/KIA</option>
+                                                            <option value="Passport">Passport</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" value="Laki-Laki" id="e_laki_laki" required>
+                                                                Laki-Laki
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" value="Perempuan" id="e_perempuan" required>
+                                                                Perempuan
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Agama</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="agama" id="e_agama" required>
+                                                            <option disabled selected value="">-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $agama)
+                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="status_pernikahan" id="e_status_pernikahan" required>
+                                                            <option disabled selected value="">-- Pilih Status Pernikahan --</option>
+                                                            <option value="Menikah">Menikah</option>
+                                                            <option value="Belum Menikah">Belum Menikah</option>
+                                                            <option value="Cerai Hidup">Cerai Hidup</option>
+                                                            <option value="Cerai Mati">Cerai Mati</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Alamat</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="alamat" id="e_alamat"
+                                                            placeholder="Masukkan alamat orang tua" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="email" name="email" id="e_email"
+                                                            placeholder="Masukkan email orang tua" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input class="form-control" type="number" name="no_hp" id="e_no_hp"
+                                                                placeholder="Masukkan nomor HP orang tua" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input class="form-control" type="number" name="no_telepon" id="e_no_telepon"
+                                                            placeholder="Masukkan nomor telepon orang tua" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="dokumen_kk" id="dokumen_kk">
+                                                        <input type="hidden" name="hidden_dokumen_kk" id="e_dokumen_kk"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="dokumen_akta_lahir_anak" id="dokumen_akta_lahir_anak">
+                                                        <input type="hidden" name="hidden_dokumen_akta_lahir_anak" id="e_dokumen_akta_lahir_anak"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pas Foto Ayah</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="pas_foto_ayah" id="pas_foto_ayah">
+                                                        <input type="hidden" name="hidden_pas_foto_ayah" id="e_pas_foto_ayah"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pas Foto Ibu</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="pas_foto_ibu" id="pas_foto_ibu">
+                                                        <input type="hidden" name="hidden_pas_foto_ibu" id="e_pas_foto_ibu"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Orang Tua Modal -->
+                        <!-- Delete Riwayat Orang Tua Modal -->
+                        <div class="modal custom-modal fade" id="delete_ortu" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Orang Tua</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/orangtua/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id_ortu" value="">
+                                                <input type="hidden" name="dokumen_kk" class="d_dokumen_kk" value="">
+                                                <input type="hidden" name="dokumen_akta_lahir_anak" class="d_dokumen_akta_lahir_anak" value="">
+                                                <input type="hidden" name="pas_foto_ayah" class="d_pas_foto_ayah" value="">
+                                                <input type="hidden" name="pas_foto_ibu" class="d_pas_foto_ibu" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Riwayat Orang Tua Modal -->
+                    </div>
+
+                    <!-- Riwayat Pasangan Tab -->
+                    <div class="tab-pane fade" id="riwayat_pasangan">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pasangan">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Pasangan
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th>Nama Pasangan</th>
+                                            <th>Status Pekerjaan Pasangan</th>
+                                            <th>Status Pernikahan</th>
+                                            <th>Status Hidup</th>
+                                            <th>Dokumen Nikah</th>
+                                            <th>Pas Foto</th>
+                                            <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatPasangan as $sqlPasangan => $result_pasangan)
+                                            <tr>
+                                                <td><center>{{ ++$sqlPasangan }}</center></td>
+                                                <td hidden class="id"><center>{{ $result_pasangan->id }}</center></td>
+                                                <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
+                                                <td class="status_pekerjaan_pasangan"><center>{{ $result_pasangan->status_pekerjaan_pasangan }}</center></td>
+                                                <td class="status_pernikahan"><center>{{ $result_pasangan->status_pernikahan }}</center></td>
+                                                <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
+                                                <td class="dokumen_nikah"><center>
+                                                    <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
+                                                        @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                            <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
+                                                    </a></center></td>
+                                                    <td class="pas_foto"><center>
+                                                    <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
+                                                        @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                            <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                        <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
+                                                    </a>
+                                                    <td hidden class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
+                                                    <td hidden class="nip"><center>{{ $result_pasangan->nip }}</center></td>
+                                                    <td hidden class="tanggal_lahir"><center>{{ $result_pasangan->tanggal_lahir }}</center></td>
+                                                    <td hidden class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
+                                                    <td hidden class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
+                                                    <td hidden class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
+                                                    <td hidden class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
+                                                    <td hidden class="agama"><center>{{ $result_pasangan->agama }}</center></td>
+                                                    <td hidden class="email"><center>{{ $result_pasangan->email }}</center></td>
+                                                    <td hidden class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
+                                                    <td hidden class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
+
+                                                {{-- Edit dan Hapus data  --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_riwayat_pasangan" href="#"
+                                                                data-toggle="modal" data-target="#edit_riwayat_pasangan"><i
+                                                                    class="fa fa-pencil m-r-5"></i>
+                                                                Edit</a>
+                                                            <a class="dropdown-item delete_pasangan" href="#"
+                                                                data-toggle="modal" data-target="#delete_pasangan"><i
+                                                                    class="fa fa-trash-o m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Riwayat Pasangan Modal -->
+                        <div id="add_riwayat_pasangan" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Pasangan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/pasangan/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Suami/Istri ke</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="suami_istri_ke" required>
+                                                            <option disabled selected value="">-- Pilih Suami/Istri ke --</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pekerjaan Pasangan</label><small class="text-danger">*</small>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan"
+                                                            value="Bukan PNS" required>
+                                                            <label class="form-check-label">
+                                                                Bukan PNS
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan"
+                                                            value="PNS" required>
+                                                            <label class="form-check-label">
+                                                                PNS
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" id="show_nip_pasangan" style="display:none;">
+                                                    <div class="form-group">
+                                                        <label>NIP</label>
+                                                        <input class="form-control" type="text" name="nip"
+                                                            placeholder="Masukkan NIP">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="status_pernikahan" required>
+                                                            <option disabled selected value="">-- Pilih Status Pernikahan --</option>
+                                                            <option value="Menikah">Menikah</option>
+                                                            <option value="Belum Menikah">Belum Menikah</option>
+                                                            <option value="Cerai Hidup">Cerai Hidup</option>
+                                                            <option value="Cerai Mati">Cerai Mati</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="nama"
+                                                            placeholder="Masukkan nama pasangan" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_lahir" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Identitas</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_identitas" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Identitas --</option>
+                                                            <option value="KTP/KIA">KTP/KIA</option>
+                                                            <option value="Passport">Passport</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" value="Laki-Laki" required>
+                                                                Laki-Laki
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" value="Perempuan" required>
+                                                                Perempuan
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Agama</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="agama" required>
+                                                            <option disabled selected value="">-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $agama)
+                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" value="Hidup" required>
+                                                                Hidup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" value="Meninggal" required>
+                                                                Meninggal
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Karsu/Karis</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_karis_karsu"
+                                                            placeholder="Masukkan nomor karsu/karis" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Alamat</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="alamat"
+                                                            placeholder="Masukkan alamat pasangan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input class="form-control" type="number" name="no_hp"
+                                                                placeholder="Masukkan nomor HP pasangan" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input class="form-control" type="number" name="no_telepon"
+                                                                placeholder="Masukkan nomor telepon pasangan" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="email" name="email" placeholder="Masukkan email pasangan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Nikah</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="dokumen_nikah">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pas Foto</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="pas_foto">
+                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Pasangan Modal -->
+                        <!-- Edit Pasangan Modal -->
+                        <div id="edit_riwayat_pasangan" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Pasangan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/pasangan/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id_pasangan" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Suami/Istri ke</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="suami_istri_ke" id="e_suami_istri_ke" required>
+                                                            <option disabled selected value="">-- Pilih Suami/Istri ke --</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pekerjaan Pasangan</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_pekerjaan_pasangan" id="bukan_pns" value="Bukan PNS" required>
+                                                                Bukan PNS
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_pekerjaan_pasangan" id="pns" value="PNS" required>
+                                                                PNS
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>NIP</label>
+                                                        <input class="form-control" type="text" name="nip" id="e_nip_pasangan"
+                                                            placeholder="Jika status pasangan bukan PNS isi dengan -" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pernikahan</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="status_pernikahan" id="e_status_pernikahan_pasangan" required>
+                                                            <option disabled selected value="">-- Pilih Status Pernikahan --</option>
+                                                            <option value="Menikah">Menikah</option>
+                                                            <option value="Belum Menikah">Belum Menikah</option>
+                                                            <option value="Cerai Hidup">Cerai Hidup</option>
+                                                            <option value="Cerai Mati">Cerai Mati</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="nama" id="e_nama_pasangan"
+                                                            placeholder="Masukkan nama pasangan" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_lahir" id="e_tanggal_lahir_pasangan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Identitas</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_identitas" id="e_jenis_identitas_pasangan" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Identitas --</option>
+                                                            <option value="KTP/KIA">KTP/KIA</option>
+                                                            <option value="Passport">Passport</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" id="laki_laki" value="Laki-Laki" required>
+                                                                Laki-Laki
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" id="perempuan" value="Perempuan" required>
+                                                                Perempuan
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Agama</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="agama" id="e_agama_pasangan" required>
+                                                            <option disabled selected value="">-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $agama)
+                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" id="hidup" value="Hidup" required>
+                                                                Hidup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" id="meninggal" value="Meninggal" required>
+                                                                Meninggal
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Karsu/Karis</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_karis_karsu" id="e_no_karis_karsu"
+                                                            placeholder="Masukkan nomor karsu/karis" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Alamat</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="alamat" id="e_alamat_pasangan"
+                                                            placeholder="Masukkan alamat pasangan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor HP</label><small class="text-danger">*</small>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input class="form-control" type="number" name="no_hp" id="e_no_hp_pasangan"
+                                                                placeholder="Masukkan nomor HP pasangan" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Telepon</label><small class="text-danger">*</small>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">+62</span>
+                                                            </div>
+                                                            <input class="form-control" type="number" name="no_telepon" id="e_no_telepon_pasangan"
+                                                                placeholder="Masukkan nomor telepon pasangan" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="email" name="email" id="e_email_pasangan" placeholder="Masukkan email pasangan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Nikah</label><small class="text-danger">*</small>
+                                                        <input type="file" class="form-control" id="dokumen_nikah"
+                                                            name="dokumen_nikah">
+                                                        <input type="hidden" name="hidden_dokumen_nikah" id="e_dokumen_nikah"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pas Foto</label><small class="text-danger">*</small>
+                                                        <input type="file" class="form-control" id="pas_foto"
+                                                            name="pas_foto">
+                                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto_pasangan"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Pasangan Modal -->
+                        <!-- Delete Riwayat PAsangan Modal -->
+                        <div class="modal custom-modal fade" id="delete_pasangan" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Pasangan</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/pasangan/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id_pasangan" value="">
+                                                <input type="hidden" name="dokumen_nikah" class="d_dokumen_nikah" value="">
+                                <input type="hidden" name="pas_foto" class="d_pas_foto" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Riwayat Pasangan Modal -->
+                    </div>
+
+                    <!-- Riwayat Anak Tab -->
+                    <div class="tab-pane fade" id="riwayat_anak">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_anak">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Anak
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th>Nama Orang Tua</th>
+                                            <th>Nama Anak</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Status Anak</th>
+                                            <th>Dokumen Akta Kelahiran</th>
+                                            <th>Pas Foto</th>
+                                            <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatAnak as $sqlAnak => $result_anak)
+                                            <tr>
+                                                <td><center>{{ ++$sqlAnak }}</center></td>
+                                                <td hidden class="id"><center>{{ $result_anak->id }}</center></td>
+                                                <td class="orang_tua"><center>{{ $result_anak->orang_tua }}</center></td>
+                                                <td class="nama_anak"><center>{{ $result_anak->nama_anak }}</center></td>
+                                                <td class="jenis_kelamin"><center>{{ $result_anak->jenis_kelamin }}</center></td>
+                                                <td class="tanggal_lahir"><center>{{ $result_anak->tanggal_lahir }}</center></td>
+                                                <td class="status_anak"><center>{{ $result_anak->status_anak }}</center></td>
+                                                <td class="dokumen_akta_kelahiran"><center>
+                                                    <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
+                                                        @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                            <td hidden class="dokumen_akta_kelahiran">{{ $result_anak->dokumen_akta_kelahiran }}</td>
+                                                    </a></center></td>
+                                                    <td class="pas_foto"><center>
+                                                    <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
+                                                        @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                            <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                        <td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>
+                                                    </a>
+                                                    <td hidden class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
+                                                    <td hidden class="jenis_dokumen"><center>{{ $result_anak->jenis_dokumen }}</center></td>
+                                                    <td hidden class="no_dokumen"><center>{{ $result_anak->no_dokumen }}</center></td>
+                                                    <td hidden class="agama"><center>{{ $result_anak->agama }}</center></td>
+                                                    <td hidden class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
+                                                    <td hidden class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
+
+                                                {{-- Edit dan Hapus data  --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_anak" href="#"
+                                                                data-toggle="modal" data-target="#edit_anak"><i
+                                                                    class="fa fa-pencil m-r-5"></i>
+                                                                Edit</a>
+                                                            <a class="dropdown-item delete_anak" href="#"
+                                                                data-toggle="modal" data-target="#delete_anak"><i
+                                                                    class="fa fa-trash-o m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Riwayat Anak Modal -->
+                        <div id="add_riwayat_anak" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Anak</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/anak/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Orang Tua (Pasangan)</label><small
+                                                            class="text-danger">*</small><br>
+                                                        <select class="select form-control" name="orang_tua">
+                                                            <option value="">-- Pilih Nama Orang Tua --</option>
+                                                            @foreach ($userList as $user)
+                                                                <option value="{{ $user->nama }}">{{ $user->nama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pekerjaan Anak</label><small class="text-danger">*</small>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status_pekerjaan_anak"
+                                                                value="Bukan PNS" required>
+                                                            <label class="form-check-label">
+                                                                Bukan PNS
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status_pekerjaan_anak"
+                                                                value="PNS" required>
+                                                            <label class="form-check-label">
+                                                                PNS
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Anak</label>
+                                                        <input class="form-control" type="text" name="nama_anak"
+                                                            placeholder="Masukkan nama anak" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" value="Laki-Laki" required>
+                                                                Laki-Laki
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" value="Perempuan" required>
+                                                                Perempuan
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_lahir" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Anak</label><small class="text-danger">*</small><br>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="status_anak"
+                                                                value="Kandung" required>
+                                                            <label class="form-check-label">Kandung</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="status_anak" value="Tiri" required>
+                                                            <label class="form-check-label">Tiri</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="status_anak"
+                                                                value="Angkat" required>
+                                                            <label class="form-check-label">Angkat</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Dokumen</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_dokumen" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Dokumen --</option>
+                                                            <option value="KTP/KIA">KTP/KIA</option>
+                                                            <option value="Passport">Passport</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Dokumen</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_dokumen"
+                                                            placeholder="Masukkan nomor dokumen " required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Agama</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="agama" required>
+                                                            <option disabled selected value="">-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $agama)
+                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" value="Hidup" required>
+                                                                Hidup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" value="Meninggal" required>
+                                                                Meninggal
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Akta Kelahiran</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_akta_kelahiran"
+                                                            placeholder="Masukkan nomor akta kelahiran" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Akta Kelahiran</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="dokumen_akta_kelahiran">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pas Foto</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="pas_foto">
+                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Anak Modal -->
+                        <!-- Edit Anak Modal -->
+                        <div id="edit_anak" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Anak</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/anak/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id_anak" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Orang Tua (Pasangan)</label><small
+                                                            class="text-danger">*</small><br>
+                                                        <select class="select form-control" name="orang_tua" id="e_orang_tua_anak">
+                                                            <option value="">-- Pilih Nama Orang Tua --</option>
+                                                            @foreach ($userList as $user)
+                                                                <option value="{{ $user->nama }}">{{ $user->nama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Pekerjaan Anak</label><small class="text-danger">*</small>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status_pekerjaan_anak" id="bukan_pns_anak"
+                                                                value="Bukan PNS" required>
+                                                            <label class="form-check-label">
+                                                                Bukan PNS
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="status_pekerjaan_anak" id="pns_anak"
+                                                                value="PNS" required>
+                                                            <label class="form-check-label">
+                                                                PNS
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Anak</label>
+                                                        <input class="form-control" type="text" name="nama_anak" id="e_nama_anak"
+                                                            placeholder="Masukkan nama anak" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Kelamin</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" id="laki_laki_anak" value="Laki-Laki" required>
+                                                                Laki-Laki
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="jenis_kelamin" id="perempuan_anak" value="Perempuan" required>
+                                                                Perempuan
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Lahir</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_lahir" id="e_tanggal_lahir_anak" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Anak</label><small class="text-danger">*</small><br>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="status_anak" id="kandung"
+                                                                value="Kandung" required>
+                                                            <label class="form-check-label" for="kandung">Kandung</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="status_anak"
+                                                                id="tiri" value="Tiri" required>
+                                                            <label class="form-check-label" for="tiri">Tiri</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="status_anak"
+                                                                id="angkat" value="Angkat" required>
+                                                            <label class="form-check-label" for="angkat">Angkat</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Dokumen</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_dokumen" id="e_jenis_dokumen_anak" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Dokumen --</option>
+                                                            <option value="KTP/KIA">KTP/KIA</option>
+                                                            <option value="Passport">Passport</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Dokumen</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_dokumen" id="e_no_dokumen"
+                                                            placeholder="Masukkan nomor dokumen " required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Agama</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="agama" id="e_agama_anak" required>
+                                                            <option disabled selected value="">-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $agama)
+                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Status Hidup</label><small class="text-danger">*</small>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" id="hidup_anak" value="Hidup" required>
+                                                                Hidup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                <input type="radio" name="status_hidup" id="meninggal_anak" value="Meninggal" required>
+                                                                Meninggal
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Akta Kelahiran</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_akta_kelahiran" id="e_no_akta_kelahiran"
+                                                            placeholder="Masukkan nomor akta kelahiran" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Akta Kelahiran</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="dokumen_akta_kelahiran" id="dokumen_akta_kelahiran">
+                                                        <input type="hidden" name="hidden_dokumen_akta_kelahiran" id="e_dokumen_akta_kelahiran"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pas Foto</label><small class="text-danger">*</small>
+                                                        <input type="file" class="form-control" id="pas_foto"
+                                                            name="pas_foto">
+                                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto_anak"
+                                                            value="">
+                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Anak Modal -->
+                        <!-- Delete Riwayat Anak Modal -->
+                        <div class="modal custom-modal fade" id="delete_anak" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Anak</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/anak/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id_anak" value="">
+                                                <input type="hidden" name="dokumen_akta_kelahiran" class="d_dokumen_akta_kelahiran" value="">
+                                                <input type="hidden" name="pas_foto" class="d_pas_foto_anak" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Riwayat Anak Modal -->
+                    </div>
+
+                    <!-- Riwayat Penghargaan Tab -->
+                    <div class="tab-pane fade" id="riwayat_penghargaan">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_penghargaan">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Penghargaan
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th>Jenis Penghargaan</th>
+                                            <th>Tahun Perolehan</th>
+                                            <th>Nomor Surat</th>
+                                            <th>Tanggal SK</th>
+                                            <th>Dokumen Penghargaan</th>
+                                            <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatPenghargaan as $sqlPenghargaan => $result_penghargaan)
+                                            <tr>
+                                                <td><center>{{ ++$sqlPenghargaan }}</center></td>
+                                                <td hidden class="id"><center>{{ $result_penghargaan->id }}</center></td>
+                                                <td class="jenis_penghargaan"><center>{{ $result_penghargaan->jenis_penghargaan }}</center></td>
+                                                <td class="tahun_perolehan"><center>{{ $result_penghargaan->tahun_perolehan }}</center></td>
+                                                <td class="no_surat"><center>{{ $result_penghargaan->no_surat }}</center></td>
+                                                <td class="tanggal_keputusan"><center>{{ $result_penghargaan->tanggal_keputusan }}</center></td>
+                                                <td class="dokumen_penghargaan"><center>
+                                                    <a href="{{ asset('assets/DokumenPenghargaan/' . $result_penghargaan->dokumen_penghargaan) }}" target="_blank">
+                                                        @if (pathinfo($result_penghargaan->dokumen_penghargaan, PATHINFO_EXTENSION) == 'pdf')
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                            <td hidden class="dokumen_penghargaan">{{ $result_penghargaan->dokumen_penghargaan }}</td>
+                                                    </a></center></td>
+
+                                                {{-- Edit dan Hapus data  --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_riwayat_penghargaan" href="#"
+                                                                data-toggle="modal" data-target="#edit_riwayat_penghargaan"><i
+                                                                    class="fa fa-pencil m-r-5"></i>
+                                                                Edit</a>
+                                                            <a class="dropdown-item delete_riwayat_penghargaan" href="#"
+                                                                data-toggle="modal" data-target="#delete_riwayat_penghargaan"><i
+                                                                    class="fa fa-trash-o m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Riwayat Penghargaan Modal -->
+                        <div id="add_riwayat_penghargaan" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Penghargaan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/penghargaan/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Penghargaan</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_penghargaan" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Penghargaan --</option>
+                                                            <option value="Bintang">Bintang</option>
+                                                            <option value="R.I Adipurna">R.I Adipurna</option>
+                                                            <option value="R.I Adipradana">R.I Adipradana</option>
+                                                            <option value="R.I Utama">R.I Utama</option>
+                                                            <option value="R.I Pratama">R.I Pratama</option>
+                                                            <option value="R.I Naraya">R.I Naraya</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Perolehan</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="number" name="tahun_perolehan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Surat</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_surat" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_keputusan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Penghargaan</label>
+                                                        <input class="form-control" type="file" name="dokumen_penghargaan">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Penghargaan Modal -->
+                        <!-- Edit Penghargaan Modal -->
+                        <div id="edit_riwayat_penghargaan" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Penghargaan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/penghargaan/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id_penghargaan" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Penghargaan</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_penghargaan" id="e_jenis_penghargaan" required>
+                                                            <option value="Bintang">Bintang</option>
+                                                            <option value="R.I Adipurna">R.I Adipurna</option>
+                                                            <option value="R.I Adipradana">R.I Adipradana</option>
+                                                            <option value="R.I Utama">R.I Utama</option>
+                                                            <option value="R.I Pratama">R.I Pratama</option>
+                                                            <option value="R.I Naraya">R.I Naraya</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tahun Perolehan</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="number" name="tahun_perolehan" id="e_tahun_perolehan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Surat</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_surat" id="e_no_surat" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_keputusan" id="e_tanggal_keputusan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Penghargaan</label><small class="text-danger">*</small>
+                                                        <input type="file" class="form-control" id="dokumen_penghargaan"
+                                                            name="dokumen_penghargaan">
+                                                        <input type="hidden" name="hidden_dokumen_penghargaan" id="e_dokumen_penghargaan"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Penghargaan Modal -->
+                        <!-- Delete Riwayat Penghargaan Modal -->
+                        <div class="modal custom-modal fade" id="delete_riwayat_penghargaan" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Penghargaan</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/penghargaan/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id_penghargaan" value="">
+                                                <input type="hidden" name="dokumen_penghargaan" class="d_dokumen_penghargaan" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Riwayat Penghargaan Modal -->
+                    </div>
+
+                    <!-- Riwayat Organisasi Tab -->
+                    <div class="tab-pane fade" id="riwayat_organisasi">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_organisasi">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Organisasi
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th>Nama Organisasi</th>
+                                            <th>Jabatan Organisasi</th>
+                                            <th>Tanggal Gabung</th>
+                                            <th>Tanggal Selesai</th>
+                                            <th>Nomor Anggota</th>
+                                            <th>Dokumen Organisasi</th>
+                                            <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatOrganisasi as $sqlOrganisasi => $result_organisasi)
+                                            <tr>
+                                                <td><center>{{ ++$sqlOrganisasi }}</center></td>
+                                                <td hidden class="id"><center>{{ $result_organisasi->id }}</center></td>
+                                                <td class="nama_organisasi"><center>{{ $result_organisasi->nama_organisasi }}</center></td>
+                                                <td class="jabatan_organisasi"><center>{{ $result_organisasi->jabatan_organisasi }}</center></td>
+                                                <td class="tanggal_gabung"><center>{{ $result_organisasi->tanggal_gabung }}</center></td>
+                                                <td class="tanggal_selesai"><center>{{ $result_organisasi->tanggal_selesai }}</center></td>
+                                                <td class="no_anggota"><center>{{ $result_organisasi->no_anggota }}</center></td>
+                                                <td class="dokumen_organisasi"><center>
+                                                    <a href="{{ asset('assets/DokumenOrganisasi/' . $result_organisasi->dokumen_organisasi) }}" target="_blank">
+                                                        @if (pathinfo($result_organisasi->dokumen_organisasi, PATHINFO_EXTENSION) == 'pdf')
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                            <td hidden class="dokumen_organisasi">{{ $result_organisasi->dokumen_organisasi }}</td>
+                                                    </a></center></td>
+
+                                                {{-- Edit dan Hapus data  --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_organisasi" href="#"
+                                                                data-toggle="modal" data-target="#edit_organisasi"><i
+                                                                    class="fa fa-pencil m-r-5"></i>
+                                                                Edit</a>
+                                                            <a class="dropdown-item delete_organisasi" href="#"
+                                                                data-toggle="modal" data-target="#delete_organisasi"><i
+                                                                    class="fa fa-trash-o m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Riwayat Organisasi Modal -->
+                        <div id="add_riwayat_organisasi" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Organisasi</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/organisasi/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nama Organisasi</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="nama_organisasi" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jabatan di Organisasi</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="jabatan_organisasi" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Bergabung</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_gabung" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Selesai</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_selesai" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Anggota</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_anggota" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Organisasi</label>
+                                                        <input class="form-control" type="file" name="dokumen_organisasi">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Organisasi Modal -->
+                        <!-- Edit Organisasi Modal -->
+                        <div id="edit_organisasi" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Organisasi</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/organisasi/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id_organisasi" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Penghargaan</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="nama_organisasi" id="e_nama_organisasi" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jabatan di Organisasi</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="jabatan_organisasi" id="e_jabatan_organisasi" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Bergabung</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_gabung" id="e_tanggal_gabung" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal Selesai</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_selesai" id="e_tanggal_selesai_organisasi" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Anggota</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_anggota" id="e_no_anggota" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen Organisasi</label><small class="text-danger">*</small>
+                                                        <input type="file" class="form-control" id="dokumen_organisasi"
+                                                            name="dokumen_organisasi">
+                                                        <input type="hidden" name="hidden_dokumen_organisasi" id="e_dokumen_organisasi"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Organisasi Modal -->
+                        <!-- Delete Riwayat Organisasi Modal -->
+                        <div class="modal custom-modal fade" id="delete_organisasi" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Organisasi</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/organisasi/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id_organisasi" value="">
+                                                <input type="hidden" name="dokumen_organisasi" class="d_dokumen_organisasi" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Riwayat Organisasi Modal -->
+                    </div>
+
+                    <!-- Riwayat Hukuman Disiplin Tab -->
+                    <div class="tab-pane fade" id="riwayat_hukum_disiplin">    
+                        <div class="row">
+                            <div class="col-auto float-right ml-auto">
+                                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_hukum">
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Hukuman Disiplin
+                                </a>
+                            </div><br><br>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table mb-0 datatable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th>Kategori Hukuman Disiplin</th>
+                                            <th>Tingkat Hukuman</th>
+                                            <th>Jenis Tingkat Hukuman</th>
+                                            <th>Nomor SK Hukuman</th>
+                                            <th>Tanggal SK Hukuman</th>
+                                            <th>Nomor Peraturan</th>
+                                            <th>Alasan Hukuman</th>
+                                            <th>Masa Hukuman Tahun</th>
+                                            <th>Masa Hukuman Bulan</th>
+                                            <th>TMT Hukuman</th>
+                                            <th>Keterangan</th>
+                                            <th>Dokumen Hukuman Disiplin</th>
+                                            <th>Dokumen SK Pengaktifan</th>
+                                            <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($riwayatHukumDisiplin as $sqlHD => $result_hukuman_disiplin)
+                                            <tr>
+                                                <td><center>{{ ++$sqlHD }}</center></td>
+                                                <td hidden class="id"><center>{{ $result_hukuman_disiplin->id }}</center></td>
+                                                <td class="kategori_hukuman"><center>{{ $result_hukuman_disiplin->kategori_hukuman }}</center></td>
+                                                <td class="tingkat_hukuman"><center>{{ $result_hukuman_disiplin->tingkat_hukuman }}</center></td>
+                                                <td class="jenis_hukuman"><center>{{ $result_hukuman_disiplin->jenis_hukuman }}</center></td>
+                                                <td class="no_sk_hukuman"><center>{{ $result_hukuman_disiplin->no_sk_hukuman }}</center></td>
+                                                <td class="tanggal_sk_hukuman"><center>{{ $result_hukuman_disiplin->tanggal_sk_hukuman }}</center></td>
+                                                <td class="no_peraturan"><center>{{ $result_hukuman_disiplin->no_peraturan }}</center></td>
+                                                <td class="alasan"><center>{{ $result_hukuman_disiplin->alasan }}</center></td>
+                                                <td class="masa_hukuman_tahun"><center>{{ $result_hukuman_disiplin->masa_hukuman_tahun }}</center></td>
+                                                <td class="masa_hukuman_bulan"><center>{{ $result_hukuman_disiplin->masa_hukuman_bulan }}</center></td>
+                                                <td class="tmt_hukuman"><center>{{ $result_hukuman_disiplin->tmt_hukuman }}</center></td>
+                                                <td class="keterangan"><center>{{ $result_hukuman_disiplin->keterangan }}</center></td>
+                                                <td class="dokumen_sk_hukuman"><center>
+                                                    <a href="{{ asset('assets/DokumenSKHukuman/' . $result_hukuman_disiplin->dokumen_sk_hukuman) }}" target="_blank">
+                                                        @if (pathinfo($result_hukuman_disiplin->dokumen_sk_hukuman, PATHINFO_EXTENSION) == 'pdf')
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                            <td hidden class="dokumen_sk_hukuman">{{ $result_hukuman_disiplin->dokumen_sk_hukuman }}</td>
+                                                    </a></center></td>
+                                                <td class="dokumen_sk_pengaktifan"><center>
+                                                    <a href="{{ asset('assets/DokumenSKPengaktifan/' . $result_hukuman_disiplin->dokumen_sk_pengaktifan) }}" target="_blank">
+                                                        @if (pathinfo($result_hukuman_disiplin->dokumen_sk_pengaktifan, PATHINFO_EXTENSION) == 'pdf')
+                                                            <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                        @endif
+                                                            <td hidden class="dokumen_sk_pengaktifan">{{ $result_hukuman_disiplin->dokumen_sk_pengaktifan }}</td>
+                                                    </a></center></td>
+
+                                                {{-- Edit dan Hapus data  --}}
+                                                <td class="text-right">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item edit_riwayat_hukuman" href="#"
+                                                                data-toggle="modal" data-target="#edit_riwayat_hukuman"><i
+                                                                    class="fa fa-pencil m-r-5"></i>
+                                                                Edit</a>
+                                                            <a class="dropdown-item delete_riwayat_hukuman" href="#"
+                                                                data-toggle="modal" data-target="#delete_riwayat_hukuman"><i
+                                                                    class="fa fa-trash-o m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambah Riwayat Hukuman DIsiplin Modal -->
+                        <div id="add_riwayat_hukum" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah Riwayat Hukuman Disiplin</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/hukumandisiplin/tambah-data') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $users->user_id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Kategori Hukuman</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="kategori_hukuman" required>
+                                                            <option disabled selected value="">-- Pilih Kategori Hukuman --</option>
+                                                            <option value="Penetapan">Penetapan</option>
+                                                            <option value="Pengaktifan Kembali">Pengaktifan Kembali</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tingkat Hukuman</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="tingkat_hukuman" required>
+                                                            <option disabled selected value="">-- Pilih Tingkat Hukuman --</option>
+                                                            <option value="Berat">Berat</option>
+                                                            <option value="Ringan">Ringan</option>
+                                                            <option value="Sedang">Sedang</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Hukuman</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_hukuman" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Hukuman --</option>
+                                                            <option value="Pembebasan Dari Jabatan">Pembebasan Dari Jabatan</option>
+                                                            <option value="Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri">Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri</option>
+                                                            <option value="Pemberhentian Tidak Dengan Hormat Sebagai PNS">Pemberhentian Tidak Dengan Hormat Sebagai PNS</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor SK Hukuman</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_sk_hukuman" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Peraturan</label>
+                                                        <input class="form-control" type="text" name="no_peraturan">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Alasan</label>
+                                                        <select class="form-control" name="alasan">
+                                                            <option disabled selected value="">-- Pilih Alasan --</option>
+                                                            <option value="Tidak Mengucapkan Sumpah/Janji PNS">Tidak Mengucapkan Sumpah/Janji PNS</option>
+                                                            <option value="Tidak Mengucapkan Sumpah/Janji Jabatan">Tidak Mengucapkan Sumpah/Janji Jabatan</option>
+                                                            <option value="Tidak Mentaati Segala Ketentuan Peraturan Perundang-undangan">Tidak Mentaati Segala Ketentuan Peraturan Perundang-undangan</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK Hukuman</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_sk_hukuman" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Hukuman Tahun</label>
+                                                        <input class="form-control" type="text" name="masa_hukuman_tahun">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>TMT Hukuman</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tmt_hukuman" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Hukuman Bulan</label>
+                                                        <input class="form-control" type="text" name="masa_hukuman_bulan">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Keterangan</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="keterangan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen SK Hukuman</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="file" name="dokumen_sk_hukuman" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen SK Pengaktifan</label>
+                                                        <input class="form-control" type="file" name="dokumen_sk_pengaktifan">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tambah Hukuman Disiplin Modal -->
+                        <!-- Edit Hukuman Disiplin Modal -->
+                        <div id="edit_riwayat_hukuman" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Riwayat Hukuman Disiplin</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('riwayat/hukumandisiplin/edit-data') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" id="e_id_hukuman" value="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Kategori Hukuman</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="kategori_hukuman" id="e_kategori_hukuman" required>
+                                                            <option disabled selected value="">-- Pilih Kategori Hukuman --</option>
+                                                            <option value="Penetapan">Penetapan</option>
+                                                            <option value="Pengaktifan Kembali">Pengaktifan Kembali</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tingkat Hukuman</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="tingkat_hukuman" id="e_tingkat_hukuman" required>
+                                                            <option disabled selected value="">-- Pilih Tingkat Hukuman --</option>
+                                                            <option value="Berat">Berat</option>
+                                                            <option value="Ringan">Ringan</option>
+                                                            <option value="Sedang">Sedang</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Hukuman</label><small class="text-danger">*</small>
+                                                        <select class="form-control" name="jenis_hukuman" id="e_jenis_hukuman" required>
+                                                            <option disabled selected value="">-- Pilih Jenis Hukuman --</option>
+                                                            <option value="Pembebasan Dari Jabatan">Pembebasan Dari Jabatan</option>
+                                                            <option value="Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri">Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri</option>
+                                                            <option value="Pemberhentian Tidak Dengan Hormat Sebagai PNS">Pemberhentian Tidak Dengan Hormat Sebagai PNS</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor SK Hukuman</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="no_sk_hukuman" id="e_no_sk_hukuman" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nomor Peraturan</label>
+                                                        <input class="form-control" type="text" name="no_peraturan" id="e_no_peraturan">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Alasan</label>
+                                                        <select class="form-control" name="alasan" id="e_alasan">
+                                                            <option disabled selected value="">-- Pilih Alasan --</option>
+                                                            <option value="Tidak Mengucapkan Sumpah/Janji PNS">Tidak Mengucapkan Sumpah/Janji PNS</option>
+                                                            <option value="Tidak Mengucapkan Sumpah/Janji Jabatan">Tidak Mengucapkan Sumpah/Janji Jabatan</option>
+                                                            <option value="Tidak Mentaati Segala Ketentuan Peraturan Perundang-undangan">Tidak Mentaati Segala Ketentuan Peraturan Perundang-undangan</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Tanggal SK Hukuman</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tanggal_sk_hukuman" id="e_tanggal_sk_hukuman" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Hukuman Tahun</label>
+                                                        <input class="form-control" type="text" name="masa_hukuman_tahun" id="e_masa_hukuman_tahun">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>TMT Hukuman</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="date" name="tmt_hukuman" id="e_tmt_hukuman" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Hukuman Bulan</label>
+                                                        <input class="form-control" type="text" name="masa_hukuman_bulan" id="e_masa_hukuman_bulan">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Keterangan</label><small class="text-danger">*</small>
+                                                        <input class="form-control" type="text" name="keterangan" id="e_keterangan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen SK Hukuman</label><small class="text-danger">*</small>
+                                                        <input type="file" class="form-control" id="dokumen_sk_hukuman"
+                                                            name="dokumen_sk_hukuman">
+                                                        <input type="hidden" name="hidden_dokumen_sk_hukuman" id="e_dokumen_sk_hukuman"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Dokumen SK Pengaktifan</label><small class="text-danger">*</small>
+                                                        <input type="file" class="form-control" id="dokumen_sk_pengaktifan"
+                                                            name="dokumen_sk_pengaktifan">
+                                                        <input type="hidden" name="hidden_dokumen_sk_pengaktifan" id="e_dokumen_sk_pengaktifan"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Edit Riwayat Hukuman Disiplin Modal -->
+                        <!-- Delete Riwayat Hukuman Disiplin Modal -->
+                        <div class="modal custom-modal fade" id="delete_riwayat_hukuman" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-header">
+                                            <h3>Hapus Riwayat Hukuman Disiplin</h3>
+                                            <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-btn delete-action">
+                                            <form action="{{ route('riwayat/hukumandisiplin/hapus-data') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" class="e_id_hukuman" value="">
+                                                <input type="hidden" name="dokumen_sk_hukuman" class="d_dokumen_sk_hukuman" value="">
+                                                <input type="hidden" name="dokumen_sk_pengaktifan" class="d_dokumen_sk_pengaktifan" value="">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit"
+                                                            class="btn btn-danger continue-btn submit-btn">Hapus</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal"
+                                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Riwayat Hukuman Disiplin Modal -->
+                    </div>
+                    <!-- /Riwayat Tab -->
+
                 </div>
+
+                </div>
+
+                
             </div>
             <!-- /Page Content -->
 
@@ -2932,6 +6485,15 @@
         <script src="{{ asset('assets/js/golongan.js') }}"></script>
         <script src="{{ asset('assets/js/jabatan.js') }}"></script>
         <script src="{{ asset('assets/js/diklat.js') }}"></script>
+        <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayatPMK.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayatAngkaKredit.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayatOrangTua.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayatPasangan.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayatAnak.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayatPenghargaan.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayatOrganisasi.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayatHukumanDisiplin.js') }}"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script>
