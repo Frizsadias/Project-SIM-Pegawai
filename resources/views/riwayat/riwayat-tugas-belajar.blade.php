@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table" id="tableAngkaKredit">
+                        <table class="table table-striped custom-table datatable">
                             <thead>
                                 <tr>
                                     <th><center>No</center></th>
@@ -285,8 +285,11 @@
                                         <small class="text-danger">*</small>
                                         <br>
                                         <select class="theSelect" name="tingkat_pendidikan" id="e_tingkat_pendidikan">
+                                            <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
                                             @foreach($tingkatpendidikanOptions as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @if (!empty($resultTB->tingkat_pendidikan))
+                                                    <option value="{{ $key }}" {{ $key == $resultTB->tingkat_pendidikan ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -297,8 +300,11 @@
                                         <small class="text-danger">*</small>
                                         <br>
                                         <select class="theSelect" name="pendidikan" id="e_pendidikan">
+                                            <option selected disabled>-- Pilih Pendidikan --</option>
                                             @foreach($pendidikanOptions as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @if (!empty($resultTB->pendidikan))
+                                                    <option value="{{ $key }}" {{ $key == $resultTB->pendidikan ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>

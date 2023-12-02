@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table" id="tableAngkaKredit">
+                        <table class="table table-striped custom-table datatable">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -278,10 +278,11 @@
                                     <div class="form-group">
                                         <label>Agama</label>
                                         <small class="text-danger">*</small>
-                                        <select class="select form-control" name="agama" required>
-                                            <option disabled selected value="">-- Pilih Agama --</option>
-                                            @foreach ($agamaOptions as $agama)
-                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                        <br>
+                                        <select class="theSelect" name="agama" required>
+                                            <option selected disabled>-- Pilih Agama --</option>
+                                            @foreach ($agamaOptions as $key => $result_agama)
+                                                <option value="{{ $key }}">{{ $result_agama }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -473,9 +474,13 @@
                                     <div class="form-group">
                                         <label>Agama</label>
                                         <small class="text-danger">*</small>
-                                        <select class="form-control" name="agama" id="e_agama" required>
-                                            @foreach ($agamaOptions as $agama)
-                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                        <br>
+                                        <select class="theSelect" name="agama" id="e_agama" required>
+                                            <option selected disabled>-- Pilih Agama --</option>
+                                            @foreach ($agamaOptions as $id => $result_agama)
+                                                @if (!empty($result_anak->agama))
+                                                    <option value="{{ $id }}" {{ $id == $result_anak->agama ? 'selected' : '' }}>{{ $result_agama }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>

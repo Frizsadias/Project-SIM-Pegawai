@@ -132,8 +132,8 @@
                         <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                             <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
                             <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Golongan</a></li>
-                            <li class="nav-item"><a href="#kenaikan_gaji" data-toggle="tab" class="nav-link">KGB</a></li>
-                            <li class="nav-item"><a href="#riwayat_pmk" data-toggle="tab" class="nav-link">PMK</a></li>
+                            <li class="nav-item"><a href="#kenaikan_gaji" data-toggle="tab" class="nav-link">Kenaikan Gaji Berkala</a></li>
+                            <li class="nav-item"><a href="#riwayat_pmk" data-toggle="tab" class="nav-link">Peninjauan Masa Kerja</a></li>
                             <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Pendidikan</a></li>
                             <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Jabatan</a></li>
                             <li class="nav-item"><a href="#riwayat_angka_kredit" data-toggle="tab" class="nav-link">Angka Kredit</a></li>
@@ -573,7 +573,7 @@
                                                             <td><center>{{ ++$sqlpendidikan }}</center></td>
                                                             <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
                                                             <td class="ting_ped"><center>{{ $result_pendidikan->ting_ped }}</center></td>
-                                                            <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
+                                                            <td class="pendidikan"><center>{{ ucwords(strtolower($result_pendidikan->pendidikan)) }}</center></td>
                                                             <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
                                                             <td class="no_ijazah"><center>{{ $result_pendidikan->no_ijazah }}</center></td>
                                                             <td class="nama_sekolah"><center>{{ $result_pendidikan->nama_sekolah }}</center></td>
@@ -607,7 +607,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <table class="table table-striped custom-table mb-0 datatable">
+                                            <table class="table table-striped custom-table datatable">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -631,8 +631,8 @@
                                                             <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
                                                             <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
                                                             <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
-                                                            <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
-                                                            <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }}</center></td>
+                                                            <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }} Tahun</center></td>
+                                                            <td class="masa_kerja_golongan_bulan"><center>{{ $result_golongan->masa_kerja_golongan_bulan }} Bulan</center></td>
                                                             <td class="tmt_golongan_riwayat"><center>{{ \Carbon\Carbon::parse($result_golongan->tmt_golongan_riwayat)->formatLocalized('%d %B %Y') }}</center></td>
                                                             <td class="no_teknis_bkn"><center>{{ $result_golongan->no_teknis_bkn }}</center></td>
                                                             <td class="tanggal_teknis_bkn"><center>{{ \Carbon\Carbon::parse($result_golongan->tanggal_teknis_bkn)->formatLocalized('%d %B %Y') }}</center></td>
@@ -641,11 +641,13 @@
                                                             <td class="dokumen_skkp"><center>
                                                                 <a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}" target="_blank">
                                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                                </a></center></td>
+                                                                </a>
+                                                            </center></td>
                                                             <td class="dokumen_teknis_kp"><center>
                                                                 <a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}" target="_blank">
                                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                                </a></center></td>
+                                                                </a>
+                                                            </center></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -724,7 +726,7 @@
                                                         <th class="tanggal_mulai">Tanggal Mulai</th>
                                                         <th class="tanggal_selesai">Tanggal Selesai</th>
                                                         <th class="tahun_diklat">Tahun Diklat</th>
-                                                        <th class="durasi_jam">Durasi</th>
+                                                        <th class="durasi_jam">Durasi (Jam)</th>
                                                         <th class="dokumen_diklat">Dokumen Diklat</th>
                                                     </tr>
                                                 </thead>
@@ -740,7 +742,7 @@
                                                     <td class="tanggal_mulai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_mulai)->formatLocalized('%d %B %Y') }}</center></td>
                                                     <td class="tanggal_selesai"><center>{{ \Carbon\Carbon::parse($result_diklat->tanggal_selesai)->formatLocalized('%d %B %Y') }}</center></td>
                                                     <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
-                                                    <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
+                                                    <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }} Jam</center></td>
                                                     <td class="dokumen_diklat"><center>
                                                         <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank">
                                                             <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
@@ -764,7 +766,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Nama Pegawai</th>
+                                                    <th>Nama</th>
                                                     <th>NIP</th>
                                                     <th>Golongan Awal</th>
                                                     <th>Golongan Akhir</th>
@@ -773,36 +775,37 @@
                                                     <th>Tanggal SK Kenaikan Gaji Berkala</th>
                                                     <th>Nomor SK Kenaikan Gaji Berkala</th>
                                                     <th>Tanggal Berlaku</th>
-                                                    <th>Masa Kerja Golongan</th>
-                                                    <th>Masa Kerja</th>
+                                                    <th>Masa Kerja Golongan (Tahun)</th>
+                                                    <th>Masa Kerja (Tahun)</th>
                                                     <th>Terhitung Mulai Tanggal Kenaikan Gaji Berkala</th>
                                                     <th>Dokumen KGB</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($data_kgb as $sqlPMK => $result_pmk)
+                                                @foreach ($data_kgb as $sqlKGB => $result_kgb)
                                                     <tr>
-                                                        <td>{{ ++$sqlPMK }}</td>
-                                                        <td hidden class="id">{{ $result_pmk->id }}</td>
-                                                        <td class="name">{{ $result_pmk->name }}</td>
-                                                        <td class="nip">{{ $result_pmk->nip }}</td>
-                                                        <td class="golongan_awal">{{ $result_pmk->golongan_awal }}</td>
-                                                        <td class="golongan_akhir">{{ $result_pmk->golongan_akhir }}</td>
-                                                        <td class="gapok_lama">{{ $result_pmk->gapok_lama }}</td>
-                                                        <td class="gapok_baru">{{ $result_pmk->gapok_baru }}</td>
-                                                        <td class="tgl_sk_kgb"><center>{{ \Carbon\Carbon::parse($result_pmk->tgl_sk_kgb)->formatLocalized('%d %B %Y') }}</center></td>
-                                                        <td class="no_sk_kgb">{{ $result_pmk->no_sk_kgb }}</td>
-                                                        <td class="tgl_berlaku"><center>{{ \Carbon\Carbon::parse($result_pmk->tgl_berlaku)->formatLocalized('%d %B %Y') }}</center></td>
-                                                        <td class="masa_kerja_golongan">{{ $result_pmk->masa_kerja_golongan }}</td>
-                                                        <td class="masa_kerja">{{ $result_pmk->masa_kerja }}</td>
-                                                        <td class="tmt_kgb"><center>{{ \Carbon\Carbon::parse($result_pmk->tmt_kgb)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td>{{ ++$sqlKGB }}</td>
+                                                        <td hidden class="id"><center>{{ $result_kgb->id }}</center></td>
+                                                        <td class="name"><center>{{ $result_kgb->name }}</center></td>
+                                                        <td class="nip"><center>{{ $result_kgb->nip }}</center></td>
+                                                        <td class="golongan_awal"><center>{{ $result_kgb->golongan_awal }}</center></td>
+                                                        <td class="golongan_akhir"><center>{{ $result_kgb->golongan_akhir }}</center></td>
+                                                        <td class="gapok_lama"><center>Rp. {{ number_format($result_kgb->gapok_lama, 0, ',', '.') }}</center></td>
+                                                        <td class="gapok_baru"><center>Rp. {{ number_format($result_kgb->gapok_baru, 0, ',', '.') }}</center></td>
+                                                        <td class="tgl_sk_kgb"><center>{{ \Carbon\Carbon::parse($result_kgb->tgl_sk_kgb)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="no_sk_kgb"><center>{{ $result_kgb->no_sk_kgb }}</center></td>
+                                                        <td class="tgl_berlaku"><center>{{ \Carbon\Carbon::parse($result_kgb->tgl_berlaku)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="masa_kerja_golongan"><center>{{ $result_kgb->masa_kerja_golongan }} Tahun</center></td>
+                                                        <td class="masa_kerja"><center>{{ $result_kgb->masa_kerja }} Tahun</center></td>
+                                                        <td class="tmt_kgb"><center>{{ \Carbon\Carbon::parse($result_kgb->tmt_kgb)->formatLocalized('%d %B %Y') }}</center></td>
                                                         <td class="dokumen_kgb"><center>
-                                                                <a href="{{ asset('assets/DokumenKGB/' . $result_pmk->dokumen_kgb) }}" target="_blank">
-                                                                    @if (pathinfo($result_pmk->dokumen_kgb, PATHINFO_EXTENSION) == 'pdf')
-                                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                                    @endif
-                                                                        <td hidden class="dokumen_kgb">{{ $result_pmk->dokumen_kgb }}</td>
-                                                                </a></center></td>
+                                                            <a href="{{ asset('assets/DokumenKGB/' . $result_kgb->dokumen_kgb) }}" target="_blank">
+                                                                @if (pathinfo($result_kgb->dokumen_kgb, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                                @endif
+                                                                    <td hidden class="dokumen_kgb">{{ $result_kgb->dokumen_kgb }}</td>
+                                                            </a>
+                                                        </center></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -818,7 +821,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-striped custom-table" id="tablePMK" style="width: 100%">
+                                        <table class="table table-striped custom-table datatable">
                                             <thead>
                                                 <tr>
                                                     <th class="no">No</th>
@@ -839,17 +842,17 @@
                                                 @foreach ($riwayatPMK as $sqlPMK => $result_pmk)
                                                     <tr>
                                                         <td>{{ ++$sqlPMK }}</td>
-                                                        <td hidden class="id">{{ $result_pmk->id }}</td>
-                                                        <td class="jenis_pmk">{{ $result_pmk->jenis_pmk }}</td>
-                                                        <td class="instansi">{{ $result_pmk->instansi }}</td>
-                                                        <td class="tanggal_awal">{{ $result_pmk->tanggal_awal }}</td>
-                                                        <td class="tanggal_akhir">{{ $result_pmk->tanggal_akhir }}</td>
-                                                        <td class="no_sk">{{ $result_pmk->no_sk }}</td>
-                                                        <td class="tanggal_sk">{{ $result_pmk->tanggal_sk }}</td>
+                                                        <td hidden class="id"><center>{{ $result_pmk->id }}</center></td>
+                                                        <td class="jenis_pmk"><center>{{ $result_pmk->jenis_pmk }}</center></td>
+                                                        <td class="instansi"><center>{{ $result_pmk->instansi }}</center></td>
+                                                        <td class="tanggal_awal"><center>{{ \Carbon\Carbon::parse($result_pmk->tanggal_awal)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="tanggal_akhir"><center>{{ \Carbon\Carbon::parse($result_pmk->tanggal_akhir)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="no_sk"><center>{{ $result_pmk->no_sk }}</center></td>
+                                                        <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_pmk->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
                                                         <td class="no_bkn"><center>{{ $result_pmk->no_bkn }}</center></td>
-                                                        <td class="tanggal_bkn">{{ $result_pmk->tanggal_bkn }}</td>
-                                                        <td class="masa_tahun"><center>{{ $result_pmk->masa_tahun }}</center></td>
-                                                        <td class="masa_bulan">{{ $result_pmk->masa_bulan }}</td>
+                                                        <td class="tanggal_bkn"><center>{{ \Carbon\Carbon::parse($result_pmk->tanggal_bkn)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="masa_tahun"><center>{{ $result_pmk->masa_tahun }} Tahun</center></td>
+                                                        <td class="masa_bulan"><center>{{ $result_pmk->masa_bulan }} Bulan</center></td>
                                                         <td class="dokumen_pmk"><center>
                                                                 <a href="{{ asset('assets/DokumenPMK/' . $result_pmk->dokumen_pmk) }}" target="_blank">
                                                                     @if (pathinfo($result_pmk->dokumen_pmk, PATHINFO_EXTENSION) == 'pdf')
@@ -872,7 +875,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-striped custom-table">
+                                        <table class="table table-striped custom-table datatable">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -898,7 +901,7 @@
                                                         <td hidden class="id"><center>{{ $result_angka_kredit->id }}</center></td>
                                                         <td class="nama_jabatan"><center>{{ $result_angka_kredit->nama_jabatan }}</center></td>
                                                         <td class="nomor_sk"><center>{{ $result_angka_kredit->nomor_sk }}</center></td>
-                                                        <td class="tanggal_sk"><center>{{ $result_angka_kredit->tanggal_sk }}</center></td>
+                                                        <td class="tanggal_sk"><center>{{ \Carbon\Carbon::parse($result_angka_kredit->tanggal_sk)->formatLocalized('%d %B %Y') }}</center></td>
                                                         <td class="angka_kredit_pertama"><center>{{ $result_angka_kredit->angka_kredit_pertama }}</center></td>
                                                         <td class="integrasi"><center>{{ $result_angka_kredit->integrasi }}</center></td>
                                                         <td class="konversi"><center>{{ $result_angka_kredit->konversi }}</center></td>
@@ -909,7 +912,6 @@
                                                         <td class="angka_kredit_utama"><center>{{ $result_angka_kredit->angka_kredit_utama }}</center></td>
                                                         <td class="angka_kredit_penunjang"><center>{{ $result_angka_kredit->angka_kredit_penunjang }}</center></td>
                                                         <td class="total_angka_kredit"><center>{{ $result_angka_kredit->total_angka_kredit }}</center></td>
-
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -925,24 +927,24 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-striped custom-table">
+                                        <table class="table table-striped custom-table datatable">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Status Hidup</th>
                                                     <th>Status Pekerjaan Orang Tua</th>
                                                     <th>NIP</th>
+                                                    <th>Tanggal Meninggal</th>
                                                     <th>Nama Orang Tua</th>
                                                     <th>Tanggal Lahir</th>
-                                                    <th>Jenis Kelamin</th>
-                                                    <th>Tanggal Meninggal</th>
                                                     <th>Jenis Identitas</th>
-                                                    <th>Nomor HP</th>
-                                                    <th>Nomor Telepon</th>
+                                                    <th>Jenis Kelamin</th>
                                                     <th>Agama</th>
                                                     <th>Status Pernikahan</th>
-                                                    <th>Email</th>
                                                     <th>Alamat</th>
+                                                    <th>E-Mail</th>
+                                                    <th>No HP</th>
+                                                    <th>No Telp</th>
                                                     <th>Dokumen Kartu Keluarga</th>
                                                     <th>Dokumen Akta Anak</th>
                                                     <th>Pas Foto Ayah</th>
@@ -952,49 +954,57 @@
                                             <tbody>
                                                 @foreach ($riwayatOrtu as $sqlOrtu => $result_Ortu)
                                                     <tr>
-                                                        <td><center>{{ ++$sqlOrtu }}</center></td>
+                                                        <td>{{ ++$sqlOrtu }}</td>
                                                         <td class="status_hidup"><center>{{ $result_Ortu->status_hidup }}</center></td>
                                                         <td class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
                                                         <td class="nip"><center>{{ $result_Ortu->nip }}</center></td>
+                                                        <td class="tanggal_meninggal"><center>
+                                                            @if($result_Ortu->tanggal_meninggal)
+                                                                {{ \Carbon\Carbon::parse($result_Ortu->tanggal_meninggal)->formatLocalized('%d %B %Y') }}
+                                                            @endif
+                                                        </center></td>
                                                         <td class="nama"><center>{{ $result_Ortu->nama }}</center></td>
-                                                        <td class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
-                                                        <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
-                                                        <td class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
+                                                        <td class="tanggal_lahir"><center>{{ \Carbon\Carbon::parse($result_Ortu->tanggal_lahir)->formatLocalized('%d %B %Y') }}</center></td>
                                                         <td class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
-                                                        <td class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
-                                                        <td class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
+                                                        <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
                                                         <td class="agama"><center>{{ $result_Ortu->agama }}</center></td>
                                                         <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
-                                                        <td class="email"><center>{{ $result_Ortu->email }}</center></td>
                                                         <td class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
+                                                        <td class="email"><center>{{ $result_Ortu->email }}</center></td>
+                                                        <td class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
+                                                        <td class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
                                                         <td class="dokumen_kk"><center>
                                                             <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
                                                                 @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
                                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                                 @endif
-                                                                <td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>
-                                                            </a></center></td>
+                                                                    <td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>
+                                                            </a>
+                                                        </center></td>
                                                         <td class="dokumen_akta_lahir_anak"><center>
                                                             <a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank">
                                                                 @if (pathinfo($result_Ortu->dokumen_akta_lahir_anak, PATHINFO_EXTENSION) == 'pdf')
                                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                                 @endif
-                                                                <td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>
-                                                            </a></center></td>
+                                                                    <td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>
+                                                            </a>
+                                                        </center></td>
                                                         <td class="pas_foto_ayah"><center>
                                                             <a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank">
                                                                 @if (in_array(pathinfo($result_Ortu->pas_foto_ayah, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                                     <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                                 @endif
-                                                                <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
+                                                                    <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
                                                             </a>
+                                                        </center></td>
                                                         <td class="pas_foto_ibu"><center>
                                                             <a href="{{ asset('assets/DokumenPasFotoIbu/' . $result_Ortu->pas_foto_ibu) }}" target="_blank">
                                                                 @if (in_array(pathinfo($result_Ortu->pas_foto_ibu, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                                     <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                                 @endif
-                                                                <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
+                                                                    <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
                                                             </a>
+                                                        </center></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -1010,25 +1020,25 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-striped custom-table">
+                                        <table class="table table-striped custom-table datatable">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Suami/Istri ke</th>
-                                                    <th>Status Pekerjaan</th>
+                                                    <th>Suami/Istri Ke</th>
+                                                    <th>Status Pekerjaan Pasangan</th>
                                                     <th>NIP</th>
+                                                    <th>Status Pernikahan</th>
                                                     <th>Nama Pasangan</th>
                                                     <th>Tanggal Lahir</th>
-                                                    <th>Jenis Kelamin</th>
                                                     <th>Jenis Identitas</th>
-                                                    <th>Nomor HP</th>
-                                                    <th>Nomor Telepon</th>
+                                                    <th>Jenis Kelamin</th>
                                                     <th>Agama</th>
-                                                    <th>Status Pernikahan</th>
                                                     <th>Status Hidup</th>
-                                                    <th>Email</th>
-                                                    <th>Nomor Karis/Karsu</th>
+                                                    <th>Nomor Karsu/Karis</th>
                                                     <th>Alamat</th>
+                                                    <th>No HP</th>
+                                                    <th>No Telp</th>
+                                                    <th>Email</th>
                                                     <th>Dokumen Nikah</th>
                                                     <th>Pas Foto</th>
                                                 </tr>
@@ -1036,36 +1046,38 @@
                                             <tbody>
                                                 @foreach ($riwayatPasangan as $sqlPasangan => $result_pasangan)
                                                     <tr>
-                                                        <td><center>{{ ++$sqlPasangan }}</center></td>
+                                                        <td>{{ ++$sqlPasangan }}</td>
                                                         <td class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
                                                         <td class="status_pekerjaan_pasangan"><center>{{ $result_pasangan->status_pekerjaan_pasangan }}</center></td>
                                                         <td class="nip"><center>{{ $result_pasangan->nip }}</center></td>
-                                                        <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
-                                                        <td class="tanggal_lahir"><center>{{ $result_pasangan->tanggal_lahir }}</center></td>
-                                                        <td class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
-                                                        <td class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
-                                                        <td class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
-                                                        <td class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
-                                                        <td class="agama"><center>{{ $result_pasangan->agama }}</center></td>
                                                         <td class="status_pernikahan"><center>{{ $result_pasangan->status_pernikahan }}</center></td>
+                                                        <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
+                                                        <td class="tanggal_lahir"><center>{{ \Carbon\Carbon::parse($result_pasangan->tanggal_lahir)->formatLocalized('%d %B %Y') }}</center></td>
+                                                        <td class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
+                                                        <td class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
+                                                        <td class="agama"><center>{{ $result_pasangan->agama }}</center></td>
                                                         <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
-                                                        <td class="email"><center>{{ $result_pasangan->email }}</center></td>
                                                         <td class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
                                                         <td class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
+                                                        <td class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
+                                                        <td class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
+                                                        <td class="email"><center>{{ $result_pasangan->email }}</center></td>
                                                         <td class="dokumen_nikah"><center>
                                                             <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
                                                                 @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
                                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                                 @endif
-                                                                <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
-                                                            </a></center></td>
+                                                                    <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
+                                                            </a>
+                                                        </center></td>
                                                         <td class="pas_foto"><center>
                                                             <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
                                                                 @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                                     <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                                 @endif
-                                                                <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
+                                                                    <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
                                                             </a>
+                                                        </center></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -1080,11 +1092,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped custom-table" id="tableAngkaKredit">
+                                    <table class="table table-striped custom-table datatable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Orang Tua</th>
+                                                <th>Status Pekerjaan Anak</th>
                                                 <th>Nama Anak</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th>Tanggal Lahir</th>
@@ -1103,33 +1116,32 @@
                                             <tr>
                                                 <td><center>{{ ++$sqlAnak }}</center></td>
                                                 <td class="orang_tua"><center>{{ $result_anak->orang_tua }}</center></td>
+                                                <td class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
                                                 <td class="nama_anak"><center>{{ $result_anak->nama_anak }}</center></td>
                                                 <td class="jenis_kelamin"><center>{{ $result_anak->jenis_kelamin }}</center></td>
-                                                <td class="tanggal_lahir"><center>{{ $result_anak->tanggal_lahir }}</center></td>
+                                                <td class="tanggal_lahir"><center>{{ \Carbon\Carbon::parse($result_anak->tanggal_lahir)->formatLocalized('%d %B %Y') }}</center></td>
                                                 <td class="status_anak"><center>{{ $result_anak->status_anak }}</center></td>
                                                 <td class="jenis_dokumen"><center>{{ $result_anak->jenis_dokumen }}</center></td>
                                                 <td class="no_dokumen"><center>{{ $result_anak->no_dokumen }}</center></td>
                                                 <td class="agama"><center>{{ $result_anak->agama }}</center></td>
                                                 <td class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
                                                 <td class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
-                                                <td class="dokumen_akta_kelahiran">
-                                                    <center>
-                                                        <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
-                                                            @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
+                                                <td class="dokumen_akta_kelahiran"><center>
+                                                    <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
+                                                        @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
                                                             <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @endif
-                                                        </a>
-                                                    </center>
-                                                </td>
-                                                <td class="pas_foto">
-                                                    <center>
-                                                        <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
-                                                            @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                        @endif
+                                                            <td hidden class="dokumen_akta_kelahiran">{{ $result_anak->dokumen_akta_kelahiran }}</td>
+                                                    </a>
+                                                </center></td>
+                                                <td class="pas_foto"><center>
+                                                    <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
+                                                        @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                             <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                            @endif
-                                                        </a>
-                                                    </center>
-                                                </td>
+                                                        @endif
+                                                            <td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>
+                                                    </a>
+                                                </center></td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -1138,22 +1150,22 @@
                             </div>
                         </div>
                         </div>
-                            <!-- Riwayat Anak Tab -->
+                        <!-- Riwayat Anak Tab -->
 
                             <!-- Riwayat Penghargaan Tab -->
                             <div class="tab-pane fade" id="riwayat_penghargaan">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-striped custom-table">
+                                        <table class="table table-striped custom-table datatable">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Jenis Penghargaan</th>
-                                                    <th>Tahun Perolehan</th>
-                                                    <th>Nomor Surat</th>
-                                                    <th>Tanggal SK</th>
-                                                    <th>Dokumen Penghargaan</th>
+                                                    <th><center>No</center></th>
+                                                    <th><center>Jenis Penghargaan</center></th>
+                                                    <th><center>Tahun Perolehan</center></th>
+                                                    <th><center>Nomor Surat</center></th>
+                                                    <th><center>Tanggal SK</center></th>
+                                                    <th><center>Dokumen Penghargaan</center></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1164,15 +1176,15 @@
                                                         <td class="jenis_penghargaan"><center>{{ $result_penghargaan->jenis_penghargaan }}</center></td>
                                                         <td class="tahun_perolehan"><center>{{ $result_penghargaan->tahun_perolehan }}</center></td>
                                                         <td class="no_surat"><center>{{ $result_penghargaan->no_surat }}</center></td>
-                                                        <td class="tanggal_keputusan"><center>{{ $result_penghargaan->tanggal_keputusan }}</center></td>
+                                                        <td class="tanggal_keputusan"><center>{{ \Carbon\Carbon::parse($result_penghargaan->tanggal_keputusan)->formatLocalized('%d %B %Y') }}</center></td>
                                                         <td class="dokumen_penghargaan"><center>
                                                             <a href="{{ asset('assets/DokumenPenghargaan/' . $result_penghargaan->dokumen_penghargaan) }}" target="_blank">
                                                                 @if (pathinfo($result_penghargaan->dokumen_penghargaan, PATHINFO_EXTENSION) == 'pdf')
                                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                                 @endif
                                                                     <td hidden class="dokumen_penghargaan">{{ $result_penghargaan->dokumen_penghargaan }}</td>
-                                                            </a></center></td>
-
+                                                            </a>
+                                                        </center></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -1188,16 +1200,16 @@
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped custom-table" id="tableAngkaKredit">
+                                    <table class="table table-striped custom-table datatable">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
-                                                <th>Nama Organisasi</th>
-                                                <th>Jabatan Organisasi</th>
-                                                <th>Tanggal Gabung</th>
-                                                <th>Tanggal Selesai</th>
-                                                <th>Nomor Anggota</th>
-                                                <th>Dokumen Organisasi</th>
+                                                <th><center>No</center></th>
+                                                <th><center>Nama Organisasi</center></th>
+                                                <th><center>Jabatan Organisasi</center></th>
+                                                <th><center>Tanggal Gabung</center></th>
+                                                <th><center>Tanggal Selesai</center></th>
+                                                <th><center>Nomor Anggota</center></th>
+                                                <th><center>Dokumen Organisasi</center></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1207,8 +1219,8 @@
                                                     <td hidden class="id"><center>{{ $result_organisasi->id }}</center></td>
                                                     <td class="nama_organisasi"><center>{{ $result_organisasi->nama_organisasi }}</center></td>
                                                     <td class="jabatan_organisasi"><center>{{ $result_organisasi->jabatan_organisasi }}</center></td>
-                                                    <td class="tanggal_gabung"><center>{{ $result_organisasi->tanggal_gabung }}</center></td>
-                                                    <td class="tanggal_selesai"><center>{{ $result_organisasi->tanggal_selesai }}</center></td>
+                                                    <td class="tanggal_gabung"><center>{{ \Carbon\Carbon::parse($result_organisasi->tanggal_gabung)->formatLocalized('%d %B %Y') }}</center></td>
+                                                    <td class="tanggal_selesai"><center>{{ \Carbon\Carbon::parse($result_organisasi->tanggal_selesai)->formatLocalized('%d %B %Y') }}</center></td>
                                                     <td class="no_anggota"><center>{{ $result_organisasi->no_anggota }}</center></td>
                                                     <td class="dokumen_organisasi"><center>
                                                         <a href="{{ asset('assets/DokumenOrganisasi/' . $result_organisasi->dokumen_organisasi) }}" target="_blank">
@@ -1216,8 +1228,8 @@
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_organisasi">{{ $result_organisasi->dokumen_organisasi }}</td>
-                                                        </a></center></td>
-
+                                                        </a>
+                                                    </center></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -1233,7 +1245,7 @@
                             <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped custom-table" id="tableAngkaKredit">
+                                    <table class="table table-striped custom-table datatable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -1261,12 +1273,12 @@
                                                     <td class="tingkat_hukuman"><center>{{ $result_hukuman_disiplin->tingkat_hukuman }}</center></td>
                                                     <td class="jenis_hukuman"><center>{{ $result_hukuman_disiplin->jenis_hukuman }}</center></td>
                                                     <td class="no_sk_hukuman"><center>{{ $result_hukuman_disiplin->no_sk_hukuman }}</center></td>
-                                                    <td class="tanggal_sk_hukuman"><center>{{ $result_hukuman_disiplin->tanggal_sk_hukuman }}</center></td>
+                                                    <td class="tanggal_sk_hukuman"><center>{{ \Carbon\Carbon::parse($result_hukuman_disiplin->tanggal_sk_hukuman)->formatLocalized('%d %B %Y') }}</center></td>
                                                     <td class="no_peraturan"><center>{{ $result_hukuman_disiplin->no_peraturan }}</center></td>
                                                     <td class="alasan"><center>{{ $result_hukuman_disiplin->alasan }}</center></td>
                                                     <td class="masa_hukuman_tahun"><center>{{ $result_hukuman_disiplin->masa_hukuman_tahun }}</center></td>
                                                     <td class="masa_hukuman_bulan"><center>{{ $result_hukuman_disiplin->masa_hukuman_bulan }}</center></td>
-                                                    <td class="tmt_hukuman"><center>{{ $result_hukuman_disiplin->tmt_hukuman }}</center></td>
+                                                    <td class="tmt_hukuman"><center>{{ \Carbon\Carbon::parse($result_hukuman_disiplin->tmt_hukuman)->formatLocalized('%d %B %Y') }}</center></td>
                                                     <td class="keterangan"><center>{{ $result_hukuman_disiplin->keterangan }}</center></td>
                                                     <td class="dokumen_sk_hukuman"><center>
                                                         <a href="{{ asset('assets/DokumenSKHukuman/' . $result_hukuman_disiplin->dokumen_sk_hukuman) }}" target="_blank">
@@ -1274,17 +1286,16 @@
                                                                 <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                             @endif
                                                                 <td hidden class="dokumen_sk_hukuman">{{ $result_hukuman_disiplin->dokumen_sk_hukuman }}</td>
-                                                        </a></center></td>
-                                                    <td class="dokumen_sk_pengaktifan">
-                                                        <center>
-                                                            <a href="{{ asset('assets/DokumenSKPengaktifan/' . $result_hukuman_disiplin->dokumen_sk_pengaktifan) }}" target="_blank">
-                                                                @if (pathinfo($result_hukuman_disiplin->dokumen_sk_pengaktifan, PATHINFO_EXTENSION) == 'pdf')
-                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                                @endif
-                                                            </a>
-                                                        </center>
-                                                        <td hidden class="dokumen_sk_pengaktifan">{{ $result_hukuman_disiplin->dokumen_sk_pengaktifan }}</td>
-                                                    </td>
+                                                        </a>
+                                                    </center></td>
+                                                    <td class="dokumen_sk_pengaktifan"><center>
+                                                        <a href="{{ asset('assets/DokumenSKPengaktifan/' . $result_hukuman_disiplin->dokumen_sk_pengaktifan) }}" target="_blank">
+                                                            @if (pathinfo($result_hukuman_disiplin->dokumen_sk_pengaktifan, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_sk_pengaktifan">{{ $result_hukuman_disiplin->dokumen_sk_pengaktifan }}</td>
+                                                        </a>
+                                                    </center></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -1309,7 +1320,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('profile/information/save') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('profile/information/save2') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -1380,7 +1391,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('profile/information/save') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('profile/information/save2') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -1458,14 +1469,6 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        {{-- <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
-                                            <div class="fileupload btn">
-                                                <span class="btn-text">edit</span>
-                                                <input class="upload" type="file" id="image" name="images">
-                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
-                                            </div>
-                                        </div> --}}
                                         <div class="profile-img-wrap edit-img">
                                             <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                             <div class="fileupload btn">
@@ -1510,14 +1513,6 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                        {{-- <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
-                                            <div class="fileupload btn">
-                                                <span class="btn-text">edit</span>
-                                                <input class="upload" type="file" id="image" name="images">
-                                                <input type="hidden" name="hidden_image" id="e_image" value="{{ Auth::user()->avatar }}">
-                                            </div>
-                                        </div> --}}
                                         <div class="profile-img-wrap edit-img">
                                             <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                             <div class="fileupload btn">
@@ -1548,185 +1543,6 @@
             <!-- /Profile Modal -->
         @endif
 
-
-
-                {{-- <!-- Profil Pegawai Modal Tambah -->
-                <div id="profil_pegawai_modal_tambah" class="modal custom-modal fade" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Profil Pegawai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('user/profile/pegawai/add') }}" method="POST">
-                                    @csrf
-                                    <input type="text" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}" readonly>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nama <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $result_profilpegawai->nama }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>NIP <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $result_profilpegawai->nip }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Gelar Depan <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $result_profilpegawai->gelar_depan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Gelar Belakang <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $result_profilpegawai->gelar_belakang }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tempat Lahir <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $result_profilpegawai->tempat_lahir }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $result_profilpegawai->tanggal_lahir }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $result_profilpegawai->jenis_kelamin }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Agama</label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('agama') is-invalid @enderror" name="agama" value="{{ $result_profilpegawai->agama }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Jenis Dokumen </label>
-                                                <input type="text" class="form-control @error('jenis_dokumen') is-invalid @enderror" name="jenis_dokumen" value="{{ $result_profilpegawai->jenis_dokumen }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Nomor Dokumen </label>
-                                                <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $result_profilpegawai->no_dokumen }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Kelurahan </label>
-                                                <input type="text" class="form-control @error('kelurahan') is-invalid @enderror" name="kelurahan" value="{{ $result_profilpegawai->kelurahan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"> <span class="text-danger">*</span></label>
-                                                <label>Kecamatan </label>
-                                                <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{ $result_profilpegawai->kecamatan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kota </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ $result_profilpegawai->kota }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Provinsi </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" value="{{ $result_profilpegawai->provinsi }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kode Pos </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $result_profilpegawai->kode_pos }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nomor HP </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $result_profilpegawai->no_hp }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $result_profilpegawai->no_telp }}">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Jenis Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" value="{{ $result_profilpegawai->jenis_pegawai }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Kedudukan PNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" value="{{ $result_profilpegawai->kedudukan_pns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Status Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai" value="{{ $result_profilpegawai->status_pegawai }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>TMT PNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $result_profilpegawai->tmt_pns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>No. Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $result_profilpegawai->no_seri_karpeg }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>TMT CPNS </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $result_profilpegawai->tmt_cpns }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tingkat Pendidikan </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" value="{{ $result_profilpegawai->tingkat_pendidikan }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" value="{{ $result_profilpegawai->pendidikan_terakhir }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="submit-section">
-                                        <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- /Profil Pegawai Modal Tambah --> --}}
-
                     <!-- Profil Pegawai Modal Edit -->
                     <div id="profil_pegawai_modal_edit" class="modal custom-modal fade" role="dialog">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1742,12 +1558,6 @@
                                         @csrf
                                         <input type="hidden" class="form-control" name="user_id" value="{{ $result_profilpegawai->user_id }}">
                                         <div class="row">
-                                            {{-- <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Nama <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $result_profilpegawai->nama }}">
-                                                </div>
-                                            </div> --}}
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>NIP <span class="text-danger">*</span></label>
@@ -1984,197 +1794,6 @@
                         </div>
                         </div>
                         <!-- /Profil Pegawai Modal Edit -->
-
-                        {{-- <!-- Posisi Jabatan Modal Tambah -->
-                        <div id="posisi_jabatan_modal_tambah" class="modal custom-modal fade" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Posisi & Jabatan Pegawai</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="validation" action="{{ route('user/profile/posisi/jabatan/add') }}" method="POST">
-                                            @csrf
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input type="hidden" class="form-control" name="user_id" value="{{ $result_posisijabatan->user_id }}" readonly>
-                                                    </div>
-                                                </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Unit Organisasi <span class="text-danger">*</span></label>
-                                                                @if (!empty($result_posisijabatan->unit_organisasi))
-                                                                <input type="text" class="form-control" name="unit_organisasi" value="{{ $result_posisijabatan->unit_organisasi }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="unit_organisasi">
-                                                                @endif
-                                                            </li>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Unit Organisasi Induk <span class="text-danger">*</span></label>
-                                                                @if (!empty($result_posisijabatan->unit_organisasi_induk))
-                                                                <input type="text" class="form-control" name="unit_organisasi_induk" value="{{ $result_posisijabatan->unit_organisasi_induk }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="unit_organisasi_induk">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Jenis Jabatan <span class="text-danger">*</span></label>
-                                                                @if (!empty($result_posisijabatan->jenis_jabatan))
-                                                                <input type="text" class="form-control" name="jenis_jabatan" value="{{ $result_posisijabatan->jenis_jabatan }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="jenis_jabatan">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Eselon</label>
-                                                                @if (!empty($result_posisijabatan->eselon))
-                                                                <input type="text" class="form-control" name="eselon" value="{{ $result_posisijabatan->eselon }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="eselon">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Jabatan</label>
-                                                                @if (!empty($result_posisijabatan->jabatan))
-                                                                <input type="text" class="form-control" name="jabatan" value="{{ $result_posisijabatan->jabatan }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="jabatan">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>TMT</label>
-                                                                @if (!empty($result_posisijabatan->tmt))
-                                                                <input type="text" class="form-control" name="tmt" value="{{ $result_posisijabatan->tmt }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="tmt">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Lokasi Kerja</label>
-                                                                @if (!empty($result_posisijabatan->lokasi_kerja))
-                                                                <input type="text" class="form-control" name="lokasi_kerja" value="{{ $result_posisijabatan->lokasi_kerja }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="lokasi_kerja">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Golongan Ruang Awal</label>
-                                                                @if (!empty($result_posisijabatan->gol_ruang_awal))
-                                                                <input type="text" class="form-control" name="gol_ruang_awal" value="{{ $result_posisijabatan->gol_ruang_awal }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="gol_ruang_awal">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Golongan Ruang Akhir</label>
-                                                                @if (!empty($result_posisijabatan->gol_ruang_akhir))
-                                                                <input type="text" class="form-control" name="gol_ruang_akhir" value="{{ $result_posisijabatan->gol_ruang_akhir }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="gol_ruang_akhir">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>TMT Golongan</label>
-                                                                @if (!empty($result_posisijabatan->tmt_golongan))
-                                                                <input type="text" class="form-control" name="tmt_golongan" value="{{ $result_posisijabatan->tmt_golongan }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="tmt_golongan">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Gaji Pokok</label>
-                                                                @if (!empty($result_posisijabatan->gaji_pokok))
-                                                                <input type="text" class="form-control" name="gaji_pokok" value="{{ $result_posisijabatan->gaji_pokok }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="gaji_pokok">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Masa Kerja (Tahun)</label>
-                                                                @if (!empty($result_posisijabatan->masa_kerja_tahun))
-                                                                <input type="text" class="form-control" name="masa_kerja_tahun" value="{{ $result_posisijabatan->masa_kerja_tahun }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="masa_kerja_tahun">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Masa Kerja (Bulan)</label>
-                                                                @if (!empty($result_posisijabatan->masa_kerja_bulan))
-                                                                <input type="text" class="form-control" name="masa_kerja_bulan" value="{{ $result_posisijabatan->masa_kerja_bulan }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="masa_kerja_bulan">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Nomor SPMT</label>
-                                                                @if (!empty($result_posisijabatan->no_spmt))
-                                                                <input type="text" class="form-control" name="no_spmt" value="{{ $result_posisijabatan->no_spmt }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="no_spmt">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Tanggal SPMT</label>
-                                                                @if (!empty($result_posisijabatan->tanggal_spmt))
-                                                                <input type="text" class="form-control" name="tanggal_spmt" value="{{ $result_posisijabatan->tanggal_spmt }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="tanggal_spmt">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>KPPN</label>
-                                                                @if (!empty($result_posisijabatan->kppn))
-                                                                <input type="text" class="form-control" name="kppn" value="{{ $result_posisijabatan->kppn }}">
-                                                                @else
-                                                                <input type="text" class="form-control" name="kppn">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Posisi Jabatan Modal Tambah --> --}}
 
                         <!-- Posisi Jabatan Modal Edit -->
                         <div id="posisi_jabatan_modal_edit" class="modal custom-modal fade" role="dialog">
@@ -2550,6 +2169,7 @@
         <!-- /FancyBox Foto Profil -->
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        
         <script>
 		$(".theSelect").select2();
 	    </script>

@@ -10,6 +10,12 @@ $(document).on('click', '.edit_spk_perawat', function()
     $('#e_dokumen_sip').val(_this.find('.dokumen_sip').text());
 });
 
+$(document).on('click', '.delete_spk_perawat', function() {
+    var _this = $(this).parents('tr');
+    $('.e_id').val(_this.find('.id').text());
+    $('.d_dokumen_sip_perawat').val(_this.find('.dokumen_sip').text());
+});
+
 $('#name').on('change',function()
 {
     $('#user_id').val($(this).find(':selected').data('user_id'));

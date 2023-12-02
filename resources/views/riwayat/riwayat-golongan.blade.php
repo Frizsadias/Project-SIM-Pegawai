@@ -159,7 +159,7 @@
                                     <div class="form-group">
                                         <label>Golongan</label><br>
                                         <select name="golongan" class="theSelect" id="golongan" required>
-                                            <option selected disabled>-- Pilih Golongan--</option>
+                                            <option selected disabled>-- Pilih Golongan --</option>
                                             @foreach ($golonganOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
                                             @endforeach
@@ -270,8 +270,11 @@
                                         <label>Golongan</label>
                                         <br>
                                         <select class="theSelect" name="golongan" id="e_golongan">
+                                            <option selected disabled>-- Pilih Golongan --</option>
                                             @foreach ($golonganOptions as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @if (!empty($result_golongan->golongan))
+                                                    <option value="{{ $key }}" {{ $key == $result_golongan->golongan ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>

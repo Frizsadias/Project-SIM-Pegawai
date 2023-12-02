@@ -293,8 +293,11 @@
                                         <label>Tingkat Pendidikan</label>
                                         <br>
                                         <select name="ting_ped" class="theSelect" id="e_ting_ped">
+                                            <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
                                             @foreach($tingkatpendidikanOptions as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @if (!empty($result_pendidikan->ting_ped))
+                                                    <option value="{{ $key }}" {{ $key == $result_pendidikan->ting_ped ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -304,8 +307,11 @@
                                         <label>Pendidikan</label>
                                         <br>
                                         <select class="theSelect" name="pendidikan" id="e_pendidikan">
+                                            <option selected disabled>-- Pilih Pendidikan --</option>
                                             @foreach($pendidikanterakhirOptions as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @if (!empty($result_pendidikan->pendidikan))
+                                                    <option value="{{ $key }}" {{ $key == $result_pendidikan->pendidikan ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>

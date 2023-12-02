@@ -15,6 +15,10 @@
                         </div>
                     </div>
                     <!-- /Page Header -->
+
+                    {{-- message --}}
+                    {!! Toastr::message() !!}
+            
                     <form method="POST" action="{{ route('change/password/db') }}">
                         @csrf
                         <div class="form-group">
@@ -75,7 +79,9 @@
         <!-- /Page Content -->
     </div>
     <!-- /Page Wrapper -->
+
     @section('script')
         <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
+
     @endsection
 @endsection

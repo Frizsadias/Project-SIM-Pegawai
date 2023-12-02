@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table" id="tableAngkaKredit">
+                        <table class="table table-striped custom-table datatable">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -156,7 +156,7 @@
                                         <label>Nama Jabatan</label>
                                         <small class="text-danger">*</small>
                                         <br>
-                                        <select class="theSelect form-control" name="nama_jabatan" required>
+                                        <select class="theSelect" name="nama_jabatan" required>
                                             <option selected disabled> --Pilih Nama Jabatan --</option>
                                             @foreach ($jenisjabatanOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -287,11 +287,12 @@
                                         <label>Nama Jabatan</label>
                                         <small class="text-danger">*</small>
                                         <br>
-                                        <select class="theSelect form-control" name="nama_jabatan" id="e_nama_jabatan"
-                                            required>
+                                        <select class="theSelect" name="nama_jabatan" id="e_nama_jabatan" required>
                                             <option selected disabled> --Pilih Nama Jabatan --</option>
                                             @foreach ($jenisjabatanOptions as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @if (!empty($result_angka_kredit->nama_jabatan))
+                                                    <option value="{{ $key }}" {{ $key == $result_angka_kredit->nama_jabatan ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>

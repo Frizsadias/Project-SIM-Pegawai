@@ -838,11 +838,19 @@ class UserManagementController extends Controller
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);
+        
+        DB::beginTransaction();
+        try {
 
         User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
-        DB::commit();
-        Toastr::success('Kata sandi berhasil diperbaharui :)', 'Success');
-        return redirect()->intended('home');
+            DB::commit();
+            Toastr::success('Kata sandi berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Toastr::error('Kata sandi gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
     }
 
     /** Tambah Data Profil Pegawai */

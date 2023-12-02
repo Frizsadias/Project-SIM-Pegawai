@@ -251,8 +251,11 @@
                                         <label>Jenis Diklat</label>
                                         <br>
                                         <select class="theSelect" name="jenis_diklat" id="e_jenis_diklat">
+                                            <option selected disabled>-- Pilih Jenis Diklat --</option>
                                             @foreach($jenisdiklatOptions as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @if (!empty($result_diklat->jenis_diklat))
+                                                    <option value="{{ $key }}" {{ $key == $result_diklat->jenis_diklat ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>

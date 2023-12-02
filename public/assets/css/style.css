@@ -7985,7 +7985,7 @@ ul.comment-list li ul.children {
 	.nav-tabs.nav-tabs-bottom > li > a.active, 
 	.nav-tabs.nav-tabs-bottom > li > a.active:hover, 
 	.nav-tabs.nav-tabs-bottom > li > a.active:focus {
-		border-bottom-width: 4px;
+		border-bottom-width: 3px;
 		border-color: transparent;
 		border-bottom-color: #f43b48;
 		background-color: transparent;

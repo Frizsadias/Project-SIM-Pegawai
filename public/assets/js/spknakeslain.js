@@ -10,6 +10,12 @@ $(document).on('click', '.edit_spk_nakes_lain', function()
     $('#e_dokumen_sip').val(_this.find('.dokumen_sip').text());
 });
 
+$(document).on('click', '.delete_spk_nakes_lain', function() {
+    var _this = $(this).parents('tr');
+    $('.e_id').val(_this.find('.id').text());
+    $('.d_dokumen_sip').val(_this.find('.dokumen_sip').text());
+});
+
 $('#name').on('change',function()
 {
     $('#user_id').val($(this).find(':selected').data('user_id'));

@@ -77,8 +77,8 @@
                                 <th>Tanggal SK Kenaikan Gaji Berkala</th>
                                 <th>Nomor SK Kenaikan Gaji Berkala</th>
                                 <th>Tanggal Berlaku</th>
-                                <th>Masa Kerja Golongan</th>
-                                <th>Masa Kerja</th>
+                                <th>Masa Kerja Golongan (Tahun)</th>
+                                <th>Masa Kerja (Tahun)</th>
                                 <th>Terhitung Mulai Tanggal Kenaikan Gaji Berkala</th>
                                 <th>Dokumen KGB</th>
                                 <th class="text-right no-sort">Aksi</th>
@@ -234,16 +234,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Masa Kerja Golongan</label>
-                                    <input type="text" class="form-control" name="masa_kerja_golongan" placeholder="Masa Kerja Golongan">
+                                    <label>Masa Kerja Golongan (Tahun)</label>
+                                    <input type="number" class="form-control" name="masa_kerja_golongan" placeholder="Masa Kerja Golongan">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Masa Kerja</label>
-                                    <input type="text" class="form-control" name="masa_kerja" placeholder="Masa Kerja">
+                                    <label>Masa Kerja (Tahun)</label>
+                                    <input type="number" class="form-control" name="masa_kerja" placeholder="Masa Kerja">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -286,7 +286,9 @@
                                     <select name="golongan_awal" class="theSelect" id="e_golongan_awal">
                                         <option selected disabled>-- Pilih Golongan Awal --</option>
                                         @foreach ($golonganOptions as $key => $value)
-                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            @if (!empty($result_kgb->golongan_awal))
+                                                <option value="{{ $key }}" {{ $key == $result_kgb->golongan_awal ? 'selected' : '' }}>{{ $value }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -298,7 +300,9 @@
                                     <select name="golongan_akhir" class="theSelect" id="e_golongan_akhir">
                                         <option selected disabled>-- Pilih Golongan Akhir --</option>
                                         @foreach ($golonganOptions as $key => $value)
-                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            @if (!empty($result_kgb->golongan_akhir))
+                                                <option value="{{ $key }}" {{ $key == $result_kgb->golongan_akhir ? 'selected' : '' }}>{{ $value }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -342,16 +346,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Masa Kerja Golongan</label>
-                                    <input type="text" class="form-control" name="masa_kerja_golongan" id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
+                                    <label>Masa Kerja Golongan (Tahun)</label>
+                                    <input type="number" class="form-control" name="masa_kerja_golongan" id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Masa Kerja</label>
-                                    <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja" placeholder="Masa Kerja" value="">
+                                    <label>Masa Kerja (Tahun)</label>
+                                    <input type="number" class="form-control" name="masa_kerja" id="e_masa_kerja" placeholder="Masa Kerja" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">

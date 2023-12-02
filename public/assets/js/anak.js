@@ -44,13 +44,3 @@ $(document).on('click', '.delete_anak', function() {
     $('.d_dokumen_akta_kelahiran').val(_this.find('.dokumen_akta_kelahiran').text());
     $('.d_pas_foto').val(_this.find('.pas_foto').text());
 });
-
-$(document).ready(function() {
-    $('.exclusive').change(function() {
-        if ($(this).prop('checked')) {
-            $('.exclusive').not(this).prop('disabled', true);
-        } else {
-            $('.exclusive').prop('disabled', false);
-        }
-    });
-});

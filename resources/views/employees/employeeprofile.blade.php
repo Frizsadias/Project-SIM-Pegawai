@@ -5483,7 +5483,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('profile/information/save') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('profile/information/save2') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">

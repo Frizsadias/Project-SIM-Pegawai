@@ -76,6 +76,7 @@
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item edit_spk_perawat" href="#" data-toggle="modal" data-target="#edit_spk_perawat"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item delete_spk_perawat" href="#" data-toggle="modal" data-target="#delete_spk_perawat"><i class="fa fa-trash-o m-r-5"></i>Delete</a>
                                             </div>
                                         </div>
                                     </td>
@@ -105,69 +106,51 @@
                         <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
                         @foreach ($data_profil_sip as $result_profil_sip)
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nama</label>
-                                        <input type="text" class="form-control" name="name" value="{{ $result_profil_sip->name }}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>NIP</label>
-                                        <input type="text" class="form-control" name="nip" value="{{ $result_profil_sip->nip }}" readonly>
-                                    </div>
-                                </div>
+                                {{-- <label>Nama</label> --}}
+                                <input type="hidden" class="form-control" name="name" value="{{ $result_profil_sip->name }}" readonly>
+                                {{-- <label>NIP</label> --}}
+                                <input type="hidden" class="form-control" name="nip" value="{{ $result_profil_sip->nip }}" readonly>
                             </div>
                         @endforeach
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Jabatan</label>
-                                    <input type="text" class="form-control" name="sip_spk_jabatan" value="Perawat" readonly>
-                                </div>
-                            </div>
+                            {{-- <label>Jabatan</label> --}}
+                            <input type="hidden" class="form-control" name="sip_spk_jabatan" value="Perawat" readonly>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Unit Kerja</label>
                                     <input type="text" class="form-control" name="unit_kerja" placeholder="Unit Kerja">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nomor SPK</label>
                                     <input type="text" class="form-control" name="nomor_sip" placeholder="Nomor SPK">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Terbit</label>
                                     <input type="date" class="form-control" name="tanggal_terbit">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Berlaku</label>
                                     <input type="date" class="form-control" name="tanggal_berlaku">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Jenis Dokumen</label>
-                                    <input type="text" class="form-control" name="jenis_dokumen" value="SPK Perawat" readonly>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
+                            {{-- <label>Jenis Dokumen</label> --}}
+                            <input type="hidden" class="form-control" name="jenis_dokumen" value="SPK Perawat" readonly>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Ruangan</label>
                                     <br>
                                     <select class="theSelect" name="ruangan">
-                                        <option value="" disabled selected>-- Pilih Ruangan --</option>
+                                        <option selected disabled>-- Pilih Ruangan --</option>
                                         @foreach($ruanganOptions as $key => $value)
                                             <option value="{{ $key }}">{{ $value }}</option>
                                         @endforeach
@@ -240,9 +223,11 @@
                                     <label>Ruangan</label>
                                     <br>
                                     <select class="theSelect" name="ruangan" id="e_ruangan">
-                                        <option value="" disabled selected>-- Pilih Ruangan --</option>
+                                        <option selected disabled>-- Pilih Ruangan --</option>
                                         @foreach($ruanganOptions as $key => $value)
-                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            @if (!empty($result_spk_perawat->ruangan))
+                                                <option value="{{ $key }}" {{ $key == $result_spk_perawat->ruangan ? 'selected' : '' }}>{{ $value }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -265,6 +250,38 @@
         </div>
     </div>
     <!-- /Edit SPK Perawat Modal -->
+
+    <!-- Delete SPK Perawat Modal -->
+    <div class="modal custom-modal fade" id="delete_spk_perawat" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-header">
+                        <h3>Hapus SPK Perawat</h3>
+                        <p>Apakah anda yakin ingin menghapus data ini?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <form action="{{ route('transaksi/spk-perawat/hapus-data') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" class="e_id" value="">
+                            <input type="hidden" name="dokumen_sip" class="d_dokumen_sip_perawat" value="">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="javascript:void(0);" data-dismiss="modal"
+                                        class="btn btn-primary cancel-btn">Kembali</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Delete SPK Perawat Modal -->
+
 </div>
 <!-- /Page Wrapper -->
 

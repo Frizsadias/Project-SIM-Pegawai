@@ -1824,7 +1824,7 @@ class LayananController extends Controller
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data kenaikan gaji berkala gagal dihapus :)', 'Error');
+            Toastr::error('Data kenaikan gaji berkala gagal dihapus :(', 'Error');
             return redirect()->back();
         }
     }

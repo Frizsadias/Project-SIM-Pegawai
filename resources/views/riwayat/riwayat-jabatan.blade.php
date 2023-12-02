@@ -29,7 +29,7 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
                             <select class="form-control" id="jenis_jabatan_riwayat" name="jenis_jabatan_riwayat">
-                                <option selected disabled> --Pilih Jenis Jabatan --</option>
+                                <option selected disabled>-- Pilih Jenis Jabatan --</option>
                                 @foreach ($jenisjabatanOptions as $key => $value)
                                     <option value="{{ $key }}">{{ $value }}</option>
                                 @endforeach
@@ -267,8 +267,11 @@
                                         <label>Jenis Jabatan</label>
                                         <br>
                                         <select class="theSelect" name="jenis_jabatan_riwayat" id="e_jenis_jabatan_riwayat">
+                                            <option selected disabled>-- Pilih Jenis Jabatan --</option>
                                             @foreach ($jenisjabatanOptions as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @if (!empty($result_jabatan->jenis_jabatan_riwayat))
+                                                    <option value="{{ $key }}" {{ $key == $result_jabatan->jenis_jabatan_riwayat ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
