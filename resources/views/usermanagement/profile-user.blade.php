@@ -1337,7 +1337,7 @@
                                                     <label>Tanggal Lahir</label>
                                                     <div class="cal-icon">
                                                         <input class="form-control datetimepicker" type="text" id="birthDate" name="birthDate" value="{{ $information->tgl_lahir }}">
-                                                        <small class="text-danger">Example : 10-10-2013</small>
+                                                        <small class="text-danger">Example : 10-10-2023</small>
                                                     </div>
                                                 </div>
                                             </div>
