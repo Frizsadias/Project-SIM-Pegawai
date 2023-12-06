@@ -40,6 +40,7 @@
 
             <!-- Search Filter -->
             <form action="{{ route('layanan/cuti/cari') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
@@ -72,7 +73,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                            <table class="table table-striped custom-table mb-0 datatable">
+                            {{-- <table class="table table-striped custom-table" id="tableCuti" style="width: 100%"> --}}
+                            <table class="table table-striped custom-table datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -113,7 +115,8 @@
                                                     <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                 @endif
                                                     <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
-                                            </a></td>
+                                            </a>
+                                        </td>
                                         <td class="status_pengajuan">
                                             <div class="dropdown">
                                                 <a class="status-persetujuan-superadmin">
@@ -367,6 +370,103 @@
     <!-- /Page Wrapper -->
     
     @section('script')
+        {{-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var table = $('#tableCuti').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "{{ route('get-cuti-data') }}",
+                        "data": function(d) {
+                            d.keyword = $('#keyword').val();
+                            d._token = "{{ csrf_token() }}";
+                        }
+                    },
+                    "columns": [
+                            {
+                                "data": "id"
+                            },
+                            {
+                                "data": "name"
+                            },
+                            {
+                                "data": "nip"
+                            },
+                            {
+                                "data": "jenis_cuti"
+                            },
+                            {
+                                "data": "lama_cuti"
+                            },
+                            {
+                                "data": "sisa_cuti"
+                            },
+                            {
+                                "data": "tanggal_mulai_cuti"
+                            },
+                            {
+                                "data": "tanggal_selesai_cuti"
+                            },
+                            { 
+                                data: "created_at",
+                                    render: function (data) {
+                                        return moment(data).format('DD MMMM YYYY');
+                                    }
+                            },
+                            {
+                                data: "dokumen_kelengkapan",
+                                    render: function(data, type, row) {
+                                        var extension = data.split('.').pop().toLowerCase();
+                                        var icon = '';
+
+                                        if (extension === 'pdf') {
+                                            icon = '<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>';
+                                        }
+
+                                            return '<center><a href="{{ asset("assets/DokumenKelengkapan/") }}' + '/' + data + '" target="_blank">' + icon + '</a></center><td hidden class="dokumen_kelengkapan"></td>';
+                                    }
+                            },
+                            {
+                                "data": "status_pengajuan"
+                            },
+                            { 
+                                "data": "progress_persetujuan",
+                            },
+                            {
+                                "data": "action"
+                            },
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "No data available in table",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<<",
+                            "last": ">>",
+                        }
+                    },
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
+
+                // Live search
+                $('#search-form').on('submit', function(e) {
+                    e.preventDefault();
+                    table
+                        .search($('#keyword').val())
+                        .draw();
+                })
+            });
+        </script> --}}
+
         <script src="{{ asset('assets/js/layanancuti.js') }}"></script>
 
         <script src="{{ asset('assets/js/pengajuancuti.js') }}"></script>

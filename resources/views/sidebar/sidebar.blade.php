@@ -285,9 +285,9 @@
                         </a>
                     </li> --}}
                     <li class="menu-title"> <span>Pengaturan Profil</span> </li>
-                    <li class="{{ set_active(['kepala-ruangan/profile']) }}">
-                        <a href="{{ route('kepala-ruangan-profile') }}"
-                            class="{{ set_active(['kepala-ruangan/profile']) ? 'noti-dot' : '' }}">
+                    <li class="{{ set_active(['super-admin/profile']) }}">
+                        <a href="{{ route('super-admin-profile') }}"
+                            class="{{ set_active(['super-admin/profile']) ? 'noti-dot' : '' }}">
                             <i class="la la-user"></i>
                             <span> Profil</span>
                         </a>
@@ -302,7 +302,6 @@
                 @endif
 
                 @if (Auth::user()->role_name == 'Kepala Ruang')
-                
                     <li class="menu-title"> <span>Layanan Kepegawaian </span> </li>
                     <li class="{{ request()->routeIs('layanan-cuti-kepala-ruangan') ? 'active' : '' }}">
                         <a href="{{ route('layanan-cuti-kepala-ruangan') }}" class="{{ request()->routeIs('layanan-cuti-kepala-ruangan') ? 'noti-dot' : '' }}">

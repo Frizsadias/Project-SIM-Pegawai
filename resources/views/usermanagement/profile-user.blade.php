@@ -1329,6 +1329,7 @@
                                                 <div class="form-group">
                                                     <input type="hidden" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}">
                                                     <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    <input type="hidden" class="form-control" id="nip" name="nip" value="{{ Auth::user()->nip }}">
                                                     <input type="hidden" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
                                                 </div>
                                             </div>
@@ -1400,6 +1401,7 @@
                                                 <div class="form-group">
                                                     <input type="hidden" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}">
                                                     <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->user_id }}">
+                                                    <input type="hidden" class="form-control" id="nip" name="nip" value="{{ Auth::user()->nip }}">
                                                     <input type="hidden" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
                                                 </div>
                                             </div>

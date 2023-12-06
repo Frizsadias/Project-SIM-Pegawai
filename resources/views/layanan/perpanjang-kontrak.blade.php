@@ -38,6 +38,7 @@
 
         <!-- Search Filter -->
         <form action="" method="GET" id="search-form">
+            @csrf
             <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
@@ -314,6 +315,10 @@
                     }
                 });
             });
+        </script>
+
+        <script>
+            history.pushState({}, "", '/layanan/perpanjang-kontrak');
         </script>
 
     @endsection

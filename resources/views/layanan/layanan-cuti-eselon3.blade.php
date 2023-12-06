@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('content')
-        @section('style')
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-        <script src="https://kit.fontawesome.com/abea6a9d41.js" crossorigin="anonymous"></script>
-        <!-- checkbox style -->
-        <link rel="stylesheet" href="{{ URL::to('assets/css/checkbox-style.css') }}">
-        @endsection
+
         <!-- Page Wrapper -->
         <div class="page-wrapper">
             <!-- Page Content -->
@@ -24,52 +19,53 @@
                 </div>
                 <!-- /Page Header -->
 
-                <!-- Cetak Dokumen Kelengkapan PDF -->
-                <div class="row filter-row">
-                    <div class="col-sm-6 col-md-3">
-                        <select id="pilihDokumenKelengkapan" class="form-control">
-                                <option selected disabled> --Pilih Dokumen Kelengkapan --</option>
-                            @foreach($data_cuti_pdf_kelengkapan as $pdf_kelengkapan)
-                                <option value="{{ $pdf_kelengkapan->id }}">Dokumen Kelengkapan - {{ $pdf_kelengkapan->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <button id="cetakDokumenKelengkapan" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan</button>&nbsp;&nbsp;
-                    </div>
-                </div>
-                <br>
-                
-                <!-- Search Filter -->
-                <form action="{{ route('layanan/cuti/cari/eselon-3') }}" method="GET" id="search-form">
+                    <!-- Cetak Dokumen Kelengkapan PDF -->
                     <div class="row filter-row">
                         <div class="col-sm-6 col-md-3">
-                            <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" name="name">
-                                <label class="focus-label">Nama Pegawai</label>
-                            </div>
+                            <select id="pilihDokumenKelengkapan" class="form-control">
+                                    <option selected disabled> --Pilih Dokumen Kelengkapan --</option>
+                                @foreach($data_cuti_pdf_kelengkapan as $pdf_kelengkapan)
+                                    <option value="{{ $pdf_kelengkapan->id }}">Dokumen Kelengkapan - {{ $pdf_kelengkapan->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" name="jenis_cuti">
-                                <label class="focus-label">Jenis Cuti</label>
-                            </div>
+                        <div class="col-sm-6 col-md-4">
+                            <button id="cetakDokumenKelengkapan" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan</button>&nbsp;&nbsp;
                         </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="form-group form-focus">
-                                <input type="text" class="form-control floating" name="persetujuan_eselon3">
-                                <label class="focus-label">Status Pengajuan</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
-                            <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- Search Filter -->
+                    </div><br>
+                    <!-- /Cetak Dokumen Kelengkapan PDF -->
                 
-                {{-- message --}}
-                {!! Toastr::message() !!}
+                    <!-- Search Filter -->
+                    <form action="{{ route('layanan/cuti/cari/eselon-3') }}" method="GET" id="search-form">
+                        @csrf
+                        <div class="row filter-row">
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group form-focus">
+                                    <input type="text" class="form-control floating" name="name">
+                                    <label class="focus-label">Nama Pegawai</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group form-focus">
+                                    <input type="text" class="form-control floating" name="jenis_cuti">
+                                    <label class="focus-label">Jenis Cuti</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group form-focus">
+                                    <input type="text" class="form-control floating" name="persetujuan_eselon3">
+                                    <label class="focus-label">Status Pengajuan</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Search Filter -->
+                
+                    {{-- message --}}
+                    {!! Toastr::message() !!}
 
                     <!-- Untuk User -->
                     <div class="row">
@@ -114,7 +110,8 @@
                                                         <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                     @endif
                                                         <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
-                                                </a></td>
+                                                </a>
+                                            </td>
                                             <td class="persetujuan_eselon3">
                                                 <div class="dropdown">
                                                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -152,16 +149,17 @@
                         </div>
                     </div><br><br><br>
                     <!-- /Untuk User -->
-
+                    
                     <!-- Untuk Pribadi -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-auto float-right ml-auto">
                                 <a href="#" class="btn add-btn" data-toggle="modal" data-target="#layanan_cuti"><i class="fa fa-plus"></i> Tambah Pengajuan Cuti</a>
                             </div>
+                            
                             <!-- Cetak Dokumen Kelengkapan PDF -->
                             @php
-                                $lastCuti = $data_cuti->last();
+                                $lastCuti = $data_cuti_pribadi->last();
                             @endphp
                             @if ($lastCuti)
                                 <a href="{{ route('layanan-cuti-kelengkapan2', ['id' => $lastCuti->id]) }}" target="_blank" class="btn btn-success">
@@ -174,9 +172,10 @@
                             @endif
                             <br><br>
                             <!-- /Cetak Dokumen Kelengkapan PDF -->
+
                             <h3 class="page-title2">Pengajuan Cuti Pribadi</h3>
                             <div class="table-responsive">
-                                <table class="table table-striped custom-table mb-0 datatable">
+                                <table class="table table-striped custom-table datatable">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -217,21 +216,22 @@
                                                         <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                     @endif
                                                         <td hidden class="dokumen_kelengkapan">{{ $result_cuti_pribadi->dokumen_kelengkapan }}</td>
-                                                </a></td>
-                                                <td class="status_pengajuan">
-                                                    <div class="dropdown">
-                                                        <a class="status-persetujuan-superadmin">
-                                                            @if ($result_cuti_pribadi->status_pengajuan == 'Disetujui')
-                                                                <i class="fa fa-dot-circle-o text-success"></i>
-                                                            @elseif ($result_cuti_pribadi->status_pengajuan == 'Dalam Proses Persetujuan')
-                                                                <i class="fa fa-dot-circle-o text-warning"></i>
-                                                            @elseif ($result_cuti_pribadi->status_pengajuan == 'Ditolak')
-                                                                <i class="fa fa-dot-circle-o text-danger"></i>
-                                                            @endif
-                                                            <span class="status_pengajuan">{{ $result_cuti_pribadi->status_pengajuan }}</span>
-                                                        </a>
-                                                    </div>
-                                                </td>
+                                                </a>
+                                            </td>
+                                            <td class="status_pengajuan">
+                                                <div class="dropdown">
+                                                    <a class="status-persetujuan-superadmin">
+                                                        @if ($result_cuti_pribadi->status_pengajuan == 'Disetujui')
+                                                            <i class="fa fa-dot-circle-o text-success"></i>
+                                                        @elseif ($result_cuti_pribadi->status_pengajuan == 'Dalam Proses Persetujuan')
+                                                            <i class="fa fa-dot-circle-o text-warning"></i>
+                                                        @elseif ($result_cuti_pribadi->status_pengajuan == 'Ditolak')
+                                                            <i class="fa fa-dot-circle-o text-danger"></i>
+                                                        @endif
+                                                        <span class="status_pengajuan">{{ $result_cuti_pribadi->status_pengajuan }}</span>
+                                                    </a>
+                                                </div>
+                                            </td>
                                             <td class="progress_persetujuan">
                                                 <div class="dropdown status-persetujuan-user">
                                                     @if ($result_cuti_pribadi->persetujuan_kepalaruangan == 'Disetujui')
@@ -489,5 +489,10 @@
 
         <script src="{{ asset('assets/js/layanancuti.js') }}"></script>
         <script src="{{ asset('assets/js/pengajuancuti.js') }}"></script>
+
+        <script>
+            history.pushState({}, "", '/layanan/cuti/eselon-3');
+        </script>
+
     @endsection
 @endsection

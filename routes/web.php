@@ -506,6 +506,7 @@ Route::middleware(['auth'])->group(function () {
 // ----------------------- Informasi Layanan Cuti --------------------------//
 Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti', 'tampilanCutiPegawai')->name('layanan-cuti');
+    // Route::get('get-cuti-data', 'getCutiData')->name('get-cuti-data');
     Route::get('layanan/cuti/kelengkapan/{id}', 'cetakDokumenKelengkapan')->name('layanan-cuti-kelengkapan');
     Route::get('layanan/cuti/kelengkapan2/{id}', 'cetakDokumenKelengkapan2')->name('layanan-cuti-kelengkapan2');
     Route::get('layanan/cuti/admin', 'tampilanCutiPegawaiAdmin')->name('layanan-cuti-admin');
@@ -530,6 +531,7 @@ Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/kenaikan/gaji/berkala', 'tampilanKGB')->name('kenaikan-gaji-berkala');
     Route::get('layanan/kenaikan/gaji/berkala/admin', 'tampilanKGBAdmin')->name('kenaikan-gaji-berkala-admin');
     Route::get('layanan/kenaikan/gaji/berkala/admin/cari', 'filterKGBAdmin')->name('layanan/kenaikan/gaji/berkala/admin/cari');
+    Route::get('layanan/kenaikan/gaji/berkala/cari', 'filterKGBUser')->name('layanan/kenaikan/gaji/berkala/cari');
     Route::get('layanan/kenaikan/gaji/berkala/{id}', 'cetakKGB2')->name('layanan-kenaikan-gaji-berkala');
     Route::get('layanan/kenaikan/gaji/berkala/admin/{id}', 'cetakKGB')->name('layanan-kenaikan-gaji-berkala-admin');
     Route::post('layanan/kenaikan/gaji/berkala/hapus-data', 'hapusKenaikanGajiBerkala')->name('layanan/kenaikan-gaji-berkala/hapus-data');

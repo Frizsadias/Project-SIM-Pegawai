@@ -586,6 +586,7 @@ class UserManagementController extends Controller
     public function profileInformation(Request $request)
     {
         try {
+
             $updateProfil = [
                 'pendidikan_terakhir'   => $request->pendidikan_terakhir,
                 'agama'                 => $request->agama,
@@ -599,14 +600,16 @@ class UserManagementController extends Controller
             ];
             DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($updatePosisi);
 
-            $updateRuangan = [
+            $updateNIPRuangan = [
                 'ruangan'               => $request->ruangan,
+                'nip'                   => $request->nip,
             ];
-            DB::table('users')->where('user_id', $request->user_id)->update($updateRuangan);
+            DB::table('users')->where('user_id', $request->user_id)->update($updateNIPRuangan);
 
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;
             $information->user_id      = $request->user_id;
+            $information->nip          = $request->nip;
             $information->email        = $request->email;
             $information->tgl_lahir    = $request->birthDate;
             $information->jk           = $request->jk;
@@ -630,9 +633,16 @@ class UserManagementController extends Controller
     public function profileInformation2(Request $request)
     {
         try {
+
+            $updateNIP = [
+                'nip'                   => $request->nip,
+            ];
+            DB::table('users')->where('user_id', $request->user_id)->update($updateNIP);
+
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;
             $information->user_id      = $request->user_id;
+            $information->nip          = $request->nip;
             $information->email        = $request->email;
             $information->tgl_lahir    = $request->birthDate;
             $information->jk           = $request->jk;

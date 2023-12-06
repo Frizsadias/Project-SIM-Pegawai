@@ -37,7 +37,8 @@
         <!-- /Cetak Dokumen KGB PDF -->
 
         <!-- Search Filter -->
-        <form action="{{ route('layanan/kenaikan/gaji/berkala/admin/cari') }}" method="GET" id="search-form">
+        <form action="{{ route('layanan/kenaikan/gaji/berkala/cari') }}" method="GET" id="search-form">
+            @csrf
             <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">

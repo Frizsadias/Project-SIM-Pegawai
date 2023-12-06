@@ -54,12 +54,12 @@ class SettingController extends Controller
             $saveRecord->save();
             
             DB::commit();
-            Toastr::success('Sukses menyimpan pengaturan :)','Success');
+            Toastr::success('Detail perusahaan berhasil diperbaharui :)','Success');
             return redirect()->back();
         } catch(\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('Gagal menyimpan pengaturan :)','Error');
+            Toastr::error('Detail perusahaan gagal diperbaharui :(','Error');
             return redirect()->back();
         }
     }

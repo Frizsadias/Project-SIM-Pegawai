@@ -60,27 +60,6 @@ class LayananController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
-        $data_cuti_pdf = DB::table('cuti')
-            ->select(
-                'cuti.*',
-                'cuti.user_id',
-                'cuti.name',
-                'cuti.nip',
-                'cuti.jenis_cuti',
-                'cuti.lama_cuti',
-                'cuti.tanggal_mulai_cuti',
-                'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan',
-                'cuti.status_pengajuan'
-            )
-            ->whereIn('id', function ($query) {
-                $query->select(DB::raw('MAX(id)'))
-                    ->from('cuti')
-                    ->whereColumn('cuti.user_id', 'cuti.user_id')
-                    ->groupBy('cuti.user_id');
-            })
-            ->get();
-
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
         // $sisaCuti = 18 - $totalLamaCuti;
         //     if ($totalLamaCuti >= 18) {
@@ -126,7 +105,6 @@ class LayananController extends Controller
         return view('layanan.layanan-cuti', compact(
             'data_cuti',
             'data_profilcuti',
-            'data_cuti_pdf',
             'unreadNotifications',
             'readNotifications',
             'sisaCutiThisYear',
@@ -135,6 +113,90 @@ class LayananController extends Controller
         ));
     }
     /** /Daftar Layanan Cuti User */
+
+    // public function getCutiData(Request $request)
+    // {
+    //     $columns = array(
+    //         0 => 'id',
+    //         1 => 'name',
+    //         2 => 'nip',
+    //         3 => 'jenis_cuti',
+    //         4 => 'lama_cuti',
+    //         5 => 'sisa_cuti',
+    //         6 => 'tanggal_mulai_cuti',
+    //         7 => 'tanggal_selesai_cuti',
+    //         8 => 'created_at',
+    //         9 => 'dokumen_kelengkapan',
+    //         10 => 'status_pengajuan',
+    //         11 => 'progress_persetujuan',
+    //     );
+
+    //     $totalData = LayananCuti::count();
+
+    //     $totalFiltered = $totalData;
+
+    //     $limit = $request->length;
+    //     $start = $request->start;
+    //     $order = $columns[$request->input('order.0.column')];
+    //     $dir = $request->input('order.0.dir');
+
+    //     $search = $request->input('search.value');
+    //     $user_id = auth()->user()->user_id;
+
+    //     if (empty($search)) {
+    //         $layananCuti = LayananCuti::where('user_id', $user_id)
+    //             ->offset($start)
+    //             ->limit($limit)
+    //             ->orderBy($order, $dir)
+    //             ->get();
+    //     } else {
+    //         $layananCuti = LayananCuti::where('user_id', $user_id)
+    //             ->where('name', 'like', "%{$search}%")
+    //             ->offset($start)
+    //             ->limit($limit)
+    //             ->orderBy($order, $dir)
+    //             ->get();
+
+    //         $totalFiltered = LayananCuti::where('user_id', $user_id)
+    //             ->where('name', 'like', "%{$search}%")
+    //             ->count();
+    //     }
+
+    //     $data = array();
+    //     if (!empty($layananCuti)) {
+    //         foreach ($layananCuti as $key => $value) {
+    //             $nestedData['id'] = $value->id;
+    //             $nestedData['name'] = $value->name;
+    //             $nestedData['nip'] = $value->nip;
+    //             $nestedData['jenis_cuti'] = $value->jenis_cuti;
+    //             $nestedData['lama_cuti'] = $value->lama_cuti;
+    //             $nestedData['sisa_cuti'] = $value->sisa_cuti;
+    //             $nestedData['tanggal_mulai_cuti'] = $value->tanggal_mulai_cuti;
+    //             $nestedData['tanggal_selesai_cuti'] = $value->tanggal_selesai_cuti;
+    //             $nestedData['created_at'] = $value->created_at;
+    //             $nestedData['dokumen_kelengkapan'] = $value->dokumen_kelengkapan;
+    //             $nestedData['status_pengajuan'] = $value->status_pengajuan;
+    //             $nestedData['progress_persetujuan'] = $value->progress_persetujuan;
+    //             $nestedData['action'] = "<div class='dropdown dropdown-action'>
+    //                                         <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+    //                                     <div class='dropdown-menu dropdown-menu-right'>
+    //                                         <a class='dropdown-item edit_riwayat_pmk' href='#' data-toggle='modal' data-target='#edit_riwayat_pmk' data-id='" . $value->id . "' data-jenis_pmk='" . $value->jenis_pmk . "' data-instansi='" . $value->instansi . "' data-tanggal_awal='" . $value->tanggal_awal . "' data-tanggal_akhir='" . $value->tanggal_akhir . "' data-no_sk='" . $value->no_sk . "' data-tanggal_sk='" . $value->tanggal_sk . "' data-no_bkn='" . $value->no_bkn . "' data-tanggal_bkn='" . $value->tanggal_bkn . "' data-masa_tahun='" . $value->masa_tahun . "' data-masa_bulan='" . $value->masa_bulan . "' data-dokumen_pmk='" . $value->dokumen_pmk . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+    //                                         <a class='dropdown-item delete_riwayat_pmk' data-toggle='modal' data-target='#delete_riwayat_pmk' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+    //                                     </div>
+    //                                  </div>";
+    //             $data[] = $nestedData;
+    //         }
+    //     }
+
+    //     $json_data = array(
+    //         "draw"            => intval($request->input('draw')),
+    //         "recordsTotal"    => intval($totalData),
+    //         "recordsFiltered" => intval($totalFiltered),
+    //         "data"            => $data
+    //     );
+
+    //     return response()->json($json_data);
+    // }
 
     /** Daftar Layanan Cuti Admin */
     public function tampilanCutiPegawaiAdmin()
@@ -516,6 +578,43 @@ class LayananController extends Controller
             ->where('ruangan', $ruangan)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $data_pribadi_kepalaruang = DB::table('cuti')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan',
+                'cuti.persetujuan_kepalaruangan')
+            ->where('cuti.user_id', $user_id)
+            ->get();
+
+        $data_profilcuti_pribadi = DB::table('profil_pegawai')
+            ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $data_cuti_pdf = DB::table('cuti')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan')
+            ->where('cuti.user_id', $user_id)
+            ->get();
+
         $userList = DB::table('profil_pegawai')
             ->join('users', 'profil_pegawai.user_id', 'users.user_id')
             ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
@@ -565,7 +664,8 @@ class LayananController extends Controller
             ->get();
 
         return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'userList', 'unreadNotifications',
-            'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+            'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo',
+            'data_pribadi_kepalaruang', 'data_profilcuti_pribadi', 'data_cuti_pdf'));
     }
     /** /Daftar Layanan Cuti Super Admin */
 
@@ -1166,6 +1266,28 @@ class LayananController extends Controller
             ->where('ruangan', $ruangan)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $data_pribadi_kepalaruang = DB::table('cuti')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan',
+                'cuti.persetujuan_kepalaruangan')
+            ->where('cuti.user_id', $user_id)
+            ->get();
+                
+        $data_profilcuti_pribadi = DB::table('profil_pegawai')
+            ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
         $data_cuti_pdf = DB::table('cuti')
             ->select(
                 'cuti.*',
@@ -1233,6 +1355,8 @@ class LayananController extends Controller
 
         return view('layanan.layanan-cuti-kepala-ruangan', compact(
             'data_cuti',
+            'data_pribadi_kepalaruang',
+            'data_profilcuti_pribadi',
             'userList',
             'data_cuti_pdf',
             'unreadNotifications',
@@ -1605,6 +1729,56 @@ class LayananController extends Controller
     }
     /** /Tampilan Kenaikan Gaji Berkala */
 
+    /** Tampilan Pencarian KGB User */
+    public function filterKGBUser(Request $request)
+    {
+        $name = $request->input('name');
+        $nip = $request->input('nip');
+
+        $data_kgb = DB::table('kenaikan_gaji_berkala')
+            ->select(
+                'kenaikan_gaji_berkala.*',
+                'kenaikan_gaji_berkala.user_id',
+                'kenaikan_gaji_berkala.name',
+                'kenaikan_gaji_berkala.nip',
+                'kenaikan_gaji_berkala.golongan_awal',
+                'kenaikan_gaji_berkala.golongan_akhir',
+                'kenaikan_gaji_berkala.gapok_lama',
+                'kenaikan_gaji_berkala.gapok_baru',
+                'kenaikan_gaji_berkala.tgl_sk_kgb',
+                'kenaikan_gaji_berkala.no_sk_kgb',
+                'kenaikan_gaji_berkala.tgl_berlaku',
+                'kenaikan_gaji_berkala.masa_kerja_golongan',
+                'kenaikan_gaji_berkala.masa_kerja',
+                'kenaikan_gaji_berkala.tmt_kgb')
+            ->where('kenaikan_gaji_berkala.name', 'like', '%' . $name . '%')
+            ->where('kenaikan_gaji_berkala.nip', 'like', '%' . $nip . '%')
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_kgb_result = DB::table('profil_pegawai')
+            ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.kenaikan-gaji-berkala', compact('data_kgb', 'data_kgb_result', 'golonganOptions', 'readNotifications', 'unreadNotifications'));
+    }
+    /** /Tampilan Pencarian KGB User */
+
     /** Tampilan Pencarian KGB Admin */
     public function filterKGBAdmin(Request $request)
     {
@@ -1704,12 +1878,6 @@ class LayananController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-            ->where('role_name', '=', 'User')
-            ->get();
-
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1725,7 +1893,7 @@ class LayananController extends Controller
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
         return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb',
-            'userList', 'golonganOptions', 'data_kgb_result'));
+            'golonganOptions', 'data_kgb_result'));
     }
 
     /** Tambah Data Kenaikan Gaji Berkala Pegawai */
