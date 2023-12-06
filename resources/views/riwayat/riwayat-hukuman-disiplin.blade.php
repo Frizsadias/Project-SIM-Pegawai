@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -24,6 +25,7 @@
 
             <!-- Search Filter -->
             {{-- <form action="{{ route('riwayat/pmk/cari') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">

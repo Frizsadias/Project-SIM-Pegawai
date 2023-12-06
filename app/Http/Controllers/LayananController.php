@@ -381,12 +381,6 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-        ->where('role_name', '=', 'User')
-        ->get();
-
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
         // $sisaCuti = 18 - $totalLamaCuti;
         //     if ($totalLamaCuti >= 18) {
@@ -434,7 +428,6 @@ class LayananController extends Controller
             'data_cuti_pribadi',
             'data_profilcuti_pribadi',
             'data_cuti_pdf_kelengkapan',
-            'userList',
             'unreadNotifications',
             'readNotifications',
             'sisaCutiThisYear',
@@ -505,12 +498,6 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-        ->where('role_name', '=', 'User')
-        ->get();
-
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
         // $sisaCuti = 18 - $totalLamaCuti;
         //     if ($totalLamaCuti >= 18) {
@@ -558,7 +545,6 @@ class LayananController extends Controller
             'data_cuti_pribadi',
             'data_profilcuti_pribadi',
             'data_cuti_pdf_kelengkapan',
-            'userList',
             'unreadNotifications',
             'readNotifications',
             'sisaCutiThisYear',
@@ -598,27 +584,6 @@ class LayananController extends Controller
         $data_profilcuti_pribadi = DB::table('profil_pegawai')
             ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
             ->where('profil_pegawai.user_id', $user_id)
-            ->get();
-
-        $data_cuti_pdf = DB::table('cuti')
-            ->select(
-                'cuti.*',
-                'cuti.user_id',
-                'cuti.name',
-                'cuti.nip',
-                'cuti.jenis_cuti',
-                'cuti.lama_cuti',
-                'cuti.tanggal_mulai_cuti',
-                'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan',
-                'cuti.status_pengajuan')
-            ->where('cuti.user_id', $user_id)
-            ->get();
-
-        $userList = DB::table('profil_pegawai')
-            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-            ->where('role_name', '=', 'User')
             ->get();
 
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
@@ -663,9 +628,9 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'userList', 'unreadNotifications',
-            'readNotifications', 'sisaCutiThisYear', 'sisaCutiLastYear', 'sisaCutiTwoYearsAgo',
-            'data_pribadi_kepalaruang', 'data_profilcuti_pribadi', 'data_cuti_pdf'));
+        return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_pribadi_kepalaruang', 'data_profilcuti_pribadi',
+            'unreadNotifications', 'readNotifications', 'sisaCutiThisYear',
+            'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
     }
     /** /Daftar Layanan Cuti Super Admin */
 
@@ -1051,8 +1016,6 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')->get();
-
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
         // $sisaCuti = 18 - $totalLamaCuti;
         //     if ($totalLamaCuti >= 18) {
@@ -1099,7 +1062,6 @@ class LayananController extends Controller
             'data_cuti',
             'data_cuti_pribadi',
             'data_profilcuti_pribadi',
-            'userList',
             'data_cuti_pdf_kelengkapan',
             'unreadNotifications',
             'readNotifications',
@@ -1178,8 +1140,6 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')->get();
-
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
         // $sisaCuti = 18 - $totalLamaCuti;
         //     if ($totalLamaCuti >= 18) {
@@ -1226,7 +1186,6 @@ class LayananController extends Controller
             'data_cuti',
             'data_cuti_pribadi',
             'data_profilcuti_pribadi',
-            'userList',
             'data_cuti_pdf_kelengkapan',
             'unreadNotifications',
             'readNotifications',
@@ -1288,29 +1247,6 @@ class LayananController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
-        $data_cuti_pdf = DB::table('cuti')
-            ->select(
-                'cuti.*',
-                'cuti.user_id',
-                'cuti.name',
-                'cuti.nip',
-                'cuti.jenis_cuti',
-                'cuti.lama_cuti',
-                'cuti.tanggal_mulai_cuti',
-                'cuti.tanggal_selesai_cuti',
-                'cuti.dokumen_kelengkapan',
-                'cuti.status_pengajuan'
-            )
-            ->whereIn('id', function ($query) {
-                $query->select(DB::raw('MAX(id)'))
-                    ->from('cuti')
-                    ->whereColumn('cuti.user_id', 'cuti.user_id')
-                    ->groupBy('cuti.user_id');
-            })
-            ->get();
-
-        $userList = DB::table('profil_pegawai')->get();
-
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
         // $sisaCuti = 18 - $totalLamaCuti;
         //     if ($totalLamaCuti >= 18) {
@@ -1357,8 +1293,6 @@ class LayananController extends Controller
             'data_cuti',
             'data_pribadi_kepalaruang',
             'data_profilcuti_pribadi',
-            'userList',
-            'data_cuti_pdf',
             'unreadNotifications',
             'readNotifications',
             'sisaCutiThisYear',
@@ -1735,6 +1669,7 @@ class LayananController extends Controller
         $name = $request->input('name');
         $nip = $request->input('nip');
 
+        $user_id = auth()->user()->user_id;
         $data_kgb = DB::table('kenaikan_gaji_berkala')
             ->select(
                 'kenaikan_gaji_berkala.*',
@@ -1753,6 +1688,7 @@ class LayananController extends Controller
                 'kenaikan_gaji_berkala.tmt_kgb')
             ->where('kenaikan_gaji_berkala.name', 'like', '%' . $name . '%')
             ->where('kenaikan_gaji_berkala.nip', 'like', '%' . $nip . '%')
+            ->where('kenaikan_gaji_berkala.user_id', $user_id)
             ->get();
 
         $user_id = auth()->user()->user_id;

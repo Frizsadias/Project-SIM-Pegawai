@@ -23,42 +23,9 @@
             </div>
             <!-- /Page Header -->
 
-            <!-- Search Filter -->
-            {{-- <form action="{{ route('riwayat/pmk/cari') }}" method="GET" id="search-form">
-                <div class="row filter-row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus select-focus">
-                            <select class="form-control" id="jenis_pmk" name="jenis_pmk">
-                                <option selected disabled>-- Pilih Jenis Peninjauan Masa Kerja --</option>
-                                @foreach ($jenisdiklatOptions as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                                @endforeach
-                            </select>
-                            <label class="focus-label">Jenis Diklat</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="nama_diklat" name="nama_diklat">
-                            <label class="focus-label">Nama Diklat</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="institusi_penyelenggara" name="institusi_penyelenggara">
-                            <label class="focus-label">Iinstitusi Penyelenggara</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
-                    </div>
-                </div>
-            </form> --}}
-
             {{-- message --}}
             {!! Toastr::message() !!}
 
-            <!-- Search Filter -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">

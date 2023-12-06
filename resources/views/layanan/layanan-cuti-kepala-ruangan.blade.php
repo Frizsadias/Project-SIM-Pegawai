@@ -37,6 +37,7 @@
                 
                     <!-- Search Filter -->
                     <form action="{{ route('layanan/cuti/cari/kepala-ruangan') }}" method="GET" id="search-form">
+                        @csrf
                         <div class="row filter-row">
                             <div class="col-sm-6 col-md-3">
                                 <div class="form-group form-focus">
@@ -158,7 +159,7 @@
                             
                             <!-- Cetak Dokumen Kelengkapan PDF -->
                             @php
-                                $lastCuti = $data_cuti_pdf->last();
+                                $lastCuti = $data_pribadi_kepalaruang->last();
                             @endphp
                             @if ($lastCuti)
                                 <a href="{{ route('layanan-cuti-kelengkapan2', ['id' => $lastCuti->id]) }}" target="_blank" class="btn btn-success">

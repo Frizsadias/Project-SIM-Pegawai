@@ -58,13 +58,12 @@
                             <div class="profile-img">
                                 <a href="{{ url('user/profile/' . $result_ruang->user_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/' . $result_ruang->avatar) }}" alt="{{ $result_ruang->avatar }}"></a>
                             </div>
-                            <h4 class="user-name m-t-10 mb-0 text-ellipsis">
-                                <a>{{ $result_ruang->name }}</a>
-                            </h4>
+                            <h4 class="user-name m-t-10 mb-0 text-ellipsis">{{ $result_ruang->name }}</h4>
+                            <h5 class="user-name m-t-10 mb-0 text-ellipsis">{{ $result_ruang->nip }}</h5>
                             @if ($result_ruang->ruangan)
-                                <p>{{ $result_ruang->ruangan }}</p>
+                                <h5 class="user-name m-t-10 mb-0 text-ellipsis">{{ $result_ruang->ruangan }}</h5>
                             @else
-                                <p>Belum Ada Informasi Ruangan</p>
+                                <h5 class="user-name m-t-10 mb-0 text-ellipsis">Tidak Ada Informasi Ruang</h5>
                             @endif
                         </div>
                     </div>
