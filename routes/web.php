@@ -257,6 +257,12 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/pendidikan/delete', 'deleteRecordPendidikan')->middleware('auth')->name('form/pendidikan/delete');
     Route::get('form/pendidikan/search', 'searchPendidikan')->middleware('auth')->name('form/pendidikan/search');
 
+    Route::get('referensi/unit/organisasi', 'indexUnitOrganisasi')->middleware('auth')->name('referensi-unit-organisasi');
+    Route::post('form/unitorganisasi/save', 'saveRecordUnitOrganisasi')->middleware('auth')->name('form/unitorganisasi/save');
+    Route::post('form/unitorganisasi/update', 'updateRecordUnitOrganisasi')->middleware('auth')->name('form/unitorganisasi/update');
+    Route::post('form/unitorganisasi/delete', 'deleteRecordUnitOrganisasi')->middleware('auth')->name('form/unitorganisasi/delete');
+    // Route::get('form/unitorganisasi/search', 'searchPendidikan')->middleware('auth')->name('form/unitorganisasi/search');
+
     Route::get('referensi/ruangan', 'indexRuangan')->middleware('auth')->name('referensi-ruangan');
     Route::get('get-ruangan-data', 'getRuanganData')->name('get-ruangan-data');
     Route::post('form/ruangan/save', 'saveRecordRuangan')->middleware('auth')->name('form/ruangan/save');

@@ -27,6 +27,7 @@ use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
 use App\Models\golongan_id;
+use App\Models\UnitOrganisasi;
 use App\Models\Village;
 use Carbon\Carbon;
 use Session;
@@ -3011,5 +3012,99 @@ class EmployeeController extends Controller
             ->get();
 
         return view('employees.datapensiuncard', compact('users', 'unreadNotifications', 'readNotifications'));
+    }
+
+    /** page unit organisasi */
+    public function indexUnitOrganisasi()
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $unit_organisasi = DB::table('unit_organisasi')->get();
+        return view('employees.unit-organisasi', compact('unit_organisasi', 'unreadNotifications', 'readNotifications'));
+    }
+
+    /** save record organisasi */
+    public function saveRecordUnitOrganisasi(Request $request)
+    {
+        $request->validate([
+            'unor_nama' => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $unor_nama = UnitOrganisasi::where('unor_nama', $request->unor_nama)->first();
+            if ($unor_nama === null) {
+                $unor_nama = new UnitOrganisasi();
+                $unor_nama->unor_nama         = $request->unor_nama;
+                $unor_nama->unor_id           = $request->unor_id;
+                $unor_nama->save();
+
+                DB::commit();
+                Toastr::success('Data unit organisasi telah ditambah :)', 'Sukses');
+                return redirect()->back();
+            } else {
+                DB::rollback();
+                Toastr::error('Data unit organisasi telah tersedia :(', 'Error');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data unit organisasi gagal ditambah :)', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** update record organisasi */
+    public function updateRecordUnitOrganisasi(Request $request)
+    {
+        $request->validate([
+            'unor_id'        => 'required|string|max:255',
+            'unor_nama'      => 'required|string|max:255',
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $unor = [
+                'unor_id'        => $request->unor_id,
+                'unor_nama'  => $request->unor_nama,
+            ];
+
+            DB::table('unit_organisasi')->where('id', $request->id)->update($unor);
+
+            DB::commit();
+            Toastr::success('Data organisasi berhasil diperbaharui :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data organisasi gagal diperbaharui :(', 'Error');
+            return redirect()->back();
+        }
+    }
+
+    /** delete record organisasi */
+    public function deleteRecordUnitOrganisasi(Request $request)
+    {
+        try {
+
+            UnitOrganisasi::destroy($request->id);
+            Toastr::success('Data unit organisasi berhasil dihapus :)', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Data unit organisasi gagal dihapus :)', 'Error');
+            return redirect()->back();
+        }
     }
 }
