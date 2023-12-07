@@ -24,37 +24,46 @@
             <!-- /Page Header -->
 
             <!-- Search Filter -->
-            {{-- <form action="{{ route('riwayat/pmk/cari') }}" method="GET" id="search-form">
+            <form action="{{ route('riwayat/hukumandisiplin/cari') }}" method="GET" id="search-form">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
-                            <select class="form-control" id="jenis_pmk" name="jenis_pmk">
-                                <option selected disabled>-- Pilih Jenis Peninjauan Masa Kerja --</option>
-                                @foreach ($jenisdiklatOptions as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                                @endforeach
+                            <select class="form-control" id="kategori_hukuman" name="kategori_hukuman">
+                                <option disabled selected value="">-- Pilih Kategori Hukuman --</option>
+                                <option value="Penetapan">Penetapan</option>
+                                <option value="Pengaktifan Kembali">Pengaktifan Kembali</option>
                             </select>
-                            <label class="focus-label">Jenis Diklat</label>
+                            <label class="focus-label">Kategori Hukuman</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="nama_diklat" name="nama_diklat">
-                            <label class="focus-label">Nama Diklat</label>
+                        <div class="form-group form-focus select-focus">
+                            <select class="form-control" id="tingkat_hukuman" name="tingkat_hukuman">
+                                <option disabled selected value="">-- Pilih Tingkat Hukuman --</option>
+                                <option value="Berat">Berat</option>
+                                <option value="Ringat">Ringan</option>
+                                <option value="Sedang">Sedang</option>
+                            </select>
+                            <label class="focus-label">Tingkat Hukuman</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="institusi_penyelenggara" name="institusi_penyelenggara">
-                            <label class="focus-label">Iinstitusi Penyelenggara</label>
+                        <div class="form-group form-focus select-focus">
+                            <select class="form-control" id="jenis_hukuman" name="jenis_hukuman">
+                                <option disabled selected value="">-- Pilih Jenis Hukuman --</option>
+                                <option value="Pembebasan Dari Jabatan">Pembebasan Dari Jabatan</option>
+                                <option value="Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri">Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri</option>
+                                <option value="Pemberhentian Tidak Dengan Hormat Sebagai PNS">Pemberhentian Tidak Dengan Hormat Sebagai PNS</option>
+                            </select>
+                            <label class="focus-label">Jenis Tingkat Hukuman</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
-            </form> --}}
+            </form>
             <!-- Search Filter -->
 
             {{-- message --}}

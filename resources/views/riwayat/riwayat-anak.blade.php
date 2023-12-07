@@ -24,36 +24,37 @@
             <!-- /Page Header -->
 
             <!-- Search Filter -->
-            {{-- <form action="{{ route('riwayat/pmk/cari') }}" method="GET" id="search-form">
+            <form action="{{ route('riwayat/anak/cari') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus select-focus">
-                            <select class="form-control" id="jenis_pmk" name="jenis_pmk">
-                                <option selected disabled>-- Pilih Jenis Peninjauan Masa Kerja --</option>
-                                @foreach ($jenisPasanganOptions as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                                @endforeach
-                            </select>
-                            <label class="focus-label">Jenis Pasangan</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="nama_Pasangan" name="nama_Pasangan">
-                            <label class="focus-label">Nama Pasangan</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" id="institusi_penyelenggara" name="institusi_penyelenggara">
-                            <label class="focus-label">Iinstitusi Penyelenggara</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" id="status_pekerjaan_anak" name="status_pekerjaan_anak">
+                        <label class="focus-label">Status Pekerjaan Anak</label>
                     </div>
                 </div>
-            </form> --}}
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" id="nama_anak" name="nama_anak">
+                        <label class="focus-label">Nama Anak</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus select-focus">
+                        <select class="form-control" id="agama" name="agama">
+                            <option value="">Pilih Agama</option>
+                            @foreach($agamaOptions as $agamaOption)
+                                <option value="{{ $agamaOption }}">{{ $agamaOption }}</option>
+                            @endforeach
+                        </select>
+                        <label class="focus-label">Agama</label>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
+                </div>
+                </div>
+            </form>
             <!-- Search Filter -->
 
             {{-- message --}}

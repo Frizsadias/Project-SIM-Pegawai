@@ -283,14 +283,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('form/status/delete', 'deleteRecordStatus')->middleware('auth')->name('form/status/delete');
     Route::get('form/status/search', 'searchStatus')->middleware('auth')->name('form/status/search');
 
-    Route::get('referensi/pangkat', 'indexPangkat')->middleware('auth')->name('referensi-pangkat');
-    Route::get('get-pangkat-data', 'getPangkatData')->name('get-pangkat-data');
-    Route::post('form/pangkat/save', 'saveRecordPangkat')->middleware('auth')->name('form/pangkat/save');
-    Route::post('form/pangkat/update', 'updateRecordPangkat')->middleware('auth')->name('form/pangkat/update');
-    Route::post('form/pangkat/delete', 'deleteRecordPangkat')->middleware('auth')->name('form/pangkat/delete');
-    Route::get('form/pangkat/search', 'searchPangkat')->middleware('auth')->name('form/pangkat/search');
-
-    Route::get('referensi/golongan', 'indexGolongan')->middleware('auth')->name('referensi-golongan');
+    Route::get('referensi/pangkat', 'indexGolongan')->middleware('auth')->name('referensi-pangkat');
     Route::get('get-golongan-data', 'getGolonganData')->name('get-golongan-data');
     Route::post('form/golongan/save', 'saveRecordGolongan')->middleware('auth')->name('form/golongan/save');
     Route::post('form/golongan/update', 'updateRecordGolongan')->middleware('auth')->name('form/golongan/update');
@@ -465,48 +458,56 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/angkakredit/tambah-data', [RiwayatController::class, 'tambahRiwayatAngkaKredit'])->name('riwayat/angkakredit/tambah-data');
     Route::post('riwayat/angkakredit/edit-data', [RiwayatController::class, 'editRiwayatAngkaKredit'])->name('riwayat/angkakredit/edit-data');
     Route::post('riwayat/angkakredit/hapus-data', [RiwayatController::class, 'hapusRiwayatAngkaKredit'])->name('riwayat/angkakredit/hapus-data');
+    Route::get('riwayat/angkakredit/cari', [RiwayatController::class, 'searchRiwayatAngkaKredit'])->name('riwayat/angkakredit/cari');
 
     // ----------------------- Informasi Riwayat Hukuman Disiplin --------------------------//
     Route::get('riwayat/hukuman/disiplin', [RiwayatController::class, 'hukumandisiplin'])->name('riwayat-hukuman-disiplin');
     Route::post('riwayat/hukumandisiplin/tambah-data', [RiwayatController::class, 'tambahRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/tambah-data');
     Route::post('riwayat/hukumandisiplin/edit-data', [RiwayatController::class, 'editRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/edit-data');
     Route::post('riwayat/hukumandisiplin/hapus-data', [RiwayatController::class, 'hapusRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/hapus-data');
+    Route::get('riwayat/hukumandisiplin/cari', [RiwayatController::class, 'searchRiwayatHukumanDisiplin'])->name('riwayat/hukumandisiplin/cari');
 
     // ----------------------- Informasi Riwayat Penghargaan --------------------------//
     Route::get('riwayat/penghargaan', [RiwayatController::class, 'penghargaan'])->name('riwayat-penghargaan');
     Route::post('riwayat/penghargaan/tambah-data', [RiwayatController::class, 'tambahRiwayatPenghargaan'])->name('riwayat/penghargaan/tambah-data');
     Route::post('riwayat/penghargaan/edit-data', [RiwayatController::class, 'editRiwayatPenghargaan'])->name('riwayat/penghargaan/edit-data');
     Route::post('riwayat/penghargaan/hapus-data', [RiwayatController::class, 'hapusRiwayatPenghargaan'])->name('riwayat/penghargaan/hapus-data');
+    Route::get('riwayat/penghargaan/cari', [RiwayatController::class, 'searchRiwayatPenghargaan'])->name('riwayat/penghargaan/cari');
 
     // ----------------------- Informasi Riwayat Organisasi --------------------------//
     Route::get('riwayat/organisasi', [RiwayatController::class, 'organisasi'])->name('riwayat-organisasi');
     Route::post('riwayat/organisasi/tambah-data', [RiwayatController::class, 'tambahRiwayatOrganisasi'])->name('riwayat/organisasi/tambah-data');
     Route::post('riwayat/organisasi/edit-data', [RiwayatController::class, 'editRiwayatOrganisasi'])->name('riwayat/organisasi/edit-data');
     Route::post('riwayat/organisasi/hapus-data', [RiwayatController::class, 'hapusRiwayatOrganisasi'])->name('riwayat/organisasi/hapus-data');
+    Route::get('riwayat/organisasi/cari', [RiwayatController::class, 'searchRiwayatOrganisasi'])->name('riwayat/organisasi/cari');
 
     // ----------------------- Informasi Riwayat Tugas Belajar --------------------------//
     Route::get('riwayat/tugas/belajar', [RiwayatController::class, 'tugasbelajar'])->name('riwayat-tugas-belajar');
     Route::post('riwayat/tugasbelajar/tambah-data', [RiwayatController::class, 'tambahRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/tambah-data');
     Route::post('riwayat/tugasbelajar/edit-data', [RiwayatController::class, 'editRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/edit-data');
     Route::post('riwayat/tugasbelajar/hapus-data', [RiwayatController::class, 'hapusRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/hapus-data');
+    Route::get('riwayat/tugasbelajar/cari', [RiwayatController::class, 'searchRiwayatTugasBelajar'])->name('riwayat/tugasbelajar/cari');
 
     // ----------------------- Informasi Riwayat Pasangan --------------------------//
     Route::get('riwayat/pasangan', [RiwayatController::class, 'pasangan'])->name('riwayat-pasangan');
     Route::post('riwayat/pasangan/tambah-data', [RiwayatController::class, 'tambahRiwayatPasangan'])->name('riwayat/pasangan/tambah-data');
     Route::post('riwayat/pasangan/edit-data', [RiwayatController::class, 'editRiwayatPasangan'])->name('riwayat/pasangan/edit-data');
     Route::post('riwayat/pasangan/hapus-data', [RiwayatController::class, 'hapusRiwayatPasangan'])->name('riwayat/pasangan/hapus-data');
+    Route::get('riwayat/pasangan/cari', [RiwayatController::class, 'searchRiwayatPasangan'])->name('riwayat/pasangan/cari');
 
     // ----------------------- Informasi Riwayat Anak --------------------------//
     Route::get('riwayat/anak', [RiwayatController::class, 'anak'])->name('riwayat-anak');
     Route::post('riwayat/anak/tambah-data', [RiwayatController::class, 'tambahRiwayatAnak'])->name('riwayat/anak/tambah-data');
     Route::post('riwayat/anak/edit-data', [RiwayatController::class, 'editRiwayatAnak'])->name('riwayat/anak/edit-data');
     Route::post('riwayat/anak/hapus-data', [RiwayatController::class, 'hapusRiwayatAnak'])->name('riwayat/anak/hapus-data');
+    Route::get('riwayat/anak/cari', [RiwayatController::class, 'searchRiwayatAnak'])->name('riwayat/anak/cari');
 
     // ----------------------- Informasi Riwayat Orang Tua --------------------------//
     Route::get('riwayat/orangtua', [RiwayatController::class, 'orangtua'])->name('riwayat-orangtua');
     Route::post('riwayat/orangtua/tambah-data', [RiwayatController::class, 'tambahRiwayatOrangTua'])->name('riwayat/orangtua/tambah-data');
     Route::post('riwayat/orangtua/edit-data', [RiwayatController::class, 'editRiwayatOrangTua'])->name('riwayat/orangtua/edit-data');
     Route::post('riwayat/orangtua/hapus-data', [RiwayatController::class, 'hapusRiwayatOrangTua'])->name('riwayat/orangtua/hapus-data');
+    Route::get('riwayat/orangtua/cari', [RiwayatController::class, 'searchRiwayatOrangTua'])->name('riwayat/orangtua/cari');
 });
 
 // ----------------------- Informasi Layanan Cuti --------------------------//

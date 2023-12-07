@@ -757,6 +757,263 @@ class RiwayatController extends Controller
         return view('riwayat/riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
     }
 
+    //Riwayat Orang Tua
+    public function searchRiwayatOrangTua(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $nama = $request->input('nama');
+        $jenis_kelamin = $request->input('jenis_kelamin');
+        $agama = $request->input('agama');
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+
+        $riwayatOrtu = DB::table('riwayat_orang_tua')
+        ->join('users', 'users.user_id', '=', 'riwayat_orang_tua.user_id')
+        ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('nama', 'like', '%' . $nama . '%')
+            ->where('jenis_kelamin', 'like', '%' . $jenis_kelamin . '%')
+            ->where('agama', 'like', '%' . $agama . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('riwayat/riwayat-orang-tua', compact('riwayatOrtu', 'unreadNotifications', 'readNotifications', 'agamaOptions'));
+    }
+
+    //Riwayat Pasangan
+    public function searchRiwayatPasangan(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $status_pekerjaan_pasangan = $request->input('status_pekerjaan_pasangan');
+        $nama = $request->input('nama');
+        $agama = $request->input('agama');
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+
+        $riwayatPasangan = DB::table('riwayat_pasangan')
+        ->join('users', 'users.user_id', '=', 'riwayat_pasangan.user_id')
+        ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('status_pekerjaan_pasangan', 'like', '%' . $status_pekerjaan_pasangan . '%')
+            ->where('nama', 'like', '%' . $nama . '%')
+            ->where('agama', 'like', '%' . $agama . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('riwayat/riwayat-pasangan', compact('riwayatPasangan', 'unreadNotifications', 'readNotifications', 'agamaOptions'));
+    }
+
+    //Riwayat Anak
+    public function searchRiwayatAnak(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $status_pekerjaan_anak = $request->input('status_pekerjaan_anak');
+        $nama_anak = $request->input('nama_anak');
+        $agama = $request->input('agama');
+        $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
+        $dataAnak = Session::get('user_id');
+        $userList = DB::table('riwayat_pasangan')
+        ->where('riwayat_pasangan.user_id', $dataAnak)
+        ->select('riwayat_pasangan.nama') // Adjust this line based on the actual column you want to retrieve
+        ->get();
+
+        $riwayatAnak = DB::table('riwayat_anak')
+        ->join('users', 'users.user_id', '=', 'riwayat_anak.user_id')
+        ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('status_pekerjaan_anak', 'like', '%' . $status_pekerjaan_anak . '%')
+            ->where('nama_anak', 'like', '%' . $nama_anak . '%')
+            ->where('agama', 'like', '%' . $agama . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('riwayat/riwayat-anak', compact('riwayatAnak', 'unreadNotifications', 'readNotifications', 'agamaOptions', 'userList'));
+    }
+
+    //Riwayat Penghargaan
+    public function searchRiwayatPenghargaan(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $jenis_penghargaan = $request->input('jenis_penghargaan');
+        $tahun_perolehan = $request->input('tahun_perolehan');
+        $no_surat = $request->input('no_surat');
+
+        $riwayatPenghargaan = DB::table('riwayat_penghargaan')
+        ->join('users', 'users.user_id', '=', 'riwayat_penghargaan.user_id')
+        ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('jenis_penghargaan', 'like', '%' . $jenis_penghargaan . '%')
+            ->where('tahun_perolehan', 'like', '%' . $tahun_perolehan . '%')
+            ->where('no_surat', 'like', '%' . $no_surat . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('riwayat/riwayat-penghargaan', compact('riwayatPenghargaan', 'unreadNotifications', 'readNotifications'));
+    }
+
+    //Riwayat Organisasi
+    public function searchRiwayatOrganisasi(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $nama_organisasi = $request->input('nama_organisasi');
+        $jabatan_organisasi = $request->input('jabatan_organisasi');
+        $no_anggota = $request->input('no_anggota');
+
+        $riwayatOrganisasi = DB::table('riwayat_organisasi')
+        ->join('users', 'users.user_id', '=', 'riwayat_organisasi.user_id')
+        ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('nama_organisasi', 'like', '%' . $nama_organisasi . '%')
+            ->where('jabatan_organisasi', 'like', '%' . $jabatan_organisasi . '%')
+            ->where('no_anggota', 'like', '%' . $no_anggota . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('riwayat/riwayat-organisasi', compact('riwayatOrganisasi', 'unreadNotifications', 'readNotifications'));
+    }
+
+    //Riwayat Tugas Belajar
+    public function searchRiwayatTugasBelajar(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $jenis_tugas_belajar = $request->input('jenis_tugas_belajar');
+        $nama_sekolah = $request->input('nama_sekolah');
+        $tingkat_pendidikan = $request->input('tingkat_pendidikan');
+        $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
+        $pendidikanOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
+
+        $riwayatTB = DB::table('riwayat_tugas_belajar')
+        ->join('users', 'users.user_id', '=', 'riwayat_tugas_belajar.user_id')
+        ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('jenis_tugas_belajar', 'like', '%' . $jenis_tugas_belajar . '%')
+            ->where('nama_sekolah', 'like', '%' . $nama_sekolah . '%')
+            ->where('tingkat_pendidikan', 'like', '%' . $tingkat_pendidikan . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('riwayat/riwayat-tugas-belajar', compact('riwayatTB', 'unreadNotifications', 'readNotifications', 'tingkatpendidikanOptions', 'pendidikanOptions'));
+    }
+
+    //Riwayat Hukuman Disiplin
+    public function searchRiwayatHukumanDisiplin(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $kategori_hukuman = $request->input('kategori_hukuman');
+        $tingkat_hukuman = $request->input('tingkat_hukuman');
+        $jenis_hukuman = $request->input('jenis_hukuman');
+
+        $riwayatHD = DB::table('riwayat_hukuman_disiplin')
+        ->join('users', 'users.user_id', '=', 'riwayat_hukuman_disiplin.user_id')
+        ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('kategori_hukuman', 'like', '%' . $kategori_hukuman . '%')
+            ->where('tingkat_hukuman', 'like', '%' . $tingkat_hukuman . '%')
+            ->where('jenis_hukuman', 'like', '%' . $jenis_hukuman . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('riwayat/riwayat-hukuman-disiplin', compact('riwayatHD', 'unreadNotifications', 'readNotifications'));
+    }
+
+    //Riwayat Angka Kredit
+    public function searchRiwayatAngkaKredit(Request $request)
+    {
+        $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
+        $nama_jabatan = $request->input('nama_jabatan');
+        $nomor_sk = $request->input('nomor_sk');
+        $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
+
+        $riwayatAK = DB::table('riwayat_angka_kredit')
+        ->join('users', 'users.user_id', '=', 'riwayat_angka_kredit.user_id')
+        ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
+            ->where('nama_jabatan', 'like', '%' . $nama_jabatan . '%')
+            ->where('nomor_sk', 'like', '%' . $nomor_sk . '%')
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('riwayat/riwayat-angka-kredit', compact('riwayatAK', 'unreadNotifications', 'readNotifications', 'jenisjabatanOptions'));
+    }
+
     /** --------------------------------- Riwayat PMK --------------------------------- */
     /** Tampilan Riwayat PMK */
     public function pmk()
