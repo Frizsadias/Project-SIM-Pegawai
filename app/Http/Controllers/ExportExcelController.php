@@ -51,6 +51,8 @@ class ExportExcelController extends Controller
             $hyperlink = asset('assets/DokumenSIPDokter/' . $item->dokumen_sip);
             $filename = $item->dokumen_sip; // Nama file
 
+            $sheet->setCellValue('I' . $row, $filename);
+
             $sheet->getCell('I' . $row)->getHyperlink()->setUrl($hyperlink);
             $sheet->getCell('I' . $row)->getHyperlink()->setTooltip('Lihat ' . $filename); // Tampilkan nama file
 
@@ -76,7 +78,7 @@ class ExportExcelController extends Controller
     {
         // Ambil data dari database
         $data = DB::table('sip_spk_dokter')
-        ->select('id', 'name', 'nip', 'unit_kerja', 'nomor_sip', 'tanggal_terbit', 'tanggal_berlaku', 'ruangan')
+        ->select('id', 'name', 'nip', 'unit_kerja', 'nomor_sip', 'tanggal_terbit', 'tanggal_berlaku', 'ruangan', 'dokumen_sip')
         ->where('jenis_dokumen', 'SPK Dokter')
         ->get();
 
@@ -113,6 +115,8 @@ class ExportExcelController extends Controller
             $filePath = public_path('assets/DokumenSPKDokter/' . $item->dokumen_sip);
             $hyperlink = asset('assets/DokumenSPKDokter/' . $item->dokumen_sip);
             $filename = $item->dokumen_sip; // Nama file
+
+            $sheet->setCellValue('I' . $row, $filename);
 
             $sheet->getCell('I' . $row)->getHyperlink()->setUrl($hyperlink);
             $sheet->getCell('I' . $row)->getHyperlink()->setTooltip('Lihat ' . $filename); // Tampilkan nama file
@@ -176,6 +180,8 @@ class ExportExcelController extends Controller
             $filePath = public_path('assets/DokumenSPKPerawat/' . $item->dokumen_sip);
             $hyperlink = asset('assets/DokumenSPKPerawat/' . $item->dokumen_sip);
             $filename = $item->dokumen_sip; // Nama file
+
+            $sheet->setCellValue('I' . $row, $filename);
 
             $sheet->getCell('I' . $row)->getHyperlink()->setUrl($hyperlink);
             $sheet->getCell('I' . $row)->getHyperlink()->setTooltip('Lihat ' . $filename); // Tampilkan nama file
@@ -241,6 +247,8 @@ class ExportExcelController extends Controller
             $hyperlink = asset('assets/DokumenSPKNakesLain/' . $item->dokumen_sip);
             $filename = $item->dokumen_sip; // Nama file
 
+            $sheet->setCellValue('I' . $row, $filename);
+
             $sheet->getCell('I' . $row)->getHyperlink()->setUrl($hyperlink);
             $sheet->getCell('I' . $row)->getHyperlink()->setTooltip('Lihat ' . $filename); // Tampilkan nama file
 
@@ -268,7 +276,7 @@ class ExportExcelController extends Controller
         $data = DB::table('profil_pegawai')
         ->select('id', 'user_id', 'name', 'email', 'nip', 'gelar_depan', 'gelar_belakang', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama',
             'jenis_dokumen', 'no_dokumen', 'kelurahan', 'kecamatan', 'kota', 'provinsi', 'kode_pos', 'no_hp', 'no_telp',
-            'jenis_pegawai','kedudukan_pns','status_pegawai','tmt_pns','no_seri_karpeg','tmt_cpns','tingkat_pendidikan','pendidikan_terakhir','ruangan','created_at','updated_at'
+            'jenis_pegawai','kedudukan_pns','status_pegawai','tmt_pns','no_seri_karpeg','tmt_cpns','tingkat_pendidikan','pendidikan_terakhir','ruangan', 'dokumen_ktp','created_at','updated_at'
         )
             ->get();
 
@@ -308,8 +316,9 @@ class ExportExcelController extends Controller
         $sheet->setCellValue('AA1', 'Tingkat Pendidikan');
         $sheet->setCellValue('AB1', 'Pendidikan Terakhir');
         $sheet->setCellValue('AC1', 'Ruangan');
-        $sheet->setCellValue('AD1', 'Created At');
-        $sheet->setCellValue('AE1', 'Updated At');
+        $sheet->setCellValue('AD1', 'Dokumen KTP');
+        $sheet->setCellValue('AE1', 'Created At');
+        $sheet->setCellValue('AF1', 'Updated At');
 
         // Set data pada sheet
         $row = 2;
@@ -343,8 +352,24 @@ class ExportExcelController extends Controller
             $sheet->setCellValue('AA' . $row, $item->tingkat_pendidikan);
             $sheet->setCellValue('AB' . $row, $item->pendidikan_terakhir);
             $sheet->setCellValue('AC' . $row, $item->ruangan);
-            $sheet->setCellValue('AD' . $row, $item->created_at);
-            $sheet->setCellValue('AE' . $row, $item->updated_at);
+
+
+            // Membuat tautan ke dokumen_sip di folder assets
+            $filePath = public_path('assets/DokumenKTP/' . $item->dokumen_ktp);
+            $hyperlink = asset('assets/DokumenKTP/' . $item->dokumen_ktp);
+            $filename = $item->dokumen_ktp; // Nama file
+
+            $sheet->setCellValue('AD' . $row, $filename);
+
+            $sheet->getCell('AD' . $row)->getHyperlink()->setUrl($hyperlink);
+            $sheet->getCell('AD' . $row)->getHyperlink()->setTooltip('Lihat ' . $filename); // Tampilkan nama file
+
+            // Membuat tautan untuk membuka file saat nama file diklik
+            $sheet->getCell('AD' . $row)->getHyperlink()->setUrl($filePath);
+
+            $sheet->setCellValue('AE' . $row, $item->created_at);
+            $sheet->setCellValue('AF' . $row, $item->updated_at);
+
             $row++;
         }
 
