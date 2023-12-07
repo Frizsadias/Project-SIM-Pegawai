@@ -2311,6 +2311,96 @@ class LayananController extends Controller
     }
     /** /Tampilan Pencarian Perpanjangan Kontrak Admin */
 
+    /** Tampilan Pencarian Perpanjangan Kontrak User */
+    public function filterPerpanjangKontrak(Request $request)
+    {
+        $mulai_kontrak = $request->input('mulai_kontrak');
+        $akhir_kontrak = $request->input('akhir_kontrak');
+
+        $data_perpanjang_kontrak = DB::table('kontrak_kerja')
+        ->select(
+            'kontrak_kerja.*',
+            'kontrak_kerja.user_id',
+            'kontrak_kerja.name',
+            'kontrak_kerja.nip',
+            'kontrak_kerja.tempat_lahir',
+            'kontrak_kerja.tanggal_lahir',
+            'kontrak_kerja.nik_blud',
+            'kontrak_kerja.pendidikan',
+            'kontrak_kerja.tahun_lulus',
+            'kontrak_kerja.jabatan',
+            'kontrak_kerja.mulai_kontrak',
+            'kontrak_kerja.akhir_kontrak',
+        )
+            ->where('kontrak_kerja.mulai_kontrak', 'like', '%' . $mulai_kontrak . '%')
+            ->where('kontrak_kerja.akhir_kontrak', 'like', '%' . $akhir_kontrak . '%')
+            ->get();
+
+        $data_perpanjang_pdf = DB::table('kontrak_kerja')
+        ->select(
+            'kontrak_kerja.*',
+            'kontrak_kerja.user_id',
+            'kontrak_kerja.name',
+            'kontrak_kerja.nip',
+            'kontrak_kerja.tempat_lahir',
+            'kontrak_kerja.tanggal_lahir',
+            'kontrak_kerja.nik_blud',
+            'kontrak_kerja.pendidikan',
+            'kontrak_kerja.tahun_lulus',
+            'kontrak_kerja.jabatan',
+            'kontrak_kerja.mulai_kontrak',
+            'kontrak_kerja.akhir_kontrak',
+        )
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                ->from('kontrak_kerja')
+                ->whereColumn('kontrak_kerja.user_id', 'kontrak_kerja.user_id')
+                ->groupBy('kontrak_kerja.user_id');
+            })
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+        ->select(
+            'profil_pegawai.*',
+            'profil_pegawai.tempat_lahir',
+            'profil_pegawai.tanggal_lahir',
+            'profil_pegawai.tingkat_pendidikan',
+            'profil_pegawai.name',
+            'profil_pegawai.nip'
+        )
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+        ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+        ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.perpanjang-kontrak', compact(
+            'unreadNotifications',
+            'readNotifications',
+            'data_perpanjang_kontrak',
+            'data_profilpegawai',
+            'data_posisijabatan',
+            'data_perpanjang_pdf'
+        ));
+    }
+    /** /Tampilan Pencarian Perpanjangan Kontrak User */
+
     /** Tambah Data Perpanjangan Kontrak Pegawai */
     public function tambahDataKontrak(Request $request)
     {
@@ -2674,6 +2764,99 @@ class LayananController extends Controller
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kontrak Admin */
+
+    /** Tampilan Pencarian Perjanjian Kontrak User */
+    public function filterPerjanjianKontrak(Request $request)
+    {
+        $mulai_kontrak = $request->input('mulai_kontrak');
+        $akhir_kontrak = $request->input('akhir_kontrak');
+
+        $data_perjanjian_kontrak = DB::table('perjanjian_kontrak')
+        ->select(
+            'perjanjian_kontrak.*',
+            'perjanjian_kontrak.user_id',
+            'perjanjian_kontrak.name',
+            'perjanjian_kontrak.nip',
+            'perjanjian_kontrak.tempat_lahir',
+            'perjanjian_kontrak.tanggal_lahir',
+            'perjanjian_kontrak.nik_blud',
+            'perjanjian_kontrak.pendidikan',
+            'perjanjian_kontrak.tahun_lulus',
+            'perjanjian_kontrak.jabatan',
+            'perjanjian_kontrak.mulai_kontrak',
+            'perjanjian_kontrak.akhir_kontrak',
+        )
+            ->where('perjanjian_kontrak.mulai_kontrak', 'like', '%' . $mulai_kontrak . '%')
+            ->where('perjanjian_kontrak.akhir_kontrak', 'like', '%' . $akhir_kontrak . '%')
+            ->get();
+
+        $data_perjanjian_pdf = DB::table('perjanjian_kontrak')
+        ->select(
+            'perjanjian_kontrak.*',
+            'perjanjian_kontrak.user_id',
+            'perjanjian_kontrak.name',
+            'perjanjian_kontrak.nip',
+            'perjanjian_kontrak.tempat_lahir',
+            'perjanjian_kontrak.tanggal_lahir',
+            'perjanjian_kontrak.nik_blud',
+            'perjanjian_kontrak.pendidikan',
+            'perjanjian_kontrak.tahun_lulus',
+            'perjanjian_kontrak.jabatan',
+            'perjanjian_kontrak.mulai_kontrak',
+            'perjanjian_kontrak.akhir_kontrak',
+        )
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                ->from('perjanjian_kontrak')
+                ->whereColumn('perjanjian_kontrak.user_id', 'perjanjian_kontrak.user_id')
+                ->groupBy('perjanjian_kontrak.user_id');
+            })
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+        ->select(
+            'profil_pegawai.*',
+            'profil_pegawai.tempat_lahir',
+            'profil_pegawai.tanggal_lahir',
+            'profil_pegawai.tingkat_pendidikan',
+            'profil_pegawai.name',
+            'profil_pegawai.nip'
+        )
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+        ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+        ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
+
+        $perjanjian = perjanjianKinerja::find(1);
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.perjanjian-kontrak', compact(
+            'unreadNotifications',
+            'readNotifications',
+            'data_perjanjian_kontrak',
+            'data_profilpegawai',
+            'data_posisijabatan',
+            'data_perjanjian_pdf',
+            'perjanjian'
+        ));
+    }
+    /** /Tampilan Pencarian Perjanjian Kontrak User */
 
     /** Tampilan Perjanjian Kontrak */
     public function tampilanPerjanjianKontrak()
@@ -3068,6 +3251,84 @@ class LayananController extends Controller
     }
     /** /Tampilan Pencarian Layanan STR Admin */
 
+    /** Tampilan Pencarian Layanan STR User */
+    public function filterSTR(Request $request)
+    {
+        $nomor_reg = $request->input('nomor_reg');
+
+        $data_str = DB::table('surat_tanda_registrasi')
+        ->select(
+            'surat_tanda_registrasi.*',
+            'surat_tanda_registrasi.user_id',
+            'surat_tanda_registrasi.name',
+            'surat_tanda_registrasi.nip',
+            'surat_tanda_registrasi.nomor_reg',
+            'surat_tanda_registrasi.tempat_lahir',
+            'surat_tanda_registrasi.tanggal_lahir',
+            'surat_tanda_registrasi.jenis_kelamin',
+            'surat_tanda_registrasi.nomor_ijazah',
+            'surat_tanda_registrasi.tanggal_lulus',
+            'surat_tanda_registrasi.pendidikan_terakhir',
+            'surat_tanda_registrasi.kompetensi',
+            'surat_tanda_registrasi.no_sertifikat_kompetensi',
+            'surat_tanda_registrasi.tgl_berlaku_str',
+            'surat_tanda_registrasi.dokumen_str'
+        )
+            ->where('surat_tanda_registrasi.nomor_reg', 'like', '%' . $nomor_reg . '%')
+            ->get();
+
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
+        ->select(
+            'users.*',
+            'users.role_name',
+            'profil_pegawai.nip',
+            'profil_pegawai.tempat_lahir',
+            'profil_pegawai.tanggal_lahir',
+            'profil_pegawai.jenis_kelamin',
+            'profil_pegawai.tingkat_pendidikan',
+            'profil_pegawai.pendidikan_terakhir',
+            'posisi_jabatan.jabatan'
+        )
+            ->where('role_name', '=', 'User')
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profil_str = DB::table('profil_pegawai')
+        ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir', 'profil_pegawai.jenis_kelamin', 'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.pendidikan_terakhir')
+        ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+        ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+        ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.surat-tanda-registrasi', compact(
+            'data_str',
+            'data_profil_str',
+            'data_posisijabatan',
+            'unreadNotifications',
+            'readNotifications',
+            'userList'
+        ));
+    }
+    /** /Tampilan Pencarian Layanan STR User */
+
     /** Daftar Layanan STR */
     public function tampilanSTR()
     {
@@ -3423,6 +3684,79 @@ class LayananController extends Controller
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kinerja Admin */
+
+    /** Tampilan Pencarian Perjanjian Kinerja User */
+    public function filterPerjanjianKinerja(Request $request)
+    {
+        $bentuk_perjanjian = $request->input('bentuk_perjanjian');
+
+        $data_perjanjian_kinerja = DB::table('perjanjian_kinerja')
+        ->select(
+            'perjanjian_kinerja.*',
+            'perjanjian_kinerja.user_id',
+            'perjanjian_kinerja.name',
+            'perjanjian_kinerja.nip',
+            'perjanjian_kinerja.jabatan',
+            'perjanjian_kinerja.bentuk_perjanjian',
+        )
+            ->where('perjanjian_kinerja.bentuk_perjanjian', 'like', '%' . $bentuk_perjanjian . '%')
+            ->get();
+
+        $data_kinerja_pdf = DB::table('perjanjian_kinerja')
+        ->select(
+            'perjanjian_kinerja.*',
+            'perjanjian_kinerja.user_id',
+            'perjanjian_kinerja.name',
+            'perjanjian_kinerja.nip',
+            'perjanjian_kinerja.jabatan',
+            'perjanjian_kinerja.bentuk_perjanjian',
+        )
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                ->from('perjanjian_kinerja')
+                ->whereColumn('perjanjian_kinerja.user_id', 'perjanjian_kinerja.user_id')
+                ->groupBy('perjanjian_kinerja.user_id');
+            })
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profilpegawai = DB::table('profil_pegawai')
+        ->select(
+            'profil_pegawai.*',
+            'profil_pegawai.name',
+            'profil_pegawai.nip'
+        )
+            ->where('profil_pegawai.user_id', $user_id)
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_posisijabatan = DB::table('posisi_jabatan')
+        ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+        ->where('posisi_jabatan.user_id', $user_id)
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        return view('layanan.perjanjian-kinerja', compact(
+            'unreadNotifications',
+            'readNotifications',
+            'data_perjanjian_kinerja',
+            'data_profilpegawai',
+            'data_posisijabatan',
+            'data_kinerja_pdf'
+        ));
+    }
+    /** /Tampilan Pencarian Perjanjian Kinerja User*/
 
     //Tampilan Perjanjian Kinerja
     public function TampilanPerjanjianKinerja()

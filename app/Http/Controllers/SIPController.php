@@ -97,7 +97,7 @@ class SIPController extends Controller
         return view('transaksi.sip-dokter-admin', compact('data_sip_dokter', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
-    /** FIlter SIP Dokter */
+    /** Filter SIP Dokter  Admin*/
     public function filterSIPDokterAdmin(Request $request)
     {
         $user = auth()->user();
@@ -143,6 +143,53 @@ class SIPController extends Controller
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         return view('transaksi.sip-dokter-admin', compact('data_sip_dokter', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
+    }
+
+    /** Filter SIP Dokter User*/
+    public function filterSIPDokter(Request $request)
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $nomor_sip = $request->input('nomor_sip');
+
+        $data_sip_dokter = DB::table('sip_spk_dokter')
+        ->select(
+            'sip_spk_dokter.*',
+            'sip_spk_dokter.user_id',
+            'sip_spk_dokter.name',
+            'sip_spk_dokter.nip',
+            'sip_spk_dokter.unit_kerja',
+            'sip_spk_dokter.nomor_sip',
+            'sip_spk_dokter.tanggal_terbit',
+            'sip_spk_dokter.tanggal_berlaku',
+            'sip_spk_dokter.sip_spk_jabatan',
+            'sip_spk_dokter.jenis_dokumen',
+            'sip_spk_dokter.ruangan',
+            'sip_spk_dokter.dokumen_sip'
+        )
+            ->where('sip_spk_dokter.sip_spk_jabatan', 'Dokter')
+            ->where('sip_spk_dokter.jenis_dokumen', 'SIP Dokter')
+            ->where('sip_spk_dokter.nomor_sip', 'like', '%' . $nomor_sip . '%')
+            ->get();
+
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+        $user_id = auth()->user()->user_id;
+        $data_profil_sip = DB::table('profil_pegawai')
+        ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
+        ->where('profil_pegawai.user_id', $user_id)
+        ->get();
+
+        return view('transaksi.sip-dokter', compact('data_sip_dokter', 'data_profil_sip','ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data SIP Dokter */
@@ -331,7 +378,7 @@ class SIPController extends Controller
         return view('transaksi.spk-dokter-admin', compact('data_spk_dokter', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
-    /** Filter SPK Dokter */
+    /** Filter SPK Dokter Admin*/
     public function filterSPKDokterAdmin(Request $request)
     {
         $user = auth()->user();
@@ -376,6 +423,53 @@ class SIPController extends Controller
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-dokter-admin', compact('data_spk_dokter', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
+    }
+
+    /** Filter SPK Dokter User*/
+    public function filterSPKDokter(Request $request)
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $nomor_sip = $request->input('nomor_sip');
+
+        $data_spk_dokter = DB::table('sip_spk_dokter')
+        ->select(
+            'sip_spk_dokter.*',
+            'sip_spk_dokter.user_id',
+            'sip_spk_dokter.name',
+            'sip_spk_dokter.nip',
+            'sip_spk_dokter.unit_kerja',
+            'sip_spk_dokter.nomor_sip',
+            'sip_spk_dokter.tanggal_terbit',
+            'sip_spk_dokter.tanggal_berlaku',
+            'sip_spk_dokter.sip_spk_jabatan',
+            'sip_spk_dokter.jenis_dokumen',
+            'sip_spk_dokter.ruangan',
+            'sip_spk_dokter.dokumen_sip'
+        )
+            ->where('sip_spk_dokter.sip_spk_jabatan', 'dokter')
+            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Dokter')
+            ->where('sip_spk_dokter.nomor_sip', 'like', '%' . $nomor_sip . '%')
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profil_sip = DB::table('profil_pegawai')
+        ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
+        ->where('profil_pegawai.user_id', $user_id)
+        ->get();
+
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+        return view('transaksi.spk-dokter', compact('data_spk_dokter', 'data_profil_sip', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data SPK Dokter */
@@ -564,7 +658,7 @@ class SIPController extends Controller
         return view('transaksi.spk-perawat-admin', compact('data_spk_perawat', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
-    /** Search SPK Perawat */
+    /** Search SPK Perawat Admin*/
     public function filterSPKPerawatAdmin(Request $request)
     {
         $user = auth()->user();
@@ -609,6 +703,56 @@ class SIPController extends Controller
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         return view('transaksi.spk-perawat-admin', compact('data_spk_perawat', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
+    }
+    /** Search SPK Perawat User*/
+    public function filterSPKPerawat(Request $request)
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $nomor_sip = $request->input('nomor_sip');
+
+        $data_spk_perawat = DB::table('sip_spk_dokter')
+        ->select(
+            'sip_spk_dokter.*',
+            'sip_spk_dokter.user_id',
+            'sip_spk_dokter.name',
+            'sip_spk_dokter.nip',
+            'sip_spk_dokter.unit_kerja',
+            'sip_spk_dokter.nomor_sip',
+            'sip_spk_dokter.tanggal_terbit',
+            'sip_spk_dokter.tanggal_berlaku',
+            'sip_spk_dokter.sip_spk_jabatan',
+            'sip_spk_dokter.jenis_dokumen',
+            'sip_spk_dokter.ruangan',
+            'sip_spk_dokter.dokumen_sip'
+        )
+            ->where('sip_spk_dokter.sip_spk_jabatan', 'perawat')
+            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Perawat')
+            ->where('sip_spk_dokter.nomor_sip', 'like', '%' . $nomor_sip . '%')
+            ->get();
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profil_sip = DB::table('profil_pegawai')
+        ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
+        ->where('profil_pegawai.user_id', $user_id)
+        ->get();
+
+        return view('transaksi.spk-perawat', compact('data_spk_perawat', 'userList', 'data_profil_sip', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data SPK Perawat */
@@ -796,7 +940,7 @@ class SIPController extends Controller
         return view('transaksi.spk-nakes-lain-admin', compact('data_spk_nakeslain', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
-    /** Filter SPK Nakes Lain */
+    /** Filter SPK Nakes Lain Admin*/
     public function filterSPKNakesLainAdmin(Request $request)
     {
         $user = auth()->user();
@@ -840,6 +984,56 @@ class SIPController extends Controller
         ->get();
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-nakes-lain-admin', compact('data_spk_nakeslain', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
+    }
+
+    /** Filter SPK Nakes Lain User*/
+    public function filterSPKNakesLain(Request $request)
+    {
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $nomor_sip = $request->input('nomor_sip');
+
+        $data_spk_nakes_lain = DB::table('sip_spk_dokter')
+        ->select(
+            'sip_spk_dokter.*',
+            'sip_spk_dokter.user_id',
+            'sip_spk_dokter.name',
+            'sip_spk_dokter.nip',
+            'sip_spk_dokter.unit_kerja',
+            'sip_spk_dokter.nomor_sip',
+            'sip_spk_dokter.tanggal_terbit',
+            'sip_spk_dokter.tanggal_berlaku',
+            'sip_spk_dokter.sip_spk_jabatan',
+            'sip_spk_dokter.jenis_dokumen',
+            'sip_spk_dokter.ruangan',
+            'sip_spk_dokter.dokumen_sip'
+        )
+            ->where('sip_spk_dokter.sip_spk_jabatan', 'nakes lain')
+            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Nakes Lain')
+            ->where('sip_spk_dokter.nomor_sip', 'like', '%' . $nomor_sip . '%')
+            ->get();
+        $userList = DB::table('profil_pegawai')
+        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
+        ->where('role_name', '=', 'User')
+        ->get();
+
+        $user_id = auth()->user()->user_id;
+        $data_profil_sip = DB::table('profil_pegawai')
+        ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.nip')
+        ->where('profil_pegawai.user_id', $user_id)
+        ->get();
+        $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+        return view('transaksi.spk-nakes-lain', compact('data_spk_nakes_lain', 'data_profil_sip', 'userList', 'ruanganOptions', 'unreadNotifications', 'readNotifications'));
     }
 
     /** Tambah Data SPK Nakes Lain */
