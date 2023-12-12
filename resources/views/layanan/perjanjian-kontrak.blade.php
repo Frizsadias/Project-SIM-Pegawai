@@ -16,8 +16,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_kontrak"><i
-                                class="fa fa-plus"></i> Tambah Perjanjian Kontrak</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_kontrak"><i class="fa fa-plus"></i> Tambah Perjanjian Kontrak</a>
                     </div>
                 </div>
             </div>
@@ -37,32 +36,26 @@
             <!-- /Cetak Dokumen Perjanjian Kontrak PDF -->
 
             <!-- Search Filter -->
-            {{-- <form action="{{ route('layanan/cuti/cari/admin') }}" method="GET" id="search-form">
+            <form action="{{ route('layanan/perjanjian-kontrak-cari') }}" method="GET" id="search-form">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="name">
-                            <label class="focus-label">Nama Pegawai</label>
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" name="mulai_kontrak">
+                            <label class="focus-label">Mulai Kontrak</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="jenis_cuti">
-                            <label class="focus-label">Jenis Cuti</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="status_pengajuan">
-                            <label class="focus-label">Status Pengajuan</label>
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" name="akhir_kontrak">
+                            <label class="focus-label">Akhir Kontrak</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
-             </form> --}}
+             </form>
             <!-- Search Filter -->
 
             {{-- message --}}
@@ -104,22 +97,14 @@
                                         <td class="mulai_kontrak">{{ $result_perjanjian_kontrak->mulai_kontrak }}</td>
                                         <td class="akhir_kontrak">{{ $result_perjanjian_kontrak->akhir_kontrak }}</td>
 
-                                        {{-- Edit Layanan KGB --}}
+                                        {{-- Edit Perjanjian Kontrak --}}
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_kontrak" href="#" data-toggle="modal"
-                                                        data-target="#edit_kontrak"><i class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_perjanjian" href="#"
-                                                        data-toggle="modal" data-target="#delete_perjanjian"><i
-                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
-                                                    <a href="{{ route('layanan-perjanjian-kontrak-admin', ['id' => $result_perjanjian_kontrak->id]) }}"
-                                                        target="_blank" class="dropdown-item cetak-kontrak">
-                                                        <i class="fa fa-print m-r-5"></i>Cetak
-                                                    </a>
+                                                    <a class="dropdown-item edit_kontrak" href="#" data-toggle="modal" data-target="#edit_kontrak"><i class="fa fa-pencil m-r-5"></i>Edit</a>
+                                                    <a class="dropdown-item delete_perjanjian" href="#" data-toggle="modal" data-target="#delete_perjanjian"><i class="fa fa-trash-o m-r-5"></i>Delete</a>
+                                                    <a href="{{ route('layanan-perjanjian-kontrak-admin', ['id' => $result_perjanjian_kontrak->id]) }}" target="_blank" class="dropdown-item cetak-kontrak"><i class="fa fa-print m-r-5"></i>Cetak</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -144,8 +129,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('layanan/perjanjian-kontrak/tambah-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('layanan/perjanjian-kontrak/tambah-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
                             <div class="row">
@@ -220,7 +204,6 @@
                 </div>
             </div>
         </div>
-
         <!-- /Tambah Perjanjian Kontrak Modal -->
 
         <!-- Edit Perjanjian Kontrak Modal -->
@@ -234,37 +217,32 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('layanan/perjanjian-kontrak/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('layanan/perjanjian-kontrak/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>NIK BLUD</label>
-                                        <input type="number" class="form-control" name="nik_blud" id="e_nik_blud"
-                                            placeholder="NIK BLUD" value="">
+                                        <input type="number" class="form-control" name="nik_blud" id="e_nik_blud" placeholder="NIK BLUD" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tahun Lulus</label>
-                                        <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus"
-                                            placeholder="Tahun Lulus" value="">
+                                        <input type="number" class="form-control" name="tahun_lulus" id="e_tahun_lulus" placeholder="Tahun Lulus" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Mulai Kontrak</label>
-                                        <input type="date" class="form-control" name="mulai_kontrak"
-                                            id="e_mulai_kontrak" value="">
+                                        <input type="date" class="form-control" name="mulai_kontrak" id="e_mulai_kontrak" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Akhir Kontrak</label>
-                                        <input type="date" class="form-control" name="akhir_kontrak"
-                                            id="e_akhir_kontrak" value="">
+                                        <input type="date" class="form-control" name="akhir_kontrak" id="e_akhir_kontrak" value="">
                                     </div>
                                 </div>
                             </div>
@@ -276,9 +254,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Layanan Cuti Modal -->
+        <!-- /Edit Perjanjian Kontrak Modal -->
 
-        <!-- Delete Perjanjian Modal -->
+        <!-- Delete Perjanjian Kontrak Modal -->
         <div class="modal custom-modal fade" id="delete_perjanjian" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -293,12 +271,10 @@
                                 <input type="hidden" name="id" class="e_id" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -307,6 +283,8 @@
                 </div>
             </div>
         </div>
+        <!-- End Delete Perjanjian Kontrak Modal -->
+
     </div>
     <!-- /Page Wrapper -->
 

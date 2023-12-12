@@ -16,26 +16,27 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_golongan"><i
-                                class="fa fa-plus"></i> Tambah Golongan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_golongan"><i class="fa fa-plus"></i> Tambah Golongan</a>
                     </div>
                 </div>
             </div>
 
-            {{-- Fungsi Seacrh --}}
+            <!-- Pencaharian Golongan -->
             <form action="{{ route('form/golongan/search') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" id="keyword" name="keyword">
-                        <label class="focus-label">Nama Golongan</label>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" id="keyword" name="keyword">
+                            <label class="focus-label">Nama Golongan</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
-                    <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
-                </div>
-                </div>
             </form>
+            <!-- /Pencaharian Golongan -->
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
@@ -43,12 +44,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table" id="tableGolongan" style="width: 100%">
+                        <table class="table table-striped custom-table" id="tablePangkat" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th class="no">No</th>
                                     <th>Nama</th>
-                                    <th>Nama Golongan</th>
+                                    <th>Nama Pangkat</th>
                                     <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
@@ -58,7 +59,6 @@
             </div>
         </div>
         <!-- /Page Content -->
-
 
         <!-- Add Golongan Modal -->
         <div id="add_golongan" class="modal custom-modal fade" role="dialog">
@@ -101,11 +101,10 @@
                 </div>
             </div>
         </div>
-
         <!-- /Add Golongan Modal -->
 
         <!-- Edit Golongan Modal -->
-        <div id="edit_golongan" class="modal custom-modal fade" role="dialog">
+        <div id="edit_ref_golongan" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -120,13 +119,11 @@
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="form-group">
                                 <label>Nama <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="nama" name="nama"
-                                    value="">
+                                <input type="text" class="form-control" id="nama_edit" name="nama" value="">
                             </div>
                             <div class="form-group">
                                 <label>Nama Golongan<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="nama_golongan"
-                                    name="nama_golongan" value="">
+                                <input type="text" class="form-control" id="nama_golongan_edit" name="nama_golongan" value="">
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Save</button>
@@ -139,7 +136,7 @@
         <!-- /Edit Golongan Modal -->
 
         <!-- Delete Golongan Modal -->
-        <div class="modal custom-modal fade" id="delete_golongan" role="dialog">
+        <div class="modal custom-modal fade" id="delete_ref_golongan" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -150,15 +147,13 @@
                         <div class="modal-btn delete-action">
                             <form action="{{ route('form/golongan/delete') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="id" class="e_id" value="">
+                                <input type="hidden" name="id" class="e_id_del" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -167,7 +162,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Delete Pendidikan Modal -->
+        <!-- /Delete Golongan Modal -->
     </div>
 
     <!-- /Page Wrapper -->
@@ -176,7 +171,7 @@
         <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                var table = $('#tableGolongan').DataTable({
+                var table = $('#tablePangkat').DataTable({
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
@@ -202,9 +197,9 @@
                     ],
                     "language": {
                         "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
+                        "zeroRecords": "No data available in table",
                         "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
                         "paginate": {
@@ -229,24 +224,10 @@
             });
         </script>
 
-        {{-- update js --}}
-        <script>
-            $(document).on('click', '.edit_golongan', function() {
-                var id = $(this).data('id');
-                var nama = $(this).data('nama');
-                var nama_golongan = $(this).data('nama_golongan');
-                $("#e_id").val(id);
-                $("#nama").val(nama);
-                $("#nama_golongan").val(nama_golongan);
-            });
-        </script>
+        <script src="{{ asset('assets/js/referensipangkat.js') }}"></script>
 
-        {{-- delete model --}}
         <script>
-            $(document).on('click', '.delete_golongan', function() {
-                var id = $(this).data('id');
-                $(".e_id").val(id);
-            });
+            history.pushState({}, "", '/referensi/pangkat');
         </script>
 
     @endsection

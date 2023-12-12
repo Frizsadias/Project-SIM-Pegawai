@@ -19,3 +19,13 @@ $(document).on('click', '.delete_str', function() {
     $('.e_id').val(_this.find('.id').text());
     $('.d_dokumen_str').val(_this.find('.dokumen_str').text());
 });
+
+$('#name').on('change',function()
+{
+    $('#user_id').val($(this).find(':selected').data('user_id'));
+    $('#nip').val($(this).find(':selected').data('nip'));
+    $('#tempat_lahir').val($(this).find(':selected').data('tempat_lahir'));
+    $('#tanggal_lahir').val($(this).find(':selected').data('tanggal_lahir'));
+    $('#jenis_kelamin').val($(this).find(':selected').data('jenis_kelamin'));
+    $('#pendidikan_terakhir').val($(this).find(':selected').data('pendidikan_terakhir'));
+});

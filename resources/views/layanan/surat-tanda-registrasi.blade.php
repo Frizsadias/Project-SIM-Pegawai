@@ -23,32 +23,20 @@
             <!-- /Page Header -->
 
             <!-- Search Filter -->
-            {{-- <form action="{{ route('layanan/cuti/cari/admin') }}" method="GET" id="search-form">
+            <form action="{{ route('surat-tanda-registrasi-cari') }}" method="GET" id="search-form">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="name">
-                            <label class="focus-label">Nama Pegawai</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="jenis_cuti">
-                            <label class="focus-label">Jenis Cuti</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="status_pengajuan">
-                            <label class="focus-label">Status Pengajuan</label>
+                            <input type="text" class="form-control floating" name="nomor_reg">
+                            <label class="focus-label">Nomor Registrasi</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
-            </form>  --}}
+            </form> 
             <!-- Search Filter -->
 
             {{-- message --}}
@@ -103,24 +91,13 @@
                                             </a>
                                         </center></td>
 
-                                        {{-- Edit Layanan KGB --}}
+                                        {{-- Edit Surat Tanda Registrasi --}}
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_str" href="#" data-toggle="modal"
-                                                        data-target="#edit_str"><i class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_str" href="#" data-toggle="modal"
-                                                        data-target="#delete_str"><i
-                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
-                                                    {{-- <a class="dropdown-item cetak_perjanjian" href="#"
-                                                        data-id="{{ $perjanjian->id }}" data-toggle="modal"
-                                                        data-target="#cetak-perjanjian">
-                                                        <i class="fa fa-print m-r-5"></i>Cetak
-                                                    </a> --}}
-                                                    {{-- <a href="{{ route('cetak-perjanjian-kontrak') }}" target="_blank">Cetak Perjanjian</a> --}}
+                                                    <a class="dropdown-item edit_str" href="#" data-toggle="modal" data-target="#edit_str"><i class="fa fa-pencil m-r-5"></i>Edit</a>
+                                                    <a class="dropdown-item delete_str" href="#" data-toggle="modal" data-target="#delete_str"><i class="fa fa-trash-o m-r-5"></i>Delete</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -134,12 +111,12 @@
         </div>
         <!-- /Page Content -->
 
-        <!-- Tambah Surat Tanda Perjanjian Kontrak Modal -->
+        <!-- Tambah Surat Tanda Registrasi Modal -->
         <div id="daftar_str" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Surat Tanda Perjanjian Kontrak</h5>
+                        <h5 class="modal-title">Tambah Surat Tanda Registrasi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -235,14 +212,14 @@
                 </div>
             </div>
         </div>
-        <!-- /Tambah Surat Tanda Perjanjian Kontrak Modal -->
+        <!-- /Tambah Surat Tanda Registrasi Modal -->
 
-        <!-- Edit Surat Tanda Perjanjian Kontrak Modal -->
+        <!-- Edit Surat Tanda Registrasi Modal -->
         <div id="edit_str" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Surat Tanda Perjanjian Kontrak</h5>
+                        <h5 class="modal-title">Edit Surat Tanda Registrasi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -256,15 +233,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Registrasi</label>
-                                        <input type="text" class="form-control" name="nomor_reg" id="e_nomor_reg"
-                                            value="">
+                                        <input type="text" class="form-control" name="nomor_reg" id="e_nomor_reg" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Lulus</label>
-                                        <input type="date" class="form-control" name="tanggal_lulus"
-                                            id="e_tanggal_lulus" value="">
+                                        <input type="date" class="form-control" name="tanggal_lulus" id="e_tanggal_lulus" value="">
                                     </div>
                                 </div>
                             </div>
@@ -272,15 +247,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Kompetensi</label>
-                                        <input type="text" class="form-control" name="kompetensi" id="e_kompetensi"
-                                            value="">
+                                        <input type="text" class="form-control" name="kompetensi" id="e_kompetensi" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Sertifikat Kompetensi</label>
-                                        <input type="text" class="form-control" name="no_sertifikat_kompetensi"
-                                            id="e_no_sertifikat_kompetensi" value="">
+                                        <input type="text" class="form-control" name="no_sertifikat_kompetensi" id="e_no_sertifikat_kompetensi" value="">
                                     </div>
                                 </div>
                             </div>
@@ -288,15 +261,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nomor Ijazah</label>
-                                        <input type="text" class="form-control" name="nomor_ijazah"
-                                            id="e_nomor_ijazah" value="">
+                                        <input type="text" class="form-control" name="nomor_ijazah" id="e_nomor_ijazah" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Berlaku STR</label>
-                                        <input type="date" class="form-control" name="tgl_berlaku_str"
-                                            id="e_tgl_berlaku_str" value="">
+                                        <input type="date" class="form-control" name="tgl_berlaku_str" id="e_tgl_berlaku_str" value="">
                                     </div>
                                 </div>
                             </div>
@@ -305,8 +276,7 @@
                                     <div class="form-group">
                                         <label>Dokumen STR</label>
                                         <input type="file" class="form-control" name="dokumen_str">
-                                        <input type="hidden" name="hidden_dokumen_str" id="e_dokumen_str"
-                                            value="">
+                                        <input type="hidden" name="hidden_dokumen_str" id="e_dokumen_str" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
                                 </div>
@@ -319,37 +289,37 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Layanan Cuti Modal -->
+        <!-- /Edit Surat Tanda Registrasi Modal -->
 
-        <!-- Delete Perjanjian Modal -->
+        <!-- Delete Surat Tanda Registrasi Modal -->
         <div class="modal custom-modal fade" id="delete_str" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-header">
-                            <h3>Hapus Surat Tanda Perjanjian</h3>
+                            <h3>Hapus Surat Tanda Registrasi</h3>
                             <p>Apakah anda yakin ingin menghapus data ini?</p>
                         </div>
                         <div class="modal-btn delete-action">
                             <form action="{{ route('layanan/surat-tanda-registrasi/hapus-data') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="id" class="e_id" value="">
-                            <input type="hidden" name="dokumen_str" class="d_dokumen_str" value="">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                @csrf
+                                <input type="hidden" name="id" class="e_id" value="">
+                                <input type="hidden" name="dokumen_str" class="d_dokumen_str" value="">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <a href="javascript:void(0);" data-dismiss="modal"
-                                        class="btn btn-primary cancel-btn">Kembali</a>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- /Delete Surat Tanda Registrasi Modal -->
     </div>
     <!-- /Page Wrapper -->
 

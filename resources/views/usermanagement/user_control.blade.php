@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="col-sm-6 col-md-3">
-                    <button type="sumit" class="btn btn-success btn-block btn_search"> Search </button>
+                    <button type="submit" class="btn btn-success btn-block btn_search"> Cari </button>
                 </div>
             </div>
 
@@ -278,6 +278,7 @@
 
     </div>
     <!-- /Page Wrapper -->
+
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
@@ -352,31 +353,12 @@
         });
     </script>
 
-    {{-- update js --}}
-    <script>
-        $(document).on('click', '.userUpdate', function() {
-            var _this = $(this).parents('tr');
-            $('#e_id').val(_this.find('.user_id').text());
-            $('#e_name').val(_this.find('.name').text());
-            $('#e_email').val(_this.find('.email').text());
-            $('#e_role_name').val(_this.find('.role_name').text()).change();
-            $('#e_status').val(_this.find('.status_s').text()).change();
-        });
-    </script>
-
-    {{-- delete js --}}
-    <script>
-        $(document).on('click', '.userDelete', function() {
-            var _this = $(this).parents('tr');
-            $('.e_id').val(_this.find('.id').data('id'));
-            $('#e_avatar').val(_this.find('.avatar').data('avatar'));
-        });
-    </script>
-
     <script>
         $(".theSelect").select2();
     </script>
 
     <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
+    <script src="{{ asset('assets/js/usercontrol.js') }}"></script>
+
 @endsection
 @endsection

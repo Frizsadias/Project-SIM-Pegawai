@@ -16,14 +16,14 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_agama"><i
-                                class="fa fa-plus"></i> Tambah Agama</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_agama"><i class="fa fa-plus"></i> Tambah Agama</a>
                     </div>
                 </div>
             </div>
 
-            {{-- Fungsi Seacrh --}}
+            <!-- Pencaharian Agama -->
             <form action="{{ route('form/agama/search') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </form>
+            <!-- /Pencaharian Agama -->
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
@@ -89,10 +90,9 @@
                 </div>
             </div>
         </div>
+        <!-- /Add Agama Modal -->
 
-        <!-- /Add Department Modal -->
-
-        <!-- Edit Department Modal -->
+        <!-- Edit Agama Modal -->
         <div id="edit_agama" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -118,9 +118,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Department Modal -->
+        <!-- /Edit Agama Modal -->
 
-        <!-- Delete Department Modal -->
+        <!-- Delete Agama Modal -->
         <div class="modal custom-modal fade" id="delete_agama" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -149,7 +149,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Delete Department Modal -->
+        <!-- /Delete Agama Modal -->
     </div>
 
     <!-- /Page Wrapper -->
@@ -181,9 +181,9 @@
                     ],
                     "language": {
                         "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
+                        "zeroRecords": "No data available in table",
                         "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
                         "paginate": {
@@ -208,22 +208,10 @@
             });
         </script>
 
-        {{-- update js --}}
-        <script>
-            $(document).on('click', '.edit_agama', function() {
-                var id = $(this).data('id');
-                var agama = $(this).data('agama');
-                $("#e_id").val(id);
-                $("#agama_edit").val(agama);
-            });
-        </script>
+        <script src="{{ asset('assets/js/agama.js') }}"></script>
 
-        {{-- delete model --}}
         <script>
-            $(document).on('click', '.delete_agama', function() {
-                var id = $(this).data('id');
-                $(".e_id").val(id);
-            });
+            history.pushState({}, "", '/referensi/agama');
         </script>
     
     @endsection

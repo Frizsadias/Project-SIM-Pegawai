@@ -17,7 +17,6 @@ class CreateProfileInformationTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('user_id')->nullable();
-            $table->string('nip')->nullable();
             $table->string('email')->nullable();
             $table->string('tgl_lahir')->nullable();
             $table->string('jk')->nullable();

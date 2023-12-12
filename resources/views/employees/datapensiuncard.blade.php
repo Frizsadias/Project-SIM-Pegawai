@@ -66,6 +66,8 @@
                                 <a href="{{ url('user/profile/' . $lists->user_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/' . $lists->avatar) }}" alt="{{ $lists->avatar }}" alt="{{ $lists->avatar }}"></a>
                             </div>
                                 <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->name }}</a></h4>
+                                <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->nip }}</a></h5>
+                                <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->email }}</a></h5>
                         </div>
                     </div>
                     @endif

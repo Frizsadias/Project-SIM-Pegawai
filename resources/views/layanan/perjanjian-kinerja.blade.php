@@ -16,8 +16,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_Kinerja"><i
-                                class="fa fa-plus"></i> Tambah Perjanjian Kinerja</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#daftar_layanan_Kinerja"><i class="fa fa-plus"></i> Tambah Perjanjian Kinerja</a>
                     </div>
                 </div>
             </div>
@@ -37,26 +36,20 @@
             <!-- /Cetak Dokumen Perjanjian Kinerja PDF -->
 
             <!-- Search Filter -->
-            {{-- <form action="" method="GET" id="search-form">
+            <form action="{{ route('layanan/perjanjian-kinerja-cari') }}" method="GET" id="search-form">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="name">
-                            <label class="focus-label">Nama Pegawai</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="jenis_cuti">
-                            <label class="focus-label">NIP</label>
+                            <input type="text" class="form-control floating" name="bentuk_perjanjian">
+                            <label class="focus-label">Bentuk Perjanjian</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
-            </form> --}}
+            </form>
             <!-- Search Filter -->
 
             {{-- message --}}
@@ -86,22 +79,14 @@
                                         <td class="jabatan">{{ $result_perjanjian_kinerja->jabatan }}</td>
                                         <td class="bentuk_perjanjian">{{ $result_perjanjian_kinerja->bentuk_perjanjian }}</td>
 
-                                        {{-- Edit Layanan KGB --}}
+                                        {{-- Edit Perjanjian Kinerja --}}
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_Kinerja" href="#" data-toggle="modal"
-                                                        data-target="#edit_Kinerja"><i class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_kinerja" href="#"
-                                                        data-toggle="modal" data-target="#delete_kinerja"><i
-                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
-                                                    <a href="{{ route('layanan-perjanjian-kinerja-admin', ['id' => $result_perjanjian_kinerja->id]) }}"
-                                                        target="_blank" class="dropdown-item cetak-kinerja">
-                                                        <i class="fa fa-print m-r-5"></i>Cetak
-                                                    </a>
+                                                    <a class="dropdown-item edit_Kinerja" href="#" data-toggle="modal" data-target="#edit_Kinerja"><i class="fa fa-pencil m-r-5"></i>Edit</a>
+                                                    <a class="dropdown-item delete_kinerja" href="#" data-toggle="modal" data-target="#delete_kinerja"><i class="fa fa-trash-o m-r-5"></i>Delete</a>
+                                                    <a href="{{ route('layanan-perjanjian-kinerja-admin', ['id' => $result_perjanjian_kinerja->id]) }}" target="_blank" class="dropdown-item cetak-kinerja"><i class="fa fa-print m-r-5"></i>Cetak</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -176,7 +161,7 @@
         </div>
         <!-- /Tambah Perjanjian Kinerja Modal -->
 
-        <!-- Edit Layanan Cuti Modal -->
+        <!-- Edit Perjanjian Kinerja Modal -->
         <div id="edit_Kinerja" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -229,12 +214,10 @@
                                 <input type="hidden" name="id" class="e_id" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>

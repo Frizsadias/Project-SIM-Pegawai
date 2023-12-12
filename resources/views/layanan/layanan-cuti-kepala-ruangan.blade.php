@@ -9,10 +9,10 @@
                 <div class="page-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="page-title">Pengajuan Cuti</h3>
+                            <h3 class="page-title">Pengajuan Cuti Kepala Ruangan</h3>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Pengajuan Cuti</li>
+                                <li class="breadcrumb-item active">Pengajuan Cuti Kepala Ruangan</li>
                             </ul>
                         </div>
                     </div>
@@ -71,6 +71,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
+                                {{-- <table class="table table-striped custom-table" id="tablePengajuanCutiKepalaRuanganUser" style="width: 100%"> --}}
                                 <table class="table table-striped custom-table datatable">
                                     <thead>
                                         <tr>
@@ -175,6 +176,7 @@
 
                             <h3 class="page-title2">Pengajuan Cuti Pribadi</h3>
                             <div class="table-responsive">
+                                {{-- <table class="table table-striped custom-table" id="tablePengajuanCutiKepalaRuanganPribadi" style="width: 100%"> --}}
                                 <table class="table table-striped custom-table datatable">
                                     <thead>
                                         <tr>

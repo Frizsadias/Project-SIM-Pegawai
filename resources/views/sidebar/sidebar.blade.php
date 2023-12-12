@@ -49,8 +49,8 @@
                             <span>Kedudukan</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('referensi-golongan') ? 'active' : '' }}">
-                        <a href="{{ route('referensi-golongan') }}" class="{{ request()->routeIs('referensi-golongan') ? 'noti-dot' : '' }}">
+                    <li class="{{ request()->routeIs('referensi-pangkat') ? 'active' : '' }}">
+                        <a href="{{ route('referensi-pangkat') }}" class="{{ request()->routeIs('referensi-pangkat') ? 'noti-dot' : '' }}">
                             <i class="la la-sort-amount-up"></i>
                             <span>Pangkat</span>
                         </a>
@@ -448,6 +448,13 @@
                         </a>
                     </li> --}}
                     <li class="menu-title"> <span>Layanan Kepegawaian</span></li>
+                    <li class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'active' : '' }}">
+                        <a href="{{ route('kenaikan-gaji-berkala') }}" class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'noti-dot' : '' }}">
+                            <i class="la la-money"></i>
+                            <span>Kenaikan Gaji Berkala</span>
+                        </a>
+                    </li>
+                    
                     @if (Auth::user()->role_name == 'User' && Auth::user()->eselon == '-')
                         <li class="{{ request()->routeIs('layanan-cuti') ? 'active' : '' }}">
                             <a href="{{ route('layanan-cuti') }}" class="{{ request()->routeIs('layanan-cuti') ? 'noti-dot' : '' }}">
@@ -473,12 +480,6 @@
                         </li>
                     @endif
 
-                    <li class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'active' : '' }}">
-                        <a href="{{ route('kenaikan-gaji-berkala') }}" class="{{ request()->routeIs('kenaikan-gaji-berkala') ? 'noti-dot' : '' }}">
-                            <i class="la la-money"></i>
-                            <span>Kenaikan Gaji Berkala</span>
-                        </a>
-                    </li>
                     <li class="{{ request()->routeIs('perjanjian-kontrak') ? 'active' : '' }}">
                         <a href="{{ route('perjanjian-kontrak') }}" class="{{ request()->routeIs('perjanjian-kontrak') ? 'noti-dot' : '' }}">
                             <i class="la la-calendar-check-o"></i>

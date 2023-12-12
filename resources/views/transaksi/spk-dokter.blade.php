@@ -23,32 +23,20 @@
             <!-- /Page Header -->
 
             <!-- Search Filter -->
-            {{-- <form action="{{ route('layanan/cuti/cari/admin') }}" method="GET" id="search-form">
+            <form action="{{ route('spk-dokter-cari') }}" method="GET" id="search-form">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="name">
-                            <label class="focus-label">Nama Pegawai</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="jenis_cuti">
-                            <label class="focus-label">Jenis Cuti</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="status_pengajuan">
-                            <label class="focus-label">Status Pengajuan</label>
+                            <input type="text" class="form-control floating" name="nomor_sip">
+                            <label class="focus-label">Nomor SPK Dokter</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
-            </form>  --}}
+            </form> 
             <!-- Search Filter -->
 
             {{-- message --}}
@@ -99,7 +87,7 @@
                                             </a>
                                         </td>
 
-                                        {{-- Edit Layanan SIP Dokter --}}
+                                        {{-- Edit Layanan SPK Dokter --}}
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -280,7 +268,7 @@
         </div>
         <!-- /Edit SPK Dokter Modal -->
 
-        <!-- Delete SPK Perawat Modal -->
+        <!-- Delete SPK Dokter Modal -->
         <div class="modal custom-modal fade" id="delete_spk_dokter" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -299,8 +287,7 @@
                                         <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -309,7 +296,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Delete SPK Perawat Modal -->
+        <!-- /Delete SPK Dokter Modal -->
 
     </div>
     <!-- /Page Wrapper -->

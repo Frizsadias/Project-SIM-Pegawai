@@ -16,14 +16,14 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_ruangan"><i
-                                class="fa fa-plus"></i> Tambah Ruangan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_ruangan"><i class="fa fa-plus"></i> Tambah Ruangan</a>
                     </div>
                 </div>
             </div>
 
-            {{-- Fungsi Seacrh --}}
+            <!-- Pencaharian Ruangan -->
             <form action="{{ route('form/ruangan/search') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </form>
+            <!-- /Pencaharian Ruangan -->
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
@@ -75,8 +76,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Nama Ruangan <span class="text-danger">*</span></label>
-                                    <input class="form-control @error('ruangan') is-invalid @enderror" type="text"
-                                        id="ruangan" name="ruangan">
+                                    <input class="form-control @error('ruangan') is-invalid @enderror" type="text" id="ruangan" name="ruangan">
                                     @error('ruangan')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -90,7 +90,6 @@
                                     <input type="number" class="form-control" name="jumlah_tempat_tidur" value="">
                                 </div>
                             </div>
-
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Submit</button>
                             </div>
@@ -117,13 +116,11 @@
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="form-group">
                                 <label>Nama Ruangan <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="ruangan_edit" name="ruangan"
-                                    value="">
+                                <input type="text" class="form-control" id="ruangan_edit" name="ruangan" value="">
                             </div>
                             <div class="form-group">
                                 <label>Jumlah Tempat Tidur <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="jumlah_tempat_tidur_edit"
-                                    name="jumlah_tempat_tidur" value="">
+                                <input type="text" class="form-control" id="jumlah_tempat_tidur_edit" name="jumlah_tempat_tidur" value="">
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Save</button>
@@ -150,12 +147,10 @@
                                 <input type="hidden" name="id" class="e_id" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -199,9 +194,9 @@
                     ],
                     "language": {
                         "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
+                        "zeroRecords": "No data available in table",
                         "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
                         "paginate": {
@@ -226,24 +221,10 @@
             });
         </script>
 
-        {{-- update js --}}
-        <script>
-            $(document).on('click', '.edit_ruangan', function() {
-                var id = $(this).data('id');
-                var ruangan = $(this).data('ruangan');
-                var jumlah_tempat_tidur = $(this).data('jumlah_tempat_tidur');
-                $("#e_id").val(id);
-                $("#ruangan_edit").val(ruangan);
-                $("#jumlah_tempat_tidur_edit").val(jumlah_tempat_tidur);
-            });
-        </script>
+        <script src="{{ asset('assets/js/referensiruangan.js') }}"></script>
 
-        {{-- delete model --}}
         <script>
-            $(document).on('click', '.delete_ruangan', function() {
-                var id = $(this).data('id');
-                $(".e_id").val(id);
-            });
+            history.pushState({}, "", '/referensi/ruangan');
         </script>
 
 @endsection

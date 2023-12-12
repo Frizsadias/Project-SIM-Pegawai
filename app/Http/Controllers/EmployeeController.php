@@ -2458,176 +2458,6 @@ class EmployeeController extends Controller
         }
     }
 
-    /** page pangkat */
-    public function indexPangkat()
-    {
-        $user = auth()->user();
-        $role = $user->role_name;
-        $unreadNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNull('read_at')
-            ->get();
-
-        $readNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNotNull('read_at')
-            ->get();
-
-        $ref_pangkat = DB::table('referensi_pangkat')->get();
-        return view('employees.referensi-pangkat', compact('ref_pangkat', 'unreadNotifications', 'readNotifications'));
-    }
-    public function getPangkatData(Request $request)
-    {
-        $columns = array(
-            0 => 'id',
-            1 => 'ref_pangkat'
-        );
-
-        $totalData = ReferensiPangkat::count();
-
-        $totalFiltered = $totalData;
-
-        $limit = $request->length;
-        $start = $request->start;
-        $order = $columns[$request->input('order.0.column')];
-        $dir = $request->input('order.0.dir');
-
-        $search = $request->input('search.value');
-
-        if (empty($search)) {
-            $referensi_pangkat = ReferensiPangkat::offset($start)
-                ->limit($limit)
-                ->orderBy($order, $dir)
-                ->get();
-        } else {
-            $referensi_pangkat =  ReferensiPangkat::where('ref_pangkat', 'like', "%{$search}%")
-                ->offset($start)
-                ->limit($limit)
-                ->orderBy($order, $dir)
-                ->get();
-
-            $totalFiltered = ReferensiPangkat::where('ref_pangkat', 'like', "%{$search}%")
-                ->count();
-        }
-
-        $data = array();
-        if (!empty($referensi_pangkat)) {
-            foreach ($referensi_pangkat as $key => $value) {
-                $nestedData['id'] = $value->id;
-                $nestedData['ref_pangkat'] = $value->ref_pangkat;
-                $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
-                                        <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_pangkat' href='#' data-toggle='modal' data-target='#edit_pangkat' data-id='" . $value->id . "' data-ref_pangkat='" . $value->ref_pangkat . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_pangkat' data-toggle='modal' data-target='#delete_pangkat' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
-                                        </div>
-                                     </div>";
-                $data[] = $nestedData;
-            }
-        }
-
-        $json_data = array(
-            "draw"            => intval($request->input('draw')),
-            "recordsTotal"    => intval($totalData),
-            "recordsFiltered" => intval($totalFiltered),
-            "data"            => $data
-        );
-
-        return response()->json($json_data);
-    }
-
-    /** search for pangkat */
-    public function searchPangkat(Request $request)
-    {
-        $keyword = $request->input('keyword');
-
-        $ref_pangkat = DB::table('referensi_pangkat')
-            ->where('ref_pangkat', 'like', '%' . $keyword . '%')
-            ->get();
-
-        $user = auth()->user();
-        $role = $user->role_name;
-        $unreadNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNull('read_at')
-            ->get();
-
-        $readNotifications = Notification::where('notifiable_id', $user->id)
-            ->where('notifiable_type', get_class($user))
-            ->whereNotNull('read_at')
-            ->get();
-
-        return view('employees.referensi-pangkat', compact('ref_pangkat', 'unreadNotifications', 'readNotifications'));
-    }
-
-    /** save record pangkat */
-    public function saveRecordPangkat(Request $request)
-    {
-        $request->validate([
-            'ref_pangkat' => 'required|string|max:255',
-        ]);
-
-        DB::beginTransaction();
-        try {
-
-            $ref_pangkat = ReferensiPangkat::where('ref_pangkat', $request->ref_pangkat)->first();
-            if ($ref_pangkat === null) {
-                $ref_pangkat = new ReferensiPangkat;
-                $ref_pangkat->ref_pangkat = $request->ref_pangkat;
-                $ref_pangkat->save();
-
-                DB::commit();
-                Toastr::success('Data pangkat telah ditambah :)', 'Sukses');
-                return redirect()->back();
-            } else {
-                DB::rollback();
-                Toastr::error('Data pangkat telah tersedia :(', 'Error');
-                return redirect()->back();
-            }
-        } catch (\Exception $e) {
-            DB::rollback();
-            Toastr::error('Data pangkat gagal ditambah :(', 'Error');
-            return redirect()->back();
-        }
-    }
-
-    /** update record pangkat */
-    public function updateRecordPangkat(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-
-            $ref_pangkat = [
-                'id'    => $request->id,
-                'ref_pangkat' => $request->ref_pangkat,
-            ];
-            ReferensiPangkat::where('id', $request->id)->update($ref_pangkat);
-
-            DB::commit();
-            Toastr::success('Data pangkat berhasil diperbaharui :)', 'Success');
-            return redirect()->back();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Toastr::error('Data pangkat gagal diperbaharui :(', 'Error');
-            return redirect()->back();
-        }
-    }
-
-    /** delete record pangkat */
-    public function deleteRecordPangkat(Request $request)
-    {
-        try {
-
-            ReferensiPangkat::destroy($request->id);
-            Toastr::success('Data pangkat berhasil dihapus :)', 'Success');
-            return redirect()->back();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Toastr::error('Data pangkat gagal dihapus :)', 'Error');
-            return redirect()->back();
-        }
-    }
-
     /** page golongan */
     public function indexGolongan()
     {
@@ -2691,8 +2521,8 @@ class EmployeeController extends Controller
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
                                             <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_golongan' href='#' data-toggle='modal' data-target='#edit_golongan' data-id='" . $value->id . "' data-nama='" . $value->nama . "' data-nama_golongan='" . $value->nama_golongan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_golongan' data-toggle='modal' data-target='#delete_golongan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a class='dropdown-item edit_ref_golongan' href='#' data-toggle='modal' data-target='#edit_ref_golongan' data-id='" . $value->id . "' data-nama='" . $value->nama . "' data-nama_golongan='" . $value->nama_golongan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a class='dropdown-item delete_ref_golongan' data-toggle='modal' data-target='#delete_ref_golongan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;
@@ -2771,8 +2601,8 @@ class EmployeeController extends Controller
     public function updateRecordGolongan(Request $request)
     {
         $request->validate([
-            'nama'        => 'required|string|max:255',
-            'nama_golongan'  => 'required|string|max:255',
+            'nama'          => 'required|string|max:255',
+            'nama_golongan' => 'required|string|max:255',
         ]);
 
         DB::beginTransaction();
@@ -2800,7 +2630,7 @@ class EmployeeController extends Controller
     {
         try {
 
-            pendidikan::destroy($request->id);
+            golongan_id::destroy($request->id);
             Toastr::success('Data golongan berhasil dihapus :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {

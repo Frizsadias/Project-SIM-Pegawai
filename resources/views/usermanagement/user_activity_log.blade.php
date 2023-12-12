@@ -25,12 +25,12 @@
                         <table class="table table-striped custom-table datatable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Nama Lengkap</th>
+                                    <th>No</th>
+                                    <th>Nama</th>
                                     <th>E-mail</th>
                                     <th>Status</th>
                                     <th>Peran</th>
-                                    <th>Modifikasi</th>
+                                    <th>Deskripsi</th>
                                     <th>Waktu</th>
                                 </tr>
                             </thead>

@@ -37,26 +37,26 @@
             <!-- /Cetak Dokumen Perpanjangan Kontrak PDF -->
 
             <!-- Search Filter -->
-            {{-- <form action="" method="GET" id="search-form">
+            <form action="{{ route('layanan/perpanjang-kontrak-cari') }}" method="GET" id="search-form">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="name">
-                            <label class="focus-label">Nama Pegawai</label>
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" name="mulai_kontrak">
+                            <label class="focus-label">Mulai Kontrak</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="jenis_cuti">
-                            <label class="focus-label">NIP</label>
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" name="akhir_kontrak">
+                            <label class="focus-label">Akhir Kontrak</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
-            </form> --}}
+            </form>
             <!-- Search Filter -->
 
             {{-- message --}}
@@ -101,19 +101,11 @@
                                         {{-- Edit Perpanjangan Kontrak --}}
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_kontrak" href="#" data-toggle="modal"
-                                                        data-target="#edit_kontrak"><i class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_kontrak" href="#"
-                                                        data-toggle="modal" data-target="#delete_kontrak"><i
-                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
-                                                    <a href="{{ route('layanan-perpanjang-kontrak-admin', ['id' => $result_kontrak->id]) }}"
-                                                        target="_blank" class="dropdown-item cetak-kinerja">
-                                                        <i class="fa fa-print m-r-5"></i>Cetak
-                                                    </a>
+                                                    <a class="dropdown-item edit_kontrak" href="#" data-toggle="modal" data-target="#edit_kontrak"><i class="fa fa-pencil m-r-5"></i>Edit</a>
+                                                    <a class="dropdown-item delete_kontrak" href="#" data-toggle="modal" data-target="#delete_kontrak"><i class="fa fa-trash-o m-r-5"></i>Delete</a>
+                                                    <a href="{{ route('layanan-perpanjang-kontrak-admin', ['id' => $result_kontrak->id]) }}" target="_blank" class="dropdown-item cetak-kinerja"><i class="fa fa-print m-r-5"></i>Cetak</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -138,8 +130,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('layanan/kontrak/tambah-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('layanan/kontrak/tambah-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 @foreach ($data_profilpegawai as $profil_pegawai)
@@ -221,23 +212,20 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('layanan/kontrak/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('layanan/kontrak/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>NIK BLUD</label>
-                                        <input type="text" class="form-control" name="nik_blud" id="e_nik_blud"
-                                            placeholder="NIK BLUD" value="">
+                                        <input type="text" class="form-control" name="nik_blud" id="e_nik_blud" placeholder="NIK BLUD" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tahun Lulus</label>
-                                        <input type="text" class="form-control" name="tahun_lulus" id="e_tahun_lulus"
-                                            placeholder="Tahun Lulus" value="">
+                                        <input type="text" class="form-control" name="tahun_lulus" id="e_tahun_lulus" placeholder="Tahun Lulus" value="">
                                     </div>
                                 </div>
                             </div>
@@ -245,15 +233,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Mulai Kontrak</label>
-                                        <input type="date" class="form-control" name="mulai_kontrak"
-                                            id="e_mulai_kontrak" value="">
+                                        <input type="date" class="form-control" name="mulai_kontrak" id="e_mulai_kontrak" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Akhir Kontrak</label>
-                                        <input type="date" class="form-control" name="akhir_kontrak"
-                                            id="e_akhir_kontrak" value="">
+                                        <input type="date" class="form-control" name="akhir_kontrak" id="e_akhir_kontrak" value="">
                                     </div>
                                 </div>
                             </div>
@@ -282,12 +268,10 @@
                                 <input type="hidden" name="id" class="e_id" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -297,6 +281,7 @@
             </div>
         </div>
         <!-- /End Delete Perpanjangan Kontrak Modal -->
+
     </div>
     <!-- /Page Wrapper -->
 

@@ -21,8 +21,9 @@
                 </div>
             </div>
 
-            {{-- Fungsi Seacrh --}}
+            <!-- Pencaharian Status -->
             <form action="{{ route('form/status/search') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
@@ -35,6 +36,7 @@
                     </div>
                 </div>
             </form>
+            <!-- /Pencaharian Status -->
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
@@ -195,9 +197,9 @@
                     ],
                     "language": {
                         "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
+                        "zeroRecords": "No data available in table",
                         "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
                         "paginate": {
@@ -222,24 +224,10 @@
             });
         </script>
 
-        {{-- update js --}}
-        <script>
-            $(document).on('click', '.edit_status', function() {
-                var id = $(this).data('id');
-                var jenis_pegawai = $(this).data('jenis_pegawai');
-                var id_jenis_pegawai = $(this).data('id_jenis_pegawai');
-                $("#e_id").val(id);
-                $("#id_status_edit").val(id_jenis_pegawai);
-                $("#status_edit").val(jenis_pegawai);
-            });
-        </script>
+        <script src="{{ asset('assets/js/status.js') }}"></script>
 
-        {{-- delete model --}}
         <script>
-            $(document).on('click', '.delete_status', function() {
-                var id = $(this).data('id');
-                $(".e_id").val(id);
-            });
+            history.pushState({}, "", '/referensi/status');
         </script>
     
 @endsection

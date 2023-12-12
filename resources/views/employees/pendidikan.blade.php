@@ -16,26 +16,27 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_pendidikan"><i
-                                class="fa fa-plus"></i> Tambah Pendidikan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_pendidikan"><i class="fa fa-plus"></i> Tambah Pendidikan</a>
                     </div>
                 </div>
             </div>
 
-            {{-- Fungsi Seacrh --}}
+            <!-- Pencaharian Pendidikan -->
             <form action="{{ route('form/pendidikan/search') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" id="keyword" name="keyword">
-                        <label class="focus-label">Nama Pendidikan</label>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" id="keyword" name="keyword">
+                            <label class="focus-label">Nama Pendidikan</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
-                    <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
-                </div>
-                </div>
             </form>
+            <!-- /Pencaharian Pendidikan -->
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
@@ -112,7 +113,6 @@
                 </div>
             </div>
         </div>
-
         <!-- /Add Pendidikan Modal -->
 
         <!-- Edit Pendidikan Modal -->
@@ -131,18 +131,15 @@
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="form-group">
                                 <label>Nama Pendidikan <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="pendidikan_edit" name="pendidikan"
-                                    value="">
+                                <input type="text" class="form-control" id="pendidikan_edit" name="pendidikan" value="">
                             </div>
                             <div class="form-group">
                                 <label>Tingkat Pendidikan ID<span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" id="tk_pendidikan_id_edit"
-                                    name="tk_pendidikan_id" value="">
+                                <input type="number" class="form-control" id="tk_pendidikan_id_edit" name="tk_pendidikan_id" value="">
                             </div>
                             <div class="form-group">
                                 <label>Status Pendidikan <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" id="status_pendidikan_edit"
-                                    name="status_pendidikan" value="">
+                                <input type="number" class="form-control" id="status_pendidikan_edit" name="status_pendidikan" value="">
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Save</button>
@@ -169,12 +166,10 @@
                                 <input type="hidden" name="id" class="e_id" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -221,9 +216,9 @@
                     ],
                     "language": {
                         "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
+                        "zeroRecords": "No data available in table",
                         "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
                         "paginate": {
@@ -248,26 +243,10 @@
             });
         </script>
 
-        {{-- update js --}}
-        <script>
-            $(document).on('click', '.edit_pendidikan', function() {
-                var id = $(this).data('id');
-                var pendidikan = $(this).data('pendidikan');
-                var tk_pendidikan_id = $(this).data('tk_pendidikan_id');
-                var status_pendidikan = $(this).data('status_pendidikan');
-                $("#e_id").val(id);
-                $("#pendidikan_edit").val(pendidikan);
-                $("#tk_pendidikan_id_edit").val(tk_pendidikan_id);
-                $("#status_pendidikan_edit").val(status_pendidikan);
-            });
-        </script>
+        <script src="{{ asset('assets/js/referensipendidikan.js') }}"></script>
 
-        {{-- delete model --}}
         <script>
-            $(document).on('click', '.delete_pendidikan', function() {
-                var id = $(this).data('id');
-                $(".e_id").val(id);
-            });
+            history.pushState({}, "", '/referensi/pendidikan');
         </script>
 
     @endsection

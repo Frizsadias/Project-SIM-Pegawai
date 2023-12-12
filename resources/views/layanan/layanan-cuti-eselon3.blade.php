@@ -9,10 +9,10 @@
                 <div class="page-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="page-title">Pengajuan Cuti</h3>
+                            <h3 class="page-title">Pengajuan Cuti Eselon 3</h3>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Pengajuan Cuti</li>
+                                <li class="breadcrumb-item active">Pengajuan Cuti Eselon 3</li>
                             </ul>
                         </div>
                     </div>
@@ -71,6 +71,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
+                                {{-- <table class="table table-striped custom-table" id="tablePengajuanCutiEselon3User" style="width: 100%"> --}}
                                 <table class="table table-striped custom-table datatable">
                                     <thead>
                                         <tr>
@@ -175,6 +176,7 @@
 
                             <h3 class="page-title2">Pengajuan Cuti Pribadi</h3>
                             <div class="table-responsive">
+                                {{-- <table class="table table-striped custom-table" id="tablePengajuanCutiEselon3Pribadi" style="width: 100%"> --}}
                                 <table class="table table-striped custom-table datatable">
                                     <thead>
                                         <tr>
@@ -190,6 +192,7 @@
                                             <th>Dokumen Kelengkapan</th>
                                             <th>Status Permohonan Cuti</th>
                                             <th>Progress Persetujuan</th>
+                                            <th>Pengajuan Eselon 3</th>
                                             <th class="text-right no-sort">Aksi</th>
                                         </tr>
                                     </thead>
@@ -272,6 +275,35 @@
                                                         <i class="fa fa-dot-circle-o text-danger"></i>
                                                     @endif
                                                         <span class="persetujuan_eselon3">{{ $result_cuti_pribadi->persetujuan_eselon3 }}</span> (Eselon 3)
+                                                </div>
+                                            </td>
+                                            <td class="persetujuan_eselon3">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">
+                                                        @if ($result_cuti_pribadi->persetujuan_eselon3 == 'Disetujui')
+                                                            <i class="fa fa-dot-circle-o text-success"></i>
+                                                        @elseif ($result_cuti_pribadi->persetujuan_eselon3 == 'Dalam Proses Persetujuan')
+                                                            <i class="fa fa-dot-circle-o text-warning"></i>
+                                                        @elseif ($result_cuti_pribadi->persetujuan_eselon3 == 'Ditolak')
+                                                            <i class="fa fa-dot-circle-o text-danger"></i>
+                                                        @endif
+                                                        <span class="dropdown_pengajuan">{{ $result_cuti_pribadi->persetujuan_eselon3 }}</span>
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="statusDropdown">
+                                                        <form action="{{ route('updateStatus', $result_cuti_pribadi->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon3" value="Disetujui">
+                                                                <i class="fa fa-dot-circle-o text-success"></i> Disetujui
+                                                            </button>
+                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon3" value="Dalam Proses Persetujuan">
+                                                                <i class="fa fa-dot-circle-o text-warning"></i> Dalam Proses Persetujuan
+                                                            </button>
+                                                            <button type="submit" class="dropdown-item" name="persetujuan_eselon3" value="Ditolak">
+                                                                <i class="fa fa-dot-circle-o text-danger"></i> Ditolak
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </td>
     
@@ -382,12 +414,12 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="hidden" class="form-control" name="persetujuan_eselon4"  value="Dalam Proses Persetujuan">
+                                                        <input type="hidden" class="form-control" name="persetujuan_eselon4"  value="Disetujui">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="hidden" class="form-control" name="persetujuan_kepalaruangan"  value="Dalam Proses Persetujuan">
+                                                        <input type="hidden" class="form-control" name="persetujuan_kepalaruangan"  value="Disetujui">
                                                     </div>
                                                 </div>
                                             </div>

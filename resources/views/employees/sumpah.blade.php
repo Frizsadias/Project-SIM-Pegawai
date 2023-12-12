@@ -16,14 +16,14 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_sumpah"><i
-                                class="fa fa-plus"></i> Tambah Sumpah</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_sumpah"><i class="fa fa-plus"></i> Tambah Sumpah</a>
                     </div>
                 </div>
             </div>
 
-            {{-- Fungsi Seacrh --}}
+            <!-- Pencaharian Sumpah -->
             <form action="{{ route('form/sumpah/search') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </form>
+            <!-- /Pencaharian Sumpah -->
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
@@ -91,10 +92,9 @@
                 </div>
             </div>
         </div>
+        <!-- /Add Sumpah Modal -->
 
-        <!-- /Add Department Modal -->
-
-        <!-- Edit Department Modal -->
+        <!-- Edit Sumpah Modal -->
         <div id="edit_sumpah" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -110,8 +110,7 @@
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="form-group">
                                 <label>Nama Sumpah <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="sumpah_edit" name="sumpah"
-                                    value="">
+                                <input type="text" class="form-control" id="sumpah_edit" name="sumpah" value="">
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Save</button>
@@ -121,9 +120,9 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Department Modal -->
+        <!-- /Edit Sumpah Modal -->
 
-        <!-- Delete Department Modal -->
+        <!-- Delete Sumpah Modal -->
         <div class="modal custom-modal fade" id="delete_sumpah" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -142,8 +141,7 @@
                                             class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -152,7 +150,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Delete Department Modal -->
+        <!-- /Delete Sumpah Modal -->
     </div>
 
     <!-- /Page Wrapper -->
@@ -184,9 +182,9 @@
                     ],
                     "language": {
                         "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
+                        "zeroRecords": "No data available in table",
                         "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
                         "paginate": {
@@ -211,23 +209,11 @@
             });
         </script>
 
-        {{-- update js --}}
+        <script src="{{ asset('assets/js/referensisumpah.js') }}"></script>
+
         <script>
-            $(document).on('click', '.edit_sumpah', function() {
-                var id = $(this).data('id');
-                var sumpah = $(this).data('sumpah');
-                $("#e_id").val(id);
-                $("#sumpah_edit").val(sumpah);
-            });
+            history.pushState({}, "", '/referensi/sumpah');
         </script>
-        
-    {{-- delete model --}}
-    <script>
-        $(document).on('click', '.delete_sumpah', function() {
-            var id = $(this).data('id');
-            $(".e_id").val(id);
-        });
-    </script>
 
 @endsection
 @endsection

@@ -323,19 +323,34 @@ class LayananController extends Controller
     /** Daftar Layanan Cuti Eselon 3 */
     public function tampilanCutiPegawaiEselon3()
     {
+        // $data_cuti = DB::table('cuti')
+        //     ->select(
+        //         'cuti.*',
+        //         'cuti.user_id',
+        //         'cuti.name',
+        //         'cuti.nip',
+        //         'cuti.jenis_cuti',
+        //         'cuti.lama_cuti',
+        //         'cuti.tanggal_mulai_cuti',
+        //         'cuti.tanggal_selesai_cuti',
+        //         'cuti.dokumen_kelengkapan',
+        //         'cuti.status_pengajuan')
+        //     ->get();
+
+        $user_id_user = Auth::user()->user_id;
         $data_cuti = DB::table('cuti')
-        ->select(
-            'cuti.*',
-            'cuti.user_id',
-            'cuti.name',
-            'cuti.nip',
-            'cuti.jenis_cuti',
-            'cuti.lama_cuti',
-            'cuti.tanggal_mulai_cuti',
-            'cuti.tanggal_selesai_cuti',
-            'cuti.dokumen_kelengkapan',
-            'cuti.status_pengajuan'
-        )
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan')
+            ->where('cuti.user_id', '!=', $user_id_user)
             ->get();
         
         $user_id = auth()->user()->user_id;
@@ -360,6 +375,28 @@ class LayananController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
+        // $data_cuti_pdf_kelengkapan = DB::table('cuti')
+        //     ->select(
+        //         'cuti.*',
+        //         'cuti.user_id',
+        //         'cuti.name',
+        //         'cuti.nip',
+        //         'cuti.jenis_cuti',
+        //         'cuti.lama_cuti',
+        //         'cuti.tanggal_mulai_cuti',
+        //         'cuti.tanggal_selesai_cuti',
+        //         'cuti.dokumen_kelengkapan',
+        //         'cuti.status_pengajuan'
+        //     )
+        //     ->whereIn('id', function ($query) {
+        //         $query->select(DB::raw('MAX(id)'))
+        //             ->from('cuti')
+        //             ->whereColumn('cuti.user_id', 'cuti.user_id')
+        //             ->groupBy('cuti.user_id');
+        //     })
+        //     ->get();
+
+        $user_id_user = Auth::user()->user_id;
         $data_cuti_pdf_kelengkapan = DB::table('cuti')
             ->select(
                 'cuti.*',
@@ -373,10 +410,11 @@ class LayananController extends Controller
                 'cuti.dokumen_kelengkapan',
                 'cuti.status_pengajuan'
             )
-            ->whereIn('id', function ($query) {
+            ->whereIn('id', function ($query) use ($user_id_user) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('cuti')
-                    ->whereColumn('cuti.user_id', 'cuti.user_id')
+                    ->whereColumn('cuti.user_id', '=', 'cuti.user_id')
+                    ->where('cuti.user_id', '!=', $user_id_user)
                     ->groupBy('cuti.user_id');
             })
             ->get();
@@ -440,21 +478,44 @@ class LayananController extends Controller
     /** Daftar Layanan Cuti Eselon 4 */
     public function tampilanCutiPegawaiEselon4()
     {
+        // $data_cuti = DB::table('cuti')
+        //     ->select(
+        //         'cuti.*',
+        //         'cuti.user_id',
+        //         'cuti.name',
+        //         'cuti.nip',
+        //         'cuti.jenis_cuti',
+        //         'cuti.lama_cuti',
+        //         'cuti.tanggal_mulai_cuti',
+        //         'cuti.tanggal_selesai_cuti',
+        //         'cuti.dokumen_kelengkapan',
+        //         'cuti.status_pengajuan')
+        //     ->get();
+
+        $user_id_user = Auth::user()->user_id;
         $data_cuti = DB::table('cuti')
-        ->select(
-            'cuti.*',
-            'cuti.user_id',
-            'cuti.name',
-            'cuti.nip',
-            'cuti.jenis_cuti',
-            'cuti.lama_cuti',
-            'cuti.tanggal_mulai_cuti',
-            'cuti.tanggal_selesai_cuti',
-            'cuti.dokumen_kelengkapan',
-            'cuti.status_pengajuan'
-        )
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan')
+            ->leftJoin('users', 'cuti.user_id', '=', 'users.user_id')
+            ->where(function ($query) {
+                $query->whereNull('users.eselon')
+                    ->orWhere('users.eselon', '=', '-');
+            })
+            ->orWhere(function ($query) use ($user_id_user) {
+                $query->where('users.eselon', '!=', '3')
+                    ->where('cuti.user_id', '!=', $user_id_user);
+            })
             ->get();
-        
+
         $user_id = auth()->user()->user_id;
         $data_cuti_pribadi = DB::table('cuti')
             ->select(
@@ -477,6 +538,28 @@ class LayananController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
+        // $data_cuti_pdf_kelengkapan = DB::table('cuti')
+        //     ->select(
+        //         'cuti.*',
+        //         'cuti.user_id',
+        //         'cuti.name',
+        //         'cuti.nip',
+        //         'cuti.jenis_cuti',
+        //         'cuti.lama_cuti',
+        //         'cuti.tanggal_mulai_cuti',
+        //         'cuti.tanggal_selesai_cuti',
+        //         'cuti.dokumen_kelengkapan',
+        //         'cuti.status_pengajuan'
+        //     )
+        //     ->whereIn('id', function ($query) {
+        //         $query->select(DB::raw('MAX(id)'))
+        //             ->from('cuti')
+        //             ->whereColumn('cuti.user_id', 'cuti.user_id')
+        //             ->groupBy('cuti.user_id');
+        //     })
+        //     ->get();
+
+        $user_id_user = Auth::user()->user_id;
         $data_cuti_pdf_kelengkapan = DB::table('cuti')
             ->select(
                 'cuti.*',
@@ -488,13 +571,21 @@ class LayananController extends Controller
                 'cuti.tanggal_mulai_cuti',
                 'cuti.tanggal_selesai_cuti',
                 'cuti.dokumen_kelengkapan',
-                'cuti.status_pengajuan'
-            )
-            ->whereIn('id', function ($query) {
-                $query->select(DB::raw('MAX(id)'))
-                    ->from('cuti')
-                    ->whereColumn('cuti.user_id', 'cuti.user_id')
-                    ->groupBy('cuti.user_id');
+                'cuti.status_pengajuan')
+            ->leftJoin('users', 'cuti.user_id', '=', 'users.user_id')
+            ->whereIn('cuti.id', function ($query) use ($user_id_user) {
+                $query->select(DB::raw('MAX(c.id)'))
+                    ->from('cuti as c')
+                    ->leftJoin('users as u', 'c.user_id', '=', 'u.user_id')
+                    ->where(function ($q) {
+                        $q->whereNull('u.eselon')
+                            ->orWhere('u.eselon', '=', '-');
+                    })
+                    ->orWhere(function ($q) use ($user_id_user) {
+                        $q->where('u.eselon', '!=', '3')
+                            ->where('c.user_id', '!=', $user_id_user);
+                    })
+                    ->groupBy('c.user_id');
             })
             ->get();
 
@@ -870,7 +961,28 @@ class LayananController extends Controller
             ->where('cuti.status_pengajuan', 'like', '%' . $status_pengajuan . '%')
             ->get();
 
-        $data_cuti_pdf = DB::table('cuti')
+        $data_cuti_pdf_kelengkapan = DB::table('cuti')
+            ->select(
+                'cuti.*',
+                'cuti.user_id',
+                'cuti.name',
+                'cuti.nip',
+                'cuti.jenis_cuti',
+                'cuti.lama_cuti',
+                'cuti.tanggal_mulai_cuti',
+                'cuti.tanggal_selesai_cuti',
+                'cuti.dokumen_kelengkapan',
+                'cuti.status_pengajuan'
+            )
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MAX(id)'))
+                    ->from('cuti')
+                    ->whereColumn('cuti.user_id', 'cuti.user_id')
+                    ->groupBy('cuti.user_id');
+            })
+            ->get();
+
+        $data_cuti_pdf_rekomendasi = DB::table('cuti')
             ->select(
                 'cuti.*',
                 'cuti.user_id',
@@ -938,7 +1050,8 @@ class LayananController extends Controller
         return view('layanan.layanan-cuti-admin', compact(
             'data_cuti',
             'userList',
-            'data_cuti_pdf',
+            'data_cuti_pdf_kelengkapan',
+            'data_cuti_pdf_rekomendasi',
             'unreadNotifications',
             'readNotifications',
             'sisaCutiThisYear',
@@ -955,6 +1068,7 @@ class LayananController extends Controller
         $jenis_cuti = $request->input('jenis_cuti');
         $persetujuan_eselon3 = $request->input('persetujuan_eselon3');
 
+        $user_id_user = Auth::user()->user_id;
         $data_cuti = DB::table('cuti')
             ->select(
                 'cuti.*',
@@ -971,6 +1085,7 @@ class LayananController extends Controller
             ->where('cuti.name', 'like', '%' . $name . '%')
             ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
             ->where('cuti.persetujuan_eselon3', 'like', '%' . $persetujuan_eselon3 . '%')
+            ->where('cuti.user_id', '!=', $user_id_user)
             ->get();
         
         $user_id = auth()->user()->user_id;
@@ -995,6 +1110,7 @@ class LayananController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
+        $user_id_user = Auth::user()->user_id;
         $data_cuti_pdf_kelengkapan = DB::table('cuti')
             ->select(
                 'cuti.*',
@@ -1008,10 +1124,11 @@ class LayananController extends Controller
                 'cuti.dokumen_kelengkapan',
                 'cuti.status_pengajuan'
             )
-            ->whereIn('id', function ($query) {
+            ->whereIn('id', function ($query) use ($user_id_user) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('cuti')
-                    ->whereColumn('cuti.user_id', 'cuti.user_id')
+                    ->whereColumn('cuti.user_id', '=', 'cuti.user_id')
+                    ->where('cuti.user_id', '!=', $user_id_user)
                     ->groupBy('cuti.user_id');
             })
             ->get();
@@ -1077,8 +1194,9 @@ class LayananController extends Controller
     {
         $name = $request->input('name');
         $jenis_cuti = $request->input('jenis_cuti');
-        $persetujuan_eselon3 = $request->input('persetujuan_eselon3');
+        $persetujuan_eselon4 = $request->input('persetujuan_eselon4');
 
+        $user_id_user = Auth::user()->user_id;
         $data_cuti = DB::table('cuti')
             ->select(
                 'cuti.*',
@@ -1090,11 +1208,21 @@ class LayananController extends Controller
                 'cuti.tanggal_mulai_cuti',
                 'cuti.tanggal_selesai_cuti',
                 'cuti.dokumen_kelengkapan',
-                'cuti.persetujuan_eselon3'
-            )
+                'cuti.persetujuan_eselon4')
+            ->leftJoin('users', 'cuti.user_id', '=', 'users.user_id')
             ->where('cuti.name', 'like', '%' . $name . '%')
             ->where('cuti.jenis_cuti', 'like', '%' . $jenis_cuti . '%')
-            ->where('cuti.persetujuan_eselon3', 'like', '%' . $persetujuan_eselon3 . '%')
+            ->where('cuti.persetujuan_eselon4', 'like', '%' . $persetujuan_eselon4 . '%')
+            ->where(function ($query) use ($user_id_user) {
+                $query->where(function ($q) {
+                    $q->whereNull('users.eselon')
+                        ->orWhere('users.eselon', '=', '-');
+                })
+                ->orWhere(function ($q) use ($user_id_user) {
+                    $q->where('users.eselon', '!=', '3')
+                        ->where('cuti.user_id', '!=', $user_id_user);
+                });
+            })
             ->get();
         
         $user_id = auth()->user()->user_id;
@@ -1109,7 +1237,7 @@ class LayananController extends Controller
                 'cuti.tanggal_mulai_cuti',
                 'cuti.tanggal_selesai_cuti',
                 'cuti.dokumen_kelengkapan',
-                'cuti.persetujuan_eselon3'
+                'cuti.persetujuan_eselon4'
             )
             ->where('cuti.user_id', $user_id)
             ->get();
@@ -1119,6 +1247,7 @@ class LayananController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
+        $user_id_user = Auth::user()->user_id;
         $data_cuti_pdf_kelengkapan = DB::table('cuti')
             ->select(
                 'cuti.*',
@@ -1130,13 +1259,21 @@ class LayananController extends Controller
                 'cuti.tanggal_mulai_cuti',
                 'cuti.tanggal_selesai_cuti',
                 'cuti.dokumen_kelengkapan',
-                'cuti.status_pengajuan'
-            )
-            ->whereIn('id', function ($query) {
-                $query->select(DB::raw('MAX(id)'))
-                    ->from('cuti')
-                    ->whereColumn('cuti.user_id', 'cuti.user_id')
-                    ->groupBy('cuti.user_id');
+                'cuti.status_pengajuan')
+            ->leftJoin('users', 'cuti.user_id', '=', 'users.user_id')
+            ->whereIn('cuti.id', function ($query) use ($user_id_user) {
+                $query->select(DB::raw('MAX(c.id)'))
+                    ->from('cuti as c')
+                    ->leftJoin('users as u', 'c.user_id', '=', 'u.user_id')
+                    ->where(function ($q) {
+                        $q->whereNull('u.eselon')
+                            ->orWhere('u.eselon', '=', '-');
+                    })
+                    ->orWhere(function ($q) use ($user_id_user) {
+                        $q->where('u.eselon', '!=', '3')
+                            ->where('c.user_id', '!=', $user_id_user);
+                    })
+                    ->groupBy('c.user_id');
             })
             ->get();
 
@@ -1769,6 +1906,8 @@ class LayananController extends Controller
 
         $userList = DB::table('profil_pegawai')->get();
 
+        $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1781,7 +1920,8 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.kenaikan-gaji-berkala-admin', compact('data_kgb', 'data_kgb_pdf', 'userList', 'readNotifications', 'unreadNotifications'));
+        return view('layanan.kenaikan-gaji-berkala-admin', compact('data_kgb', 'data_kgb_pdf', 'userList',
+            'readNotifications', 'unreadNotifications', 'golonganOptions'));
     }
     /** /Tampilan Pencarian KGB Admin */
 

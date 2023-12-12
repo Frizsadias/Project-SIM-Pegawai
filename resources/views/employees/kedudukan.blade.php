@@ -16,14 +16,14 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_kedudukan"><i
-                                class="fa fa-plus"></i> Tambah Kedudukan</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_kedudukan"><i class="fa fa-plus"></i> Tambah Kedudukan</a>
                     </div>
                 </div>
             </div>
 
-            {{-- Fungsi Seacrh --}}
+            <!-- Pencaharian Kedudukan -->
             <form action="{{ route('form/kedudukan/search') }}" method="GET" id="search-form">
+                @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </form>
+            <!-- /Pencaharian Kedudukan -->
 
             <!-- /Page Header -->
             {!! Toastr::message() !!}
@@ -106,8 +107,7 @@
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="form-group">
                                 <label>Nama Kedudukan <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="kedudukan_edit" name="kedudukan"
-                                    value="">
+                                <input type="text" class="form-control" id="kedudukan_edit" name="kedudukan" value="">
                             </div>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-primary submit-btn">Save</button>
@@ -134,12 +134,10 @@
                                 <input type="hidden" name="id" class="e_id" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
@@ -148,7 +146,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Delete Department Modal -->
+        <!-- /Delete Kedudukan Modal -->
     </div>
 
     <!-- /Page Wrapper -->
@@ -180,9 +178,9 @@
                     ],
                     "language": {
                         "lengthMenu": "Show _MENU_ entries",
-                        "zeroRecords": "Data tidak ditemukan",
+                        "zeroRecords": "No data available in table",
                         "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                        "infoEmpty": "Tidak ada data",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
                         "paginate": {
@@ -207,22 +205,10 @@
             });
         </script>
 
-        {{-- edit model --}}
-        <script>
-            $(document).on('click', '.edit_kedudukan', function() {
-                var id = $(this).data('id');
-                var kedudukan = $(this).data('kedudukan');
-                $("#e_id").val(id);
-                $("#kedudukan_edit").val(kedudukan);
-            });
-        </script>
+        <script src="{{ asset('assets/js/kedudukan.js') }}"></script>
 
-        {{-- delete model --}}
         <script>
-            $(document).on('click', '.delete_kedudukan', function() {
-                var id = $(this).data('id');
-                $(".e_id").val(id);
-            });
+            history.pushState({}, "", '/referensi/kedudukan');
         </script>
 
     @endsection

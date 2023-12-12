@@ -13,7 +13,7 @@ $(document).on('click', '.edit_spk_perawat', function()
 $(document).on('click', '.delete_spk_perawat', function() {
     var _this = $(this).parents('tr');
     $('.e_id').val(_this.find('.id').text());
-    $('.d_dokumen_sip_perawat').val(_this.find('.dokumen_sip').text());
+    $('.d_dokumen_spk_perawat').val(_this.find('.dokumen_sip').text());
 });
 
 $('#name').on('change',function()

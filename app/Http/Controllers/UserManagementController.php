@@ -609,7 +609,6 @@ class UserManagementController extends Controller
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;
             $information->user_id      = $request->user_id;
-            $information->nip          = $request->nip;
             $information->email        = $request->email;
             $information->tgl_lahir    = $request->birthDate;
             $information->jk           = $request->jk;
@@ -642,7 +641,6 @@ class UserManagementController extends Controller
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;
             $information->user_id      = $request->user_id;
-            $information->nip          = $request->nip;
             $information->email        = $request->email;
             $information->tgl_lahir    = $request->birthDate;
             $information->jk           = $request->jk;

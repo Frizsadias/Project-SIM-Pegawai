@@ -114,19 +114,11 @@
                                         {{-- Edit Layanan KGB --}}
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_layanan_kgb" href="#"
-                                                        data-toggle="modal" data-target="#edit_layanan_kgb"><i
-                                                            class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item delete_kgb" href="#"
-                                                        data-toggle="modal" data-target="#delete_kgb"><i
-                                                            class="fa fa-trash-o m-r-5"></i>Delete</a>
-                                                    <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}"
-                                                        target="_blank" class="dropdown-item cetak-kinerja">
-                                                        <i class="fa fa-print m-r-5"></i>Cetak
-                                                    </a>
+                                                    <a class="dropdown-item edit_layanan_kgb" href="#" data-toggle="modal" data-target="#edit_layanan_kgb"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                    <a class="dropdown-item delete_kgb" href="#" data-toggle="modal" data-target="#delete_kgb"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                    <a href="{{ route('layanan-kenaikan-gaji-berkala-admin', ['id' => $result_kgb->id]) }}" target="_blank" class="dropdown-item cetak-kinerja"><i class="fa fa-print m-r-5"></i> Cetak</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -275,8 +267,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('layanan/kgb/edit-data') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('layanan/kgb/edit-data') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="row">
@@ -313,8 +304,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Gaji Pokok Lama</label>
-                                        <input type="number" class="form-control" name="gapok_lama" id="e_gapok_lama"
-                                            placeholder="Gaji Pokok Lama" value="">
+                                        <input type="number" class="form-control" name="gapok_lama" id="e_gapok_lama" placeholder="Gaji Pokok Lama" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -370,8 +360,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dokumen KGB</label>
-                                        <input type="file" class="form-control" id="dokumen_kgb"
-                                            name="dokumen_kgb">
+                                        <input type="file" class="form-control" id="dokumen_kgb" name="dokumen_kgb">
                                         <input type="hidden" name="hidden_dokumen_kgb" id="e_dokumen_kgb" value="">
                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                     </div>
@@ -403,12 +392,10 @@
                                 <input type="hidden" name="dokumen_kgb" class="d_dokumen_kgb" value="">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit"
-                                            class="btn btn-primary continue-btn submit-btn">Hapus</button>
+                                        <button type="submit" class="btn btn-primary continue-btn submit-btn">Hapus</button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal"
-                                            class="btn btn-primary cancel-btn">Kembali</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Kembali</a>
                                     </div>
                                 </div>
                             </form>
