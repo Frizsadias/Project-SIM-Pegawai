@@ -145,7 +145,7 @@
                                                         <span class="noti-title">{{ $notification->data['name'] }}</span> mendapatkan pesan baru <b>{{ $notification->data['message3'] }}</b>
                                                     </p>
                                                     <p class="noti-time">
-                                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                                        <span class="notification-time"><i class="fa-solid fa-clock" style="color: #808080;"></i> {{ $notification->created_at->diffForHumans() }}</span>
                                                     </p>
                                                 </div>
                                             </div>
