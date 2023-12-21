@@ -163,7 +163,7 @@
                                     <div class="form-group">
                                         <label>Jenis Jabatan</label>
                                         <br>
-                                        <select class="theSelect form-control" name="jenis_jabatan_riwayat" required>
+                                        <select class="theSelect form-control" style="width: 100% !important" name="jenis_jabatan_riwayat" required>
                                             <option selected disabled>-- Pilih Jenis Jabatan --</option>
                                             @foreach ($jenisjabatanOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -266,7 +266,7 @@
                                     <div class="form-group">
                                         <label>Jenis Jabatan</label>
                                         <br>
-                                        <select class="theSelect" name="jenis_jabatan_riwayat" id="e_jenis_jabatan_riwayat">
+                                        <select class="theSelect" style="width: 100% !important" name="jenis_jabatan_riwayat" id="e_jenis_jabatan_riwayat">
                                             <option selected disabled>-- Pilih Jenis Jabatan --</option>
                                             @foreach ($jenisjabatanOptions as $key => $value)
                                                 @if (!empty($result_jabatan->jenis_jabatan_riwayat))

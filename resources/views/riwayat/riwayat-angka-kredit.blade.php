@@ -151,7 +151,7 @@
                                         <label>Nama Jabatan</label>
                                         <small class="text-danger">*</small>
                                         <br>
-                                        <select class="theSelect" name="nama_jabatan" required>
+                                        <select class="theSelect" style="width: 100% !important" name="nama_jabatan" required>
                                             <option selected disabled> --Pilih Nama Jabatan --</option>
                                             @foreach ($jenisjabatanOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -282,7 +282,7 @@
                                         <label>Nama Jabatan</label>
                                         <small class="text-danger">*</small>
                                         <br>
-                                        <select class="theSelect" name="nama_jabatan" id="e_nama_jabatan" required>
+                                        <select class="theSelect" style="width: 100% !important" name="nama_jabatan" id="e_nama_jabatan" required>
                                             <option selected disabled> --Pilih Nama Jabatan --</option>
                                             @foreach ($jenisjabatanOptions as $key => $value)
                                                 @if (!empty($result_angka_kredit->nama_jabatan))

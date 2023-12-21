@@ -312,10 +312,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script>
-            $(".theSelect").select2();
-        </script>
-
-        <script>
             history.pushState({}, "", '/riwayat/organisasi');
         </script>
 

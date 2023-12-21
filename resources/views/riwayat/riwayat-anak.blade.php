@@ -280,7 +280,7 @@
                                         <label>Agama</label>
                                         <small class="text-danger">*</small>
                                         <br>
-                                        <select class="theSelect" name="agama" required>
+                                        <select class="theSelect" style="width: 100% !important" name="agama" required>
                                             <option selected disabled>-- Pilih Agama --</option>
                                             @foreach ($agamaOptions as $key => $result_agama)
                                                 <option value="{{ $key }}">{{ $result_agama }}</option>
@@ -476,7 +476,7 @@
                                         <label>Agama</label>
                                         <small class="text-danger">*</small>
                                         <br>
-                                        <select class="theSelect" name="agama" id="e_agama" required>
+                                        <select class="theSelect" style="width: 100% !important" name="agama" id="e_agama" required>
                                             <option selected disabled>-- Pilih Agama --</option>
                                             @foreach ($agamaOptions as $id => $result_agama)
                                                 @if (!empty($result_anak->agama))

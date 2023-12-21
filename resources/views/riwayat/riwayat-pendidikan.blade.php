@@ -170,7 +170,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label><br>
-                                        <select name="ting_ped" class="theSelect" id="ting_ped" required>
+                                        <select name="ting_ped" class="theSelect" style="width: 100% !important" id="ting_ped" required>
                                             <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
                                             @foreach($tingkatpendidikanOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -181,7 +181,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pendidikan</label><br>
-                                        <select name="pendidikan" class="theSelect" id="pendidikan" required>
+                                        <select name="pendidikan" class="theSelect" style="width: 100% !important" id="pendidikan" required>
                                             <option selected disabled>-- Pilih Pendidikan --</option>
                                             @foreach($pendidikanterakhirOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -292,7 +292,7 @@
                                     <div class="form-group">
                                         <label>Tingkat Pendidikan</label>
                                         <br>
-                                        <select name="ting_ped" class="theSelect" id="e_ting_ped">
+                                        <select name="ting_ped" class="theSelect" style="width: 100% !important" id="e_ting_ped">
                                             <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
                                             @foreach($tingkatpendidikanOptions as $key => $value)
                                                 @if (!empty($result_pendidikan->ting_ped))
@@ -306,7 +306,7 @@
                                     <div class="form-group">
                                         <label>Pendidikan</label>
                                         <br>
-                                        <select class="theSelect" name="pendidikan" id="e_pendidikan">
+                                        <select class="theSelect" style="width: 100% !important"     name="pendidikan" id="e_pendidikan">
                                             <option selected disabled>-- Pilih Pendidikan --</option>
                                             @foreach($pendidikanterakhirOptions as $key => $value)
                                                 @if (!empty($result_pendidikan->pendidikan))

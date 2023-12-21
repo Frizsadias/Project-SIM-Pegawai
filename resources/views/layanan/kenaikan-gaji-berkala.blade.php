@@ -170,7 +170,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Golongan Awal</label><br>
-                                        <select name="golongan_awal" class="theSelect" id="golongan_awal" required>
+                                        <select name="golongan_awal" class="theSelect" style="width: 100% !important" id="golongan_awal" required>
                                             <option selected disabled>-- Pilih Golongan Awal --</option>
                                             @foreach ($golonganOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -181,7 +181,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Golongan Akhir</label><br>
-                                        <select name="golongan_akhir" class="theSelect" id="golongan_akhir" required>
+                                        <select name="golongan_akhir" class="theSelect" style="width: 100% !important" id="golongan_akhir" required>
                                             <option selected disabled>-- Pilih Golongan Akhir --</option>
                                             @foreach ($golonganOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -275,7 +275,7 @@
                                     <div class="form-group">
                                         <label>Golongan Awal</label>
                                         <br>
-                                        <select name="golongan_awal" class="theSelect" id="e_golongan_awal">
+                                        <select name="golongan_awal" class="theSelect" style="width: 100% !important" id="e_golongan_awal">
                                             <option selected disabled>-- Pilih Golongan Awal --</option>
                                             @foreach ($golonganOptions as $key => $value)
                                                 @if (!empty($result_kgb->golongan_awal))
@@ -289,7 +289,7 @@
                                     <div class="form-group">
                                         <label>Golongan Akhir</label>
                                         <br>
-                                        <select name="golongan_akhir" class="theSelect" id="e_golongan_akhir">
+                                        <select name="golongan_akhir" class="theSelect" style="width: 100% !important" id="e_golongan_akhir">
                                             <option selected disabled>-- Pilih Golongan Akhir --</option>
                                             @foreach ($golonganOptions as $key => $value)
                                                 @if (!empty($result_kgb->golongan_akhir))

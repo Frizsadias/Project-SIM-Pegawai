@@ -154,7 +154,7 @@
                                     <div class="form-group">
                                         <label>Jenis Diklat</label>
                                         <br>
-                                        <select class="theSelect form-control" name="jenis_diklat" required>
+                                        <select class="theSelect form-control" style="width: 100% !important" name="jenis_diklat" required>
                                             <option selected disabled>-- Pilih Jenis Diklat --</option>
                                             @foreach($jenisdiklatOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -250,7 +250,7 @@
                                     <div class="form-group">
                                         <label>Jenis Diklat</label>
                                         <br>
-                                        <select class="theSelect" name="jenis_diklat" id="e_jenis_diklat">
+                                        <select class="theSelect" style="width: 100% !important" name="jenis_diklat" id="e_jenis_diklat">
                                             <option selected disabled>-- Pilih Jenis Diklat --</option>
                                             @foreach($jenisdiklatOptions as $key => $value)
                                                 @if (!empty($result_diklat->jenis_diklat))
