@@ -244,7 +244,7 @@
                                                 <div class="form-group">
                                                     <label for="agama">Agama</label>
                                                     <br>
-                                                    <select class="theSelect" name="agama" id="agama">
+                                                    <select class="theSelect" name="agama" id="agama" style="width: 100% !important">
                                                         <option selected disabled>-- Pilih Agama --</option>
                                                         @foreach($agamaOptions as $id => $namaAgama)
                                                             <option value="{{ $id }}" {{ $id == $propeg->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
@@ -256,7 +256,7 @@
                                                 <div class="form-group">
                                                     <label>Pendidikan Terakhir</label>
                                                     <br>
-                                                    <select class="theSelect" name="pendidikan_terakhir" id="pendidikan_terakhir">
+                                                    <select class="theSelect" name="pendidikan_terakhir" id="pendidikan_terakhir" style="width: 100% !important">
                                                         <option selected disabled>-- Pilih Pendidikan Terakhir --</option>
                                                         @foreach($pendidikanterakhirOptions as $id => $namaPendidikanTerakhir)
                                                             <option value="{{ $id }}" {{ $id == $propeg->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
@@ -274,7 +274,7 @@
                                                 <div class="form-group">
                                                     <label>Ruangan</label>
                                                     <br>
-                                                    <select class="theSelect" name="ruangan" id="ruangan">
+                                                    <select class="theSelect" name="ruangan" id="ruangan" style="width: 100% !important">
                                                         <option selected disabled>-- Pilih Ruangan --</option>
                                                         @foreach($ruanganOptions as $id => $result_ruangan)
                                                             <option value="{{ $id }}" {{ $id == $propeg->ruangan ? 'selected' : '' }}>{{ $result_ruangan }}</option>
@@ -359,8 +359,9 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="agama">Agama</label>
-                                                    <select class="select" name="agama" id="agama">
-                                                        <option value="" disabled selected>-- Pilih Agama --</option>
+                                                    <br>
+                                                    <select class="theSelect" name="agama" id="agama" style="width: 100% !important">
+                                                        <option selected disabled>-- Pilih Agama --</option>
                                                         @foreach($agamaOptions as $id => $namaAgama)
                                                             <option value="{{ $id }}" {{ $id == $propeg->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
                                                         @endforeach
@@ -370,8 +371,9 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Pendidikan Terakhir</label>
-                                                    <select class="theSelect" name="pendidikan_terakhir" id="pendidikan_terakhir">
-                                                        <option value="" disabled selected>-- Pilih Pendidikan Terakhir --</option>
+                                                    <br>
+                                                    <select class="theSelect" name="pendidikan_terakhir" id="pendidikan_terakhir" style="width: 100% !important">
+                                                        <option selected disabled>-- Pilih Pendidikan Terakhir --</option>
                                                         @foreach($pendidikanterakhirOptions as $id => $namaPendidikanTerakhir)
                                                             <option value="{{ $id }}" {{ $id == $propeg->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
                                                         @endforeach
@@ -388,12 +390,13 @@
                                                 <div class="form-group">
                                                     <label>Ruangan</label>
                                                     <br>
-                                                    <select class="select" name="ruangan" id="ruangan">
-                                                        <option value="" disabled selected>-- Pilih Ruangan --</option>
+                                                    <select class="theSelect" name="ruangan" id="ruangan" style="width: 100% !important">
+                                                        <option selected disabled>-- Pilih Ruangan --</option>
                                                         @foreach($ruanganOptions as $id => $optionLabel)
                                                             <option value="{{ $id }}" {{ $id == $propeg->ruangan ? 'selected' : '' }}>{{ $optionLabel }}</option>
                                                         @endforeach
-                                                    </select>
+                                                    </select><br>
+                                                    <small class="text-danger">*Jika pilihan tidak tersedia dapat memilih tanda ( - )</small>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

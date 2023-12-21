@@ -196,7 +196,7 @@
                                     <div class="form-group">
                                         <label>Ruangan</label>
                                         <br>
-                                        <select class="theSelect" name="ruangan">
+                                        <select class="theSelect" name="ruangan" style="width: 100% !important">
                                             <option selected disabled>-- Pilih Ruangan --</option>
                                             @foreach($ruanganOptions as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -271,7 +271,7 @@
                                     <div class="form-group">
                                         <label>Ruangan</label>
                                         <br>
-                                        <select class="theSelect" name="ruangan" id="e_ruangan">
+                                        <select class="theSelect" name="ruangan" id="e_ruangan" style="width: 100% !important">
                                             <option selected disabled>-- Pilih Ruangan --</option>
                                             @foreach($ruanganOptions as $key => $value)
                                                 @if (!empty($result_spk_perawat->ruangan))

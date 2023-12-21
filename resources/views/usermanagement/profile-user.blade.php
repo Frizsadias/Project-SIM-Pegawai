@@ -1604,7 +1604,7 @@
                                                 <div class="form-group">
                                                     <label>Agama <span class="text-danger">*</span></label>
                                                     <br>
-                                                    <select class="theSelect form-control @error('agama') is-invalid @enderror" name="agama">
+                                                    <select class="theSelect @error('agama') is-invalid @enderror" name="agama" style="width: 100% !important">
                                                         <option value="" disabled selected>-- Pilih Agama --</option>
                                                         @foreach ($agamaOptions as $optionValue => $namaAgama)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->agama) selected @endif>
@@ -1631,7 +1631,7 @@
                                                 <div class="form-group">
                                                     <label>Provinsi</label>
                                                     <span class="text-danger">*</span><br>
-                                                    <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi">
+                                                    <select class="theSelect @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" style="width: 100% !important">
                                                             <option value="" disabled selected>-- Pilih Provinsi --</option>
                                                         @foreach ($provinces as $provinsi)
                                                             <option value="{{ $provinsi->name }}" @if ($result_profilpegawai->provinsi == $provinsi->name) selected @endif>{{ $provinsi->name }}</option>
@@ -1644,7 +1644,7 @@
                                                 <div class="form-group">
                                                     <label>Kota/Kabupaten</label>
                                                     <span class="text-danger">*</span><br>
-                                                    <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten" value="{{ $result_profilpegawai->kota }}">
+                                                    <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten" style="width: 100% !important" style="width: 100% !important" value="{{ $result_profilpegawai->kota }}">
                                                     
                                                     </select>
                                                 </div>
@@ -1653,7 +1653,7 @@
                                                 <div class="form-group">
                                                     <label>Kecamatan</label>
                                                     <span class="text-danger">*</span><br>
-                                                    <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan" value="{{ $result_profilpegawai->kecamatan }}">
+                                                    <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan" style="width: 100% !important" value="{{ $result_profilpegawai->kecamatan }}">
                                                     
                                                     </select>
                                                 </div>
@@ -1662,7 +1662,7 @@
                                                 <div class="form-group">
                                                     <label>Desa/Kelurahan</label>
                                                     <span class="text-danger">*</span><br>
-                                                    <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan" value="{{ $result_profilpegawai->kelurahan }}">
+                                                    <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan" style="width: 100% !important" value="{{ $result_profilpegawai->kelurahan }}">
                                                     
                                                     </select>
                                                 </div>
@@ -1693,7 +1693,7 @@
                                                     <label>Jenis Pegawai</label>
                                                     <span class="text-danger">*</span>
                                                     <br>
-                                                    <select class="theSelect @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai">
+                                                    <select class="theSelect @error('jenis_pegawai') is-invalid @enderror" name="jenis_pegawai" style="width: 100% !important">
                                                         <option value="" disabled selected>-- Pilih Jenis Pegawai --</option>
                                                         @foreach ($jenispegawaiOptions as $id => $namaJenisPegawai)
                                                             @if(in_array($namaJenisPegawai, ['ASN', 'Non ASN', 'PPPK', 'CPNS']))
@@ -1707,7 +1707,7 @@
                                                 <div class="form-group">
                                                     <label>Kedudukan PNS <span class="text-danger">*</span></label>
                                                     <br>
-                                                    <select class="theSelect form-control @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns">
+                                                    <select class="theSelect @error('kedudukan_pns') is-invalid @enderror" name="kedudukan_pns" style="width: 100% !important">
                                                         <option value="" disabled selected>-- Pilih Kedudukan --</option>
                                                         @foreach ($kedudukanOptions as $optionValue => $namaKedudukan)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->kedudukan_pns) selected @endif>
@@ -1721,7 +1721,7 @@
                                                 <div class="form-group">
                                                     <label>Status Pegawai <span class="text-danger">*</span></label>
                                                     <br>
-                                                    <select class="theSelect form-control @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
+                                                    <select class="theSelect @error('status_pegawai') is-invalid @enderror" name="status_pegawai" style="width: 100% !important">
                                                         <option value="" disabled selected>-- Pilih Status Pegawai --</option>
                                                         <option value="Aktif" @if ($result_profilpegawai->status_pegawai === 'Aktif') selected @endif>Aktif</option>
                                                         <option value="Tidak Aktif" @if ($result_profilpegawai->status_pegawai === 'Tidak Aktif') selected @endif>Tidak Aktif</option>
@@ -1750,7 +1750,7 @@
                                                 <div class="form-group">
                                                     <label>Tingkat Pendidikan <span class="text-danger">*</span></label>
                                                     <br>
-                                                    <select class="theSelect form-control @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan">
+                                                    <select class="theSelect @error('tingkat_pendidikan') is-invalid @enderror" name="tingkat_pendidikan" style="width: 100% !important">
                                                         <option value="" disabled selected>-- Pilih Tingkat Pendidikan --</option>
                                                         @foreach ($tingkatpendidikanOptions as $optionValue => $namaTingkatPendidikan)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->tingkat_pendidikan) selected @endif>
@@ -1764,7 +1764,7 @@
                                                 <div class="form-group">
                                                     <label>Pendidikan Terakhir </label> <span class="text-danger">*</span></label>
                                                     <br>
-                                                    <select class="theSelect @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir">
+                                                    <select class="theSelect @error('pendidikan_terakhir') is-invalid @enderror" name="pendidikan_terakhir" style="width: 100% !important">
                                                         <option selected disabled>-- Pilih Pendidikan Terakhir --</option>
                                                         @foreach($pendidikanterakhirOptions as $id => $namaPendidikanTerakhir)
                                                             <option value="{{ $id }}" {{ $id == $result_profilpegawai->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
@@ -1776,7 +1776,7 @@
                                                 <div class="form-group">
                                                     <label>Ruangan <span class="text-danger">*</span></label>
                                                     <br>
-                                                    <select class="theSelect form-control @error('ruangan') is-invalid @enderror" name="ruangan">
+                                                    <select class="theSelect @error('ruangan') is-invalid @enderror" name="ruangan" style="width: 100% !important">
                                                         <option value="" disabled selected>-- Pilih Ruangan --</option>
                                                         @foreach ($ruanganOptions as $optionValue => $namaRuangan)
                                                             <option value="{{ $optionValue }}" @if ($optionValue == $result_profilpegawai->ruangan) selected @endif>
@@ -1841,7 +1841,7 @@
                                                             <div class="form-group">
                                                                 <label>Jenis Jabatan <span class="text-danger">*</span></label>
                                                                 <br>
-                                                                <select class="theSelect form-control @error('jenis_jabatan') is-invalid @enderror" name="jenis_jabatan">
+                                                                <select class="theSelect @error('jenis_jabatan') is-invalid @enderror" name="jenis_jabatan" style="width: 100% !important">
                                                                     <option value="" disabled selected>-- Pilih Jenis Jabatan --</option>
                                                                     @foreach ($jenisjabatanOptions as $optionValue => $jenisJabatan)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->jenis_jabatan) selected @endif>
@@ -1896,7 +1896,7 @@
                                                             <div class="form-group">
                                                                 <label>Golongan Ruang Awal</label>
                                                                 <br>
-                                                                <select class="theSelect form-control @error('gol_ruang_awal') is-invalid @enderror" name="gol_ruang_awal">
+                                                                <select class="theSelect @error('gol_ruang_awal') is-invalid @enderror" name="gol_ruang_awal" style="width: 100% !important">
                                                                     <option value="" disabled selected>-- Pilih Golongan Ruang Awal --</option>
                                                                     @foreach ($golonganOptions as $optionValue => $golAwal)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->gol_ruang_awal) selected @endif>
@@ -1910,7 +1910,7 @@
                                                             <div class="form-group">
                                                                 <label>Golongan Ruang Akhir</label>
                                                                 <br>
-                                                                <select class="theSelect form-control @error('gol_ruang_akhir') is-invalid @enderror" name="gol_ruang_akhir">
+                                                                <select class="theSelect @error('gol_ruang_akhir') is-invalid @enderror" name="gol_ruang_akhir" style="width: 100% !important">
                                                                     <option value="" disabled selected>-- Pilih Golongan Ruang Akhir --</option>
                                                                     @foreach ($golonganOptions as $optionValue => $golAkhir)
                                                                         <option value="{{ $optionValue }}" @if ($optionValue == $result_posisijabatan->gol_ruang_akhir) selected @endif>

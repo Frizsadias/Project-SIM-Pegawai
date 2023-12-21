@@ -120,7 +120,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Peran </label><br>
-                                        <select class="theSelect" name="role_name" id="role_name">
+                                        <select class="theSelect" name="role_name" id="role_name" style="width: 100% !important">
                                             <option selected disabled> --Pilih Peran --</option>
                                             @foreach ($role_name as $role)
                                                 <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
@@ -213,7 +213,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Peran </label><br>
-                                        <select class="theSelect" name="role_name" id="e_role_name">
+                                        <select class="theSelect" name="role_name" id="e_role_name" style="width: 100% !important">
                                             @foreach ($role_name as $role)
                                                 <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
                                             @endforeach
