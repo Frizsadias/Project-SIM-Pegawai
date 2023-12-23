@@ -9,6 +9,7 @@ class Notification extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'type',
         'notifiable_type',
         'notifiable_id',

@@ -126,6 +126,7 @@
                                                             Ada pesan baru untuk anda   !!
                                                     </p>
                                                     <p class="noti-time">
+                                                        <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
                                                         <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
                                                     </p>
                                                 </div>
@@ -142,10 +143,14 @@
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details">
-                                                        <span class="noti-title">{{ $notification->data['name'] }}</span> mendapatkan pesan baru <b>{{ $notification->data['message3'] }}</b>
+                                                        <span class="noti-title">
+                                                            <b>{{ $notification->data['message3'] }} {{ $notification->data['name'] }}</b>
+                                                        </span><br>
+                                                            Ada pesan baru untuk anda   !!
                                                     </p>
                                                     <p class="noti-time">
-                                                        <span class="notification-time"><i class="fa-solid fa-clock" style="color: #808080;"></i> {{ $notification->created_at->diffForHumans() }}</span>
+                                                        <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
+                                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -166,10 +171,11 @@
                         <li class="notification-message noti-unread">
                             <div class="media">
                                 <div class="media-body">
-                                    <p class="noti-details3">
-                                        <br><br><br><b>{{ $notification->data['name'] }}</b><br>
-                                        {{ $notification->data['message'] }} / {{ $notification->data['message2'] }}
-                                    <br><br></p>
+                                    <p class="noti-details3"><br>
+                                        <a><b>{{ $notification->data['name'] }}</b><a><br>
+                                        <a>{{ $notification->data['message'] }} / {{ $notification->data['message2'] }}</a><br>
+                                        <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notification->id, 0, 8) }}</a>
+                                    </p><br>
                                     <p class="noti-details2">
                                         <i>{{ $notification->data['message4'] }} <b>{{ $notification->data['message5'] }}</b> {{ $notification->data['message6'] }}<br>
                                         {{ $notification->data['message7'] }} <b>{{ $notification->data['message8'] }}</b><br>
@@ -180,6 +186,7 @@
                                     </p>
                                     <p class="noti-time2">
                                         <b>RSUD Caruban</b><br>
+                                        <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
                                         <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
                                     </p>
                                 </div>
@@ -187,13 +194,14 @@
                         </li>
                     @endforeach
                     @foreach (auth()->user()->readNotifications as $notification)
-                        <li class="notification-message noti-read">
+                        <li class="notification-message noti-unread">
                             <div class="media">
                                 <div class="media-body">
-                                    <p class="noti-details3">
-                                        <br><br><br><b>{{ $notification->data['name'] }}</b><br>
-                                        {{ $notification->data['message'] }} / {{ $notification->data['message2'] }}
-                                    <br><br></p>
+                                    <p class="noti-details3"><br>
+                                        <a><b>{{ $notification->data['name'] }}</b><a><br>
+                                        <a>{{ $notification->data['message'] }} / {{ $notification->data['message2'] }}</a><br>
+                                        <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notification->id, 0, 8) }}</a>
+                                    </p><br>
                                     <p class="noti-details2">
                                         <i>{{ $notification->data['message4'] }} <b>{{ $notification->data['message5'] }}</b> {{ $notification->data['message6'] }}<br>
                                         {{ $notification->data['message7'] }} <b>{{ $notification->data['message8'] }}</b><br>
@@ -204,6 +212,7 @@
                                     </p>
                                     <p class="noti-time2">
                                         <b>RSUD Caruban</b><br>
+                                        <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
                                         <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
                                     </p>
                                 </div>
@@ -315,8 +324,6 @@
 
     <script src="{{ asset('assets/js/master.js') }}"></script>
 
-
-
     <script>
         var toggleBtn = document.getElementById("toggle_btn");
         var logoText = document.querySelector(".logo-text");
@@ -335,5 +342,4 @@
     @yield('script')
     
 </body>
-
 </html>
