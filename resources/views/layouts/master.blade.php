@@ -98,7 +98,7 @@
                             <span class="notification-title">Notifikasi</span>
                             <form method="POST" action="{{ route('notifikasi.dibaca-semua') }}">
                                 @csrf
-                                <button type="submit" class="clear-noti"> Tandai Semua Dibaca </button>
+                                <button type="submit" class="clear-noti">Tandai Semua Dibaca</button>
                             </form>
                         </div>
                         <div class="noti-content">
@@ -110,54 +110,55 @@
                                         </p>
                                         <p class="noti-details" style="margin-top: 10px; text-align: center;">Tidak ada notifikasi baru</p>
                                     </li>
-                                @else
-                                @foreach (auth()->user()->unreadNotifications as $notification)
+                                @endif
+
+                                @foreach (auth()->user()->unreadNotifications as $notifikasi_belum_dibaca)
                                     <li class="notification-message noti-unread">
                                         <a href="#" id="open-popup">
                                             <div class="media">
                                                 <span class="avatar">
-                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notification->data['avatar']) }}">
+                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasi_belum_dibaca->data['avatar']) }}">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details">
                                                         <span class="noti-title">
-                                                            <b>{{ $notification->data['message3'] }} {{ $notification->data['name'] }}</b>
+                                                            <b>{{ $notifikasi_belum_dibaca->data['message3'] }} {{ $notifikasi_belum_dibaca->data['name'] }}</b>
                                                         </span><br>
                                                             Ada pesan baru untuk anda   !!
                                                     </p>
                                                     <p class="noti-time">
                                                         <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
-                                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                                        <span class="notification-time">{{ $notifikasi_belum_dibaca->created_at->diffForHumans() }}</span>
                                                     </p>
                                                 </div>
                                             </div>
                                         </a>
                                     </li>
                                 @endforeach
-                                @foreach (auth()->user()->readNotifications as $notification)
+
+                                @foreach (auth()->user()->readNotifications as $notifikasi_dibaca)
                                     <li class="notification-message noti-read">
                                         <a href="#" id="open-popup">
                                             <div class="media">
                                                 <span class="avatar">
-                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notification->data['avatar']) }}">
+                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasi_dibaca->data['avatar']) }}">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details">
                                                         <span class="noti-title">
-                                                            <b>{{ $notification->data['message3'] }} {{ $notification->data['name'] }}</b>
+                                                            <b>{{ $notifikasi_dibaca->data['message3'] }} {{ $notifikasi_dibaca->data['name'] }}</b>
                                                         </span><br>
                                                             Ada pesan baru untuk anda   !!
                                                     </p>
                                                     <p class="noti-time">
                                                         <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
-                                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                                        <span class="notification-time">{{ $notifikasi_dibaca->created_at->diffForHumans() }}</span>
                                                     </p>
                                                 </div>
                                             </div>
                                         </a>
                                     </li>
                                 @endforeach
-                                @endif
                             </ul>
                         </div>
                         {{-- <div class="topnav-dropdown-footer"><a href="#">Lihat Semua Notifikasi</a></div> --}}
@@ -167,19 +168,19 @@
 
                 <!-- Ulang Tahun Modal -->
                 <div id="popup-notifikasi">
-                    @foreach (auth()->user()->unreadNotifications as $notification)
+                    @foreach (auth()->user()->unreadNotifications as $notifikasi_belum_dibaca)
                         <li class="notification-message noti-unread">
                             <div class="media">
                                 <div class="media-body">
                                     <p class="noti-details3"><br>
-                                        <a><b>{{ $notification->data['name'] }}</b><a><br>
-                                        <a>{{ $notification->data['message'] }} / {{ $notification->data['message2'] }}</a><br>
-                                        <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notification->id, 0, 8) }}</a>
+                                        <a><b>{{ $notifikasi_belum_dibaca->data['name'] }}</b></a><br>
+                                        <a>{{ $notifikasi_belum_dibaca->data['message'] }} / {{ $notifikasi_belum_dibaca->data['message2'] }}</a><br>
+                                        <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notifikasi_belum_dibaca->id, 0, 8) }}</a>
                                     </p><br>
                                     <p class="noti-details2">
-                                        <i>{{ $notification->data['message4'] }} <b>{{ $notification->data['message5'] }}</b> {{ $notification->data['message6'] }}<br>
-                                        {{ $notification->data['message7'] }} <b>{{ $notification->data['message8'] }}</b><br>
-                                        Kepada <b>{{ $notification->data['name'] }}</b> {{ $notification->data['message9'] }}</i>
+                                        <i>{{ $notifikasi_belum_dibaca->data['message4'] }} <b>{{ $notifikasi_belum_dibaca->data['message5'] }}</b> {{ $notifikasi_belum_dibaca->data['message6'] }}<br>
+                                        {{ $notifikasi_belum_dibaca->data['message7'] }} <b>{{ $notifikasi_belum_dibaca->data['message8'] }}</b><br>
+                                        Kepada <b>{{ $notifikasi_belum_dibaca->data['name'] }}</b> {{ $notifikasi_belum_dibaca->data['message9'] }}</i>
                                     <br><br></p>
                                     <p class="logo-rsud">
                                         <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
@@ -187,25 +188,26 @@
                                     <p class="noti-time2">
                                         <b>RSUD Caruban</b><br>
                                         <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
-                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                        <span class="notification-time">{{ $notifikasi_belum_dibaca->created_at->diffForHumans() }}</span>
                                     </p>
                                 </div>
                             </div>
                         </li>
                     @endforeach
-                    @foreach (auth()->user()->readNotifications as $notification)
-                        <li class="notification-message noti-unread">
+
+                    @foreach (auth()->user()->readNotifications as $notifikasi_dibaca)
+                        <li class="notification-message noti-read">
                             <div class="media">
                                 <div class="media-body">
                                     <p class="noti-details3"><br>
-                                        <a><b>{{ $notification->data['name'] }}</b><a><br>
-                                        <a>{{ $notification->data['message'] }} / {{ $notification->data['message2'] }}</a><br>
-                                        <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notification->id, 0, 8) }}</a>
+                                        <a><b>{{ $notifikasi_dibaca->data['name'] }}</b></a><br>
+                                        <a>{{ $notifikasi_dibaca->data['message'] }} / {{ $notifikasi_dibaca->data['message2'] }}</a><br>
+                                        <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notifikasi_dibaca->id, 0, 8) }}</a>
                                     </p><br>
                                     <p class="noti-details2">
-                                        <i>{{ $notification->data['message4'] }} <b>{{ $notification->data['message5'] }}</b> {{ $notification->data['message6'] }}<br>
-                                        {{ $notification->data['message7'] }} <b>{{ $notification->data['message8'] }}</b><br>
-                                        Kepada <b>{{ $notification->data['name'] }}</b> {{ $notification->data['message9'] }}</i>
+                                        <i>{{ $notifikasi_dibaca->data['message4'] }} <b>{{ $notifikasi_dibaca->data['message5'] }}</b> {{ $notifikasi_dibaca->data['message6'] }}<br>
+                                        {{ $notifikasi_dibaca->data['message7'] }} <b>{{ $notifikasi_dibaca->data['message8'] }}</b><br>
+                                        Kepada <b>{{ $notifikasi_dibaca->data['name'] }}</b> {{ $notifikasi_dibaca->data['message9'] }}</i>
                                     <br><br></p>
                                     <p class="logo-rsud">
                                         <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
@@ -213,18 +215,18 @@
                                     <p class="noti-time2">
                                         <b>RSUD Caruban</b><br>
                                         <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
-                                        <span class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                        <span class="notification-time">{{ $notifikasi_dibaca->created_at->diffForHumans() }}</span>
                                     </p>
                                 </div>
                             </div>
                         </li>
                     @endforeach
                     <div class="close-notifikasi">
-                        @foreach (auth()->user()->unreadNotifications as $notification)
-                            <a href="{{ route('notifikasi.dibaca', $notification->id) }}"><button id="close-popup">Tutup</button></a>
+                        @foreach (auth()->user()->unreadNotifications as $notifikasi_belum_dibaca)
+                            <a href="{{ route('notifikasi.dibaca', $notifikasi_belum_dibaca->id) }}"><button id="close-popup">Tutup</button></a>
                         @endforeach
-                        @foreach (auth()->user()->readNotifications as $notification)
-                            <a href="{{ route('notifikasi.dibaca', $notification->id) }}"><button id="close-popup">Tutup</button></a>
+                        @foreach (auth()->user()->readNotifications as $notifikasi_dibaca)
+                            <a href="{{ route('notifikasi.dibaca', $notifikasi_dibaca->id) }}"><button id="close-popup">Tutup</button></a>
                         @endforeach
                     </div>
                     <br>
