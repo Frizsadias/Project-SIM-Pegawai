@@ -8612,7 +8612,7 @@ ul.comment-list li ul.children {
     width: 26px;
 }
 
-#popup-ulangtahun {
+#popup-notifikasi {
 	display: none;
     position: fixed;
     top: 50%;
@@ -8641,7 +8641,7 @@ ul.comment-list li ul.children {
     padding: 10px 20px;
 }
 
-.close-ulangtahun{
+.close-notifikasi{
 	text-align: center;
 }
 

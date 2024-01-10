@@ -160,13 +160,13 @@
                                 @endif
                             </ul>
                         </div>
-                        <div class="topnav-dropdown-footer"><a href="#">Lihat Semua Notifikasi</a></div>
+                        {{-- <div class="topnav-dropdown-footer"><a href="#">Lihat Semua Notifikasi</a></div> --}}
                     </div>
                 </li>
 				<!-- /Notifications -->
 
                 <!-- Ulang Tahun Modal -->
-                <div id="popup-ulangtahun">
+                <div id="popup-notifikasi">
                     @foreach (auth()->user()->unreadNotifications as $notification)
                         <li class="notification-message noti-unread">
                             <div class="media">
@@ -219,7 +219,7 @@
                             </div>
                         </li>
                     @endforeach
-                    <div class="close-ulangtahun">
+                    <div class="close-notifikasi">
                         @foreach (auth()->user()->unreadNotifications as $notification)
                             <a href="{{ route('notifikasi.dibaca', $notification->id) }}"><button id="close-popup">Tutup</button></a>
                         @endforeach
@@ -227,7 +227,6 @@
                             <a href="{{ route('notifikasi.dibaca', $notification->id) }}"><button id="close-popup">Tutup</button></a>
                         @endforeach
                     </div>
-                    
                     <br>
                 </div>
                 <!-- /Ulang Tahun Modal -->
