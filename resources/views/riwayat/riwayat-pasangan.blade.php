@@ -373,21 +373,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Dokumen Nikah</label>
-                                        <small class="text-danger">*</small>
-                                        <input class="form-control" type="file" name="dokumen_nikah">
-                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                <div class="dropzone-box">
+                                    <label>Dokumen Nikah</label>
+                                    <div class="dropzone-area">
+                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
+                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_nikah" id="upload-file-form1">
+                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
                                     </div>
+                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Pas Foto</label>
-                                        <small class="text-danger">*</small>
-                                        <input class="form-control" type="file" name="pas_foto">
-                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
+                                <div class="dropzone-box">
+                                    <label>Pas Foto</label>
+                                    <div class="dropzone-area">
+                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
+                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input class="form-control" type="file" name="pas_foto" id="upload-file-form2">
+                                        <p class="message-preview2">Tidak ada file yang di pilih</p>
                                     </div>
+                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
@@ -613,27 +617,31 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Dokumen Nikah</label>
-                                        <small class="text-danger">*</small>
+                                <div class="dropzone-box">
+                                    <label>Dokumen Nikah</label>
+                                    <div class="dropzone-area">
+                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
+                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
                                         <input type="file" class="form-control" id="dokumen_nikah"
                                             name="dokumen_nikah">
                                         <input type="hidden" name="hidden_dokumen_nikah" id="e_dokumen_nikah"
                                             value="">
-                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
                                     </div>
+                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Pas Foto</label>
-                                        <small class="text-danger">*</small>
+                                <div class="dropzone-box">
+                                    <label>Pas Foto</label>
+                                    <div class="dropzone-area">
+                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
+                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
                                         <input type="file" class="form-control" id="pas_foto"
                                             name="pas_foto">
                                         <input type="hidden" name="hidden_pas_foto" id="e_pas_foto"
                                             value="">
-                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
+                                        <p class="message-preview2">Tidak ada file yang di pilih</p>
                                     </div>
+                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
@@ -684,6 +692,7 @@
 
 @section('script')
     <script src="{{ asset('assets/js/pasangan.js') }}"></script>
+    <script src="{{ asset('assets/js/draganddropRiwayatPasangan.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <script>

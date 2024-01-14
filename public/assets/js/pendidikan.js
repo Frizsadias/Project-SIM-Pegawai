@@ -7,7 +7,18 @@ $(document).on('click', '.edit_riwayat_pendidikan', function() {
     $('#e_nama_sekolah').val(_this.find('.nama_sekolah').text());
     $('#e_gelar_depan_pend').val(_this.find('.gelar_depan_pend').text());
     $('#e_gelar_belakang_pend').val(_this.find('.gelar_belakang_pend').text());
-    $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
+    // $('#e_jenis_pendidikan').val(_this.find('.jenis_pendidikan').text());
+
+    var jenisPendidikanText = _this.find(".jenis_pendidikan").text().trim();
+
+    $('input[name="jenis_pendidikan"]').each(function () {
+        if ($(this).val() === jenisPendidikanText) {
+            $(this).prop("checked", true);
+        } else {
+            $(this).prop("checked", false);
+        }
+    });
+
     $('#e_dokumen_transkrip').val(_this.find('.dokumen_transkrip').text());
     $('#e_dokumen_ijazah').val(_this.find('.dokumen_ijazah').text());
     $('#e_dokumen_gelar').val(_this.find('.dokumen_gelar').text());

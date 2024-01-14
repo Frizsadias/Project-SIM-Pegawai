@@ -222,19 +222,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Dokumen SK Jabatan</label>
-                                        <input class="form-control" type="file" name="dokumen_sk_jabatan">
-                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                <div class="dropzone-box">
+                                    <label>Dokumen SK Jabatan</label>
+                                    <div class="dropzone-area">
+                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
+                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_sk_jabatan" id="upload-file-form1">
+                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
                                     </div>
+                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Dokumen Pelantikan</label>
-                                        <input class="form-control" type="file" name="dokumen_pelantikan">
-                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                <div class="dropzone-box">
+                                    <label>Dokumen Pelantikan</label>
+                                    <div class="dropzone-area">
+                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
+                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_pelantikan" id="upload-file-form2">
+                                        <p class="message-preview2">Tidak ada file yang di pilih</p>
                                     </div>
+                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
@@ -326,21 +332,27 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Dokumen SK Jabatan</label>
+                                <div class="dropzone-box">
+                                    <label>Dokumen SK Jabatan</label>
+                                    <div class="dropzone-area">
+                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
+                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
                                         <input class="form-control" type="file" id="dokumen_sk_jabatan" name="dokumen_sk_jabatan">
                                         <input type="hidden" name="hidden_dokumen_sk_jabatan" id="e_dokumen_sk_jabatan" value="">
-                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
                                     </div>
+                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Dokumen Pelantikan</label>
+                                <div class="dropzone-box">
+                                    <label>Dokumen Pelantikan</label>
+                                    <div class="dropzone-area">
+                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
+                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
                                         <input class="form-control" type="file" id="dokumen_pelantikan" name="dokumen_pelantikan">
                                         <input type="hidden" name="hidden_dokumen_pelantikan" id="e_dokumen_pelantikan" value="">
-                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                        <p class="message-preview2">Tidak ada file yang di pilih</p>
                                     </div>
+                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
@@ -389,6 +401,7 @@
 
     @section('script')
         <script src="{{ asset('assets/js/jabatan.js') }}"></script>
+        <script src="{{ asset('assets/js/draganddropRiwayatJabatan.js') }}"></script>
 
         <script>
             history.pushState({}, "", '/riwayat/jabatan');
