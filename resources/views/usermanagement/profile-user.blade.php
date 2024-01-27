@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulprofil')
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="page-wrapper">

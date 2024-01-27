@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulagama-admin')
 @section('content')
 
     <!-- Page Wrapper -->

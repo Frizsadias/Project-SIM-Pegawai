@@ -6,7 +6,7 @@
                 <li class="{{ set_active(['home']) }}">
                     <a href="{{ route('home') }}" class="{{ set_active(['home']) ? 'noti-dot' : '' }}">
                         <i class="la la-dashboard"></i>
-                        <span> Dashboard</span>
+                        <span>Beranda</span>
                     </a>
                 </li>
 
@@ -257,7 +257,7 @@
                         <a href="{{ route('admin-kata-sandi') }}"
                             class="{{ set_active(['admin/kata-sandi']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
-                            <span> Ubah Password</span>
+                            <span> Ubah Kata Sandi</span>
                         </a>
                     </li>
                 @endif
@@ -296,7 +296,7 @@
                         <a href="{{ route('super-admin-kata-sandi') }}"
                             class="{{ set_active(['super-admin/kata-sandi']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
-                            <span> Ubah Password</span>
+                            <span> Ubah Kata Sandi</span>
                         </a>
                     </li>
                 @endif
@@ -328,7 +328,7 @@
                         <a href="{{ route('kepala-ruangan-kata-sandi') }}"
                             class="{{ set_active(['kepala-ruangan/kata-sandi']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
-                            <span> Ubah Password</span>
+                            <span> Ubah Kata Sandi</span>
                         </a>
                     </li>
                 @endif
@@ -608,7 +608,7 @@
                         <a href="{{ route('user-kata-sandi') }}"
                             class="{{ set_active(['user/kata-sandi']) ? 'noti-dot' : '' }}">
                             <i class="la la-key"></i>
-                            <span> Ubah Password</span>
+                            <span> Ubah Kata Sandi</span>
                         </a>
                     </li>
                 @endif

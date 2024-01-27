@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.juduldatastatistik')
 @section('content')
 
     <div class="page-wrapper">

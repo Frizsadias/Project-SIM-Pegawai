@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.juduldisiplin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -12,12 +13,12 @@
                         <h3 class="page-title"> Riwayat Hukuman Disiplin</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Riwayat Angka Kredit</li>
+                            <li class="breadcrumb-item active">Riwayat Hukuman Disiplin</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
                         <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_angka_hukuman"><i
-                                class="fa fa-plus"></i> Tambah Riwayat Angka Kredit</a>
+                                class="fa fa-plus"></i> Tambah Riwayat Hukuman Disiplin</a>
                     </div>
                 </div>
             </div>

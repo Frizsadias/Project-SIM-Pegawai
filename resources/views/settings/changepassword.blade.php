@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulubahkatasandi')
 @section('content')
     
     <!-- Page Wrapper -->
@@ -10,7 +11,7 @@
                     <div class="page-header">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h3 class="page-title">Ubah Password</h3>
+                                <h3 class="page-title">Ubah Kata Sandi</h3>
                             </div>
                         </div>
                     </div>
@@ -70,7 +71,7 @@
                             @enderror
                         </div>
                         <div class="submit-section">
-                            <button type="submit" class="btn btn-primary submit-btn">Ubah Password</button>
+                            <button type="submit" class="btn btn-primary submit-btn">Ubah Kata Sandi</button>
                         </div>
                     </form>
                 </div>

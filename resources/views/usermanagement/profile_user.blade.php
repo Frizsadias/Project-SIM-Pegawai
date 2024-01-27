@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulprofil')
 @section('content')
     <div class="page-wrapper">
         <!-- Page Content -->

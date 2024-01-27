@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulaktifitas-admin')
 @section('content')
     <!-- Page Wrapper -->
     <div class="page-wrapper">

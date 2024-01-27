@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulcuti')
 @section('content')
 
     <!-- Page Wrapper -->

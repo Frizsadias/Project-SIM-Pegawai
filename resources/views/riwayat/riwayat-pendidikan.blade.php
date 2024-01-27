@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulpendidikan')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -366,6 +367,7 @@
                                             id="e_gelar_belakang_pend" value="">
                                     </div>
                                 </div>
+                                @if(isset($result_pendidikan))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Pendidikan</label>
@@ -379,6 +381,7 @@
                                         <input type="radio" name="jenis_pendidikan" id="e_jenis_pendidikan_4" value="Pendidikan Keempat" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Keempat' ? 'checked' : '' }}> Pendidikan Keempat
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             <div class="row">
                                 <div class="dropzone-box">

@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulsipdokter-admin')
 @section('content')
 
     <!-- Page Wrapper -->

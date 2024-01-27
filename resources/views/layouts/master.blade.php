@@ -8,7 +8,7 @@
     <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
     <meta name="author" content="SoengSouy Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Dashboard | Aplikasi SILK</title>
+    <title>Beranda | Aplikasi SILK</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('assets/img/favicon.png') }}">
     <!-- Bootstrap CSS -->
@@ -249,9 +249,12 @@
                         @if (Auth::user()->role_name == 'Super Admin')
                             <a class="dropdown-item" href="{{ route('super-admin-profile') }}">Profil Saya</a>
                         @endif
+                        @if (Auth::user()->role_name == 'Kepala Ruang')
+                            <a class="dropdown-item" href="{{ route('kepala-ruangan-profile') }}">Profil Saya</a>
+                        @endif
                         @if (Auth::user()->role_name == 'User')
                             <a class="dropdown-item" href="{{ route('user-profile') }}">Profil Saya</a>
-                        @endif
+                        @endif                        
                         @if (Auth::user()->role_name == 'Admin' || Auth::user()->role_name == 'Super Admin')
                             <a class="dropdown-item" href="{{ route('pengaturan-perusahaan') }}">Pengaturan</a>
                         @endif

@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@extends('layouts.judulstatus-admin')
 @section('content')
 
     <!-- Page Wrapper -->
