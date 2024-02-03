@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulsumpah-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -214,6 +213,10 @@
 
         <script>
             history.pushState({}, "", '/referensi/sumpah');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Data Referensi Sumpah - Admin | Aplikasi SILK';
         </script>
 
 @endsection

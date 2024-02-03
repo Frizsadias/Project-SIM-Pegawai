@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.juduldaftarruangan')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -77,4 +76,10 @@
     </div>
     <!-- /Page Wrapper -->
 
+    @section('script')
+    <script>
+        document.getElementById('pageTitle').innerHTML = 'Informasi Daftar Ruangan - Kepala Ruang | Aplikasi SILK';
+    </script>
+
+    @endsection
 @endsection

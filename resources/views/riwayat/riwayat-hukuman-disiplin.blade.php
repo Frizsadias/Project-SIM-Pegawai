@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.juduldisiplin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -517,6 +516,10 @@
 
         <script>
             history.pushState({}, "", '/riwayat/hukuman/disiplin');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Riwayat Hukuman Disiplin | Aplikasi SILK';
         </script>
         
     @endsection

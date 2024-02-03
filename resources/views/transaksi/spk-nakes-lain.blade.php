@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulspknakeslain')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -335,6 +334,11 @@
         <script>
             history.pushState({}, "", '/transaksi/spk-nakes-lain');
         </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan SPK Nakes Lain | Aplikasi SILK';
+        </script>
+
                 
     @endsection
 @endsection

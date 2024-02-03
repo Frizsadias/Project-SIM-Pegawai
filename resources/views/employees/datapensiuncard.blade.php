@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulpegawaipensiun-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -81,4 +80,10 @@
     </div>
     <!-- /Page Wrapper -->
 
+    @section('script')
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Manajemen Data Pegawai Pensiun - Admin | Aplikasi SILK';
+        </script>
+
+    @endsection
 @endsection

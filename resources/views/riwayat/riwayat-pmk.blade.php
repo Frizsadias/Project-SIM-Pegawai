@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulpmk')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -425,6 +424,10 @@
 
         <script>
             history.pushState({}, "", '/riwayat/pmk');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Riwayat PMK | Aplikasi SILK';
         </script>
 
     @endsection

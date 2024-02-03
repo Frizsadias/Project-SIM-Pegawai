@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulgolongan')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -431,6 +430,10 @@
 
         <script>
             history.pushState({}, "", '/riwayat/golongan');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Riwayat Pangkat/Golongan | Aplikasi SILK';
         </script>
 
     @endsection

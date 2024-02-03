@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulagama-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -214,6 +213,9 @@
         <script>
             history.pushState({}, "", '/referensi/agama');
         </script>
-    
+        
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Data Referensi Agama - Admin | Aplikasi SILK';
+        </script>
     @endsection
 @endsection

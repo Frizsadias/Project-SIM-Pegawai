@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judullayanansurat')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -352,6 +351,10 @@
 
         <script>
             history.pushState({}, "", '/layanan/surat-tanda-registrasi');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan STR | Aplikasi SILK';
         </script>
 
     @endsection

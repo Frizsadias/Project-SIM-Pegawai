@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulaktifitas-admin')
 @section('content')
     <!-- Page Wrapper -->
     <div class="page-wrapper">
@@ -55,5 +54,12 @@
         </div>
         <!-- /Page Content -->
     </div>
+
+    @section('script')
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Manajemen Riwayat Aktifitas - Admin | Aplikasi SILK';
+        </script>
+        
+    @endsection
 @endsection
 

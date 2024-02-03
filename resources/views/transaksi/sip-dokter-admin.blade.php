@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulsipdokter-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -358,6 +357,10 @@
 
         <script>
             history.pushState({}, "", '/transaksi/sip-dokter-admin');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan SIP Dokter - Admin | Aplikasi SILK';
         </script>
 
     @endsection

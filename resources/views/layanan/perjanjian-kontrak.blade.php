@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulperjanjiankontrak')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -294,6 +293,10 @@
 
         <script>
             history.pushState({}, "", '/layanan/perjanjian-kontrak');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan Perjanjian Kontrak | Aplikasi SILK';
         </script>
         
     @endsection

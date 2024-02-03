@@ -88,16 +88,16 @@ class LoginController extends Controller
                 Toastr::success('Anda berhasil memasuki aplikasi SILK ✔', 'Success');
                 return redirect()->intended('home');
             } elseif (User::where('nip', $username)->orWhere('no_dokumen', $username)->exists()) {
-                Toastr::error('Gagal, Nama Pengguna dan Kata Sandi tidak sama ✘', 'Error');
+                Toastr::error('Gagal, NIP/NIKB dan Kata Sandi tidak sama ✘', 'Error');
                 return redirect('login');
             }else {
-                Toastr::error('Gagal, NIP/NIK anda tidak tersedia pada aplikasi ✘', 'Error');
+                Toastr::error('Gagal, NIP/NIKB anda tidak tersedia pada aplikasi ✘', 'Error');
                 return redirect('login');
             }
         } catch (\Exception $e) {
             \Log::error($e);
             DB::rollback();
-            Toastr::error('Gagal, NIP/NIK anda tidak tersedia pada aplikasi ✘', 'Error');
+            Toastr::error('Gagal, NIP/NIKB anda tidak tersedia pada aplikasi ✘', 'Error');
             return redirect()->back();
         }
     }

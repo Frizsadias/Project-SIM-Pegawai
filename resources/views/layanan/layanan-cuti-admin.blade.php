@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulpengajuancuti-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -508,6 +507,10 @@
 
         <script>
             history.pushState({}, "", '/layanan/cuti/admin');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan Pengajuan Cuti - Admin | Aplikasi SILK';
         </script>
 
     @endsection

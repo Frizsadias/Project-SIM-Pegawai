@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulpendidikan-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -250,5 +249,9 @@
             history.pushState({}, "", '/referensi/pendidikan');
         </script>
 
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Data Referensi Pendidikan - Admin | Aplikasi SILK';
+        </script>
+        
     @endsection
 @endsection

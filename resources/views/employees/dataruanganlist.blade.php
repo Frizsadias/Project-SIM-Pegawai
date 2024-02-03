@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.juduldaftarruangan')
 @section('content')
     
     <!-- Page Wrapper -->
@@ -18,8 +17,8 @@
                     </div>
                     <div class="col-auto float-right ml-auto">
                         <div class="view-icons">
-                            <a href="{{ route('daftar/ruangan/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-                            <a href="{{ route('daftar/ruangan/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                            <a href="{{ route('daftar/ruangan/pegawai/card') }}" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
+                            <a href="{{ route('daftar/ruangan/pegawai/list') }}" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
                         </div>
                     </div>
                 </div>
@@ -91,5 +90,11 @@
 
     </div>
     <!-- /Page Wrapper -->
+    
+    @section('script')
+    <script>
+        document.getElementById('pageTitle').innerHTML = 'Informasi Daftar Ruangan - Kepala Ruang | Aplikasi SILK';
+    </script>
 
+    @endsection
 @endsection

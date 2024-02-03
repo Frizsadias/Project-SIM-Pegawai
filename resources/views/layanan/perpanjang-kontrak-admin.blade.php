@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulperpanjangankontrak-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -338,6 +337,10 @@
 
         <script>
             history.pushState({}, "", '/layanan/perpanjang-kontrak-admin');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan Perpanjangan Kontrak - Admin | Aplikasi SILK';
         </script>
 
     @endsection

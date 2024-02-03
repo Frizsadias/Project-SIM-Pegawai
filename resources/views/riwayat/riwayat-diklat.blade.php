@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.juduldiklat')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -383,6 +382,10 @@
 
         <script>
             history.pushState({}, "", '/riwayat/diklat');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Riwayat Diklat/Kursus | Aplikasi SILK';
         </script>
 
     @endsection

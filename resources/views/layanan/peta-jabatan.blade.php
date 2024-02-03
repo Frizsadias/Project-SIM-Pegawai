@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulpetajabatan')
 @section('content')
             <!-- Page Wrapper -->
             <div class="page-wrapper">
@@ -220,4 +219,11 @@
                     ]);
                 </script>
             </body>
+        
+    @section('script')
+        <script>
+                document.getElementById('pageTitle').innerHTML = 'Struktur Peta Jabatan | Aplikasi SILK';
+        </script>
+    
+    @endsection
 @endsection

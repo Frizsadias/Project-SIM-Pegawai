@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulspkdokter-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -357,6 +356,10 @@
 
         <script>
             history.pushState({}, "", '/transaksi/spk-dokter-admin');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan SPK Dokter - Admin | Aplikasi SILK';
         </script>
 
     @endsection

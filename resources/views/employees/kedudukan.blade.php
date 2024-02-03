@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulkedudukan-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -210,6 +209,10 @@
 
         <script>
             history.pushState({}, "", '/referensi/kedudukan');
+        </script>
+        
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Data Referensi Kedudukan - Admin | Aplikasi SILK';
         </script>
 
     @endsection

@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulangkakredit')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -448,5 +447,9 @@
             history.pushState({}, "", '/riwayat/angka/kredit');
         </script>
 
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Riwayat Angka Kredit | Aplikasi SILK';
+        </script>
+        
     @endsection
 @endsection

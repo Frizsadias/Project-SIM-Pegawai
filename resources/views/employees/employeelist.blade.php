@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.juduldaftarpegawai')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -18,8 +17,8 @@
                     </div>
                     <div class="col-auto float-right ml-auto">
                         <div class="view-icons">
-                            <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-                            <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                            <a href="{{ route('daftar/pegawai/card') }}" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
+                            <a href="{{ route('daftar/pegawai/list') }}" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
                         </div>
                     </div>
                 </div>
@@ -109,5 +108,16 @@
 
     </div>
     <!-- /Page Wrapper -->
+    
+    @section('script')
+        <script>
+            @if (Auth::user()->role_name == 'Admin') 
+                document.getElementById('pageTitle').innerHTML = 'Manajemen Daftar Pegawai - Admin | Aplikasi SILK';
+            @endif
+            @if (Auth::user()->role_name == 'Super Admin') 
+                document.getElementById('pageTitle').innerHTML = 'Informasi Daftar Pegawai - Super Admin | Aplikasi SILK';
+            @endif
+        </script>
 
+    @endsection
 @endsection

@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.juduldaftarpegawai')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -80,5 +79,15 @@
 
     </div>
     <!-- /Page Wrapper -->
-    
+    @section('script')
+        <script>
+            @if (Auth::user()->role_name == 'Admin') 
+                document.getElementById('pageTitle').innerHTML = 'Manajemen Daftar Pegawai - Admin | Aplikasi SILK';
+            @endif
+            @if (Auth::user()->role_name == 'Super Admin') 
+                document.getElementById('pageTitle').innerHTML = 'Informasi Daftar Pegawai - Super Admin | Aplikasi SILK';
+            @endif
+        </script>
+
+    @endsection
 @endsection

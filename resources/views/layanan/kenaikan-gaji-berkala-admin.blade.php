@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulkenaikangaji-admin')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -457,6 +456,10 @@
 
         <script>
             history.pushState({}, "", '/layanan/kenaikan/gaji/berkala/admin');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan Kenaikan Gaji Berkala - Admin | Aplikasi SILK';
         </script>
 
     @endsection

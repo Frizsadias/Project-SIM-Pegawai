@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulpenghargaan')
 @section('content')
     <!-- Page Wrapper -->
     <div class="page-wrapper">
@@ -332,6 +331,10 @@
 
         <script>
             history.pushState({}, "", '/riwayat/penghargaan');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Riwayat Penghargaan | Aplikasi SILK';
         </script>
 
     @endsection

@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulcutikepalaruangan')
 @section('content')
 
         <!-- Page Wrapper -->
@@ -533,6 +532,10 @@
 
         <script>
             history.pushState({}, "", '/layanan/cuti/kepala-ruangan');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan Pengajuan Cuti - Kepala Ruangan | Aplikasi SILK';
         </script>
 
     @endsection

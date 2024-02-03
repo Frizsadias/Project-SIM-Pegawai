@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.juduldatastatistik')
 @section('content')
 
     <div class="page-wrapper">
@@ -88,4 +87,10 @@
     </div>
      <!-- /Page Wrapper -->
 
+     @section('script')
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Data Statistik - Super Admin | Aplikasi SILK';
+        </script>
+
+    @endsection
 @endsection

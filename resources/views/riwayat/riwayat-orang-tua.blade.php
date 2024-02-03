@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulorangtua')
 @section('content')
 
     <!-- Page Wrapper -->
@@ -774,6 +773,10 @@
 
         <script>
             history.pushState({}, "", '/riwayat/orangtua');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Riwayat Orang Tua | Aplikasi SILK';
         </script>
 
     @endsection

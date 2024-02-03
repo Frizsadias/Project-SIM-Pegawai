@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulprofil')
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="page-wrapper">
@@ -2176,6 +2175,18 @@
         <script>
 		$(".theSelect").select2();
 	    </script>
+
+        <script>
+            @if (Auth::user()->role_name == 'User') 
+                document.getElementById('pageTitle').innerHTML = 'Pengaturan Profil - User | Aplikasi SILK';
+            @endif
+            @if (Auth::user()->eselon == '3') 
+                document.getElementById('pageTitle').innerHTML = 'Pengaturan Profil - Eselon 3 | Aplikasi SILK';
+            @endif
+            @if (Auth::user()->eselon == '4') 
+                document.getElementById('pageTitle').innerHTML = 'Pengaturan Profil - Eselon 4 | Aplikasi SILK';
+            @endif
+        </script>
 
     @endsection
 @endsection

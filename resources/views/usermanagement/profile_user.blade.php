@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulprofil')
 @section('content')
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -581,6 +580,18 @@
 
         <script>
             $(".theSelect").select2();
+        </script>
+
+        <script>
+            @if (Auth::user()->role_name == 'Admin') 
+                document.getElementById('pageTitle').innerHTML = 'Pengaturan Profil - Admin | Aplikasi SILK';
+            @endif
+            @if (Auth::user()->role_name == 'Super Admin') 
+                document.getElementById('pageTitle').innerHTML = 'Pengaturan Profil - Super Admin | Aplikasi SILK';
+            @endif
+            @if (Auth::user()->role_name == 'Kepala Ruang') 
+                document.getElementById('pageTitle').innerHTML = 'Pengaturan Profil - Kepala Ruang | Aplikasi SILK';
+            @endif
         </script>
 
     @endsection

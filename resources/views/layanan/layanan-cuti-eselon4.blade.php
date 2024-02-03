@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('layouts.judulcutieselon4')
 @section('content')
  
         <!-- Page Wrapper -->
@@ -531,6 +530,10 @@
 
         <script>
             history.pushState({}, "", '/layanan/cuti/eselon-4');
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Layanan Pengajuan Cuti - Eselon 4 | Aplikasi SILK';
         </script>
 
     @endsection
