@@ -15,7 +15,8 @@ class ForgotPasswordController extends Controller
     /** get email*/
     public function getEmail()
     {
-       return view('auth.passwords.email');
+       $result_name = DB::table('users')->get();
+       return view('auth.passwords.email', compact('result_name'));
     }
 
     /** post email */
@@ -27,16 +28,29 @@ class ForgotPasswordController extends Controller
 
         $token = Str::random(60);
 
+        $user = DB::table('users')->where('email', $request->email)->first();
+        if (!$user) {
+            return back()->withErrors(['email' => 'Nama Pengguna Tidak Ditemukan']);
+        }
+
         DB::table('password_resets')->insert(
-            ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
+            [
+                'email' => $request->email,
+                'name' => $user->name,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]
         );
 
-        Mail::send('auth.verify',['token' => $token], function($message) use ($request) {
-            $message->from($request->email);
-            $message->to('your email'); /** input your email to send */
-            $message->subject('Pemberitahuan Reset Kata Sandi');
-            });
-        Toastr::success('Kami telah mengirimkan tautan pengaturan ulang kata sandi Anda melalui email! :)','Success');
-        return back();
+        $resultEmail = $request->input('email');
+
+        Mail::send('auth.verify', ['token' => $token], function ($message) use ($request, $resultEmail) {
+            $message->from($request->email, 'Admin Developer - Aplikasi SILK');
+            $message->to($resultEmail);
+            $message->subject('Bantuan Sandi - Aplikasi SILK');
+        });
+
+        Toastr::success('Kami telah mengirimkan tautan pengaturan ulang kata sandi Anda melalui email! ✔', 'Success');
+        return redirect('login');
     }
 }

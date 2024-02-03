@@ -434,7 +434,7 @@ class HomeController extends Controller
         if($id)
         {
             auth()->user()->notifications->where('id',$id)->markAsRead();
-            Toastr::success('Notifikasi Telah Dibaca :)','Success');
+            Toastr::success('Notifikasi Telah Dibaca ✔','Success');
         }
         return back();
     }
@@ -443,7 +443,7 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         $user->notifications->markAsRead();
-        Toastr::success('Semua Notifikasi Telah Dibaca :)','Success');
+        Toastr::success('Semua Notifikasi Telah Dibaca ✔','Success');
         return redirect()->back();
     }
 

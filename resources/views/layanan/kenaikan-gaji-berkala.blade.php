@@ -42,15 +42,21 @@
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="name">
-                            <label class="focus-label">Nama Pegawai</label>
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" name="tgl_sk_kgb">
+                            <label class="focus-label">Tanggal SK KGB</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" class="form-control floating" name="nip">
-                            <label class="focus-label">NIP</label>
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" name="tgl_berlaku">
+                            <label class="focus-label">Tanggal Berlaku</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" name="tmt_kgb">
+                            <label class="focus-label">TMT KGB</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
@@ -248,7 +254,7 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Simpan</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -358,20 +364,22 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-1">
                                     <label>Dokumen KGB</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" class="form-control" id="dokumen_kgb" name="dokumen_kgb">
+                                    <div class="dropzone-area-1">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" id="dokumen_kgb" name="dokumen_kgb">
                                         <input type="hidden" name="hidden_dokumen_kgb" id="e_dokumen_kgb" value="">
-                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
+                                        <p class="info-draganddrop-1">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Simpan</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -414,8 +422,8 @@
 
     @section('script')
         <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
-        <script src="{{ asset('assets/js/draganddropKenaikanGajiBerkala.js') }}"></script>
-
+        <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script>

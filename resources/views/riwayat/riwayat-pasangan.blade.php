@@ -42,8 +42,8 @@
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus select-focus">
-                        <select class="form-control" id="agama" name="agama">
-                            <option value="">Pilih Agama</option>
+                        <select class="theSelect" style="width: 100% !important" id="agama" name="agama">
+                            <option selected disabled>Pilih Agama</option>
                             @foreach($agamaOptions as $agamaOption)
                                 <option value="{{ $agamaOption }}">{{ $agamaOption }}</option>
                             @endforeach
@@ -105,11 +105,21 @@
                                         <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
                                         <td class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
                                         <td class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
-                                        <td class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
-                                        <td class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
+
+                                        @if (!empty($result_pasangan->no_hp))
+                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
+                                        @endif
+                                            <td hidden class="no_hp">{{ $result_pasangan->no_hp }}</td>
+
+                                        @if (!empty($result_pasangan->no_telepon))
+                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
+                                        @endif
+                                            <td hidden class="no_telepon">{{ $result_pasangan->no_telepon }}</td>
+
                                         <td class="email"><center>
                                             <a href="mailto:{{ $result_pasangan->email }}" style="color:black">{{ $result_pasangan->email }}</a>
                                         </center></td>
+
                                         <td class="dokumen_nikah"><center>
                                             <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
                                                 @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
@@ -201,26 +211,19 @@
                                         <label>Status Pekerjaan Pasangan</label>
                                         <small class="text-danger">*</small>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan"
-                                             value="Bukan PNS" required>
-                                            <label class="form-check-label">
-                                                Bukan PNS
-                                            </label>
+                                            <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan" value="Bukan PNS" required>
+                                            <label class="form-check-label">Bukan PNS</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan"
-                                             value="PNS" required>
-                                            <label class="form-check-label">
-                                                PNS
-                                            </label>
+                                            <input class="form-check-input" type="radio" name="status_pekerjaan_pasangan" value="PNS" required>
+                                            <label class="form-check-label">PNS</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6" id="show_nip" style="display:none;">
                                     <div class="form-group">
                                         <label>NIP</label>
-                                        <input class="form-control" type="text" name="nip"
-                                            placeholder="Masukkan NIP">
+                                        <input class="form-control" type="text" name="nip" placeholder="Masukkan NIP">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -345,9 +348,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
                                             </div>
-                                            <input class="form-control" type="number" name="no_hp"
-                                                placeholder="Masukkan nomor HP pasangan" required>
+                                            <input class="form-control" type="number" name="no_hp" id="c_no_hp" placeholder="Masukkan nomor HP pasangan" required>
                                         </div>
+                                        <small id="error_message-1" class="text-danger2"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -358,9 +361,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
                                             </div>
-                                            <input class="form-control" type="number" name="no_telepon"
-                                                placeholder="Masukkan nomor telepon pasangan" required>
+                                            <input class="form-control" type="number" name="no_telepon" id="c_no_telepon" placeholder="Masukkan nomor telepon pasangan" required>
                                         </div>
+                                        <small id="error_message-2" class="text-danger2"></small>
                                     </div>
                                 </div>
                             </div>
@@ -374,29 +377,33 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-1">
                                     <label>Dokumen Nikah</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" name="dokumen_nikah" id="upload-file-form1">
-                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
+                                    <div class="dropzone-area-1">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_nikah" id="upload-file-form-1">
+                                        <p class="info-draganddrop-1">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-2">
                                     <label>Pas Foto</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input class="form-control" type="file" name="pas_foto" id="upload-file-form2">
-                                        <p class="message-preview2">Tidak ada file yang di pilih</p>
+                                    <div class="dropzone-area-2">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="pas_foto" id="upload-file-form-2">
+                                        <p class="info-draganddrop-2">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -445,24 +452,17 @@
                                         <label>Status Pekerjaan Pasangan</label>
                                         <small class="text-danger">*</small>
                                         <div>
-                                            <label>
-                                                <input type="radio" name="status_pekerjaan_pasangan" id="bukan_pns" value="Bukan PNS" required>
-                                                Bukan PNS
-                                            </label>
+                                            <label><input type="radio" name="status_pekerjaan_pasangan" value="Bukan PNS" id="bukan_pns" required> Bukan PNS</label>
                                         </div>
                                         <div>
-                                            <label>
-                                                <input type="radio" name="status_pekerjaan_pasangan" id="pns" value="PNS" required>
-                                                PNS
-                                            </label>
+                                            <label><input type="radio" name="status_pekerjaan_pasangan" value="PNS" id="pns" required> PNS</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="show_nip2" style="display:none;">
                                     <div class="form-group">
                                         <label>NIP</label>
-                                        <input class="form-control" type="text" name="nip" id="e_nip"
-                                            placeholder="Jika status pasangan bukan PNS isi dengan -">
+                                        <input class="form-control" type="text" name="nip" id="e_nip" placeholder="Masukkan NIP">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -589,9 +589,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
                                             </div>
-                                            <input class="form-control" type="number" name="no_hp" id="e_no_hp"
-                                                placeholder="Masukkan nomor HP pasangan" required>
+                                            <input class="form-control" type="number" name="no_hp" id="e_no_hp" placeholder="Masukkan nomor HP pasangan" required>
                                         </div>
+                                        <small id="error_message-3" class="text-danger2"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -602,9 +602,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">+62</span>
                                             </div>
-                                            <input class="form-control" type="number" name="no_telepon" id="e_no_telepon"
-                                                placeholder="Masukkan nomor telepon pasangan" required>
+                                            <input class="form-control" type="number" name="no_telepon" id="e_no_telepon" placeholder="Masukkan nomor telepon pasangan" required>
                                         </div>
+                                        <small id="error_message-4" class="text-danger2"></small>
                                     </div>
                                 </div>
                             </div>
@@ -618,35 +618,35 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-3">
                                     <label>Dokumen Nikah</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" class="form-control" id="dokumen_nikah"
-                                            name="dokumen_nikah">
-                                        <input type="hidden" name="hidden_dokumen_nikah" id="e_dokumen_nikah"
-                                            value="">
-                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
+                                    <div class="dropzone-area-3">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" id="dokumen_nikah" name="dokumen_nikah">
+                                        <input type="hidden" name="hidden_dokumen_nikah" id="e_dokumen_nikah" value="">
+                                        <p class="info-draganddrop-3">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-4">
                                     <label>Pas Foto</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" class="form-control" id="pas_foto"
-                                            name="pas_foto">
-                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto"
-                                            value="">
-                                        <p class="message-preview2">Tidak ada file yang di pilih</p>
+                                    <div class="dropzone-area-4">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" id="pas_foto" name="pas_foto">
+                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto" value="">
+                                        <p class="info-draganddrop-4">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -693,8 +693,54 @@
 
 @section('script')
     <script src="{{ asset('assets/js/pasangan.js') }}"></script>
-    <script src="{{ asset('assets/js/draganddropRiwayatPasangan.js') }}"></script>
+    <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script>
+        document.getElementById('c_no_hp').addEventListener('input', function(event) {
+            var inputValue = event.target.value;
+            
+            // Jika angka pertama adalah 0
+            if (inputValue.charAt(0) === '0') {
+                document.getElementById('error_message-1').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+            } else {
+                document.getElementById('error_message-1').innerHTML = '';
+            }
+        });
+
+        document.getElementById('c_no_telepon').addEventListener('input', function(event) {
+            var inputValue = event.target.value;
+            
+            // Jika angka pertama adalah 0
+            if (inputValue.charAt(0) === '0') {
+                document.getElementById('error_message-2').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+            } else {
+                document.getElementById('error_message-2').innerHTML = '';
+            }
+        });
+
+        document.getElementById('e_no_hp').addEventListener('input', function(event) {
+            var inputValue = event.target.value;
+            
+            // Jika angka pertama adalah 0
+            if (inputValue.charAt(0) === '0') {
+                document.getElementById('error_message-3').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+            } else {
+                document.getElementById('error_message-3').innerHTML = '';
+            }
+        });
+
+        document.getElementById('e_no_telepon').addEventListener('input', function(event) {
+            var inputValue = event.target.value;
+            
+            // Jika angka pertama adalah 0
+            if (inputValue.charAt(0) === '0') {
+                document.getElementById('error_message-4').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+            } else {
+                document.getElementById('error_message-4').innerHTML = '';
+            }
+        });
+    </script>
 
     <script>
         $(".theSelect").select2();

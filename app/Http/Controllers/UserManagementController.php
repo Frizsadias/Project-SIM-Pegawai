@@ -202,8 +202,7 @@ class UserManagementController extends Controller
                 "no"           => '<span class="id" data-id = ' . $record->id . '>' . $start + ($key + 1) . '</span>',
                 "name"         => $record->name,
                 "user_id"      => '<span class="user_id">' . $record->user_id . '</span>',
-                "email"        => '<a href="mailto:' . $record->email . '"><i class="fa fa-envelope fa-2x" style="font-size: 1.6em; color: #f44336;"></i>
-                </a> || <span class="email">' . $record->email . '</span>',
+                "email"        => '<a href="mailto:' . $record->email . '"><span class="email-pengguna">' . $record->email . '</span></a>',
                 "join_date"    => $joinDate,
                 "role_name"    => $role_name,
                 "status"       => $status,
@@ -618,11 +617,11 @@ class UserManagementController extends Controller
             $information->save();
 
             DB::commit();
-            Toastr::success('Data profil informasi berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data profil informasi berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data profil informasi gagal diperbaharui :(', 'Error');
+            Toastr::error('Data profil informasi gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -650,11 +649,11 @@ class UserManagementController extends Controller
             $information->save();
 
             DB::commit();
-            Toastr::success('Data profil informasi berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data profil informasi berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data profil informasi gagal diperbaharui :(', 'Error');
+            Toastr::error('Data profil informasi gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -687,11 +686,11 @@ class UserManagementController extends Controller
             }
 
             DB::commit();
-            Toastr::success('Foto profil berhasil diperbaharui :)', 'Success');
+            Toastr::success('Foto profil berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Foto profil gagal diperbaharui :(', 'Error');
+            Toastr::error('Foto profil gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -723,11 +722,11 @@ class UserManagementController extends Controller
             $user->password     = Hash::make($request->password);
             $user->save();
             DB::commit();
-            Toastr::success('Data pengguna berhasil ditambah :)', 'Success');
+            Toastr::success('Data pengguna berhasil ditambah ✔', 'Success');
             return redirect()->route('manajemen-pengguna');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data pengguna gagal ditambah :(', 'Error');
+            Toastr::error('Data pengguna gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -769,11 +768,11 @@ class UserManagementController extends Controller
             DB::table('user_activity_logs')->insert($activityLog);
             User::where('user_id', $request->user_id)->update($update);
             DB::commit();
-            Toastr::success('Data pengguna berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data pengguna berhasil diperbaharui ✔', 'Success');
             return redirect()->route('manajemen-pengguna');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data pengguna gagal diperbaharui :(', 'Error');
+            Toastr::error('Data pengguna gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -811,11 +810,11 @@ class UserManagementController extends Controller
             }
 
             DB::commit();
-            Toastr::success('Data pengguna berhasil dihapus :)', 'Success');
+            Toastr::success('Data pengguna berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data pengguna gagal dihapus :(', 'Error');
+            Toastr::error('Data pengguna gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -852,11 +851,11 @@ class UserManagementController extends Controller
 
         User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
             DB::commit();
-            Toastr::success('Kata sandi berhasil diperbaharui :)', 'Success');
+            Toastr::success('Kata sandi berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
-            Toastr::error('Kata sandi gagal diperbaharui :(', 'Error');
+            Toastr::error('Kata sandi gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -928,16 +927,16 @@ class UserManagementController extends Controller
                 $addProfilPegawai->save();
 
                 DB::commit();
-                Toastr::success('Data profil pegawai berhasil ditambah :)', 'Success');
+                Toastr::success('Data profil pegawai berhasil ditambah ✔', 'Success');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data profil pegawai sudah tersedia :(', 'Error');
+                Toastr::error('Data profil pegawai sudah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data profil pegawai gagal ditambah :(', 'Error');
+            Toastr::error('Data profil pegawai gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -959,11 +958,11 @@ class UserManagementController extends Controller
             DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($update);
 
             DB::commit();
-            Toastr::success('Unggah dokumen KTP berhasil :)', 'Success');
+            Toastr::success('Unggah dokumen KTP berhasil ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Unggah dokumen KTP gagal :(', 'Error');
+            Toastr::error('Unggah dokumen KTP gagal ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1034,11 +1033,11 @@ class UserManagementController extends Controller
             DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($editProfilPegawai);
 
             DB::commit();
-            Toastr::success('Data profil pegawai berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data profil pegawai berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data profil pegawai gagal diperbaharui :(', 'Error');
+            Toastr::error('Data profil pegawai gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1093,16 +1092,16 @@ class UserManagementController extends Controller
                 $addPosisiJabatan->save();
 
                 DB::commit();
-                Toastr::success('Data posisi & jabatan berhasil ditambah :)', 'Success');
+                Toastr::success('Data posisi & jabatan berhasil ditambah ✔', 'Success');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data posisi & jabatan sudah tersedia :(', 'Error');
+                Toastr::error('Data posisi & jabatan sudah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data posisi & jabatan gagal ditambah :(', 'Error');
+            Toastr::error('Data posisi & jabatan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1161,11 +1160,11 @@ class UserManagementController extends Controller
             DB::table('users')->where('user_id', $request->user_id)->update($editUsers);
 
             DB::commit();
-            Toastr::success('Data posisi & jabatan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data posisi & jabatan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data posisi & jabatan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data posisi & jabatan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }

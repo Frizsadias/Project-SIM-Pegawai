@@ -12,6 +12,7 @@ $(document).on('click', '.edit_layanan_kgb', function()
     $('#e_masa_kerja_golongan').val(_this.find('.masa_kerja_golongan').text());
     $('#e_masa_kerja').val(_this.find('.masa_kerja').text());
     $('#e_tmt_kgb').val(_this.find('.tmt_kgb').text());
+    $('#e_dokumen_kgb').val(_this.find('.dokumen_kgb').text());
 });
 
 $(document).on("click", ".delete_kgb", function () {

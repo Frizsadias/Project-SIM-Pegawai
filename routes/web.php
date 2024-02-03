@@ -10,7 +10,7 @@ use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LockScreen;
@@ -53,27 +53,16 @@ function set_active($route)
     return Request::path() == $route ? 'active' : '';
 }
 
-/** Website Link Redirection */
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/gate', function () {
-    return view('auth.login');
-})->name('masuk');
-
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('daftar');
-
-Route::get('/lupa-kata-sandi', function () {
-    return view('auth.passwords.email');
-})->name('lupa kata sandi');
-
-
 /** Auth MultiLevel */
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', function () {
+        return view('home');
+    });
+    Route::get('home',function() {
         return view('home');
     });
 });
@@ -133,14 +122,14 @@ Route::controller(RegisterController::class)->group(function () {
 
 // ----------------------------- forget password ----------------------------//
 Route::controller(ForgotPasswordController::class)->group(function () {
-    Route::get('forget-password', 'getEmail')->name('forget-password');
-    Route::post('forget-password', 'postEmail')->name('forget-password');
+    Route::get('lupa-kata-sandi', 'getEmail')->name('lupa-kata-sandi');
+    Route::post('lupa-kata-sandi', 'postEmail')->name('lupa-kata-sandi');    
 });
 
 // ----------------------------- reset password -----------------------------//
 Route::controller(ResetPasswordController::class)->group(function () {
-    Route::get('reset-password/{token}', 'getPassword');
-    Route::post('reset-password', 'updatePassword');
+    Route::get('ubah-kata-sandi/{token}', 'getPassword')->name('ubah-kata-sandi');
+    Route::post('ubah-kata-sandi', 'updatePassword')->name('ubah-kata-sandi');
 });
 
 // ----------------------------- manage users ------------------------------//

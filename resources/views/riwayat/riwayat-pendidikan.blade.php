@@ -30,10 +30,10 @@
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
-                            <select class="form-control" id="ting_ped" name="ting_ped">
+                            <select class="theSelect form-control" style="width: 100% !important" id="ting_ped" name="ting_ped">
                                 <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
-                                @foreach($tingkatpendidikanOptions as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
+                                @foreach($tingkatpendidikanOptions as $tingkatpendidikanOption)
+                                    <option value="{{ $tingkatpendidikanOption }}">{{ $tingkatpendidikanOption }}</option>
                                 @endforeach
                             </select>
                             <label class="focus-label">Tingkat Pendidikan</label>
@@ -241,39 +241,45 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-1">
                                     <label>Dokumen Transkrip Nilai</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" name="dokumen_transkrip" id="upload-file-form1">
-                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
+                                    <div class="dropzone-area-1">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_transkrip" id="upload-file-form-1">
+                                        <p class="info-draganddrop-1">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-2">
                                     <label>Dokumen Ijazah</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" name="dokumen_ijazah" id="upload-file-form2">
-                                        <p class="message-preview2">Tidak ada file yang di pilih</p>
+                                    <div class="dropzone-area-2">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_ijazah" id="upload-file-form-2">
+                                        <p class="info-draganddrop-2">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-3">
                                     <label>Dokumen Pencantuman Gelar </label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" name="dokumen_gelar" id="upload-file3">
-                                        <p class="message-preview3">Tidak ada file yang di pilih</p>
+                                    <div class="dropzone-area-3">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_gelar" id="upload-file-form-3">
+                                        <p class="info-draganddrop-3">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Submit</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -384,42 +390,48 @@
                                 @endif
                             </div>
                             <div class="row">
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-4">
                                     <label>Dokumen Transkrip Nilai</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" class="form-control" id="dokumen_transkrip" name="dokumen_transkrip">
+                                    <div class="dropzone-area-4">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" id="dokumen_transkrip" name="dokumen_transkrip">
                                         <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip" value="">
-                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
+                                        <p class="info-draganddrop-4">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-5">
                                     <label>Dokumen Ijazah</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" class="form-control" id="dokumen_ijazah" name="dokumen_ijazah">
+                                    <div class="dropzone-area-5">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" id="dokumen_ijazah" name="dokumen_ijazah">
                                         <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_ijazah" value="">
-                                        <p class="message-preview2">Tidak ada file yang di pilih</p>
+                                        <p class="info-draganddrop-5">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-6">
                                     <label>Dokumen Pencantuman Gelar</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" class="form-control" id="dokumen_gelar" name="dokumen_gelar">
+                                    <div class="dropzone-area-6">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" id="dokumen_gelar" name="dokumen_gelar">
                                         <input type="hidden" name="hidden_dokumen_gelar" id="e_dokumen_gelar" value="">
-                                        <p class="message-preview3">Tidak ada file yang di pilih</p>
+                                        <p class="info-draganddrop-6">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Save</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -468,7 +480,7 @@
 
     @section('script')
         <script src="{{ asset('assets/js/pendidikan.js') }}"></script>
-        <script src="{{ asset('assets/js/draganddropRiwayatPendidikan.js') }}"></script>
+        <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script>

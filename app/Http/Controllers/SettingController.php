@@ -54,12 +54,12 @@ class SettingController extends Controller
             $saveRecord->save();
             
             DB::commit();
-            Toastr::success('Detail perusahaan berhasil diperbaharui :)','Success');
+            Toastr::success('Detail perusahaan berhasil diperbaharui ✔','Success');
             return redirect()->back();
         } catch(\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('Detail perusahaan gagal diperbaharui :(','Error');
+            Toastr::error('Detail perusahaan gagal diperbaharui ✘','Error');
             return redirect()->back();
         }
     }
@@ -92,16 +92,16 @@ class SettingController extends Controller
 
                 // roles name exits
                 DB::rollback();
-                Toastr::error('Nama role sudah ada :)','Error');
+                Toastr::error('Nama role sudah ada ✘','Error');
                 return redirect()->back();
             }
 
             DB::commit();
-            Toastr::success('Berhasil membuat role baru :)','Success');
+            Toastr::success('Berhasil membuat role baru ✔','Success');
             return redirect()->back();
         }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Gagal membuat role baru :)','Error');
+            Toastr::error('Gagal membuat role baru ✘','Error');
             return redirect()->back();
         }
     }
@@ -121,12 +121,12 @@ class SettingController extends Controller
 
             RolesPermissions::where('id',$id)->update($update);
             DB::commit();
-            Toastr::success('Berhasil mengubah role :)','Success');
+            Toastr::success('Berhasil mengubah role ✔','Success');
             return redirect()->back();
 
         }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Gagal mengubah role :)','Error');
+            Toastr::error('Gagal mengubah role ✘','Error');
             return redirect()->back();
         }
     }
@@ -136,12 +136,12 @@ class SettingController extends Controller
     {
         try{
             RolesPermissions::destroy($request->id);
-            Toastr::success('Berhasil menghapus role :)','Success');
+            Toastr::success('Berhasil menghapus role ✔','Success');
             return redirect()->back();
         
         }catch(\Exception $e){
             DB::rollback();
-            Toastr::error('Gagal menghapus role :)','Error');
+            Toastr::error('Gagal menghapus role ✘','Error');
             return redirect()->back();
         }
     }

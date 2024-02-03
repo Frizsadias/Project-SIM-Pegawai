@@ -30,7 +30,7 @@
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
-                            <select class="form-control" id="nama_jabatan" name="nama_jabatan">
+                            <select class="theSelect" style="width: 100% !important" id="nama_jabatan" name="nama_jabatan">
                                 <option selected disabled>-- Pilih Jenis Jabatan --</option>
                                 @foreach ($jenisjabatanOptions as $key => $value)
                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -43,6 +43,12 @@
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" id="nomor_sk" name="nomor_sk">
                             <label class="focus-label">Nomor SK</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" id="tanggal_sk" name="tanggal_sk">
+                            <label class="focus-label">Tanggal SK</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
@@ -253,7 +259,7 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -386,7 +392,7 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Save</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>

@@ -114,6 +114,7 @@ class SIPController extends Controller
 
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $tanggal_terbit = $request->input('tanggal_terbit');
 
         $data_sip_dokter = DB::table('sip_spk_dokter')
         ->select(
@@ -130,11 +131,12 @@ class SIPController extends Controller
             'sip_spk_dokter.ruangan',
             'sip_spk_dokter.dokumen_sip'
         )
-            ->where('sip_spk_dokter.sip_spk_jabatan', 'Dokter')
-            ->where('sip_spk_dokter.jenis_dokumen', 'SIP Dokter')
+            ->where('sip_spk_dokter.jenis_dokumen', '=', 'SIP Dokter')
             ->where('sip_spk_dokter.name', 'like', '%' . $name . '%')
             ->where('sip_spk_dokter.nip', 'like', '%' . $nip . '%')
+            ->where('sip_spk_dokter.tanggal_terbit', 'like', '%' . $tanggal_terbit . '%')
             ->get();
+
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
         ->where('role_name', '=', 'User')
@@ -161,8 +163,12 @@ class SIPController extends Controller
             ->get();
 
         $nomor_sip = $request->input('nomor_sip');
+        $tanggal_terbit = $request->input('tanggal_terbit');
+        $tanggal_berlaku = $request->input('tanggal_berlaku');
+        $user_id = auth()->user()->user_id;
 
         $data_sip_dokter = DB::table('sip_spk_dokter')
+        ->join('users', 'users.user_id', '=', 'sip_spk_dokter.user_id')
         ->select(
             'sip_spk_dokter.*',
             'sip_spk_dokter.user_id',
@@ -177,9 +183,11 @@ class SIPController extends Controller
             'sip_spk_dokter.ruangan',
             'sip_spk_dokter.dokumen_sip'
         )
-            ->where('sip_spk_dokter.sip_spk_jabatan', 'Dokter')
-            ->where('sip_spk_dokter.jenis_dokumen', 'SIP Dokter')
+            ->where('users.user_id', $user_id)
+            ->where('sip_spk_dokter.jenis_dokumen', '=', 'SIP Dokter')
             ->where('sip_spk_dokter.nomor_sip', 'like', '%' . $nomor_sip . '%')
+            ->where('sip_spk_dokter.tanggal_terbit', 'like', '%' . $tanggal_terbit . '%')
+            ->where('sip_spk_dokter.tanggal_berlaku', 'like', '%' . $tanggal_berlaku . '%')
             ->get();
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
@@ -229,11 +237,11 @@ class SIPController extends Controller
             $SIPDokter->save();
 
             DB::commit();
-            Toastr::success('Data SIP Dokter berhasil ditambah :)', 'Success');
+            Toastr::success('Data SIP Dokter berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SIP Dokter gagal ditambah :(', 'Error');
+            Toastr::error('Data SIP Dokter gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -265,11 +273,11 @@ class SIPController extends Controller
 
             SIPDokter::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data SIP Dokter berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data SIP Dokter berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SIP Dokter gagal diperbaharui :(', 'Error');
+            Toastr::error('Data SIP Dokter gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -284,11 +292,11 @@ class SIPController extends Controller
             unlink('assets/DokumenSIPDokter/' . $dokumen_sip);
             SIPDokter::where('id', $request->id)->delete();
             DB::commit();
-            Toastr::success('Data SIP Dokter berhasil dihapus :)', 'Success');
+            Toastr::success('Data SIP Dokter berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SIP Dokter gagal dihapus :(', 'Error');
+            Toastr::error('Data SIP Dokter gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -395,6 +403,7 @@ class SIPController extends Controller
 
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $tanggal_terbit = $request->input('tanggal_terbit');
 
         $data_spk_dokter = DB::table('sip_spk_dokter')
         ->select(
@@ -411,11 +420,12 @@ class SIPController extends Controller
             'sip_spk_dokter.ruangan',
             'sip_spk_dokter.dokumen_sip'
         )
-            ->where('sip_spk_dokter.sip_spk_jabatan', 'dokter')
-            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Dokter')
+            ->where('sip_spk_dokter.jenis_dokumen', '=', 'SPK Dokter')
             ->where('sip_spk_dokter.name', 'like', '%' . $name . '%')
             ->where('sip_spk_dokter.nip', 'like', '%' . $nip . '%')
+            ->where('sip_spk_dokter.tanggal_terbit', 'like', '%' . $tanggal_terbit . '%')
             ->get();
+
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
         ->where('role_name', '=', 'User')
@@ -441,8 +451,12 @@ class SIPController extends Controller
             ->get();
 
         $nomor_sip = $request->input('nomor_sip');
+        $tanggal_terbit = $request->input('tanggal_terbit');
+        $tanggal_berlaku = $request->input('tanggal_berlaku');
+        $user_id = auth()->user()->user_id;
 
         $data_spk_dokter = DB::table('sip_spk_dokter')
+        ->join('users', 'users.user_id', '=', 'sip_spk_dokter.user_id')
         ->select(
             'sip_spk_dokter.*',
             'sip_spk_dokter.user_id',
@@ -457,9 +471,11 @@ class SIPController extends Controller
             'sip_spk_dokter.ruangan',
             'sip_spk_dokter.dokumen_sip'
         )
-            ->where('sip_spk_dokter.sip_spk_jabatan', 'dokter')
-            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Dokter')
+            ->where('users.user_id', $user_id)
+            ->where('sip_spk_dokter.jenis_dokumen', '=', 'SPK Dokter')
             ->where('sip_spk_dokter.nomor_sip', 'like', '%' . $nomor_sip . '%')
+            ->where('sip_spk_dokter.tanggal_terbit', 'like', '%' . $tanggal_terbit . '%')
+            ->where('sip_spk_dokter.tanggal_berlaku', 'like', '%' . $tanggal_berlaku . '%')
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -509,11 +525,11 @@ class SIPController extends Controller
             $SPKDokter->save();
 
             DB::commit();
-            Toastr::success('Data SPK Dokter berhasil ditambah :)', 'Success');
+            Toastr::success('Data SPK Dokter berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK Dokter gagal ditambah :(', 'Error');
+            Toastr::error('Data SPK Dokter gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -545,11 +561,11 @@ class SIPController extends Controller
 
             SIPDokter::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data SPK Dokter berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data SPK Dokter berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK Dokter gagal diperbaharui :(', 'Error');
+            Toastr::error('Data SPK Dokter gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -564,11 +580,11 @@ class SIPController extends Controller
             unlink('assets/DokumenSPKDokter/' . $dokumen_sip);
             SIPDokter::where('id', $request->id)->delete();
             DB::commit();
-            Toastr::success('Data SPK Dokter berhasil dihapus :)', 'Success');
+            Toastr::success('Data SPK Dokter berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK Dokter gagal dihapus :(', 'Error');
+            Toastr::error('Data SPK Dokter gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -675,6 +691,7 @@ class SIPController extends Controller
 
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $tanggal_terbit = $request->input('tanggal_terbit');
 
         $data_spk_perawat = DB::table('sip_spk_dokter')
         ->select(
@@ -691,10 +708,10 @@ class SIPController extends Controller
             'sip_spk_dokter.ruangan',
             'sip_spk_dokter.dokumen_sip'
         )
-            ->where('sip_spk_dokter.sip_spk_jabatan', 'perawat')
-            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Perawat')
+            ->where('sip_spk_dokter.jenis_dokumen', '=', 'SPK Perawat')
             ->where('sip_spk_dokter.name', 'like', '%' . $name . '%')
             ->where('sip_spk_dokter.nip', 'like', '%' . $nip . '%')
+            ->where('sip_spk_dokter.tanggal_terbit', 'like', '%' . $tanggal_terbit . '%')
             ->get();
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
@@ -720,8 +737,12 @@ class SIPController extends Controller
             ->get();
 
         $nomor_sip = $request->input('nomor_sip');
+        $tanggal_terbit = $request->input('tanggal_terbit');
+        $tanggal_berlaku = $request->input('tanggal_berlaku');
+        $user_id = auth()->user()->user_id;
 
         $data_spk_perawat = DB::table('sip_spk_dokter')
+        ->join('users', 'users.user_id', '=', 'sip_spk_dokter.user_id')
         ->select(
             'sip_spk_dokter.*',
             'sip_spk_dokter.user_id',
@@ -736,10 +757,13 @@ class SIPController extends Controller
             'sip_spk_dokter.ruangan',
             'sip_spk_dokter.dokumen_sip'
         )
-            ->where('sip_spk_dokter.sip_spk_jabatan', 'perawat')
-            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Perawat')
+            ->where('users.user_id', $user_id)
+            ->where('sip_spk_dokter.jenis_dokumen', '=', 'SPK Perawat')
             ->where('sip_spk_dokter.nomor_sip', 'like', '%' . $nomor_sip . '%')
+            ->where('sip_spk_dokter.tanggal_terbit', 'like', '%' . $tanggal_terbit . '%')
+            ->where('sip_spk_dokter.tanggal_berlaku', 'like', '%' . $tanggal_berlaku . '%')
             ->get();
+
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
@@ -792,11 +816,11 @@ class SIPController extends Controller
             $SPKPerawat->save();
 
             DB::commit();
-            Toastr::success('Data SPK Perawat berhasil ditambah :)', 'Success');
+            Toastr::success('Data SPK Perawat berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK Perawat gagal ditambah :(', 'Error');
+            Toastr::error('Data SPK Perawat gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -828,11 +852,11 @@ class SIPController extends Controller
 
             SIPDokter::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data SPK Perawat berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data SPK Perawat berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK Perawat gagal diperbaharui :(', 'Error');
+            Toastr::error('Data SPK Perawat gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -847,11 +871,11 @@ class SIPController extends Controller
             unlink('assets/DokumenSPKPerawat/' . $dokumen_sip);
             SIPDokter::where('id', $request->id)->delete();
             DB::commit();
-            Toastr::success('Data SPK Perawat berhasil dihapus :)', 'Success');
+            Toastr::success('Data SPK Perawat berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK Perawat gagal dihapus :(', 'Error');
+            Toastr::error('Data SPK Perawat gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -957,6 +981,7 @@ class SIPController extends Controller
 
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $tanggal_terbit = $request->input('tanggal_terbit');
 
         $data_spk_nakeslain = DB::table('sip_spk_dokter')
         ->select(
@@ -973,10 +998,10 @@ class SIPController extends Controller
             'sip_spk_dokter.ruangan',
             'sip_spk_dokter.dokumen_sip'
         )
-            ->where('sip_spk_dokter.sip_spk_jabatan', 'nakes lain')
-            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Nakes Lain')
+            ->where('sip_spk_dokter.jenis_dokumen', '=', 'SPK Nakes Lain')
             ->where('sip_spk_dokter.name', 'like', '%' . $name . '%')
             ->where('sip_spk_dokter.nip', 'like', '%' . $nip . '%')
+            ->where('sip_spk_dokter.tanggal_terbit', 'like', '%' . $tanggal_terbit . '%')
             ->get();
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
@@ -1002,8 +1027,12 @@ class SIPController extends Controller
             ->get();
 
         $nomor_sip = $request->input('nomor_sip');
+        $tanggal_terbit = $request->input('tanggal_terbit');
+        $tanggal_berlaku = $request->input('tanggal_berlaku');
+        $user_id = auth()->user()->user_id;
 
         $data_spk_nakes_lain = DB::table('sip_spk_dokter')
+        ->join('users', 'users.user_id', '=', 'sip_spk_dokter.user_id')
         ->select(
             'sip_spk_dokter.*',
             'sip_spk_dokter.user_id',
@@ -1018,9 +1047,11 @@ class SIPController extends Controller
             'sip_spk_dokter.ruangan',
             'sip_spk_dokter.dokumen_sip'
         )
-            ->where('sip_spk_dokter.sip_spk_jabatan', 'nakes lain')
-            ->where('sip_spk_dokter.jenis_dokumen', 'SPK Nakes Lain')
+            ->where('users.user_id', $user_id)
+            ->where('sip_spk_dokter.jenis_dokumen', '=', 'SPK Nakes Lain')
             ->where('sip_spk_dokter.nomor_sip', 'like', '%' . $nomor_sip . '%')
+            ->where('sip_spk_dokter.tanggal_terbit', 'like', '%' . $tanggal_terbit . '%')
+            ->where('sip_spk_dokter.tanggal_berlaku', 'like', '%' . $tanggal_berlaku . '%')
             ->get();
         $userList = DB::table('profil_pegawai')
         ->join('users', 'profil_pegawai.user_id', 'users.user_id')
@@ -1073,11 +1104,11 @@ class SIPController extends Controller
             $SPKNakesLain->save();
 
             DB::commit();
-            Toastr::success('Data SPK nakes lain berhasil ditambah :)', 'Success');
+            Toastr::success('Data SPK nakes lain berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK nakes lain gagal ditambah :(', 'Error');
+            Toastr::error('Data SPK nakes lain gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1109,11 +1140,11 @@ class SIPController extends Controller
 
             SIPDokter::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data SPK nakes lain berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data SPK nakes lain berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK nakes lain gagal diperbaharui :(', 'Error');
+            Toastr::error('Data SPK nakes lain gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1128,11 +1159,11 @@ class SIPController extends Controller
             unlink('assets/DokumenSPKNakesLain/' . $dokumen_sip);
             SIPDokter::where('id', $request->id)->delete();
             DB::commit();
-            Toastr::success('Data SPK Nakes Lain berhasil dihapus :)', 'Success');
+            Toastr::success('Data SPK Nakes Lain berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SPK Nakes Lain gagal dihapus :(', 'Error');
+            Toastr::error('Data SPK Nakes Lain gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }

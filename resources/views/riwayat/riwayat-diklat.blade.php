@@ -30,7 +30,7 @@
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
-                            <select class="form-control" id="jenis_diklat" name="jenis_diklat">
+                            <select class="theSelect" style="width: 100% !important" id="jenis_diklat" name="jenis_diklat">
                                 <option selected disabled>-- Pilih Jenis Diklat --</option>
                                 @foreach($jenisdiklatOptions as $key => $value)
                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -48,7 +48,7 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" id="institusi_penyelenggara" name="institusi_penyelenggara">
-                            <label class="focus-label">Iinstitusi Penyelenggara</label>
+                            <label class="focus-label">Institusi Penyelenggara</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
@@ -214,19 +214,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-1">
                                     <label>Dokumen Diklat</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" name="dokumen_diklat" id="upload-file-form1">
-                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
+                                    <div class="dropzone-area-1">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_diklat" id="upload-file-form-1">
+                                        <p class="info-draganddrop-1">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -312,21 +314,22 @@
                                         <input type="number" class="form-control" name="durasi_jam" id="e_durasi_jam" value="">
                                     </div>
                                 </div>
-                                <div class="dropzone-box">
+                                <div class="dropzone-box-2">
                                     <label>Dokumen Diklat</label>
-                                    <div class="dropzone-area">
-                                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg></div>
-                                        <p class="message-form">Klik untuk mengunggah atau seret dan lepas</p>
-                                        <input type="file" class="form-control" name="dokumen_diklat"
-                                            id="dokumen_diklat">
+                                    <div class="dropzone-area-2">
+                                        <div class="file-upload-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                        </div>
+                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                        <input type="file" name="dokumen_diklat" id="dokumen_diklat">
                                         <input type="hidden" name="hidden_dokumen_diklat" id="e_dokumen_diklat" value="">
-                                        <p class="message-preview1">Tidak ada file yang di pilih</p>
+                                        <p class="info-draganddrop-2">Tidak ada file yang di pilih</p>
                                     </div>
                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Save</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -371,7 +374,7 @@
 
     @section('script')
         <script src="{{ asset('assets/js/diklat.js') }}"></script>
-        <script src="{{ asset('assets/js/draganddropRiwayatDiklat.js') }}"></script>
+        <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script>

@@ -26,7 +26,7 @@
                     <div class="col-sm-12">
                         <h3 class="page-title">{{ $greet }} {{ Session::get('name') }} &#128522;</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item active">Dashboard {{ Session::get('name') }}</li>
+                            <li class="breadcrumb-item active">Dashboard <b>{{ Session::get('role_name') }}</b></li>
                         </ul>
                     </div>
                 </div>

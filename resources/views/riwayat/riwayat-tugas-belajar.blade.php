@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
-                            <select class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan">
+                            <select class="theSelect form-control" style="width: 100% !important" id="tingkat_pendidikan" name="tingkat_pendidikan">
                                 <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
                                 @foreach($tingkatpendidikanOptions as $key => $value)
                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -241,7 +241,7 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -366,7 +366,7 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>

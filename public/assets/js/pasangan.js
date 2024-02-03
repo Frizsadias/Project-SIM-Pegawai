@@ -5,9 +5,20 @@ $(document).on('click', '.edit_pasangan', function() {
     var statusPekerjaan = _this.find('.status_pekerjaan_pasangan').text();
     if (statusPekerjaan === 'Bukan PNS') {
         $('#bukan_pns').prop('checked', true);
+        $('#show_nip2').hide();
+        $('#show_nip2 input').val('');
     } else if (statusPekerjaan === 'PNS') {
         $('#pns').prop('checked', true);
+        $('#show_nip2').show();
     }
+    $('input[name="status_pekerjaan_pasangan"]').click(function() {
+        if ($(this).val() === "PNS") {
+            $('#show_nip2').show();
+        } else {
+            $('#show_nip2').hide();
+            $('#show_nip2 input').val('');
+        }
+    });
     $('#e_nip').val(_this.find('.nip').text());
     $('#e_status_pernikahan').val(_this.find('.status_pernikahan').text());
     $('#e_nama').val(_this.find('.nama').text());

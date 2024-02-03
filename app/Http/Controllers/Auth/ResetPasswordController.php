@@ -12,7 +12,8 @@ class ResetPasswordController extends Controller
     /** page reset password */
     public function getPassword($token)
     {
-       return view('auth.passwords.reset', ['token' => $token]);
+       $result_name = DB::table('users')->get();
+       return view('auth.passwords.reset', ['result_name' => $result_name, 'token' => $token]);
     }
 
     /** update new password */
@@ -28,13 +29,13 @@ class ResetPasswordController extends Controller
         
         if(!$updatePassword)
         {
-            Toastr::error('Token tidak valid! :)','Error');
+            Toastr::error('Token tidak valid! ✘','Error');
             return back();
         } else{ 
             
             $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
             DB::table('password_resets')->where(['email'=> $request->email])->delete();
-            Toastr::success('Kata sandi Anda telah diubah! :)','Success');
+            Toastr::success('Kata sandi Anda telah diubah! ✔','Success');
             return redirect('/login');
         }
        

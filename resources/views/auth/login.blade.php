@@ -48,16 +48,13 @@
                                         <label></label>
                                     </div>
                                     <div class="col-auto">
-                                        <a class="text-muted" href="{{ route('forget-password') }}">Lupa Kata Sandi?
+                                        <a class="text-muted" href="{{ route('lupa-kata-sandi') }}">Lupa Kata Sandi?
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group text-center">
                                 <button class="btn btn-primary account-btn" type="submit">Masuk</button>
-                            </div>
-                            <div class="col-auto">
-                                <a class="text-muted" href="{{ route('forget-password') }}">
                             </div>
                             <div class="account-footer">
                                 <a style="color: #8e8e8e;"><strong>Copyright &copy;2023 - <script>document.write(new Date().getFullYear())</script> RSUD CARUBAN.</strong></a><br>

@@ -25,10 +25,10 @@ class RegisterController extends Controller
     public function storeUser(Request $request)
     {
         $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|string|email|max:255|unique:users',
-            'role_name' => 'required|string|max:255',
-            'password'  => 'required|string|min:8|confirmed',
+            'name'                  => 'required|string|max:255',
+            'email'                 => 'required|string|email|max:255|unique:users',
+            'role_name'             => 'required|string|max:255',
+            'password'              => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
         ]);
         try {
@@ -44,12 +44,12 @@ class RegisterController extends Controller
                 'status'    => 'Active',
                 'password'  => Hash::make($request->password),
             ]);
-            Toastr::success('Create new account successfully :)','Success');
+            Toastr::success('Pembuatan akun baru telah berhasil ✔','Success');
             return redirect('login');
         }catch(\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('Add new employee fail :)','Error');
+            Toastr::error('Pembuatan akun baru telah gagal ✘','Error');
             return redirect()->back();
         }
     }

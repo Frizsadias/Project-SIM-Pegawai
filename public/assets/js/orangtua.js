@@ -21,19 +21,44 @@ $(document).on('click', '.edit_ortu', function() {
     $('#e_tanggal_meninggal').val(_this.find('.tanggal_meninggal').text());
     $('#e_no_hp').val(_this.find('.no_hp').text());
     $('#e_no_telepon').val(_this.find('.no_telepon').text());
+    
     var statusHidup = _this.find('.status_hidup').text();
     if (statusHidup === 'Hidup') {
         $('#e_hidup').prop('checked', true);
+        $('#tanggal-meninggal2').hide();
+        $('#tanggal-meninggal2 input').val('');
     } else if (statusHidup === 'Meninggal') {
         $('#e_meninggal').prop('checked', true);
+        $('#tanggal-meninggal2').show();
     }
+
+    $('input[name="status_hidup"]').click(function() {
+        if ($(this).val() == 'Hidup') {
+            $('#tanggal-meninggal2').hide();
+            $('#tanggal-meninggal2 input').val('');
+        } else {
+            $('#tanggal-meninggal2').show();
+        }
+    });
 
     var statusPekerjaan = _this.find('.status_pekerjaan_ortu').text();
     if (statusPekerjaan === 'Bukan PNS') {
         $('#bukan_pns').prop('checked', true);
+        $('#show_nip2').hide();
+        $('#show_nip2 input').val('');
     } else if (statusPekerjaan === 'PNS') {
         $('#e_pns').prop('checked', true);
+        $('#show_nip2').show();
     }
+    
+    $('input[name="status_pekerjaan_ortu"]').click(function() {
+        if ($(this).val() === "PNS") {
+            $('#show_nip2').show();
+        } else {
+            $('#show_nip2').hide();
+            $('#show_nip2 input').val('');
+        }
+    });
     
     $('#e_dokumen_kk').val(_this.find('.dokumen_kk').text());
     $('#e_hidden_dokumen_kk').val(_this.find('.dokumen_kk').text());

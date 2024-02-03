@@ -27,7 +27,7 @@
                     <div class="col-sm-12">
                         <h3 class="page-title">{{ $greet }} {{ Session::get('name') }} &#128522;</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item active">Dashboard {{ Session::get('name') }}</li>
+                            <li class="breadcrumb-item active">Dashboard <b>{{ Session::get('role_name') }}</b></li>
                         </ul>
                     </div>
                 </div>
@@ -47,13 +47,19 @@
                                     @endif
 
                                     @if (!empty($tampilanPerusahaan->address))
-                                        <p class="alamatperusahaan"><i class="fa-solid fa-location-dot fa-xl" style="color: #f43b48;"></i> : {{ $tampilanPerusahaan->address }}</p>
+                                        <p class="alamatperusahaan">
+                                            <i class="fa-solid fa-location-dot fa-xl" style="color: #f43b48;"></i> :
+                                                <a href="https://www.google.com/maps?q={{ $tampilanPerusahaan->address }}" target="_blank" style="color:black;">{{ $tampilanPerusahaan->address }}</a>
+                                        </p>
                                     @else
                                         <p>Alamat : Alamat Instansi</p>
                                     @endif
 
                                     @if (!empty($tampilanPerusahaan->phone_number))
-                                        <p class="nomorhpperusahaan"><i class="fa-solid fa-mobile fa-xl" style="color: #f43b48;"></i> : {{ $tampilanPerusahaan->phone_number }}</p>
+                                        <p class="nomorhpperusahaan">
+                                            <i class="fa-solid fa-mobile fa-xl" style="color: #f43b48;"></i> : 
+                                                <a href="https://api.whatsapp.com/send?phone={{ $tampilanPerusahaan->phone_number }}" target="_blank" style="color:black;">{{ $tampilanPerusahaan->phone_number }}</a>
+                                        </p>
                                     @else
                                         <p>No. Telepon : Nomor Telepon Instansi</p>
                                     @endif

@@ -56,6 +56,12 @@
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" name="mulai_kontrak">
+                            <label class="focus-label">Mulai Kontrak</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
                         <button type="submit" class="btn btn-success btn-block btn_search">Cari</button>
                     </div>
                 </div>
@@ -220,7 +226,7 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Simpan</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -272,7 +278,7 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Simpan</button>
+                                <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>

@@ -743,19 +743,13 @@ class LayananController extends Controller
             'persetujuan_kepalaruangan' => 'required|string|max:255',
         ]);
 
-        // $totalLamaCuti = LayananCuti::where('user_id', $request->user_id)->sum('lama_cuti');
-        // if (($totalLamaCuti + (int)$request->lama_cuti) > 18) {
-        //     Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi 18 hari :(', 'Error');
-        //     return redirect()->back();
-        // }
-
         $currentYear = date('Y');
         $totalLamaCutiTahunIni = LayananCuti::where('user_id', $request->user_id)
             ->whereYear('created_at', $currentYear)
             ->sum('lama_cuti');
         $batasanCutiPerTahun = 18;
         if (($totalLamaCutiTahunIni + (int)$request->lama_cuti) > $batasanCutiPerTahun) {
-            Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi batasan per tahun :(', 'Error');
+            Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi batasan per tahun ✘', 'Error');
             return redirect()->back();
         }
 
@@ -778,11 +772,11 @@ class LayananController extends Controller
             $layananCutiPegawai->save();
 
             DB::commit();
-            Toastr::success('Data layanan cuti berhasil ditambah :)', 'Success');
+            Toastr::success('Data layanan cuti berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data layanan cuti gagal ditambah :(', 'Error');
+            Toastr::error('Data layanan cuti gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -793,18 +787,40 @@ class LayananController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            $dokumen_kelengkapan = $request->hidden_dokumen_kelengkapan;
+            $dokumen_kelengkapans = $request->file('dokumen_kelengkapan');
+
+            if ($dokumen_kelengkapans) {
+                if ($dokumen_kelengkapan && file_exists(public_path('assets/DokumenKelengkapan/' . $dokumen_kelengkapan))) {
+                    unlink(public_path('assets/DokumenKelengkapan/' . $dokumen_kelengkapan));
+                }
+
+                $dokumen_kelengkapan = time() . '.' . $dokumen_kelengkapans->getClientOriginalExtension();
+                $dokumen_kelengkapans->move(public_path('assets/DokumenKelengkapan'), $dokumen_kelengkapan);
+            }
+
+            $dokumen_rekomendasi = $request->hidden_dokumen_rekomendasi;
+            $dokumen_rekomendasis = $request->file('dokumen_rekomendasi');
+
+            if ($dokumen_rekomendasis) {
+                if ($dokumen_rekomendasi && file_exists(public_path('assets/DokumenRekomendasi/' . $dokumen_rekomendasi))) {
+                    unlink(public_path('assets/DokumenRekomendasi/' . $dokumen_rekomendasi));
+                }
+
+                $dokumen_rekomendasi = time() . '.' . $dokumen_rekomendasis->getClientOriginalExtension();
+                $dokumen_rekomendasis->move(public_path('assets/DokumenRekomendasi'), $dokumen_rekomendasi);
+            }
+
             $update = [
+                'id'                    => $request->id,
                 'jenis_cuti'            => $request->jenis_cuti,
                 'lama_cuti'             => $request->lama_cuti,
                 'tanggal_mulai_cuti'    => $request->tanggal_mulai_cuti,
                 'tanggal_selesai_cuti'  => $request->tanggal_selesai_cuti,
+                'dokumen_kelengkapan'   => $dokumen_kelengkapan,
+                'dokumen_rekomendasi'   => $dokumen_rekomendasi,
             ];
-
-            // $totalLamaCuti = LayananCuti::where('user_id', $request->user_id)->sum('lama_cuti');
-            // if (($totalLamaCuti + (int)$request->lama_cuti) > 18) {
-            //     Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi 18 hari :(', 'Error');
-            //     return redirect()->back();
-            // }
 
             $currentYear = date('Y');
             $totalLamaCutiTahunIni = LayananCuti::where('user_id', $request->user_id)
@@ -812,29 +828,18 @@ class LayananController extends Controller
                 ->sum('lama_cuti');
             $batasanCutiPerTahun = 18;
             if (($totalLamaCutiTahunIni + (int)$request->lama_cuti) > $batasanCutiPerTahun) {
-                Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi batasan per tahun :(', 'Error');
+                Toastr::error('Pengajuan cuti gagal karena sisa cuti habis atau melebihi batasan per tahun ✘', 'Error');
                 return redirect()->back();
             }
 
-            if ($request->hasFile('dokumen_kelengkapan')) {
-                $dokumen_kelengkapan = time() . '.' . $request->file('dokumen_kelengkapan')->getClientOriginalExtension();
-                $request->file('dokumen_kelengkapan')->move(public_path('assets/DokumenKelengkapan'), $dokumen_kelengkapan);
-                $update['dokumen_kelengkapan'] = $dokumen_kelengkapan;
-            }
-
-            if ($request->hasFile('dokumen_rekomendasi')) {
-                $dokumen_rekomendasi = time() . '.' . $request->file('dokumen_rekomendasi')->getClientOriginalExtension();
-                $request->file('dokumen_rekomendasi')->move(public_path('assets/DokumenRekomendasi'), $dokumen_rekomendasi);
-                $update['dokumen_rekomendasi'] = $dokumen_rekomendasi;
-            }
-
             LayananCuti::where('id', $request->id)->update($update);
+
             DB::commit();
-            Toastr::success('Data pengajuan cuti berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data pengajuan cuti berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data pengajuan cuti gagal diperbaharui :(', 'Error');
+            Toastr::error('Data pengajuan cuti gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1442,6 +1447,8 @@ class LayananController extends Controller
     /** Tampilan Update Status Perhomonan */
     public function updateStatus(Request $request, $id)
     {
+        DB::beginTransaction();
+        try {
         $resource = LayananCuti::find($id);
 
         if ($request->has('status_pengajuan')) {
@@ -1463,10 +1470,16 @@ class LayananController extends Controller
         if ($request->has('persetujuan_kepalaruangan')) {
             $resource->persetujuan_kepalaruangan = $request->input('persetujuan_kepalaruangan');
         }
-
         $resource->save();
-        Toastr::success('Data status pengajuan berhasil diperbaharui :)', 'Success');
+
+        DB::commit();
+        Toastr::success('Data status pengajuan cuti berhasil diperbaharui ✔', 'Success');
         return redirect()->back();
+        } catch (\Exception $e) {
+        DB::rollback();
+        Toastr::success('Data status pengajuan cuti gagal diperbaharui ✘', 'Error');
+        return redirect()->back();
+        }
     }
     /** /Tampilan Update Status Perhomonan */
 
@@ -1803,11 +1816,13 @@ class LayananController extends Controller
     /** Tampilan Pencarian KGB User */
     public function filterKGBUser(Request $request)
     {
-        $name = $request->input('name');
-        $nip = $request->input('nip');
-
+        $tgl_sk_kgb = $request->input('tgl_sk_kgb');
+        $tgl_berlaku = $request->input('tgl_berlaku');
+        $tmt_kgb = $request->input('tmt_kgb');
         $user_id = auth()->user()->user_id;
+
         $data_kgb = DB::table('kenaikan_gaji_berkala')
+            ->join('users', 'users.user_id', '=', 'kenaikan_gaji_berkala.user_id')
             ->select(
                 'kenaikan_gaji_berkala.*',
                 'kenaikan_gaji_berkala.user_id',
@@ -1823,9 +1838,10 @@ class LayananController extends Controller
                 'kenaikan_gaji_berkala.masa_kerja_golongan',
                 'kenaikan_gaji_berkala.masa_kerja',
                 'kenaikan_gaji_berkala.tmt_kgb')
-            ->where('kenaikan_gaji_berkala.name', 'like', '%' . $name . '%')
-            ->where('kenaikan_gaji_berkala.nip', 'like', '%' . $nip . '%')
-            ->where('kenaikan_gaji_berkala.user_id', $user_id)
+            ->where('users.user_id', $user_id)
+            ->where('kenaikan_gaji_berkala.tgl_sk_kgb', 'like', '%' . $tgl_sk_kgb . '%')
+            ->where('kenaikan_gaji_berkala.tgl_berlaku', 'like', '%' . $tgl_berlaku . '%')
+            ->where('kenaikan_gaji_berkala.tmt_kgb', 'like', '%' . $tmt_kgb . '%')
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -1857,6 +1873,7 @@ class LayananController extends Controller
     {
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $tgl_berlaku = $request->input('tgl_berlaku');
 
         $data_kgb = DB::table('kenaikan_gaji_berkala')
         ->select(
@@ -1877,6 +1894,7 @@ class LayananController extends Controller
         )
             ->where('kenaikan_gaji_berkala.name', 'like', '%' . $name . '%')
             ->where('kenaikan_gaji_berkala.nip', 'like', '%' . $nip . '%')
+            ->where('kenaikan_gaji_berkala.tgl_berlaku', 'like', '%' . $tgl_berlaku . '%')
             ->get();
 
         $data_kgb_pdf = DB::table('kenaikan_gaji_berkala')
@@ -2010,11 +2028,11 @@ class LayananController extends Controller
             $kgb->save();
 
             DB::commit();
-            Toastr::success('Data kenaikan gaji berkala berhasil ditambah :)', 'Success');
+            Toastr::success('Data kenaikan gaji berkala berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data kenaikan gaji berkala gagal ditambah :(', 'Error');
+            Toastr::error('Data kenaikan gaji berkala gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2025,7 +2043,21 @@ class LayananController extends Controller
     {
         DB::beginTransaction();
         try {
+        
+            $dokumen_kgb = $request->hidden_dokumen_kgb;
+            $dokumen_kgbs = $request->file('dokumen_kgb');
+
+            if ($dokumen_kgbs) {
+                if ($dokumen_kgb && file_exists(public_path('assets/DokumenKGB/' . $dokumen_kgb))) {
+                    unlink(public_path('assets/DokumenKGB/' . $dokumen_kgb));
+                }
+
+                $dokumen_kgb = time() . '.' . $dokumen_kgbs->getClientOriginalExtension();
+                $dokumen_kgbs->move(public_path('assets/DokumenKGB'), $dokumen_kgb);
+            }
+
             $update = [
+                'id'                     => $request->id,
                 'golongan_awal'          => $request->golongan_awal,
                 'golongan_akhir'         => $request->golongan_akhir,
                 'gapok_lama'             => $request->gapok_lama,
@@ -2036,21 +2068,17 @@ class LayananController extends Controller
                 'masa_kerja_golongan'    => $request->masa_kerja_golongan,
                 'masa_kerja'             => $request->masa_kerja,
                 'tmt_kgb'                => $request->tmt_kgb,
+                'dokumen_kgb'            => $dokumen_kgb,
             ];
 
-            if ($request->hasFile('dokumen_kgb')) {
-                $dokumen_kgb = time() . '.' . $request->file('dokumen_kgb')->getClientOriginalExtension();
-                $request->file('dokumen_kgb')->move(public_path('assets/DokumenKGB'), $dokumen_kgb);
-                $update['dokumen_kgb'] = $dokumen_kgb;
-            }
             KenaikanGajiBerkala::where('id', $request->id)->update($update);
 
             DB::commit();
-            Toastr::success('Data Kenaikan Gaji Berkala berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data Kenaikan Gaji Berkala berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data Kenaikan Gaji Berkala gagal diperbaharui :(', 'Error');
+            Toastr::error('Data Kenaikan Gaji Berkala gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2060,15 +2088,19 @@ class LayananController extends Controller
     public function hapusKenaikanGajiBerkala(Request $request)
     {
         DB::beginTransaction();
-
         try {
+
+            $dokumen_kgb = KenaikanGajiBerkala::where('id', $request->id)->pluck('dokumen_kgb')->first();
+            unlink('assets/DokumenKGB/' . $dokumen_kgb);
+
             KenaikanGajiBerkala::where('id', $request->id)->delete();
+
             DB::commit();
-            Toastr::success('Data kenaikan gaji berkala berhasil dihapus :)', 'Success');
+            Toastr::success('Data kenaikan gaji berkala berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data kenaikan gaji berkala gagal dihapus :(', 'Error');
+            Toastr::error('Data kenaikan gaji berkala gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2350,6 +2382,7 @@ class LayananController extends Controller
     {
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $mulai_kontrak = $request->input('mulai_kontrak');
 
         $data_perpanjang_kontrak = DB::table('kontrak_kerja')
         ->select(
@@ -2368,6 +2401,7 @@ class LayananController extends Controller
         )
             ->where('kontrak_kerja.name', 'like', '%' . $name . '%')
             ->where('kontrak_kerja.nip', 'like', '%' . $nip . '%')
+            ->where('kontrak_kerja.mulai_kontrak', 'like', '%' . $mulai_kontrak . '%')
             ->get();
 
         $data_perpanjang_pdf = DB::table('kontrak_kerja')
@@ -2456,8 +2490,10 @@ class LayananController extends Controller
     {
         $mulai_kontrak = $request->input('mulai_kontrak');
         $akhir_kontrak = $request->input('akhir_kontrak');
+        $user_id = auth()->user()->user_id;
 
         $data_perpanjang_kontrak = DB::table('kontrak_kerja')
+        ->join('users', 'users.user_id', '=', 'kontrak_kerja.user_id')
         ->select(
             'kontrak_kerja.*',
             'kontrak_kerja.user_id',
@@ -2472,6 +2508,7 @@ class LayananController extends Controller
             'kontrak_kerja.mulai_kontrak',
             'kontrak_kerja.akhir_kontrak',
         )
+            ->where('users.user_id', $user_id)
             ->where('kontrak_kerja.mulai_kontrak', 'like', '%' . $mulai_kontrak . '%')
             ->where('kontrak_kerja.akhir_kontrak', 'like', '%' . $akhir_kontrak . '%')
             ->get();
@@ -2575,11 +2612,11 @@ class LayananController extends Controller
             $kontrak->save();
 
             DB::commit();
-            Toastr::success('Data perpanjang kontrak kerja berhasil ditambah :)', 'Success');
+            Toastr::success('Data perpanjang kontrak kerja berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perpanjang kontrak kerja gagal ditambah :(', 'Error');
+            Toastr::error('Data perpanjang kontrak kerja gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2600,11 +2637,11 @@ class LayananController extends Controller
             KontrakKerja::where('id', $request->id)->update($update);
 
             DB::commit();
-            Toastr::success('Data perpanjang kontrak kerja berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data perpanjang kontrak kerja berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perpanjang kontrak kerja gagal diperbaharui :(', 'Error');
+            Toastr::error('Data perpanjang kontrak kerja gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2617,12 +2654,13 @@ class LayananController extends Controller
 
         try {
             KontrakKerja::where('id', $request->id)->delete();
+
             DB::commit();
-            Toastr::success('Data perpanjangan kontrak berhasil dihapus :)', 'Success');
+            Toastr::success('Data perpanjangan kontrak berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perpanjangan kontrak gagal dihapus :)', 'Error');
+            Toastr::error('Data perpanjangan kontrak gagal dihapus ✔', 'Error');
             return redirect()->back();
         }
     }
@@ -2799,6 +2837,7 @@ class LayananController extends Controller
     {
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $mulai_kontrak = $request->input('mulai_kontrak');
 
         $data_perjanjian_kontrak = DB::table('perjanjian_kontrak')
         ->select(
@@ -2817,6 +2856,7 @@ class LayananController extends Controller
         )
             ->where('perjanjian_kontrak.name', 'like', '%' . $name . '%')
             ->where('perjanjian_kontrak.nip', 'like', '%' . $nip . '%')
+            ->where('perjanjian_kontrak.mulai_kontrak', 'like', '%' . $mulai_kontrak . '%')
         ->get();
 
         $data_perjanjian_pdf = DB::table('perjanjian_kontrak')
@@ -2910,8 +2950,10 @@ class LayananController extends Controller
     {
         $mulai_kontrak = $request->input('mulai_kontrak');
         $akhir_kontrak = $request->input('akhir_kontrak');
+        $user_id = auth()->user()->user_id;
 
         $data_perjanjian_kontrak = DB::table('perjanjian_kontrak')
+        ->join('users', 'users.user_id', '=', 'perjanjian_kontrak.user_id')
         ->select(
             'perjanjian_kontrak.*',
             'perjanjian_kontrak.user_id',
@@ -2926,6 +2968,7 @@ class LayananController extends Controller
             'perjanjian_kontrak.mulai_kontrak',
             'perjanjian_kontrak.akhir_kontrak',
         )
+            ->where('users.user_id', $user_id)
             ->where('perjanjian_kontrak.mulai_kontrak', 'like', '%' . $mulai_kontrak . '%')
             ->where('perjanjian_kontrak.akhir_kontrak', 'like', '%' . $akhir_kontrak . '%')
             ->get();
@@ -3101,11 +3144,11 @@ class LayananController extends Controller
             $perjanjiankontrak->save();
 
             DB::commit();
-            Toastr::success('Data perjanjian kontrak kerja berhasil ditambah :)', 'Success');
+            Toastr::success('Data perjanjian kontrak kerja berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perjanjian kontrak kerja gagal ditambah :(', 'Error');
+            Toastr::error('Data perjanjian kontrak kerja gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -3126,11 +3169,11 @@ class LayananController extends Controller
             PerjanjianKontrak::where('id', $request->id)->update($update);
 
             DB::commit();
-            Toastr::success('Data perjanjian kontrak kerja berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data perjanjian kontrak kerja berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perjanjian kontrak kerja gagal diperbaharui :(', 'Error');
+            Toastr::error('Data perjanjian kontrak kerja gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -3144,11 +3187,11 @@ class LayananController extends Controller
         try {
             PerjanjianKontrak::where('id', $request->id)->delete();
             DB::commit();
-            Toastr::success('Data perjanjian kontrak berhasil dihapus :)', 'Success');
+            Toastr::success('Data perjanjian kontrak berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perjanjian kontrak gagal dihapus :)', 'Error');
+            Toastr::error('Data perjanjian kontrak gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -3316,6 +3359,7 @@ class LayananController extends Controller
     {
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $tgl_berlaku_str = $request->input('tgl_berlaku_str');
 
         $data_str = DB::table('surat_tanda_registrasi')
         ->select(
@@ -3337,6 +3381,7 @@ class LayananController extends Controller
         )
             ->where('surat_tanda_registrasi.name', 'like', '%' . $name . '%')
             ->where('surat_tanda_registrasi.nip', 'like', '%' . $nip . '%')
+            ->where('surat_tanda_registrasi.tgl_berlaku_str', 'like', '%' . $tgl_berlaku_str . '%')
             ->get();
 
         $userList = DB::table('profil_pegawai')
@@ -3395,8 +3440,12 @@ class LayananController extends Controller
     public function filterSTR(Request $request)
     {
         $nomor_reg = $request->input('nomor_reg');
+        $tanggal_lulus = $request->input('tanggal_lulus');
+        $tgl_berlaku_str = $request->input('tgl_berlaku_str');
+        $user_id = auth()->user()->user_id;
 
         $data_str = DB::table('surat_tanda_registrasi')
+        ->join('users', 'users.user_id', '=', 'surat_tanda_registrasi.user_id')
         ->select(
             'surat_tanda_registrasi.*',
             'surat_tanda_registrasi.user_id',
@@ -3414,7 +3463,10 @@ class LayananController extends Controller
             'surat_tanda_registrasi.tgl_berlaku_str',
             'surat_tanda_registrasi.dokumen_str'
         )
+            ->where('users.user_id', $user_id)
             ->where('surat_tanda_registrasi.nomor_reg', 'like', '%' . $nomor_reg . '%')
+            ->where('surat_tanda_registrasi.tanggal_lulus', 'like', '%' . $tanggal_lulus . '%')
+            ->where('surat_tanda_registrasi.tgl_berlaku_str', 'like', '%' . $tgl_berlaku_str . '%')
             ->get();
 
         $userList = DB::table('profil_pegawai')
@@ -3581,11 +3633,11 @@ class LayananController extends Controller
             $suratregistrasi->save();
 
             DB::commit();
-            Toastr::success('Data surat tanda registrasi berhasil ditambah :)', 'Success');
+            Toastr::success('Data surat tanda registrasi berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data surat tanda registrasi gagal ditambah: ' . $e->getMessage(), 'Error');
+            Toastr::error('Data surat tanda registrasi gagal ditambah ✘' . $e->getMessage(), 'Error');
             return redirect()->back();
         }
     }
@@ -3628,11 +3680,11 @@ class LayananController extends Controller
             SuratTandaRegistrasi::where('id', $request->id)->update($update);
 
             DB::commit();
-            Toastr::success('Data surat tanda registrasi berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data surat tanda registrasi berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data surat tanda registrasi gagal diperbaharui: ' . $e->getMessage(), 'Error');
+            Toastr::error('Data surat tanda registrasi gagal diperbaharui ✘' . $e->getMessage(), 'Error');
             return redirect()->back();
         }
     }
@@ -3643,13 +3695,18 @@ class LayananController extends Controller
     {
         DB::beginTransaction();
         try {
-            SuratTandaRegistrasi::destroy($request->id);
+
+            $dokumen_str = SuratTandaRegistrasi::where('id', $request->id)->pluck('dokumen_str')->first();
+            unlink('assets/DokumenSTR/' . $dokumen_str);
+
+            SuratTandaRegistrasi::where('id', $request->id)->delete();
+
             DB::commit();
-            Toastr::success('Data surat tanda registrasi berhasil dihapus :)', 'Success');
+            Toastr::success('Data surat tanda registrasi berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data surat tanda registrasi gagal dihapus :(', 'Error');
+            Toastr::error('Data surat tanda registrasi gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -3829,8 +3886,10 @@ class LayananController extends Controller
     public function filterPerjanjianKinerja(Request $request)
     {
         $bentuk_perjanjian = $request->input('bentuk_perjanjian');
+        $user_id = auth()->user()->user_id;
 
         $data_perjanjian_kinerja = DB::table('perjanjian_kinerja')
+        ->join('users', 'users.user_id', '=', 'perjanjian_kinerja.user_id')
         ->select(
             'perjanjian_kinerja.*',
             'perjanjian_kinerja.user_id',
@@ -3839,6 +3898,7 @@ class LayananController extends Controller
             'perjanjian_kinerja.jabatan',
             'perjanjian_kinerja.bentuk_perjanjian',
         )
+            ->where('users.user_id', $user_id)
             ->where('perjanjian_kinerja.bentuk_perjanjian', 'like', '%' . $bentuk_perjanjian . '%')
             ->get();
 
@@ -4004,11 +4064,11 @@ class LayananController extends Controller
             $perjanjiankinerja->save();
 
             DB::commit();
-            Toastr::success('Data perjanjian kinerja berhasil ditambah :)', 'Success');
+            Toastr::success('Data perjanjian kinerja berhasil ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perjanjian kinerja gagal ditambah: ' . $e->getMessage(), 'Error');
+            Toastr::error('Data perjanjian kinerja gagal ditambah ✘' . $e->getMessage(), 'Error');
             return redirect()->back();
         }
     }
@@ -4025,11 +4085,11 @@ class LayananController extends Controller
             perjanjianKinerja::where('id', $request->id)->update($update);
 
             DB::commit();
-            Toastr::success('Data perjanjian kinerja berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data perjanjian kinerja berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perjanjian kinerja gagal diperbaharui :(', 'Error');
+            Toastr::error('Data perjanjian kinerja gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -4041,11 +4101,11 @@ class LayananController extends Controller
         try {
             perjanjianKinerja::destroy($request->id);
             DB::commit();
-            Toastr::success('Data perjanjian kinerja berhasil dihapus :)', 'Success');
+            Toastr::success('Data perjanjian kinerja berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data perjanjian kinerja gagal dihapus :(', 'Error');
+            Toastr::error('Data perjanjian kinerja gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }

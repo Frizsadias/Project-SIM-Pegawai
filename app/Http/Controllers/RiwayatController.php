@@ -119,11 +119,11 @@ class RiwayatController extends Controller
             $riw_pend->save();
 
             DB::commit();
-            Toastr::success('Data riwayat pendidikan telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat pendidikan telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat pendidikan gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat pendidikan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -181,11 +181,11 @@ class RiwayatController extends Controller
 
             RiwayatPendidikan::where('id_pend', $request->id_pend)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat pendidikan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat pendidikan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat pendidikan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat pendidikan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -196,13 +196,22 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_transkrip = RiwayatPendidikan::where('id', $request->id)->pluck('dokumen_transkrip')->first();
+            unlink('assets/DokumenTranskrip/' . $dokumen_transkrip);
+
+            $dokumen_ijazah = RiwayatPendidikan::where('id', $request->id)->pluck('dokumen_ijazah')->first();
+            unlink('assets/DokumenIjazah/' . $dokumen_ijazah);
+
+            $dokumen_gelar = RiwayatPendidikan::where('id', $request->id)->pluck('dokumen_gelar')->first();
+            unlink('assets/DokumenGelar/' . $dokumen_gelar);
+
             RiwayatPendidikan::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat pendidikan berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat pendidikan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat pendidikan gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat pendidikan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -273,11 +282,11 @@ class RiwayatController extends Controller
             $riw_golongan->save();
 
             DB::commit();
-            Toastr::success('Data riwayat golongan telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat golongan telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat golongan gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat golongan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -325,11 +334,11 @@ class RiwayatController extends Controller
 
             RiwayatGolongan::where('id_gol', $request->id_gol)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat golongan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat golongan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat golongan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat golongan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -340,13 +349,19 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_skkp = RiwayatGolongan::where('id', $request->id)->pluck('dokumen_skkp')->first();
+            unlink('assets/DokumenSKKP/' . $dokumen_skkp);
+
+            $dokumen_teknis_kp = RiwayatGolongan::where('id', $request->id)->pluck('dokumen_teknis_kp')->first();
+            unlink('assets/DokumenTeknisKP/' . $dokumen_teknis_kp);
+
             RiwayatGolongan::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat golongan berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat golongan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat golongan gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat golongan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -416,11 +431,11 @@ class RiwayatController extends Controller
             $riw_jabatan->save();
 
             DB::commit();
-            Toastr::success('Data riwayat jabatan telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat jabatan telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat jabatan gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat jabatan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -467,11 +482,11 @@ class RiwayatController extends Controller
 
             RiwayatJabatan::where('id_jab', $request->id_jab)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat jabatan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat jabatan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat jabatan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat jabatan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -482,13 +497,19 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_pelantikan = RiwayatJabatan::where('id', $request->id)->pluck('dokumen_pelantikan')->first();
+            unlink('assets/DokumenPelantikan/' . $dokumen_pelantikan);
+
+            $dokumen_sk_jabatan = RiwayatJabatan::where('id', $request->id)->pluck('dokumen_sk_jabatan')->first();
+            unlink('assets/DokumenSKJabatan/' . $dokumen_sk_jabatan);
+
             RiwayatJabatan::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat jabatan berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat jabatan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat jabatan gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat jabatan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -554,11 +575,11 @@ class RiwayatController extends Controller
             $riw_diklat->save();
 
             DB::commit();
-            Toastr::success('Data riwayat diklat telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat diklat telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat diklat gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat diklat gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -594,11 +615,11 @@ class RiwayatController extends Controller
 
             RiwayatDiklat::where('id_dik', $request->id_dik)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat diklat berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat diklat berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat diklat gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat diklat gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -609,13 +630,16 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_diklat = RiwayatDiklat::where('id', $request->id)->pluck('dokumen_diklat')->first();
+            unlink('assets/DokumenDiklat/' . $dokumen_diklat);
+
             RiwayatDiklat::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat diklat berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat diklat berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat diklat gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat diklat gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -990,6 +1014,7 @@ class RiwayatController extends Controller
         $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
         $nama_jabatan = $request->input('nama_jabatan');
         $nomor_sk = $request->input('nomor_sk');
+        $tanggal_sk = $request->input('tanggal_sk');
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
 
         $riwayatAK = DB::table('riwayat_angka_kredit')
@@ -997,6 +1022,7 @@ class RiwayatController extends Controller
         ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
             ->where('nama_jabatan', 'like', '%' . $nama_jabatan . '%')
             ->where('nomor_sk', 'like', '%' . $nomor_sk . '%')
+            ->where('tanggal_sk', 'like', '%' . $tanggal_sk . '%')
             ->get();
 
         $user = auth()->user();
@@ -1078,11 +1104,11 @@ class RiwayatController extends Controller
             $riw_pmk->save();
 
             DB::commit();
-            Toastr::success('Data riwayat PMK telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat PMK telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat PMK gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat PMK gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1120,11 +1146,11 @@ class RiwayatController extends Controller
 
             RiwayatPMK::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat PMK berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat PMK berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat PMK gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat PMK gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1135,13 +1161,16 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_pmk = RiwayatPMK::where('id', $request->id)->pluck('dokumen_pmk')->first();
+            unlink('assets/DokumenPMK/' . $dokumen_pmk);
+
             RiwayatPMK::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat PMK berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat PMK berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat PMK gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat PMK gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1298,11 +1327,11 @@ class RiwayatController extends Controller
             $riw_ak->save();
 
             DB::commit();
-            Toastr::success('Data riwayat Angka Kredit telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat Angka Kredit telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Angka Kredit gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat Angka Kredit gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1332,11 +1361,11 @@ class RiwayatController extends Controller
 
             RiwayatAngkaKredit::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat Angka Kredit berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat Angka Kredit berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Angka Kredit gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat Angka Kredit gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1349,11 +1378,11 @@ class RiwayatController extends Controller
         try {
             RiwayatAngkaKredit::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat Angka Kredit berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat Angka Kredit berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Angka Kredit gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat Angka Kredit gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1518,12 +1547,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Hukuman Disiplin telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat Hukuman Disiplin telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Toastr::error('Data riwayat Hukuman Disiplin gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat Hukuman Disiplin gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1576,12 +1605,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Hukuman Disiplin berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat Hukuman Disiplin berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
 
-            Toastr::error('Data riwayat Hukuman Disiplin gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat Hukuman Disiplin gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1592,13 +1621,19 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_sk_hukuman = RiwayatHukumanDisiplin::where('id', $request->id)->pluck('dokumen_sk_hukuman')->first();
+            unlink('assets/DokumenSKHukuman/' . $dokumen_sk_hukuman);
+
+            $dokumen_sk_pengaktifan = RiwayatHukumanDisiplin::where('id', $request->id)->pluck('dokumen_sk_pengaktifan')->first();
+            unlink('assets/DokumenSKPengaktifan/' . $dokumen_sk_pengaktifan);
+
             RiwayatHukumanDisiplin::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat Hukuman Disiplin berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat Hukuman Disiplin berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Hukuman Disiplin gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat Hukuman Disiplin gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1658,12 +1693,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Penghargaan telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat Penghargaan telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Toastr::error('Data riwayat Penghargaan gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat Penghargaan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1698,12 +1733,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Penghargaan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat Penghargaan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
 
-            Toastr::error('Data riwayat Penghargaan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat Penghargaan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1714,13 +1749,16 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_penghargaan = RiwayatPenghargaan::where('id', $request->id)->pluck('dokumen_penghargaan')->first();
+            unlink('assets/DokumenPenghargaan/' . $dokumen_penghargaan);
+
             RiwayatPenghargaan::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat Penghargaan berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat Penghargaan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Penghargaan gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat Penghargaan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1781,12 +1819,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Organisasi telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat Organisasi telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Toastr::error('Data riwayat Organisasi gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat Organisasi gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1822,12 +1860,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Organisasi berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat Organisasi berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
 
-            Toastr::error('Data riwayat Organisasi gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat Organisasi gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1838,13 +1876,16 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_organisasi = RiwayatOrganisasi::where('id', $request->id)->pluck('dokumen_organisasi')->first();
+            unlink('assets/DokumenOrganisasi/' . $dokumen_organisasi);
+
             RiwayatOrganisasi::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat Organisasi berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat Organisasi berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Organisasi gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat Organisasi gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1912,12 +1953,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Tugas Belajar telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat Tugas Belajar telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Toastr::error('Data riwayat Tugas Belajar gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat Tugas Belajar gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1947,12 +1988,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Tugas Belajar berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat Tugas Belajar berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
 
-            Toastr::error('Data riwayat Tugas Belajar gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat Tugas Belajar gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1965,11 +2006,11 @@ class RiwayatController extends Controller
         try {
             RiwayatTugasBelajar::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat Tugas Belajar berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat Tugas Belajar berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Tugas Belajar gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat Tugas Belajar gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2056,12 +2097,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat Pasangan telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat Pasangan telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Toastr::error('Data riwayat Pasangan gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat Pasangan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2115,11 +2156,11 @@ class RiwayatController extends Controller
 
             RiwayatPasangan::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat pasangan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat pasangan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat pasangan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat pasangan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2130,13 +2171,19 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_nikah = RiwayatPasangan::where('id', $request->id)->pluck('dokumen_nikah')->first();
+            unlink('assets/DokumenNikah/' . $dokumen_nikah);
+
+            $pas_foto = RiwayatPasangan::where('id', $request->id)->pluck('pas_foto')->first();
+            unlink('assets/DokumenPasFotoPasangan/' . $pas_foto);
+
             RiwayatPasangan::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat Pasangan berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat Pasangan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Pasangan gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat Pasangan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2220,12 +2267,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat anak telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat anak telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Toastr::error('Data riwayat anak gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat anak gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2275,11 +2322,11 @@ class RiwayatController extends Controller
 
             RiwayatAnak::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat anak berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat anak berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat anak gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat anak gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2290,13 +2337,19 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_akta_kelahiran = RiwayatAnak::where('id', $request->id)->pluck('dokumen_akta_kelahiran')->first();
+            unlink('assets/DokumenAktaKelahiran/' . $dokumen_akta_kelahiran);
+
+            $pas_foto = RiwayatAnak::where('id', $request->id)->pluck('pas_foto')->first();
+            unlink('assets/DokumenPasFotoAnak/' . $pas_foto);
+
             RiwayatAnak::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat anak berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat anak berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat anak gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat anak gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2392,12 +2445,12 @@ class RiwayatController extends Controller
 
             DB::commit();
 
-            Toastr::success('Data riwayat orang tua telah ditambah :)', 'Success');
+            Toastr::success('Data riwayat orang tua telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Toastr::error('Data riwayat orang tua gagal ditambah :(', 'Error');
+            Toastr::error('Data riwayat orang tua gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2474,11 +2527,11 @@ class RiwayatController extends Controller
 
             RiwayatOrangTua::where('id', $request->id)->update($update);
             DB::commit();
-            Toastr::success('Data riwayat Orang Tua berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data riwayat Orang Tua berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Orang Tua gagal diperbaharui :(', 'Error');
+            Toastr::error('Data riwayat Orang Tua gagal diperbaharui ✘', 'Error');
             dd($e->getMessage());
             return redirect()->back();
         }
@@ -2490,13 +2543,25 @@ class RiwayatController extends Controller
     {
         DB::beginTransaction();
         try {
+            $dokumen_kk = RiwayatOrangTua::where('id', $request->id)->pluck('dokumen_kk')->first();
+            unlink('assets/DokumenKartuKeluarga/' . $dokumen_kk);
+
+            $dokumen_akta_lahir_anak = RiwayatOrangTua::where('id', $request->id)->pluck('dokumen_akta_lahir_anak')->first();
+            unlink('assets/DokumenAktaLahirAnak/' . $dokumen_akta_lahir_anak);
+
+            $pas_foto_ayah = RiwayatOrangTua::where('id', $request->id)->pluck('pas_foto_ayah')->first();
+            unlink('assets/DokumenPasFotoAyah/' . $pas_foto_ayah);
+
+            $pas_foto_ibu = RiwayatOrangTua::where('id', $request->id)->pluck('pas_foto_ibu')->first();
+            unlink('assets/DokumenPasFotoIbu/' . $pas_foto_ibu);
+
             RiwayatOrangTua::destroy($request->id);
             DB::commit();
-            Toastr::success('Data riwayat Orang Tua berhasil dihapus :)', 'Success');
+            Toastr::success('Data riwayat Orang Tua berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data riwayat Orang Tua gagal dihapus :(', 'Error');
+            Toastr::error('Data riwayat Orang Tua gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }

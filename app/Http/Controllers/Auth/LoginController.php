@@ -67,9 +67,12 @@ class LoginController extends Controller
             $password = $request->password;
             $dt         = Carbon::now();
             $todayDate  = $dt->toDayDateTimeString();
-            if (Auth::attempt(['nip'        => $username, 'password' => $password, 'status' => 'Active']) ||
-                Auth::attempt(['no_dokumen' => $username, 'password' => $password, 'status' => 'Active'])) {
-                $user = Auth::User();
+        
+            $authNip = Auth::attempt(['nip' => $username, 'password' => $password, 'status' => 'Active']);
+            $authDokumen = Auth::attempt(['no_dokumen' => $username, 'password' => $password, 'status' => 'Active']);
+
+            if ($authNip || $authDokumen) {
+                $user = Auth::user();
                 Session::put('name', $user->name);
                 Session::put('email', $user->email);
                 Session::put('nip', $user->nip);
@@ -79,19 +82,22 @@ class LoginController extends Controller
                 Session::put('status', $user->status);
                 Session::put('role_name', $user->role_name);
                 Session::put('avatar', $user->avatar);
-                $activityLog = ['name' => Session::get('name'), 'nip' => $user->nip, 'no_dokumen' => $user->no_dokumen, 'description' => 'Telah masuk aplikasi', 'date_time' => $todayDate];
+                $activityLog = ['name' => Session::get('name'), 'nip' => $user->nip, 'no_dokumen' => $user->no_dokumen, 'description' => 'Berhasil Masuk Aplikasi SILK', 'date_time' => $todayDate];
                 DB::table('activity_logs')->insert($activityLog);
-                
-                Toastr::success('Berhasil masuk aplikasi :)', 'Success');
+
+                Toastr::success('Anda berhasil memasuki aplikasi SILK ✔', 'Success');
                 return redirect()->intended('home');
-            } else {
+            } elseif (User::where('nip', $username)->orWhere('no_dokumen', $username)->exists()) {
                 Toastr::error('Gagal, Nama Pengguna dan Kata Sandi tidak sama ✘', 'Error');
+                return redirect('login');
+            }else {
+                Toastr::error('Gagal, NIP/NIK anda tidak tersedia pada aplikasi ✘', 'Error');
                 return redirect('login');
             }
         } catch (\Exception $e) {
-            \Log::info($e);
+            \Log::error($e);
             DB::rollback();
-            Toastr::error('Gagal, NIP/NIK anda tidak tersedia pada aplikasi :(', 'Error');
+            Toastr::error('Gagal, NIP/NIK anda tidak tersedia pada aplikasi ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -101,7 +107,7 @@ class LoginController extends Controller
     {
         $dt         = Carbon::now();
         $todayDate  = $dt->toDayDateTimeString();
-        $activityLog = ['name' => Session::get('name'), 'nip'=> Session::get('nip'), 'no_dokumen'=> Session::get('no_dokumen'), 'description' => 'Telah keluar aplikasi', 'date_time' => $todayDate];
+        $activityLog = ['name' => Session::get('name'), 'nip'=> Session::get('nip'), 'no_dokumen'=> Session::get('no_dokumen'), 'description' => 'Berhasil Keluar Aplikasi SILK', 'date_time' => $todayDate];
         DB::table('activity_logs')->insert($activityLog);
         $request->session()->forget('name');
         $request->session()->forget('email');
@@ -114,7 +120,7 @@ class LoginController extends Controller
         $request->session()->forget('avatar');
         $request->session()->flush();
         Auth::logout();
-        Toastr::success('Berhasil keluar aplikasi :)','Success');
+        Toastr::success('Anda berhasil keluar aplikasi SILK ✔','Success');
         return redirect('login');
     }
 }

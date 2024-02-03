@@ -410,16 +410,16 @@ class EmployeeController extends Controller
                 $employee->save();
 
                 DB::commit();
-                Toastr::success('Berhasil menambahkan pegawai baru :)', 'Success');
+                Toastr::success('Berhasil menambahkan pegawai baru ✔', 'Success');
                 return redirect()->route('daftar/pegawai/card');
             } else {
                 DB::rollback();
-                Toastr::error('Data tersebuut sudah tersedia :(', 'Error');
+                Toastr::error('Data tersebuut sudah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Gagal menambahkan pegawai baru :(', 'Error');
+            Toastr::error('Gagal menambahkan pegawai baru ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -456,11 +456,11 @@ class EmployeeController extends Controller
             Employee::where('id', $request->id)->update($updateEmployee);
 
             DB::commit();
-            Toastr::success('Data daftar pegawai berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data daftar pegawai berhasil diperbaharui ✔', 'Success');
             return redirect()->route('daftar/pegawai/card');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data daftar pegawai gagal diperbaharui :(', 'Error');
+            Toastr::error('Data daftar pegawai gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -473,11 +473,11 @@ class EmployeeController extends Controller
             Employee::where('employee_id', $employee_id)->delete();
 
             DB::commit();
-            Toastr::success('Data daftar pegawai berhasil dihapus :)', 'Success');
+            Toastr::success('Data daftar pegawai berhasil dihapus ✔', 'Success');
             return redirect()->route('daftar/pegawai/card');
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data daftar pegawai gagal dihapus :(', 'Error');
+            Toastr::error('Data daftar pegawai gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1528,16 +1528,16 @@ class EmployeeController extends Controller
                 $agama->save();
 
                 DB::commit();
-                Toastr::success('Data agama telah ditambah :)', 'Sukses');
+                Toastr::success('Data agama telah ditambah ✔', 'Sukses');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data agama telah tersedia :(', 'Error');
+                Toastr::error('Data agama telah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data agama gagal ditambah :(', 'Error');
+            Toastr::error('Data agama gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1555,11 +1555,11 @@ class EmployeeController extends Controller
             agama::where('id', $request->id)->update($agama);
 
             DB::commit();
-            Toastr::success('Data agama berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data agama berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data agama gagal diperbaharui :(', 'Error');
+            Toastr::error('Data agama gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1570,11 +1570,11 @@ class EmployeeController extends Controller
         try {
 
             agama::destroy($request->id);
-            Toastr::success('Data agama berhasil dihapus :)', 'Success');
+            Toastr::success('Data agama berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data agama gagal dihapus :)', 'Error');
+            Toastr::error('Data agama gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1699,16 +1699,16 @@ class EmployeeController extends Controller
                 $kedudukan->save();
 
                 DB::commit();
-                Toastr::success('Data kedudukan telah ditambah :)', 'Sukses');
+                Toastr::success('Data kedudukan telah ditambah ✔', 'Sukses');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data kedudukan telah tersedia :(', 'Error');
+                Toastr::error('Data kedudukan telah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data kedudukan gagal ditambah :(', 'Error');
+            Toastr::error('Data kedudukan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1726,11 +1726,11 @@ class EmployeeController extends Controller
             kedudukan::where('id', $request->id)->update($kedudukan);
 
             DB::commit();
-            Toastr::success('Data kedudukan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data kedudukan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data kedudukan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data kedudukan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1741,11 +1741,11 @@ class EmployeeController extends Controller
         try {
 
             kedudukan::destroy($request->id);
-            Toastr::success('Data kedudukan berhasil dihapus :)', 'Success');
+            Toastr::success('Data kedudukan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data kedudukan gagal dihapus :)', 'Error');
+            Toastr::error('Data kedudukan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1877,16 +1877,16 @@ class EmployeeController extends Controller
                 $pendidikan->save();
 
                 DB::commit();
-                Toastr::success('Data pendidikan telah ditambah :)', 'Sukses');
+                Toastr::success('Data pendidikan telah ditambah ✔', 'Sukses');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data pendidikan telah tersedia :(', 'Error');
+                Toastr::error('Data pendidikan telah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data pendidikan gagal ditambah :)', 'Error');
+            Toastr::error('Data pendidikan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1912,11 +1912,11 @@ class EmployeeController extends Controller
             DB::table('pendidikan_id')->where('id', $request->id)->update($pendidikan);
 
             DB::commit();
-            Toastr::success('Data pendidikan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data pendidikan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data pendidikan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data pendidikan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -1927,11 +1927,11 @@ class EmployeeController extends Controller
         try {
 
             pendidikan::destroy($request->id);
-            Toastr::success('Data pendidikan berhasil dihapus :)', 'Success');
+            Toastr::success('Data pendidikan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data pendidikan gagal dihapus :)', 'Error');
+            Toastr::error('Data pendidikan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2060,16 +2060,16 @@ class EmployeeController extends Controller
                 $ruangan->save();
 
                 DB::commit();
-                Toastr::success('Data ruangan telah ditambah :)', 'Sukses');
+                Toastr::success('Data ruangan telah ditambah ✔', 'Sukses');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data ruangan telah tersedia :(', 'Error');
+                Toastr::error('Data ruangan telah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data ruangan gagal ditambah :(', 'Error');
+            Toastr::error('Data ruangan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2088,11 +2088,11 @@ class EmployeeController extends Controller
             ruangan::where('id', $request->id)->update($ruangan);
 
             DB::commit();
-            Toastr::success('Data ruangan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data ruangan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data ruangan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data ruangan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2103,11 +2103,11 @@ class EmployeeController extends Controller
         try {
 
             ruangan::destroy($request->id);
-            Toastr::success('Data ruangan berhasil dihapus :)', 'Success');
+            Toastr::success('Data ruangan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data ruangan gagal dihapus :)', 'Error');
+            Toastr::error('Data ruangan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2232,16 +2232,16 @@ class EmployeeController extends Controller
                 $sumpah->save();
 
                 DB::commit();
-                Toastr::success('Data sumpah telah ditambah :)', 'Sukses');
+                Toastr::success('Data sumpah telah ditambah ✔', 'Sukses');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data sumpah telah tersedia :(', 'Error');
+                Toastr::error('Data sumpah telah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data sumpah gagal ditambah :(', 'Error');
+            Toastr::error('Data sumpah gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2259,11 +2259,11 @@ class EmployeeController extends Controller
             sumpah::where('id', $request->id)->update($sumpah);
 
             DB::commit();
-            Toastr::success('Data sumpah berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data sumpah berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data sumpah gagal diperbaharui :(', 'Error');
+            Toastr::error('Data sumpah gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2274,11 +2274,11 @@ class EmployeeController extends Controller
         try {
 
             sumpah::destroy($request->id);
-            Toastr::success('Data sumpah berhasil dihapus :)', 'Success');
+            Toastr::success('Data sumpah berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data sumpah gagal dihapus :)', 'Error');
+            Toastr::error('Data sumpah gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2407,16 +2407,16 @@ class EmployeeController extends Controller
                 $jenis_pegawai->save();
 
                 DB::commit();
-                Toastr::success('Data status telah ditambah :)', 'Sukses');
+                Toastr::success('Data status telah ditambah ✔', 'Sukses');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data status telah tersedia :(', 'Error');
+                Toastr::error('Data status telah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data status gagal ditambah :(', 'Error');
+            Toastr::error('Data status gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2434,11 +2434,11 @@ class EmployeeController extends Controller
             jenis_pegawai::where('id', $request->id)->update($jenis_pegawai);
 
             DB::commit();
-            Toastr::success('Data status berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data status berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data status gagal diperbaharui :(', 'Error');
+            Toastr::error('Data status gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2449,11 +2449,11 @@ class EmployeeController extends Controller
         try {
 
             jenis_pegawai::destroy($request->id);
-            Toastr::success('Data status berhasil dihapus :)', 'Success');
+            Toastr::success('Data status berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data status gagal dihapus :)', 'Error');
+            Toastr::error('Data status gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2583,16 +2583,16 @@ class EmployeeController extends Controller
                 $golongan->save();
 
                 DB::commit();
-                Toastr::success('Data golongan telah ditambah :)', 'Sukses');
+                Toastr::success('Data golongan telah ditambah ✔', 'Sukses');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data golongan telah tersedia :(', 'Error');
+                Toastr::error('Data golongan telah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data golongan gagal ditambah :)', 'Error');
+            Toastr::error('Data golongan gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2616,11 +2616,11 @@ class EmployeeController extends Controller
             DB::table('golongan_id')->where('id', $request->id)->update($golongan);
 
             DB::commit();
-            Toastr::success('Data golongan berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data golongan berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data golongan gagal diperbaharui :(', 'Error');
+            Toastr::error('Data golongan gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2631,11 +2631,11 @@ class EmployeeController extends Controller
         try {
 
             golongan_id::destroy($request->id);
-            Toastr::success('Data golongan berhasil dihapus :)', 'Success');
+            Toastr::success('Data golongan berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data golongan gagal dihapus :)', 'Error');
+            Toastr::error('Data golongan gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2692,11 +2692,11 @@ class EmployeeController extends Controller
             $sip->save();
 
             DB::commit();
-            Toastr::success('Data SIP dokter telah ditambah :)', 'Success');
+            Toastr::success('Data SIP dokter telah ditambah ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data SIP dokter gagal ditambah :(', 'Error');
+            Toastr::error('Data SIP dokter gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2881,16 +2881,16 @@ class EmployeeController extends Controller
                 $unor_nama->save();
 
                 DB::commit();
-                Toastr::success('Data unit organisasi telah ditambah :)', 'Sukses');
+                Toastr::success('Data unit organisasi telah ditambah ✔', 'Sukses');
                 return redirect()->back();
             } else {
                 DB::rollback();
-                Toastr::error('Data unit organisasi telah tersedia :(', 'Error');
+                Toastr::error('Data unit organisasi telah tersedia ✘', 'Error');
                 return redirect()->back();
             }
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data unit organisasi gagal ditambah :)', 'Error');
+            Toastr::error('Data unit organisasi gagal ditambah ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2914,11 +2914,11 @@ class EmployeeController extends Controller
             DB::table('unit_organisasi')->where('id', $request->id)->update($unor);
 
             DB::commit();
-            Toastr::success('Data organisasi berhasil diperbaharui :)', 'Success');
+            Toastr::success('Data organisasi berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data organisasi gagal diperbaharui :(', 'Error');
+            Toastr::error('Data organisasi gagal diperbaharui ✘', 'Error');
             return redirect()->back();
         }
     }
@@ -2929,11 +2929,11 @@ class EmployeeController extends Controller
         try {
 
             UnitOrganisasi::destroy($request->id);
-            Toastr::success('Data unit organisasi berhasil dihapus :)', 'Success');
+            Toastr::success('Data unit organisasi berhasil dihapus ✔', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Data unit organisasi gagal dihapus :)', 'Error');
+            Toastr::error('Data unit organisasi gagal dihapus ✘', 'Error');
             return redirect()->back();
         }
     }
