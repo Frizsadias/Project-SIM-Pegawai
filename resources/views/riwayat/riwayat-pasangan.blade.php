@@ -758,20 +758,15 @@
     </script>
     
     <script>
-        $(document).ready(function(){
-            $("#status_pekerjaan_pasangan").change(function(){
-                if($(this).val() === "PNS"){
-                    $("option[value='Bukan PNS']").hide();
-                } else {
-                    $("option[value='Bukan PNS']").show();
+        $(document).ready(function () {
+            $("#status_pekerjaan_pasangan").change(function () {
+                var selectedValue = $(this).val();
+                if (selectedValue === "PNS") {
+                    $("#status_pekerjaan_pasangan option[value='Bukan PNS']").hide();
+                } else if (selectedValue === "Bukan PNS") {
+                    $("#status_pekerjaan_pasangan option[value='PNS']").hide();
                 }
-            });
-            $("#status_pekerjaan_pasangan").change(function(){
-                if($(this).val() === "Bukan PNS"){
-                    $("option[value='PNS']").hide();
-                } else {
-                    $("option[value='PNS']").show();
-                }
+                $("#status_pekerjaan_pasangan option").show();
             });
         });
     </script>
