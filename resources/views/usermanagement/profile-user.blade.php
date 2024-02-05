@@ -1992,7 +1992,7 @@
                                                         </div>
                                                     </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
                                             </div>
                                         </form>
                                     </div>
@@ -2001,39 +2001,44 @@
                         </div>
                         <!-- /Posisi Jabatan Modal Edit -->
 
-        <!-- Upload Dokumen KTP Modal -->
-        <div id="unggah_dokumen_ktp" class="modal custom-modal fade" role="dialog">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Unggah Dokumen KTP</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('user/profile/upload-ktp') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $result_profilpegawai->user_id }}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Dokumen KTP</label>
-                                            <input type="file" class="form-control" id="dokumen_ktp" name="dokumen_ktp">
-                                            <input type="hidden" name="hidden_dokumen_ktp" id="e_dokumen_ktp" value="">
-                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
-                                        </div>
+                        <!-- Upload Dokumen KTP Modal -->
+                        <div id="unggah_dokumen_ktp" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Dokumen KTP</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('user/profile/upload-ktp') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $result_profilpegawai->user_id }}">
+                                                <div class="row">
+                                                    <div class="dropzone-box-1" style="max-width: 50rem !important">
+                                                        <label>File Dokumen KTP</label>
+                                                        <div class="dropzone-area-1" style="min-height: 15rem !important">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" style="height: 4rem !important; width: 6rem !important;" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form" style="font-size: 1rem !important">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" id="dokumen_ktp" name="dokumen_ktp">
+                                                            <input type="hidden" name="hidden_dokumen_ktp" id="e_dokumen_ktp" value="">
+                                                            <p class="info-draganddrop-1" style="font-size: 1rem !important">Tidak ada file yang di pilih</p>
+                                                        </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="submit-section">
+                                                    <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Unggah</button>
+                                                </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="submit-section">
-                                    <button class="btn btn-primary submit-btn">Simpan</button>
-                                </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Upload Dokumen KTP Modal -->
+                            </div>
+                        </div>
+                        <!-- /Upload Dokumen KTP Modal -->
 
         <!-- /Page Content -->
     </div>
@@ -2169,6 +2174,8 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
         <!-- /FancyBox Foto Profil -->
+
+        <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         
