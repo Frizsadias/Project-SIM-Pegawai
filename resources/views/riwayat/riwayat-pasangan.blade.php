@@ -756,20 +756,6 @@
     <script>
         document.getElementById('pageTitle').innerHTML = 'Riwayat Pasangan | Aplikasi SILK';
     </script>
-    
-    <script>
-        $(document).ready(function () {
-            $("#status_pekerjaan_pasangan").change(function () {
-                var selectedValue = $(this).val();
-                if (selectedValue === "PNS") {
-                    $("#status_pekerjaan_pasangan option[value='Bukan PNS']").hide();
-                } else if (selectedValue === "Bukan PNS") {
-                    $("#status_pekerjaan_pasangan option[value='PNS']").hide();
-                }
-                $("#status_pekerjaan_pasangan option").show();
-            });
-        });
-    </script>
 
 @endsection
 @endsection
