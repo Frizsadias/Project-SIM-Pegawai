@@ -28,8 +28,12 @@
                 @csrf
                 <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus">
-                        <input type="text" class="form-control floating" id="status_pekerjaan_pasangan" name="status_pekerjaan_pasangan">
+                    <div class="form-group form-focus select-focus">
+                        <select class="select" id="status_pekerjaan_pasangan" name="status_pekerjaan_pasangan">
+                            <option selected disabled>-- Pilih Status Pekerjaan Pasangan --</option>
+                            <option value="PNS">PNS</option>
+                            <option value="Bukan PNS">Bukan PNS</option>
+                        </select>
                         <label class="focus-label">Status Pekerjaan Pasangan</label>
                     </div>
                 </div>

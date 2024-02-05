@@ -950,6 +950,13 @@ class UserManagementController extends Controller
         try {
 
             if ($request->hasFile('dokumen_ktp')) {
+                $existingFile = DB::table('profil_pegawai')->where('user_id', $request->user_id)->value('dokumen_ktp');
+                if ($existingFile) {
+                    $existingFilePath = public_path('assets/DokumenKTP') . '/' . $existingFile;
+                    if (file_exists($existingFilePath)) {
+                        unlink($existingFilePath);
+                    }
+                }
                 $dokumen_ktp = time() . '.' . $request->file('dokumen_ktp')->getClientOriginalExtension();
                 $request->file('dokumen_ktp')->move(public_path('assets/DokumenKTP'), $dokumen_ktp);
                 $update['dokumen_ktp'] = $dokumen_ktp;
