@@ -34,7 +34,6 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
                             <input type="date" class="form-control floating" id="tanggal_lahir" name="tanggal_lahir">
                             <label class="focus-label">Tanggal Lahir</label>
