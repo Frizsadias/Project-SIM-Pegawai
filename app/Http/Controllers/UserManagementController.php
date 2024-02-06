@@ -58,12 +58,27 @@ class UserManagementController extends Controller
                 ->where('notifiable_type', get_class($user))
                 ->whereNotNull('read_at')
                 ->get();
+
             return view('usermanagement.user_control', compact('result', 'role_name', 'status_user', 'unreadNotifications', 'readNotifications'));
+
         } else if (Session::get('role_name') == 'Super Admin') {
             $result      = DB::table('users')->get();
             $role_name   = DB::table('role_type_users')->get();
             $status_user = DB::table('user_types')->get();
-            return view('usermanagement.user_control', compact('result', 'role_name', 'status_user'));
+
+            $user = auth()->user();
+            $role = $user->role_name;
+            $unreadNotifications = Notification::where('notifiable_id', $user->id)
+                ->where('notifiable_type', get_class($user))
+                ->whereNull('read_at')
+                ->get();
+
+            $readNotifications = Notification::where('notifiable_id', $user->id)
+                ->where('notifiable_type', get_class($user))
+                ->whereNotNull('read_at')
+                ->get();
+
+            return view('usermanagement.user_control', compact('result', 'role_name', 'status_user', 'unreadNotifications', 'readNotifications'));
         } else {
             return redirect()->route('home');
         }
@@ -94,22 +109,22 @@ class UserManagementController extends Controller
 
         /** search for name */
         if (!empty($user_name)) {
-            $users->when($user_name, function ($query) use ($user_name) {
-                $query->where('name', 'LIKE', '%' . $user_name . '%');
+            $users->when($user_name,function ($query) use ($user_name) {
+                $query->where('name','LIKE','%'.$user_name.'%');
             });
         }
 
         /** search for type_role */
         if (!empty($type_role)) {
             $users->when($type_role, function ($query) use ($type_role) {
-                $query->where('role_name', $type_role);
+                $query->where('role_name',$type_role);
             });
         }
 
         /** search for status */
         if (!empty($type_status)) {
             $users->when($type_status, function ($query) use ($type_status) {
-                $query->where('status', $type_status);
+                $query->where('status',$type_status);
             });
         }
 
@@ -117,6 +132,8 @@ class UserManagementController extends Controller
             $query->where('name', 'like', '%' . $searchValue . '%');
             $query->orWhere('user_id', 'like', '%' . $searchValue . '%');
             $query->orWhere('email', 'like', '%' . $searchValue . '%');
+            $query->orWhere('nip', 'like', '%' . $searchValue . '%');
+            $query->orWhere('no_dokumen', 'like', '%' . $searchValue . '%');
             $query->orWhere('join_date', 'like', '%' . $searchValue . '%');
             $query->orWhere('role_name', 'like', '%' . $searchValue . '%');
             $query->orWhere('status', 'like', '%' . $searchValue . '%');
@@ -130,6 +147,8 @@ class UserManagementController extends Controller
                 $query->where('name', 'like', '%' . $searchValue . '%');
                 $query->orWhere('user_id', 'like', '%' . $searchValue . '%');
                 $query->orWhere('email', 'like', '%' . $searchValue . '%');
+                $query->orWhere('nip', 'like', '%' . $searchValue . '%');
+                $query->orWhere('no_dokumen', 'like', '%' . $searchValue . '%');
                 $query->orWhere('join_date', 'like', '%' . $searchValue . '%');
                 $query->orWhere('role_name', 'like', '%' . $searchValue . '%');
                 $query->orWhere('status', 'like', '%' . $searchValue . '%');
@@ -139,21 +158,19 @@ class UserManagementController extends Controller
             ->get();
         $data_arr = [];
         foreach ($records as $key => $record) {
-            $record->name = '<h2 class="table-avatar"><a href="' . url('user/profile/' . $record->user_id) . '" class="name">' . '<img class="avatar" data-avatar=' . $record->avatar . ' src="' . url('/assets/images/' . $record->avatar) . '">' . $record->name . '</a></h2>';
-            if ($record->role_name == 'Admin') {
-                /** color role name */
-                $role_name = '<span class="badge bg-inverse-danger role_name">' . $record->role_name . '</span>';
+            $record->name = '<h2 class="table-avatar"><a href="'.url('user/profile/' . $record->user_id).'" class="name">'.'<img class="avatar" data-avatar='.$record->avatar.' src="'.url('/assets/images/'.$record->avatar).'">' .$record->name.'</a></h2>';
+            if ($record->role_name == 'Admin') { /** color role name */
+                $role_name = '<span class="badge bg-inverse-danger role_name">'.$record->role_name.'</span>';
             } elseif ($record->role_name == 'Super Admin') {
-                $role_name = '<span class="badge bg-inverse-warning role_name">' . $record->role_name . '</span>';
-            } elseif ($record->role_name == 'Kepala Ruang') {
-                $role_name = '<span class="badge bg-inverse-success role_name">' . $record->role_name . '</span>';
+                $role_name = '<span class="badge bg-inverse-warning role_name">'.$record->role_name.'</span>';
             } elseif ($record->role_name == 'User') {
-                $role_name = '<span class="badge bg-inverse-info role_name">' . $record->role_name . '</span>';
+                $role_name = '<span class="badge bg-inverse-info role_name">'.$record->role_name.'</span>';
+            } elseif ($record->role_name == 'Kepala Ruang') {
+                $role_name = '<span class="badge bg-inverse-success role_name">'.$record->role_name.'</span>'; 
             } else {
-                $role_name = 'NULL';
-                /** null role name */
+                $role_name = 'NULL'; /** null role name */
             }
-
+            
             /** status */
             $full_status = '
                 <div class="dropdown-menu dropdown-menu-right">
@@ -167,42 +184,44 @@ class UserManagementController extends Controller
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-dot-circle-o text-success"></i>
-                        <span class="status_s">' . $record->status . '</span>
+                        <span class="status_s">'.$record->status.'</span>
                     </a>
-                    ' . $full_status . '
+                    '.$full_status.'
                 ';
             } elseif ($record->status == 'Inactive') {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-dot-circle-o text-info"></i>
-                        <span class="status_s">' . $record->status . '</span>
+                        <span class="status_s">'.$record->status.'</span>
                     </a>
-                    ' . $full_status . '
+                    '.$full_status.'
                 ';
             } elseif ($record->status == 'Disable') {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-dot-circle-o text-danger"></i>
-                        <span class="status_s">' . $record->status . '</span>
+                        <span class="status_s">'.$record->status.'</span>
                     </a>
-                    ' . $full_status . '
+                    '.$full_status.'
                 ';
             } else {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-dot-circle-o text-dark"></i>
-                        <span class="statuss">' . $record->status . '</span>
+                        <span class="statuss">'.$record->status.'</span>
                     </a>
-                    ' . $full_status . '
+                    '.$full_status.'
                 ';
             }
 
             $joinDate = Carbon::parse($record->join_date)->translatedFormat('l, j F Y || h:i A');
-            $data_arr[] = [
-                "no"           => '<span class="id" data-id = ' . $record->id . '>' . $start + ($key + 1) . '</span>',
+            $data_arr [] = [
+                "no"           => '<span class="id" data-id = '.$record->id.'>'.$start + ($key + 1).'</span>',
                 "name"         => $record->name,
-                "user_id"      => '<span class="user_id">' . $record->user_id . '</span>',
-                "email"        => '<a href="mailto:' . $record->email . '"><span class="email-pengguna">' . $record->email . '</span></a>',
+                "user_id"      => '<span class="user_id">'.$record->user_id.'</span>',
+                "email"        => '<a href="mailto:' . $record->email . '"><span class="email" style="color: black;">' . $record->email . '</span></a>',
+                "nip"     => '<span class="nip">'.$record->nip.'</span>',
+                "no_dokumen" => '<span class="no_dokumen">'.$record->no_dokumen.'</span>',
                 "join_date"    => $joinDate,
                 "role_name"    => $role_name,
                 "status"       => $status,
@@ -210,11 +229,11 @@ class UserManagementController extends Controller
                 '
                 <td>
                     <div class="dropdown dropdown-action">
-                        <a class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <i class="material-icons">more_vert</i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item userUpdate" data-toggle="modal" data-id="' . $record->id . '" data-target="#edit_user">
+                            <a href="#" class="dropdown-item userUpdate" data-toggle="modal" data-id="'.$record->id.'" data-target="#edit_user">
                                 <i class="fa fa-pencil m-r-5"></i> Edit
                             </a>
                         </div>
@@ -699,12 +718,14 @@ class UserManagementController extends Controller
     public function addNewUserSave(Request $request)
     {
         $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|string|email|max:255|unique:users',
-            'role_name' => 'required|string|max:255',
-            'status'    => 'required|string|max:255',
-            'image'     => 'required|string|max:255',
-            'password'  => 'required|string|min:8|confirmed',
+            'name'          => 'required|string|max:255',
+            'nip'           => 'required|string|max:255',
+            'no_dokumen'    => 'required|string|max:255',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'role_name'     => 'required|string|max:255',
+            'status'        => 'required|string|max:255',
+            'image'         => 'required|string|max:255',
+            'password'      => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
         ]);
         DB::beginTransaction();
@@ -714,6 +735,8 @@ class UserManagementController extends Controller
 
             $user = new User;
             $user->name         = $request->name;
+            $user->nip          = $request->nip;
+            $user->no_dokumen   = $request->no_dokumen;
             $user->email        = $request->email;
             $user->join_date    = $todayDate;
             $user->role_name    = $request->role_name;
@@ -738,6 +761,8 @@ class UserManagementController extends Controller
         try {
             $user_id      = $request->user_id;
             $name         = $request->name;
+            $nip          = $request->nip;
+            $no_dokumen   = $request->no_dokumen;
             $email        = $request->email;
             $role_name    = $request->role_name;
             $status       = $request->status;
@@ -748,8 +773,10 @@ class UserManagementController extends Controller
 
             $update = [
 
-                'user_id'       => $user_id,
+                'user_id'      => $user_id,
                 'name'         => $name,
+                'nip'          => $nip,
+                'no_dokumen'   => $no_dokumen,
                 'role_name'    => $role_name,
                 'email'        => $email,
                 'status'       => $status,

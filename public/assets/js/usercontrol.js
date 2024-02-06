@@ -4,6 +4,8 @@ $(document).on('click', '.userUpdate', function() {
     $('#e_name').val(_this.find('.name').text());
     $('#e_email').val(_this.find('.email').text());
     $('#e_role_name').val(_this.find('.role_name').text()).change();
+    $('#e_nip').val(_this.find('.nip').text());
+    $('#e_no_dokumen').val(_this.find('.no_dokumen').text());
     $('#e_status').val(_this.find('.status_s').text()).change();
 });
 

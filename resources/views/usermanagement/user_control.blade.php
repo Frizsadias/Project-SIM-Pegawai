@@ -73,6 +73,8 @@
                                     <th>Nama Pengguna</th>
                                     <th>ID Pengguna</th>
                                     <th>E-mail</th>
+                                    <th>NIP</th>
+                                    <th>NIKB</th>
                                     <th>Tanggal Bergabung</th>
                                     <th>Peran</th>
                                     <th>Status</th>
@@ -103,45 +105,51 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nama Lengkap</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text"
-                                            id="" name="name" value="{{ old('name') }}"
-                                            placeholder="Masukkan Nama Lengkap">
+                                        <input class="form-control @error('name') is-invalid @enderror" type="text" id="" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama Lengkap">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Alamat E-mail </label>
-                                        <input class="form-control" type="email" id="" name="email"
-                                            placeholder="Masukkan E-mail">
-                                    </div>
+                                    <label>Alamat E-mail </label>
+                                    <input class="form-control" type="email" id="" name="email" placeholder="Masukkan E-mail">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
+                                    <label>Peran</label><br>
+                                    <select class="select" name="role_name" id="role_name">
+                                        <option selected disabled>-- Pilih Peran --</option>
+                                        @foreach ($role_name as $role )
+                                        <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Status</label>
+                                    <select class="select" name="status" id="status">
+                                        <option selected disabled>-- Pilih Status --</option>
+                                        @foreach ($status_user as $status)
+                                        <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Peran </label><br>
-                                        <select class="theSelect" name="role_name" id="role_name" style="width: 100% !important">
-                                            <option selected disabled> --Pilih Peran --</option>
-                                            @foreach ($role_name as $role)
-                                                <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
-                                            @endforeach
-                                        </select>
+                                        <label>NIP</label>
+                                        <input class="form-control" type="text" id="" name="nip" placeholder="Masukkan NIP">
+                                        <small class="text-danger">*Jika tidak memiliki <strong>NIP</strong> maka dapat mengisikan tanda ( - )</small>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="select" name="status" id="status">
-                                            <option selected disabled> --Pilih Status --</option>
-                                            @foreach ($status_user as $status)
-                                                <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <label>NIKB</label>
+                                    <input class="form-control" type="text" id="" name="no_dokumen" placeholder="Masukkan NIKB">
+                                    <small class="text-danger">*Jika tidak memiliki <strong>NIKB</strong> maka dapat mengisikan tanda ( - )</small>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <input type="hidden" class="form-control" id="image" name="image" value="photo_defaults.jpg">
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Kata Sandi</label>
@@ -170,7 +178,7 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -189,6 +197,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <br>
                     <div class="modal-body">
                         <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -197,45 +206,51 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nama Lengkap</label>
-                                        <input class="form-control" type="text" name="name" id="e_name"
-                                            value="" placeholder="Masukkan Nama Lengkap" />
+                                        <input class="form-control" type="text" name="name" id="e_name" value="" placeholder="Masukkan Nama Lengkap" />
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Alamat E-mail</label>
-                                        <input class="form-control" type="email" name="email" id="e_email"
-                                            value="" placeholder="Masukkan E-mail" />
-                                    </div>
+                                    <label>Alamat E-mail</label>
+                                    <input class="form-control" type="email" name="email" id="e_email" value="" placeholder="Masukkan E-mail" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
+                                    <label>Peran </label>
+                                    <select class="select" name="role_name" id="e_role_name">
+                                        @foreach ($role_name as $role )
+                                        <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Status</label>
+                                    <select class="select" name="status" id="e_status">
+                                        @foreach ($status_user as $status)
+                                        <option value="{{ $status->type_name }}">{{ $status->type_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Peran </label><br>
-                                        <select class="theSelect" name="role_name" id="e_role_name" style="width: 100% !important">
-                                            @foreach ($role_name as $role)
-                                                <option value="{{ $role->role_type }}">{{ $role->role_type }}</option>
-                                            @endforeach
-                                        </select>
+                                        <label>NIP</label>
+                                        <input class="form-control" type="text" id="e_nip" name="nip" value="" placeholder="Masukkan NIP" />
+                                        <small class="text-danger">*Jika tidak memiliki <strong>NIP</strong> maka dapat mengisikan tanda ( - )</small>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="select" name="status" id="e_status">
-                                            @foreach ($status_user as $status)
-                                                <option value="{{ $status->type_name }}">{{ $status->type_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <label>NIKB</label>
+                                    <input class="form-control" type="text" id="e_no_dokumen" name="no_dokumen" value="" placeholder="Masukkan NIKB" />
+                                    <small class="text-danger">*Jika tidak memiliki <strong>NIKB</strong> maka dapat mengisikan tanda ( - )</small>
                                 </div>
-                                <input type="hidden" class="form-control" id="image" name="images"
-                                    value="photo_defaults.jpg">
+                                <input type="hidden" class="form-control" id="image" name="images" value="photo_defaults.jpg">
                             </div>
+                            <br>
                             <div class="submit-section">
-                                <button type="submit" class="btn btn-primary submit-btn">Update</button>
+                                <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
                             </div>
                         </form>
                     </div>
@@ -279,90 +294,98 @@
     </div>
     <!-- /Page Wrapper -->
 
-@section('script')
-    <script type="text/javascript">
-        $(document).ready(function() {
+    @section('script')
+        <script type="text/javascript">
+            $(document).ready(function() {
 
-            table = $('#userDataList').DataTable({
+                table = $('#userDataList').DataTable({
 
-                lengthMenu: [
-                    [10, 25, 50, 100, 150],
-                    [10, 25, 50, 100, 150]
-                ],
-                buttons: [
-                    'pageLength',
-                ],
-                "pageLength": 10,
-                order: [
-                    [5, 'desc']
-                ],
-                processing: true,
-                serverSide: true,
-                ordering: true,
-                searching: true,
-                ajax: {
-                    url: "{{ route('get-users-data') }}",
-                    data: function(data) {
-                        // read valus for search
-                        var user_name = $('#user_name').val();
-                        var type_role = $('#type_role').val();
-                        var type_status = $('#type_status').val();
-                        data.user_name = user_name;
-                        data.type_role = type_role;
-                        data.type_status = type_status;
-                    }
-                },
+                    lengthMenu: [
+                        [10, 25, 50, 100, 150],
+                        [10, 25, 50, 100, 150]
+                    ],
+                    buttons: [
+                        'pageLength',
+                    ],
+                    "pageLength": 10,
+                    order: [
+                        [5, 'desc']
+                    ],
+                    processing: true,
+                    serverSide: true,
+                    ordering: true,
+                    searching: true,
+                    ajax: {
+                        url: "{{ route('get-users-data') }}",
+                        data: function(data) {
+                            // read valus for search
+                            var user_name = $('#user_name').val();
+                            var type_role = $('#type_role').val();
+                            var type_status = $('#type_status').val();
+                            data.user_name = user_name;
+                            data.type_role = type_role;
+                            data.type_status = type_status;
+                        }
+                    },
 
-                columns: [{
-                        data: 'no',
-                        name: 'no',
-                    },
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'user_id',
-                        name: 'user_id'
-                    },
-                    {
-                        data: 'email',
-                        name: 'email'
-                    },
-                    {
-                        data: 'join_date',
-                        name: 'join_date',
-                    },
-                    {
-                        data: 'role_name',
-                        name: 'role_name',
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                    },
-                ]
+                    columns: [{
+                            data: 'no',
+                            name: 'no',
+                        },
+                        {
+                            data: 'name',
+                            name: 'name'
+                        },
+                        {
+                            data: 'user_id',
+                            name: 'user_id'
+                        },
+                        {
+                            data: 'email',
+                            name: 'email'
+                        },
+                        {
+                            data: 'nip',
+                            name: 'nip'
+                        },
+                        {
+                            data: 'no_dokumen',
+                            name: 'no_dokumen'
+                        },
+                        {
+                            data: 'join_date',
+                            name: 'join_date',
+                        },
+                        {
+                            data: 'role_name',
+                            name: 'role_name',
+                        },
+                        {
+                            data: 'status',
+                            name: 'status',
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                        },
+                    ]
+                });
+                $('.btn_search').on('click', function() {
+                    table.draw();
+                });
             });
-            $('.btn_search').on('click', function() {
-                table.draw();
-            });
-        });
-    </script>
+        </script>
 
-    <script>
-        $(".theSelect").select2();
-    </script>
+        <script>
+            $(".theSelect").select2();
+        </script>
 
-    <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
-    <script src="{{ asset('assets/js/usercontrol.js') }}"></script>
+        <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
+        <script src="{{ asset('assets/js/usercontrol.js') }}"></script>
 
-    <script>
-        document.getElementById('pageTitle').innerHTML = 'Manajemen Daftar Pengguna - Admin | Aplikasi SILK';
-    </script>
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Manajemen Daftar Pengguna - Admin | Aplikasi SILK';
+        </script>
 
-@endsection
+    @endsection
 @endsection

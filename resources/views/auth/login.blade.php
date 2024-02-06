@@ -35,12 +35,12 @@
                                             <i id="icon1" class="fa fa-eye-slash"></i>
                                         </button>
                                     </div>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                             <div class="form-group">
                                 <div class="row">

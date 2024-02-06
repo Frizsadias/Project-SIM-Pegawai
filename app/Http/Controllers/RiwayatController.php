@@ -1205,7 +1205,6 @@ class RiwayatController extends Controller
 
         $search = $request->input('search.value');
         $user_id = auth()->user()->user_id;
-
         $counter = $start + 1;
 
         if (empty($search)) {
@@ -1244,10 +1243,10 @@ class RiwayatController extends Controller
                 $nestedData['masa_bulan'] = $value->masa_bulan;
                 $nestedData['dokumen_pmk'] = $value->dokumen_pmk;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_riwayat_pmk' href='#' data-toggle='modal' data-target='#edit_riwayat_pmk' data-id='" . $value->id . "' data-jenis_pmk='" . $value->jenis_pmk . "' data-instansi='" . $value->instansi . "' data-tanggal_awal='" . $value->tanggal_awal . "' data-tanggal_akhir='" . $value->tanggal_akhir . "' data-no_sk='" . $value->no_sk . "' data-tanggal_sk='" . $value->tanggal_sk . "' data-no_bkn='" . $value->no_bkn . "' data-tanggal_bkn='" . $value->tanggal_bkn . "' data-masa_tahun='" . $value->masa_tahun . "' data-masa_bulan='" . $value->masa_bulan . "' data-dokumen_pmk='" . $value->dokumen_pmk . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_riwayat_pmk' data-toggle='modal' data-target='#delete_riwayat_pmk' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a href='#' class='dropdown-item edit_riwayat_pmk' data-toggle='modal' data-target='#edit_riwayat_pmk' data-id='" . $value->id . "' data-jenis_pmk='" . $value->jenis_pmk . "' data-instansi='" . $value->instansi . "' data-tanggal_awal='" . $value->tanggal_awal . "' data-tanggal_akhir='" . $value->tanggal_akhir . "' data-no_sk='" . $value->no_sk . "' data-tanggal_sk='" . $value->tanggal_sk . "' data-no_bkn='" . $value->no_bkn . "' data-tanggal_bkn='" . $value->tanggal_bkn . "' data-masa_tahun='" . $value->masa_tahun . "' data-masa_bulan='" . $value->masa_bulan . "' data-dokumen_pmk='" . $value->dokumen_pmk . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_riwayat_pmk' data-toggle='modal' data-target='#delete_riwayat_pmk' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;

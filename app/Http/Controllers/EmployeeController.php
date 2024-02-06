@@ -1444,6 +1444,7 @@ class EmployeeController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
+        $counter = $start + 1;
 
         if (empty($search)) {
             $agama = agama::offset($start)
@@ -1464,13 +1465,14 @@ class EmployeeController extends Controller
         $data = array();
         if (!empty($agama)) {
             foreach ($agama as $key => $value) {
-                $nestedData['id'] = $value->id;
+                $nestedData['id'] = $counter++;
+                // $nestedData['id'] = $value->id;
                 $nestedData['agama'] = $value->agama;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_agama' href='#' data-toggle='modal' data-target='#edit_agama' data-id='" . $value->id . "' data-agama='" . $value->agama . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_agama' data-toggle='modal' data-target='#delete_agama' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a href='#' class='dropdown-item edit_agama' data-toggle='modal' data-target='#edit_agama' data-id='" . $value->id . "' data-agama='" . $value->agama . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_agama' data-toggle='modal' data-target='#delete_agama' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;
@@ -1615,6 +1617,7 @@ class EmployeeController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
+        $counter = $start + 1;
 
         if (empty($search)) {
             $kedudukan = Kedudukan::offset($start)
@@ -1635,13 +1638,14 @@ class EmployeeController extends Controller
         $data = array();
         if (!empty($kedudukan)) {
             foreach ($kedudukan as $key => $value) {
-                $nestedData['id'] = $value->id;
+                $nestedData['id'] = $counter++;
+                // $nestedData['id'] = $value->id;
                 $nestedData['kedudukan'] = $value->kedudukan;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_kedudukan' href='#' data-toggle='modal' data-target='#edit_kedudukan' data-id='" . $value->id . "' data-kedudukan='" . $value->kedudukan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_kedudukan' data-toggle='modal' data-target='#delete_kedudukan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a href='#' class='dropdown-item edit_kedudukan' data-toggle='modal' data-target='#edit_kedudukan' data-id='" . $value->id . "' data-kedudukan='" . $value->kedudukan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_kedudukan' data-toggle='modal' data-target='#delete_kedudukan' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;
@@ -1788,6 +1792,8 @@ class EmployeeController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
+        $counter = $start + 1;
+        
 
         if (empty($search)) {
             $pendidikan = pendidikan::offset($start)
@@ -1808,15 +1814,16 @@ class EmployeeController extends Controller
         $data = array();
         if (!empty($pendidikan)) {
             foreach ($pendidikan as $key => $value) {
-                $nestedData['id'] = $value->id;
+                $nestedData['id'] = $counter++;
+                // $nestedData['id'] = $value->id;
                 $nestedData['pendidikan'] = $value->pendidikan;
                 $nestedData['tk_pendidikan_id'] = $value->tk_pendidikan_id;
                 $nestedData['status_pendidikan'] = $value->status_pendidikan;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_pendidikan' href='#' data-toggle='modal' data-target='#edit_pendidikan' data-id='" . $value->id . "' data-pendidikan='" . $value->pendidikan . "' data-tk_pendidikan_id='" . $value->tk_pendidikan_id . "' data-status_pendidikan='" . $value->status_pendidikan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_pendidikan' data-toggle='modal' data-target='#delete_pendidikan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a href='#' class='dropdown-item edit_pendidikan' data-toggle='modal' data-target='#edit_pendidikan' data-id='" . $value->id . "' data-pendidikan='" . $value->pendidikan . "' data-tk_pendidikan_id='" . $value->tk_pendidikan_id . "' data-status_pendidikan='" . $value->status_pendidikan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_pendidikan' data-toggle='modal' data-target='#delete_pendidikan' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;
@@ -1973,6 +1980,8 @@ class EmployeeController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
+        $counter = $start + 1;
+        
 
         if (empty($search)) {
             $ruanganRSUD = ruangan::offset($start)
@@ -1993,14 +2002,15 @@ class EmployeeController extends Controller
         $data = array();
         if (!empty($ruanganRSUD)) {
             foreach ($ruanganRSUD as $key => $value) {
-                $nestedData['id'] = $value->id;
+                $nestedData['id'] = $counter++;
+                // $nestedData['id'] = $value->id;
                 $nestedData['ruangan'] = $value->ruangan;
                 $nestedData['jumlah_tempat_tidur'] = $value->jumlah_tempat_tidur;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_ruangan' href='#' data-toggle='modal' data-target='#edit_ruangan' data-id='" . $value->id . "' data-ruangan='" . $value->ruangan . "' data-jumlah_tempat_tidur='" . $value->jumlah_tempat_tidur . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_ruangan' data-toggle='modal' data-target='#delete_ruangan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a href='#' class='dropdown-item edit_ruangan' data-toggle='modal' data-target='#edit_ruangan' data-id='" . $value->id . "' data-ruangan='" . $value->ruangan . "' data-jumlah_tempat_tidur='" . $value->jumlah_tempat_tidur . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_ruangan' data-toggle='modal' data-target='#delete_ruangan' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;
@@ -2148,6 +2158,8 @@ class EmployeeController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
+        $counter = $start + 1;
+        
 
         if (empty($search)) {
             $sumpah = sumpah::offset($start)
@@ -2168,13 +2180,14 @@ class EmployeeController extends Controller
         $data = array();
         if (!empty($sumpah)) {
             foreach ($sumpah as $key => $value) {
-                $nestedData['id'] = $value->id;
+                $nestedData['id'] = $counter++;
+                // $nestedData['id'] = $value->id;
                 $nestedData['sumpah'] = $value->sumpah;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_sumpah' href='#' data-toggle='modal' data-target='#edit_sumpah' data-id='" . $value->id . "' data-sumpah='" . $value->sumpah . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_sumpah' data-toggle='modal' data-target='#delete_sumpah' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a href='#' class='dropdown-item edit_sumpah' data-toggle='modal' data-target='#edit_sumpah' data-id='" . $value->id . "' data-sumpah='" . $value->sumpah . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_sumpah' data-toggle='modal' data-target='#delete_sumpah' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;
@@ -2320,6 +2333,7 @@ class EmployeeController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
+        $counter = $start + 1;
 
         if (empty($search)) {
             $jenis_pegawai = jenis_pegawai::offset($start)
@@ -2340,14 +2354,15 @@ class EmployeeController extends Controller
         $data = array();
         if (!empty($jenis_pegawai)) {
             foreach ($jenis_pegawai as $key => $value) {
-                $nestedData['id'] = $value->id;
+                $nestedData['id'] = $counter++;
+                // $nestedData['id'] = $value->id;
                 $nestedData['id_jenis_pegawai'] = $value->id_jenis_pegawai;
                 $nestedData['jenis_pegawai'] = $value->jenis_pegawai;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_status' href='#' data-toggle='modal' data-target='#edit_status' data-id='" . $value->id . "' data-jenis_pegawai='" . $value->jenis_pegawai . "' data-id_jenis_pegawai='" . $value->id_jenis_pegawai . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_status' data-toggle='modal' data-target='#delete_status' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a href='#' class='dropdown-item edit_status' data-toggle='modal' data-target='#edit_status' data-id='" . $value->id . "' data-jenis_pegawai='" . $value->jenis_pegawai . "' data-id_jenis_pegawai='" . $value->id_jenis_pegawai . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_status' data-toggle='modal' data-target='#delete_status' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;
@@ -2495,6 +2510,8 @@ class EmployeeController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
+        $counter = $start + 1;
+        
 
         if (empty($search)) {
             $golongan = golongan_id::offset($start)
@@ -2515,14 +2532,15 @@ class EmployeeController extends Controller
         $data = array();
         if (!empty($golongan)) {
             foreach ($golongan as $key => $value) {
-                $nestedData['id'] = $value->id;
+                $nestedData['id'] = $counter++;
+                // $nestedData['id'] = $value->id;
                 $nestedData['nama'] = $value->nama;
                 $nestedData['nama_golongan'] = $value->nama_golongan;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
-                                            <a class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
                                         <div class='dropdown-menu dropdown-menu-right'>
-                                            <a class='dropdown-item edit_ref_golongan' href='#' data-toggle='modal' data-target='#edit_ref_golongan' data-id='" . $value->id . "' data-nama='" . $value->nama . "' data-nama_golongan='" . $value->nama_golongan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
-                                            <a class='dropdown-item delete_ref_golongan' data-toggle='modal' data-target='#delete_ref_golongan' data-id='" . $value->id . "' href='#'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                            <a href='#' class='dropdown-item edit_ref_golongan' data-toggle='modal' data-target='#edit_ref_golongan' data-id='" . $value->id . "' data-nama='" . $value->nama . "' data-nama_golongan='" . $value->nama_golongan . "'><i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_ref_golongan' data-toggle='modal' data-target='#delete_ref_golongan' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
                                         </div>
                                      </div>";
                 $data[] = $nestedData;
