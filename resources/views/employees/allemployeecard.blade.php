@@ -89,5 +89,9 @@
             @endif
         </script>
 
+        <script>
+            history.pushState({}, "", '/daftar/pegawai/card');
+        </script>
+
     @endsection
 @endsection

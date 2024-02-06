@@ -862,9 +862,9 @@ class RiwayatController extends Controller
         $riwayatAnak = DB::table('riwayat_anak')
         ->join('users', 'users.user_id', '=', 'riwayat_anak.user_id')
         ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
-            ->where('status_pekerjaan_anak', 'like', '%' . $status_pekerjaan_anak . '%')
-            ->where('nama_anak', 'like', '%' . $nama_anak . '%')
-            ->where('agama', 'like', '%' . $agama . '%')
+            ->orWhere('status_pekerjaan_anak', 'like', '%' . $status_pekerjaan_anak . '%')
+            ->orWhere('nama_anak', 'like', '%' . $nama_anak . '%')
+            ->orWhere('agama', 'like', '%' . $agama . '%')
             ->get();
 
         $user = auth()->user();

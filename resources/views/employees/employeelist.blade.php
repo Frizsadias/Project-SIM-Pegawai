@@ -119,5 +119,9 @@
             @endif
         </script>
 
+        <script>
+            history.pushState({}, "", '/daftar/pegawai/list');
+        </script>
+
     @endsection
 @endsection

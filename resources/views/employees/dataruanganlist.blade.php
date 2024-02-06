@@ -96,5 +96,9 @@
         document.getElementById('pageTitle').innerHTML = 'Informasi Daftar Ruangan - Kepala Ruang | Aplikasi SILK';
     </script>
 
+    <script>
+        history.pushState({}, "", '/daftar/ruangan/pegawai/list');
+    </script>
+
     @endsection
 @endsection
