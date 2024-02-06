@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@extends('layouts.judulprofil')
 @section('content')
+
 <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -5821,31 +5821,56 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>NIP <span class="text-danger">*</span></label>
-                                                    <input type="number" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $users->nip }}">
+                                                <input type="number" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ $users->nip }}">
+                                                @error('nip')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Gelar Depan <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control @error('gelar_depan') is-invalid @enderror" name="gelar_depan" value="{{ $users->gelar_depan }}">
+                                                @error('gelar_depan')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Gelar Belakang <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" value="{{ $users->gelar_belakang }}">
+                                                @error('gelar_belakang')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Tempat Lahir <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ $users->tempat_lahir }}">
+                                                @error('tempat_lahir')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                    <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $users->tanggal_lahir }}">
+                                                <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ $users->tanggal_lahir }}">
+                                                @error('tanggal_lahir')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -5856,6 +5881,11 @@
                                                     <option value="Laki-Laki" {{ $users->jenis_kelamin === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
                                                     <option value="Perempuan" {{ $users->jenis_kelamin === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                 </select>
+                                                @error('jenis_kelamin')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-6">
@@ -5875,6 +5905,11 @@
                                                         <option value="{{ $id }}" {{ $id == $users->agama ? 'selected' : '' }}>{{ $namaAgama }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('agama')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -5889,6 +5924,11 @@
                                                 <label>Nomor Induk Kependudukan</label>
                                                 <span class="text-danger">*</span>
                                                 <input type="number" class="form-control @error('no_dokumen') is-invalid @enderror" name="no_dokumen" value="{{ $users->no_dokumen }}">
+                                                @error('no_dokumen')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-6">
@@ -5907,6 +5947,11 @@
                                                         <option value="{{ $provinsi->name }}" @if ($users->provinsi == $provinsi->name) selected @endif>{{ $provinsi->name }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('provinsi')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                                 <br><small class="text-danger">*Silahkan memilih dengan pilihan yang berbeda, setelah itu Anda dapat memilih pilihan anda kembali.</small>
                                             </div>
                                         </div>
@@ -5923,6 +5968,11 @@
                                                 <select class="theSelect @error('kota') is-invalid @enderror" name="kota" id="kotakabupaten" style="width: 100% !important" value="{{ $users->kota }}">
                                                
                                                 </select>
+                                                @error('kota')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-6">
@@ -5939,6 +5989,11 @@
                                                 <select class="theSelect @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan" style="width: 100% !important" value="{{ $users->kecamatan }}">
                                                
                                                 </select>
+                                                @error('kecamatan')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-6">
@@ -5955,24 +6010,44 @@
                                                 <select class="theSelect @error('kelurahan') is-invalid @enderror" name="kelurahan" id="desakelurahan" style="width: 100% !important" value="{{ $users->kelurahan }}">
                                                
                                                 </select>
+                                                @error('kelurahan')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Kode Pos </label> <span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ $users->kode_pos }}">
+                                                @error('kode_pos')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor HP </label> <span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $users->no_hp }}">
+                                                @error('no_hp')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor Telepon </label> <span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $users->no_telp }}">
+                                                @error('no_telp')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -5987,6 +6062,11 @@
                                                         @endif
                                                     @endforeach
                                                 </select>
+                                                @error('jenis_pegawai')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -5999,6 +6079,11 @@
                                                         <option value="{{ $id }}" {{ $id == $users->kedudukan_pns ? 'selected' : '' }}>{{ $namaKedudukan }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('kedudukan_pns')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -6010,6 +6095,11 @@
                                                         <option value="Aktif" {{ $users->status_pegawai === 'Aktif' ? 'selected' : '' }}>Aktif</option>
                                                         <option value="Tidak Aktif" {{ $users->status_pegawai === 'Tidak Aktif' ? 'selected' : '' }}>Tidak Aktif</option>
                                                     </select>
+                                                    @error('status_pegawai')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 {{-- <select class="select @error('status_pegawai') is-invalid @enderror" name="status_pegawai">
                                                     @foreach($statusOptions as $id => $namaStatus)
                                                         <option value="{{ $id }}" {{ $id == $users->status_pegawai ? 'selected' : '' }}>{{ $namaStatus }}</option>
@@ -6021,18 +6111,33 @@
                                             <div class="form-group">
                                                 <label>TMT PNS </label> <span class="text-danger">*</span></label>
                                                 <input type="date" class="form-control @error('tmt_pns') is-invalid @enderror" name="tmt_pns" value="{{ $users->tmt_pns }}">
+                                                @error('tmt_pns')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor Seri Kartu Pegawai </label> <span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control @error('no_seri_karpeg') is-invalid @enderror" name="no_seri_karpeg" value="{{ $users->no_seri_karpeg }}">
+                                                @error('no_seri_karpeg')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>TMT CPNS </label> <span class="text-danger">*</span></label>
                                                 <input type="date" class="form-control @error('tmt_cpns') is-invalid @enderror" name="tmt_cpns" value="{{ $users->tmt_cpns }}">
+                                                @error('tmt_cpns')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -6045,6 +6150,11 @@
                                                         <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('tingkat_pendidikan')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -6057,6 +6167,11 @@
                                                         <option value="{{ $id }}" {{ $id == $users->pendidikan_terakhir ? 'selected' : '' }}>{{ $namaPendidikanTerakhir }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('pendidikan_terakhir')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -6069,6 +6184,11 @@
                                                         <option value="{{ $id }}" {{ $id == $users->ruangan ? 'selected' : '' }}>{{ $namaRuangan }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('ruangan')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -6503,22 +6623,22 @@
                     kppn: 'required',
                 },  
                 messages: {
-                    unit_organisasi: 'Masukkan unit organisasi',
-                    unit_organisasi_induk: 'Masukkan unit organisasi induk',
-                    jenis_jabatan: 'Masukkan jenis jabatan',
-                    eselon: 'Masukkan eselon',
-                    jabatan: 'Masukkan jabatan',
-                    tmt: 'Masukkan tmt',
-                    lokasi_kerja: 'Masukkan lokasi kerja',
-                    gol_ruang_awal: 'Masukkan golongan ruang awal',
-                    gol_ruang_akhir: 'Masukkan golongan ruang akhir',
-                    tmt_golongan: 'Masukkan tmt golongan',
-                    gaji_pokok: 'Masukkan gaji pokok',
-                    masa_kerja_tahun: 'Masukkan masa kerja tahun',
-                    masa_kerja_bulan: 'Masukkan masa kerja bulan',
-                    no_spmt: 'Masukkan nomor spmt',
-                    tanggal_spmt: 'Masukkan tanggal spmt',
-                    kppn: 'Masukkan kppn',
+                    unit_organisasi: 'Bidang unit organisasi wajib diisi.',
+                    unit_organisasi_induk: 'Bidang unit organisasi induk wajib diisi.',
+                    jenis_jabatan: 'Bidang jenis jabatan wajib diisi.',
+                    eselon: 'Bidang eselon wajib diisi.',
+                    jabatan: 'Bidang jabatan wajib diisi.',
+                    tmt: 'Bidang tmt wajib diisi.',
+                    lokasi_kerja: 'Bidang lokasi kerja wajib diisi.',
+                    gol_ruang_awal: 'Bidang golongan ruang awal wajib diisi.',
+                    gol_ruang_akhir: 'Bidang golongan ruang akhir wajib diisi.',
+                    tmt_golongan: 'Bidang tmt golongan wajib diisi.',
+                    gaji_pokok: 'Bidang gaji pokok wajib diisi.',
+                    masa_kerja_tahun: 'Bidang masa kerja tahun wajib diisi.',
+                    masa_kerja_bulan: 'Bidang masa kerja bulan wajib diisi.',
+                    no_spmt: 'Bidang nomor spmt wajib diisi.',
+                    tanggal_spmt: 'Bidang tanggal spmt wajib diisi.',
+                    kppn: 'Bidang kppn wajib diisi.',
                 },  
                 submitHandler: function(form) {  
                     form.submit();

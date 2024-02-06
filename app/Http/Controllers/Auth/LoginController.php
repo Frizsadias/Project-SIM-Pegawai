@@ -62,6 +62,12 @@ class LoginController extends Controller
             'nip_or_no_dokumen' => 'required|string',
             'password'          => 'required|string'
         ]);
+
+        if ($request->nip_or_no_dokumen === '-') {
+            Toastr::error('Gagal, NIP/NIKB tidak valid. Silahkan masukkan kembali NIP/NIKB valid ✘', 'Error');
+            return redirect('login');
+        }
+        
         try {
             $username = $request->nip_or_no_dokumen;
             $password = $request->password;
@@ -87,17 +93,19 @@ class LoginController extends Controller
 
                 Toastr::success('Anda berhasil memasuki aplikasi SILK ✔', 'Success');
                 return redirect()->intended('home');
+
             } elseif (User::where('nip', $username)->orWhere('no_dokumen', $username)->exists()) {
-                Toastr::error('Gagal, NIP/NIKB dan Kata Sandi tidak sama ✘', 'Error');
+                Toastr::error('Gagal, kata sandi anda tidak sama. Silahkan masukkan kembali kata sandi valid ✘', 'Error');
                 return redirect('login');
+                
             }else {
-                Toastr::error('Gagal, NIP/NIKB anda tidak tersedia pada aplikasi ✘', 'Error');
+                Toastr::error('Gagal, NIP/NIKB anda tidak terdaftar pada aplikasi ini ✘', 'Error');
                 return redirect('login');
             }
         } catch (\Exception $e) {
             \Log::error($e);
             DB::rollback();
-            Toastr::error('Gagal, NIP/NIKB anda tidak tersedia pada aplikasi ✘', 'Error');
+            Toastr::error('Gagal, NIP/NIKB anda tidak terdaftar pada aplikasi ini ✘', 'Error');
             return redirect()->back();
         }
     }
