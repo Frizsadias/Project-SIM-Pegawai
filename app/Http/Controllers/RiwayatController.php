@@ -786,7 +786,7 @@ class RiwayatController extends Controller
     {
         $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
         $nama = $request->input('nama');
-        $jenis_kelamin = $request->input('jenis_kelamin');
+        $tanggal_lahir = $request->input('tanggal_lahir');
         $agama = $request->input('agama');
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
@@ -794,7 +794,7 @@ class RiwayatController extends Controller
         ->join('users', 'users.user_id', '=', 'riwayat_orang_tua.user_id')
         ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
             ->where('nama', 'like', '%' . $nama . '%')
-            ->where('jenis_kelamin', 'like', '%' . $jenis_kelamin . '%')
+            ->where('tanggal_lahir', 'like', '%' . $tanggal_lahir . '%')
             ->where('agama', 'like', '%' . $agama . '%')
             ->get();
 
@@ -817,7 +817,7 @@ class RiwayatController extends Controller
     public function searchRiwayatPasangan(Request $request)
     {
         $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
-        $status_pekerjaan_pasangan = $request->input('status_pekerjaan_pasangan');
+        $tanggal_lahir = $request->input('tanggal_lahir');
         $nama = $request->input('nama');
         $agama = $request->input('agama');
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
@@ -825,7 +825,7 @@ class RiwayatController extends Controller
         $riwayatPasangan = DB::table('riwayat_pasangan')
         ->join('users', 'users.user_id', '=', 'riwayat_pasangan.user_id')
         ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
-            ->where('status_pekerjaan_pasangan', 'like', '%' . $status_pekerjaan_pasangan . '%')
+            ->where('tanggal_lahir', 'like', '%' . $tanggal_lahir . '%')
             ->where('nama', 'like', '%' . $nama . '%')
             ->where('agama', 'like', '%' . $agama . '%')
             ->get();
@@ -849,7 +849,7 @@ class RiwayatController extends Controller
     public function searchRiwayatAnak(Request $request)
     {
         $user_id = auth()->user()->user_id; // mendapatkan id user yang sedang login
-        $status_pekerjaan_anak = $request->input('status_pekerjaan_anak');
+        $tanggal_lahir = $request->input('tanggal_lahir');
         $nama_anak = $request->input('nama_anak');
         $agama = $request->input('agama');
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
@@ -862,9 +862,9 @@ class RiwayatController extends Controller
         $riwayatAnak = DB::table('riwayat_anak')
         ->join('users', 'users.user_id', '=', 'riwayat_anak.user_id')
         ->where('users.user_id', $user_id) // menambahkan kriteria pencarian user_id
-            ->orWhere('status_pekerjaan_anak', 'like', '%' . $status_pekerjaan_anak . '%')
-            ->orWhere('nama_anak', 'like', '%' . $nama_anak . '%')
-            ->orWhere('agama', 'like', '%' . $agama . '%')
+            ->where('tanggal_lahir', 'like', '%' . $tanggal_lahir . '%')
+            ->where('nama_anak', 'like', '%' . $nama_anak . '%')
+            ->where('agama', 'like', '%' . $agama . '%')
             ->get();
 
         $user = auth()->user();
@@ -1206,6 +1206,8 @@ class RiwayatController extends Controller
         $search = $request->input('search.value');
         $user_id = auth()->user()->user_id;
 
+        $counter = $start + 1;
+
         if (empty($search)) {
             $jenis_pmk = RiwayatPMK::where('user_id', $user_id)
                 ->offset($start)
@@ -1228,7 +1230,8 @@ class RiwayatController extends Controller
         $data = array();
         if (!empty($jenis_pmk)) {
             foreach ($jenis_pmk as $key => $value) {
-                $nestedData['id'] = $value->id;
+                $nestedData['id'] = $counter++;
+                // $nestedData['id'] = $value->id;
                 $nestedData['jenis_pmk'] = $value->jenis_pmk;
                 $nestedData['instansi'] = $value->instansi;
                 $nestedData['tanggal_awal'] = $value->tanggal_awal;

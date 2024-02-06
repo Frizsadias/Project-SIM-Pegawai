@@ -28,25 +28,23 @@
                 @csrf
                 <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">
-                    <div class="form-group form-focus select-focus">
-                        <select class="select" id="status_pekerjaan_pasangan" name="status_pekerjaan_pasangan">
-                            <option selected disabled>-- Pilih Status Pekerjaan Pasangan --</option>
-                            <option value="PNS">PNS</option>
-                            <option value="Bukan PNS">Bukan PNS</option>
-                        </select>
-                        <label class="focus-label">Status Pekerjaan Pasangan</label>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus">
                         <input type="text" class="form-control floating" id="nama" name="nama">
                         <label class="focus-label">Nama Pasangan</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group form-focus select-focus">
+                            <input type="date" class="form-control floating" id="tanggal_lahir" name="tanggal_lahir">
+                            <label class="focus-label">Tanggal Lahir</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus select-focus">
                         <select class="theSelect" style="width: 100% !important" id="agama" name="agama">
-                            <option selected disabled>Pilih Agama</option>
+                            <option selected disabled>-- Pilih Agama --</option>
                             @foreach($agamaOptions as $agamaOption)
                                 <option value="{{ $agamaOption }}">{{ $agamaOption }}</option>
                             @endforeach

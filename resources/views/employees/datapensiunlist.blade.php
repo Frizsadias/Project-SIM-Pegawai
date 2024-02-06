@@ -106,5 +106,9 @@
             document.getElementById('pageTitle').innerHTML = 'Manajemen Data Pegawai Pensiun - Admin | Aplikasi SILK';
         </script>
 
+        <script>
+            history.pushState({}, "", '/daftar/pegawai/pensiun/list');
+        </script>
+
     @endsection
 @endsection

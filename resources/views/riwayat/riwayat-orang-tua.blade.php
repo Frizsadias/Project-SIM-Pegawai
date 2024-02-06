@@ -35,18 +35,14 @@
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus select-focus">
-                        <select class="select" id="jenis_kelamin" name="jenis_kelamin">
-                            <option selected disabled>Pilih Jenis Kelamin</option>
-                            <option value="Laki-Laki">Laki-Laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                        </select>
-                        <label class="focus-label">Jenis Kelamin</label>
+                        <input type="date" class="form-control floating" id="tanggal_lahir" name="tanggal_lahir">
+                        <label class="focus-label">Tanggal Lahir</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group form-focus select-focus">
                         <select class="theSelect" style="width: 100% !important" id="agama" name="agama">
-                            <option selected disabled>Pilih Agama</option>
+                            <option selected disabled>-- Pilih Agama --</option>
                             @foreach($agamaOptions as $agamaOption)
                                 <option value="{{ $agamaOption }}">{{ $agamaOption }}</option>
                             @endforeach
