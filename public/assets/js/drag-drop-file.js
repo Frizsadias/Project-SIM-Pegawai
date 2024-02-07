@@ -1801,3 +1801,1725 @@ dropzoneBox22.addEventListener("submit",
     ("upload-file-form-22");
     console.log(myFiled.files[0]);
 });
+
+// File Upload 23 //
+const dropzoneBox23 = document.
+getElementsByClassName("dropzone-box-23")
+[0];
+
+const inputFiles23 = document.
+querySelectorAll(
+    ".dropzone-area-23 input[type='file']"
+);
+
+const inputElement23 = inputFiles23[0];
+
+const dropZoneElement23 = inputElement23.
+closest(".dropzone-area-23");
+
+inputElement23.addEventListener("change",
+(e) => {
+    if (inputElement23.files.length) {
+        updateDropzoneFileList23
+        (dropZoneElement23, inputElement23.files
+            [0]);
+    }
+});
+
+dropZoneElement23.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement23.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement23.addEventListener(type,
+        (e) => {
+            dropZoneElement23.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement23.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement23.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList23
+        (dropZoneElement23, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement23.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList23 = 
+(dropzoneElement23, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement23.querySelector(".info-draganddrop-23");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox23.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement23.querySelector(".info-draganddrop-23");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox23.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-23");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 24 //
+const dropzoneBox24 = document.
+getElementsByClassName("dropzone-box-24")
+[0];
+
+const inputFiles24 = document.
+querySelectorAll(
+    ".dropzone-area-24 input[type='file']"
+);
+
+const inputElement24 = inputFiles24[0];
+
+const dropZoneElement24 = inputElement24.
+closest(".dropzone-area-24");
+
+inputElement24.addEventListener("change",
+(e) => {
+    if (inputElement24.files.length) {
+        updateDropzoneFileList24
+        (dropZoneElement24, inputElement24.files
+            [0]);
+    }
+});
+
+dropZoneElement24.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement24.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement24.addEventListener(type,
+        (e) => {
+            dropZoneElement24.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement24.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement24.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList24
+        (dropZoneElement24, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement24.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList24 = 
+(dropzoneElement24, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement24.querySelector(".info-draganddrop-24");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox24.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement24.querySelector(".info-draganddrop-24");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox24.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-24");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 25 //
+const dropzoneBox25 = document.
+getElementsByClassName("dropzone-box-25")
+[0];
+
+const inputFiles25 = document.
+querySelectorAll(
+    ".dropzone-area-25 input[type='file']"
+);
+
+const inputElement25 = inputFiles25[0];
+
+const dropZoneElement25 = inputElement25.
+closest(".dropzone-area-25");
+
+inputElement25.addEventListener("change",
+(e) => {
+    if (inputElement25.files.length) {
+        updateDropzoneFileList25
+        (dropZoneElement25, inputElement25.files
+            [0]);
+    }
+});
+
+dropZoneElement25.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement25.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement25.addEventListener(type,
+        (e) => {
+            dropZoneElement25.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement25.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement25.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList25
+        (dropZoneElement25, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement25.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList25 = 
+(dropzoneElement25, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement25.querySelector(".info-draganddrop-25");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox25.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement25.querySelector(".info-draganddrop-25");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox25.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-25");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 26 //
+const dropzoneBox26 = document.
+getElementsByClassName("dropzone-box-26")
+[0];
+
+const inputFiles26 = document.
+querySelectorAll(
+    ".dropzone-area-26 input[type='file']"
+);
+
+const inputElement26 = inputFiles26[0];
+
+const dropZoneElement26 = inputElement26.
+closest(".dropzone-area-26");
+
+inputElement26.addEventListener("change",
+(e) => {
+    if (inputElement26.files.length) {
+        updateDropzoneFileList26
+        (dropZoneElement26, inputElement26.files
+            [0]);
+    }
+});
+
+dropZoneElement26.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement26.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement26.addEventListener(type,
+        (e) => {
+            dropZoneElement26.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement26.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement26.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList26
+        (dropZoneElement26, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement26.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList26 = 
+(dropzoneElement26, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement26.querySelector(".info-draganddrop-26");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox26.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement26.querySelector(".info-draganddrop-26");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox26.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-26");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 27 //
+const dropzoneBox27 = document.
+getElementsByClassName("dropzone-box-27")
+[0];
+
+const inputFiles27 = document.
+querySelectorAll(
+    ".dropzone-area-27 input[type='file']"
+);
+
+const inputElement27 = inputFiles27[0];
+
+const dropZoneElement27 = inputElement27.
+closest(".dropzone-area-27");
+
+inputElement27.addEventListener("change",
+(e) => {
+    if (inputElement27.files.length) {
+        updateDropzoneFileList27
+        (dropZoneElement27, inputElement27.files
+            [0]);
+    }
+});
+
+dropZoneElement27.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement27.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement27.addEventListener(type,
+        (e) => {
+            dropZoneElement27.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement27.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement27.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList27
+        (dropZoneElement27, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement27.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList27 = 
+(dropzoneElement27, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement27.querySelector(".info-draganddrop-27");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox27.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement27.querySelector(".info-draganddrop-27");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox27.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-27");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 28 //
+const dropzoneBox28 = document.
+getElementsByClassName("dropzone-box-28")
+[0];
+
+const inputFiles28 = document.
+querySelectorAll(
+    ".dropzone-area-28 input[type='file']"
+);
+
+const inputElement28 = inputFiles28[0];
+
+const dropZoneElement28 = inputElement28.
+closest(".dropzone-area-28");
+
+inputElement28.addEventListener("change",
+(e) => {
+    if (inputElement28.files.length) {
+        updateDropzoneFileList28
+        (dropZoneElement28, inputElement28.files
+            [0]);
+    }
+});
+
+dropZoneElement28.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement28.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement28.addEventListener(type,
+        (e) => {
+            dropZoneElement28.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement28.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement28.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList28
+        (dropZoneElement28, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement28.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList28 = 
+(dropzoneElement28, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement28.querySelector(".info-draganddrop-28");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox28.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement28.querySelector(".info-draganddrop-28");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox28.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-28");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 29 //
+const dropzoneBox29 = document.
+getElementsByClassName("dropzone-box-29")
+[0];
+
+const inputFiles29 = document.
+querySelectorAll(
+    ".dropzone-area-29 input[type='file']"
+);
+
+const inputElement29 = inputFiles29[0];
+
+const dropZoneElement29 = inputElement29.
+closest(".dropzone-area-29");
+
+inputElement29.addEventListener("change",
+(e) => {
+    if (inputElement29.files.length) {
+        updateDropzoneFileList29
+        (dropZoneElement29, inputElement29.files
+            [0]);
+    }
+});
+
+dropZoneElement29.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement29.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement29.addEventListener(type,
+        (e) => {
+            dropZoneElement29.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement29.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement29.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList29
+        (dropZoneElement29, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement29.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList29 = 
+(dropzoneElement29, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement29.querySelector(".info-draganddrop-29");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox29.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement29.querySelector(".info-draganddrop-29");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox29.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-29");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 30 //
+const dropzoneBox30 = document.
+getElementsByClassName("dropzone-box-30")
+[0];
+
+const inputFiles30 = document.
+querySelectorAll(
+    ".dropzone-area-30 input[type='file']"
+);
+
+const inputElement30 = inputFiles30[0];
+
+const dropZoneElement30 = inputElement30.
+closest(".dropzone-area-30");
+
+inputElement30.addEventListener("change",
+(e) => {
+    if (inputElement30.files.length) {
+        updateDropzoneFileList30
+        (dropZoneElement30, inputElement30.files
+            [0]);
+    }
+});
+
+dropZoneElement30.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement30.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement30.addEventListener(type,
+        (e) => {
+            dropZoneElement30.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement30.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement30.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList30
+        (dropZoneElement30, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement30.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList30 = 
+(dropzoneElement30, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement30.querySelector(".info-draganddrop-30");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox30.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement30.querySelector(".info-draganddrop-30");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox30.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-30");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 31 //
+const dropzoneBox31 = document.
+getElementsByClassName("dropzone-box-31")
+[0];
+
+const inputFiles31 = document.
+querySelectorAll(
+    ".dropzone-area-31 input[type='file']"
+);
+
+const inputElement31 = inputFiles31[0];
+
+const dropZoneElement31 = inputElement31.
+closest(".dropzone-area-31");
+
+inputElement31.addEventListener("change",
+(e) => {
+    if (inputElement31.files.length) {
+        updateDropzoneFileList31
+        (dropZoneElement31, inputElement31.files
+            [0]);
+    }
+});
+
+dropZoneElement31.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement31.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement31.addEventListener(type,
+        (e) => {
+            dropZoneElement31.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement31.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement31.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList31
+        (dropZoneElement31, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement31.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList31 = 
+(dropzoneElement31, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement31.querySelector(".info-draganddrop-31");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox31.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement31.querySelector(".info-draganddrop-31");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox31.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-31");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 32 //
+const dropzoneBox32 = document.
+getElementsByClassName("dropzone-box-32")
+[0];
+
+const inputFiles32 = document.
+querySelectorAll(
+    ".dropzone-area-32 input[type='file']"
+);
+
+const inputElement32 = inputFiles32[0];
+
+const dropZoneElement32 = inputElement32.
+closest(".dropzone-area-32");
+
+inputElement32.addEventListener("change",
+(e) => {
+    if (inputElement32.files.length) {
+        updateDropzoneFileList32
+        (dropZoneElement32, inputElement32.files
+            [0]);
+    }
+});
+
+dropZoneElement32.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement32.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement32.addEventListener(type,
+        (e) => {
+            dropZoneElement32.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement32.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement32.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList32
+        (dropZoneElement32, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement32.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList32 = 
+(dropzoneElement32, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement32.querySelector(".info-draganddrop-32");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox32.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement32.querySelector(".info-draganddrop-32");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox32.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-32");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 33 //
+const dropzoneBox33 = document.
+getElementsByClassName("dropzone-box-33")
+[0];
+
+const inputFiles33 = document.
+querySelectorAll(
+    ".dropzone-area-33 input[type='file']"
+);
+
+const inputElement33 = inputFiles33[0];
+
+const dropZoneElement33 = inputElement33.
+closest(".dropzone-area-33");
+
+inputElement33.addEventListener("change",
+(e) => {
+    if (inputElement33.files.length) {
+        updateDropzoneFileList33
+        (dropZoneElement33, inputElement33.files
+            [0]);
+    }
+});
+
+dropZoneElement33.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement33.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement33.addEventListener(type,
+        (e) => {
+            dropZoneElement33.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement33.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement33.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList33
+        (dropZoneElement33, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement33.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList33 = 
+(dropzoneElement33, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement33.querySelector(".info-draganddrop-33");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox33.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement33.querySelector(".info-draganddrop-33");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox33.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-33");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 34 //
+const dropzoneBox34 = document.
+getElementsByClassName("dropzone-box-34")
+[0];
+
+const inputFiles34 = document.
+querySelectorAll(
+    ".dropzone-area-34 input[type='file']"
+);
+
+const inputElement34 = inputFiles34[0];
+
+const dropZoneElement34 = inputElement34.
+closest(".dropzone-area-34");
+
+inputElement34.addEventListener("change",
+(e) => {
+    if (inputElement34.files.length) {
+        updateDropzoneFileList34
+        (dropZoneElement34, inputElement34.files
+            [0]);
+    }
+});
+
+dropZoneElement34.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement34.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement34.addEventListener(type,
+        (e) => {
+            dropZoneElement34.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement34.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement34.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList34
+        (dropZoneElement34, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement34.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList34 = 
+(dropzoneElement34, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement34.querySelector(".info-draganddrop-34");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox34.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement34.querySelector(".info-draganddrop-34");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox34.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-34");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 35 //
+const dropzoneBox35 = document.
+getElementsByClassName("dropzone-box-35")
+[0];
+
+const inputFiles35 = document.
+querySelectorAll(
+    ".dropzone-area-35 input[type='file']"
+);
+
+const inputElement35 = inputFiles35[0];
+
+const dropZoneElement35 = inputElement35.
+closest(".dropzone-area-35");
+
+inputElement35.addEventListener("change",
+(e) => {
+    if (inputElement35.files.length) {
+        updateDropzoneFileList35
+        (dropZoneElement35, inputElement35.files
+            [0]);
+    }
+});
+
+dropZoneElement35.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement35.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement35.addEventListener(type,
+        (e) => {
+            dropZoneElement35.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement35.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement35.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList35
+        (dropZoneElement35, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement35.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList35 = 
+(dropzoneElement35, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement35.querySelector(".info-draganddrop-35");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox35.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement35.querySelector(".info-draganddrop-35");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox35.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-35");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 36 //
+const dropzoneBox36 = document.
+getElementsByClassName("dropzone-box-36")
+[0];
+
+const inputFiles36 = document.
+querySelectorAll(
+    ".dropzone-area-36 input[type='file']"
+);
+
+const inputElement36 = inputFiles36[0];
+
+const dropZoneElement36 = inputElement36.
+closest(".dropzone-area-36");
+
+inputElement36.addEventListener("change",
+(e) => {
+    if (inputElement36.files.length) {
+        updateDropzoneFileList36
+        (dropZoneElement36, inputElement36.files
+            [0]);
+    }
+});
+
+dropZoneElement36.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement36.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement36.addEventListener(type,
+        (e) => {
+            dropZoneElement36.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement36.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement36.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList36
+        (dropZoneElement36, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement36.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList36 = 
+(dropzoneElement36, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement36.querySelector(".info-draganddrop-36");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox36.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement36.querySelector(".info-draganddrop-36");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox36.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-36");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 37 //
+const dropzoneBox37 = document.
+getElementsByClassName("dropzone-box-37")
+[0];
+
+const inputFiles37 = document.
+querySelectorAll(
+    ".dropzone-area-37 input[type='file']"
+);
+
+const inputElement37 = inputFiles37[0];
+
+const dropZoneElement37 = inputElement37.
+closest(".dropzone-area-37");
+
+inputElement37.addEventListener("change",
+(e) => {
+    if (inputElement37.files.length) {
+        updateDropzoneFileList37
+        (dropZoneElement37, inputElement37.files
+            [0]);
+    }
+});
+
+dropZoneElement37.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement37.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement37.addEventListener(type,
+        (e) => {
+            dropZoneElement37.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement37.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement37.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList37
+        (dropZoneElement37, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement37.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList37 = 
+(dropzoneElement37, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement37.querySelector(".info-draganddrop-37");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox37.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement37.querySelector(".info-draganddrop-37");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox37.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-37");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 38 //
+const dropzoneBox38 = document.
+getElementsByClassName("dropzone-box-38")
+[0];
+
+const inputFiles38 = document.
+querySelectorAll(
+    ".dropzone-area-38 input[type='file']"
+);
+
+const inputElement38 = inputFiles38[0];
+
+const dropZoneElement38 = inputElement38.
+closest(".dropzone-area-38");
+
+inputElement38.addEventListener("change",
+(e) => {
+    if (inputElement38.files.length) {
+        updateDropzoneFileList38
+        (dropZoneElement38, inputElement38.files
+            [0]);
+    }
+});
+
+dropZoneElement38.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement38.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement38.addEventListener(type,
+        (e) => {
+            dropZoneElement38.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement38.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement38.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList38
+        (dropZoneElement38, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement38.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList38 = 
+(dropzoneElement38, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement38.querySelector(".info-draganddrop-38");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox38.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement38.querySelector(".info-draganddrop-38");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox38.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-38");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 39 //
+const dropzoneBox39 = document.
+getElementsByClassName("dropzone-box-39")
+[0];
+
+const inputFiles39 = document.
+querySelectorAll(
+    ".dropzone-area-39 input[type='file']"
+);
+
+const inputElement39 = inputFiles39[0];
+
+const dropZoneElement39 = inputElement39.
+closest(".dropzone-area-39");
+
+inputElement39.addEventListener("change",
+(e) => {
+    if (inputElement39.files.length) {
+        updateDropzoneFileList39
+        (dropZoneElement39, inputElement39.files
+            [0]);
+    }
+});
+
+dropZoneElement39.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement39.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement39.addEventListener(type,
+        (e) => {
+            dropZoneElement39.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement39.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement39.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList39
+        (dropZoneElement39, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement39.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList39 = 
+(dropzoneElement39, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement39.querySelector(".info-draganddrop-39");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox39.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement39.querySelector(".info-draganddrop-39");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox39.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-39");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 40 //
+const dropzoneBox40 = document.
+getElementsByClassName("dropzone-box-40")
+[0];
+
+const inputFiles40 = document.
+querySelectorAll(
+    ".dropzone-area-40 input[type='file']"
+);
+
+const inputElement40 = inputFiles40[0];
+
+const dropZoneElement40 = inputElement40.
+closest(".dropzone-area-40");
+
+inputElement40.addEventListener("change",
+(e) => {
+    if (inputElement40.files.length) {
+        updateDropzoneFileList40
+        (dropZoneElement40, inputElement40.files
+            [0]);
+    }
+});
+
+dropZoneElement40.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement40.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement40.addEventListener(type,
+        (e) => {
+            dropZoneElement40.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement40.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement40.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList40
+        (dropZoneElement40, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement40.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList40 = 
+(dropzoneElement40, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement40.querySelector(".info-draganddrop-40");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox40.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement40.querySelector(".info-draganddrop-40");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox40.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-40");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 41 //
+const dropzoneBox41 = document.
+getElementsByClassName("dropzone-box-41")
+[0];
+
+const inputFiles41 = document.
+querySelectorAll(
+    ".dropzone-area-41 input[type='file']"
+);
+
+const inputElement41 = inputFiles41[0];
+
+const dropZoneElement41 = inputElement41.
+closest(".dropzone-area-41");
+
+inputElement41.addEventListener("change",
+(e) => {
+    if (inputElement41.files.length) {
+        updateDropzoneFileList41
+        (dropZoneElement41, inputElement41.files
+            [0]);
+    }
+});
+
+dropZoneElement41.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement41.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement41.addEventListener(type,
+        (e) => {
+            dropZoneElement41.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement41.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement41.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList41
+        (dropZoneElement41, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement41.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList41 = 
+(dropzoneElement41, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement41.querySelector(".info-draganddrop-41");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox41.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement41.querySelector(".info-draganddrop-41");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox41.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-41");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 42 //
+const dropzoneBox42 = document.
+getElementsByClassName("dropzone-box-42")
+[0];
+
+const inputFiles42 = document.
+querySelectorAll(
+    ".dropzone-area-42 input[type='file']"
+);
+
+const inputElement42 = inputFiles42[0];
+
+const dropZoneElement42 = inputElement42.
+closest(".dropzone-area-42");
+
+inputElement42.addEventListener("change",
+(e) => {
+    if (inputElement42.files.length) {
+        updateDropzoneFileList42
+        (dropZoneElement42, inputElement42.files
+            [0]);
+    }
+});
+
+dropZoneElement42.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement42.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement42.addEventListener(type,
+        (e) => {
+            dropZoneElement42.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement42.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement42.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList42
+        (dropZoneElement42, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement42.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList42 = 
+(dropzoneElement42, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement42.querySelector(".info-draganddrop-42");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox42.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement42.querySelector(".info-draganddrop-42");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox42.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-42");
+    console.log(myFiled.files[0]);
+});
+
+// File Upload 43 //
+const dropzoneBox43 = document.
+getElementsByClassName("dropzone-box-43")
+[0];
+
+const inputFiles43 = document.
+querySelectorAll(
+    ".dropzone-area-43 input[type='file']"
+);
+
+const inputElement43 = inputFiles43[0];
+
+const dropZoneElement43 = inputElement43.
+closest(".dropzone-area-43");
+
+inputElement43.addEventListener("change",
+(e) => {
+    if (inputElement43.files.length) {
+        updateDropzoneFileList43
+        (dropZoneElement43, inputElement43.files
+            [0]);
+    }
+});
+
+dropZoneElement43.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement43.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement43.addEventListener(type,
+        (e) => {
+            dropZoneElement43.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement43.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement43.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList43
+        (dropZoneElement43, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement43.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList43 = 
+(dropzoneElement43, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement43.querySelector(".info-draganddrop-43");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox43.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement43.querySelector(".info-draganddrop-43");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox43.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-43");
+    console.log(myFiled.files[0]);
+});

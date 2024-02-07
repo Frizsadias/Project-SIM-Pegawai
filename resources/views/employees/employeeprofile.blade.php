@@ -736,30 +736,45 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Transkrip Nilai</label>
-                                                        <input type="file" class="form-control" name="dokumen_transkrip">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-8">
+                                                    <label>Dokumen Transkrip Nilai</label>
+                                                    <div class="dropzone-area-8">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_transkrip" id="upload-file-form-4">
+                                                        <p class="info-draganddrop-8">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Ijazah</label>
-                                                        <input type="file" class="form-control" name="dokumen_ijazah">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-9">
+                                                    <label>Dokumen Ijazah</label>
+                                                    <div class="dropzone-area-9">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_ijazah" id="upload-file-form-5">
+                                                        <p class="info-draganddrop-9">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Pencantuman Gelar </label>
-                                                        <input type="file" class="form-control" name="dokumen_gelar">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-10">
+                                                    <label>Dokumen Pencantuman Gelar </label>
+                                                    <div class="dropzone-area-10">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_gelar" id="upload-file-form-6">
+                                                        <p class="info-draganddrop-10">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -844,33 +859,48 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Transkrip</label>
-                                                        <input type="file" class="form-control" id="dokumen_transkrip" name="dokumen_transkrip">
+                                                <div class="dropzone-box-11">
+                                                    <label>Dokumen Transkrip</label>
+                                                    <div class="dropzone-area-11">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="dokumen_transkrip" name="dokumen_transkrip">
                                                         <input type="hidden" name="hidden_dokumen_transkrip" id="e_dokumen_transkrip" value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        <p class="info-draganddrop-11">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Ijazah</label>
-                                                        <input type="file" class="form-control" id="dokumen_ijazah" name="dokumen_ijazah">
+                                                <div class="dropzone-box-12">
+                                                    <label>Dokumen Ijazah</label>
+                                                    <div class="dropzone-area-12">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="dokumen_ijazah" name="dokumen_ijazah">
                                                         <input type="hidden" name="hidden_dokumen_ijazah" id="e_dokumen_ijazah" value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        <p class="info-draganddrop-12">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Gelar</label>
-                                                        <input type="file" class="form-control" id="dokumen_gelar" name="dokumen_gelar">
+                                                <div class="dropzone-box-13">
+                                                    <label>Dokumen Gelar</label>
+                                                    <div class="dropzone-area-13">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file"  id="dokumen_gelar" name="dokumen_gelar">
                                                         <input type="hidden" name="hidden_dokumen_gelar" id="e_dokumen_gelar" value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        <p class="info-draganddrop-13">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -1081,23 +1111,33 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Dokumen SK KP</label>
-                                                            <input type="file" class="form-control" name="dokumen_skkp">
-                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    <div class="dropzone-box-1">
+                                                        <label>Dokumen SK KP</label>
+                                                        <div class="dropzone-area-1">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" name="dokumen_skkp" id="upload-file-form-1">
+                                                            <p class="info-draganddrop-1">Tidak ada file yang di pilih</p>
                                                         </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Dokumen Pertimbangan Teknis KP</label>
-                                                            <input type="file" class="form-control" name="dokumen_teknis_kp">
-                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    <div class="dropzone-box-2">
+                                                        <label>Dokumen Pertimbangan Teknis KP</label>
+                                                        <div class="dropzone-area-2">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" name="dokumen_teknis_kp" id="upload-file-form-2">
+                                                            <p class="info-draganddrop-2">Tidak ada file yang di pilih</p>
                                                         </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
                                                 </div>
                                                 <div class="submit-section">
-                                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                    <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -1182,25 +1222,35 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Dokumen SK KP</label>
-                                                            <input type="file" class="form-control" id="dokumen_skkp" name="dokumen_skkp">
+                                                    <div class="dropzone-box-3">
+                                                        <label>Dokumen SK KP</label>
+                                                        <div class="dropzone-area-3">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" id="dokumen_skkp" name="dokumen_skkp">
                                                             <input type="hidden" name="hidden_dokumen_skkp" id="e_dokumen_skkp" value="">
-                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                            <p class="info-draganddrop-3">Tidak ada file yang di pilih</p>
                                                         </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Dokumen Teknis KP</label>
-                                                            <input type="file" class="form-control" id="dokumen_teknis_kp" name="dokumen_teknis_kp">
+                                                    <div class="dropzone-box-4">
+                                                        <label>Dokumen Teknis KP</label>
+                                                        <div class="dropzone-area-4">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" id="dokumen_teknis_kp" name="dokumen_teknis_kp">
                                                             <input type="hidden" name="hidden_dokumen_teknis_kp" id="e_dokumen_teknis_kp" value="">
-                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                            <p class="info-draganddrop-4">Tidak ada file yang di pilih</p>
                                                         </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
                                                 </div>
                                                 <div class="submit-section">
-                                                    <button class="btn btn-primary submit-btn">Save</button>
+                                                    <button class="btn btn-primary submit-btn">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -1408,23 +1458,33 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Dokumen SK Jabatan</label>
-                                                            <input class="form-control" type="file" name="dokumen_sk_jabatan">
-                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    <div class="dropzone-box-14">
+                                                        <label>Dokumen SK Jabatan</label>
+                                                        <div class="dropzone-area-14">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" name="dokumen_sk_jabatan" id="upload-file-form-7">
+                                                            <p class="info-draganddrop-14">Tidak ada file yang di pilih</p>
                                                         </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Dokumen Pelantikan</label>
-                                                            <input class="form-control" type="file" name="dokumen_pelantikan">
-                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    <div class="dropzone-box-15">
+                                                        <label>Dokumen Pelantikan</label>
+                                                        <div class="dropzone-area-15">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" name="dokumen_pelantikan" id="upload-file-form-8">
+                                                            <p class="info-draganddrop-15">Tidak ada file yang di pilih</p>
                                                         </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
                                                 </div>
                                                 <div class="submit-section">
-                                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                    <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -1510,25 +1570,35 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Dokumen SK Jabatan</label>
-                                                            <input type="file" class="form-control" id="dokumen_sk_jabatan" name="dokumen_sk_jabatan">
+                                                    <div class="dropzone-box-16">
+                                                        <label>Dokumen SK Jabatan</label>
+                                                        <div class="dropzone-area-16">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" id="dokumen_sk_jabatan" name="dokumen_sk_jabatan">
                                                             <input type="hidden" name="hidden_dokumen_sk_jabatan" id="e_dokumen_sk_jabatan" value="">
-                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                            <p class="info-draganddrop-16">Tidak ada file yang di pilih</p>
                                                         </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Dokumen Pelantikan</label>
-                                                            <input type="file" class="form-control" id="dokumen_pelantikan" name="dokumen_pelantikan">
+                                                    <div class="dropzone-box-17">
+                                                        <label>Dokumen Pelantikan</label>
+                                                        <div class="dropzone-area-17">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" id="dokumen_pelantikan" name="dokumen_pelantikan">
                                                             <input type="hidden" name="hidden_dokumen_pelantikan" id="e_dokumen_pelantikan" value="">
-                                                            <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                            <p class="info-draganddrop-17">Tidak ada file yang di pilih</p>
                                                         </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
                                                 </div>
                                                 <div class="submit-section">
-                                                    <button class="btn btn-primary submit-btn">Save</button>
+                                                    <button class="btn btn-primary submit-btn">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -1725,16 +1795,21 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Diklat</label>
-                                                        <input class="form-control" type="file" name="dokumen_diklat" required>
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-18">
+                                                    <label>Dokumen Diklat</label>
+                                                    <div class="dropzone-area-18">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_diklat" id="upload-file-form-9">
+                                                        <p class="info-draganddrop-18">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -1817,18 +1892,22 @@
                                                         <input type="number" class="form-control" name="durasi_jam" id="e_durasi_jam" value="">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Diklat</label>
-                                                        <input type="file" class="form-control" name="dokumen_diklat"
-                                                            id="dokumen_diklat">
+                                                <div class="dropzone-box-19">
+                                                    <label>Dokumen Diklat</label>
+                                                    <div class="dropzone-area-19">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_diklat" id="dokumen_diklat">
                                                         <input type="hidden" name="hidden_dokumen_diklat" id="e_dokumen_diklat" value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                        <p class="info-draganddrop-19">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -2074,7 +2153,7 @@
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -2185,19 +2264,22 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
+                                                <div class="dropzone-box-5">
                                                         <label>Dokumen KGB</label>
-                                                        <input type="file" class="form-control" id="dokumen_kgb"
-                                                            name="dokumen_kgb">
-                                                        <input type="hidden" name="hidden_dokumen_kgb"
-                                                            id="e_dokumen_kgb" value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
-                                                    </div>
+                                                        <div class="dropzone-area-5">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" id="dokumen_kgb" name="dokumen_kgb">
+                                                            <input type="hidden" name="hidden_dokumen_kgb" id="e_dokumen_kgb" value="">
+                                                            <p class="info-draganddrop-5">Tidak ada file yang di pilih</p>
+                                                        </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -2408,16 +2490,21 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
+                                            <div class="dropzone-box-6">
                                                     <label>Dokumen PMK</label>
-                                                    <input class="form-control" type="file" name="dokumen_pmk" required>
+                                                        <div class="dropzone-area-6">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" name="dokumen_pmk" id="upload-file-form-3" required>
+                                                            <p class="info-draganddrop-6">Tidak ada file yang di pilih</p>
+                                                        </div>
                                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
-                                                </div>
                                             </div>
                                         </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -2520,19 +2607,22 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen PMK</label>
-                                                        <input type="file" class="form-control" name="dokumen_pmk"
-                                                            id="dokumen_pmk">
-                                                        <input type="hidden" name="hidden_dokumen_pmk" id="e_dokumen_pmk"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-7">
+                                                    <label>Dokumen PMK</label>
+                                                    <div class="dropzone-area-7">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_pmk" id="dokumen_pmk">
+                                                        <input type="hidden" name="hidden_dokumen_pmk" id="e_dokumen_pmk" value="">
+                                                        <p class="info-draganddrop-7">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -2768,7 +2858,7 @@
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -2893,7 +2983,7 @@
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -3223,37 +3313,57 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="dokumen_kk">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-20">
+                                                    <label>Dokumen Kartu Keluarga<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-20">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_kk" id="upload-file-form-10">
+                                                        <p class="info-draganddrop-20">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="dokumen_akta_lahir_anak">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-21">
+                                                    <label>Dokumen Akta Kelahiran Anak<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-21">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_akta_lahir_anak" id="upload-file-form-11">
+                                                        <p class="info-draganddrop-21">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pas Foto Ayah</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="pas_foto_ayah">
-                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                <div class="dropzone-box-22">
+                                                    <label>Pas Foto Ayah<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-22">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="pas_foto_ayah" id="upload-file-form-12">
+                                                        <p class="info-draganddrop-22">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pas Foto Ibu</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="pas_foto_ibu">
-                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                <div class="dropzone-box-23">
+                                                    <label>Pas Foto Ibu<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-23">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="pas_foto_ibu" id="upload-file-form-13">
+                                                        <p class="info-draganddrop-23">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -3436,45 +3546,61 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="dokumen_kk" id="dokumen_kk">
-                                                        <input type="hidden" name="hidden_dokumen_kk" id="e_dokumen_kk"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-24">
+                                                    <label>Dokumen Kartu Keluarga<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-24">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_kk" id="dokumen_kk">
+                                                        <input type="hidden" name="hidden_dokumen_kk" id="e_dokumen_kk" value="">
+                                                        <p class="info-draganddrop-24">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Kartu Keluarga</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="dokumen_akta_lahir_anak" id="dokumen_akta_lahir_anak">
-                                                        <input type="hidden" name="hidden_dokumen_akta_lahir_anak" id="e_dokumen_akta_lahir_anak"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-25">
+                                                    <label>Dokumen Akta Kelahiran Anak<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-25">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_akta_lahir_anak" id="dokumen_akta_lahir_anak">
+                                                        <input type="hidden" name="hidden_dokumen_akta_lahir_anak" id="e_dokumen_akta_lahir_anak" value="">
+                                                        <p class="info-draganddrop-25">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pas Foto Ayah</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="pas_foto_ayah" id="pas_foto_ayah">
-                                                        <input type="hidden" name="hidden_pas_foto_ayah" id="e_pas_foto_ayah"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                <div class="dropzone-box-26">
+                                                    <label>Pas Foto Ayah<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-26">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="pas_foto_ayah" id="pas_foto_ayah">
+                                                        <input type="hidden" name="hidden_pas_foto_ayah" id="e_pas_foto_ayah" value="">
+                                                        <p class="info-draganddrop-26">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pas Foto Ibu</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="pas_foto_ibu" id="pas_foto_ibu">
-                                                        <input type="hidden" name="hidden_pas_foto_ibu" id="e_pas_foto_ibu"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                <div class="dropzone-box-27">
+                                                    <label>Pas Foto Ibu<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-27">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="pas_foto_ibu" id="pas_foto_ibu">
+                                                        <input type="hidden" name="hidden_pas_foto_ibu" id="e_pas_foto_ibu" value="">
+                                                        <p class="info-draganddrop-27">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -3812,23 +3938,33 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Nikah</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="dokumen_nikah">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-28">
+                                                    <label>Dokumen Nikah<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-28">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_nikah" id="upload-file-form-14">
+                                                        <p class="info-draganddrop-28">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pas Foto</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="pas_foto">
-                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
+                                                <div class="dropzone-box-29">
+                                                    <label>Pas Foto<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-29">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="pas_foto" id="upload-file-form-15">
+                                                        <p class="info-draganddrop-29">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -4031,29 +4167,35 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Nikah</label><small class="text-danger">*</small>
-                                                        <input type="file" class="form-control" id="dokumen_nikah"
-                                                            name="dokumen_nikah">
-                                                        <input type="hidden" name="hidden_dokumen_nikah" id="e_dokumen_nikah"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-30">
+                                                    <label>Dokumen Nikah<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-30">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="dokumen_nikah" name="dokumen_nikah">
+                                                        <input type="hidden" name="hidden_dokumen_nikah" id="e_dokumen_nikah" value="">
+                                                        <p class="info-draganddrop-30">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pas Foto</label><small class="text-danger">*</small>
-                                                        <input type="file" class="form-control" id="pas_foto"
-                                                            name="pas_foto">
-                                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto_pasangan"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG,   PNG.</small>
+                                                <div class="dropzone-box-31">
+                                                    <label>Pas Foto<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-31">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="pas_foto" name="pas_foto">
+                                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto_pasangan" value="">
+                                                        <p class="info-draganddrop-31">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -4075,7 +4217,7 @@
                                                 @csrf
                                                 <input type="hidden" name="id" class="e_id_pasangan" value="">
                                                 <input type="hidden" name="dokumen_nikah" class="d_dokumen_nikah" value="">
-                                <input type="hidden" name="pas_foto" class="d_pas_foto" value="">
+                                                <input type="hidden" name="pas_foto" class="d_pas_foto" value="">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <button type="submit"
@@ -4343,23 +4485,33 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Akta Kelahiran</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="dokumen_akta_kelahiran">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-32">
+                                                    <label>Dokumen Akta Kelahiran<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-32">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_akta_kelahiran" id="upload-file-form-16">
+                                                        <p class="info-draganddrop-32">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pas Foto</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="pas_foto">
-                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                <div class="dropzone-box-33">
+                                                    <label>Pas Foto<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-33">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="pas_foto" id="upload-file-form-17">
+                                                        <p class="info-draganddrop-33">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -4525,28 +4677,35 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Akta Kelahiran</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="dokumen_akta_kelahiran" id="dokumen_akta_kelahiran">
-                                                        <input type="hidden" name="hidden_dokumen_akta_kelahiran" id="e_dokumen_akta_kelahiran"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                <div class="dropzone-box-34">
+                                                    <label>Dokumen Akta Kelahiran<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-34">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_akta_kelahiran" id="dokumen_akta_kelahiran">
+                                                        <input type="hidden" name="hidden_dokumen_akta_kelahiran" id="e_dokumen_akta_kelahiran" value="">
+                                                        <p class="info-draganddrop-34">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pas Foto</label><small class="text-danger">*</small>
-                                                        <input type="file" class="form-control" id="pas_foto"
-                                                            name="pas_foto">
-                                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto_anak"
-                                                            value="">
-                                                        <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
+                                                <div class="dropzone-box-35">
+                                                    <label>Pas Foto<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-35">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="pas_foto" name="pas_foto">
+                                                        <input type="hidden" name="hidden_pas_foto" id="e_pas_foto_anak" value="">
+                                                        <p class="info-draganddrop-35">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah foto dalam format JPEG, JPG, PNG.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -4708,15 +4867,21 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Penghargaan</label>
-                                                        <input class="form-control" type="file" name="dokumen_penghargaan">
+                                                <div class="dropzone-box-36">
+                                                    <label>Dokumen Penghargaan<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-36">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_penghargaan" id="upload-file-form-18">
+                                                        <p class="info-draganddrop-36">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -4774,18 +4939,22 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Penghargaan</label><small class="text-danger">*</small>
-                                                        <input type="file" class="form-control" id="dokumen_penghargaan"
-                                                            name="dokumen_penghargaan">
-                                                        <input type="hidden" name="hidden_dokumen_penghargaan" id="e_dokumen_penghargaan"
-                                                            value="">
+                                                <div class="dropzone-box-37">
+                                                    <label>Dokumen Penghargaan<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-37">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="dokumen_penghargaan" name="dokumen_penghargaan">
+                                                        <input type="hidden" name="hidden_dokumen_penghargaan" id="e_dokumen_penghargaan" value="">
+                                                        <p class="info-draganddrop-37">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -4946,15 +5115,21 @@
                                                         <input class="form-control" type="text" name="no_anggota" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Organisasi</label>
-                                                        <input class="form-control" type="file" name="dokumen_organisasi">
+                                                <div class="dropzone-box-38">
+                                                    <label>Dokumen Organisasi</label>
+                                                    <div class="dropzone-area-38">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_organisasi" id="upload-file-form-19">
+                                                        <p class="info-draganddrop-38">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -5011,18 +5186,22 @@
                                                         <input class="form-control" type="text" name="no_anggota" id="e_no_anggota" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen Organisasi</label><small class="text-danger">*</small>
-                                                        <input type="file" class="form-control" id="dokumen_organisasi"
-                                                            name="dokumen_organisasi">
-                                                        <input type="hidden" name="hidden_dokumen_organisasi" id="e_dokumen_organisasi"
-                                                            value="">
+                                                <div class="dropzone-box-39">
+                                                    <label>Dokumen Organisasi<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-39">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="dokumen_organisasi" name="dokumen_organisasi">
+                                                        <input type="hidden" name="hidden_dokumen_organisasi" id="e_dokumen_organisasi" value="">
+                                                        <p class="info-draganddrop-39">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -5266,21 +5445,33 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen SK Hukuman</label><small class="text-danger">*</small>
-                                                        <input class="form-control" type="file" name="dokumen_sk_hukuman" required>
+                                                <div class="dropzone-box-40">
+                                                    <label>Dokumen SK Hukuman<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-40">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_sk_hukuman" id="upload-file-form-20" required>
+                                                        <p class="info-draganddrop-40">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen SK Pengaktifan</label>
-                                                        <input class="form-control" type="file" name="dokumen_sk_pengaktifan">
+                                                <div class="dropzone-box-41">
+                                                    <label>Dokumen SK Pengaktifan</label>
+                                                    <div class="dropzone-area-41">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" name="dokumen_sk_pengaktifan" id="upload-file-form-21">
+                                                        <p class="info-draganddrop-41">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                <button type="submit" class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -5400,27 +5591,35 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen SK Hukuman</label><small class="text-danger">*</small>
-                                                        <input type="file" class="form-control" id="dokumen_sk_hukuman"
-                                                            name="dokumen_sk_hukuman">
-                                                        <input type="hidden" name="hidden_dokumen_sk_hukuman" id="e_dokumen_sk_hukuman"
-                                                            value="">
+                                                <div class="dropzone-box-42">
+                                                    <label>Dokumen SK Hukuman<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-42">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="dokumen_sk_hukuman" name="dokumen_sk_hukuman">
+                                                        <input type="hidden" name="hidden_dokumen_sk_hukuman" id="e_dokumen_sk_hukuman" value="">
+                                                        <p class="info-draganddrop-42">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Dokumen SK Pengaktifan</label><small class="text-danger">*</small>
-                                                        <input type="file" class="form-control" id="dokumen_sk_pengaktifan"
-                                                            name="dokumen_sk_pengaktifan">
-                                                        <input type="hidden" name="hidden_dokumen_sk_pengaktifan" id="e_dokumen_sk_pengaktifan"
-                                                            value="">
+                                                <div class="dropzone-box-43">
+                                                    <label>Dokumen SK Pengaktifan<small class="text-danger">*</small></label>
+                                                    <div class="dropzone-area-43">
+                                                        <div class="file-upload-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                        </div>
+                                                        <p class="info-pesan-form">Klik untuk mengunggah atau seret dan lepas</p>
+                                                        <input type="file" id="dokumen_sk_pengaktifan" name="dokumen_sk_pengaktifan">
+                                                        <input type="hidden" name="hidden_dokumen_sk_pengaktifan" id="e_dokumen_sk_pengaktifan" value="">
+                                                        <p class="info-draganddrop-43">Tidak ada file yang di pilih</p>
                                                     </div>
+                                                    <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                             </div>
                                             <div class="submit-section">
-                                                <button class="btn btn-primary submit-btn">Save</button>
+                                                <button class="btn btn-primary submit-btn">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -6589,7 +6788,7 @@
                                                     </div>
                                                 </div>
                                         <div class="submit-section">
-                                            <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                            <button type="submit" class="btn btn-primary submit-btn">Perbaharui</button>
                                         </div>
                                     </form>
                                 </div>
@@ -6670,6 +6869,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
         <!-- /FancyBox Foto Profil -->
 
+        <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/pendidikan.js') }}"></script>
         <script src="{{ asset('assets/js/golongan.js') }}"></script>
         <script src="{{ asset('assets/js/jabatan.js') }}"></script>
@@ -6752,7 +6952,6 @@
                 })
             });
         </script>
-
 
     @endsection
 @endsection
