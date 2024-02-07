@@ -970,9 +970,21 @@
                                                         <td class="agama"><center>{{ $result_Ortu->agama }}</center></td>
                                                         <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
                                                         <td class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
-                                                        <td class="email"><center>{{ $result_Ortu->email }}</center></td>
-                                                        <td class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
-                                                        <td class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
+                                                        
+                                                        <td class="email"><center>
+                                                            <a href="mailto:{{ $result_Ortu->email }}" style="color:black">{{ $result_Ortu->email }}</a>
+                                                        </center></td>
+                
+                                                        @if (!empty($result_Ortu->no_hp))
+                                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_hp }}" target="_blank" style="color:black">0{{ $result_Ortu->no_hp }}</a></center></td>
+                                                        @endif
+                                                            <td hidden class="no_hp">{{ $result_Ortu->no_hp }}</td>
+                
+                                                        @if (!empty($result_Ortu->no_telepon))
+                                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_telepon }}" target="_blank" style="color:black">0{{ $result_Ortu->no_telepon }}</a></center></td>
+                                                        @endif
+                                                            <td hidden class="no_telepon">{{ $result_Ortu->no_telepon }}</td>
+
                                                         <td class="dokumen_kk"><center>
                                                             <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
                                                                 @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
@@ -1059,9 +1071,21 @@
                                                         <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
                                                         <td class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
                                                         <td class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
-                                                        <td class="no_hp"><center>{{ $result_pasangan->no_hp }}</center></td>
-                                                        <td class="no_telepon"><center>{{ $result_pasangan->no_telepon }}</center></td>
-                                                        <td class="email"><center>{{ $result_pasangan->email }}</center></td>
+
+                                                        @if (!empty($result_pasangan->no_hp))
+                                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
+                                                        @endif
+                                                            <td hidden class="no_hp">{{ $result_pasangan->no_hp }}</td>
+
+                                                        @if (!empty($result_pasangan->no_telepon))
+                                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
+                                                        @endif
+                                                            <td hidden class="no_telepon">{{ $result_pasangan->no_telepon }}</td>
+
+                                                        <td class="email"><center>
+                                                            <a href="mailto:{{ $result_pasangan->email }}" style="color:black">{{ $result_pasangan->email }}</a>
+                                                        </center></td>
+
                                                         <td class="dokumen_nikah"><center>
                                                             <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
                                                                 @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')

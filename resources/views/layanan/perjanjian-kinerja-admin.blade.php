@@ -163,9 +163,10 @@
                                         <label for="bentuk_perjanjian">Bentuk Perjanjian</label>
                                         <br>
                                         <textarea id="bentuk_perjanjian" name="bentuk_perjanjian" rows="5" cols="5" class="form-control"></textarea>
-                                        <small class="text-danger" style="font-size: 16px;">*Nb: 1. Melaksanakan tugas sesuai dengan SPK dan RKK.<br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien.<br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Berperan serta dalam mewujudkan visi misi rumah sakit.<br><br>
+                                        <small class="text-danger" style="font-size: 16px;">*Nb :<br>
+                                            1. Melaksanakan tugas sesuai dengan SPK dan RKK.<br>
+                                            2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien.<br>
+                                            3. Berperan serta dalam mewujudkan visi misi rumah sakit.<br><br>
                                             <b>(Tekan Shift + Enter untuk memuat baris baru)<b>
                                         </small>
                                     </div>
@@ -201,9 +202,10 @@
                                         <label for="bentuk_perjanjian">Bentuk Perjanjian</label>
                                         <br>
                                         <textarea id="e_bentuk_perjanjian" name="bentuk_perjanjian" rows="5" cols="5" class="form-control"  value=""></textarea>
-                                        <small class="text-danger" style="font-size: 16px;">*Nb: 1. Melaksanakan tugas sesuai dengan SPK dan RKK.<br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien.<br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Berperan serta dalam mewujudkan visi misi rumah sakit.<br><br>
+                                        <small class="text-danger" style="font-size: 16px;">*Nb :<br>
+                                            1. Melaksanakan tugas sesuai dengan SPK dan RKK.<br>
+                                            2. Berperan serta dalam meningkatkan mutu pelayanan dan keselamatan pasien.<br>
+                                            3. Berperan serta dalam mewujudkan visi misi rumah sakit.<br><br>
                                             <b>(Tekan Shift + Enter untuk memuat baris baru)<b>
                                         </small>
                                     </div>
