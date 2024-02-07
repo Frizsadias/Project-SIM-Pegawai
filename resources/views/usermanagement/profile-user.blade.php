@@ -970,7 +970,7 @@
                                                         <td class="agama"><center>{{ $result_Ortu->agama }}</center></td>
                                                         <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
                                                         <td class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
-                                                        
+
                                                         <td class="email"><center>
                                                             <a href="mailto:{{ $result_Ortu->email }}" style="color:black">{{ $result_Ortu->email }}</a>
                                                         </center></td>
@@ -1280,8 +1280,8 @@
                                                 <th>Tanggal SK Hukuman</th>
                                                 <th>Nomor Peraturan</th>
                                                 <th>Alasan Hukuman</th>
-                                                <th>Masa Hukuman Tahun</th>
-                                                <th>Masa Hukuman Bulan</th>
+                                                <th>Masa Hukuman (Tahun)</th>
+                                                <th>Masa Hukuman (Bulan)</th>
                                                 <th>TMT Hukuman</th>
                                                 <th>Keterangan</th>
                                                 <th>Dokumen Hukuman Disiplin</th>
@@ -1300,8 +1300,8 @@
                                                     <td class="tanggal_sk_hukuman"><center>{{ \Carbon\Carbon::parse($result_hukuman_disiplin->tanggal_sk_hukuman)->formatLocalized('%d %B %Y') }}</center></td>
                                                     <td class="no_peraturan"><center>{{ $result_hukuman_disiplin->no_peraturan }}</center></td>
                                                     <td class="alasan"><center>{{ $result_hukuman_disiplin->alasan }}</center></td>
-                                                    <td class="masa_hukuman_tahun"><center>{{ $result_hukuman_disiplin->masa_hukuman_tahun }}</center></td>
-                                                    <td class="masa_hukuman_bulan"><center>{{ $result_hukuman_disiplin->masa_hukuman_bulan }}</center></td>
+                                                    <td class="masa_hukuman_tahun"><center>{{ $result_hukuman_disiplin->masa_hukuman_tahun }} Tahun</center></td>
+                                                    <td class="masa_hukuman_bulan"><center>{{ $result_hukuman_disiplin->masa_hukuman_bulan }} Bulan</center></td>
                                                     <td class="tmt_hukuman"><center>{{ \Carbon\Carbon::parse($result_hukuman_disiplin->tmt_hukuman)->formatLocalized('%d %B %Y') }}</center></td>
                                                     <td class="keterangan"><center>{{ $result_hukuman_disiplin->keterangan }}</center></td>
                                                     <td class="dokumen_sk_hukuman"><center>
