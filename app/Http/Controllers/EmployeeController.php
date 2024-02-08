@@ -29,6 +29,7 @@ use App\Models\District;
 use App\Models\golongan_id;
 use App\Models\UnitOrganisasi;
 use App\Models\Village;
+use App\Models\RiwayatAnak;
 use Carbon\Carbon;
 use Session;
 
@@ -1210,13 +1211,13 @@ class EmployeeController extends Controller
                 'anak.pas_foto',
             )
             ->where('users.user_id', $user_id)->get();
-        $riwayatAnaks = $riwayatAnak->first();
-        $dataAnak = Session::get('user_id');
+
+        $dataAnak = Session::get('user_id'); 
+        $riwayatAnaks = RiwayatAnak::where('user_id', $dataAnak)->get();
         $userList = DB::table('riwayat_pasangan')
-            ->join('riwayat_anak', 'riwayat_pasangan.user_id', '=', 'riwayat_anak.user_id')
-            ->where('riwayat_anak.user_id', '=', $user_id)
-            ->select('riwayat_pasangan.nama')
-            ->get();
+        ->where('riwayat_pasangan.user_id', $dataAnak)
+        ->select('riwayat_pasangan.nama')
+        ->get();
 
         $riwayatPenghargaan = DB::table('users')
             ->leftJoin('riwayat_penghargaan as penghargaan', 'penghargaan.user_id', 'users.user_id')

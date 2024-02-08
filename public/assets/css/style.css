@@ -6104,16 +6104,20 @@ table.table-inbox tbody tr.checked {
 	}
 }
 .loader-ellips__dot:nth-child(1) { 
-	background: #404040;  
+	background: #f43b48;
+	/* background: #404040; */
 }
 .loader-ellips__dot:nth-child(2) { 
-	background: #f43b48;  
+	background: #ecec53;
+	/* background: #f43b48; */
 }
 .loader-ellips__dot:nth-child(3) { 
-	background: #404040;  
+	background: #53ec53;
+	/* background: #404040; */
 }
 .loader-ellips__dot:nth-child(4) { 
-	background: #404040;  
+	background: #5353ec;  
+	/* background: #404040; */
 }
 
 /*-----------------
@@ -9526,6 +9530,24 @@ ul.nav-tabs > li > a {
 	margin-bottom: 0.5rem;
 }
 
+.dropzone-box-44 {
+	border-radius: 2rem;
+	padding: 1rem;
+	/* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	max-width: 24rem;
+	margin-top: -16px;
+	width: 100%;
+	background-color: var(--white);
+}
+
+.dropzone-box-44 h2 {
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+}
+
 .dropzone-area-1 {
 	padding: 1rem;
 	position: relative;
@@ -10214,6 +10236,22 @@ ul.nav-tabs > li > a {
 	cursor: pointer;
 }
 
+.dropzone-area-44 {
+	padding: 1rem;
+	position: relative;
+	margin-top: 0rem;
+	min-height: 0rem;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border: 2px dashed var(--primary);
+	border-radius: 1rem;
+	color: var(--primary);
+	cursor: pointer;
+}
+
 .dropzone-area-1 [type="file"] {
 	cursor: pointer;
 	position: absolute;
@@ -10644,6 +10682,16 @@ ul.nav-tabs > li > a {
 	left: 0;
 }
 
+.dropzone-area-44 [type="file"] {
+	cursor: pointer;
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
 .dropzone-area-1 .file-upload-icon svg {
 	height: 3rem;
 	width: 5rem;
@@ -10939,6 +10987,13 @@ ul.nav-tabs > li > a {
 }
 
 .dropzone-area-43 .file-upload-icon svg {
+	height: 3rem;
+	width: 5rem;
+	margin-bottom: 0.5rem;
+	stroke: var(--primary);
+}
+
+.dropzone-area-44 .file-upload-icon svg {
 	height: 3rem;
 	width: 5rem;
 	margin-bottom: 0.5rem;
@@ -11290,6 +11345,13 @@ ul.nav-tabs > li > a {
 }
 
 .info-draganddrop-43 {
+	color: black;
+	font-size: 14px;
+	font-weight: 500;
+	margin-bottom: 0px;
+}
+
+.info-draganddrop-44 {
 	color: black;
 	font-size: 14px;
 	font-weight: 500;

@@ -229,7 +229,8 @@
                                         <li>
                                             <div class="title">E-mail</div>
                                             @if (!empty($sql_email->email))
-                                                <div class="text">{{ $sql_email->email }}</div>
+                                                <a href="mailto:{{ $sql_email->email }}" style="color:black">
+                                                <div class="text">{{ $sql_email->email }}</div></a>
                                             @else
                                                 <div class="text">N/A</div>
                                             @endif

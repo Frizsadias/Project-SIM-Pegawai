@@ -34,18 +34,14 @@ $(document).on("click", ".edit_anak", function () {
         $("#meninggal_anak").prop("checked", true);
     }
     $("#e_no_akta_kelahiran").val(_this.find(".no_akta_kelahiran").text());
-    $("#e_dokumen_akta_kelahiran").val(
-        _this.find(".dokumen_akta_kelahiran").text()
-    );
+    $("#e_dokumen_akta_kelahiran").val(_this.find(".dokumen_akta_kelahiran").text());
     $("#e_pas_foto_anak").val(_this.find(".pas_foto").text());
 });
 
-//delete
+// Hapus Data
 $(document).on("click", ".delete_anak", function () {
     var _this = $(this).parents("tr");
     $(".e_id_anak").val(_this.find(".id").text());
-    $(".d_dokumen_akta_kelahiran").val(
-        _this.find(".dokumen_akta_kelahiran").text()
-    );
+    $(".d_dokumen_akta_kelahiran").val(_this.find(".dokumen_akta_kelahiran").text());
     $(".d_pas_foto_anak").val(_this.find(".pas_foto").text());
 });

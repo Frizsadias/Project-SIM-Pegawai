@@ -56,7 +56,7 @@
                                         <div class="col-md-7">
                                             <ul class="personal-info">
                                                 <li>
-                                                    <div class="title">E-mail :</div>
+                                                    <div class="title">E-mail</div>
                                                     <div class="text">
                                                         @if (!empty($users->email))
                                                             <a href="mailto:{{ $users->email }}">{{ $users->email }}</a>
@@ -66,7 +66,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="title">Tanggal Lahir :</div>
+                                                    <div class="title">Tanggal Lahir</div>
                                                     <div class="text">
                                                         @if (!empty($users->tgl_lahir))<a>{{ date('d F Y', strtotime($users->tgl_lahir)) }}</a>
                                                         @else
@@ -75,7 +75,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="title">Tempat Lahir :</div>
+                                                    <div class="title">Tempat Lahir</div>
                                                     <div class="text">
                                                         @if (!empty($users->tmpt_lahir))
                                                             <a>{{ $users->tmpt_lahir }}</a>
@@ -85,7 +85,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="title">Alamat :</div>
+                                                    <div class="title">Alamat</div>
                                                     <div class="text">
                                                         @if (!empty($users->alamat))
                                                             <a>{{ $users->alamat }}</a>
@@ -95,7 +95,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="title">Jenis Kelamin :</div>
+                                                    <div class="title">Jenis Kelamin</div>
                                                     <div class="text">
                                                         @if (!empty($users->jk))
                                                             <a>{{ $users->jk }}</a>
@@ -136,8 +136,8 @@
                         <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                             <li class="nav-item"><a href="#profil_pegawai" data-toggle="tab" class="nav-link active">Profil</a></li>
                             <li class="nav-item"><a href="#riwayat_golongan" data-toggle="tab" class="nav-link">Golongan</a></li>
-                            <li class="nav-item"><a href="#kenaikan_gaji" data-toggle="tab" class="nav-link">KGB</a></li>
-                            <li class="nav-item"><a href="#riwayat_pmk" data-toggle="tab" class="nav-link">PMK</a></li>
+                            <li class="nav-item"><a href="#kenaikan_gaji" data-toggle="tab" class="nav-link">Kenaikan Gaji Berkala</a></li>
+                            <li class="nav-item"><a href="#riwayat_pmk" data-toggle="tab" class="nav-link">Peninjauan Masa Kerja</a></li>
                             <li class="nav-item"><a href="#riwayat_pendidikan" data-toggle="tab" class="nav-link">Pendidikan</a></li>
                             <li class="nav-item"><a href="#riwayat_jabatan" data-toggle="tab" class="nav-link">Jabatan</a></li>
                             <li class="nav-item"><a href="#riwayat_angka_kredit" data-toggle="tab" class="nav-link">Angka Kredit</a></li>
@@ -161,7 +161,7 @@
                                 <div class="card profile-box flex-fill">
                                     <div class="card-body">
                                         <h3 class="card-title">Profil Pegawai
-                                            {{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_tambah"><i class="fa fa-plus"></i></a></h3> --}}
+                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#unggah_dokumen_ktp"><i class="fa fa-upload"></i></a></h3>
                                             <a href="#" class="edit-icon" data-toggle="modal" data-target="#profil_pegawai_modal_edit"><i class="fa fa-pencil"></i></a></h3>
                                         <ul class="personal-info">
                                             <li>
@@ -232,7 +232,8 @@
                                             <li>
                                                 <div class="title">E-mail</div>
                                                 @if (!empty($users->email))
-                                                    <div class="text">{{ $users->email }}</div>
+                                                    <a href="mailto:{{ $users->email }}" style="color:black">
+                                                    <div class="text">{{ $users->email }}</div></a>
                                                 @else
                                                     <div class="text">N/A</div>
                                                 @endif
@@ -560,19 +561,20 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th class="ting_ped">Tingkat Pendidikan</th>
-                                            <th class="pendidikan">Pendidikan</th>
-                                            <th class="tahun_lulus">Tahun Lulus</th>
-                                            <th class="no_ijazah">Nomor Ijazah</th>
-                                            <th class="nama_sekolah">Nama Sekolah</th>
-                                            <th class="gelar_depan_pend">Gelar Depan</th>
-                                            <th class="gelar_belakang_pend">Gelar Belakang</th>
-                                            <th class="jenis_pendidikan">Jenis Pendidikan</th>
-                                            <th class="dokumen_transkrip">Dokumen Transkrip</th>
-                                            <th class="dokumen_ijazah">Dokumen Ijazah</th>
-                                            <th class="dokumen_gelar">Dokumen Gelar</th>
-                                            <th class="aksi">Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th class="ting_ped">Tingkat Pendidikan</th>
+                                                <th class="pendidikan">Pendidikan</th>
+                                                <th class="tahun_lulus">Tahun Lulus</th>
+                                                <th class="no_ijazah">Nomor Ijazah</th>
+                                                <th class="nama_sekolah">Nama Sekolah</th>
+                                                <th class="gelar_depan_pend">Gelar Depan</th>
+                                                <th class="gelar_belakang_pend">Gelar Belakang</th>
+                                                <th class="jenis_pendidikan">Jenis Pendidikan</th>
+                                                <th class="dokumen_transkrip">Dokumen Transkrip</th>
+                                                <th class="dokumen_ijazah">Dokumen Ijazah</th>
+                                                <th class="dokumen_gelar">Dokumen Gelar</th>
+                                                <th class="aksi">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -664,7 +666,7 @@
                                                         <select class="theSelect" name="ting_ped" id="ting_ped" style="width: 100% !important">
                                                             <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
                                                             @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
-                                                                <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                                <option value="{{ $id }}">{{ $namaTingkatPendidikan }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -721,17 +723,13 @@
                                                     <div class="form-group">
                                                         <label>Jenis Pendidikan</label>
                                                         <br>
-                                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Pertama">
-                                                        Pendidikan Pertama
+                                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Pertama"> Pendidikan Pertama
                                                         <br>
-                                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Kedua">
-                                                        Pendidikan Kedua
+                                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Kedua"> Pendidikan Kedua
                                                         <br>
-                                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Ketiga">
-                                                        Pendidikan Ketiga
+                                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Ketiga"> Pendidikan Ketiga
                                                         <br>
-                                                        <input type="checkbox" name="jenis_pendidikan" value="Pendidikan Keempat">
-                                                        Pendidikan Keempat
+                                                        <input type="radio" name="jenis_pendidikan" value="Pendidikan Keempat"> Pendidikan Keempat
                                                     </div>
                                                 </div>
                                             </div>
@@ -798,21 +796,29 @@
                                             <input type="hidden" name="id_pend" id="e_id_pend" value="">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tingkat Pendidikan </label>
-                                                <br>
-                                                <select class="theSelect" name="ting_ped" id="e_ting_ped" style="width: 100% !important">
-                                                    <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
-                                                    @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
-                                                        <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                                    <div class="form-group">
+                                                        <label>Tingkat Pendidikan </label>
+                                                        <br>
+                                                        <select class="theSelect" name="ting_ped" id="e_ting_ped" style="width: 100% !important">
+                                                            <option selected disabled>-- Pilih Tingkat Pendidikan --</option>
+                                                            @foreach($tingkatpendidikanOptions as $id => $namaTingkatPendidikan)
+                                                                <option value="{{ $id }}" {{ $id == $users->tingkat_pendidikan ? 'selected' : '' }}>{{ $namaTingkatPendidikan }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Pendidikan</label>
-                                                        <input type="text" class="form-control" name="pendidikan" id="e_pendidikan" value="">
+                                                        <br>
+                                                        <select class="theSelect" name="pendidikan" id="e_pendidikan" style="width: 100% !important">
+                                                            <option selected disabled>-- Pilih Pendidikan --</option>
+                                                            @foreach($pendidikanterakhirOptions as $key => $value)
+                                                                @if (!empty($result_pendidikan->pendidikan))
+                                                                    <option value="{{ $key }}" {{ $key == $result_pendidikan->pendidikan ? 'selected' : '' }}>{{ $value }}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -851,16 +857,25 @@
                                                         <input type="text" class="form-control" name="gelar_belakang_pend" id="e_gelar_belakang_pend" value="">
                                                     </div>
                                                 </div>
+                                                @if(isset($result_pendidikan))
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Jenis Pendidikan</label>
-                                                        <input type="text" class="form-control" name="jenis_pendidikan" id="e_jenis_pendidikan" value="">
+                                                        <br>
+                                                        <input type="radio" name="jenis_pendidikan" id="e_jenis_pendidikan_1" value="Pendidikan Pertama" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Pertama' ? 'checked' : '' }}> Pendidikan Pertama
+                                                        <br>
+                                                        <input type="radio" name="jenis_pendidikan" id="e_jenis_pendidikan_2" value="Pendidikan Kedua" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Kedua' ? 'checked' : '' }}> Pendidikan Kedua
+                                                        <br>
+                                                        <input type="radio" name="jenis_pendidikan" id="e_jenis_pendidikan_3" value="Pendidikan Ketiga" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Ketiga' ? 'checked' : '' }}> Pendidikan Ketiga
+                                                        <br>
+                                                        <input type="radio" name="jenis_pendidikan" id="e_jenis_pendidikan_4" value="Pendidikan Keempat" {{ $result_pendidikan->jenis_pendidikan === 'Pendidikan Keempat' ? 'checked' : '' }}> Pendidikan Keempat
                                                     </div>
                                                 </div>
+                                                @endif
                                             </div>
                                             <div class="row">
                                                 <div class="dropzone-box-11">
-                                                    <label>Dokumen Transkrip</label>
+                                                    <label>Dokumen Transkrip Nilai</label>
                                                     <div class="dropzone-area-11">
                                                         <div class="file-upload-icon">
                                                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
@@ -886,7 +901,7 @@
                                                     <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                 </div>
                                                 <div class="dropzone-box-13">
-                                                    <label>Dokumen Gelar</label>
+                                                    <label>Dokumen Pencantuman Gelar</label>
                                                     <div class="dropzone-area-13">
                                                         <div class="file-upload-icon">
                                                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
@@ -1163,7 +1178,15 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Golongan</label>
-                                                            <input type="text" class="form-control" name="golongan" id="e_golongan" value="">
+                                                            <br>
+                                                            <select class="theSelect" style="width: 100% !important" name="golongan" id="e_golongan">
+                                                                <option selected disabled>-- Pilih Golongan --</option>
+                                                                @foreach ($golonganOptions as $key => $value)
+                                                                    @if (!empty($result_golongan->golongan))
+                                                                        <option value="{{ $key }}" {{ $key == $result_golongan->golongan ? 'selected' : '' }}>{{ $value }}</option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -1236,7 +1259,7 @@
                                                         <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
                                                     </div>
                                                     <div class="dropzone-box-4">
-                                                        <label>Dokumen Teknis KP</label>
+                                                        <label>Dokumen Pertimbangan Teknis KP</label>
                                                         <div class="dropzone-area-4">
                                                             <div class="file-upload-icon">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
@@ -1401,9 +1424,7 @@
                                                             <select class="theSelect" name="jenis_jabatan_riwayat" style="width: 100% !important">
                                                                 <option selected disabled>-- Pilih Jenis Jabatan --</option>
                                                                 @foreach ($jenisjabatanOptions as $optionValue => $jenisJabatan)
-                                                                    <option value="{{ $optionValue }}" @if ($optionValue == $users->jenis_jabatan) selected @endif>
-                                                                        {{ $jenisJabatan }}
-                                                                    </option>
+                                                                    <option value="{{ $optionValue }}">{{ $jenisJabatan }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -1510,13 +1531,15 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Jenis Jabatan
-                                                            </label>
-                                                            <select name="jenis_jabatan_riwayat" class="select" id="e_jenis_jabatan_riwayat">
+                                                            <label>Jenis Jabatan</label>
+                                                            <br>
+                                                            <select name="jenis_jabatan_riwayat" class="theSelect" id="e_jenis_jabatan_riwayat" style="width: 100% !important">
                                                                 <option selected disabled>-- Pilih Jenis Jabatan --</option>
-                                                                <option>Jabatan Struktural</option>
-                                                                <option>Jabatan Fungsional Tertentu</option>
-                                                                <option>Jabatan Fungsional Umum</option>
+                                                                @foreach ($jenisjabatanOptions as $key => $value)
+                                                                    @if (!empty($result_jabatan->jenis_jabatan_riwayat))
+                                                                        <option value="{{ $key }}" {{ $key == $result_jabatan->jenis_jabatan_riwayat ? 'selected' : '' }}>{{ $value }}</option>
+                                                                    @endif
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1961,21 +1984,22 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th class="name">Nama Pegawai</th>
-                                            <th class="nip">NIP</th>
-                                            <th class="golongan_awal">Golongan Awal</th>
-                                            <th class="golongan_akhir">Golongan Akhir</th>
-                                            <th class="gapok_lama">Gaji Pokok Lama</th>
-                                            <th class="gapok_baru">Gaji Pokok Akhir</th>
-                                            <th class="tgl_sk_kgb">Tanggal SK Kenaikan Gaji Berkala</th>
-                                            <th class="no_sk_kgb">Nomor SK Kenaikan Gaji Berkala</th>
-                                            <th class="tgl_berlaku">Tanggal Berlaku</th>
-                                            <th class="masa_kerja_golongan">Masa Kerja Golongan</th>
-                                            <th class="masa_kerja">Masa Kerja</th>
-                                            <th class="tmt_kgb">Terhitung Mulai Tanggal Kenaikan Gaji Berkala</th>
-                                            <th class="dokumen_kgb">Dokumen KGB</th>
-                                            <th class="text-right no-sort">Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th class="name">Nama Pegawai</th>
+                                                <th class="nip">NIP</th>
+                                                <th class="golongan_awal">Golongan Awal</th>
+                                                <th class="golongan_akhir">Golongan Akhir</th>
+                                                <th class="gapok_lama">Gaji Pokok Lama</th>
+                                                <th class="gapok_baru">Gaji Pokok Akhir</th>
+                                                <th class="tgl_sk_kgb">Tanggal SK Kenaikan Gaji Berkala</th>
+                                                <th class="no_sk_kgb">Nomor SK Kenaikan Gaji Berkala</th>
+                                                <th class="tgl_berlaku">Tanggal Berlaku</th>
+                                                <th class="masa_kerja_golongan">Masa Kerja Golongan</th>
+                                                <th class="masa_kerja">Masa Kerja</th>
+                                                <th class="tmt_kgb">Terhitung Mulai Tanggal Kenaikan Gaji Berkala</th>
+                                                <th class="dokumen_kgb">Dokumen KGB</th>
+                                                <th class="text-right no-sort">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -2041,7 +2065,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form action="{{ route('layanan/kgb/tambah-data') }}" method="POST"
-                                            enctype="multipart/form-data">
+                                        enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -2053,18 +2077,14 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        @foreach ($kenaikanGaji as $gaji)
-                                                            <input type="hidden" class="form-control" name="nip"
-                                                                value="{{ $gaji->nip }}">
-                                                        @endforeach
+                                                        <input type="hidden" class="form-control" name="nip"
+                                                        value="{{ $users->nip }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        @foreach ($kenaikanGaji as $gaji)
-                                                            <input type="hidden" class="form-control" name="name"
-                                                                value="{{ $gaji->name }}">
-                                                        @endforeach
+                                                        <input type="hidden" class="form-control" name="name"
+                                                        value="{{ $users->name }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2073,7 +2093,7 @@
                                                     <div class="form-group">
                                                         <label>Golongan Awal</label><br>
                                                         <select name="golongan_awal" class="theSelect" id="golongan_awal" style="width: 100% !important" required>
-                                                            <option selected disabled> --Pilih Golongan Awal--</option>
+                                                            <option selected disabled>-- Pilih Golongan Awal --</option>
                                                             @foreach ($golonganOptions as $key => $value)
                                                                 <option value="{{ $key }}">{{ $value }}</option>
                                                             @endforeach
@@ -2084,7 +2104,7 @@
                                                     <div class="form-group">
                                                         <label>Golongan Akhir</label><br>
                                                         <select name="golongan_akhir" class="theSelect" id="golongan_akhir" style="width: 100% !important" required>
-                                                            <option selected disabled> --Pilih Golongan Akhir--</option>
+                                                            <option selected disabled>-- Pilih Golongan Akhir --</option>
                                                             @foreach ($golonganOptions as $key => $value)
                                                                 <option value="{{ $key }}">{{ $value }}</option>
                                                             @endforeach
@@ -2131,7 +2151,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Masa Kerja Golongan</label>
+                                                        <label>Masa Kerja Golongan (Tahun)</label>
                                                         <input type="text" class="form-control" name="masa_kerja_golongan"
                                                             placeholder="Masa Kerja Golongan">
                                                     </div>
@@ -2140,7 +2160,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Masa Kerja</label>
+                                                        <label>Masa Kerja (Tahun)</label>
                                                         <input type="text" class="form-control" name="masa_kerja"
                                                             placeholder="Masa Kerja">
                                                     </div>
@@ -2180,7 +2200,7 @@
                                                     <div class="form-group">
                                                         <label>Golongan Awal</label><br>
                                                         <select name="golongan_awal" class="theSelect" id="e_golongan_awal" style="width: 100% !important">
-                                                            <option selected disabled> --Pilih Golongan Awal--</option>
+                                                            <option selected disabled>-- Pilih Golongan Awal --</option>
                                                             @foreach ($golonganOptions as $key => $value)
                                                                 <option value="{{ $key }}"{{ $key == $kenaikanGajis->golongan_awal ? 'selected' : '' }}>{{ $value }}</option>
                                                             @endforeach
@@ -2191,7 +2211,7 @@
                                                     <div class="form-group">
                                                         <label>Golongan Akhir</label><br>
                                                         <select name="golongan_akhir" class="theSelect" id="e_golongan_akhir" style="width: 100% !important">
-                                                            <option selected disabled> --Pilih Golongan Akhir--</option>
+                                                            <option selected disabled>-- Pilih Golongan Akhir --</option>
                                                             @foreach ($golonganOptions as $key => $value)
                                                                 <option value="{{ $key }}"{{ $key == $kenaikanGajis->golongan_akhir ? 'selected' : '' }}>{{ $value }}</option>
                                                             @endforeach
@@ -2204,14 +2224,14 @@
                                                     <div class="form-group">
                                                         <label>Gaji Pokok Lama</label>
                                                         <input type="number" class="form-control" name="gapok_lama" id="e_gapok_lama"
-                                                            placeholder="Gaji Pokok Lama" value="">
+                                                        placeholder="Gaji Pokok Lama" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Gaji Pokok Baru</label>
                                                         <input type="number" class="form-control" name="gapok_baru" id="e_gapok_baru"
-                                                            placeholder="Gaji Pokok Baru" value="">
+                                                        placeholder="Gaji Pokok Baru" value="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2220,14 +2240,14 @@
                                                     <div class="form-group">
                                                         <label>Tanggal SK KGB</label>
                                                         <input type="date" class="form-control" name="tgl_sk_kgb" id="e_tgl_sk_kgb"
-                                                            value="">
+                                                        value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Nomor SK KGB</label>
                                                         <input type="text" class="form-control" name="no_sk_kgb" id="e_no_sk_kgb"
-                                                            value="">
+                                                        value="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2236,30 +2256,30 @@
                                                     <div class="form-group">
                                                         <label>Tanggal Berlaku</label>
                                                         <input type="date" class="form-control" name="tgl_berlaku" id="e_tgl_berlaku"
-                                                            value="">
+                                                        value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Masa Kerja Golongan</label>
+                                                        <label>Masa Kerja Golongan (Tahun)</label>
                                                         <input type="text" class="form-control" name="masa_kerja_golongan"
-                                                            id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
+                                                        id="e_masa_kerja_golongan" placeholder="Masa Kerja Golongan" value="">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Masa Kerja</label>
+                                                        <label>Masa Kerja (Tahun)</label>
                                                         <input type="text" class="form-control" name="masa_kerja" id="e_masa_kerja"
-                                                            placeholder="Masa Kerja" value="">
+                                                        placeholder="Masa Kerja" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>TMT KGB</label>
                                                         <input type="date" class="form-control" name="tmt_kgb" id="e_tmt_kgb"
-                                                            value="">
+                                                        value="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2327,26 +2347,27 @@
                         <div class="row">
                             <div class="col-auto float-right ml-auto">
                                 <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_riwayat_pmk">
-                                    <i class="fa fa-plus"></i> Tambah Riwayat PMK
+                                    <i class="fa fa-plus"></i> Tambah Riwayat Peninjauan Masa Kerja
                                 </a>
                             </div><br><br>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th class="jenis_pmk">Jenis Peninjauan Masa Kerja</th>
-                                            <th class="instansi">Instansi</th>
-                                            <th class="tanggal_awal">Tanggal Awal</th>
-                                            <th class="tanggal_akhir">Tanggal Akhir</th>
-                                            <th class="no_sk">Nomor SK</th>
-                                            <th class="tanggal_sk">Tanggal SK</th>
-                                            <th class="no_bkn">Nomor BKN</th>
-                                            <th class="tanggal_bkn">Tanggal BKN</th>
-                                            <th class="masa_tahun">Masa Kerja (Tahun)</th>
-                                            <th class="masa_bulan">Masa Kerja (Bulan)</th>
-                                            <th class="dokumen_pmk">Dokumen PMK</th>
-                                            <th class="aksi">Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th class="jenis_pmk">Jenis Peninjauan Masa Kerja</th>
+                                                <th class="instansi">Instansi</th>
+                                                <th class="tanggal_awal">Tanggal Awal</th>
+                                                <th class="tanggal_akhir">Tanggal Akhir</th>
+                                                <th class="no_sk">Nomor SK</th>
+                                                <th class="tanggal_sk">Tanggal SK</th>
+                                                <th class="no_bkn">Nomor BKN</th>
+                                                <th class="tanggal_bkn">Tanggal BKN</th>
+                                                <th class="masa_tahun">Masa Kerja (Tahun)</th>
+                                                <th class="masa_bulan">Masa Kerja (Bulan)</th>
+                                                <th class="dokumen_pmk">Dokumen PMK</th>
+                                                <th class="aksi">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -2675,21 +2696,22 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th>Jenis Jabatan</th>
-                                            <th>Nomor SK</th>
-                                            <th>Tanggal SK</th>
-                                            <th>Angka Kredit Pertama</th>
-                                            <th>Integrasi</th>
-                                            <th>Konversi</th>
-                                            <th>Bulan Mulai</th>
-                                            <th>Tahun Mulai</th>
-                                            <th>Bulan Selesai</th>
-                                            <th>Tahun Selesai</th>
-                                            <th>Angka Kredit Utama</th>
-                                            <th>Angka Kredit Penunjang</th>
-                                            <th>Total Angka Kredit</th>
-                                            <th>Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Jenis Jabatan</th>
+                                                <th>Nomor SK</th>
+                                                <th>Tanggal SK</th>
+                                                <th>Angka Kredit Pertama</th>
+                                                <th>Integrasi</th>
+                                                <th>Konversi</th>
+                                                <th>Bulan Mulai</th>
+                                                <th>Tahun Mulai</th>
+                                                <th>Bulan Selesai</th>
+                                                <th>Tahun Selesai</th>
+                                                <th>Angka Kredit Utama</th>
+                                                <th>Angka Kredit Penunjang</th>
+                                                <th>Total Angka Kredit</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -2787,18 +2809,18 @@
                                             <div class="row">
                                                 <div class="form-group" style="margin-left: 15px;">
                                                     <label>Angka Kredit Pertama</label><br>
-                                                    <input type="checkbox" class="exclusive" name="angka_kredit_pertama"
+                                                    <input type="checkbox" class="riwayat-angka-kredit" name="angka_kredit_pertama"
                                                         value="Angka Kredit Pertama">
-                                                    Angka Kredit Pertama
+                                                        Angka Kredit Pertama
                                                 </div>
                                                 <div class="form-group" style="margin-left: 20px;">
                                                     <label>Integrasi</label><br>
-                                                    <input type="checkbox" class="exclusive" name="integrasi" value="Integrasi">
+                                                    <input type="checkbox" class="riwayat-angka-kredit" name="integrasi" value="Integrasi">
                                                     Integrasi
                                                 </div>
                                                 <div class="form-group" style="margin-left: 20px;">
                                                     <label>Konversi</label><br>
-                                                    <input type="checkbox" class="exclusive" name="konversi" value="Konversi"> Konversi
+                                                    <input type="checkbox" class="riwayat-angka-kredit" name="konversi" value="Konversi"> Konversi
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -2912,18 +2934,18 @@
                                             <div class="row">
                                                 <div class="form-group" style="margin-left: 15px;">
                                                     <label>Angka Kredit Pertama</label><br>
-                                                    <input type="checkbox" class="exclusive" name="angka_kredit_pertama" id="e_angka_kredit_pertama"
+                                                    <input type="checkbox" class="riwayat-angka-kredit" name="angka_kredit_pertama" id="e_angka_kredit_pertama"
                                                         value="Angka Kredit Pertama">
-                                                    Angka Kredit Pertama
+                                                        Angka Kredit Pertama
                                                 </div>
                                                 <div class="form-group" style="margin-left: 20px;">
                                                     <label>Integrasi</label><br>
-                                                    <input type="checkbox" class="exclusive" name="integrasi" id="e_integrasi" value="Integrasi">
+                                                    <input type="checkbox" class="riwayat-angka-kredit" name="integrasi" id="e_integrasi" value="Integrasi">
                                                     Integrasi
                                                 </div>
                                                 <div class="form-group" style="margin-left: 20px;">
                                                     <label>Konversi</label><br>
-                                                    <input type="checkbox" class="exclusive" name="konversi" id="e_konversi" value="Konversi"> Konversi
+                                                    <input type="checkbox" class="riwayat-angka-kredit" name="konversi" id="e_konversi" value="Konversi"> Konversi
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -3035,26 +3057,27 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th>Status Hidup</th>
-                                            <th>Status Pekerjaan Orang Tua</th>
-                                            <th>Nama Orang Tua</th>
-                                            <th>NIP</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Tanggal Meninggal</th>
-                                            <th>Jenis Identitas</th>
-                                            <th>Nomor HP</th>
-                                            <th>Nomor Telepon</th>
-                                            <th>Agama</th>
-                                            <th>Status Pernikahan</th>
-                                            <th>Email</th>
-                                            <th>Alamat</th>
-                                            <th>Dokumen Kartu Keluarga</th>
-                                            <th>Dokumen Akta Anak</th>
-                                            <th>Pas Foto Ayah</th>
-                                            <th>Pas Foto Ibu</th>
-                                            <th>Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Status Hidup</th>
+                                                <th>Status Pekerjaan Orang Tua</th>
+                                                <th>NIP</th>
+                                                <th>Tanggal Meninggal</th>
+                                                <th>Nama Orang Tua</th>
+                                                <th>Tanggal Lahir</th>
+                                                <th>Jenis Identitas</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Agama</th>
+                                                <th>Status Pernikahan</th>
+                                                <th>Alamat</th>
+                                                <th>E-Mail</th>
+                                                <th>No HP</th>
+                                                <th>No Telp</th>
+                                                <th>Dokumen Kartu Keluarga</th>
+                                                <th>Dokumen Akta Anak</th>
+                                                <th>Pas Foto Ayah</th>
+                                                <th>Pas Foto Ibu</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -3064,46 +3087,61 @@
                                                 <td hidden class="id"><center>{{ $result_Ortu->id }}</center></td>
                                                 <td class="status_hidup"><center>{{ $result_Ortu->status_hidup }}</center></td>
                                                 <td class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
-                                                <td class="nama"><center>{{ $result_Ortu->nama }}</center></td>
                                                 <td class="nip"><center>{{ $result_Ortu->nip }}</center></td>
-                                                <td class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
-                                                <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
                                                 <td class="tanggal_meninggal"><center>{{ $result_Ortu->tanggal_meninggal }}</center></td>
+                                                <td class="nama"><center>{{ $result_Ortu->nama }}</center></td>
+                                                <td class="tanggal_lahir"><center>{{ $result_Ortu->tanggal_lahir }}</center></td>
                                                 <td class="jenis_identitas"><center>{{ $result_Ortu->jenis_identitas }}</center></td>
-                                                <td class="no_hp"><center>{{ $result_Ortu->no_hp }}</center></td>
-                                                <td class="no_telepon"><center>{{ $result_Ortu->no_telepon }}</center></td>
+                                                <td class="jenis_kelamin"><center>{{ $result_Ortu->jenis_kelamin }}</center></td>
                                                 <td class="agama"><center>{{ $result_Ortu->agama }}</center></td>
                                                 <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
-                                                <td class="email"><center>{{ $result_Ortu->email }}</center></td>
-                                                <td ><center>{{ $result_Ortu->alamat }}</center></td>
+                                                <td class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
+                                                <td class="email"><center>
+                                                    <a href="mailto:{{ $result_Ortu->email }}" style="color:black">{{ $result_Ortu->email }}</a>
+                                                </center></td>
+
+                                                @if (!empty($result_Ortu->no_hp))
+                                                    <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_hp }}" target="_blank" style="color:black">0{{ $result_Ortu->no_hp }}</a></center></td>
+                                                @endif
+                                                    <td hidden class="no_hp">{{ $result_Ortu->no_hp }}</td>
+
+                                                @if (!empty($result_Ortu->no_telepon))
+                                                    <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_telepon }}" target="_blank" style="color:black">0{{ $result_Ortu->no_telepon }}</a></center></td>
+                                                @endif
+                                                    <td hidden class="no_telepon">{{ $result_Ortu->no_telepon }}</td>
+
                                                 <td class="dokumen_kk"><center>
                                                     <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
                                                         @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
                                                             <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                         @endif
                                                             <td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>
-                                                    </a></center></td>
+                                                    </a>
+                                                </center></td>
                                                 <td class="dokumen_akta_lahir_anak"><center>
                                                     <a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank">
                                                         @if (pathinfo($result_Ortu->dokumen_akta_lahir_anak, PATHINFO_EXTENSION) == 'pdf')
                                                             <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                         @endif
                                                             <td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>
-                                                    </a></center></td>
+                                                    </a>
+                                                </center></td>
                                                 <td class="pas_foto_ayah"><center>
                                                     <a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank">
                                                         @if (in_array(pathinfo($result_Ortu->pas_foto_ayah, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                             <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                         @endif
-                                                        <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
+                                                            <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
                                                     </a>
+                                                </center></td>
                                                 <td class="pas_foto_ibu"><center>
                                                     <a href="{{ asset('assets/DokumenPasFotoIbu/' . $result_Ortu->pas_foto_ibu) }}" target="_blank">
                                                         @if (in_array(pathinfo($result_Ortu->pas_foto_ibu, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                                                             <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                         @endif
-                                                        <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
+                                                            <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
                                                     </a>
+                                                </center></td>
 
                                                 {{-- Edit dan Hapus data  --}}
                                                 <td class="text-right">
@@ -3220,8 +3258,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Jenis Identitas</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="jenis_identitas" required>
-                                                            <option disabled selected value="">-- Pilih Jenis Identitas --</option>
+                                                        <select class="select" name="jenis_identitas" required>
+                                                            <option selected disabled>-- Pilih Jenis Identitas --</option>
                                                             <option value="KTP/KIA">KTP/KIA</option>
                                                             <option value="Passport">Passport</option>
                                                         </select>
@@ -3249,10 +3287,11 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Agama</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="agama" required>
-                                                            <option disabled selected value="">-- Pilih Agama --</option>
-                                                            @foreach ($agamaOptions as $agama)
-                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                        <br>
+                                                        <select class="theSelect" name="agama" style="width: 100% !important" required>
+                                                            <option selected disabled>-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $key => $result_agama)
+                                                                <option value="{{ $key }}">{{ $result_agama }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -3260,7 +3299,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Status Pernikahan</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="status_pernikahan" required>
+                                                        <select class="select" name="status_pernikahan" required>
                                                             <option disabled selected value="">-- Pilih Status Pernikahan --</option>
                                                             <option value="Menikah">Menikah</option>
                                                             <option value="Belum Menikah">Belum Menikah</option>
@@ -3294,9 +3333,10 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">+62</span>
                                                             </div>
-                                                            <input class="form-control" type="number" name="no_hp"
-                                                                placeholder="Masukkan nomor HP orang tua" required>
+                                                            <input class="form-control" type="number" name="no_hp" id="c_no_hp"
+                                                            placeholder="Masukkan nomor HP orang tua" required>
                                                         </div>
+                                                        <small id="error_message-1" class="text-danger2"></small>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -3306,9 +3346,10 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">+62</span>
                                                             </div>
-                                                            <input class="form-control" type="number" name="no_telepon"
-                                                                placeholder="Masukkan nomor telepon orang tua" required>
+                                                            <input class="form-control" type="number" name="no_telepon" id="c_no_telepon"
+                                                            placeholder="Masukkan nomor telepon orang tua" required>
                                                         </div>
+                                                        <small id="error_message-2" class="text-danger2"></small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3420,14 +3461,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6" id="show_nip2" style="display:none;">
                                                     <div class="form-group">
                                                         <label>NIP</label>
                                                         <input class="form-control" type="text" name="nip" id="e_nip"
-                                                            placeholder="Masukkan NIP">
+                                                        placeholder="Masukkan NIP">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6" id="tanggal-meninggal2" style="display:none;">
                                                     <div class="form-group">
                                                         <label>Tanggal Meninggal</label>
                                                         <input class="form-control" type="date" name="tanggal_meninggal" id="e_tanggal_meninggal">
@@ -3482,10 +3523,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Agama</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="agama" id="e_agama" required>
-                                                            <option disabled selected value="">-- Pilih Agama --</option>
-                                                            @foreach ($agamaOptions as $agama)
-                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                        <br>
+                                                        <select class="theSelect" name="agama" id="e_agama" required  style="width: 100% !important">
+                                                            <option selected disabled>-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $id => $result_agama)
+                                                                @if (!empty($result_Ortu->agama))
+                                                                    <option value="{{ $id }}" {{ $id == $result_Ortu->agama ? 'selected' : '' }}>{{ $result_agama }}</option>
+                                                                @endif
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -3528,8 +3572,9 @@
                                                                 <span class="input-group-text">+62</span>
                                                             </div>
                                                             <input class="form-control" type="number" name="no_hp" id="e_no_hp"
-                                                                placeholder="Masukkan nomor HP orang tua" required>
+                                                            placeholder="Masukkan nomor HP orang tua" required>
                                                         </div>
+                                                        <small id="error_message-3" class="text-danger2"></small>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -3542,6 +3587,7 @@
                                                             <input class="form-control" type="number" name="no_telepon" id="e_no_telepon"
                                                             placeholder="Masukkan nomor telepon orang tua" required>
                                                         </div>
+                                                        <small id="error_message-4" class="text-danger2"></small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3656,63 +3702,76 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th>Suami/Istri ke</th>
-                                            <th>Status Pekerjaan</th>
-                                            <th>NIP</th>
-                                            <th>Nama Pasangan</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Jenis Identitas</th>
-                                            <th>Nomor HP</th>
-                                            <th>Nomor Telepon</th>
-                                            <th>Agama</th>
-                                            <th>Status Pernikahan</th>
-                                            <th>Status Hidup</th>
-                                            <th>Email</th>
-                                            <th>Nomor Karis/Karsu</th>
-                                            <th>Alamat</th>
-                                            <th>Dokumen Nikah</th>
-                                            <th>Pas Foto</th>
-                                            <th>Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Suami/Istri Ke</th>
+                                                <th>Status Pekerjaan Pasangan</th>
+                                                <th>NIP</th>
+                                                <th>Status Pernikahan</th>
+                                                <th>Nama Pasangan</th>
+                                                <th>Tanggal Lahir</th>
+                                                <th>Jenis Identitas</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Agama</th>
+                                                <th>Status Hidup</th>
+                                                <th>Nomor Karsu/Karis</th>
+                                                <th>Alamat</th>
+                                                <th>No HP</th>
+                                                <th>No Telp</th>
+                                                <th>Email</th>
+                                                <th>Dokumen Nikah</th>
+                                                <th>Pas Foto</th>
+                                                <th>Aksi</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($riwayatPasangan as $sqlPasangan => $result_pasangan)
                                                 <tr>
                                                     <td><center>{{ ++$sqlPasangan }}</center></td>
-                                                    <td class="suami_istri_ke">{{ $result_pasangan->suami_istri_ke }}</td>
-                                                    <td class="status_pekerjaan_pasangan">{{ $result_pasangan->status_pekerjaan_pasangan }}</td>
-                                                    <td class="nip">{{ $result_pasangan->nip }}</td>
-                                                    <td class="nama">{{ $result_pasangan->nama }}</td>
-                                                    <td class="tanggal_lahir">{{ $result_pasangan->tanggal_lahir }}</td>
-                                                    <td class="jenis_kelamin">{{ $result_pasangan->jenis_kelamin }}</td>
-                                                    <td class="jenis_identitas">{{ $result_pasangan->jenis_identitas }}</td>
-                                                    <td class="no_hp">{{ $result_pasangan->no_hp }}</td>
-                                                    <td class="no_telepon">{{ $result_pasangan->no_telepon }}</td>
-                                                    <td class="agama">{{ $result_pasangan->agama }}</td>
-                                                    <td class="status_pernikahan">{{ $result_pasangan->status_pernikahan }}</td>
-                                                    <td class="status_hidup">{{ $result_pasangan->status_hidup }}</td>
-                                                    <td class="email">{{ $result_pasangan->email }}</td>
-                                                    <td class="no_karis_karsu">{{ $result_pasangan->no_karis_karsu }}</td>
-                                                    <td>{{ $result_pasangan->alamat }}</td>
-                                                    <td class="dokumen_nikah">
-                                                        <center>
-                                                            <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
-                                                                @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
-                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                                @endif
-                                                            </a>
-                                                        </center>
-                                                    </td>
-                                                    <td class="pas_foto">
-                                                        <center>
-                                                            <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
-                                                                @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                                @endif
-                                                            </a>
-                                                        </center>
-                                                    </td>
+                                                    <td hidden class="id"><center>{{ $result_pasangan->id }}</center></td>
+                                                    <td class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
+                                                    <td class="status_pekerjaan_pasangan"><center>{{ $result_pasangan->status_pekerjaan_pasangan }}</center></td>
+                                                    <td class="nip"><center>{{ $result_pasangan->nip }}</center></td>
+                                                    <td class="status_pernikahan"><center>{{ $result_pasangan->status_pernikahan }}</center></td>
+                                                    <td class="nama"><center>{{ $result_pasangan->nama }}</center></td>
+                                                    <td class="tanggal_lahir"><center>{{ $result_pasangan->tanggal_lahir }}</center></td>
+                                                    <td class="jenis_identitas"><center>{{ $result_pasangan->jenis_identitas }}</center></td>
+                                                    <td class="jenis_kelamin"><center>{{ $result_pasangan->jenis_kelamin }}</center></td>
+                                                    <td class="agama"><center>{{ $result_pasangan->agama }}</center></td>
+                                                    <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
+                                                    <td class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
+                                                    <td class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
+
+                                                    @if (!empty($result_pasangan->no_hp))
+                                                        <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
+                                                    @endif
+                                                        <td hidden class="no_hp">{{ $result_pasangan->no_hp }}</td>
+
+                                                    @if (!empty($result_pasangan->no_telepon))
+                                                        <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
+                                                    @endif
+                                                        <td hidden class="no_telepon">{{ $result_pasangan->no_telepon }}</td>
+
+                                                    <td class="email"><center>
+                                                        <a href="mailto:{{ $result_pasangan->email }}" style="color:black">{{ $result_pasangan->email }}</a>
+                                                    </center></td>
+
+                                                    <td class="dokumen_nikah"><center>
+                                                        <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
+                                                            @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
+                                                        </a>
+                                                    </center></td>
+                                                    <td class="pas_foto"><center>
+                                                        <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
+                                                            @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                                <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                            <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
+                                                        </a>
+                                                    </center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
                                                     <td class="text-right">
@@ -3759,8 +3818,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Suami/Istri ke</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="suami_istri_ke" required>
-                                                            <option disabled selected value="">-- Pilih Suami/Istri ke --</option>
+                                                        <select class="select" name="suami_istri_ke" required>
+                                                            <option selected disabled>-- Pilih Suami/Istri Ke --</option>
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
                                                             <option value="3">3</option>
@@ -3797,14 +3856,14 @@
                                                     <div class="form-group">
                                                         <label>NIP</label>
                                                         <input class="form-control" type="text" name="nip"
-                                                            placeholder="Masukkan NIP">
+                                                        placeholder="Masukkan NIP">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Status Pernikahan</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="status_pernikahan" required>
-                                                            <option disabled selected value="">-- Pilih Status Pernikahan --</option>
+                                                        <select class="select" name="status_pernikahan" required>
+                                                            <option selected disabled>-- Pilih Status Pernikahan --</option>
                                                             <option value="Menikah">Menikah</option>
                                                             <option value="Belum Menikah">Belum Menikah</option>
                                                             <option value="Cerai Hidup">Cerai Hidup</option>
@@ -3832,7 +3891,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Jenis Identitas</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="jenis_identitas" required>
+                                                        <select class="select" name="jenis_identitas" required>
                                                             <option disabled selected value="">-- Pilih Jenis Identitas --</option>
                                                             <option value="KTP/KIA">KTP/KIA</option>
                                                             <option value="Passport">Passport</option>
@@ -3861,10 +3920,11 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Agama</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="agama" required>
-                                                            <option disabled selected value="">-- Pilih Agama --</option>
-                                                            @foreach ($agamaOptions as $agama)
-                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                        <br>
+                                                        <select class="theSelect" name="agama" required style="width: 100% !important">
+                                                            <option selected disabled>-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $key => $result_agama)
+                                                                <option value="{{ $key }}">{{ $result_agama }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -3911,9 +3971,10 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">+62</span>
                                                             </div>
-                                                            <input class="form-control" type="number" name="no_hp"
-                                                                placeholder="Masukkan nomor HP pasangan" required>
+                                                            <input class="form-control" type="number" name="no_hp" id="c_no_hp2"
+                                                            placeholder="Masukkan nomor HP pasangan" required>
                                                         </div>
+                                                        <small id="error_message-5" class="text-danger2"></small>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -3923,9 +3984,10 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">+62</span>
                                                             </div>
-                                                            <input class="form-control" type="number" name="no_telepon"
-                                                                placeholder="Masukkan nomor telepon pasangan" required>
+                                                            <input class="form-control" type="number" name="no_telepon" id="c_no_telepon2"
+                                                            placeholder="Masukkan nomor telepon pasangan" required>
                                                         </div>
+                                                        <small id="error_message-6" class="text-danger2"></small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -4010,30 +4072,30 @@
                                                         <label>Status Pekerjaan Pasangan</label><small class="text-danger">*</small>
                                                         <div>
                                                             <label>
-                                                                <input type="radio" name="status_pekerjaan_pasangan" id="bukan_pns" value="Bukan PNS" required>
+                                                                <input type="radio" name="status_pekerjaan_pasangan" id="bukan_pns_pasangan" value="Bukan PNS" required>
                                                                 Bukan PNS
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>
-                                                                <input type="radio" name="status_pekerjaan_pasangan" id="pns" value="PNS" required>
+                                                                <input type="radio" name="status_pekerjaan_pasangan" id="pns_pasangan" value="PNS" required>
                                                                 PNS
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6" id="show_nip3" style="display:none;">
                                                     <div class="form-group">
                                                         <label>NIP</label>
                                                         <input class="form-control" type="text" name="nip" id="e_nip_pasangan"
-                                                            placeholder="Jika status pasangan bukan PNS isi dengan -" required>
+                                                            placeholder="Masukkan NIP">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Status Pernikahan</label><small class="text-danger">*</small>
                                                         <select class="form-control" name="status_pernikahan" id="e_status_pernikahan_pasangan" required>
-                                                            <option disabled selected value="">-- Pilih Status Pernikahan --</option>
+                                                            <option selected disabled>-- Pilih Status Pernikahan --</option>
                                                             <option value="Menikah">Menikah</option>
                                                             <option value="Belum Menikah">Belum Menikah</option>
                                                             <option value="Cerai Hidup">Cerai Hidup</option>
@@ -4090,10 +4152,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Agama</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="agama" id="e_agama_pasangan" required>
-                                                            <option disabled selected value="">-- Pilih Agama --</option>
-                                                            @foreach ($agamaOptions as $agama)
-                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                        <br>
+                                                        <select class="theSelect" name="agama" id="e_agama_pasangan" required style="width: 100% !important">
+                                                            <option selected disabled>-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $id => $result_agama)
+                                                                @if (!empty($result_pasangan->agama))
+                                                                    <option value="{{ $id }}" {{ $id == $result_pasangan->agama ? 'selected' : '' }}>{{ $result_agama }}</option>
+                                                                @endif
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -4141,8 +4206,9 @@
                                                                 <span class="input-group-text">+62</span>
                                                             </div>
                                                             <input class="form-control" type="number" name="no_hp" id="e_no_hp_pasangan"
-                                                                placeholder="Masukkan nomor HP pasangan" required>
+                                                            placeholder="Masukkan nomor HP pasangan" required>
                                                         </div>
+                                                        <small id="error_message-7" class="text-danger2"></small>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -4153,8 +4219,9 @@
                                                                 <span class="input-group-text">+62</span>
                                                             </div>
                                                             <input class="form-control" type="number" name="no_telepon" id="e_no_telepon_pasangan"
-                                                                placeholder="Masukkan nomor telepon pasangan" required>
+                                                            placeholder="Masukkan nomor telepon pasangan" required>
                                                         </div>
+                                                        <small id="error_message-8" class="text-danger2"></small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -4250,26 +4317,29 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th>Nama Orang Tua</th>
-                                            <th>Status Pekerjaan Anak</th>
-                                            <th>Nama Anak</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Status Anak</th>
-                                            <th>Jenis Dokumen</th>
-                                            <th>Nomor Dokumen</th>
-                                            <th>Agama</th>
-                                            <th>Status Hidup</th>
-                                            <th>Nomor Akta Lahir</th>
-                                            <th>Dokumen Akta Kelahiran</th>
-                                            <th>Pas Foto</th>
-                                            <th>Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Orang Tua</th>
+                                                <th>Status Pekerjaan Anak</th>
+                                                <th>Nama Anak</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Tanggal Lahir</th>
+                                                <th>Status Anak</th>
+                                                <th>Jenis Dokumen</th>
+                                                <th>Nomor Dokumen</th>
+                                                <th>Agama</th>
+                                                <th>Status Hidup</th>
+                                                <th>Nomor Akta Kelahiran</th>
+                                                <th>Dokumen Akta Kelahiran</th>
+                                                <th>Pas Foto</th>
+                                                <th>Aksi</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($riwayatAnak as $sqlAnak => $result_anak)
                                                 <tr>
                                                     <td><center>{{ ++$sqlAnak }}</center></td>
+                                                    <td hidden class="id"><center>{{ $result_anak->id }}</center></td>
                                                     <td class="orang_tua"><center>{{ $result_anak->orang_tua }}</center></td>
                                                     <td class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
                                                     <td class="nama_anak"><center>{{ $result_anak->nama_anak }}</center></td>
@@ -4281,24 +4351,22 @@
                                                     <td class="agama"><center>{{ $result_anak->agama }}</center></td>
                                                     <td class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
                                                     <td class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
-                                                    <td class="dokumen_akta_kelahiran">
-                                                        <center>
-                                                            <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
-                                                                @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
-                                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                                @endif
-                                                            </a>
-                                                        </center>
-                                                    </td>
-                                                    <td class="pas_foto">
-                                                        <center>
-                                                            <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
-                                                                @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                                @endif
-                                                            </a>
-                                                        </center>
-                                                    </td>
+                                                    <td class="dokumen_akta_kelahiran"><center>
+                                                        <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
+                                                            @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
+                                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="dokumen_akta_kelahiran">{{ $result_anak->dokumen_akta_kelahiran }}</td>
+                                                        </a>
+                                                    </center></td>
+                                                    <td class="pas_foto"><center>
+                                                        <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
+                                                            @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                                <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
+                                                            @endif
+                                                                <td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>
+                                                        </a>
+                                                    </center></td>
 
                                                     {{-- Edit dan Hapus data  --}}
                                                     <td class="text-right">
@@ -4347,8 +4415,8 @@
                                                     <div class="form-group">
                                                         <label class="col-form-label">Orang Tua (Pasangan)</label><small
                                                             class="text-danger">*</small><br>
-                                                        <select class="select form-control" name="orang_tua">
-                                                            <option value="">-- Pilih Nama Orang Tua --</option>
+                                                        <select class="select" name="orang_tua">
+                                                            <option selected disabled>-- Pilih Nama Orang Tua --</option>
                                                             @foreach ($userList as $user)
                                                                 <option value="{{ $user->nama }}">{{ $user->nama }}</option>
                                                             @endforeach
@@ -4430,7 +4498,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Jenis Dokumen</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="jenis_dokumen" required>
+                                                        <select class="select" name="jenis_dokumen" required>
                                                             <option disabled selected value="">-- Pilih Jenis Dokumen --</option>
                                                             <option value="KTP/KIA">KTP/KIA</option>
                                                             <option value="Passport">Passport</option>
@@ -4449,10 +4517,11 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Agama</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="agama" required>
-                                                            <option disabled selected value="">-- Pilih Agama --</option>
-                                                            @foreach ($agamaOptions as $agama)
-                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                        <br>
+                                                        <select class="theSelect" name="agama" required style="width: 100% !important">
+                                                            <option selected disabled>-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $key => $result_agama)
+                                                                <option value="{{ $key }}">{{ $result_agama }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -4538,7 +4607,7 @@
                                                     <div class="form-group">
                                                         <label class="col-form-label">Orang Tua (Pasangan)</label><small
                                                             class="text-danger">*</small><br>
-                                                        <select class="select form-control" name="orang_tua" id="e_orang_tua_anak">
+                                                        <select class="form-control" name="orang_tua" id="e_orang_tua_anak">
                                                             <option value="">-- Pilih Nama Orang Tua --</option>
                                                             @foreach ($userList as $user)
                                                                 <option value="{{ $user->nama }}">{{ $user->nama }}</option>
@@ -4641,10 +4710,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Agama</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="agama" id="e_agama_anak" required>
-                                                            <option disabled selected value="">-- Pilih Agama --</option>
-                                                            @foreach ($agamaOptions as $agama)
-                                                                <option value="{{ $agama }}">{{ $agama }}</option>
+                                                        <br>
+                                                        <select class="theSelect" name="agama" id="e_agama_anak" required style="width: 100% !important">
+                                                            <option selected disabled>-- Pilih Agama --</option>
+                                                            @foreach ($agamaOptions as $id => $result_agama)
+                                                                @if (!empty($result_anak->agama))
+                                                                    <option value="{{ $id }}" {{ $id == $result_anak->agama ? 'selected' : '' }}>{{ $result_agama }}</option>
+                                                                @endif
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -4759,13 +4831,14 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th>Jenis Penghargaan</th>
-                                            <th>Tahun Perolehan</th>
-                                            <th>Nomor Surat</th>
-                                            <th>Tanggal SK</th>
-                                            <th>Dokumen Penghargaan</th>
-                                            <th>Aksi</th>
+                                            <tr>
+                                                <th><center>No</center></th>
+                                                <th><center>Jenis Penghargaan</center></th>
+                                                <th><center>Tahun Perolehan</center></th>
+                                                <th><center>Nomor Surat</center></th>
+                                                <th><center>Tanggal SK</center></th>
+                                                <th><center>Dokumen Penghargaan</center></th>
+                                                <th><center>Aksi</center></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -4783,7 +4856,8 @@
                                                             <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
                                                         @endif
                                                             <td hidden class="dokumen_penghargaan">{{ $result_penghargaan->dokumen_penghargaan }}</td>
-                                                    </a></center></td>
+                                                    </a>
+                                                </center></td>
 
                                                 {{-- Edit dan Hapus data  --}}
                                                 <td class="text-right">
@@ -4834,8 +4908,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Jenis Penghargaan</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="jenis_penghargaan" required>
-                                                            <option disabled selected value="">-- Pilih Jenis Penghargaan --</option>
+                                                        <select class="select" name="jenis_penghargaan" required>
+                                                            <option selected disabled>-- Pilih Jenis Penghargaan --</option>
                                                             <option value="Bintang">Bintang</option>
                                                             <option value="R.I Adipurna">R.I Adipurna</option>
                                                             <option value="R.I Adipradana">R.I Adipradana</option>
@@ -5007,14 +5081,15 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th>Nama Organisasi</th>
-                                            <th>Jabatan Organisasi</th>
-                                            <th>Tanggal Gabung</th>
-                                            <th>Tanggal Selesai</th>
-                                            <th>Nomor Anggota</th>
-                                            <th>Dokumen Organisasi</th>
-                                            <th>Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Organisasi</th>
+                                                <th>Jabatan Organisasi</th>
+                                                <th>Tanggal Gabung</th>
+                                                <th>Tanggal Selesai</th>
+                                                <th>Nomor Anggota</th>
+                                                <th>Dokumen Organisasi</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -5154,7 +5229,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Jenis Penghargaan</label><small class="text-danger">*</small>
+                                                        <label>Nama Organisasi</label><small class="text-danger">*</small>
                                                         <input class="form-control" type="text" name="nama_organisasi" id="e_nama_organisasi" required>
                                                     </div>
                                                 </div>
@@ -5254,21 +5329,22 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table mb-0 datatable">
                                         <thead>
-                                            <th>No</th>
-                                            <th>Kategori Hukuman Disiplin</th>
-                                            <th>Tingkat Hukuman</th>
-                                            <th>Jenis Tingkat Hukuman</th>
-                                            <th>Nomor SK Hukuman</th>
-                                            <th>Tanggal SK Hukuman</th>
-                                            <th>Nomor Peraturan</th>
-                                            <th>Alasan Hukuman</th>
-                                            <th>Masa Hukuman Tahun</th>
-                                            <th>Masa Hukuman Bulan</th>
-                                            <th>TMT Hukuman</th>
-                                            <th>Keterangan</th>
-                                            <th>Dokumen Hukuman Disiplin</th>
-                                            <th>Dokumen SK Pengaktifan</th>
-                                            <th>Aksi</th>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Kategori Hukuman Disiplin</th>
+                                                <th>Tingkat Hukuman</th>
+                                                <th>Jenis Tingkat Hukuman</th>
+                                                <th>Nomor SK Hukuman</th>
+                                                <th>Tanggal SK Hukuman</th>
+                                                <th>Nomor Peraturan</th>
+                                                <th>Alasan Hukuman</th>
+                                                <th>Masa Hukuman Tahun</th>
+                                                <th>Masa Hukuman Bulan</th>
+                                                <th>TMT Hukuman</th>
+                                                <th>Keterangan</th>
+                                                <th>Dokumen Hukuman Disiplin</th>
+                                                <th>Dokumen SK Pengaktifan</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -5351,8 +5427,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Kategori Hukuman</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="kategori_hukuman" required>
-                                                            <option disabled selected value="">-- Pilih Kategori Hukuman --</option>
+                                                        <select class="select" name="kategori_hukuman" required>
+                                                            <option selected disabled>-- Pilih Kategori Hukuman --</option>
                                                             <option value="Penetapan">Penetapan</option>
                                                             <option value="Pengaktifan Kembali">Pengaktifan Kembali</option>
                                                         </select>
@@ -5361,8 +5437,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Tingkat Hukuman</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="tingkat_hukuman" required>
-                                                            <option disabled selected value="">-- Pilih Tingkat Hukuman --</option>
+                                                        <select class="select" name="tingkat_hukuman" required>
+                                                            <option selected disabled>-- Pilih Tingkat Hukuman --</option>
                                                             <option value="Berat">Berat</option>
                                                             <option value="Ringan">Ringan</option>
                                                             <option value="Sedang">Sedang</option>
@@ -5374,8 +5450,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Jenis Hukuman</label><small class="text-danger">*</small>
-                                                        <select class="form-control" name="jenis_hukuman" required>
-                                                            <option disabled selected value="">-- Pilih Jenis Hukuman --</option>
+                                                        <select class="select" name="jenis_hukuman" required>
+                                                            <option selected disabled>-- Pilih Jenis Hukuman --</option>
                                                             <option value="Pembebasan Dari Jabatan">Pembebasan Dari Jabatan</option>
                                                             <option value="Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri">Pemberhentian Dengan Hormat Tidak atas Permintaan Sendiri</option>
                                                             <option value="Pemberhentian Tidak Dengan Hormat Sebagai PNS">Pemberhentian Tidak Dengan Hormat Sebagai PNS</option>
@@ -5399,7 +5475,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Alasan</label>
-                                                        <select class="form-control" name="alasan">
+                                                        <select class="select" name="alasan">
                                                             <option disabled selected value="">-- Pilih Alasan --</option>
                                                             <option value="Tidak Mengucapkan Sumpah/Janji PNS">Tidak Mengucapkan Sumpah/Janji PNS</option>
                                                             <option value="Tidak Mengucapkan Sumpah/Janji Jabatan">Tidak Mengucapkan Sumpah/Janji Jabatan</option>
@@ -5417,7 +5493,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Masa Hukuman Tahun</label>
+                                                        <label>Masa Hukuman (Tahun)</label>
                                                         <input class="form-control" type="text" name="masa_hukuman_tahun">
                                                     </div>
                                                 </div>
@@ -5431,7 +5507,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Masa Hukuman Bulan</label>
+                                                        <label>Masa Hukuman (Bulan)</label>
                                                         <input class="form-control" type="text" name="masa_hukuman_bulan">
                                                     </div>
                                                 </div>
@@ -6797,6 +6873,45 @@
                     </div>
                     <!-- /Posisi Jabatan Modal Edit -->
 
+                    <!-- Upload Dokumen KTP Modal -->
+                        <div id="unggah_dokumen_ktp" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Dokumen KTP</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('user/profile/upload-ktp') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $users->user_id }}">
+                                                <div class="row">
+                                                    <div class="dropzone-box-44" style="max-width: 50rem !important">
+                                                        <label>File Dokumen KTP</label>
+                                                        <div class="dropzone-area-44" style="min-height: 15rem !important">
+                                                            <div class="file-upload-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" style="height: 4rem !important; width: 6rem !important;" height="16" width="12" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 408c0 13.3-10.7 24-24 24s-24-10.7-24-24V305.9l-31 31c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-31-31V408z"/></svg>
+                                                            </div>
+                                                            <p class="info-pesan-form" style="font-size: 1rem !important">Klik untuk mengunggah atau seret dan lepas</p>
+                                                            <input type="file" id="dokumen_ktp" name="dokumen_ktp">
+                                                            <input type="hidden" name="hidden_dokumen_ktp" id="e_dokumen_ktp" value="">
+                                                            <p class="info-draganddrop-44" style="font-size: 1rem !important">Tidak ada file yang di pilih</p>
+                                                        </div>
+                                                        <small class="text-danger">*Harap unggah dokumen dalam format PDF.</small>
+                                                    </div>
+                                                </div>
+                                                <div class="submit-section">
+                                                    <button type="submit" id="submit-button" class="btn btn-primary submit-btn">Unggah</button>
+                                                </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Upload Dokumen KTP Modal -->
+
             <!-- /Page Content -->
         </div>
 
@@ -6869,20 +6984,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
         <!-- /FancyBox Foto Profil -->
 
-        <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
-        <script src="{{ asset('assets/js/pendidikan.js') }}"></script>
         <script src="{{ asset('assets/js/golongan.js') }}"></script>
-        <script src="{{ asset('assets/js/jabatan.js') }}"></script>
-        <script src="{{ asset('assets/js/diklat.js') }}"></script>
         <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatPMK.js') }}"></script>
+        <script src="{{ asset('assets/js/pendidikan.js') }}"></script>
+        <script src="{{ asset('assets/js/jabatan.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatAngkaKredit.js') }}"></script>
+        <script src="{{ asset('assets/js/diklat.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatOrangTua.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatPasangan.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatAnak.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatPenghargaan.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatOrganisasi.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatHukumanDisiplin.js') }}"></script>
+        <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script>
@@ -6950,6 +7065,96 @@
                     })
 
                 })
+            });
+        </script>
+
+        <script>
+            document.getElementById('c_no_hp').addEventListener('input', function(event) {
+                var inputValue = event.target.value;
+                
+                // Jika angka pertama adalah 0
+                if (inputValue.charAt(0) === '0') {
+                    document.getElementById('error_message-1').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+                } else {
+                    document.getElementById('error_message-1').innerHTML = '';
+                }
+            });
+
+            document.getElementById('c_no_telepon').addEventListener('input', function(event) {
+                var inputValue = event.target.value;
+                
+                // Jika angka pertama adalah 0
+                if (inputValue.charAt(0) === '0') {
+                    document.getElementById('error_message-2').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+                } else {
+                    document.getElementById('error_message-2').innerHTML = '';
+                }
+            });
+
+            document.getElementById('e_no_hp').addEventListener('input', function(event) {
+                var inputValue = event.target.value;
+                
+                // Jika angka pertama adalah 0
+                if (inputValue.charAt(0) === '0') {
+                    document.getElementById('error_message-3').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+                } else {
+                    document.getElementById('error_message-3').innerHTML = '';
+                }
+            });
+
+            document.getElementById('e_no_telepon').addEventListener('input', function(event) {
+                var inputValue = event.target.value;
+                
+                // Jika angka pertama adalah 0
+                if (inputValue.charAt(0) === '0') {
+                    document.getElementById('error_message-4').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+                } else {
+                    document.getElementById('error_message-4').innerHTML = '';
+                }
+            });
+
+            document.getElementById('c_no_hp2').addEventListener('input', function(event) {
+                var inputValue = event.target.value;
+                
+                // Jika angka pertama adalah 0
+                if (inputValue.charAt(0) === '0') {
+                    document.getElementById('error_message-5').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+                } else {
+                    document.getElementById('error_message-5').innerHTML = '';
+                }
+            });
+
+            document.getElementById('c_no_telepon2').addEventListener('input', function(event) {
+                var inputValue = event.target.value;
+                
+                // Jika angka pertama adalah 0
+                if (inputValue.charAt(0) === '0') {
+                    document.getElementById('error_message-6').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+                } else {
+                    document.getElementById('error_message-6').innerHTML = '';
+                }
+            });
+
+            document.getElementById('e_no_hp_pasangan').addEventListener('input', function(event) {
+                var inputValue = event.target.value;
+                
+                // Jika angka pertama adalah 0
+                if (inputValue.charAt(0) === '0') {
+                    document.getElementById('error_message-7').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+                } else {
+                    document.getElementById('error_message-7').innerHTML = '';
+                }
+            });
+
+            document.getElementById('e_no_telepon_pasangan').addEventListener('input', function(event) {
+                var inputValue = event.target.value;
+                
+                // Jika angka pertama adalah 0
+                if (inputValue.charAt(0) === '0') {
+                    document.getElementById('error_message-8').innerHTML = 'Gunakan format yang benar. Contoh: 812345678';
+                } else {
+                    document.getElementById('error_message-8').innerHTML = '';
+                }
             });
         </script>
 

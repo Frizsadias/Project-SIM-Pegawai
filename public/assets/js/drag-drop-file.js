@@ -3523,3 +3523,85 @@ dropzoneBox43.addEventListener("submit",
     ("upload-file-form-43");
     console.log(myFiled.files[0]);
 });
+
+// File Upload 44 //
+const dropzoneBox44 = document.
+getElementsByClassName("dropzone-box-44")
+[0];
+
+const inputFiles44 = document.
+querySelectorAll(
+    ".dropzone-area-44 input[type='file']"
+);
+
+const inputElement44 = inputFiles44[0];
+
+const dropZoneElement44 = inputElement44.
+closest(".dropzone-area-44");
+
+inputElement44.addEventListener("change",
+(e) => {
+    if (inputElement44.files.length) {
+        updateDropzoneFileList44
+        (dropZoneElement44, inputElement44.files
+            [0]);
+    }
+});
+
+dropZoneElement44.addEventListener
+("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement44.classList.add
+    ("dropzone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement44.addEventListener(type,
+        (e) => {
+            dropZoneElement44.classList.remove
+            ("dropzone--over");
+        });
+});
+
+dropZoneElement44.addEventListener("drop",
+(e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        inputElement44.files = e.dataTransfer.
+        files;
+
+        updateDropzoneFileList44
+        (dropZoneElement44, e.dataTransfer.
+        files[0]);
+    }
+
+    dropZoneElement44.classList.remove
+    ("dropzone--over");
+});
+
+const updateDropzoneFileList44 = 
+(dropzoneElement44, file) => {
+    let dropzoneFileMessage = 
+    dropzoneElement44.querySelector(".info-draganddrop-44");
+
+    dropzoneFileMessage.innerHTML = `
+        ${file.name}, ${file.size} bytes
+    `;
+};
+
+dropzoneBox44.addEventListener("reset",
+(e) => {
+    let dropzoneFileMessage = 
+    dropZoneElement44.querySelector(".info-draganddrop-44");
+
+    dropzoneFileMessage.innerHTML = `Tidak ada file yang di pilih`;
+});
+
+dropzoneBox44.addEventListener("submit",
+(e) => {
+    e.preventDefault();
+    const myFiled = document.getElementById
+    ("upload-file-form-44");
+    console.log(myFiled.files[0]);
+});
