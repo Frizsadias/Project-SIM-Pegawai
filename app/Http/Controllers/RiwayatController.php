@@ -51,6 +51,12 @@ class RiwayatController extends Controller
     public function pendidikan()
     {
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -71,7 +77,8 @@ class RiwayatController extends Controller
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
         $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
-        return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan', 'tingkatpendidikanOptions', 'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan', 'tingkatpendidikanOptions', 'pendidikanterakhirOptions',
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Pendidikan */
 
@@ -221,6 +228,13 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Golongan */
     public function golongan()
     {
+
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -237,7 +251,8 @@ class RiwayatController extends Controller
         $datagolongan = Session::get('user_id');
         $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
-        return view('riwayat.riwayat-golongan', compact('riwayatGolongan', 'golonganOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-golongan', compact('riwayatGolongan', 'golonganOptions', 
+             'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Golongan */
 
@@ -371,6 +386,13 @@ class RiwayatController extends Controller
     /** Tampilan riwayat jabatan */
     public function jabatan()
     {
+
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -388,7 +410,8 @@ class RiwayatController extends Controller
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
 
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
-        return view('riwayat.riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Jabatan */
 
@@ -519,6 +542,13 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Diklat */
     public function diklat()
     {
+
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -537,7 +567,8 @@ class RiwayatController extends Controller
         $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
 
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
-        return view('riwayat.riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Diklat */
 
@@ -664,6 +695,12 @@ class RiwayatController extends Controller
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
         $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -677,7 +714,7 @@ class RiwayatController extends Controller
             ->get();
 
         return view('riwayat/riwayat-pendidikan', compact('riwayatPendidikan', 'unreadNotifications', 'readNotifications',
-            'tingkatpendidikanOptions', 'pendidikanterakhirOptions'));
+            'tingkatpendidikanOptions', 'pendidikanterakhirOptions', 'result_tema'));
     }
 
     //Riwayat Golongan
@@ -698,6 +735,12 @@ class RiwayatController extends Controller
             ->where('no_sk_golongan', 'like', '%' . $no_sk_golongan . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -710,7 +753,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-golongan', compact('riwayatGolongan', 'unreadNotifications', 'readNotifications', 'golonganOptions'));
+        return view('riwayat/riwayat-golongan', compact('riwayatGolongan', 'unreadNotifications', 
+            'readNotifications', 'golonganOptions', 'result_tema'));
     }
 
     //Riwayat Jabatan
@@ -731,6 +775,12 @@ class RiwayatController extends Controller
 
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -744,7 +794,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat/riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
 
     //Riwayat Diklat
@@ -765,6 +816,12 @@ class RiwayatController extends Controller
 
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -778,7 +835,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat/riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
 
     //Riwayat Orang Tua
@@ -798,6 +856,12 @@ class RiwayatController extends Controller
             ->where('agama', 'like', '%' . $agama . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -810,7 +874,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-orang-tua', compact('riwayatOrtu', 'unreadNotifications', 'readNotifications', 'agamaOptions'));
+        return view('riwayat/riwayat-orang-tua', compact('riwayatOrtu', 'unreadNotifications', 
+            'readNotifications', 'agamaOptions', 'result_tema'));
     }
 
     //Riwayat Pasangan
@@ -830,6 +895,12 @@ class RiwayatController extends Controller
             ->where('agama', 'like', '%' . $agama . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -842,7 +913,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-pasangan', compact('riwayatPasangan', 'unreadNotifications', 'readNotifications', 'agamaOptions'));
+        return view('riwayat/riwayat-pasangan', compact('riwayatPasangan', 'unreadNotifications', 
+            'readNotifications', 'agamaOptions', 'result_tema'));
     }
 
     //Riwayat Anak
@@ -867,6 +939,12 @@ class RiwayatController extends Controller
             ->where('agama', 'like', '%' . $agama . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -879,7 +957,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-anak', compact('riwayatAnak', 'unreadNotifications', 'readNotifications', 'agamaOptions', 'userList'));
+        return view('riwayat/riwayat-anak', compact('riwayatAnak', 'unreadNotifications', 'readNotifications', 
+            'agamaOptions', 'userList', 'result_tema'));
     }
 
     //Riwayat Penghargaan
@@ -898,6 +977,12 @@ class RiwayatController extends Controller
             ->where('no_surat', 'like', '%' . $no_surat . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -910,7 +995,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-penghargaan', compact('riwayatPenghargaan', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat/riwayat-penghargaan', compact('riwayatPenghargaan', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
 
     //Riwayat Organisasi
@@ -929,6 +1015,12 @@ class RiwayatController extends Controller
             ->where('no_anggota', 'like', '%' . $no_anggota . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -941,7 +1033,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-organisasi', compact('riwayatOrganisasi', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat/riwayat-organisasi', compact('riwayatOrganisasi', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
 
     //Riwayat Tugas Belajar
@@ -962,6 +1055,12 @@ class RiwayatController extends Controller
             ->where('tingkat_pendidikan', 'like', '%' . $tingkat_pendidikan . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -974,7 +1073,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-tugas-belajar', compact('riwayatTB', 'unreadNotifications', 'readNotifications', 'tingkatpendidikanOptions', 'pendidikanOptions'));
+        return view('riwayat/riwayat-tugas-belajar', compact('riwayatTB', 'unreadNotifications', 
+            'readNotifications', 'tingkatpendidikanOptions', 'pendidikanOptions', 'result_tema'));
     }
 
     //Riwayat Hukuman Disiplin
@@ -993,6 +1093,12 @@ class RiwayatController extends Controller
             ->where('jenis_hukuman', 'like', '%' . $jenis_hukuman . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1005,7 +1111,8 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-hukuman-disiplin', compact('riwayatHD', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat/riwayat-hukuman-disiplin', compact('riwayatHD', 'unreadNotifications', 
+            'readNotifications', 'result_tema'));
     }
 
     //Riwayat Angka Kredit
@@ -1025,6 +1132,12 @@ class RiwayatController extends Controller
             ->where('tanggal_sk', 'like', '%' . $tanggal_sk . '%')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1037,13 +1150,20 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('riwayat/riwayat-angka-kredit', compact('riwayatAK', 'unreadNotifications', 'readNotifications', 'jenisjabatanOptions'));
+        return view('riwayat/riwayat-angka-kredit', compact('riwayatAK', 'unreadNotifications', 
+            'readNotifications', 'jenisjabatanOptions', 'result_tema'));
     }
 
     /** --------------------------------- Riwayat PMK --------------------------------- */
     /** Tampilan Riwayat PMK */
     public function pmk()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -1061,7 +1181,8 @@ class RiwayatController extends Controller
         $datapmk = Session::get('user_id');
         $riwayatPMK = RiwayatPMK::where('user_id', $datapmk)->get();
 
-        return view('riwayat.riwayat-pmk', compact('riwayatPMK', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-pmk', compact('riwayatPMK', 'unreadNotifications', 
+            'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat PMK */
 
@@ -1267,6 +1388,12 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Angka Kredit */
     public function angkakredit()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -1285,7 +1412,8 @@ class RiwayatController extends Controller
         $riwayatAK = RiwayatAngkaKredit::where('user_id', $dataAK)->get();
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
 
-        return view('riwayat.riwayat-angka-kredit', compact('riwayatAK', 'jenisjabatanOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-angka-kredit', compact('riwayatAK', 'jenisjabatanOptions', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Angka Kredit */
 
@@ -1479,6 +1607,12 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Hukuman Disiplin */
     public function hukumandisiplin()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -1496,7 +1630,8 @@ class RiwayatController extends Controller
         $dataHD = Session::get('user_id');
         $riwayatHD = RiwayatHukumanDisiplin::where('user_id', $dataHD)->get();
 
-        return view('riwayat.riwayat-hukuman-disiplin', compact('riwayatHD', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-hukuman-disiplin', compact('riwayatHD', 'unreadNotifications', 
+            'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Hukuman Disiplin */
 
@@ -1645,6 +1780,12 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Penghargaan */
     public function penghargaan()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -1662,7 +1803,8 @@ class RiwayatController extends Controller
         $dataPenghargaan = Session::get('user_id');
         $riwayatPenghargaan = RiwayatPenghargaan::where('user_id', $dataPenghargaan)->get();
 
-        return view('riwayat.riwayat-penghargaan', compact('riwayatPenghargaan', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-penghargaan', compact('riwayatPenghargaan', 'unreadNotifications', 
+            'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Penghargaan */
 
@@ -1769,6 +1911,12 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Organisasi */
     public function organisasi()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -1786,7 +1934,8 @@ class RiwayatController extends Controller
         $dataOrganisasi = Session::get('user_id');
         $riwayatOrganisasi = RiwayatOrganisasi::where('user_id', $dataOrganisasi)->get();
 
-        return view('riwayat.riwayat-organisasi', compact('riwayatOrganisasi', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-organisasi', compact('riwayatOrganisasi', 'unreadNotifications', 
+            'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Organisasi */
 
@@ -1896,6 +2045,12 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Tugas Belajar */
     public function tugasbelajar()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -1915,7 +2070,8 @@ class RiwayatController extends Controller
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
         $pendidikanOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
-        return view('riwayat.riwayat-tugas-belajar', compact('riwayatTB', 'tingkatpendidikanOptions', 'pendidikanOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-tugas-belajar', compact('riwayatTB', 'tingkatpendidikanOptions', 
+            'pendidikanOptions', 'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Tugas Belajar */
 
@@ -2021,6 +2177,12 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Pasangan */
     public function pasangan()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -2039,7 +2201,8 @@ class RiwayatController extends Controller
         $riwayatPasangan = RiwayatPasangan::where('user_id', $dataPasangan)->get();
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
-        return view('riwayat.riwayat-pasangan', compact('riwayatPasangan', 'agamaOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-pasangan', compact('riwayatPasangan', 'agamaOptions', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Pasangan */
 
@@ -2195,6 +2358,12 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Anak */
     public function anak()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -2217,7 +2386,8 @@ class RiwayatController extends Controller
         ->select('riwayat_pasangan.nama') // Adjust this line based on the actual column you want to retrieve
         ->get();
 
-        return view('riwayat.riwayat-anak', compact('userList', 'riwayatAnak', 'agamaOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-anak', compact('userList', 'riwayatAnak', 'agamaOptions', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Anak */
 
@@ -2361,6 +2531,12 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Orang Tua */
     public function orangtua()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
 
@@ -2379,7 +2555,8 @@ class RiwayatController extends Controller
         $riwayatOrtu = RiwayatOrangTua::where('user_id', $dataOrtu)->get();
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
-        return view('riwayat.riwayat-orang-tua', compact('riwayatOrtu', 'agamaOptions', 'unreadNotifications', 'readNotifications'));
+        return view('riwayat.riwayat-orang-tua', compact('riwayatOrtu', 'agamaOptions', 
+            'unreadNotifications', 'readNotifications', 'result_tema'));
     }
     /** End Tampilan Riwayat Orang Tua */
 

@@ -90,6 +90,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -109,7 +115,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Daftar Layanan Cuti User */
@@ -294,6 +301,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -315,7 +328,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Daftar Layanan Cuti Admin */
@@ -449,6 +463,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -470,7 +490,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Daftar Layanan Cuti Eselon 3 */
@@ -619,6 +640,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -640,7 +667,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Daftar Layanan Cuti Eselon 4 */
@@ -707,6 +735,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -721,7 +755,7 @@ class LayananController extends Controller
 
         return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_pribadi_kepalaruang', 'data_profilcuti_pribadi',
             'unreadNotifications', 'readNotifications', 'sisaCutiThisYear',
-            'sisaCutiLastYear', 'sisaCutiTwoYearsAgo'));
+            'sisaCutiLastYear', 'sisaCutiTwoYearsAgo', 'result_tema'));
     }
     /** /Daftar Layanan Cuti Super Admin */
 
@@ -916,6 +950,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+        
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -936,7 +976,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Search Layanan Cuti */
@@ -1040,6 +1081,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1061,7 +1108,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Search Layanan Cuti Admin */
@@ -1168,6 +1216,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1189,7 +1243,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Search Layanan Cuti Eselon 3 */
@@ -1312,6 +1367,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1333,7 +1394,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Search Layanan Cuti Eselon 4 */
@@ -1419,6 +1481,12 @@ class LayananController extends Controller
             $sisaCutiTwoYearsAgo = 0;
         }
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1439,7 +1507,8 @@ class LayananController extends Controller
             'readNotifications',
             'sisaCutiThisYear',
             'sisaCutiLastYear',
-            'sisaCutiTwoYearsAgo'
+            'sisaCutiTwoYearsAgo',
+            'result_tema'
         ));
     }
     /** /Search Layanan Cuti Super Admin */
@@ -1788,6 +1857,12 @@ class LayananController extends Controller
             ->where('role_name', '=', 'User')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1808,7 +1883,8 @@ class LayananController extends Controller
             'userList',
             'unreadNotifications',
             'readNotifications',
-            'data_kgb_pdf'
+            'data_kgb_pdf',
+            'result_tema'
         ));
     }
     /** /Tampilan Kenaikan Gaji Berkala */
@@ -1852,6 +1928,12 @@ class LayananController extends Controller
 
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1864,7 +1946,8 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.kenaikan-gaji-berkala', compact('data_kgb', 'data_kgb_result', 'golonganOptions', 'readNotifications', 'unreadNotifications'));
+        return view('layanan.kenaikan-gaji-berkala', compact('data_kgb', 'data_kgb_result', 'golonganOptions', 
+            'readNotifications', 'unreadNotifications', 'result_tema'));
     }
     /** /Tampilan Pencarian KGB User */
 
@@ -1926,6 +2009,12 @@ class LayananController extends Controller
 
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1939,7 +2028,7 @@ class LayananController extends Controller
             ->get();
 
         return view('layanan.kenaikan-gaji-berkala-admin', compact('data_kgb', 'data_kgb_pdf', 'userList',
-            'readNotifications', 'unreadNotifications', 'golonganOptions'));
+            'readNotifications', 'unreadNotifications', 'golonganOptions', 'result_tema'));
     }
     /** /Tampilan Pencarian KGB Admin */
 
@@ -1972,6 +2061,12 @@ class LayananController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -1987,7 +2082,7 @@ class LayananController extends Controller
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
         return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb',
-            'golonganOptions', 'data_kgb_result'));
+            'golonganOptions', 'data_kgb_result', 'result_tema'));
     }
 
     /** Tambah Data Kenaikan Gaji Berkala Pegawai */
@@ -2261,6 +2356,12 @@ class LayananController extends Controller
             ->where('role_name', '=', 'User')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -2273,7 +2374,9 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.perpanjang-kontrak', compact('data_perpanjang_kontrak', 'userList', 'unreadNotifications', 'readNotifications', 'data_profilpegawai', 'data_posisijabatan', 'data_perpanjang_pdf'));
+        return view('layanan.perpanjang-kontrak', compact('data_perpanjang_kontrak', 'userList', 
+            'unreadNotifications', 'readNotifications', 'data_profilpegawai', 'data_posisijabatan', 
+            'data_perpanjang_pdf', 'result_tema'));
     }
     /** /Tampilan Perpanjangan Kontrak */
 
@@ -2354,6 +2457,12 @@ class LayananController extends Controller
             ->where('role_name', '=', 'User')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -2373,7 +2482,8 @@ class LayananController extends Controller
             'userList',
             'data_profilpegawai',
             'data_posisijabatan',
-            'data_perpanjang_pdf'
+            'data_perpanjang_pdf',
+            'result_tema'
         ));
     }
 
@@ -2461,6 +2571,12 @@ class LayananController extends Controller
             ->where('role_name', '=', 'User')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -2480,7 +2596,8 @@ class LayananController extends Controller
             'userList',
             'data_profilpegawai',
             'data_posisijabatan',
-            'data_perpanjang_pdf'
+            'data_perpanjang_pdf',
+            'result_tema'
         ));
     }
     /** /Tampilan Pencarian Perpanjangan Kontrak Admin */
@@ -2555,6 +2672,12 @@ class LayananController extends Controller
         ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -2573,7 +2696,8 @@ class LayananController extends Controller
             'data_perpanjang_kontrak',
             'data_profilpegawai',
             'data_posisijabatan',
-            'data_perpanjang_pdf'
+            'data_perpanjang_pdf',
+            'result_tema'
         ));
     }
     /** /Tampilan Pencarian Perpanjangan Kontrak User */
@@ -2808,6 +2932,12 @@ class LayananController extends Controller
 
         $perjanjian = perjanjianKinerja::find(1);
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -2827,7 +2957,8 @@ class LayananController extends Controller
             'userList',
             'data_profilpegawai',
             'data_posisijabatan', 'data_perjanjian_pdf',
-            'perjanjian'
+            'perjanjian',
+            'result_tema'
         ));
     }
     /** /Tampilan Perjanjian Kontrak Admin */
@@ -2920,6 +3051,12 @@ class LayananController extends Controller
 
         $perjanjian = perjanjianKinerja::find(1);
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+        
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -2940,7 +3077,8 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_perjanjian_pdf',
-            'perjanjian'
+            'perjanjian',
+            'result_tema'
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kontrak Admin */
@@ -3017,6 +3155,12 @@ class LayananController extends Controller
 
         $perjanjian = perjanjianKinerja::find(1);
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3036,7 +3180,8 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_perjanjian_pdf',
-            'perjanjian'
+            'perjanjian',
+            'result_tema'
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kontrak User */
@@ -3088,6 +3233,12 @@ class LayananController extends Controller
             ->where('role_name', '=', 'User')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3106,7 +3257,8 @@ class LayananController extends Controller
             'data_perjanjian_kontrak',
             'userList',
             'data_profilpegawai',
-            'data_posisijabatan'
+            'data_posisijabatan',
+            'result_tema'
         ));
     }
 
@@ -3264,6 +3416,12 @@ class LayananController extends Controller
             ->select('profil_pegawai.*', 'profil_pegawai.name', 'posisi_jabatan.jabatan', 'users.avatar')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3276,7 +3434,8 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.peta-jabatan', compact('peta_jabatan_pdf', 'peta_jabatan_animasi', 'unreadNotifications', 'readNotifications'));
+        return view('layanan.peta-jabatan', compact('peta_jabatan_pdf', 'peta_jabatan_animasi', 
+             'unreadNotifications', 'readNotifications', 'result_tema'));
     }
 
     /** Daftar Layanan STR Admin */
@@ -3331,6 +3490,12 @@ class LayananController extends Controller
             ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3349,7 +3514,8 @@ class LayananController extends Controller
             'data_posisijabatan',
             'unreadNotifications',
             'readNotifications',
-            'userList'
+            'userList',
+            'result_tema'
         ));
     }
     /** /Daftar Layanan STR Admin */
@@ -3413,6 +3579,12 @@ class LayananController extends Controller
         ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3431,7 +3603,8 @@ class LayananController extends Controller
             'data_posisijabatan',
             'unreadNotifications',
             'readNotifications',
-            'userList'
+            'userList',
+            'result_tema'
         ));
     }
     /** /Tampilan Pencarian Layanan STR Admin */
@@ -3498,6 +3671,12 @@ class LayananController extends Controller
         ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3516,7 +3695,8 @@ class LayananController extends Controller
             'data_posisijabatan',
             'unreadNotifications',
             'readNotifications',
-            'userList'
+            'userList',
+            'result_tema'
         ));
     }
     /** /Tampilan Pencarian Layanan STR User */
@@ -3568,6 +3748,12 @@ class LayananController extends Controller
         ->where('profil_pegawai.user_id', $user_id)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3585,7 +3771,8 @@ class LayananController extends Controller
             'data_profil_str',
             'unreadNotifications',
             'readNotifications',
-            'userList'
+            'userList',
+            'result_tema'
         ));
     }
     /** /Daftar Layanan STR */
@@ -3771,6 +3958,12 @@ class LayananController extends Controller
         ->where('role_name', '=', 'User')
         ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3790,7 +3983,8 @@ class LayananController extends Controller
             'userList',
             'data_profilpegawai',
             'data_posisijabatan',
-            'data_kinerja_pdf'
+            'data_kinerja_pdf',
+            'result_tema'
         ));
     }
 
@@ -3858,6 +4052,12 @@ class LayananController extends Controller
         ->where('role_name', '=', 'User')
         ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3877,7 +4077,8 @@ class LayananController extends Controller
             'userList',
             'data_profilpegawai',
             'data_posisijabatan',
-            'data_kinerja_pdf'
+            'data_kinerja_pdf',
+            'result_tema'
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kinerja Admin */
@@ -3935,6 +4136,12 @@ class LayananController extends Controller
         ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -3953,7 +4160,8 @@ class LayananController extends Controller
             'data_perjanjian_kinerja',
             'data_profilpegawai',
             'data_posisijabatan',
-            'data_kinerja_pdf'
+            'data_kinerja_pdf',
+            'result_tema'
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kinerja User*/
@@ -4019,6 +4227,12 @@ class LayananController extends Controller
             ->where('role_name', '=', 'User')
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -4038,7 +4252,8 @@ class LayananController extends Controller
             'userList',
             'data_profilpegawai',
             'data_posisijabatan',
-            'data_kinerja_pdf'
+            'data_kinerja_pdf',
+            'result_tema'
         ));
     }
 
@@ -4170,6 +4385,12 @@ class LayananController extends Controller
         })
         ->get();
 
+    $user_id = auth()->user()->user_id;
+    $result_tema = DB::table('users')
+        ->select('users.*', 'users.tema_aplikasi')
+        ->where('users.user_id', $user_id)
+        ->get();
+
     $unreadNotifications = Notification::where('notifiable_id', auth()->user()->id)
         ->where('notifiable_type', get_class(auth()->user()))
         ->whereNull('read_at')
@@ -4184,6 +4405,7 @@ class LayananController extends Controller
         'data_ruangan',
         'unreadNotifications',
         'readNotifications',
+        'result_tema'
     ));
 }
     /** /Search Pegawai List Kepala Ruangan */
@@ -4204,6 +4426,12 @@ class LayananController extends Controller
             })
             ->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $unreadNotifications = Notification::where('notifiable_id', auth()->user()->id)
             ->where('notifiable_type', get_class(auth()->user()))
             ->whereNull('read_at')
@@ -4218,6 +4446,7 @@ class LayananController extends Controller
             'data_ruangan',
             'unreadNotifications',
             'readNotifications',
+            'result_tema'
         ));
     }
     /** /Search Pegawai Card Kepala Ruangan */
