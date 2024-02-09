@@ -51,12 +51,16 @@
 
     <style>
         body{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .peta-jabatan{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .fitur-tema{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .edit-icon{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .edit-icon-avatar{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .fitur-tema-sub-terang{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .fitur-tema-sub-gelap{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .view-icons .btn{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .page-item.disabled .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
+        
         .form-control{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .select2-dropdown {background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .select2-search--dropdown{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -108,6 +112,10 @@
         .info-draganddrop-42{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .info-draganddrop-43{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .info-draganddrop-44{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        table.table td h2 a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        svg{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .boc-input>label{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .text-muted{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .user-name{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .personal-info li .title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -179,6 +187,9 @@
         .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .btn-outline-secondary{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .page-item.active .page-link{background: {{ auth()->user()->warna_mode }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
+        .boc-light .boc-input>input, .boc-light .boc-input>select{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .apexcharts-tooltip.apexcharts-theme-light {background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropdown-item.active, .dropdown-item:active{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropdown-item:focus, .dropdown-item:hover{background-color: {{ auth()->user()->warna_mode }} !important; border-radius : 10px !important; width: 90% !important; margin-left: 10px !important;}
@@ -187,22 +198,20 @@
         .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .form-focus .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
 
-        .table-striped tbody tr:nth-of-type(odd){background-color: {{ auth()->user()->tabel_warna }} !important;}
-        .select2-container--default .select2-selection--single{background-color: {{ auth()->user()->tabel_warna }} !important;}
-
         .form-control::-webkit-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
         .form-control::-moz-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
         .form-control:-ms-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
         .form-control::-ms-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
         .form-control::placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
+        .form-focus .focus-label{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
+        
+        .table-striped tbody tr:nth-of-type(odd){background-color: {{ auth()->user()->tabel_warna }} !important;}
+        .select2-container--default .select2-selection--single{background-color: {{ auth()->user()->tabel_warna }} !important;}
 
         .dropdown-menu{background-color: {{ auth()->user()->warna_dropdown_menu }} !important;}
         .dash-widget-icon{background-color: {{ auth()->user()->ikon_plugin }} !important;}
         .header{background: {{ auth()->user()->warna_mode }} !important; box-shadow: {{ auth()->user()->bayangan_kotak_header }} !important;}
-        .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {background: {{ auth()->user()->warna_mode_2 }} !important;}
-
-        /* .bootstrap-datetimepicker-widget table {background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;} */
-        /* .bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {background-color: {{ auth()->user()->warna_sistem }} !important;} */
+        .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title{background: {{ auth()->user()->warna_mode_2 }} !important;}
     </style>
 
     <!-- Main Wrapper -->
@@ -267,7 +276,7 @@
                                     <button type="submit" class="dropdown-item" name="tema_aplikasi" value="Terang">
                                         <div class="fitur-tema-sub-terang">
                                             {{-- <i class="fa-regular fa-sun" style="color: #fdae4b; font-size: 20px; margin-top: 6px;"></i> --}}
-                                            <svg fill="currentColor" style="color: #fdae4b; margin-top: 1px; margin-left: 0px; width: 30px; height: 29px;" aria-hidden="true" data-slot="icon" viewBox="0 0 20 20" class="h-4 w-4 fill-hurricane">
+                                            <svg fill="currentColor" style="fill: #fdae4b !important; margin-top: 1px; margin-left: 0px; width: 30px; height: 29px;" aria-hidden="true" data-slot="icon" viewBox="0 0 20 20" class="h-4 w-4 fill-hurricane">
                                                 <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2Zm0 13a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.657-1.596a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06Zm-9.193 9.192a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10Zm9.596 5.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z"></path>
                                             </svg>
                                         </div>

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-// use App\Charts\AgamaChart;
 use App\Charts\GrafikChart;
 use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
+use DB;
+use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class RekapitulasiController extends Controller
 {

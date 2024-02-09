@@ -233,7 +233,7 @@ class UserManagementController extends Controller
                 "no"           => '<span class="id" data-id = '.$record->id.'>'.$start + ($key + 1).'</span>',
                 "name"         => $record->name,
                 "user_id"      => '<span class="user_id">'.$record->user_id.'</span>',
-                "email"        => '<a href="mailto:' . $record->email . '"><span class="email" style="color: black;">' . $record->email . '</span></a>',
+                "email"        => '<a href="mailto:' . $record->email . '"><span class="email">' . $record->email . '</span></a>',
                 "nip"     => '<span class="nip">'.$record->nip.'</span>',
                 "no_dokumen" => '<span class="no_dokumen">'.$record->no_dokumen.'</span>',
                 "join_date"    => $joinDate,
@@ -774,6 +774,7 @@ class UserManagementController extends Controller
             'name'          => 'required|string|max:255',
             'nip'           => 'required|string|max:255',
             'no_dokumen'    => 'required|string|max:255',
+            'tema_aplikasi' => 'required|string|max:255',
             'email'         => 'required|string|email|max:255|unique:users',
             'role_name'     => 'required|string|max:255',
             'status'        => 'required|string|max:255',
@@ -787,15 +788,16 @@ class UserManagementController extends Controller
             $todayDate = $dt->toDayDateTimeString();
 
             $user = new User;
-            $user->name         = $request->name;
-            $user->nip          = $request->nip;
-            $user->no_dokumen   = $request->no_dokumen;
-            $user->email        = $request->email;
-            $user->join_date    = $todayDate;
-            $user->role_name    = $request->role_name;
-            $user->status       = $request->status;
-            $user->avatar       = $request->image;
-            $user->password     = Hash::make($request->password);
+            $user->name             = $request->name;
+            $user->nip              = $request->nip;
+            $user->no_dokumen       = $request->no_dokumen;
+            $user->tema_aplikasi    = $request->tema_aplikasi;
+            $user->email            = $request->email;
+            $user->join_date        = $todayDate;
+            $user->role_name        = $request->role_name;
+            $user->status           = $request->status;
+            $user->avatar           = $request->image;
+            $user->password         = Hash::make($request->password);
             $user->save();
             DB::commit();
             Toastr::success('Data pengguna berhasil ditambah ✔', 'Success');

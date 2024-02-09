@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <script src="{{ asset('assets/js/querypetajabatan.js') }}"></script>
-                <div id="peta-jabatan-animasi"></div>
+                <div class="peta-jabatan" id="peta-jabatan-animasi"></div>
             </div>
 
             <body>

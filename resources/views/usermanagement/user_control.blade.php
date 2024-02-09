@@ -148,6 +148,7 @@
                                     <small class="text-danger">*Jika tidak memiliki <strong>NIKB</strong> maka dapat mengisikan tanda ( - )</small>
                                 </div>
                                 <input type="hidden" class="form-control" id="image" name="image" value="photo_defaults.jpg">
+                                <input type="hidden" class="form-control" id="" name="tema_aplikasi" value="Terang">
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
