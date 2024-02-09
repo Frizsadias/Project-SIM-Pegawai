@@ -30,7 +30,7 @@
                             </select>
                         </div>
                         <div class="col-sm-6 col-md-3">
-                            <button id="cetakDokumenKelengkapan" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan</button>
+                            <button id="cetakDokumenKelengkapan" class="btn btn-success" style="border-radius : 20px"><i  class="fa-solid fa-file-pdf"></i>Dokumen Kelengkapan</button>
                         </div>
                     </div><br>
                     <!-- /Cetak Dokumen Kelengkapan PDF -->

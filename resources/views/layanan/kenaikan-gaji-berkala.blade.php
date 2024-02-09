@@ -28,7 +28,7 @@
                 $lastKGB = $data_kgb->last();
             @endphp
             @if ($lastKGB)
-                <a href="{{ route('layanan-kenaikan-gaji-berkala', ['id' => $lastKGB->id]) }}" target="_blank" class="btn btn-success">
+                <a href="{{ route('layanan-kenaikan-gaji-berkala', ['id' => $lastKGB->id]) }}" target="_blank" class="btn btn-success" style="border-radius : 20px">
                     <i class="fa-solid fa-file-pdf"></i> Dokumen Kenaikan Gaji Berkala
                 </a>
             @else
