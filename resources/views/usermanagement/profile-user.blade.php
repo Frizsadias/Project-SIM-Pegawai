@@ -43,7 +43,7 @@
                                         <div class="col-md-5">
                                             <div class="pro-edit">
                                                 <a data-target="#profile_info_avatar" data-toggle="modal" class="edit-icon-avatar" href="#">
-                                                    <i class="fa fa-pencil"></i>
+                                                    <i class="fa-solid fa-camera-retro fa-lg"></i>
                                                 </a>
                                             </div>
                                             <div class="profile-info-left">

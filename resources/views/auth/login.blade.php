@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary account-btn" type="submit">Masuk</button>
+                                <button class="btn btn-primary account-btn" style="border-radius: 20px" type="submit">Masuk</button>
                             </div>
                             <div class="account-footer">
                                 <a style="color: #8e8e8e;"><strong>Copyright &copy;2023 - <script>document.write(new Date().getFullYear())</script> RSUD CARUBAN.</strong></a><br>

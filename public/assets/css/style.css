@@ -1366,7 +1366,7 @@ table.dataTable thead > tr > td.sorting {
     width: 21px;
 }
 .bar-icon span {
-    background-color: #fff;
+    background-color: #3b5c03;
     border-radius: 500px;
     display: block;
     float: left;
@@ -11410,4 +11410,52 @@ ul.nav-tabs > li > a {
 .fitur-kembali-2:hover .fitur-text {
 	visibility: visible;
 	opacity: 1;
+}
+
+.fitur-tema {
+    border-radius: 30px;
+    text-align: center;
+	background-color: #588113;
+    height: 40px;
+    width: 60px;
+    margin-top: 10px;
+	box-shadow: 0 0 #0000;
+}
+
+.fitur-tema-sub-terang {
+	 border-radius: 10px;
+	 text-align: center;
+	 background-color: rgb(17 24 39 / .07);
+	 height: 32px;
+	 width: 32px;
+	 margin-left: -6px;
+	 box-shadow: 0 0 #0000;
+}
+
+.fitur-tema-sub-gelap {
+	border-radius: 10px;
+	text-align: center;
+	background-color: rgb(17 24 39 / .07);
+	height: 32px;
+	width: 32px;
+	margin-left: -6px;
+	box-shadow: 0 0 #0000;
+}
+
+.fitur-tema-tulisan-terang {
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 600;
+    position: absolute;
+    margin-left: 38px;
+    margin-top: -27px;
+}
+
+.fitur-tema-tulisan-gelap {
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 600;
+    position: absolute;
+    margin-left: 38px;
+    margin-top: -27px;
 }

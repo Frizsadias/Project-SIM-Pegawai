@@ -69,8 +69,8 @@
                                     @enderror
                                 </div>
                             </div>
-Z                            <div class="form-group text-center">
-                                <button class="btn btn-primary account-btn" type="submit">Perbaharui</button>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary account-btn" style="border-radius: 20px" type="submit">Perbaharui</button>
                             </div>
                             <div class="account-footer">
                                 <a style="color: #8e8e8e;"><strong>Copyright &copy;2023 - <script>document.write(new Date().getFullYear())</script> RSUD CARUBAN.</strong></a><br>

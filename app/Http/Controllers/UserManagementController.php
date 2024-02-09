@@ -47,6 +47,12 @@ class UserManagementController extends Controller
             $role_name   = DB::table('role_type_users')->get();
             $status_user = DB::table('user_types')->get();
 
+            $user_id = auth()->user()->user_id;
+            $result_tema = DB::table('users')
+                ->select('users.*', 'users.tema_aplikasi')
+                ->where('users.user_id', $user_id)
+                ->get();
+
             $user = auth()->user();
             $role = $user->role_name;
             $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -59,13 +65,20 @@ class UserManagementController extends Controller
                 ->whereNotNull('read_at')
                 ->get();
 
-            return view('usermanagement.user_control', compact('result', 'role_name', 'status_user', 'unreadNotifications', 'readNotifications'));
+            return view('usermanagement.user_control', compact('result', 'role_name', 'status_user',
+                'unreadNotifications', 'readNotifications', 'result_tema'));
 
         } else if (Session::get('role_name') == 'Super Admin') {
             $result      = DB::table('users')->get();
             $role_name   = DB::table('role_type_users')->get();
             $status_user = DB::table('user_types')->get();
 
+            $user_id = auth()->user()->user_id;
+            $result_tema = DB::table('users')
+                ->select('users.*', 'users.tema_aplikasi')
+                ->where('users.user_id', $user_id)
+                ->get();
+
             $user = auth()->user();
             $role = $user->role_name;
             $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -78,7 +91,8 @@ class UserManagementController extends Controller
                 ->whereNotNull('read_at')
                 ->get();
 
-            return view('usermanagement.user_control', compact('result', 'role_name', 'status_user', 'unreadNotifications', 'readNotifications'));
+            return view('usermanagement.user_control', compact('result', 'role_name', 'status_user',
+                'unreadNotifications', 'readNotifications', 'result_tema'));
         } else {
             return redirect()->route('home');
         }
@@ -257,6 +271,12 @@ class UserManagementController extends Controller
     /** use activity log */
     public function activityLog()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -270,12 +290,18 @@ class UserManagementController extends Controller
             ->get();
         
         $activityLog = DB::table('user_activity_logs')->get();
-        return view('usermanagement.user_activity_log', compact('activityLog', 'unreadNotifications', 'readNotifications'));
+        return view('usermanagement.user_activity_log', compact('activityLog', 'unreadNotifications', 'readNotifications', 'result_tema'));
     }
 
     /** activity log */
     public function activityLogInLogOut()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -289,7 +315,7 @@ class UserManagementController extends Controller
             ->get();
 
         $activityLog = DB::table('activity_logs')->get();
-        return view('usermanagement.activity_log', compact('activityLog', 'unreadNotifications', 'readNotifications'));
+        return view('usermanagement.activity_log', compact('activityLog', 'unreadNotifications', 'readNotifications', 'result_tema'));
     }
 
     /** profile admin */
@@ -301,6 +327,12 @@ class UserManagementController extends Controller
         $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
+
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
 
         $user = auth()->user();
         $role = $user->role_name;
@@ -319,7 +351,7 @@ class UserManagementController extends Controller
             $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
             $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
             return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
@@ -327,13 +359,13 @@ class UserManagementController extends Controller
                 $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
                 $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
             } else {
                 $information = ProfileInformation::all();
                 $propeg = ProfilPegawai::all();
                 $posjab = PosisiJabatan::all();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
             }
         }
     }
@@ -348,6 +380,12 @@ class UserManagementController extends Controller
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -365,7 +403,7 @@ class UserManagementController extends Controller
             $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
             $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
             return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
@@ -373,13 +411,13 @@ class UserManagementController extends Controller
                 $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
                 $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
             } else {
                 $information = ProfileInformation::all();
                 $propeg = ProfilPegawai::all();
                 $posjab = PosisiJabatan::all();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
             }
         }
     }
@@ -393,6 +431,12 @@ class UserManagementController extends Controller
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -410,7 +454,7 @@ class UserManagementController extends Controller
             $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
             $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
             return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
@@ -418,13 +462,13 @@ class UserManagementController extends Controller
                 $propeg = DB::table('profil_pegawai')->where('user_id', $profile)->first();
                 $posjab = DB::table('posisi_jabatan')->where('user_id', $profile)->first();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
             } else {
                 $information = ProfileInformation::all();
                 $propeg = ProfilPegawai::all();
                 $posjab = PosisiJabatan::all();
                 return view('usermanagement.profile_user', compact('information', 'user', 'propeg', 'posjab', 'agamaOptions',
-                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions'));
+                    'pendidikanterakhirOptions', 'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
             }
         }
     }
@@ -483,6 +527,12 @@ class UserManagementController extends Controller
         $dataHD = Session::get('user_id');
         $riwayatHD = RiwayatHukumanDisiplin::where('user_id', $dataHD)->get();
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -522,7 +572,8 @@ class UserManagementController extends Controller
                 'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                 'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
                 'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
-                'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK', 'riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan', 'riwayatOrganisasi', 'riwayatHD'));
+                'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK', 'riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan',
+                'riwayatOrganisasi', 'riwayatHD', 'result_tema'));
         } else {
             $user_id = $employees->user_id;
             if ($user_id == $profile) {
@@ -531,14 +582,16 @@ class UserManagementController extends Controller
                     'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                     'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
                     'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
-                    'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK', 'riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan', 'riwayatOrganisasi', 'riwayatHD'));
+                    'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK', 'riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan',
+                    'riwayatOrganisasi', 'riwayatHD', 'result_tema'));
             } else {
                 $information = ProfileInformation::all();
                 return view('usermanagement.profile-user', compact('information', 'user', 'result_profilpegawai', 'result_posisijabatan', 'riwayatPendidikan',
                     'riwayatGolongan', 'riwayatJabatan', 'riwayatDiklat', 'sqluser', 'agamaOptions',
                     'jenispegawaiOptions', 'kedudukanOptions', 'tingkatpendidikanOptions', 'ruanganOptions', 'jenisjabatanOptions',
                     'golonganOptions', 'jenisdiklatOptions', 'unreadNotifications', 'readNotifications', 'pendidikanterakhirOptions',
-                    'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK','riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan', 'riwayatOrganisasi', 'riwayatHD'));
+                    'provinces', 'data_kgb', 'riwayatPMK', 'riwayatAK','riwayatOrtu', 'riwayatPasangan', 'riwayatAnak', 'riwayatPenghargaan',
+                    'riwayatOrganisasi', 'riwayatHD', 'result_tema'));
             }
         }
     }
@@ -849,6 +902,12 @@ class UserManagementController extends Controller
     /** view change password */
     public function changePasswordView()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -861,7 +920,7 @@ class UserManagementController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('settings.changepassword', compact('unreadNotifications', 'readNotifications'));
+        return view('settings.changepassword', compact('unreadNotifications', 'readNotifications', 'result_tema'));
     }
 
     /** change password in db */

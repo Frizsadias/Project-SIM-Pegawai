@@ -72,6 +72,7 @@ Auth::routes();
 // ----------------------------- main dashboard ------------------------------//
 Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
+    Route::patch('/update-tema/{id}', 'updateTemaAplikasi')->name('updateTemaAplikasi');
     Route::get('/notifikasi/dibaca/{id}', 'bacaNotifikasi')->name('notifikasi.dibaca');
     Route::post('/notifikasi/dibaca/semua', 'bacasemuaNotifikasi')->name('notifikasi.dibaca-semua');
     Route::get('/ulangtahun', 'ulangtahun')->name('ulangtahun');

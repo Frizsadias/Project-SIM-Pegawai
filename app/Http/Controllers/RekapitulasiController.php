@@ -13,6 +13,12 @@ class RekapitulasiController extends Controller
     public function index(GrafikChart $chart)
     {
 
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -33,7 +39,8 @@ class RekapitulasiController extends Controller
             'grafikPangkat' => $chart->grafikPangkat(),
             'dataPegawai' => $dataPegawai,
             'unreadNotifications' => $unreadNotifications,
-            'readNotifications' => $readNotifications
+            'readNotifications' => $readNotifications,
+            'result_tema' => $result_tema
         ]);
     }
 }

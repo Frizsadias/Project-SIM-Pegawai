@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
-use PDF;
+use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\User;
 use App\Models\CompanySettings;
 use App\Models\Notification;
@@ -86,6 +87,12 @@ class HomeController extends Controller
             $dataTempatTidurRuangBidara = ruangan::where('ruangan', 'Ruang Bidara/Ranap Jiwa')->sum('jumlah_tempat_tidur');
             $dataTempatTidurRuangNonPerawatan = ruangan::where('ruangan', 'Ruang Lain-Lain/Non Perawatan')->sum('jumlah_tempat_tidur');
 
+            $user_id = auth()->user()->user_id;
+            $result_tema = DB::table('users')
+                ->select('users.*', 'users.tema_aplikasi')
+                ->where('users.user_id', $user_id)
+                ->get();
+
             $user = auth()->user();
             $role = $user->role_name;
             $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -143,7 +150,8 @@ class HomeController extends Controller
                 'dataTempatTidurRuangBidara' => $dataTempatTidurRuangBidara,
                 'dataTempatTidurRuangNonPerawatan' => $dataTempatTidurRuangNonPerawatan,
                 'unreadNotifications' => $unreadNotifications,
-                'readNotifications' => $readNotifications
+                'readNotifications' => $readNotifications,
+                'result_tema' => $result_tema
             ]);
             
         }
@@ -189,6 +197,12 @@ class HomeController extends Controller
             $dataTempatTidurRuangUnitStroke = ruangan::where('ruangan', 'Ruang Unit Stroke')->sum('jumlah_tempat_tidur');
             $dataTempatTidurRuangBidara = ruangan::where('ruangan', 'Ruang Bidara/Ranap Jiwa')->sum('jumlah_tempat_tidur');
             $dataTempatTidurRuangNonPerawatan = ruangan::where('ruangan', 'Ruang Lain-Lain/Non Perawatan')->sum('jumlah_tempat_tidur');
+
+            $user_id = auth()->user()->user_id;
+            $result_tema = DB::table('users')
+                ->select('users.*', 'users.tema_aplikasi')
+                ->where('users.user_id', $user_id)
+                ->get();
 
             $user = auth()->user();
             $role = $user->role_name;
@@ -247,7 +261,8 @@ class HomeController extends Controller
                 'dataTempatTidurRuangBidara' => $dataTempatTidurRuangBidara,
                 'dataTempatTidurRuangNonPerawatan' => $dataTempatTidurRuangNonPerawatan,
                 'unreadNotifications' => $unreadNotifications,
-                'readNotifications' => $readNotifications
+                'readNotifications' => $readNotifications,
+                'result_tema' => $result_tema
             ]);
         }
 
@@ -320,6 +335,12 @@ class HomeController extends Controller
             $dataTempatTidurRuangUnitStroke = ruangan::where('ruangan', 'Ruang Unit Stroke')->sum('jumlah_tempat_tidur');
             $dataTempatTidurRuangBidara = ruangan::where('ruangan', 'Ruang Bidara/Ranap Jiwa')->sum('jumlah_tempat_tidur');
             $dataTempatTidurRuangNonPerawatan = ruangan::where('ruangan', 'Ruang Lain-Lain/Non Perawatan')->sum('jumlah_tempat_tidur');
+
+            $user_id = auth()->user()->user_id;
+            $result_tema = DB::table('users')
+                ->select('users.*', 'users.tema_aplikasi')
+                ->where('users.user_id', $user_id)
+                ->get();
 
             $user = auth()->user();
             $role = $user->role_name;
@@ -406,13 +427,20 @@ class HomeController extends Controller
                 'dataTempatTidurRuangBidara' => $dataTempatTidurRuangBidara,
                 'dataTempatTidurRuangNonPerawatan' => $dataTempatTidurRuangNonPerawatan,
                 'unreadNotifications' => $unreadNotifications,
-                'readNotifications' => $readNotifications
+                'readNotifications' => $readNotifications,
+                'result_tema' => $result_tema
             ]);
         }
 
         elseif ($user->role_name === 'User')
         {
             $tampilanPerusahaan = CompanySettings::where('id',1)->first();
+
+            $user_id = auth()->user()->user_id;
+            $result_tema = DB::table('users')
+                ->select('users.*', 'users.tema_aplikasi')
+                ->where('users.user_id', $user_id)
+                ->get();
 
             $user = auth()->user();
             $role = $user->role_name;
@@ -426,7 +454,8 @@ class HomeController extends Controller
                 ->whereNotNull('read_at')
                 ->get();
             
-            return view('dashboard.Halaman-user',compact('tampilanPerusahaan', 'unreadNotifications', 'readNotifications'));
+            return view('dashboard.Halaman-user',compact('tampilanPerusahaan', 'unreadNotifications',
+                'readNotifications', 'result_tema'));
         }
     }
 
@@ -525,5 +554,71 @@ class HomeController extends Controller
                 }
         }
         return back();
+    }
+
+    // public function tampilanTemaAplikasi()
+    // {
+    //     $user_id = auth()->user()->user_id;
+    //     $result_tema = DB::table('users')
+    //         ->select('users.*', 'users.tema_aplikasi')
+    //         ->where('users.user_id', $user_id)
+    //         ->get();
+
+    //     $user = auth()->user();
+    //     $role = $user->role_name;
+    //     $unreadNotifications = Notification::where('notifiable_id', $user->id)
+    //         ->where('notifiable_type', get_class($user))
+    //         ->whereNull('read_at')
+    //         ->get();
+
+    //     $readNotifications = Notification::where('notifiable_id', $user->id)
+    //         ->where('notifiable_type', get_class($user))
+    //         ->whereNotNull('read_at')
+    //         ->get();
+
+    //     return view('layouts.master', compact('result_tema', 'unreadNotifications', 'readNotifications'));
+    // }
+
+    public function updateTemaAplikasi(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+        $user = User::findOrFail($id);
+
+        $tema_aplikasi = $request->input('tema_aplikasi');
+        if ($tema_aplikasi == 'Terang') {
+            $user->tema_aplikasi = 'Terang';
+            $user->warna_sistem = null;
+            $user->warna_sistem_tulisan = null;
+            $user->warna_mode = null;
+            $user->tabel_warna = null;
+            $user->tabel_tulisan_tersembunyi = null;
+            $user->warna_dropdown_menu = null;
+            $user->ikon_plugin = null;
+            $user->bayangan_kotak_header = null;
+            $user->warna_mode_2 = null;
+
+        } elseif ($tema_aplikasi == 'Gelap') {
+            $user->tema_aplikasi = 'Gelap';
+            $user->warna_sistem = '#171527';
+            $user->warna_sistem_tulisan = 'white';
+            $user->warna_mode = '#292D3E';
+            $user->tabel_warna = 'rgba(0,0,0,.05)';
+            $user->tabel_tulisan_tersembunyi = '#a3a3a3';
+            $user->warna_dropdown_menu = 'rgb(31 28 54 / 1)';
+            $user->ikon_plugin = 'rgba(244, 59, 72, 0.6)';
+            $user->bayangan_kotak_header = '0 0.4px 5px rgb(255 255 255)';
+            $user->warna_mode_2 = '#2b2e3c';
+        }
+        $user->save();
+
+        DB::commit();
+        Toastr::success('Tema aplikasi berhasil diperbarui ✔', 'Success');
+        return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Tema aplikasi gagal diperbarui ✘', 'Error');
+            return redirect()->back();
+        }
     }
 }

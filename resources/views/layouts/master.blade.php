@@ -48,6 +48,163 @@
             color: red;
         }
     </style>
+
+    <style>
+        body{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .fitur-tema{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .edit-icon{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .edit-icon-avatar{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .fitur-tema-sub-terang{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .fitur-tema-sub-gelap{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .form-control{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .select2-dropdown {background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .select2-search--dropdown{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .select2-container--default .select2-search--dropdown .select2-search__field{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .card-title{color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .table{color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-pesan-form{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-1{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-2{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-3{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-4{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-5{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-6{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-7{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-8{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-9{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-10{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-11{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-12{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-13{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-14{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-15{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-16{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-17{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-18{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-19{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-20{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-21{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-22{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-23{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-24{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-25{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-26{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-27{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-28{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-29{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-30{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-31{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-32{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-33{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-34{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-35{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-36{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-37{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-38{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-39{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-40{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-41{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-42{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-43{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .info-draganddrop-44{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .text-muted{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .user-name{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .personal-info li .title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .personal-info li .text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .page-header .breadcrumb a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .page-header .breadcrumb{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .nav-tabs.nav-justified > li > a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .apexcharts-text{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .apexcharts-yaxis-label{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .fitur-tema-tulisan-terang{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .fitur-tema-tulisan-gelap{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .page-header .page-title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .page-header .breadcrumb-item.active{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropdown-item{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .notification-title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .clear-noti{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .noti-details{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .logo-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .fa{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .bar-icon span{background-color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .apexcharts-legend-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .apexcharts-xaxistooltip, .apexcharts-yaxistooltip{background: {{ auth()->user()->warna_mode }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+
+        .card{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .sidebar {background-color: {{ auth()->user()->warna_mode }} !important;}
+        .custom-table tr{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .modal-content{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-1{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-2{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-3{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-4{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-5{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-6{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-7{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-8{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-9{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-10{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-11{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-12{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-13{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-14{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-15{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-16{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-17{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-18{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-19{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-20{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-21{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-22{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-23{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-24{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-25{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-26{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-27{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-28{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-29{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-30{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-31{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-32{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-33{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-34{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-35{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-36{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-37{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-38{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-39{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-40{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-41{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .apexcharts-tooltip.apexcharts-theme-light {background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropdown-item.active, .dropdown-item:active{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .dropdown-item:focus, .dropdown-item:hover{background-color: {{ auth()->user()->warna_mode }} !important; border-radius : 10px !important; width: 90% !important; margin-left: 10px !important;}
+        .notifications ul.notification-list > li a:hover{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .input-group-text{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .form-focus .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+
+        .table-striped tbody tr:nth-of-type(odd){background-color: {{ auth()->user()->tabel_warna }} !important;}
+        .select2-container--default .select2-selection--single{background-color: {{ auth()->user()->tabel_warna }} !important;}
+
+        .form-control::-webkit-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
+        .form-control::-moz-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
+        .form-control:-ms-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
+        .form-control::-ms-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
+        .form-control::placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
+
+        .dropdown-menu{background-color: {{ auth()->user()->warna_dropdown_menu }} !important;}
+        .dash-widget-icon{background-color: {{ auth()->user()->ikon_plugin }} !important;}
+        .header{background: {{ auth()->user()->warna_mode }} !important; box-shadow: {{ auth()->user()->bayangan_kotak_header }} !important;}
+        .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {background: {{ auth()->user()->warna_mode_2 }} !important;}
+
+        /* .bootstrap-datetimepicker-widget table {background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;} */
+        /* .bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {background-color: {{ auth()->user()->warna_sistem }} !important;} */
+    </style>
+
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <!-- Loader -->
@@ -86,6 +243,53 @@
 
             <!-- Header Menu -->
             <ul class="nav user-menu">
+
+                <!-- Untuk Mengatur Tema Aplikasi -->
+                @foreach($result_tema as $sql_user => $aplikasi_tema)
+                    <div class="fitur-tema">
+                        <li class="nav-item dropdown">
+                            <a href="#" class="dropdown-toggle nav-link" id="temaAplikasi" data-toggle="dropdown" aria-expanded="false">
+                                @if ($aplikasi_tema->tema_aplikasi == 'Terang')
+                                    {{-- <i class="fa-regular fa-sun" style="color: #fdae4b; font-size: 25px;"></i> --}}
+                                    <svg fill="currentColor" style="color: #fdae4b; margin-top: -7px; margin-left: -4px; width: 37px; height: 37px;" aria-hidden="true" data-slot="icon" viewBox="0 0 20 20" class="h-4 w-4 fill-hurricane">
+                                        <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2Zm0 13a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.657-1.596a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06Zm-9.193 9.192a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10Zm9.596 5.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z"></path>
+                                    </svg>
+                                @elseif ($aplikasi_tema->tema_aplikasi == 'Gelap')
+                                    <i class="fa-solid fa-moon fa-rotate-by" style="color: #fdae4b; margin-top: -5px; font-size: 32px; --fa-rotate-angle: 320deg;"></i>
+                                @endif
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="temaAplikasi">
+                                <form action="{{ route('updateTemaAplikasi', $aplikasi_tema->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    
+                                    <!-- Untuk Mode Terang -->
+                                    <button type="submit" class="dropdown-item" name="tema_aplikasi" value="Terang">
+                                        <div class="fitur-tema-sub-terang">
+                                            {{-- <i class="fa-regular fa-sun" style="color: #fdae4b; font-size: 20px; margin-top: 6px;"></i> --}}
+                                            <svg fill="currentColor" style="color: #fdae4b; margin-top: 1px; margin-left: 0px; width: 30px; height: 29px;" aria-hidden="true" data-slot="icon" viewBox="0 0 20 20" class="h-4 w-4 fill-hurricane">
+                                                <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2Zm0 13a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.657-1.596a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06Zm-9.193 9.192a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10Zm9.596 5.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="fitur-tema-tulisan-terang">Terang</div>
+                                    </button>
+                                    <!-- /Untuk Mode Terang -->
+                                    
+                                    <!-- Untuk Mode Gelap -->
+                                    <button type="submit" class="dropdown-item" name="tema_aplikasi" value="Gelap">
+                                        <div class="fitur-tema-sub-gelap">
+                                            <i class="fa-solid fa-moon fa-rotate-by" style="color: #fdae4b; font-size: 24px; margin-top: 4px; margin-left: -2px; --fa-rotate-angle: 320deg;"></i>
+                                        </div>
+                                        <div class="fitur-tema-tulisan-gelap">Gelap</div>
+                                    </button>
+                                    <!-- /Untuk Mode Gelap -->
+                                    
+                                </form>
+                            </div>
+                        </li>
+                    </div>
+                @endforeach
+                <!-- /Untuk Mengatur Tema Aplikasi -->
 
                 <!-- Notifications -->
                 <li class="nav-item dropdown">

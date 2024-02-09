@@ -19,7 +19,8 @@ class CreateSequenceTblsTable extends Migration
         
         DB::table('sequence_tbls')->insert([
             ['id' => '1'],
-            ['id' => '2']
+            ['id' => '2'],
+            ['id' => '3']
         ]);
     }
 

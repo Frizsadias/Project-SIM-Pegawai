@@ -390,8 +390,8 @@
                 </div>
             </div>
             <div class="lihat-semua">
-                <button type="button" class="btn btn-info" id="lihatSemuaPegawaiRuang"><i class="fa fa-eye-slash"></i> Lihat Semua</button>
-                <button type="button" class="btn btn-info" id="sembunyikanPegawaiRuang" style="display: none;"><i class="fa fa-eye"></i> Sembunyikan</button>
+                <button type="button" class="btn btn-info" style="border-radius: 20px" id="lihatSemuaPegawaiRuang"><i class="fa fa-eye-slash"></i> Lihat Semua</button>
+                <button type="button" class="btn btn-info" id="sembunyikanPegawaiRuang" style="display: none;border-radius: 20px;"><i class="fa fa-eye"></i> Sembunyikan</button>
             </div><br>
 
             <div class="col-md-12">
@@ -772,8 +772,8 @@
                 </div>
             </div>
             <div class="lihat-semua">
-                <button type="button" class="btn btn-info" id="lihatSemuaTempatTidur"><i class="fa fa-eye-slash"></i> Lihat Semua</button>
-                <button type="button" class="btn btn-info" id="sembunyikanTempatTidur" style="display: none;"><i class="fa fa-eye"></i> Sembunyikan</button>
+                <button type="button" class="btn btn-info" style="border-radius: 20px" id="lihatSemuaTempatTidur"><i class="fa fa-eye-slash"></i> Lihat Semua</button>
+                <button type="button" class="btn btn-info" id="sembunyikanTempatTidur" style="display: none;border-radius: 20px;"><i class="fa fa-eye"></i> Sembunyikan</button>
             </div><br>
 
             <div class="col-md-12">
