@@ -33,7 +33,7 @@
                     </select>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <button id="cetakDokumenKelengkapan" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan</button>
+                    <button id="cetakDokumenKelengkapan" class="btn btn-success" style="border-radius: 20px"><i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan</button>
                 </div>
                 
                 <!-- Cetak Dokumen Rekomendasi PDF -->
@@ -46,7 +46,7 @@
                     </select>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <button id="cetakDokumenRekomendasi" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Rekomendasi</button>
+                    <button id="cetakDokumenRekomendasi" class="btn btn-success" style="border-radius: 20px"><i class="fa-solid fa-file-pdf"></i> Dokumen Rekomendasi</button>
                 </div>
 
                 <!-- Tampilan Lihat Semua Progress -->
@@ -55,7 +55,7 @@
                         $lastCuti = $data_cuti->last();
                     @endphp
                     @if ($lastCuti)
-                        <button type="button" class="btn btn-info" id="lihatSemua">
+                        <button type="button" class="btn btn-info" style="border-radius: 20px" id="lihatSemua">
                             <i id="icon2" class="fa fa-eye-slash"></i> Lihat Semua Progress
                         </button>
                     @else

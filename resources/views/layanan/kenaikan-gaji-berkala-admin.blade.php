@@ -34,7 +34,7 @@
                     </select>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <button id="cetakDokumenKBG" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Kenaikan Gaji Berkala</button>
+                    <button id="cetakDokumenKBG" class="btn btn-success" style="border-radius: 20px"><i class="fa-solid fa-file-pdf"></i> Dokumen Kenaikan Gaji Berkala</button>
                 </div>
             </div><br>
             <!-- /Cetak Dokumen KGB PDF -->

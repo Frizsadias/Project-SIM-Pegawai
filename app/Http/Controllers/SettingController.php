@@ -7,13 +7,32 @@ use Illuminate\Http\Request;
 use App\Models\CompanySettings;
 use App\Models\RolesPermissions;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Models\Notification;
 class SettingController extends Controller
 {
     /** company/settings/page */
     public function companySettings()
     {
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
+            ->get();
+
+        $user = auth()->user();
+        $role = $user->role_name;
+        $unreadNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
+            ->get();
+
+        $readNotifications = Notification::where('notifiable_id', $user->id)
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
         $companySettings = CompanySettings::where('id',1)->first();
-        return view('settings.companysettings',compact('companySettings'));
+        return view('settings.companysettings',compact('companySettings' ,'result_tema', 'unreadNotifications', 'readNotifications'));
     }
 
     /** save record company settings */

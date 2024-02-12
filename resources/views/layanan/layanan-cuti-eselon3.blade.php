@@ -30,7 +30,7 @@
                             </select>
                         </div>
                         <div class="col-sm-6 col-md-4">
-                            <button id="cetakDokumenKelengkapan" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan</button>&nbsp;&nbsp;
+                            <button id="cetakDokumenKelengkapan" class="btn btn-success" style="border-radius: 20px"><i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan</button>&nbsp;&nbsp;
                         </div>
                     </div><br>
                     <!-- /Cetak Dokumen Kelengkapan PDF -->
@@ -163,10 +163,10 @@
                                 $lastCuti = $data_cuti_pribadi->last();
                             @endphp
                             @if ($lastCuti)
-                                <a href="{{ route('layanan-cuti-kelengkapan2', ['id' => $lastCuti->id]) }}" target="_blank" class="btn btn-success">
+                                <a href="{{ route('layanan-cuti-kelengkapan2', ['id' => $lastCuti->id]) }}" target="_blank" class="btn btn-success" style="border-radius: 20px">
                                     <i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan
                                 </a>&nbsp;&nbsp;
-                                <button type="button" class="btn btn-info" id="lihatSemua">
+                                <button type="button" class="btn btn-info" style="border-radius: 20px" id="lihatSemua">
                                     <i id="icon2" class="fa fa-eye-slash"></i> Lihat Semua Progress
                                 </button>
                             @else

@@ -33,7 +33,7 @@
                     </select>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <button id="cetakDokumenPerjanjian" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i> Dokumen Perjanjian</button>
+                    <button id="cetakDokumenPerjanjian" class="btn btn-success" style="border-radius: 20px"><i class="fa-solid fa-file-pdf"></i> Dokumen Perjanjian</button>
                 </div>
             </div><br>
             <!-- /Cetak Dokumen Perjanjian PDF -->

@@ -60,7 +60,8 @@
         .fitur-tema-sub-gelap{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .view-icons .btn{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .page-item.disabled .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
-        
+        .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; border: 1px solid {{ auth()->user()->warna_mode }} !important;}
+        .datepicker{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .form-control{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .select2-dropdown {background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .select2-search--dropdown{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -112,6 +113,50 @@
         .info-draganddrop-42{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .info-draganddrop-43{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .info-draganddrop-44{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-1{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-2{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-3{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-4{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-5{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-6{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-7{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-8{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-9{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-10{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-11{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-12{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-13{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-14{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-15{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-16{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-17{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-18{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-19{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-20{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-21{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-22{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-23{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-24{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-25{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-26{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-27{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-28{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-29{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-30{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-31{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-32{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-33{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-34{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-35{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-36{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-37{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-38{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-39{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-40{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-41{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-42{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-43{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .dropzone-area-44{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
         table.table td h2 a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         svg{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -135,10 +180,12 @@
         .noti-details{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .logo-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .fa{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .cal-icon:after{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .bar-icon span{background-color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .apexcharts-legend-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .apexcharts-xaxistooltip, .apexcharts-yaxistooltip{background: {{ auth()->user()->warna_mode }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
 
+        .profile-widget{background-color: {{ auth()->user()->warna_mode }} !important;}
         .card{background-color: {{ auth()->user()->warna_mode }} !important;}
         .sidebar {background-color: {{ auth()->user()->warna_mode }} !important;}
         .custom-table tr{background-color: {{ auth()->user()->warna_mode }} !important;}
@@ -187,6 +234,8 @@
         .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .header{background: {{ auth()->user()->warna_mode }} !important; box-shadow: {{ auth()->user()->bayangan_kotak_header }} !important;}
+        .btn-white{background-color: {{ auth()->user()->warna_mode }} !important;}
         .btn-outline-secondary{background-color: {{ auth()->user()->warna_mode }} !important;}
         .page-item.active .page-link{background: {{ auth()->user()->warna_mode }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
         .boc-light .boc-input>input, .boc-light .boc-input>select{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -197,6 +246,7 @@
         .input-group-text{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .form-focus .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .custom-select{background: {{ auth()->user()->warna_mode }} url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='{{ auth()->user()->warna_sistem_tulisan }}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") right .75rem center/8px 10px no-repeat !important;}
 
         .form-control::-webkit-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
         .form-control::-moz-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
@@ -210,8 +260,14 @@
 
         .dropdown-menu{background-color: {{ auth()->user()->warna_dropdown_menu }} !important;}
         .dash-widget-icon{background-color: {{ auth()->user()->ikon_plugin }} !important;}
-        .header{background: {{ auth()->user()->warna_mode }} !important; box-shadow: {{ auth()->user()->bayangan_kotak_header }} !important;}
+        
         .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title{background: {{ auth()->user()->warna_mode_2 }} !important;}
+        .select2-container--default .select2-results__option--selected{background-color: {{ auth()->user()->warna_mode_2 }} !important;}
+
+        datepicker.datepicker::active{color: black !important}
+
+</style>
+
     </style>
 
     <!-- Main Wrapper -->

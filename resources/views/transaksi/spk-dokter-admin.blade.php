@@ -24,7 +24,7 @@
 
             {{-- Export Excel --}}
             <form action="{{ route('export-spk-dokter') }}" method="GET">
-                <button type="submit" name="export" value="true" class="btn btn-success">
+                <button type="submit" name="export" value="true" class="btn btn-success" style="border-radius: 20px">
                     <i class="fa fa-file-excel"></i> Export Excel
                 </button>
             </form><br>

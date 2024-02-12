@@ -188,16 +188,16 @@ class UserManagementController extends Controller
             /** status */
             $full_status = '
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-success"></i> Active </a>
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-warning"></i> Inactive </a>
-                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-danger"></i> Disable </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-success" style="color: #55ce63 !important;"></i> Active </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-warning" style="color: #ffbc34 !important;"></i> Inactive </a>
+                    <a class="dropdown-item"><i class="fa fa-dot-circle-o text-danger" style="color: #f62d51 !important;"></i> Disable </a>
                 </div>
             ';
 
             if ($record->status == 'Active') {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-dot-circle-o text-success"></i>
+                        <i class="fa fa-dot-circle-o text-success" style="color: #55ce63 !important;"></i>
                         <span class="status_s">'.$record->status.'</span>
                     </a>
                     '.$full_status.'
@@ -205,7 +205,7 @@ class UserManagementController extends Controller
             } elseif ($record->status == 'Inactive') {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-dot-circle-o text-info"></i>
+                        <i class="fa fa-dot-circle-o text-info" style="color: #ffbc34 !important;"></i>
                         <span class="status_s">'.$record->status.'</span>
                     </a>
                     '.$full_status.'
@@ -213,7 +213,7 @@ class UserManagementController extends Controller
             } elseif ($record->status == 'Disable') {
                 $status = '
                     <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-dot-circle-o text-danger"></i>
+                        <i class="fa fa-dot-circle-o text-danger" style="color: #f62d51 !important;"></i>
                         <span class="status_s">'.$record->status.'</span>
                     </a>
                     '.$full_status.'

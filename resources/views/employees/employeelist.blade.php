@@ -25,6 +25,14 @@
             </div>
             <!-- /Page Header -->
 
+            <!-- Export Excel -->
+            <form action="{{ route('export-daftar-pegawai') }}" method="GET">
+                <button type="submit" name="export" value="true" class="btn btn-success" style="border-radius : 20px">
+                    <i class="fa fa-file-excel"></i> Export Excel
+                </button>
+            </form>
+            <br>
+
             <!-- Search Filter -->
             <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
                 @csrf
@@ -53,14 +61,6 @@
                 </div>
             </form>
             <!-- Search Filter -->
-
-            <!-- Export Excel -->
-            <form action="{{ route('export-daftar-pegawai') }}" method="GET">
-                <button type="submit" name="export" value="true" class="btn btn-success" style="border-radius : 20px">
-                    <i class="fa fa-file-excel"></i> Export Excel
-                </button>
-            </form>
-            <br>
 
             {{-- message --}}
             {!! Toastr::message() !!}
