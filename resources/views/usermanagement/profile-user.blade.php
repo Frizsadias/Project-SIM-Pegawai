@@ -2312,6 +2312,7 @@
         </script>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
         <!-- /FancyBox Foto Profil -->
 
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>

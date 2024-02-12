@@ -103,6 +103,7 @@
                 document.getElementById('pageTitle').innerHTML = 'Pengaturan Ubah Kata Sandi - Eselon 4 | Aplikasi SILK';
             @endif
         </script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection
 @endsection

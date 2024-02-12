@@ -81,6 +81,8 @@
     <!-- /Page Wrapper -->
     @section('script')
         <script>
+            <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
+            
             @if (Auth::user()->role_name == 'Admin') 
                 document.getElementById('pageTitle').innerHTML = 'Manajemen Daftar Pegawai - Admin | Aplikasi SILK';
             @endif

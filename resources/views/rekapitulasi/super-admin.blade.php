@@ -91,6 +91,7 @@
         <script>
             document.getElementById('pageTitle').innerHTML = 'Data Statistik - Super Admin | Aplikasi SILK';
         </script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection
 @endsection

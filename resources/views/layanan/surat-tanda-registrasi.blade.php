@@ -348,6 +348,7 @@
     @section('script')
         <script src="{{ asset('assets/js/str.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             history.pushState({}, "", '/layanan/surat-tanda-registrasi');

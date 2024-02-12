@@ -69,5 +69,6 @@
     </div>
     @section('script')
         <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
     @endsection
 @endsection

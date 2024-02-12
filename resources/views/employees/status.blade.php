@@ -225,6 +225,7 @@
         </script>
 
         <script src="{{ asset('assets/js/status.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             history.pushState({}, "", '/referensi/status');

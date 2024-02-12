@@ -349,6 +349,7 @@
     @section('script')
         <script src="{{ asset('assets/js/spkdokter.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             $(".theSelect").select2();

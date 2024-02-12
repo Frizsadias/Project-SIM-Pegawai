@@ -383,6 +383,7 @@
 
         <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
         <script src="{{ asset('assets/js/usercontrol.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             document.getElementById('pageTitle').innerHTML = 'Manajemen Daftar Pengguna - Admin | Aplikasi SILK';

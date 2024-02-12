@@ -281,6 +281,7 @@
             history.pushState({}, "", '/layanan/perjanjian-kinerja-admin');
         </script>
 
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
         <script>
             document.getElementById('pageTitle').innerHTML = 'Layanan Perjanjian Kinerja - Admin | Aplikasi SILK';
         </script>

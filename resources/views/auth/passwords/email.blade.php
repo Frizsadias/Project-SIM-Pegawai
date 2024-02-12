@@ -45,6 +45,7 @@
     
     @section('script')
         <script src="https://kit.fontawesome.com/95e99ea6db.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection
 @endsection

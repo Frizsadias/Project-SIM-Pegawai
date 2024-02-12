@@ -109,6 +109,7 @@
         <script>
             history.pushState({}, "", '/daftar/pegawai/pensiun/list');
         </script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection
 @endsection

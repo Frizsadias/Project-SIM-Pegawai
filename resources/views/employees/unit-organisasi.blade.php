@@ -183,6 +183,7 @@
     <!-- /Page Wrapper -->
     @section('script')
         <script src="{{ asset('assets/js/unor.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             history.pushState({}, "", '/referensi/unit/organisasi');

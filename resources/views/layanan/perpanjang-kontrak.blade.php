@@ -287,6 +287,7 @@
 
 @section('script')
         <script src="{{ asset('assets/js/perpanjangankontrak.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             $(document).ready(function() {

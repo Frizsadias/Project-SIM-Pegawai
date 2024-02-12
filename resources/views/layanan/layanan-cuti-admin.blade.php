@@ -504,6 +504,7 @@
         <script src="{{ asset('assets/js/layanancuti.js') }}"></script>
         <script src="{{ asset('assets/js/pengajuancuti.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             history.pushState({}, "", '/layanan/cuti/admin');

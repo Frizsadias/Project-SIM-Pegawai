@@ -88,6 +88,7 @@
         <script>
             history.pushState({}, "", '/daftar/pegawai/pensiun/card');
         </script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection
 @endsection

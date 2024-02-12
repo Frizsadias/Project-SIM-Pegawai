@@ -222,6 +222,7 @@
         </script>
 
         <script src="{{ asset('assets/js/referensiruangan.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             history.pushState({}, "", '/referensi/ruangan');

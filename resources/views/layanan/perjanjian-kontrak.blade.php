@@ -290,6 +290,7 @@
 
     @section('script')
         <script src="{{ asset('assets/js/perjanjiankontrak.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             history.pushState({}, "", '/layanan/perjanjian-kontrak');

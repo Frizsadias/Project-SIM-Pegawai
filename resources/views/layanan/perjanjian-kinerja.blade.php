@@ -234,6 +234,7 @@
 
     @section('script')
         <script src="{{ asset('assets/js/perjanjiankinerja.js') }}"></script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>
             $(document).ready(function() {

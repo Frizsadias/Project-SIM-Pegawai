@@ -7157,6 +7157,7 @@
                 }
             });
         </script>
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection
 @endsection
