@@ -62,10 +62,14 @@
         .page-item.disabled .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
         .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; border: 1px solid {{ auth()->user()->warna_mode }} !important;}
         .datepicker{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .form-control{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .select2-dropdown {background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .select2-search--dropdown{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .select2-container--default .select2-search--dropdown .select2-search__field{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .bootstrap-datetimepicker-widget table td.day:hover,
+        .bootstrap-datetimepicker-widget table td.hour:hover,
+        .bootstrap-datetimepicker-widget table td.minute:hover,
+        .bootstrap-datetimepicker-widget table td.second:hover{color: {{ auth()->user()->warna_sistem }} !important}
+
         .card-title{color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .table{color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .info-pesan-form{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -183,8 +187,9 @@
         .cal-icon:after{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .bar-icon span{background-color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .apexcharts-legend-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .apexcharts-xaxistooltip, .apexcharts-yaxistooltip{background: {{ auth()->user()->warna_mode }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
 
+        .apexcharts-xaxistooltip, .apexcharts-yaxistooltip{background: {{ auth()->user()->warna_mode }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .form-control{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .profile-widget{background-color: {{ auth()->user()->warna_mode }} !important;}
         .card{background-color: {{ auth()->user()->warna_mode }} !important;}
         .sidebar {background-color: {{ auth()->user()->warna_mode }} !important;}
@@ -234,6 +239,7 @@
         .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .profile-img-wrap{background : {{ auth()->user()->warna_mode }} !important;}
         .header{background: {{ auth()->user()->warna_mode }} !important; box-shadow: {{ auth()->user()->bayangan_kotak_header }} !important;}
         .btn-white{background-color: {{ auth()->user()->warna_mode }} !important;}
         .btn-outline-secondary{background-color: {{ auth()->user()->warna_mode }} !important;}
@@ -262,12 +268,7 @@
         .dash-widget-icon{background-color: {{ auth()->user()->ikon_plugin }} !important;}
         
         .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title{background: {{ auth()->user()->warna_mode_2 }} !important;}
-        .select2-container--default .select2-results__option--selected{background-color: {{ auth()->user()->warna_mode_2 }} !important;}
-
-        datepicker.datepicker::active{color: black !important}
-
-</style>
-
+        .select2-container--default .select2-results__option--selected{background-color: {{ auth()->user()->warna_mode_2 }} !important;}.dropzone-box-4
     </style>
 
     <!-- Main Wrapper -->
