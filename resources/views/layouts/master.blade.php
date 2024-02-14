@@ -38,7 +38,7 @@
     <script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
 </head>
 
-<body>
+<body oncontextmenu="return false">
     @yield('style')
     <style>
         .invalid-feedback {
@@ -268,7 +268,7 @@
         .dash-widget-icon{background-color: {{ auth()->user()->ikon_plugin }} !important;}
         
         .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title{background: {{ auth()->user()->warna_mode_2 }} !important;}
-        .select2-container--default .select2-results__option--selected{background-color: {{ auth()->user()->warna_mode_2 }} !important;}.dropzone-box-4
+        .select2-container--default .select2-results__option--selected{background-color: {{ auth()->user()->warna_mode_2 }} !important;}
     </style>
 
     <!-- Main Wrapper -->

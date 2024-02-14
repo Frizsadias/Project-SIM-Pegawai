@@ -36,7 +36,7 @@
         </script>
 
     </head>
-    <body class="account-page error-page">
+    <body class="account-page error-page" oncontextmenu="return false">
         <style>    
             .invalid-feedback{
                 font-size: 14px;
