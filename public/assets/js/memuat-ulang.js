@@ -6,6 +6,12 @@ document.querySelectorAll('input, textarea').forEach(element => {
     });
 });
 
+document.querySelectorAll('form').forEach(element => {
+    element.addEventListener('submit', () => {
+        formIsDirty = false;
+    });
+});
+
 window.addEventListener("beforeunload", (event) => {
     if (formIsDirty) {
         event.preventDefault();
