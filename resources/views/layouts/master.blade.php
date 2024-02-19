@@ -540,18 +540,21 @@
                     <i class="fa fa-ellipsis-v"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                @if (Auth::user()->role_name == 'Admin')
-                    <a class="dropdown-item" href="{{ route('admin-profile') }}">Profil Saya</a>
-                @endif
-                @if (Auth::user()->role_name == 'Super Admin')
-                    <a class="dropdown-item" href="{{ route('super-admin-profile') }}">Profil Saya</a>
-                @endif
-                @if (Auth::user()->role_name == 'User')
-                    <a class="dropdown-item" href="{{ route('user-profile') }}">Profil Saya</a>
-                @endif
-                @if (Auth::user()->role_name == 'Admin' || Auth::user()->role_name == 'Super Admin')
-                    <a class="dropdown-item" href="{{ route('pengaturan-perusahaan') }}">Pengaturan</a>
-                @endif
+                    @if (Auth::user()->role_name == 'Admin')
+                        <a class="dropdown-item" href="{{ route('admin-profile') }}">Profil Saya</a>
+                    @endif
+                    @if (Auth::user()->role_name == 'Super Admin')
+                        <a class="dropdown-item" href="{{ route('super-admin-profile') }}">Profil Saya</a>
+                    @endif
+                    @if (Auth::user()->role_name == 'Kepala Ruang')
+                        <a class="dropdown-item" href="{{ route('kepala-ruangan-profile') }}">Profil Saya</a>
+                    @endif
+                    @if (Auth::user()->role_name == 'User')
+                        <a class="dropdown-item" href="{{ route('user-profile') }}">Profil Saya</a>
+                    @endif                        
+                    @if (Auth::user()->role_name == 'Admin' || Auth::user()->role_name == 'Super Admin')
+                        <a class="dropdown-item" href="{{ route('pengaturan-perusahaan') }}">Pengaturan</a>
+                    @endif
                     <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>
