@@ -54,10 +54,13 @@
         .peta-jabatan{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .fitur-tema{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .fitur-tema2{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .edit-icon{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .edit-icon-avatar{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .fitur-tema-sub-terang{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .fitur-tema2-sub-terang{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .fitur-tema-sub-gelap{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .fitur-tema2-sub-gelap{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .view-icons .btn{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .page-item.disabled .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
         .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; border: 1px solid {{ auth()->user()->warna_mode }} !important;}
@@ -175,7 +178,9 @@
         .apexcharts-text{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .apexcharts-yaxis-label{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .fitur-tema-tulisan-terang{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .fitur-tema2-tulisan-terang{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .fitur-tema-tulisan-gelap{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .fitur-tema2-tulisan-gelap{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .page-header .page-title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .page-header .breadcrumb-item.active{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .dropdown-item{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -288,6 +293,54 @@
 
         <!-- Header -->
         <div class="header">
+            
+            <!-- Untuk Mengatur Tema Aplikasi -->
+                @foreach($result_tema as $sql_user => $aplikasi_tema)
+                    <div class="fitur-tema2">
+                        <li class="nav-item dropdown">
+                            <a href="#" class="dropdown-toggle nav-link" id="temaAplikasi" data-toggle="dropdown" aria-expanded="false">
+                                @if ($aplikasi_tema->tema_aplikasi == 'Terang')
+                                    {{-- <i class="fa-regular fa-sun" style="color: #fdae4b; font-size: 25px;"></i> --}}
+                                    <svg fill="currentColor" style="color: #fdae4b; margin-top: -7px; margin-left: -4px; width: 37px; height: 37px;" aria-hidden="true" data-slot="icon" viewBox="0 0 20 20" class="h-4 w-4 fill-hurricane">
+                                        <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2Zm0 13a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.657-1.596a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06Zm-9.193 9.192a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10Zm9.596 5.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z"></path>
+                                    </svg>
+                                @elseif ($aplikasi_tema->tema_aplikasi == 'Gelap')
+                                    <i class="fa-solid fa-moon fa-rotate-by" style="color: #fdae4b; margin-top: -5px; font-size: 32px; --fa-rotate-angle: 320deg;"></i>
+                                @endif
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="temaAplikasi">
+                                <form action="{{ route('updateTemaAplikasi', $aplikasi_tema->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    
+                                    <!-- Untuk Mode Terang -->
+                                    <button type="submit" class="dropdown-item" name="tema_aplikasi" value="Terang">
+                                        <div class="fitur-tema2-sub-terang">
+                                            {{-- <i class="fa-regular fa-sun" style="color: #fdae4b; font-size: 20px; margin-top: 6px;"></i> --}}
+                                            <svg fill="currentColor" style="fill: #fdae4b !important; margin-top: 1px; margin-left: 0px; width: 30px; height: 29px;" aria-hidden="true" data-slot="icon" viewBox="0 0 20 20" class="h-4 w-4 fill-hurricane">
+                                                <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2Zm0 13a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.657-1.596a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06Zm-9.193 9.192a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10Zm9.596 5.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="fitur-tema2-tulisan-terang">Terang</div>
+                                    </button>
+                                    <!-- /Untuk Mode Terang -->
+                                    
+                                    <!-- Untuk Mode Gelap -->
+                                    <button type="submit" class="dropdown-item" name="tema_aplikasi" value="Gelap">
+                                        <div class="fitur-tema2-sub-gelap">
+                                            <i class="fa-solid fa-moon fa-rotate-by" style="color: #fdae4b; font-size: 24px; margin-top: 4px; margin-left: -2px; --fa-rotate-angle: 320deg;"></i>
+                                        </div>
+                                        <div class="fitur-tema2-tulisan-gelap">Gelap</div>
+                                    </button>
+                                    <!-- /Untuk Mode Gelap -->
+                                    
+                                </form>
+                            </div>
+                        </li>
+                    </div>
+                @endforeach
+            <!-- /Untuk Mengatur Tema Aplikasi -->
+
             <!-- Logo -->
             <div class="header-left">
                 <a href="{{ route('home') }}" class="logo" style="font-size: 24px; color: #3b5c03; font-weight: bold;">

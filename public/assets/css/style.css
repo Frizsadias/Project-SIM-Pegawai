@@ -1351,7 +1351,7 @@ table.dataTable thead > tr > td.sorting {
 	float: left;
 	height: 60px;
 	padding: 0 20px;
-	position: relative;
+	/* position: relative; */
 	text-align: center;
 	width: 230px;
 	z-index: 1;
@@ -8054,6 +8054,9 @@ ul.comment-list li ul.children {
 	}
 }
 @media only screen and (max-width: 991.98px) {
+	.nav {
+		margin-top: -60px !important;
+	}
 	.profile-rightbar {
 		display: inline-block !important;
 	}
@@ -8116,7 +8119,7 @@ ul.comment-list li ul.children {
 		left: 0;
 	}
 	.header .header-left {
-		position: absolute;
+		/* position: absolute; */
 		width: 100%;
 	}
 	.mobile_btn {
@@ -8543,6 +8546,42 @@ ul.comment-list li ul.children {
 	.add-btn {
 		font-size: 14px;
 		min-width: inherit;
+	}
+}
+@media only screen and (max-width: 425.98px) {
+	.header .header-left {
+		width: 100%;
+		margin-top: -50px;
+	}
+
+	.fitur-tema2 {
+		display: inline-block !important;
+		list-style-type: none;
+		margin-left: 320px;
+	}
+}
+@media only screen and (max-width: 375.98px) {
+	.header .header-left {
+		width: 100%;
+		margin-top: -50px;
+	}
+	
+	.fitur-tema2 {
+		display: inline-block !important;
+		list-style-type: none;
+		margin-left: 270px !important;
+	}
+}
+@media only screen and (max-width: 320.98px) {
+	.header .header-left {
+		width: 100%;
+		margin-top: -50px;
+	}
+	
+	.fitur-tema2 {
+		display: inline-block !important;
+		list-style-type: none;
+		margin-left: 220px !important;
 	}
 }
 /*Project Board*/
@@ -11462,4 +11501,54 @@ ul.nav-tabs > li > a {
 
 .peta-jabatan{
 	background-color: #fff;
+}
+
+.fitur-tema2 {
+	display: none;
+    border-radius: 30px;
+    text-align: center;
+	background-color: #588113;
+    height: 40px;
+    width: 60px;
+    margin-top: 10px;
+	box-shadow: 0 0 #0000;
+	/* padding:0 20px 20px 0; */
+}
+
+.fitur-tema2-sub-terang {
+	 border-radius: 10px;
+	 text-align: center;
+	 background-color: rgb(17 24 39 / .07);
+	 height: 32px;
+	 width: 32px;
+	 margin-left: -6px;
+	 box-shadow: 0 0 #0000;
+}
+
+.fitur-tema2-sub-gelap {
+	border-radius: 10px;
+	text-align: center;
+	background-color: rgb(17 24 39 / .07);
+	height: 32px;
+	width: 32px;
+	margin-left: -6px;
+	box-shadow: 0 0 #0000;
+}
+
+.fitur-tema2-tulisan-terang {
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 600;
+    position: absolute;
+    margin-left: 38px;
+    margin-top: -27px;
+}
+
+.fitur-tema2-tulisan-gelap {
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 600;
+    position: absolute;
+    margin-left: 38px;
+    margin-top: -27px;
 }
