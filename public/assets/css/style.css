@@ -1606,6 +1606,7 @@ table.dataTable thead > tr > td.sorting {
 }
 .mobile-user-menu > .dropdown-menu > a {
     line-height: 23px;
+	color:black;
 }
 .profile-rightbar {
 	display: none !important;
