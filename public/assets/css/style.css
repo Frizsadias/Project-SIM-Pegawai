@@ -1655,7 +1655,7 @@ table.dataTable thead > tr > td.sorting {
 	-o-transition: -o-transform 0.15s;
 	transition: transform .15s;
 	position: absolute;
-	right: 15px;
+	right: 25px;
 	display: inline-block;
 	font-family: 'FontAwesome';
 	text-rendering: auto;
