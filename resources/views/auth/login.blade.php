@@ -15,12 +15,19 @@
                             @csrf
                             <div class="form-group">
                                 <label>NIP/NIKB</label>
-                                <input type="text" class="form-control @error('nip_or_no_dokumen') is-invalid @enderror" name="nip_or_no_dokumen" value="{{ old('nip_or_no_dokumen') }}" placeholder="Masukkan NIP atau NIKB">
-                                @error('nip_or_no_dokumen')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="input-group">
+                                    <input type="text" class="form-control @error('nip_or_no_dokumen') is-invalid @enderror" name="nip_or_no_dokumen" value="{{ old('nip_or_no_dokumen') }}" placeholder="Masukkan NIP atau NIKB">
+                                    <div class="input-group-append">
+                                        <button type="button" class="form-control-text" disabled>
+                                            <i class="fa solid fa-address-card"></i>
+                                        </button>
+                                    </div>
+                                    @error('nip_or_no_dokumen')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">

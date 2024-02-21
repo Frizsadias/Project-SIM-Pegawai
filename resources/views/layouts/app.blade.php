@@ -8,7 +8,7 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="soengsouy">
         <meta name="robots" content="noindex, nofollow">
-        <title>Aplikasi SILK | Login</title>
+        <title id="pageTitle">Login | Aplikasi SILK</title>
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" sizes="512x512" href="{{ URL::to('assets/img/favicon.png') }}">
 		<!-- Bootstrap CSS -->

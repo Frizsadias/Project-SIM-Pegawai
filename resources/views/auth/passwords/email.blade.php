@@ -8,7 +8,7 @@
                 <!-- /Account Logo -->
                 <div class="fitur-kembali">
                     <a href="{{ route('login') }}">
-                        <i class="fa-solid fa-backward fa-2xl" style="position: absolute; color: #fc7474; font-size: 30px; float: left; margin-left: 40px; margin-top: 35px;"></i>
+                        <i class="fa-solid fa-backward"></i>
                     </a>
                     <span class="fitur-text">Kembali Halaman Login</span>
                 </div>
@@ -21,12 +21,19 @@
                             @csrf
                             <div class="form-group">
                                 <label>Alamat E-mail</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan email Anda">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="input-group">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan email Anda">
+                                    <div class="input-group-append">
+                                        <button type="button" class="form-control-text" disabled>
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </button>
+                                    </div>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group text-center">
                                 <button class="btn btn-primary account-btn" style="border-radius: 20px" type="submit">Verifikasi</button>
@@ -45,6 +52,10 @@
     
     @section('script')
         <script src="https://kit.fontawesome.com/95e99ea6db.js" crossorigin="anonymous"></script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Lupa Kata Sandi | Aplikasi SILK';
+        </script>
 
     @endsection
 @endsection
