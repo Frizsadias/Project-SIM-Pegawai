@@ -22,7 +22,7 @@ use App\Models\LayananCuti;
 use App\Models\Notification;
 use App\Models\ReferensiPangkat;
 use App\Models\sipDokter;
-use App\Models\Sumpah;
+use App\Models\sumpah;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
@@ -1733,18 +1733,18 @@ class EmployeeController extends Controller
         $counter = $start + 1;
 
         if (empty($search)) {
-            $kedudukan = Kedudukan::offset($start)
+            $kedudukan = kedudukan::offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
         } else {
-            $kedudukan =  Kedudukan::where('kedudukan', 'like', "%{$search}%")
+            $kedudukan =  kedudukan::where('kedudukan', 'like', "%{$search}%")
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
 
-            $totalFiltered = Kedudukan::where('kedudukan', 'like', "%{$search}%")
+            $totalFiltered = kedudukan::where('kedudukan', 'like', "%{$search}%")
                 ->count();
         }
 
@@ -2313,7 +2313,7 @@ class EmployeeController extends Controller
         $dir = $request->input('order.0.dir');
 
         $search = $request->input('search.value');
-        $counter = $start + 1;
+        // $counter = $start + 1;
         
 
         if (empty($search)) {
@@ -2335,8 +2335,8 @@ class EmployeeController extends Controller
         $data = array();
         if (!empty($sumpah)) {
             foreach ($sumpah as $key => $value) {
-                $nestedData['id'] = $counter++;
-                // $nestedData['id'] = $value->id;
+                // $nestedData['id'] = $counter++;
+                $nestedData['id'] = $value->id;
                 $nestedData['sumpah'] = $value->sumpah;
                 $nestedData['action'] = "<div class='dropdown dropdown-action'>
                                             <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
@@ -2400,9 +2400,9 @@ class EmployeeController extends Controller
         DB::beginTransaction();
         try {
 
-            $sumpah = Sumpah::where('sumpah', $request->sumpah)->first();
+            $sumpah = sumpah::where('sumpah', $request->sumpah)->first();
             if ($sumpah === null) {
-                $sumpah = new Sumpah();
+                $sumpah = new sumpah();
                 $sumpah->sumpah = $request->sumpah;
                 $sumpah->save();
 
