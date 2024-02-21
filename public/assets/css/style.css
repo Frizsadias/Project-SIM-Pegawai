@@ -8578,6 +8578,31 @@ ul.comment-list li ul.children {
 		margin-top: 30px !important;
 	}
 }
+@media only screen and (max-width: 384.98px) {
+	.header .header-left {
+		width: 100%;
+		margin-top: -50px;
+	}
+	
+	.fitur-tema2 {
+		display: inline-block !important;
+		list-style-type: none;
+		margin-left: 280px !important;
+	}
+
+	.fitur-kembali .fitur-text {
+		left: 68% !important;
+	}
+
+	.fitur-kembali-2 .fitur-text {
+		left: 68% !important;
+	}
+
+	.fa-backward {
+		margin-left: 25px !important;
+		margin-top: 30px !important;
+	}
+}
 @media only screen and (max-width: 375.98px) {
 	.header .header-left {
 		width: 100%;
