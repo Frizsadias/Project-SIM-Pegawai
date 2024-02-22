@@ -84,11 +84,9 @@ Route::controller(HomeController::class)->group(function () {
 
 // -----------------------------settings-------------------------------------//
 Route::controller(SettingController::class)->group(function () {
-    Route::get('pengaturan/perusahaan', 'companySettings')->middleware('auth')->name('pengaturan-perusahaan');
-    Route::post('pengaturan/perusahaan/save', 'saveRecord')->middleware('auth')->name('pengaturan-perusahaansave');
     /** index page */
-    Route::get('company/settings/page', 'companySettings')->middleware('auth')->name('company/settings/page');
-    Route::post('company/settings/save', 'saveRecord')->middleware('auth')->name('company/settings/save');
+    Route::get('pengaturan/perusahaan', 'companySettings')->middleware('auth')->name('pengaturan-perusahaan');
+    Route::post('pengaturan/perusahaan/save', 'saveRecord')->middleware('auth')->name('pengaturan-perusahaan-save');
     /** save record or update */
     Route::get('roles/permissions/page', 'rolesPermissions')->middleware('auth')->name('roles/permissions/page');
     Route::post('roles/permissions/save', 'addRecord')->middleware('auth')->name('roles/permissions/save');

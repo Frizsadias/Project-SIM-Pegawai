@@ -62,6 +62,7 @@
         .fitur-tema-sub-gelap{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .fitur-tema2-sub-gelap{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .view-icons .btn{background-color: {{ auth()->user()->warna_sistem }} !important;}
+        .nav-tabs .nav-link.active{background-color: {{ auth()->user()->warna_sistem }} !important;}
         .page-item.disabled .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
         .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; border: 1px solid {{ auth()->user()->warna_mode }} !important;}
         .datepicker{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -244,6 +245,7 @@
         .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .nav-tabs{background-color: {{ auth()->user()->warna_mode }} !important;}
         .profile-img-wrap{background : {{ auth()->user()->warna_mode }} !important;}
         .header{background: {{ auth()->user()->warna_mode }} !important; box-shadow: {{ auth()->user()->bayangan_kotak_header }} !important;}
         .btn-white{background-color: {{ auth()->user()->warna_mode }} !important;}
