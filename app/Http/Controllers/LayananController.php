@@ -108,6 +108,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti', compact(
             'data_cuti',
             'data_profilcuti',
@@ -116,7 +148,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Daftar Layanan Cuti User */
@@ -319,6 +354,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti-admin', compact(
             'data_cuti',
             'data_cuti_pdf_kelengkapan',
@@ -329,7 +396,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Daftar Layanan Cuti Admin */
@@ -481,6 +551,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti-eselon3', compact(
             'data_cuti',
             'data_cuti_pribadi',
@@ -491,7 +593,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Daftar Layanan Cuti Eselon 3 */
@@ -658,6 +763,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti-eselon4', compact(
             'data_cuti',
             'data_cuti_pribadi',
@@ -668,7 +805,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Daftar Layanan Cuti Eselon 4 */
@@ -753,9 +893,41 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti-kepala-ruangan', compact('data_cuti', 'data_pribadi_kepalaruang', 'data_profilcuti_pribadi',
             'unreadNotifications', 'readNotifications', 'sisaCutiThisYear',
-            'sisaCutiLastYear', 'sisaCutiTwoYearsAgo', 'result_tema'));
+            'sisaCutiLastYear', 'sisaCutiTwoYearsAgo', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** /Daftar Layanan Cuti Super Admin */
 
@@ -968,6 +1140,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti', compact(
             'pencarianDataCuti',
             'data_cuti',
@@ -977,7 +1181,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Search Layanan Cuti */
@@ -1099,6 +1306,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti-admin', compact(
             'data_cuti',
             'userList',
@@ -1109,7 +1348,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Search Layanan Cuti Admin */
@@ -1234,6 +1476,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti-eselon3', compact(
             'data_cuti',
             'data_cuti_pribadi',
@@ -1244,7 +1518,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Search Layanan Cuti Eselon 3 */
@@ -1385,6 +1662,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti-eselon4', compact(
             'data_cuti',
             'data_cuti_pribadi',
@@ -1395,7 +1704,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Search Layanan Cuti Eselon 4 */
@@ -1499,6 +1811,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.layanan-cuti-kepala-ruangan', compact(
             'data_cuti',
             'data_pribadi_kepalaruang',
@@ -1508,7 +1852,10 @@ class LayananController extends Controller
             'sisaCutiThisYear',
             'sisaCutiLastYear',
             'sisaCutiTwoYearsAgo',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Search Layanan Cuti Super Admin */
@@ -1875,6 +2222,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
         return view('layanan.kenaikan-gaji-berkala-admin', compact(
@@ -1884,7 +2263,10 @@ class LayananController extends Controller
             'unreadNotifications',
             'readNotifications',
             'data_kgb_pdf',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Kenaikan Gaji Berkala */
@@ -1946,8 +2328,40 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.kenaikan-gaji-berkala', compact('data_kgb', 'data_kgb_result', 'golonganOptions', 
-            'readNotifications', 'unreadNotifications', 'result_tema'));
+            'readNotifications', 'unreadNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** /Tampilan Pencarian KGB User */
 
@@ -2027,8 +2441,40 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+            
         return view('layanan.kenaikan-gaji-berkala-admin', compact('data_kgb', 'data_kgb_pdf', 'userList',
-            'readNotifications', 'unreadNotifications', 'golonganOptions', 'result_tema'));
+            'readNotifications', 'unreadNotifications', 'golonganOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** /Tampilan Pencarian KGB Admin */
 
@@ -2079,10 +2525,42 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
         return view('layanan.kenaikan-gaji-berkala', compact('unreadNotifications', 'readNotifications', 'data_kgb',
-            'golonganOptions', 'data_kgb_result', 'result_tema'));
+            'golonganOptions', 'data_kgb_result', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Tambah Data Kenaikan Gaji Berkala Pegawai */
@@ -2373,10 +2851,42 @@ class LayananController extends Controller
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
             ->get();
+            
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
 
         return view('layanan.perpanjang-kontrak', compact('data_perpanjang_kontrak', 'userList', 
             'unreadNotifications', 'readNotifications', 'data_profilpegawai', 'data_posisijabatan', 
-            'data_perpanjang_pdf', 'result_tema'));
+            'data_perpanjang_pdf', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** /Tampilan Perpanjangan Kontrak */
 
@@ -2475,6 +2985,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.perpanjang-kontrak-admin', compact(
             'unreadNotifications',
             'readNotifications',
@@ -2483,7 +3025,10 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_perpanjang_pdf',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
 
@@ -2589,6 +3134,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.perpanjang-kontrak-admin', compact(
             'unreadNotifications',
             'readNotifications',
@@ -2597,7 +3174,10 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_perpanjang_pdf',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Pencarian Perpanjangan Kontrak Admin */
@@ -2689,7 +3269,39 @@ class LayananController extends Controller
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
             ->get();
+            
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
 
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+            
         return view('layanan.perpanjang-kontrak', compact(
             'unreadNotifications',
             'readNotifications',
@@ -2697,7 +3309,10 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_perpanjang_pdf',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Pencarian Perpanjangan Kontrak User */
@@ -2950,6 +3565,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.perjanjian-kontrak-admin', compact(
             'unreadNotifications',
             'readNotifications',
@@ -2958,7 +3605,10 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan', 'data_perjanjian_pdf',
             'perjanjian',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Perjanjian Kontrak Admin */
@@ -3060,13 +3710,45 @@ class LayananController extends Controller
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNull('read_at')
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
             ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
             ->get();
 
         return view('layanan.perjanjian-kontrak-admin', compact(
@@ -3078,7 +3760,10 @@ class LayananController extends Controller
             'data_posisijabatan',
             'data_perjanjian_pdf',
             'perjanjian',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kontrak Admin */
@@ -3173,6 +3858,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.perjanjian-kontrak', compact(
             'unreadNotifications',
             'readNotifications',
@@ -3181,7 +3898,10 @@ class LayananController extends Controller
             'data_posisijabatan',
             'data_perjanjian_pdf',
             'perjanjian',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kontrak User */
@@ -3251,6 +3971,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.perjanjian-kontrak', compact(
             'unreadNotifications',
             'readNotifications',
@@ -3258,7 +4010,10 @@ class LayananController extends Controller
             'userList',
             'data_profilpegawai',
             'data_posisijabatan',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
 
@@ -3434,8 +4189,40 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.peta-jabatan', compact('peta_jabatan_pdf', 'peta_jabatan_animasi', 
-             'unreadNotifications', 'readNotifications', 'result_tema'));
+             'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Daftar Layanan STR Admin */
@@ -3508,6 +4295,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.surat-tanda-registrasi-admin', compact(
             'data_str',
             'data_profil_str',
@@ -3515,7 +4334,10 @@ class LayananController extends Controller
             'unreadNotifications',
             'readNotifications',
             'userList',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Daftar Layanan STR Admin */
@@ -3597,6 +4419,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.surat-tanda-registrasi-admin', compact(
             'data_str',
             'data_profil_str',
@@ -3604,7 +4458,10 @@ class LayananController extends Controller
             'unreadNotifications',
             'readNotifications',
             'userList',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Pencarian Layanan STR Admin */
@@ -3689,6 +4546,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.surat-tanda-registrasi', compact(
             'data_str',
             'data_profil_str',
@@ -3696,7 +4585,10 @@ class LayananController extends Controller
             'unreadNotifications',
             'readNotifications',
             'userList',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Pencarian Layanan STR User */
@@ -3766,13 +4658,48 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.surat-tanda-registrasi', compact(
             'data_str',
             'data_profil_str',
             'unreadNotifications',
             'readNotifications',
             'userList',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Daftar Layanan STR */
@@ -3972,9 +4899,41 @@ class LayananController extends Controller
         ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
-        ->get();
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
 
         return view('layanan.perjanjian-kinerja-admin', compact(
             'unreadNotifications',
@@ -3984,7 +4943,10 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_kinerja_pdf',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
 
@@ -4061,13 +5023,45 @@ class LayananController extends Controller
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNull('read_at')
+            ->where('notifiable_type', get_class($user))
+            ->whereNull('read_at')
             ->get();
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
-        ->where('notifiable_type', get_class($user))
-        ->whereNotNull('read_at')
+            ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
             ->get();
 
         return view('layanan.perjanjian-kinerja-admin', compact(
@@ -4078,7 +5072,10 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_kinerja_pdf',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kinerja Admin */
@@ -4154,6 +5151,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('layanan.perjanjian-kinerja', compact(
             'unreadNotifications',
             'readNotifications',
@@ -4161,7 +5190,10 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_kinerja_pdf',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Tampilan Pencarian Perjanjian Kinerja User*/
@@ -4245,6 +5277,38 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+        
         return view('layanan.perjanjian-kinerja', compact(
             'unreadNotifications',
             'readNotifications',
@@ -4253,7 +5317,10 @@ class LayananController extends Controller
             'data_profilpegawai',
             'data_posisijabatan',
             'data_kinerja_pdf',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
 
@@ -4401,11 +5468,46 @@ class LayananController extends Controller
         ->whereNotNull('read_at')
         ->get();
 
+    $semua_notifikasi = DB::table('notifications')
+        ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+        ->select(
+            'notifications.*',
+            'notifications.id',
+            'users.name',
+            'users.avatar'
+        )
+        ->get();
+
+    $belum_dibaca = DB::table('notifications')
+        ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+        ->select(
+            'notifications.*',
+            'notifications.id',
+            'users.name',
+            'users.avatar'
+        )
+        ->whereNull('read_at')
+        ->get();
+
+    $dibaca = DB::table('notifications')
+        ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+        ->select(
+            'notifications.*',
+            'notifications.id',
+            'users.name',
+            'users.avatar'
+        )
+        ->whereNotNull('read_at')
+        ->get();
+
     return view('employees.dataruanganlist', compact(
         'data_ruangan',
         'unreadNotifications',
         'readNotifications',
-        'result_tema'
+        'result_tema', 
+        'semua_notifikasi', 
+        'belum_dibaca', 
+        'dibaca'
     ));
 }
     /** /Search Pegawai List Kepala Ruangan */
@@ -4442,11 +5544,46 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('employees.dataruangancard', compact(
             'data_ruangan',
             'unreadNotifications',
             'readNotifications',
-            'result_tema'
+            'result_tema', 
+            'semua_notifikasi', 
+            'belum_dibaca', 
+            'dibaca'
         ));
     }
     /** /Search Pegawai Card Kepala Ruangan */

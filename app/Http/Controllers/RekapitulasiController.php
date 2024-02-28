@@ -34,6 +34,38 @@ class RekapitulasiController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         $dataPegawai = User::where('role_name', 'User')->count();
         return view('rekapitulasi.super-admin', [
             'chart' => $chart->build(),
@@ -43,7 +75,10 @@ class RekapitulasiController extends Controller
             'dataPegawai' => $dataPegawai,
             'unreadNotifications' => $unreadNotifications,
             'readNotifications' => $readNotifications,
-            'result_tema' => $result_tema
+            'result_tema' => $result_tema,
+            'semua_notifikasi' => $semua_notifikasi,
+            'belum_dibaca' => $belum_dibaca,
+            'dibaca' => $dibaca    
         ]);
     }
 }

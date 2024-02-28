@@ -70,7 +70,38 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
 
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+            
         $datapendidikan = Session::get('user_id');
         $riwayatPendidikan = RiwayatPendidikan::where('user_id', $datapendidikan)->get();
 
@@ -78,7 +109,7 @@ class RiwayatController extends Controller
         $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
         return view('riwayat.riwayat-pendidikan', compact('riwayatPendidikan', 'tingkatpendidikanOptions', 'pendidikanterakhirOptions',
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Pendidikan */
 
@@ -247,12 +278,44 @@ class RiwayatController extends Controller
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
             ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
         
         $datagolongan = Session::get('user_id');
         $riwayatGolongan = RiwayatGolongan::where('user_id', $datagolongan)->get();
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
         return view('riwayat.riwayat-golongan', compact('riwayatGolongan', 'golonganOptions', 
-             'unreadNotifications', 'readNotifications', 'result_tema'));
+             'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Golongan */
 
@@ -406,12 +469,44 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
         
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         $datajabatan = Session::get('user_id');
         $riwayatJabatan = RiwayatJabatan::where('user_id', $datajabatan)->get();
 
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
         return view('riwayat.riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Jabatan */
 
@@ -562,13 +657,44 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
         
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
         
         $datadiklat = Session::get('user_id');
         $riwayatDiklat = RiwayatDiklat::where('user_id', $datadiklat)->get();
 
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
         return view('riwayat.riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Diklat */
 
@@ -713,8 +839,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-pendidikan', compact('riwayatPendidikan', 'unreadNotifications', 'readNotifications',
-            'tingkatpendidikanOptions', 'pendidikanterakhirOptions', 'result_tema'));
+            'tingkatpendidikanOptions', 'pendidikanterakhirOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Golongan
@@ -753,8 +911,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-golongan', compact('riwayatGolongan', 'unreadNotifications', 
-            'readNotifications', 'golonganOptions', 'result_tema'));
+            'readNotifications', 'golonganOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Jabatan
@@ -794,8 +984,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-jabatan', compact('riwayatJabatan', 'jenisjabatanOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Diklat
@@ -835,8 +1057,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-diklat', compact('riwayatDiklat', 'jenisdiklatOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Orang Tua
@@ -874,8 +1128,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-orang-tua', compact('riwayatOrtu', 'unreadNotifications', 
-            'readNotifications', 'agamaOptions', 'result_tema'));
+            'readNotifications', 'agamaOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Pasangan
@@ -913,8 +1199,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-pasangan', compact('riwayatPasangan', 'unreadNotifications', 
-            'readNotifications', 'agamaOptions', 'result_tema'));
+            'readNotifications', 'agamaOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Anak
@@ -957,8 +1275,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-anak', compact('riwayatAnak', 'unreadNotifications', 'readNotifications', 
-            'agamaOptions', 'userList', 'result_tema'));
+            'agamaOptions', 'userList', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Penghargaan
@@ -995,8 +1345,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-penghargaan', compact('riwayatPenghargaan', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Organisasi
@@ -1033,8 +1415,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-organisasi', compact('riwayatOrganisasi', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Tugas Belajar
@@ -1073,8 +1487,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-tugas-belajar', compact('riwayatTB', 'unreadNotifications', 
-            'readNotifications', 'tingkatpendidikanOptions', 'pendidikanOptions', 'result_tema'));
+            'readNotifications', 'tingkatpendidikanOptions', 'pendidikanOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Hukuman Disiplin
@@ -1111,8 +1557,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-hukuman-disiplin', compact('riwayatHD', 'unreadNotifications', 
-            'readNotifications', 'result_tema'));
+            'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     //Riwayat Angka Kredit
@@ -1150,8 +1628,40 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         return view('riwayat/riwayat-angka-kredit', compact('riwayatAK', 'unreadNotifications', 
-            'readNotifications', 'jenisjabatanOptions', 'result_tema'));
+            'readNotifications', 'jenisjabatanOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** --------------------------------- Riwayat PMK --------------------------------- */
@@ -1177,12 +1687,44 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $datapmk = Session::get('user_id');
         $riwayatPMK = RiwayatPMK::where('user_id', $datapmk)->get();
 
         return view('riwayat.riwayat-pmk', compact('riwayatPMK', 'unreadNotifications', 
-            'readNotifications', 'result_tema'));
+            'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat PMK */
 
@@ -1407,13 +1949,45 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $dataAK = Session::get('user_id');
         $riwayatAK = RiwayatAngkaKredit::where('user_id', $dataAK)->get();
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
 
         return view('riwayat.riwayat-angka-kredit', compact('riwayatAK', 'jenisjabatanOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Angka Kredit */
 
@@ -1626,12 +2200,44 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $dataHD = Session::get('user_id');
         $riwayatHD = RiwayatHukumanDisiplin::where('user_id', $dataHD)->get();
 
         return view('riwayat.riwayat-hukuman-disiplin', compact('riwayatHD', 'unreadNotifications', 
-            'readNotifications', 'result_tema'));
+            'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Hukuman Disiplin */
 
@@ -1799,12 +2405,44 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $dataPenghargaan = Session::get('user_id');
         $riwayatPenghargaan = RiwayatPenghargaan::where('user_id', $dataPenghargaan)->get();
 
         return view('riwayat.riwayat-penghargaan', compact('riwayatPenghargaan', 'unreadNotifications', 
-            'readNotifications', 'result_tema'));
+            'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Penghargaan */
 
@@ -1930,12 +2568,44 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $dataOrganisasi = Session::get('user_id');
         $riwayatOrganisasi = RiwayatOrganisasi::where('user_id', $dataOrganisasi)->get();
 
         return view('riwayat.riwayat-organisasi', compact('riwayatOrganisasi', 'unreadNotifications', 
-            'readNotifications', 'result_tema'));
+            'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Organisasi */
 
@@ -2064,6 +2734,38 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $dataTB = Session::get('user_id');
         $riwayatTB = RiwayatTugasBelajar::where('user_id', $dataTB)->get();
@@ -2071,7 +2773,7 @@ class RiwayatController extends Controller
         $pendidikanOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
         return view('riwayat.riwayat-tugas-belajar', compact('riwayatTB', 'tingkatpendidikanOptions', 
-            'pendidikanOptions', 'unreadNotifications', 'readNotifications', 'result_tema'));
+            'pendidikanOptions', 'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Tugas Belajar */
 
@@ -2196,13 +2898,45 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $dataPasangan = Session::get('user_id');
         $riwayatPasangan = RiwayatPasangan::where('user_id', $dataPasangan)->get();
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
         return view('riwayat.riwayat-pasangan', compact('riwayatPasangan', 'agamaOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Pasangan */
 
@@ -2377,6 +3111,38 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $dataAnak = Session::get('user_id');
         $riwayatAnak = RiwayatAnak::where('user_id', $dataAnak)->get();
@@ -2387,7 +3153,7 @@ class RiwayatController extends Controller
         ->get();
 
         return view('riwayat.riwayat-anak', compact('userList', 'riwayatAnak', 'agamaOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Anak */
 
@@ -2550,13 +3316,45 @@ class RiwayatController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
 
         $dataOrtu = Session::get('user_id');
         $riwayatOrtu = RiwayatOrangTua::where('user_id', $dataOrtu)->get();
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
 
         return view('riwayat.riwayat-orang-tua', compact('riwayatOrtu', 'agamaOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Tampilan Riwayat Orang Tua */
 
@@ -2745,4 +3543,96 @@ class RiwayatController extends Controller
         }
     }
     /** End Delete Riwayat Orang Tua */
+
+    public function getDiklatData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'jenis_diklat',
+            2 => 'nama_diklat',
+            3 => 'institusi_penyelenggara',
+            4 => 'no_sertifikat',
+            5 => 'tanggal_mulai',
+            6 => 'tanggal_selesai',
+            7 => 'tahun_diklat',
+            8 => 'durasi_jam',
+            9 => 'dokumen_diklat',
+        );
+
+        $totalData = RiwayatDiklat::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+        $user_id = auth()->user()->user_id;
+        $counter = $start + 1;
+
+        if (empty($search)) {
+            $jenis_diklat = RiwayatDiklat::where('user_id', $user_id)
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $jenis_diklat = RiwayatDiklat::where('user_id', $user_id)
+                ->where('jenis_diklat', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = RiwayatDiklat::where('user_id', $user_id)
+                ->where('jenis_diklat', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($jenis_diklat)) {
+            foreach ($jenis_diklat as $key => $value) {
+                $nestedData['id'] = $counter++;
+                $nestedData['jenis_diklat'] = $value->jenis_diklat;
+                $nestedData['nama_diklat'] = $value->nama_diklat;
+                $nestedData['institusi_penyelenggara'] = $value->institusi_penyelenggara;
+                $nestedData['no_sertifikat'] = $value->no_sertifikat;
+                $nestedData['tanggal_mulai'] = $value->tanggal_mulai;
+                $nestedData['tanggal_selesai'] = $value->tanggal_selesai;
+                $nestedData['tahun_diklat'] = $value->tahun_diklat;
+                $nestedData['durasi_jam'] = $value->durasi_jam;
+                $nestedData['dokumen_diklat'] = $value->dokumen_diklat;
+                $nestedData['action'] = "<div class='dropdown dropdown-action'>
+                                            <a href='#' class='action-icon dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><i class='material-icons'>more_vert</i></a>
+                                        <div class='dropdown-menu dropdown-menu-right'>
+                                            <a href='#' class='dropdown-item edit_riwayat_diklat' data-toggle='modal' data-target='#edit_riwayat_diklat'
+                                                data-id='" . $value->id . "'
+                                                data-jenis_diklat='" . $value->jenis_diklat . "'
+                                                data-nama_diklat='" . $value->nama_diklat . "'
+                                                data-institusi_penyelenggara='" . $value->institusi_penyelenggara . "'
+                                                data-no_sertifikat='" . $value->no_sertifikat . "'
+                                                data-tanggal_mulai='" . $value->tanggal_mulai . "'
+                                                data-tanggal_selesai='" . $value->tanggal_selesai . "'
+                                                data-tahun_diklat='" . $value->tahun_diklat . "'
+                                                data-durasi_jam='" . $value->durasi_jam . "'
+                                                data-dokumen_diklat='" . $value->dokumen_diklat . "'>
+                                                <i class='fa fa-pencil m-r-5'></i> Edit</a>
+                                            <a href='#' class='dropdown-item delete_riwayat_diklat' data-toggle='modal' data-target='#delete_riwayat_diklat' data-id='" . $value->id . "'><i class='fa fa-trash-o m-r-5'></i> Delete</a>
+                                        </div>
+                                     </div>";
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
 }

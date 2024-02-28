@@ -31,6 +31,38 @@ class SIPController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         $user_id = auth()->user()->user_id;
         $data_sip_dokter = DB::table('sip_spk_dokter')
             ->select(
@@ -58,7 +90,7 @@ class SIPController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
         return view('transaksi.sip-dokter', compact('data_sip_dokter', 'data_profil_sip', 
-            'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** /Tampilan SIP Dokter */
 
@@ -80,6 +112,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -109,7 +173,7 @@ class SIPController extends Controller
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         return view('transaksi.sip-dokter-admin', compact('data_sip_dokter', 'userList', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Filter SIP Dokter  Admin*/
@@ -130,6 +194,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -166,7 +262,7 @@ class SIPController extends Controller
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         return view('transaksi.sip-dokter-admin', compact('data_sip_dokter', 'userList', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Filter SIP Dokter User*/
@@ -188,6 +284,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -227,7 +355,7 @@ class SIPController extends Controller
         ->get();
 
         return view('transaksi.sip-dokter', compact('data_sip_dokter', 'data_profil_sip','ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Tambah Data SIP Dokter */
@@ -352,6 +480,38 @@ class SIPController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         $user_id = auth()->user()->user_id;
         $data_spk_dokter = DB::table('sip_spk_dokter')
             ->select(
@@ -378,7 +538,7 @@ class SIPController extends Controller
             ->where('profil_pegawai.user_id', $user_id)
             ->get();
         return view('transaksi.spk-dokter', compact('data_spk_dokter', 'data_profil_sip', 
-            'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Daftar SPK Dokter */
@@ -399,6 +559,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -427,7 +619,7 @@ class SIPController extends Controller
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-dokter-admin', compact('data_spk_dokter', 'userList', 
-            'ruanganOptions', 'unreadNotifications', 'readNotifications', 'result_tema'));
+            'ruanganOptions', 'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Filter SPK Dokter Admin*/
@@ -448,6 +640,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -483,7 +707,7 @@ class SIPController extends Controller
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-dokter-admin', compact('data_spk_dokter', 'userList', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Filter SPK Dokter User*/
@@ -504,6 +728,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -543,7 +799,7 @@ class SIPController extends Controller
 
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-dokter', compact('data_spk_dokter', 'data_profil_sip', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Tambah Data SPK Dokter */
@@ -668,6 +924,38 @@ class SIPController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         $user_id = auth()->user()->user_id;
         $data_spk_perawat = DB::table('sip_spk_dokter')
         ->select(
@@ -694,7 +982,7 @@ class SIPController extends Controller
         ->where('profil_pegawai.user_id', $user_id)
             ->get();
         return view('transaksi.spk-perawat', compact('data_spk_perawat', 'data_profil_sip', 
-            'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Daftar SPK Perawat */
@@ -715,6 +1003,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -743,7 +1063,7 @@ class SIPController extends Controller
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         return view('transaksi.spk-perawat-admin', compact('data_spk_perawat', 'userList', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Search SPK Perawat Admin*/
@@ -764,6 +1084,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -798,7 +1150,7 @@ class SIPController extends Controller
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
         return view('transaksi.spk-perawat-admin', compact('data_spk_perawat', 'userList', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** Search SPK Perawat User*/
     public function filterSPKPerawat(Request $request)
@@ -818,6 +1170,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -862,7 +1246,7 @@ class SIPController extends Controller
         ->get();
 
         return view('transaksi.spk-perawat', compact('data_spk_perawat', 'userList', 'data_profil_sip', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Tambah Data SPK Perawat */
@@ -987,6 +1371,38 @@ class SIPController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNotNull('read_at')
+            ->get();
+
         $user_id = auth()->user()->user_id;
         $data_spk_nakes_lain = DB::table('sip_spk_dokter')
         ->select(
@@ -1013,7 +1429,7 @@ class SIPController extends Controller
         ->where('profil_pegawai.user_id', $user_id)
             ->get();
         return view('transaksi.spk-nakes-lain', compact('data_spk_nakes_lain', 'data_profil_sip', 
-            'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'ruanganOptions', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Daftar SPK Nakes Lain */
@@ -1034,6 +1450,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -1061,7 +1509,7 @@ class SIPController extends Controller
         ->get();
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-nakes-lain-admin', compact('data_spk_nakeslain', 'userList', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Filter SPK Nakes Lain Admin*/
@@ -1082,6 +1530,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -1115,7 +1595,7 @@ class SIPController extends Controller
         ->get();
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-nakes-lain-admin', compact('data_spk_nakeslain', 'userList', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Filter SPK Nakes Lain User*/
@@ -1136,6 +1616,38 @@ class SIPController extends Controller
 
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
+            ->whereNotNull('read_at')
+            ->get();
+
+        $semua_notifikasi = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->get();
+
+        $belum_dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
+            ->whereNull('read_at')
+            ->get();
+
+        $dibaca = DB::table('notifications')
+            ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+            ->select(
+                'notifications.*',
+                'notifications.id',
+                'users.name',
+                'users.avatar'
+            )
             ->whereNotNull('read_at')
             ->get();
 
@@ -1178,7 +1690,7 @@ class SIPController extends Controller
         ->get();
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
         return view('transaksi.spk-nakes-lain', compact('data_spk_nakes_lain', 'data_profil_sip', 'userList', 'ruanganOptions', 
-            'unreadNotifications', 'readNotifications', 'result_tema'));
+            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Tambah Data SPK Nakes Lain */

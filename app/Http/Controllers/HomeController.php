@@ -104,6 +104,38 @@ class HomeController extends Controller
                 ->where('notifiable_type', get_class($user))
                 ->whereNotNull('read_at')
                 ->get();
+
+            $semua_notifikasi = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->get();
+
+            $belum_dibaca = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->whereNull('read_at')
+                ->get();
+
+            $dibaca = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->whereNotNull('read_at')
+                ->get();
             
             return view('dashboard.Halaman-admin', [
                 'chart' => $chart->build(),
@@ -151,6 +183,9 @@ class HomeController extends Controller
                 'dataTempatTidurRuangNonPerawatan' => $dataTempatTidurRuangNonPerawatan,
                 'unreadNotifications' => $unreadNotifications,
                 'readNotifications' => $readNotifications,
+                'semua_notifikasi' => $semua_notifikasi,
+                'belum_dibaca' => $belum_dibaca,
+                'dibaca' => $dibaca,
                 'result_tema' => $result_tema
             ]);
             
@@ -215,6 +250,38 @@ class HomeController extends Controller
                 ->where('notifiable_type', get_class($user))
                 ->whereNotNull('read_at')
                 ->get();
+
+            $semua_notifikasi = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->get();
+
+            $belum_dibaca = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->whereNull('read_at')
+                ->get();
+
+            $dibaca = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->whereNotNull('read_at')
+                ->get();
             
             return view('dashboard.Halaman-super-admin', [
                 'chart' => $chart->build(),
@@ -262,6 +329,9 @@ class HomeController extends Controller
                 'dataTempatTidurRuangNonPerawatan' => $dataTempatTidurRuangNonPerawatan,
                 'unreadNotifications' => $unreadNotifications,
                 'readNotifications' => $readNotifications,
+                'semua_notifikasi' => $semua_notifikasi,
+                'belum_dibaca' => $belum_dibaca,
+                'dibaca' => $dibaca,
                 'result_tema' => $result_tema
             ]);
         }
@@ -353,6 +423,38 @@ class HomeController extends Controller
                 ->where('notifiable_type', get_class($user))
                 ->whereNotNull('read_at')
                 ->get();
+
+            $semua_notifikasi = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->get();
+
+            $belum_dibaca = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->whereNull('read_at')
+                ->get();
+
+            $dibaca = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->whereNotNull('read_at')
+                ->get();
             
             return view('dashboard.Halaman-kepala-ruang', [
                 'chart' => $chart->build(),
@@ -428,6 +530,9 @@ class HomeController extends Controller
                 'dataTempatTidurRuangNonPerawatan' => $dataTempatTidurRuangNonPerawatan,
                 'unreadNotifications' => $unreadNotifications,
                 'readNotifications' => $readNotifications,
+                'semua_notifikasi' => $semua_notifikasi,
+                'belum_dibaca' => $belum_dibaca,
+                'dibaca' => $dibaca,
                 'result_tema' => $result_tema
             ]);
         }
@@ -453,9 +558,41 @@ class HomeController extends Controller
                 ->where('notifiable_type', get_class($user))
                 ->whereNotNull('read_at')
                 ->get();
+
+            $semua_notifikasi = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->get();
+
+            $belum_dibaca = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->whereNull('read_at')
+                ->get();
+
+            $dibaca = DB::table('notifications')
+                ->leftjoin('users', 'notifications.notifiable_id', 'users.id')
+                ->select(
+                    'notifications.*',
+                    'notifications.id',
+                    'users.name',
+                    'users.avatar'
+                )
+                ->whereNotNull('read_at')
+                ->get();
             
             return view('dashboard.Halaman-user',compact('tampilanPerusahaan', 'unreadNotifications',
-                'readNotifications', 'result_tema'));
+                'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca' ));
         }
     }
 
@@ -555,29 +692,6 @@ class HomeController extends Controller
         }
         return back();
     }
-
-    // public function tampilanTemaAplikasi()
-    // {
-    //     $user_id = auth()->user()->user_id;
-    //     $result_tema = DB::table('users')
-    //         ->select('users.*', 'users.tema_aplikasi')
-    //         ->where('users.user_id', $user_id)
-    //         ->get();
-
-    //     $user = auth()->user();
-    //     $role = $user->role_name;
-    //     $unreadNotifications = Notification::where('notifiable_id', $user->id)
-    //         ->where('notifiable_type', get_class($user))
-    //         ->whereNull('read_at')
-    //         ->get();
-
-    //     $readNotifications = Notification::where('notifiable_id', $user->id)
-    //         ->where('notifiable_type', get_class($user))
-    //         ->whereNotNull('read_at')
-    //         ->get();
-
-    //     return view('layouts.master', compact('result_tema', 'unreadNotifications', 'readNotifications'));
-    // }
 
     public function updateTemaAplikasi(Request $request, $id)
     {
