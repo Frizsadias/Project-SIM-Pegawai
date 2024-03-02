@@ -1,5 +1,11 @@
-composer install / composer update
-composer dump-autoload
-php artisan migrate
-php artisan db:seed --class=IndoRegionSeeder
-php artisan serve
+Langkah awal untuk memulai APK :
+    1. composer install / composer update
+    2. composer dump-autoload
+    3. php artisan migrate
+    4. php artisan db:seed --class=IndoRegionSeeder
+    5. php artisan serve
+
+Untuk pembuatan Cron Job :
+Waktu : * * * * *
+Perintah untuk Dijalankan : domains/rsudcaruban.shop/public_html/artisan birthday:notifications
+Perintah untuk Dijalankan secara full : /usr/bin/php /home/u817478211/domains/rsudcaruban.shop/public_html/artisan birthday:notifications
