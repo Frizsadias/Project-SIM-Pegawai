@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\User;
-use App\Models\ProfileInformation;
+use DB;
 
 class UlangTahunNotification extends Notification
 {
@@ -39,31 +39,27 @@ class UlangTahunNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        $profileInformation = ProfileInformation::find($notifiable->id);
-        $user = User::find($notifiable->id);
+        $result_pribadi = DB::table('profil_pegawai')->find($notifiable->id);
+        $result_user = User::find($notifiable->id);
 
-        $tglLahir = new \DateTime($profileInformation->tgl_lahir);
-        $today = new \DateTime();
-        $usia = $tglLahir->diff($today)->y;
-
-        $id_notif = mt_rand(100000, 999999);
+        $result_tanggal_lahir = new \DateTime($result_pribadi->tanggal_lahir);
+        $hari_ini = new \DateTime();
+        $result_usia = $result_tanggal_lahir->diff($hari_ini)->y;
 
         return [
-            'id_notif' => $id_notif,
-            'user_id' => $user->user_id,
-            'name' => $user->name,
-            'tgl_lahir' => $profileInformation->tgl_lahir,
-            'tmpt_lahir' => $profileInformation->tmpt_lahir,
-            'message' => $profileInformation->tmpt_lahir,
-            'message2' => $profileInformation->tgl_lahir,
+            'name' => $result_user->name,
+            'avatar' => $result_user->avatar,
+            'tanggal_lahir' => $result_pribadi->tanggal_lahir,
+            'tempat_lahir' => $result_pribadi->tempat_lahir,
+            'message' => $result_pribadi->tempat_lahir,
+            'message2' => $result_pribadi->tanggal_lahir,
             'message3' => 'Selamat Ulang Tahun',
             'message4' => 'Pegawai pada',
             'message5' => 'RUMAH SAKIT UMUM DAERAH CARUBAN',
             'message6' => 'Kabupaten Madiun.',
             'message7' => 'Atas Nama Pemerintah Kabupaten Madiun Mengucapkan Selamat Ulang Tahun Yang ke-',
-            'message8' => ''.$usia.'',
-            'message9' => 'Semoga Senantiasa Selalu Diberikan Kesehatan dan Kelancaran.',
-            'avatar' => $user->avatar
+            'message8' => ''.$result_usia.'',
+            'message9' => 'Semoga Senantiasa Selalu Diberikan Kesehatan dan Kelancaran.'
         ];
     }
 }

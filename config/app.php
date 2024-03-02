@@ -69,7 +69,8 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Phnom_Penh',
+    // 'timezone' => 'Asia/Phnom_Penh',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // 'locale' => 'en',
     'locale' => 'id',
 
 

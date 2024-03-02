@@ -63,64 +63,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table mb-0 datatable">
+                        <table class="table table-striped custom-table" id="tableDiklat" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th class="jenis_diklat">Jenis Diklat</th>
-                                    <th class="nama_diklat">Nama Diklat</th>
-                                    <th class="Institusi Penyelenggara">Institusi Penyelenggara</th>
-                                    <th class="no_sertifikat">No Sertifikat</th>
-                                    <th class="tanggal_mulai">Tanggal Mulai</th>
-                                    <th class="tanggal_selesai">Tanggal Selesai</th>
-                                    <th class="tahun_diklat">Tahun Diklat</th>
-                                    <th class="durasi_jam">Durasi</th>
-                                    <th class="dokumen_diklat">Dokumen Diklat</th>
+                                    <th class="no">No</th>
+                                    <th>Jenis Diklat</th>
+                                    <th>Nama Diklat</th>
+                                    <th>Institusi Penyelenggara</th>
+                                    <th>No Sertifikat</th>
+                                    <th>Tanggal Mulai</th>
+                                    <th>Tanggal Selesai</th>
+                                    <th>Tahun Diklat</th>
+                                    <th>Durasi</th>
+                                    <th>Dokumen Diklat</th>
                                     <th class="aksi">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
-                                    <tr>
-                                        <td><center>{{ ++$sqldiklat }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
-                                        <td hidden class="id_dik"><center>{{ $result_diklat->id_dik }}</center></td>
-                                        <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
-                                        <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
-                                        <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
-                                        <td class="no_sertifikat"><center>{{ $result_diklat->no_sertifikat }}</center></td>
-                                        <td class="tanggal_mulai"><center>{{ $result_diklat->tanggal_mulai }}</center></td>
-                                        <td class="tanggal_selesai"><center>{{ $result_diklat->tanggal_selesai }}</center></td>
-                                        <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
-                                        <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
-                                        <td class="dokumen_diklat"><center>
-                                            <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank">
-                                                @if (pathinfo($result_diklat->dokumen_diklat, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
-                                            </a></center></td>
-
-                                        {{-- Edit dan Hapus data  --}}
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item edit_riwayat_diklat" href="#"
-                                                        data-toggle="modal" data-target="#edit_riwayat_diklat"><i
-                                                            class="fa fa-pencil m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item delete_riwayat_diklat" href="#"
-                                                        data-toggle="modal" data-target="#delete_riwayat_diklat"><i
-                                                            class="fa fa-trash-o m-r-5"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -372,6 +330,94 @@
     <!-- /Page Wrapper -->
 
     @section('script')
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var table = $('#tableDiklat').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "{{ route('get-diklat-data') }}",
+                        "data": function(d) {
+                            d.keyword = $('#keyword').val();
+                            d._token = "{{ csrf_token() }}";
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "id"
+                        },
+                        {
+                            "data": "jenis_diklat"
+                        },
+                        {
+                            "data": "nama_diklat"
+                        },
+                        {
+                            "data": "institusi_penyelenggara"
+                        },
+                        {
+                            "data": "no_sertifikat"
+                        },
+                        {
+                            "data": "tanggal_mulai"
+                        },
+                        {
+                            "data": "tanggal_selesai"
+                        },
+                        {
+                            "data": "tahun_diklat"
+                        },
+                        {
+                            "data": "durasi_jam"
+                        },
+                        {
+                            data: "dokumen_diklat",
+                            render: function(data, type, row) {
+                                var extension = data.split('.').pop().toLowerCase();
+                                var icon = '';
+
+                                if (extension === 'pdf') {
+                                    icon = '<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>';
+                                }
+
+                                    return '<center><a href="{{ asset("assets/DokumenDiklat/") }}' + '/' + data + '" target="_blank">' + icon + '</a></center><td hidden class="dokumen_diklat"></td>';
+                            }
+                        },
+                        {
+                            "data": "action"
+                        },
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "No data available in table",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<<",
+                            "last": ">>",
+                        }
+                    },
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
+
+                // Live search
+                $('#search-form').on('submit', function(e) {
+                    e.preventDefault();
+                    table
+                        .search($('#keyword').val())
+                        .draw();
+                })
+            });
+        </script>
+
         <script src="{{ asset('assets/js/diklat.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>

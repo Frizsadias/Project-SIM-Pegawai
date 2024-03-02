@@ -913,8 +913,11 @@ class UserManagementController extends Controller
     public function profileInformation(Request $request)
     {
         try {
+            $tanggal_lahir = Carbon::createFromFormat('d-m-Y', $request->birthDate)->format('Y-m-d');
 
             $updateProfil = [
+                'tanggal_lahir'         => $tanggal_lahir,
+                'tempat_lahir'          => $request->tmpt_lahir,
                 'pendidikan_terakhir'   => $request->pendidikan_terakhir,
                 'agama'                 => $request->agama,
                 'jenis_kelamin'         => $request->jk,
@@ -959,6 +962,14 @@ class UserManagementController extends Controller
     public function profileInformation2(Request $request)
     {
         try {
+            $tanggal_lahir = Carbon::createFromFormat('d-m-Y', $request->birthDate)->format('Y-m-d');
+
+            $updateProfil = [
+                'tanggal_lahir'         => $tanggal_lahir,
+                'tempat_lahir'          => $request->tmpt_lahir,
+                'jenis_kelamin'         => $request->jk
+            ];
+            DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($updateProfil);
 
             $updateNIP = [
                 'nip'                   => $request->nip,

@@ -3769,7 +3769,10 @@ table.dataTable thead > tr > td.sorting {
 .topnav-dropdown-footer a {
 	display: block;
 	text-align: center;
-	color: #333;
+	color: #f83f37;
+}
+.topnav-dropdown-footer a:hover {
+    color: #4999de;
 }
 .user-menu.nav > li > a .badge {
     color: #fff;
@@ -3798,19 +3801,14 @@ table.dataTable thead > tr > td.sorting {
 }
 
 .noti-time2 {
-    margin: 0;
-	float: right;
-	color: #333;
-	font-size: 14px;
-	font-family: 'Poppins';
-	text-align: center;
-}
-
-.noti-time2 img {
-	display: block;
-	width: 20%;
-	height: auto;
-	margin: 0 auto;
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    float: right;
+    color: #333;
+    font-size: 14px;
+    font-family: 'Poppins';
+    text-align: center;
 }
 
 .notification-message.noti-unread .noti-details {
@@ -3854,6 +3852,20 @@ table.dataTable thead > tr > td.sorting {
     color: #333;
 	font-size: 17px;
 	font-family: 'Poppins';
+}
+
+.notification-message.noti-unread .noti-details4 {
+	color: #333;
+	font-size: 17px;
+	font-family: 'Poppins';
+	text-align: center;
+}
+
+.notification-message.noti-read .noti-details4 {
+    color: #333;
+	font-size: 17px;
+	font-family: 'Poppins';
+	text-align: center;
 }
 
 /*-----------------
@@ -3909,6 +3921,7 @@ table.dataTable thead > tr > td.sorting {
 }
 .topnav-dropdown-footer {
 	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
 }
 .list-box {
 	list-style: none;
@@ -8577,6 +8590,11 @@ ul.comment-list li ul.children {
 		margin-left: 25px !important;
 		margin-top: 30px !important;
 	}
+
+	.logo-rsud img{
+		width: 35% !important;
+		margin-left: 73% !important;
+	}
 }
 @media only screen and (max-width: 391.98px) {
 	.header .header-left {
@@ -8601,6 +8619,11 @@ ul.comment-list li ul.children {
 	.fa-backward {
 		margin-left: 25px !important;
 		margin-top: 30px !important;
+	}
+
+	.logo-rsud img{
+		width: 35% !important;
+		margin-left: 71% !important;
 	}
 }
 @media only screen and (max-width: 384.98px) {
@@ -8627,6 +8650,11 @@ ul.comment-list li ul.children {
 		margin-left: 25px !important;
 		margin-top: 30px !important;
 	}
+
+	.logo-rsud img{
+		width: 35% !important;
+		margin-left: 71% !important;
+	}
 }
 @media only screen and (max-width: 375.98px) {
 	.header .header-left {
@@ -8652,6 +8680,11 @@ ul.comment-list li ul.children {
 		margin-left: 25px !important;
 		margin-top: 30px !important;
 	}
+
+	.logo-rsud img{
+		width: 35% !important;
+		margin-left: 71% !important;
+	}
 }
 @media only screen and (max-width: 320.98px) {
 	.header .header-left {
@@ -8676,6 +8709,11 @@ ul.comment-list li ul.children {
 	.fa-backward {
 		margin-left: 15px !important;
 		margin-top: 30px !important;
+	}
+
+	.logo-rsud img{
+		width: 45% !important;
+		margin-left: 63% !important;
 	}
 }
 /*Project Board*/
@@ -8756,43 +8794,10 @@ ul.comment-list li ul.children {
     width: 26px;
 }
 
-#popup-notifikasi {
-	display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    padding: 20px;
-	border-radius: 15px;
-    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.2);
-}
-
-#close-popup {
-	background-color: #e74a3b;
-    border-color: #e74a3b;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-	border-radius: 15px;
-}
-
-#close-popup:hover {
-	background-color: #e02d1b;
-    border-color: #d52a1a;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-}
-
-.close-notifikasi{
-	text-align: center;
-}
-
 .logo-rsud img{
 	display: block;
-	width: 15%;
-	margin-left: 87%;
+	width: 25%;
+	margin-left: 79%;
 }
 
 .cetak-dokumen{
@@ -11688,4 +11693,14 @@ ul.nav-tabs > li > a {
 
 .fa-2xl {
 	font-size: 30px !important;
+}
+
+.simbol-lihat {
+	float: right;
+	padding: 10px;
+}
+
+.simbol-hapus {
+	float: right;
+	padding: 10px;
 }

@@ -30,6 +30,7 @@ use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SIPController;
+use App\Http\Controllers\NotificationController;
 use AzisHapidin\IndoRegion\IndoRegion;
 
 
@@ -432,6 +433,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/diklat/edit-data', [RiwayatController::class, 'editRiwayatDiklat'])->name('riwayat/diklat/edit-data');
     Route::post('riwayat/diklat/hapus-data', [RiwayatController::class, 'hapusRiwayatDiklat'])->name('riwayat/diklat/hapus-data');
     Route::get('riwayat/diklat/cari', [RiwayatController::class, 'searchRiwayatDiklat'])->name('riwayat/diklat/cari');
+    Route::get('get-diklat-data', [RiwayatController::class, 'getDiklatData'])->name('get-diklat-data');
 
     // ----------------------- Informasi Riwayat PMK --------------------------//
     Route::get('riwayat/pmk', [RiwayatController::class, 'pmk'])->name('riwayat-pmk');
@@ -612,4 +614,10 @@ Route::controller(ExportExcelController::class)->group(function () {
     Route::get('export-spk-perawat', 'exportSPKPerawat')->name('export-spk-perawat');
     Route::get('export-spk-nakes-lain', 'exportSPKNakesLain')->name('export-spk-nakes-lain');
     Route::get('export-daftar-pegawai', 'exportDaftarPegawai')->name('export-daftar-pegawai');
+});
+
+// ----------------------- Tampilan Notifikasi --------------------------//
+Route::controller(NotificationController::class)->group(function () {
+    Route::get('tampilan/semua/notifikasi', 'tampilanNotifikasi')->name('tampilan-semua-notifikasi');
+    Route::get('/tampilan/semua/notifikasi/hapus/data/{id}', 'hapusNotifikasi')->name('tampilan-semua-notifikasi-hapus-data');
 });

@@ -435,7 +435,18 @@
                                     }
                             },
                             {
-                                "data": "status_pengajuan"
+                                data: "status_pengajuan",
+                                    render: function(data) {
+                                        var statusIcon = '';
+                                        if (data === 'Disetujui') {
+                                            statusIcon = '<i class="fa fa-dot-circle-o text-success"></i> ';
+                                        } else if (data === 'Dalam Proses Persetujuan') {
+                                            statusIcon = '<i class="fa fa-dot-circle-o text-warning"></i> ';
+                                        } else if (data === 'Ditolak') {
+                                            statusIcon = '<i class="fa fa-dot-circle-o text-danger"></i> ';
+                                        }
+                                        return '<td class="status_pengajuan"><div class="dropdown"><a class="status-persetujuan-superadmin">' + statusIcon + '<span class="status_pengajuan">' + data + '</span></a></div></td>';
+                                    }
                             },
                             { 
                                 "data": "progress_persetujuan",

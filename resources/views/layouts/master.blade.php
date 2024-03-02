@@ -187,12 +187,13 @@
         .dropdown-item{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .notification-title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .clear-noti{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .noti-details{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .logo-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .fa{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .cal-icon:after{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .bar-icon span{background-color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .apexcharts-legend-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+        .form-header h3{color: {{ auth()->user()->warna_sistem_tulisan }} !important}
+        .form-header p{color: {{ auth()->user()->warna_sistem_tulisan }} !important}
 
         .apexcharts-xaxistooltip, .apexcharts-yaxistooltip{background: {{ auth()->user()->warna_mode }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
         .form-control{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
@@ -245,6 +246,9 @@
         .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .continue-btn{background-color: {{ auth()->user()->warna_mode }}}
+        .cancel-btn{background-color: {{ auth()->user()->warna_mode }}}
+        .card-header{background-color: {{ auth()->user()->warna_mode }} !important;}
         .nav-tabs{background-color: {{ auth()->user()->warna_mode }} !important;}
         .profile-img-wrap{background : {{ auth()->user()->warna_mode }} !important;}
         .header{background: {{ auth()->user()->warna_mode }} !important; box-shadow: {{ auth()->user()->bayangan_kotak_header }} !important;}
@@ -276,6 +280,132 @@
         
         .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title{background: {{ auth()->user()->warna_mode_2 }} !important;}
         .select2-container--default .select2-results__option--selected{background-color: {{ auth()->user()->warna_mode_2 }} !important;}
+
+        @foreach($result_tema as $sql_user => $aplikasi_tema)
+            @if ($aplikasi_tema->tema_aplikasi == 'Gelap')
+                .cancel-btn{color: #f43b48 !important}
+                .cancel-btn:hover, .cancel-btn:focus, .cancel-btn:active {color: {{ auth()->user()->warna_sistem_tulisan }} !important}
+                .topnav-dropdown-footer a:hover{color: #f83f37 !important}
+                .topnav-dropdown-header .clear-noti:hover{color: #f83f37 !important}
+                .notification-message.noti-read .noti-title{color: #989c9e !important}
+
+                @foreach ($belum_dibaca as $notifikasi_belum_dibaca)
+                    #popup-notifikasi_{{ $notifikasi_belum_dibaca->id }} {background: {{ auth()->user()->warna_mode }} !important}
+                    .noti-details2{color: {{ auth()->user()->warna_sistem_tulisan }} !important}
+                    .noti-time3{color: {{ auth()->user()->warna_sistem_tulisan }} !important}
+                    .fa-clock{color: {{ auth()->user()->warna_sistem_tulisan }} !important}
+                @endforeach
+                @foreach ($dibaca as $notifikasi_dibaca)
+                    #popup-notifikasi_{{ $notifikasi_dibaca->id }} {background: {{ auth()->user()->warna_mode }} !important}
+                    .noti-details2{color: {{ auth()->user()->warna_sistem_tulisan }} !important}
+                    .noti-time3{color: {{ auth()->user()->warna_sistem_tulisan }} !important}
+                    .fa-clock{color: {{ auth()->user()->warna_sistem_tulisan }} !important}
+                @endforeach
+            @endif
+        @endforeach
+
+        @foreach ($belum_dibaca as $notifikasi_belum_dibaca)
+        #popup-notifikasi_{{ $notifikasi_belum_dibaca->id }} {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.2);
+        }
+
+        #close-popup_{{ $notifikasi_belum_dibaca->id }} {
+            background-color: #e74a3b;
+            border-color: #e74a3b;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+        }
+
+        #close-popup_{{ $notifikasi_belum_dibaca->id }}:hover {
+            background-color: #e02d1b;
+            border-color: #d52a1a;
+        }
+
+        .close-notifikasi {
+            bottom: 20px;
+            left: 440px;
+            text-align: center;
+            position: absolute;
+        }
+        
+        .logo-rsud2 img{
+            display: block;
+            width: 15%;
+            margin-left: 87%;
+        }
+
+        .noti-time3 {
+            position: absolute;
+            bottom: 5px;
+            right: 15px;
+            float: right;
+            color: #333;
+            font-size: 14px;
+            font-family: 'Poppins';
+            text-align: center;
+        }
+        @endforeach
+
+        @foreach ($dibaca as $notifikasi_dibaca)
+        #popup-notifikasi_{{ $notifikasi_dibaca->id }} {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.2);
+        }
+
+        #close-popup_{{ $notifikasi_dibaca->id }} {
+            background-color: #e74a3b;
+            border-color: #e74a3b;
+            color: #fff;
+            border: none;
+            padding: 0px 5px;
+            border-radius: 20px;
+        }
+
+        #close-popup_{{ $notifikasi_dibaca->id }}:hover {
+            background-color: #e02d1b;
+            border-color: #d52a1a;
+        }
+
+        .close-notifikasi-2 {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .logo-rsud2 img{
+            display: block;
+            width: 15%;
+            margin-left: 87%;
+        }
+
+        .noti-time3 {
+            position: absolute;
+            bottom: 5px;
+            right: 15px;
+            float: right;
+            color: #333;
+            font-size: 14px;
+            font-family: 'Poppins';
+            text-align: center;
+        }
+        @endforeach
     </style>
 
     <!-- Main Wrapper -->
@@ -296,7 +426,7 @@
         <!-- Header -->
         <div class="header">
             
-            <!-- Untuk Mengatur Tema Aplikasi -->
+                <!-- Untuk Mengatur Tema Aplikasi -->
                 @foreach($result_tema as $sql_user => $aplikasi_tema)
                     <div class="fitur-tema2">
                         <li class="nav-item dropdown">
@@ -437,23 +567,28 @@
                                     </li>
                                 @endif
 
-                                @foreach (auth()->user()->unreadNotifications as $notifikasi_belum_dibaca)
+                                @foreach ($belum_dibaca->where('notifiable_id', auth()->id()) as $notifikasi_belum_dibaca)
+                                @php
+                                    $notifikasiDataBelumDibaca = json_decode($notifikasi_belum_dibaca->data);
+                                    $created_at = \Carbon\Carbon::parse($notifikasi_belum_dibaca->created_at);
+                                    $read_at = \Carbon\Carbon::parse($notifikasi_belum_dibaca->read_at);
+                                @endphp
                                     <li class="notification-message noti-unread">
-                                        <a href="#" id="open-popup">
+                                        <a href="#" id="open-popup_{{ $notifikasi_belum_dibaca->id }}">
                                             <div class="media">
                                                 <span class="avatar">
-                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasi_belum_dibaca->data['avatar']) }}">
+                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasiDataBelumDibaca->avatar) }}">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details">
                                                         <span class="noti-title">
-                                                            <b>{{ $notifikasi_belum_dibaca->data['message3'] }} {{ $notifikasi_belum_dibaca->data['name'] }}</b>
+                                                            <b>{{ $notifikasiDataBelumDibaca->message3 }} {{ $notifikasiDataBelumDibaca->name }}</b>
                                                         </span><br>
                                                             Ada pesan baru untuk anda   !!
                                                     </p>
                                                     <p class="noti-time">
                                                         <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
-                                                        <span class="notification-time">{{ $notifikasi_belum_dibaca->created_at->diffForHumans() }}</span>
+                                                        <span class="notification-time">{{ $created_at->diffForHumans() }}</span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -461,23 +596,28 @@
                                     </li>
                                 @endforeach
 
-                                @foreach (auth()->user()->readNotifications as $notifikasi_dibaca)
+                                @foreach ($dibaca->where('notifiable_id', auth()->id()) as $notifikasi_dibaca)
+                                @php
+                                    $notifikasiDataDibaca = json_decode($notifikasi_dibaca->data);
+                                    $created_at = \Carbon\Carbon::parse($notifikasi_dibaca->created_at);
+                                    $read_at = \Carbon\Carbon::parse($notifikasi_dibaca->read_at);
+                                @endphp
                                     <li class="notification-message noti-read">
-                                        <a href="#" id="open-popup">
+                                        <a href="#" id="open-popup_{{ $notifikasi_dibaca->id }}">
                                             <div class="media">
                                                 <span class="avatar">
-                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasi_dibaca->data['avatar']) }}">
+                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasiDataDibaca->avatar) }}">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details">
                                                         <span class="noti-title">
-                                                            <b>{{ $notifikasi_dibaca->data['message3'] }} {{ $notifikasi_dibaca->data['name'] }}</b>
+                                                            <b>{{ $notifikasiDataDibaca->message3 }} {{ $notifikasiDataDibaca->name }}</b>
                                                         </span><br>
                                                             Ada pesan baru untuk anda   !!
                                                     </p>
                                                     <p class="noti-time">
                                                         <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
-                                                        <span class="notification-time">{{ $notifikasi_dibaca->created_at->diffForHumans() }}</span>
+                                                        <span class="notification-time">{{ $created_at->diffForHumans() }}</span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -486,77 +626,90 @@
                                 @endforeach
                             </ul>
                         </div>
-                        {{-- <div class="topnav-dropdown-footer"><a href="#">Lihat Semua Notifikasi</a></div> --}}
+                        <div class="topnav-dropdown-footer"><a href="{{ route('tampilan-semua-notifikasi') }}">Lihat Semua Notifikasi</a></div>
                     </div>
                 </li>
 				<!-- /Notifications -->
 
-                <!-- Ulang Tahun Modal -->
-                <div id="popup-notifikasi">
-                    @foreach (auth()->user()->unreadNotifications as $notifikasi_belum_dibaca)
-                        <li class="notification-message noti-unread">
-                            <div class="media">
-                                <div class="media-body">
-                                    <p class="noti-details3"><br>
-                                        <a><b>{{ $notifikasi_belum_dibaca->data['name'] }}</b></a><br>
-                                        <a>{{ $notifikasi_belum_dibaca->data['message'] }} / {{ $notifikasi_belum_dibaca->data['message2'] }}</a><br>
-                                        <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notifikasi_belum_dibaca->id, 0, 8) }}</a>
-                                    </p><br>
-                                    <p class="noti-details2">
-                                        <i>{{ $notifikasi_belum_dibaca->data['message4'] }} <b>{{ $notifikasi_belum_dibaca->data['message5'] }}</b> {{ $notifikasi_belum_dibaca->data['message6'] }}<br>
-                                        {{ $notifikasi_belum_dibaca->data['message7'] }} <b>{{ $notifikasi_belum_dibaca->data['message8'] }}</b><br>
-                                        Kepada <b>{{ $notifikasi_belum_dibaca->data['name'] }}</b> {{ $notifikasi_belum_dibaca->data['message9'] }}</i>
-                                    <br><br></p>
-                                    <p class="logo-rsud">
-                                        <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
-                                    </p>
-                                    <p class="noti-time2">
-                                        <b>RSUD Caruban</b><br>
-                                        <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
-                                        <span class="notification-time">{{ $notifikasi_belum_dibaca->created_at->diffForHumans() }}</span>
-                                    </p>
-                                </div>
+                <!-- Notifikasi Belum Dibaca Modal -->
+                @foreach ($belum_dibaca as $notifikasi_belum_dibaca)
+                @php
+                    $notifikasiDataBelumDibaca = json_decode($notifikasi_belum_dibaca->data);
+                    $created_at = \Carbon\Carbon::parse($notifikasi_belum_dibaca->created_at);
+                    $read_at = \Carbon\Carbon::parse($notifikasi_belum_dibaca->read_at);
+                @endphp
+                <div id="popup-notifikasi_{{ $notifikasi_belum_dibaca->id }}">
+                    <li class="notification-message noti-unread">
+                        <div class="media">
+                            <div class="media-body">
+                                <p class="noti-details3"><br>
+                                    <a><b>{{ $notifikasiDataBelumDibaca->name }}</b></a><br>
+                                    <a>{{ $notifikasiDataBelumDibaca->message }} / {{ \Carbon\Carbon::parse($notifikasiDataBelumDibaca->message2)->format('d F Y') }}</a><br>
+                                    <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notifikasi_belum_dibaca->id, 0, 8) }}</a>
+                                </p><br>
+                                <p class="noti-details2">
+                                    <i>{{ $notifikasiDataBelumDibaca->message4 }} <b>{{ $notifikasiDataBelumDibaca->message5 }}</b> {{ $notifikasiDataBelumDibaca->message6 }}<br>
+                                    {{ $notifikasiDataBelumDibaca->message7 }}<b>{{ $notifikasiDataBelumDibaca->message8 }}</b><br>
+                                    Kepada <b>{{ $notifikasiDataBelumDibaca->name }}</b> {{ $notifikasiDataBelumDibaca->message9 }}</i>
+                                <br><br></p>
+                                <p class="logo-rsud2">
+                                    <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
+                                </p>
+                                <p class="noti-time3">
+                                    <b>RSUD Caruban</b><br>
+                                    <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
+                                    <span class="notification-time">{{ $created_at->diffForHumans() }}</span>
+                                </p>
                             </div>
-                        </li>
-                    @endforeach
-
-                    @foreach (auth()->user()->readNotifications as $notifikasi_dibaca)
-                        <li class="notification-message noti-read">
-                            <div class="media">
-                                <div class="media-body">
-                                    <p class="noti-details3"><br>
-                                        <a><b>{{ $notifikasi_dibaca->data['name'] }}</b></a><br>
-                                        <a>{{ $notifikasi_dibaca->data['message'] }} / {{ $notifikasi_dibaca->data['message2'] }}</a><br>
-                                        <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notifikasi_dibaca->id, 0, 8) }}</a>
-                                    </p><br>
-                                    <p class="noti-details2">
-                                        <i>{{ $notifikasi_dibaca->data['message4'] }} <b>{{ $notifikasi_dibaca->data['message5'] }}</b> {{ $notifikasi_dibaca->data['message6'] }}<br>
-                                        {{ $notifikasi_dibaca->data['message7'] }} <b>{{ $notifikasi_dibaca->data['message8'] }}</b><br>
-                                        Kepada <b>{{ $notifikasi_dibaca->data['name'] }}</b> {{ $notifikasi_dibaca->data['message9'] }}</i>
-                                    <br><br></p>
-                                    <p class="logo-rsud">
-                                        <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
-                                    </p>
-                                    <p class="noti-time2">
-                                        <b>RSUD Caruban</b><br>
-                                        <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
-                                        <span class="notification-time">{{ $notifikasi_dibaca->created_at->diffForHumans() }}</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                    @endforeach
+                        </div>
+                    </li>
                     <div class="close-notifikasi">
-                        @foreach (auth()->user()->unreadNotifications as $notifikasi_belum_dibaca)
-                            <a href="{{ route('notifikasi.dibaca', $notifikasi_belum_dibaca->id) }}"><button id="close-popup">Tutup</button></a>
-                        @endforeach
-                        @foreach (auth()->user()->readNotifications as $notifikasi_dibaca)
-                            <a href="{{ route('notifikasi.dibaca', $notifikasi_dibaca->id) }}"><button id="close-popup">Tutup</button></a>
-                        @endforeach
+                        <a href="{{ route('notifikasi.dibaca', $notifikasi_belum_dibaca->id) }}"><button id="close-popup_{{ $notifikasi_belum_dibaca->id }}">Tutup</button></a>
                     </div>
-                    <br>
                 </div>
-                <!-- /Ulang Tahun Modal -->
+                @endforeach
+                <!-- /Notifikasi Belum Dibaca Modal -->
+
+                <!-- Notifikasi Dibaca Modal -->
+                @foreach ($dibaca as $notifikasi_dibaca)
+                @php
+                    $notifikasiDataDibaca = json_decode($notifikasi_dibaca->data);
+                    $created_at = \Carbon\Carbon::parse($notifikasi_dibaca->created_at);
+                    $read_at = \Carbon\Carbon::parse($notifikasi_dibaca->read_at);
+                @endphp
+                <div id="popup-notifikasi_{{ $notifikasi_dibaca->id }}">
+                    <li class="notification-message noti-unread">
+                        <div class="media">
+                            <div class="media-body">
+                                <p class="noti-details3"><br>
+                                    <a><b>{{ $notifikasiDataDibaca->name }}</b></a><br>
+                                    <a>{{ $notifikasiDataDibaca->message }} / {{ \Carbon\Carbon::parse($notifikasiDataDibaca->message2)->format('d F Y') }}</a><br>
+                                    <a style="color: #808080; font-weight: 500; font-size: 12px">ID Notifikasi: {{ substr($notifikasi_dibaca->id, 0, 8) }}</a>
+                                </p><br>
+                                <p class="noti-details2">
+                                    <i>{{ $notifikasiDataDibaca->message4 }} <b>{{ $notifikasiDataDibaca->message5 }}</b> {{ $notifikasiDataDibaca->message6 }}<br>
+                                    {{ $notifikasiDataDibaca->message7 }}<b>{{ $notifikasiDataDibaca->message8 }}</b><br>
+                                    Kepada <b>{{ $notifikasiDataDibaca->name }}</b> {{ $notifikasiDataDibaca->message9 }}</i>
+                                <br><br></p>
+                                <p class="logo-rsud2">
+                                    <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
+                                </p>
+                                <p class="noti-time3">
+                                    <b>RSUD Caruban</b><br>
+                                    <i class="fa-solid fa-clock" style="color: #808080;" aria-hidden="true"></i>
+                                    <span class="notification-time">{{ $created_at->diffForHumans() }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="close-notifikasi-2">
+                        <button type="button" class="close" id="close-popup_{{ $notifikasi_dibaca->id }}">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                @endforeach
+                <!-- /Notifikasi Dibaca Modal -->
 
                 <!-- Profil -->
                 <li class="nav-item dropdown has-arrow main-drop">
@@ -654,7 +807,37 @@
     <!-- Custom JS -->
     <script src="{{ URL::to('assets/js/app.js') }}"></script>
 
-    <script src="{{ asset('assets/js/master.js') }}"></script>
+    <script>
+        @foreach ($belum_dibaca as $notifikasi_belum_dibaca)
+            $(document).ready(function() {
+                $("#open-popup_{{ $notifikasi_belum_dibaca->id }}").click(function() {
+                    $("#popup-notifikasi_{{ $notifikasi_belum_dibaca->id }}").fadeIn();
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('close-popup_{{ $notifikasi_belum_dibaca->id }}').addEventListener('click', function() {
+                    document.querySelector('#popup-notifikasi_{{ $notifikasi_belum_dibaca->id }}').style.display = 'none';
+                });
+            });
+        @endforeach
+    </script>
+
+    <script>
+        @foreach ($dibaca as $notifikasi_dibaca)
+            $(document).ready(function() {
+                $("#open-popup_{{ $notifikasi_dibaca->id }}").click(function() {
+                    $("#popup-notifikasi_{{ $notifikasi_dibaca->id }}").fadeIn();
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('close-popup_{{ $notifikasi_dibaca->id }}').addEventListener('click', function() {
+                    document.querySelector('#popup-notifikasi_{{ $notifikasi_dibaca->id }}').style.display = 'none';
+                });
+            });
+        @endforeach
+    </script>
 
     <script>
         var toggleBtn = document.getElementById("toggle_btn");
