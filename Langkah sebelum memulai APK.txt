@@ -9,3 +9,40 @@ Untuk pembuatan Cron Job :
 Waktu : * * * * *
 Perintah untuk Dijalankan : domains/rsudcaruban.shop/public_html/artisan birthday:notifications
 Perintah untuk Dijalankan secara full : /usr/bin/php /home/u817478211/domains/rsudcaruban.shop/public_html/artisan birthday:notifications
+
+Untuk atur apabila terdapat icon pdf
+<script>
+    $(document).ready(function() {
+        if (!$('.datatable').hasClass('dataTable')) {
+            $('.datatable').DataTable({
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "columnDefs": [
+                    { "targets": [9, 10, 11], "orderable": false },
+                    { "targets": [9, 10, 11], "searchable": false }
+                ]
+            });
+        }
+        $('.dokumen_transkrip a').each(function() {
+            if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+            }
+            $(this).closest('td').after('<td hidden class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>');
+        });
+        
+
+        $('.dokumen_ijazah a').each(function() {
+            if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+            }
+            $(this).closest('td').after('<td hidden class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>');
+        });
+
+        $('.dokumen_gelar a').each(function() {
+            if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+            }
+            $(this).closest('td').after('<td hidden class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>');
+        });
+        
+    });
+</script>

@@ -433,7 +433,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('riwayat/diklat/edit-data', [RiwayatController::class, 'editRiwayatDiklat'])->name('riwayat/diklat/edit-data');
     Route::post('riwayat/diklat/hapus-data', [RiwayatController::class, 'hapusRiwayatDiklat'])->name('riwayat/diklat/hapus-data');
     Route::get('riwayat/diklat/cari', [RiwayatController::class, 'searchRiwayatDiklat'])->name('riwayat/diklat/cari');
-    Route::get('get-diklat-data', [RiwayatController::class, 'getDiklatData'])->name('get-diklat-data');
 
     // ----------------------- Informasi Riwayat PMK --------------------------//
     Route::get('riwayat/pmk', [RiwayatController::class, 'pmk'])->name('riwayat-pmk');
