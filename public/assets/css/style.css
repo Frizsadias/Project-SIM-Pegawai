@@ -8825,6 +8825,7 @@ ul.comment-list li ul.children {
     color: #333;
 	border: 1px solid #ccc;
 	border-radius: 50px;
+	margin-bottom: 5px;
 }
 
 .status-persetujuan-superadmin:hover{

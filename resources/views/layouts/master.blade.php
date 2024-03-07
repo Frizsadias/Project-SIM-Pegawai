@@ -246,6 +246,7 @@
         .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .status-persetujuan-user{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important}
         .continue-btn{background-color: {{ auth()->user()->warna_mode }}}
         .cancel-btn{background-color: {{ auth()->user()->warna_mode }}}
         .card-header{background-color: {{ auth()->user()->warna_mode }} !important;}

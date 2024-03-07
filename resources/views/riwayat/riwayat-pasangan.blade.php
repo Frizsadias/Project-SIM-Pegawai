@@ -84,14 +84,14 @@
                                     <th>Email</th>
                                     <th>Dokumen Nikah</th>
                                     <th>Pas Foto</th>
-                                    <th>Aksi</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatPasangan as $sqlPasangan => $result_pasangan)
                                     <tr>
-                                        <td><center>{{ ++$sqlPasangan }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_pasangan->id }}</center></td>
+                                        {{-- <td><center>{{ ++$sqlPasangan }}</center></td> --}}
+                                        <td class="id"><center>{{ $result_pasangan->id }}</center></td>
                                         <td class="suami_istri_ke"><center>{{ $result_pasangan->suami_istri_ke }}</center></td>
                                         <td class="status_pekerjaan_pasangan"><center>{{ $result_pasangan->status_pekerjaan_pasangan }}</center></td>
                                         <td class="nip"><center>{{ $result_pasangan->nip }}</center></td>
@@ -104,36 +104,16 @@
                                         <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
                                         <td class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
                                         <td class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
-
-                                        @if (!empty($result_pasangan->no_hp))
-                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
-                                        @endif
-                                            <td hidden class="no_hp">{{ $result_pasangan->no_hp }}</td>
-
-                                        @if (!empty($result_pasangan->no_telepon))
-                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
-                                        @endif
-                                            <td hidden class="no_telepon">{{ $result_pasangan->no_telepon }}</td>
-
+                                        <td class="no_hp_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
+                                        <td class="no_telepon_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
                                         <td class="email"><center>
                                             <a href="mailto:{{ $result_pasangan->email }}" style="color:black">{{ $result_pasangan->email }}</a>
                                         </center></td>
-
                                         <td class="dokumen_nikah"><center>
-                                            <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank">
-                                                @if (pathinfo($result_pasangan->dokumen_nikah, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>
-                                            </a>
+                                            <a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank"></a>
                                         </center></td>
                                         <td class="pas_foto"><center>
-                                            <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank">
-                                                @if (in_array(pathinfo($result_pasangan->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                <td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>
-                                            </a>
+                                            <a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank"></a>
                                         </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
@@ -695,6 +675,51 @@
     <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
     <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if (!$('.datatable').hasClass('dataTable')) {
+                $('.datatable').DataTable({
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    "columnDefs": [
+                        { "targets": [9, 10, 11], "orderable": false },
+                        { "targets": [9, 10, 11], "searchable": false }
+                    ]
+                });
+            }
+
+            $('.no_hp_text').each(function() {
+                @if (!empty($result_pasangan->no_hp))
+                    $(this).closest('td').after('<td hidden class="no_hp">{{ $result_pasangan->no_hp }}</td>');
+                @endif
+            });
+
+            $('.no_telepon_text').each(function() {
+                @if (!empty($result_pasangan->no_telepon))
+                    $(this).closest('td').after('<td hidden class="no_telepon">{{ $result_pasangan->no_telepon }}</td>');
+                @endif
+            });
+    
+            $('.dokumen_nikah a').each(function() {
+                if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                    $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                }
+                @if (!empty($result_pasangan->dokumen_nikah))
+                    $(this).closest('td').after('<td hidden class="dokumen_nikah">{{ $result_pasangan->dokumen_nikah }}</td>');
+                @endif
+            });
+
+            $('.pas_foto a').each(function() {
+                var href = $(this).attr('href').toLowerCase();
+                if (href.endsWith('.jpg') || href.endsWith('.jpeg') || href.endsWith('.png')) {
+                    $(this).prepend('<i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                }
+                @if (!empty($result_pasangan->pas_foto))
+                    $(this).closest('td').after('<td hidden class="pas_foto">{{ $result_pasangan->pas_foto }}</td>');
+                @endif
+            });
+        });
+    </script>
 
     <script>
         document.getElementById('c_no_hp').addEventListener('input', function(event) {

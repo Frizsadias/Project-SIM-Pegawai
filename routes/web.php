@@ -502,7 +502,6 @@ Route::middleware(['auth'])->group(function () {
 // ----------------------- Informasi Layanan Cuti --------------------------//
 Route::controller(LayananController::class)->group(function () {
     Route::get('layanan/cuti', 'tampilanCutiPegawai')->name('layanan-cuti');
-    // Route::get('get-cuti-data', 'getCutiData')->name('get-cuti-data');
     Route::get('layanan/cuti/kelengkapan/{id}', 'cetakDokumenKelengkapan')->name('layanan-cuti-kelengkapan');
     Route::get('layanan/cuti/kelengkapan2/{id}', 'cetakDokumenKelengkapan2')->name('layanan-cuti-kelengkapan2');
     Route::get('layanan/cuti/admin', 'tampilanCutiPegawaiAdmin')->name('layanan-cuti-admin');

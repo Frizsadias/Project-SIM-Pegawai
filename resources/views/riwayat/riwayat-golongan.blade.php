@@ -62,26 +62,26 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="golongan">Golongan</th>
-                                    <th class="jenis_kenaikan_pangkat">Jenis Kenaikan Pangkat (KP)</th>
-                                    <th class="jenis_kerja_golongan_tahun">Masa Kerja Golongan (Tahun)</th>
-                                    <th class="jenis_kerja_golongan_bulan">Masa Kerja Golongan (Bulan)</th>
-                                    <th class="tmt_golongan_riwayat">TMT Golongan</th>
-                                    <th class="no_teknis_bkn">No Teknis BKN</th>
-                                    <th class="tanggal_teknis_bkn">Tanggal Teknis BKN</th>
-                                    <th class="no_sk_golongan">No SK</th>
-                                    <th class="tanggal_sk_golongan">Tanggal SK</th>
-                                    <th class="dokumen_skkp">Dokumen SK KP</th>
-                                    <th class="dokumen_teknis_kp">Dokumen Teknis KP</th>
-                                    <th class="aksi">Aksi</th>
+                                    <th>Golongan</th>
+                                    <th>Jenis Kenaikan Pangkat (KP)</th>
+                                    <th>Masa Kerja Golongan (Tahun)</th>
+                                    <th>Masa Kerja Golongan (Bulan)</th>
+                                    <th>TMT Golongan</th>
+                                    <th>No Teknis BKN</th>
+                                    <th>Tanggal Teknis BKN</th>
+                                    <th>No SK</th>
+                                    <th>Tanggal SK</th>
+                                    <th>Dokumen SK KP</th>
+                                    <th>Dokumen Teknis KP</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatGolongan as $sqlgolongan => $result_golongan)
                                     <tr>
-                                        <td><center>{{ ++$sqlgolongan }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_golongan->id }}</center></td>
-                                        <td hidden class="id_gol"><center>{{ $result_golongan->id_gol }}</center></td>
+                                        {{-- <td><center>{{ ++$sqlgolongan }}</center></td> --}}
+                                        <td class="id"><center>{{ $result_golongan->id }}</center></td>
+                                        {{-- <td hidden class="id_gol"><center>{{ $result_golongan->id_gol }}</center></td> --}}
                                         <td class="golongan"><center>{{ $result_golongan->golongan }}</center></td>
                                         <td class="jenis_kenaikan_pangkat"><center>{{ $result_golongan->jenis_kenaikan_pangkat }}</center></td>
                                         <td class="masa_kerja_golongan_tahun"><center>{{ $result_golongan->masa_kerja_golongan_tahun }}</center></td>
@@ -91,20 +91,8 @@
                                         <td class="tanggal_teknis_bkn"><center>{{ $result_golongan->tanggal_teknis_bkn }}</center></td>
                                         <td class="no_sk_golongan"><center>{{ $result_golongan->no_sk_golongan }}</center></td>
                                         <td class="tanggal_sk_golongan"><center>{{ $result_golongan->tanggal_sk_golongan }}</center></td>
-                                        <td class="dokumen_skkp"><center>
-                                            <a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}" target="_blank">
-                                                @if (pathinfo($result_golongan->dokumen_skkp, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_skkp">{{ $result_golongan->dokumen_skkp }}</td>
-                                            </a></center></td>
-                                        <td class="dokumen_teknis_kp"><center>
-                                            <a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}" target="_blank">
-                                                @if (pathinfo($result_golongan->dokumen_teknis_kp, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_teknis_kp">{{ $result_golongan->dokumen_teknis_kp }}</td>
-                                            </a></center></td>
+                                        <td class="dokumen_skkp"><center><a href="{{ asset('assets/DokumenSKKP/' . $result_golongan->dokumen_skkp) }}" target="_blank"></a></center></td>
+                                        <td class="dokumen_teknis_kp"><center><a href="{{ asset('assets/DokumenTeknisKP/' . $result_golongan->dokumen_teknis_kp) }}" target="_blank"></a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -424,6 +412,44 @@
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_skkp a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_golongan->dokumen_skkp))
+                        $(this).closest('td').after('<td hidden class="dokumen_skkp">{{ $result_golongan->dokumen_skkp }}</td>');
+                    @endif
+                });
+
+                $('.dokumen_teknis_kp a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_golongan->dokumen_teknis_kp))
+                        $(this).closest('td').after('<td hidden class="dokumen_teknis_kp">{{ $result_golongan->dokumen_teknis_kp }}</td>');
+                    @endif
+                });
+
+                $('.id').each(function() {
+                    @if (!empty($result_golongan->id_gol))
+                        $(this).closest('td').after('<td hidden class="id_gol"><center>{{ $result_golongan->id_gol }}</center></td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(".theSelect").select2();

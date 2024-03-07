@@ -67,24 +67,24 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="jenis_diklat">Jenis Diklat</th>
-                                    <th class="nama_diklat">Nama Diklat</th>
-                                    <th class="Institusi Penyelenggara">Institusi Penyelenggara</th>
-                                    <th class="no_sertifikat">No Sertifikat</th>
-                                    <th class="tanggal_mulai">Tanggal Mulai</th>
-                                    <th class="tanggal_selesai">Tanggal Selesai</th>
-                                    <th class="tahun_diklat">Tahun Diklat</th>
-                                    <th class="durasi_jam">Durasi</th>
-                                    <th class="dokumen_diklat">Dokumen Diklat</th>
-                                    <th class="aksi">Aksi</th>
+                                    <th>Jenis Diklat</th>
+                                    <th>Nama Diklat</th>
+                                    <th>Institusi Penyelenggara</th>
+                                    <th>No Sertifikat</th>
+                                    <th>Tanggal Mulai</th>
+                                    <th>Tanggal Selesai</th>
+                                    <th>Tahun Diklat</th>
+                                    <th>Durasi</th>
+                                    <th>Dokumen Diklat</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatDiklat as $sqldiklat => $result_diklat)
                                     <tr>
-                                        <td><center>{{ ++$sqldiklat }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_diklat->id }}</center></td>
-                                        <td hidden class="id_dik"><center>{{ $result_diklat->id_dik }}</center></td>
+                                        {{-- <td><center>{{ ++$sqldiklat }}</center></td> --}}
+                                        <td class="id"><center>{{ $result_diklat->id }}</center></td>
+                                        {{-- <td hidden class="id_dik"><center>{{ $result_diklat->id_dik }}</center></td> --}}
                                         <td class="jenis_diklat"><center>{{ $result_diklat->jenis_diklat }}</center></td>
                                         <td class="nama_diklat"><center>{{ $result_diklat->nama_diklat }}</center></td>
                                         <td class="institusi_penyelenggara"><center>{{ $result_diklat->institusi_penyelenggara }}</center></td>
@@ -93,13 +93,7 @@
                                         <td class="tanggal_selesai"><center>{{ $result_diklat->tanggal_selesai }}</center></td>
                                         <td class="tahun_diklat"><center>{{ $result_diklat->tahun_diklat }}</center></td>
                                         <td class="durasi_jam"><center>{{ $result_diklat->durasi_jam }}</center></td>
-                                        <td class="dokumen_diklat"><center>
-                                            <a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank">
-                                                @if (pathinfo($result_diklat->dokumen_diklat, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>
-                                            </a></center></td>
+                                        <td class="dokumen_diklat"><center><a href="{{ asset('assets/DokumenDiklat/' . $result_diklat->dokumen_diklat) }}" target="_blank"></a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -376,6 +370,35 @@
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_diklat a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_diklat->dokumen_diklat))
+                        $(this).closest('td').after('<td hidden class="dokumen_diklat">{{ $result_diklat->dokumen_diklat }}</td>');
+                    @endif
+                });
+
+                $('.id').each(function() {
+                    @if (!empty($result_diklat->id_dik))
+                        $(this).closest('td').after('<td hidden class="id_dik"><center>{{ $result_diklat->id_dik }}</center></td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(".theSelect").select2();

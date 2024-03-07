@@ -65,27 +65,28 @@
                     <div class="table-responsive">
                         <table class="table table-striped custom-table mb-0 datatable">
                             <thead>
-                                <th>No</th>
-                                <th class="ting_ped">Tingkat Pendidikan</th>
-                                <th class="pendidikan">Pendidikan</th>
-                                <th class="tahun_lulus">Tahun Lulus</th>
-                                <th class="no_ijazah">Nomor Ijazah</th>
-                                <th class="nama_sekolah">Nama Sekolah</th>
-                                <th class="gelar_depan_pend">Gelar Depan</th>
-                                <th class="gelar_belakang_pend">Gelar Belakang</th>
-                                <th class="jenis_pendidikan">Jenis Pendidikan</th>
-                                <th class="dokumen_transkrip">Dokumen Transkrip</th>
-                                <th class="dokumen_ijazah">Dokumen Ijazah</th>
-                                <th class="dokumen_gelar">Dokumen Gelar</th>
-                                <th class="aksi">Aksi</th>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tingkat Pendidikan</th>
+                                    <th>Pendidikan</th>
+                                    <th>Tahun Lulus</th>
+                                    <th>Nomor Ijazah</th>
+                                    <th>Nama Sekolah</th>
+                                    <th>Gelar Depan</th>
+                                    <th>Gelar Belakang</th>
+                                    <th>Jenis Pendidikan</th>
+                                    <th>Dokumen Transkrip</th>
+                                    <th>Dokumen Ijazah</th>
+                                    <th>Dokumen Gelar</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatPendidikan as $sqlpendidikan => $result_pendidikan)
                                     <tr>
-                                        <td><center>{{ ++$sqlpendidikan }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_pendidikan->id }}</center></td>
-                                        <td hidden class="id_pend"><center>{{ $result_pendidikan->id_pend }}</center></td>
+                                        {{-- <td><center>{{ ++$sqlpendidikan }}</center></td> --}}
+                                        <td class="id"><center>{{ $result_pendidikan->id }}</center></td>
+                                        {{-- <td hidden class="id_pend"><center>{{ $result_pendidikan->id_pend }}</center></td> --}}
                                         <td class="ting_ped"><center>{{ $result_pendidikan->ting_ped }}</center></td>
                                         <td class="pendidikan"><center>{{ $result_pendidikan->pendidikan }}</center></td>
                                         <td class="tahun_lulus"><center>{{ $result_pendidikan->tahun_lulus }}</center></td>
@@ -94,27 +95,9 @@
                                         <td class="gelar_depan_pend"><center>{{ $result_pendidikan->gelar_depan_pend }}</center></td>
                                         <td class="gelar_belakang_pend"><center>{{ $result_pendidikan->gelar_belakang_pend }}</center></td>
                                         <td class="jenis_pendidikan"><center>{{ $result_pendidikan->jenis_pendidikan }}</center></td>
-                                        <td class="dokumen_transkrip"><center>
-                                            <a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}" target="_blank">
-                                                @if (pathinfo($result_pendidikan->dokumen_transkrip, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>
-                                            </a></center></td>
-                                        <td class="dokumen_ijazah"><center>
-                                            <a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}" target="_blank">
-                                                @if (pathinfo($result_pendidikan->dokumen_ijazah, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>
-                                            </a></center></td>
-                                        <td class="dokumen_gelar"><center>
-                                            <a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}" target="_blank">
-                                                @if (pathinfo($result_pendidikan->dokumen_gelar, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>
-                                            </a></center></td>
+                                        <td class="dokumen_transkrip"><center><a href="{{ asset('assets/DokumenTranskrip/' . $result_pendidikan->dokumen_transkrip) }}" target="_blank"></a></center></td>
+                                        <td class="dokumen_ijazah"><center><a href="{{ asset('assets/DokumenIjazah/' . $result_pendidikan->dokumen_ijazah) }}" target="_blank"></a></center></td>
+                                        <td class="dokumen_gelar"><center><a href="{{ asset('assets/DokumenGelar/' . $result_pendidikan->dokumen_gelar) }}" target="_blank"></a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -136,7 +119,6 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -482,6 +464,53 @@
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_transkrip a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_pendidikan->dokumen_transkrip))
+                        $(this).closest('td').after('<td hidden class="dokumen_transkrip">{{ $result_pendidikan->dokumen_transkrip }}</td>');
+                    @endif
+                });
+
+                $('.dokumen_ijazah a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_pendidikan->dokumen_ijazah))
+                        $(this).closest('td').after('<td hidden class="dokumen_ijazah">{{ $result_pendidikan->dokumen_ijazah }}</td>');
+                    @endif
+                });
+
+                $('.dokumen_gelar a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_pendidikan->dokumen_gelar))
+                        $(this).closest('td').after('<td hidden class="dokumen_gelar">{{ $result_pendidikan->dokumen_gelar }}</td>');
+                    @endif
+                });
+
+                $('.id').each(function() {
+                    @if (!empty($result_pendidikan->id_pend))
+                        $(this).closest('td').after('<td hidden class="id_pend"><center>{{ $result_pendidikan->id_pend }}</center></td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(".theSelect").select2();

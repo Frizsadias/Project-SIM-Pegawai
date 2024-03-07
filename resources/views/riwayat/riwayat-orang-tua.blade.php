@@ -85,14 +85,14 @@
                                     <th>Dokumen Akta Anak</th>
                                     <th>Pas Foto Ayah</th>
                                     <th>Pas Foto Ibu</th>
-                                    <th>Aksi</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatOrtu as $sqlOrtu => $result_Ortu)
                                     <tr>
-                                        <td><center>{{ ++$sqlOrtu }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_Ortu->id }}</center></td>
+                                        {{-- <td><center>{{ ++$sqlOrtu }}</center></td> --}}
+                                        <td class="id"><center>{{ $result_Ortu->id }}</center></td>
                                         <td class="status_hidup"><center>{{ $result_Ortu->status_hidup }}</center></td>
                                         <td class="status_pekerjaan_ortu"><center>{{ $result_Ortu->status_pekerjaan_ortu }}</center></td>
                                         <td class="nip"><center>{{ $result_Ortu->nip }}</center></td>
@@ -107,48 +107,19 @@
                                         <td class="email"><center>
                                             <a href="mailto:{{ $result_Ortu->email }}" style="color:black">{{ $result_Ortu->email }}</a>
                                         </center></td>
-
-                                        @if (!empty($result_Ortu->no_hp))
-                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_hp }}" target="_blank" style="color:black">0{{ $result_Ortu->no_hp }}</a></center></td>
-                                        @endif
-                                            <td hidden class="no_hp">{{ $result_Ortu->no_hp }}</td>
-
-                                        @if (!empty($result_Ortu->no_telepon))
-                                            <td class="text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_telepon }}" target="_blank" style="color:black">0{{ $result_Ortu->no_telepon }}</a></center></td>
-                                        @endif
-                                            <td hidden class="no_telepon">{{ $result_Ortu->no_telepon }}</td>
-
+                                        <td class="no_hp_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_hp }}" target="_blank" style="color:black">0{{ $result_Ortu->no_hp }}</a></center></td>
+                                        <td class="no_telepon_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_telepon }}" target="_blank" style="color:black">0{{ $result_Ortu->no_telepon }}</a></center></td>
                                         <td class="dokumen_kk"><center>
-                                            <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank">
-                                                @if (pathinfo($result_Ortu->dokumen_kk, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>
-                                            </a>
+                                            <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank"></a>
                                         </center></td>
                                         <td class="dokumen_akta_lahir_anak"><center>
-                                            <a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank">
-                                                @if (pathinfo($result_Ortu->dokumen_akta_lahir_anak, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>
-                                            </a>
+                                            <a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank"></a>
                                         </center></td>
                                         <td class="pas_foto_ayah"><center>
-                                            <a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank">
-                                                @if (in_array(pathinfo($result_Ortu->pas_foto_ayah, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>
-                                            </a>
+                                            <a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank"></a>
                                         </center></td>
                                         <td class="pas_foto_ibu"><center>
-                                            <a href="{{ asset('assets/DokumenPasFotoIbu/' . $result_Ortu->pas_foto_ibu) }}" target="_blank">
-                                                @if (in_array(pathinfo($result_Ortu->pas_foto_ibu, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>
-                                            </a>
+                                            <a href="{{ asset('assets/DokumenPasFotoIbu/' . $result_Ortu->pas_foto_ibu) }}" target="_blank"></a>
                                         </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
@@ -717,6 +688,70 @@
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+    
+                $('.no_hp_text').each(function() {
+                    @if (!empty($result_Ortu->no_hp))
+                        $(this).closest('td').after('<td hidden class="no_hp">{{ $result_Ortu->no_hp }}</td>');
+                    @endif
+                });
+    
+                $('.no_telepon_text').each(function() {
+                    @if (!empty($result_Ortu->no_telepon))
+                        $(this).closest('td').after('<td hidden class="no_telepon">{{ $result_Ortu->no_telepon }}</td>');
+                    @endif
+                });
+        
+                $('.dokumen_kk a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_Ortu->dokumen_kk))
+                        $(this).closest('td').after('<td hidden class="dokumen_kk">{{ $result_Ortu->dokumen_kk }}</td>');
+                    @endif
+                });
+
+                $('.dokumen_akta_lahir_anak a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_Ortu->dokumen_akta_lahir_anak))
+                        $(this).closest('td').after('<td hidden class="dokumen_akta_lahir_anak">{{ $result_Ortu->dokumen_akta_lahir_anak }}</td>');
+                    @endif
+                });
+    
+                $('.pas_foto_ayah a').each(function() {
+                    var href = $(this).attr('href').toLowerCase();
+                    if (href.endsWith('.jpg') || href.endsWith('.jpeg') || href.endsWith('.png')) {
+                        $(this).prepend('<i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_Ortu->pas_foto_ayah))
+                        $(this).closest('td').after('<td hidden class="pas_foto_ayah">{{ $result_Ortu->pas_foto_ayah }}</td>');
+                    @endif
+                });
+
+                $('.pas_foto_ibu a').each(function() {
+                    var href = $(this).attr('href').toLowerCase();
+                    if (href.endsWith('.jpg') || href.endsWith('.jpeg') || href.endsWith('.png')) {
+                        $(this).prepend('<i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_Ortu->pas_foto_ibu))
+                        $(this).closest('td').after('<td hidden class="pas_foto_ibu">{{ $result_Ortu->pas_foto_ibu }}</td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(".theSelect").select2();

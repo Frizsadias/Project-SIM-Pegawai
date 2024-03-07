@@ -1,6 +1,16 @@
 @extends('layouts.master')
 @section('content')
 
+        <style>
+            @foreach($result_tema as $sql_user => $aplikasi_tema)
+                @if ($aplikasi_tema->tema_aplikasi == 'Gelap')
+                    .text-warning, .dropdown-menu > li > a.text-warning {color: #ffbc34 !important;}
+                    .text-success, .dropdown-menu > li > a.text-success {color: #55ce63 !important;}
+                    .text-danger, .dropdown-menu > li > a.text-danger {color: #f62d51 !important;}
+                @endif
+            @endforeach
+        </style>
+
         <!-- Page Wrapper -->
         <div class="page-wrapper">
             <!-- Page Content -->
@@ -71,7 +81,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                {{-- <table class="table table-striped custom-table" id="tablePengajuanCutiEselon3User" style="width: 100%"> --}}
                                 <table class="table table-striped custom-table datatable">
                                     <thead>
                                         <tr>
@@ -91,8 +100,8 @@
                                     <tbody>
                                         @foreach($data_cuti as $sqlcuti => $result_cuti)
                                         <tr>
-                                            <td>{{ ++$sqlcuti }}</td>
-                                            <td hidden class="id">{{ $result_cuti->id }}</td>
+                                            {{-- <td>{{ ++$sqlcuti }}</td> --}}
+                                            <td class="id">{{ $result_cuti->id }}</td>
                                             <td class="name">{{ $result_cuti->name }}</td>
                                             <td class="nip">{{ $result_cuti->nip }}</td>
                                             <td class="jenis_cuti">{{ $result_cuti->jenis_cuti }}</td>
@@ -105,13 +114,8 @@
                                             <td class="tanggal_mulai_cuti">{{ $result_cuti->tanggal_mulai_cuti }}</td>
                                             <td class="tanggal_selesai_cuti">{{ $result_cuti->tanggal_selesai_cuti }}</td>
                                             <td>{{ \Carbon\Carbon::parse($result_cuti->created_at)->formatLocalized('%d %B %Y') }}</td>
-                                            <td class="dokumen_kelengkapan">
-                                                <a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank">
-                                                    @if (pathinfo($result_cuti->dokumen_kelengkapan, PATHINFO_EXTENSION) == 'pdf')
-                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                    @endif
-                                                        <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
-                                                </a>
+                                            <td class="dokumen_kelengkapan_user">
+                                                <a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank"></a>
                                             </td>
                                             <td class="persetujuan_eselon3">
                                                 <div class="dropdown">
@@ -163,7 +167,7 @@
                                 $lastCuti = $data_cuti_pribadi->last();
                             @endphp
                             @if ($lastCuti)
-                                <a href="{{ route('layanan-cuti-kelengkapan2', ['id' => $lastCuti->id]) }}" target="_blank" class="btn btn-success" style="border-radius: 20px">
+                                <a href="{{ route('layanan-cuti-kelengkapan2', ['id' => $lastCuti->id]) }}" target="_blank" class="btn cetak-btn" style="border-radius: 20px">
                                     <i class="fa-solid fa-file-pdf"></i> Dokumen Kelengkapan
                                 </a>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-info" style="border-radius: 20px" id="lihatSemua">
@@ -176,7 +180,6 @@
 
                             <h3 class="page-title2">Pengajuan Cuti Pribadi</h3>
                             <div class="table-responsive">
-                                {{-- <table class="table table-striped custom-table" id="tablePengajuanCutiEselon3Pribadi" style="width: 100%"> --}}
                                 <table class="table table-striped custom-table datatable">
                                     <thead>
                                         <tr>
@@ -199,8 +202,8 @@
                                     <tbody>
                                         @foreach($data_cuti_pribadi as $sqlcutipribadi => $result_cuti_pribadi)
                                         <tr>
-                                            <td>{{ ++$sqlcutipribadi }}</td>
-                                            <td hidden class="id">{{ $result_cuti_pribadi->id }}</td>
+                                            {{-- <td>{{ ++$sqlcutipribadi }}</td> --}}
+                                            <td class="id">{{ $result_cuti_pribadi->id }}</td>
                                             <td class="name">{{ $result_cuti_pribadi->name }}</td>
                                             <td class="nip">{{ $result_cuti_pribadi->nip }}</td>
                                             <td class="jenis_cuti">{{ $result_cuti_pribadi->jenis_cuti }}</td>
@@ -214,16 +217,11 @@
                                             <td class="tanggal_selesai_cuti">{{ $result_cuti_pribadi->tanggal_selesai_cuti }}</td>
                                             <td>{{ \Carbon\Carbon::parse($result_cuti_pribadi->created_at)->formatLocalized('%d %B %Y') }}</td>
                                             <td class="dokumen_kelengkapan">
-                                                <a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti_pribadi->dokumen_kelengkapan) }}" target="_blank">
-                                                    @if (pathinfo($result_cuti_pribadi->dokumen_kelengkapan, PATHINFO_EXTENSION) == 'pdf')
-                                                        <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                    @endif
-                                                        <td hidden class="dokumen_kelengkapan">{{ $result_cuti_pribadi->dokumen_kelengkapan }}</td>
-                                                </a>
+                                                <a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti_pribadi->dokumen_kelengkapan) }}" target="_blank"></a>
                                             </td>
                                             <td class="status_pengajuan">
                                                 <div class="dropdown">
-                                                    <a class="status-persetujuan-superadmin">
+                                                    <a class="status-persetujuan-user">
                                                         @if ($result_cuti_pribadi->status_pengajuan == 'Disetujui')
                                                             <i class="fa fa-dot-circle-o text-success"></i>
                                                         @elseif ($result_cuti_pribadi->status_pengajuan == 'Dalam Proses Persetujuan')
@@ -520,6 +518,35 @@
                         const url = "{{ route('layanan-cuti-admin-kelengkapan', ['id' => ':id']) }}".replace(':id', selectedCutiId);
                         window.open(url, '_blank');
                     }
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+
+                $('.dokumen_kelengkapan_user a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                });
+
+                $('.dokumen_kelengkapan a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_cuti_pribadi->dokumen_kelengkapan))
+                        $(this).closest('td').after('<td hidden class="dokumen_kelengkapan">{{ $result_cuti_pribadi->dokumen_kelengkapan }}</td>');
+                    @endif
                 });
             });
         </script>

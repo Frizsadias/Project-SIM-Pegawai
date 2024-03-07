@@ -67,25 +67,25 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="jenis_jabatan_riwayat"> Jenis Jabatan</th>
-                                    <th class="satuan_kerja">Satuan Kerja</th>
-                                    <th class="satuan_kerja_induk">Satuan Kerja Induk</th>
-                                    <th class="unit_organisasi_riwayat">Unit Organisasi</th>
-                                    <th class="no_sk">No SK</th>
-                                    <th class="tanggal_sk">Tanggal SK</th>
-                                    <th class="tmt_jabatan">TMT Jabatan</th>
-                                    <th class="tmt_pelantikan">TMT Pelantikan</th>
-                                    <th class="dokumen_sk_jabatan">Dokumen SK Jabatan</th>
-                                    <th class="dokumen_pelantikan">Dokumen Pelantikan</th>
-                                    <th class="aksi">Aksi</th>
+                                    <th> Jenis Jabatan</th>
+                                    <th>Satuan Kerja</th>
+                                    <th>Satuan Kerja Induk</th>
+                                    <th>Unit Organisasi</th>
+                                    <th>No SK</th>
+                                    <th>Tanggal SK</th>
+                                    <th>TMT Jabatan</th>
+                                    <th>TMT Pelantikan</th>
+                                    <th>Dokumen SK Jabatan</th>
+                                    <th>Dokumen Pelantikan</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatJabatan as $sqljabatan => $result_jabatan)
                                     <tr>
-                                        <td><center>{{ ++$sqljabatan }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_jabatan->id }}</center></td>
-                                        <td hidden class="id_jab"><center>{{ $result_jabatan->id_jab }}</center></td>
+                                        {{-- <td><center>{{ ++$sqljabatan }}</center></td> --}}
+                                        <td class="id"><center>{{ $result_jabatan->id }}</center></td>
+                                        {{-- <td hidden class="id_jab"><center>{{ $result_jabatan->id_jab }}</center></td> --}}
                                         <td class="jenis_jabatan_riwayat"><center>{{ $result_jabatan->jenis_jabatan_riwayat }}</center></td>
                                         <td class="satuan_kerja"><center>{{ $result_jabatan->satuan_kerja }}</center></td>
                                         <td class="satuan_kerja_induk"><center>{{ $result_jabatan->satuan_kerja_induk }}</center></td>
@@ -94,22 +94,8 @@
                                         <td class="tanggal_sk"><center>{{ $result_jabatan->tanggal_sk }}</center></td>
                                         <td class="tmt_jabatan"><center>{{ $result_jabatan->tmt_jabatan }}</center></td>
                                         <td class="tmt_pelantikan"><center>{{ $result_jabatan->tmt_pelantikan }}</center></td>
-                                        <td class="dokumen_sk_jabatan"><center>
-                                            <a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}" target="_blank">
-                                                @if (pathinfo($result_jabatan->dokumen_sk_jabatan, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                <td hidden class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}</td>
-                                            </a>
-                                        </center></td>
-                                        <td class="dokumen_pelantikan"><center>
-                                            <a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}" target="_blank">
-                                                @if (pathinfo($result_jabatan->dokumen_pelantikan, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                <td hidden class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}</td>
-                                            </a>
-                                        </center></td>
+                                        <td class="dokumen_sk_jabatan"><center><a href="{{ asset('assets/DokumenSKJabatan/' . $result_jabatan->dokumen_sk_jabatan) }}" target="_blank"></a></center></td>
+                                        <td class="dokumen_pelantikan"><center><a href="{{ asset('assets/DokumenPelantikan/' . $result_jabatan->dokumen_pelantikan) }}" target="_blank"></a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-right">
@@ -412,6 +398,44 @@
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_sk_jabatan a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_jabatan->dokumen_sk_jabatan))
+                        $(this).closest('td').after('<td hidden class="dokumen_sk_jabatan">{{ $result_jabatan->dokumen_sk_jabatan }}</td>');
+                    @endif
+                });
+
+                $('.dokumen_pelantikan a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_jabatan->dokumen_pelantikan))
+                        $(this).closest('td').after('<td hidden class="dokumen_pelantikan">{{ $result_jabatan->dokumen_pelantikan }}</td>');
+                    @endif
+                });
+
+                $('.id').each(function() {
+                    @if (!empty($result_jabatan->id_jab))
+                        $(this).closest('td').after('<td hidden class="id_jab"><center>{{ $result_jabatan->id_jab }}</center></td>');
+                    @endif
+                });
+            });
+        </script>
         
         <script>
             $(".theSelect").select2();

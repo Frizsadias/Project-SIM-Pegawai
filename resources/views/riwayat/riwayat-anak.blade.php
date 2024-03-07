@@ -80,14 +80,14 @@
                                     <th>Nomor Akta Kelahiran</th>
                                     <th>Dokumen Akta Kelahiran</th>
                                     <th>Pas Foto</th>
-                                    <th>Aksi</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatAnak as $sqlAnak => $result_anak)
                                     <tr>
-                                        <td><center>{{ ++$sqlAnak }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_anak->id }}</center></td>
+                                        {{-- <td><center>{{ ++$sqlAnak }}</center></td> --}}
+                                        <td class="id"><center>{{ $result_anak->id }}</center></td>
                                         <td class="orang_tua"><center>{{ $result_anak->orang_tua }}</center></td>
                                         <td class="status_pekerjaan_anak"><center>{{ $result_anak->status_pekerjaan_anak }}</center></td>
                                         <td class="nama_anak"><center>{{ $result_anak->nama_anak }}</center></td>
@@ -100,20 +100,10 @@
                                         <td class="status_hidup"><center>{{ $result_anak->status_hidup }}</center></td>
                                         <td class="no_akta_kelahiran"><center>{{ $result_anak->no_akta_kelahiran }}</center></td>
                                         <td class="dokumen_akta_kelahiran"><center>
-                                            <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank">
-                                                @if (pathinfo($result_anak->dokumen_akta_kelahiran, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_akta_kelahiran">{{ $result_anak->dokumen_akta_kelahiran }}</td>
-                                            </a>
+                                            <a href="{{ asset('assets/DokumenAktaKelahiran/' . $result_anak->dokumen_akta_kelahiran) }}" target="_blank"></a>
                                         </center></td>
                                         <td class="pas_foto"><center>
-                                            <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank">
-                                                @if (in_array(pathinfo($result_anak->pas_foto, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                    <i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>
-                                            </a>
+                                            <a href="{{ asset('assets/DokumenPasFotoAnak/' . $result_anak->pas_foto) }}" target="_blank"></a>
                                         </center></td>
 
                                         {{-- Edit dan Hapus data  --}}
@@ -602,6 +592,39 @@
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_akta_kelahiran a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_anak->dokumen_akta_kelahiran))
+                        $(this).closest('td').after('<td hidden class="dokumen_akta_kelahiran">{{ $result_anak->dokumen_akta_kelahiran }}</td>');
+                    @endif
+                });
+
+                $('.pas_foto a').each(function() {
+                    var href = $(this).attr('href').toLowerCase();
+                    if (href.endsWith('.jpg') || href.endsWith('.jpeg') || href.endsWith('.png')) {
+                        $(this).prepend('<i class="fa fa-file-image-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_anak->pas_foto))
+                        $(this).closest('td').after('<td hidden class="pas_foto">{{ $result_anak->pas_foto }}</td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(".theSelect").select2();
