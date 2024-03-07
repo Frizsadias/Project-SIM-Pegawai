@@ -68,26 +68,20 @@
                                     <th><center>Tanggal Selesai</center></th>
                                     <th><center>Nomor Anggota</center></th>
                                     <th><center>Dokumen Organisasi</center></th>
-                                    <th><center>Aksi</center></th>
+                                    <th class="text-right no-sort"><center>Aksi</center></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatOrganisasi as $sqlOrganisasi => $result_organisasi)
                                     <tr>
-                                        <td><center>{{ ++$sqlOrganisasi }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_organisasi->id }}</center></td>
+                                        <!-- <td><center>{{ ++$sqlOrganisasi }}</center></td> -->
+                                        <td class="id"><center>{{ $result_organisasi->id }}</center></td>
                                         <td class="nama_organisasi"><center>{{ $result_organisasi->nama_organisasi }}</center></td>
                                         <td class="jabatan_organisasi"><center>{{ $result_organisasi->jabatan_organisasi }}</center></td>
                                         <td class="tanggal_gabung"><center>{{ $result_organisasi->tanggal_gabung }}</center></td>
                                         <td class="tanggal_selesai"><center>{{ $result_organisasi->tanggal_selesai }}</center></td>
                                         <td class="no_anggota"><center>{{ $result_organisasi->no_anggota }}</center></td>
-                                        <td class="dokumen_organisasi"><center>
-                                            <a href="{{ asset('assets/DokumenOrganisasi/' . $result_organisasi->dokumen_organisasi) }}" target="_blank">
-                                                @if (pathinfo($result_organisasi->dokumen_organisasi, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_organisasi">{{ $result_organisasi->dokumen_organisasi }}</td>
-                                            </a></center></td>
+                                        <td class="dokumen_organisasi"><center><a href="{{ asset('assets/DokumenOrganisasi/' . $result_organisasi->dokumen_organisasi) }}" target="_blank"></a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-center">
@@ -320,6 +314,29 @@
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_organisasi a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_organisasi->dokumen_organisasi))
+                        $(this).closest('td').after('<td hidden class="dokumen_organisasi">{{ $result_organisasi->dokumen_organisasi }}</td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(".theSelect").select2();

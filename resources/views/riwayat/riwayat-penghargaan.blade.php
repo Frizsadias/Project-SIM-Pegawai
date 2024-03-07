@@ -72,26 +72,19 @@
                                     <th><center>Nomor Surat</center></th>
                                     <th><center>Tanggal SK</center></th>
                                     <th><center>Dokumen Penghargaan</center></th>
-                                    <th><center>Aksi</center></th>
+                                    <th class="text-right no-sort"><center>Aksi</center></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatPenghargaan as $sqlPenghargaan => $result_penghargaan)
                                     <tr>
-                                        <td><center>{{ ++$sqlPenghargaan }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_penghargaan->id }}</center></td>
+                                        <!-- <td><center>{{ ++$sqlPenghargaan }}</center></td> -->
+                                        <td class="id"><center>{{ $result_penghargaan->id }}</center></td>
                                         <td class="jenis_penghargaan"><center>{{ $result_penghargaan->jenis_penghargaan }}</center></td>
                                         <td class="tahun_perolehan"><center>{{ $result_penghargaan->tahun_perolehan }}</center></td>
                                         <td class="no_surat"><center>{{ $result_penghargaan->no_surat }}</center></td>
                                         <td class="tanggal_keputusan"><center>{{ $result_penghargaan->tanggal_keputusan }}</center></td>
-                                        <td class="dokumen_penghargaan"><center>
-                                            <a href="{{ asset('assets/DokumenPenghargaan/' . $result_penghargaan->dokumen_penghargaan) }}" target="_blank">
-                                                @if (pathinfo($result_penghargaan->dokumen_penghargaan, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_penghargaan">{{ $result_penghargaan->dokumen_penghargaan }}</td>
-                                            </a>
-                                        </center></td>
+                                        <td class="dokumen_penghargaan"><center><a href="{{ asset('assets/DokumenPenghargaan/' . $result_penghargaan->dokumen_penghargaan) }}" target="_blank"></a></center></td>
 
                                         {{-- Edit dan Hapus data  --}}
                                         <td class="text-center">
@@ -325,6 +318,29 @@
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_penghargaan a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_penghargaan->dokumen_penghargaan))
+                        $(this).closest('td').after('<td hidden class="dokumen_penghargaan">{{ $result_penghargaan->dokumen_penghargaan }}</td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(".theSelect").select2();

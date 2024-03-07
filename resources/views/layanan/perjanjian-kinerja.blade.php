@@ -72,7 +72,7 @@
                             <tbody>
                                 @foreach ($data_perjanjian_kinerja as $sqlkinerja => $result_perjanjian_kinerja)
                                     <tr>
-                                        {{-- <td>{{ ++$sqlkinerja }}</td> --}}
+                                        <!-- {{-- <td>{{ ++$sqlkinerja }}</td> --}} -->
                                         <td class="id">{{ $result_perjanjian_kinerja->id }}</td>
                                         <td class="name">{{ $result_perjanjian_kinerja->name }}</td>
                                         <td class="nip">{{ $result_perjanjian_kinerja->nip }}</td>

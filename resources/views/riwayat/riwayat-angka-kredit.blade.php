@@ -80,14 +80,14 @@
                                     <th>Angka Kredit Utama</th>
                                     <th>Angka Kredit Penunjang</th>
                                     <th>Total Angka Kredit</th>
-                                    <th>Aksi</th>
+                                    <th class="text-right no-sort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatAK as $sqlAK => $result_angka_kredit)
                                     <tr>
-                                        <td><center>{{ ++$sqlAK }}</center></td>
-                                        <td hidden class="id"><center>{{ $result_angka_kredit->id }}</center></td>
+                                        <!-- <td><center>{{ ++$sqlAK }}</center></td> -->
+                                        <td class="id"><center>{{ $result_angka_kredit->id }}</center></td>
                                         <td class="nama_jabatan"><center>{{ $result_angka_kredit->nama_jabatan }}</center></td>
                                         <td class="nomor_sk"><center>{{ $result_angka_kredit->nomor_sk }}</center></td>
                                         <td class="tanggal_sk"><center>{{ $result_angka_kredit->tanggal_sk }}</center></td>

@@ -77,8 +77,8 @@
                             <tbody>
                                 @foreach ($data_spk_dokter as $sqlspkdokter => $result_spkdokter)
                                     <tr>
-                                        <td>{{ ++$sqlspkdokter }}</td>
-                                        <td hidden class="id">{{ $result_spkdokter->id }}</td>
+                                        <!-- <td>{{ ++$sqlspkdokter }}</td> -->
+                                        <td class="id">{{ $result_spkdokter->id }}</td>
                                         <td class="name">{{ $result_spkdokter->name }}</td>
                                         <td class="nip">{{ $result_spkdokter->nip }}</td>
                                         <td class="unit_kerja">{{ $result_spkdokter->unit_kerja }}</td>
@@ -88,16 +88,7 @@
                                         <td class="sip_spk_jabatan">{{ $result_spkdokter->sip_spk_jabatan }}</td>
                                         <td class="jenis_dokumen">{{ $result_spkdokter->jenis_dokumen }}</td>
                                         <td class="ruangan">{{ $result_spkdokter->ruangan }}</td>
-                                        <td class="dokumen_sip">
-                                            <a href="{{ asset('assets/DokumenSPKDokter/' . $result_spkdokter->dokumen_sip) }}" target="_blank">
-                                                @if (pathinfo($result_spkdokter->dokumen_sip, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @else
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_sip">{{ $result_spkdokter->dokumen_sip }}</td>
-                                            </a>
-                                        </td>
+                                        <td class="dokumen_sip"><a href="{{ asset('assets/DokumenSPKDokter/' . $result_spkdokter->dokumen_sip) }}" target="_blank"></a></td>
 
                                         {{-- Edit Layanan SPK Dokter --}}
                                         <td class="text-right">
@@ -327,6 +318,29 @@
         <script src="{{ asset('assets/js/spkdokter.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_sip a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_spkdokter->dokumen_sip))
+                        $(this).closest('td').after('<td hidden class="dokumen_sip">{{ $result_spkdokter->dokumen_sip }}</td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(".theSelect").select2();

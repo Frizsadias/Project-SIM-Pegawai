@@ -85,7 +85,7 @@
                             <tbody>
                                 @foreach ($data_perpanjang_kontrak as $sqlkontrak => $result_kontrak)
                                     <tr>
-                                        {{-- <td>{{ ++$sqlkontrak }}</td> --}}
+                                        <!-- {{-- <td>{{ ++$sqlkontrak }}</td> --}} -->
                                         <td class="id">{{ $result_kontrak->id }}</td>
                                         <td class="name">{{ $result_kontrak->name }}</td>
                                         <td class="nip">{{ $result_kontrak->nip }}</td>

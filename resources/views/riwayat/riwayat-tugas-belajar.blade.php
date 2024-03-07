@@ -77,14 +77,14 @@
                                     <th><center>Gelar Belakang</center></th>
                                     <th><center>Tanggal Mulai</center></th>
                                     <th><center>Tanggal Mulai</center></th>
-                                    <th><center>Aksi</center></th>
+                                    <th class="text-right no-sort"><center>Aksi</center></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($riwayatTB as $sqlTB => $resultTB)
                                     <tr>
-                                        <td><center>{{ ++$sqlTB }}</center></td>
-                                        <td hidden class="id"><center>{{ $resultTB->id }}</center></td>
+                                        <!-- <td><center>{{ ++$sqlTB }}</center></td> -->
+                                        <td class="id"><center>{{ $resultTB->id }}</center></td>
                                         <td class="jenis_tugas_belajar"><center>{{ $resultTB->jenis_tugas_belajar }}</center></td>
                                         <td class="nama_sekolah"><center>{{ $resultTB->nama_sekolah }}</center></td>
                                         <td class="tingkat_pendidikan"><center>{{ $resultTB->tingkat_pendidikan }}</center></td>

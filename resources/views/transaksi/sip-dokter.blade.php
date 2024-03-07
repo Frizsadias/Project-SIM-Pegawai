@@ -77,8 +77,8 @@
                             <tbody>
                                 @foreach ($data_sip_dokter as $sqlsip => $result_sip)
                                     <tr>
-                                        <td>{{ ++$sqlsip }}</td>
-                                        <td hidden class="id">{{ $result_sip->id }}</td>
+                                        <!-- <td>{{ ++$sqlsip }}</td> -->
+                                        <td class="id">{{ $result_sip->id }}</td>
                                         <td class="name">{{ $result_sip->name }}</td>
                                         <td class="nip">{{ $result_sip->nip }}</td>
                                         <td class="unit_kerja">{{ $result_sip->unit_kerja }}</td>
@@ -88,17 +88,7 @@
                                         <td class="sip_spk_jabatan">{{ $result_sip->sip_spk_jabatan }}</td>
                                         <td class="jenis_dokumen">{{ $result_sip->jenis_dokumen }}</td>
                                         <td class="ruangan">{{ $result_sip->ruangan }}</td>
-                                        <td class="dokumen_sip">
-                                            <a href="{{ asset('assets/DokumenSIPDokter/' . $result_sip->dokumen_sip) }}"
-                                                target="_blank">
-                                                @if (pathinfo($result_sip->dokumen_sip, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @else
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_sip">{{ $result_sip->dokumen_sip }}</td>
-                                            </a>
-                                        </td>
+                                        <td class="dokumen_sip"><a href="{{ asset('assets/DokumenSIPDokter/' . $result_sip->dokumen_sip) }}"target="_blank"></a></td>
 
                                         {{-- Edit Layanan SIP Dokter --}}
                                         <td class="text-right">
@@ -332,6 +322,29 @@
         <script src="{{ asset('assets/js/sipdokter.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_sip a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_sip->dokumen_sip))
+                        $(this).closest('td').after('<td hidden class="dokumen_sip">{{ $result_sip->dokumen_sip }}</td>');
+                    @endif
+                });
+            });
+        </script>
         
         <script>
             $(".theSelect").select2();
