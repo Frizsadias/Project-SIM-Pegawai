@@ -80,8 +80,8 @@
                             <tbody>
                                 @foreach ($data_str as $sqlstr => $result_str)
                                     <tr>
-                                        <td>{{ ++$sqlstr }}</td>
-                                        <td hidden class="id">{{ $result_str->id }}</td>
+                                        {{-- <td>{{ ++$sqlstr }}</td> --}}
+                                        <td class="id">{{ $result_str->id }}</td>
                                         <td class="nip">{{ $result_str->nip }}</td>
                                         <td class="name">{{ $result_str->name }}</td>
                                         <td class="nomor_reg">{{ $result_str->nomor_reg }}</td>
@@ -94,14 +94,7 @@
                                         <td class="kompetensi">{{ $result_str->kompetensi }}</td>
                                         <td class="no_sertifikat_kompetensi">{{ $result_str->no_sertifikat_kompetensi }}</td>
                                         <td class="tgl_berlaku_str">{{ $result_str->tgl_berlaku_str }}</td>
-                                        <td class="dokumen_str"><center>
-                                            <a href="{{ asset('assets/DokumenSTR/' . $result_str->dokumen_str) }}" target="_blank">
-                                                @if (pathinfo($result_str->dokumen_str, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_str">{{ $result_str->dokumen_str }}</td>
-                                            </a>
-                                        </center></td>
+                                        <td class="dokumen_str"><center><a href="{{ asset('assets/DokumenSTR/' . $result_str->dokumen_str) }}" target="_blank"></a></center></td>
 
                                         {{-- Edit Surat Tanda Registrasi --}}
                                         <td class="text-right">
@@ -374,6 +367,29 @@
     @section('script')
         <script src="{{ asset('assets/js/str.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_str a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_str->dokumen_str))
+                        $(this).closest('td').after('<td hidden class="dokumen_str">{{ $result_str->dokumen_str }}</td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             history.pushState({}, "", '/layanan/surat-tanda-registrasi-admin');

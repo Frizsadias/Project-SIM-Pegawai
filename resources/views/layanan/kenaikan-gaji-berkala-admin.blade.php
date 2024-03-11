@@ -97,8 +97,8 @@
                             <tbody>
                                 @foreach ($data_kgb as $sqlkgb => $result_kgb)
                                     <tr>
-                                        <td>{{ ++$sqlkgb }}</td>
-                                        <td hidden class="id">{{ $result_kgb->id }}</td>
+                                        {{-- <td>{{ ++$sqlkgb }}</td> --}}
+                                        <td class="id">{{ $result_kgb->id }}</td>
                                         <td class="name">{{ $result_kgb->name }}</td>
                                         <td class="nip">{{ $result_kgb->nip }}</td>
                                         <td class="golongan_awal">{{ $result_kgb->golongan_awal }}</td>
@@ -111,14 +111,7 @@
                                         <td class="masa_kerja_golongan">{{ $result_kgb->masa_kerja_golongan }}</td>
                                         <td class="masa_kerja">{{ $result_kgb->masa_kerja }}</td>
                                         <td class="tmt_kgb">{{ $result_kgb->tmt_kgb }}</td>
-                                        <td class="dokumen_kgb"><center>
-                                            <a href="{{ asset('assets/DokumenKGB/' . $result_kgb->dokumen_kgb) }}" target="_blank">
-                                                @if (pathinfo($result_kgb->dokumen_kgb, PATHINFO_EXTENSION) == 'pdf')
-                                                    <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                                @endif
-                                                    <td hidden class="dokumen_kgb">{{ $result_kgb->dokumen_kgb }}</td>
-                                            </a>
-                                        </center></td>
+                                        <td class="dokumen_kgb"><center><a href="{{ asset('assets/DokumenKGB/' . $result_kgb->dokumen_kgb) }}" target="_blank"></a></center></td>
 
                                         {{-- Edit Layanan KGB --}}
                                         <td class="text-right">
@@ -432,6 +425,29 @@
     @section('script')
         <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_kgb a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_kgb->dokumen_kgb))
+                        $(this).closest('td').after('<td hidden class="dokumen_kgb">{{ $result_kgb->dokumen_kgb }}</td>');
+                    @endif
+                });
+            });
+        </script>
 
         <script>
             $(document).ready(function() {
