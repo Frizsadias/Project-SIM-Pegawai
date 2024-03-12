@@ -3,8 +3,10 @@
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
+        
         <!-- Page Content -->
         <div class="content container-fluid">
+
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-lists-center">
@@ -59,7 +61,6 @@
 
             <div class="row staff-grid-row">
                 @foreach ($users as $lists )
-                    @if ($lists->role_name == 'User' && (empty($lists->kedudukan_pns) || $lists->kedudukan_pns == 'Aktif'))
                     <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="profile-img">
@@ -70,7 +71,6 @@
                                 <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->email }}</a></h5>
                         </div>
                     </div>
-                    @endif
                 @endforeach
             </div>
 
@@ -79,10 +79,11 @@
 
     </div>
     <!-- /Page Wrapper -->
+
     @section('script')
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
+
         <script>
-            <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
-            
             @if (Auth::user()->role_name == 'Admin') 
                 document.getElementById('pageTitle').innerHTML = 'Manajemen Daftar Pegawai - Admin | Aplikasi SILK';
             @endif

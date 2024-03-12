@@ -30,6 +30,8 @@ use App\Models\RiwayatPasangan;
 use App\Models\RiwayatPenghargaan;
 use App\Models\RiwayatPMK;
 use App\Models\Village;
+use App\Models\userActivityLog;
+use App\Models\activityLog;
 use App\Notifications\UlangTahunNotification;
 use Carbon\Carbon;
 use Session;
@@ -1563,4 +1565,130 @@ class UserManagementController extends Controller
         }
     }
     /** End Edit Data Posisi & Jabatan */
+
+    public function getRiwayatAktivitas(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'user_name',
+            2 => 'email',
+            3 => 'status',
+            4 => 'role_name',
+            5 => 'modify_user',
+            6 => 'date_time',
+        );
+
+        $totalData = userActivityLog::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+        $counter = $start + 1;
+
+        if (empty($search)) {
+            $activityLog = userActivityLog::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $activityLog =  userActivityLog::where('user_name', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = userActivityLog::where('user_name', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($activityLog)) {
+            foreach ($activityLog as $key => $item) {
+                $nestedData['id'] = $counter++;
+                $nestedData['user_name'] = $item->user_name;
+                $nestedData['email'] = $item->email;
+                $nestedData['status'] = $item->status;
+                $nestedData['role_name'] = $item->role_name;
+                $nestedData['modify_user'] = $item->modify_user;
+                $nestedData['date_time'] = $item->date_time;
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
+
+    public function getAktivitasPengguna(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'name',
+            2 => 'nip',
+            3 => 'no_dokumen',
+            4 => 'description',
+            5 => 'date_time',
+        );
+
+        $totalData = activityLog::count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+        $counter = $start + 1;
+
+        if (empty($search)) {
+            $activityLog = activityLog::offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+        } else {
+            $activityLog =  activityLog::where('name', 'like', "%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = activityLog::where('name', 'like', "%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+        if (!empty($activityLog)) {
+            foreach ($activityLog as $key => $item) {
+                $nestedData['id'] = $counter++;
+                $nestedData['name'] = $item->name;
+                $nestedData['nip'] = $item->nip;
+                $nestedData['no_dokumen'] = $item->no_dokumen;
+                $nestedData['description'] = $item->description;
+                $nestedData['date_time'] = $item->date_time;
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data
+        );
+
+        return response()->json($json_data);
+    }
 }

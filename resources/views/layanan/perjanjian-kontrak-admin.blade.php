@@ -334,6 +334,17 @@
         </script>
 
         <script>
+            $('#name').on('change',function(){
+                $('#user_id').val($(this).find(':selected').data('user_id'));
+                $('#nip').val($(this).find(':selected').data('nip'));
+                $('#tempat_lahir').val($(this).find(':selected').data('tempat_lahir'));
+                $('#tanggal_lahir').val($(this).find(':selected').data('tanggal_lahir'));
+                $('#tingkat_pendidikan').val($(this).find(':selected').data('tingkat_pendidikan'));
+                $('#jabatan').val($(this).find(':selected').data('jabatan'));
+            });
+        </script>
+
+        <script>
             $(document).on('click', '.cetak_kontrak', function(e) {
                 e.preventDefault();
                 var id = $(this).data('id');

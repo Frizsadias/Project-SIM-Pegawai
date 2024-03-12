@@ -161,6 +161,8 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::post('user/profile/posisi/jabatan/edit', 'posisiJabatanEdit')->name('user/profile/posisi/jabatan/edit');
     Route::get('get-users-data', 'getUsersData')->name('get-users-data');
     Route::post('user/profile/upload-ktp', 'uploadDokumenKTP')->name('user/profile/upload-ktp');
+    Route::get('get-riwayat-aktivitas', 'getRiwayatAktivitas')->name('get-riwayat-aktivitas');
+    Route::get('get-aktivitas-pengguna', 'getAktivitasPengguna')->name('get-aktivitas-pengguna');
 });
 
 // --------------------------------- job ---------------------------------//

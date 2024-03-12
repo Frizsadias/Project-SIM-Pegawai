@@ -246,6 +246,8 @@
         .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
         .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .boc-edit-form-instruments{background-color: {{ auth()->user()->warna_mode }} !important;}
+        .boc-edit-form-fields{background-color: {{ auth()->user()->warna_mode }} !important;}
         .status-persetujuan-user{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important}
         .continue-btn{background-color: {{ auth()->user()->warna_mode }}}
         .cancel-btn{background-color: {{ auth()->user()->warna_mode }}}
@@ -289,6 +291,8 @@
                 .topnav-dropdown-footer a:hover{color: #f83f37 !important}
                 .topnav-dropdown-header .clear-noti:hover{color: #f83f37 !important}
                 .notification-message.noti-read .noti-title{color: #989c9e !important}
+                .boc-edit-form-header{background-color: {{ auth()->user()->warna_dropdown_menu }} !important; border-radius: 0px !important;}
+                .boc-dark .boc-input>label.focused,.boc-light .boc-input>label.focused{color:#039be5 !important}
 
                 @foreach ($belum_dibaca as $notifikasi_belum_dibaca)
                     #popup-notifikasi_{{ $notifikasi_belum_dibaca->id }} {background: {{ auth()->user()->warna_mode }} !important}

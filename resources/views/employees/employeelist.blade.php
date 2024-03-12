@@ -3,8 +3,10 @@
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
+
         <!-- Page Content -->
         <div class="content container-fluid">
+
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-lists-center">
@@ -30,8 +32,7 @@
                 <button type="submit" name="export" value="true" class="btn btn-success" style="border-radius : 20px">
                     <i class="fa fa-file-excel"></i> Export Excel
                 </button>
-            </form>
-            <br>
+            </form><br>
 
             <!-- Search Filter -->
             <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
@@ -71,6 +72,7 @@
                         <table class="table table-striped custom-table datatable">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>NIP</th>
                                     <th>Nama Pegawai</th>
                                     <th>Jabatan</th>
@@ -82,27 +84,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $dafpeg)
-                                @if ($dafpeg->role_name == 'User' && (empty($dafpeg->kedudukan_pns) || $dafpeg->kedudukan_pns == 'Aktif'))
-                                <tr>
-                                    <td>{{ $dafpeg->nip }}</td>
-                                    <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}" style="color:black;">{{ $dafpeg->name }}</a></td>
-                                    <td>{{ $dafpeg->jabatan }}</td>
-                                    <td>{{ $dafpeg->pendidikan_terakhir }}</td>
-                                    <td><a href="https://api.whatsapp.com/send?phone={{ $dafpeg->no_hp }}" target="_blank" style="color:black;">{{ $dafpeg->no_hp }}</a></td>
-                                    <td>{{ $dafpeg->ruangan }}</td>
-                                    <td>{{ $dafpeg->kedudukan_pns }}</td>
-                                    <td><h2 class="table-avatar">
-                                        <a href="{{ url('user/profile/' . $dafpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $dafpeg->avatar) }}"></a>
-                                    </h2></td>
-                                </tr>
-                                @endif
+                                @foreach ($users as $sqlpegawai => $dafpeg)
+                                    <tr>
+                                        {{-- <td>{{ ++$sqlpegawai }}</td> --}}
+                                        <td>{{ $dafpeg->id }}</td>
+                                        <td>{{ $dafpeg->nip }}</td>
+                                        <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}" style="color:black;">{{ $dafpeg->name }}</a></td>
+                                        <td>{{ $dafpeg->jabatan }}</td>
+                                        <td>{{ $dafpeg->pendidikan_terakhir }}</td>
+                                        <td><a href="https://api.whatsapp.com/send?phone={{ $dafpeg->no_hp }}" target="_blank" style="color:black;">{{ $dafpeg->no_hp }}</a></td>
+                                        <td>{{ $dafpeg->ruangan }}</td>
+                                        <td>{{ $dafpeg->kedudukan_pns }}</td>
+                                        <td><h2 class="table-avatar">
+                                            <a href="{{ url('user/profile/' . $dafpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $dafpeg->avatar) }}"></a>
+                                        </h2></td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
         </div>
         <!-- /Page Content -->
 
@@ -122,6 +125,7 @@
         <script>
             history.pushState({}, "", '/daftar/pegawai/list');
         </script>
+
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection

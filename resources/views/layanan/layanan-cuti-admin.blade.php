@@ -1,6 +1,16 @@
 @extends('layouts.master')
 @section('content')
 
+    <style>
+        @foreach($result_tema as $sql_user => $aplikasi_tema)
+            @if ($aplikasi_tema->tema_aplikasi == 'Gelap')
+                .text-warning, .dropdown-menu > li > a.text-warning {color: #ffbc34 !important;}
+                .text-success, .dropdown-menu > li > a.text-success {color: #55ce63 !important;}
+                .text-danger, .dropdown-menu > li > a.text-danger {color: #f62d51 !important;}
+            @endif
+        @endforeach
+    </style>
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -98,7 +108,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        {{-- <table class="table table-striped custom-table" id="tablePengajuanCutiAdmin" style="width: 100%"> --}}
                         <table class="table table-striped custom-table datatable">
                             <thead>
                                 <tr>
@@ -122,8 +131,8 @@
                             <tbody>
                                 @foreach($data_cuti as $sqlcuti => $result_cuti)
                                 <tr>
-                                    <td>{{ ++$sqlcuti }}</td>
-                                    <td hidden class="id">{{ $result_cuti->id }}</td>
+                                    {{-- <td>{{ ++$sqlcuti }}</td> --}}
+                                    <td class="id">{{ $result_cuti->id }}</td>
                                     <td class="name">{{ $result_cuti->name }}</td>
                                     <td class="nip">{{ $result_cuti->nip }}</td>
                                     <td class="jenis_cuti">{{ $result_cuti->jenis_cuti }}</td>
@@ -136,22 +145,8 @@
                                     <td class="tanggal_mulai_cuti">{{ $result_cuti->tanggal_mulai_cuti }}</td>
                                     <td class="tanggal_selesai_cuti">{{ $result_cuti->tanggal_selesai_cuti }}</td>
                                     <td>{{ \Carbon\Carbon::parse($result_cuti->created_at)->formatLocalized('%d %B %Y') }}</td>
-                                    <td class="dokumen_kelengkapan">
-                                        <a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank">
-                                            @if (pathinfo($result_cuti->dokumen_kelengkapan, PATHINFO_EXTENSION) == 'pdf')
-                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                            @endif
-                                                <td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>
-                                        </a>
-                                    </td>
-                                    <td class="dokumen_rekomendasi">
-                                        <a href="{{ asset('assets/DokumenRekomendasi/' . $result_cuti->dokumen_rekomendasi) }}" target="_blank">
-                                            @if (pathinfo($result_cuti->dokumen_rekomendasi, PATHINFO_EXTENSION) == 'pdf')
-                                                <i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>
-                                            @endif
-                                                <td hidden class="dokumen_rekomendasi">{{ $result_cuti->dokumen_rekomendasi }}</td>
-                                        </a>
-                                    </td>
+                                    <td class="dokumen_kelengkapan"><a href="{{ asset('assets/DokumenKelengkapan/' . $result_cuti->dokumen_kelengkapan) }}" target="_blank"></a></td>
+                                    <td class="dokumen_rekomendasi"><a href="{{ asset('assets/DokumenRekomendasi/' . $result_cuti->dokumen_rekomendasi) }}" target="_blank"></a></td>
                                     <td class="status_pengajuan">
                                         <div class="dropdown">
                                             <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" id="statusDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -471,6 +466,38 @@
     <!-- /Page Wrapper -->
 
     @section('script')
+        <script type="text/javascript">
+            $(document).ready(function() {
+                if (!$('.datatable').hasClass('dataTable')) {
+                    $('.datatable').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "columnDefs": [
+                            { "targets": [9, 10, 11], "orderable": false },
+                            { "targets": [9, 10, 11], "searchable": false }
+                        ]
+                    });
+                }
+        
+                $('.dokumen_kelengkapan a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_cuti->dokumen_kelengkapan))
+                        $(this).closest('td').after('<td hidden class="dokumen_kelengkapan">{{ $result_cuti->dokumen_kelengkapan }}</td>');
+                    @endif
+                });
+
+                $('.dokumen_rekomendasi a').each(function() {
+                    if ($(this).attr('href').toLowerCase().endsWith('.pdf')) {
+                        $(this).prepend('<i class="fa fa-file-pdf-o fa-2x" style="color: #1db9aa;" aria-hidden="true"></i>');
+                    }
+                    @if (!empty($result_cuti->dokumen_rekomendasi))
+                        $(this).closest('td').after('<td hidden class="dokumen_rekomendasi">{{ $result_cuti->dokumen_rekomendasi }}</td>');
+                    @endif
+                });
+            });
+        </script>
+
         <script>
             $(document).ready(function () {
                 $('#pilihDokumenRekomendasi').select2();

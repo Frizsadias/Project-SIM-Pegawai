@@ -6387,11 +6387,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
         <!-- /FancyBox Foto Profil -->
 
-        <script src="{{ asset('assets/js/golongan.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayat_golongan.js') }}"></script>
         <script src="{{ asset('assets/js/layanankgb.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatPMK.js') }}"></script>
-        <script src="{{ asset('assets/js/pendidikan.js') }}"></script>
-        <script src="{{ asset('assets/js/jabatan.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayat_pendidikan.js') }}"></script>
+        <script src="{{ asset('assets/js/riwayat_jabatan.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatAngkaKredit.js') }}"></script>
         <script src="{{ asset('assets/js/diklat.js') }}"></script>
         <script src="{{ asset('assets/js/riwayatOrangTua.js') }}"></script>
@@ -6404,7 +6404,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script>
-		$(".theSelect").select2();
+		    $(".theSelect").select2();
 	    </script>
 
         <script>
