@@ -151,11 +151,16 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Nama Pegawai</label>
-                                        <select class="select" id="name" name="name">
+                                        {{-- <select class="select" id="name" name="name">
                                             <option selected disabled>-- Pilih Nama Pegawai --</option>
                                             @foreach ($userList as $key => $user)
                                                 <option value="{{ $user->name }}" data-user_id={{ $user->user_id }} data-nip={{ $user->nip }}>{{ $user->name }}</option>
                                             @endforeach
+                                        </select> --}}
+
+                                        <select class="select" id="name" name="name">
+                                            <option selected disabled>-- Pilih Nama Pegawai --</option>
+                                            <!-- Placeholder for options -->
                                         </select>
                                     </div>
                                 </div>
@@ -427,9 +432,43 @@
         <script src="{{ asset('assets/js/drag-drop-file.js') }}"></script>
 
         <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                // Placeholder for options
+                const selectElement = document.getElementById('name');
+                const userList = {!! json_encode($userList) !!};
+        
+                function createOptions(userList) {
+                    userList.forEach(user => {
+                        const option = document.createElement('option');
+                        option.value = user.name;
+                        option.dataset.user_id = user.user_id;
+                        option.dataset.nip = user.nip;
+                        option.textContent = user.name;
+                        selectElement.appendChild(option);
+                    });
+                }
+        
+                function lazyLoad() {
+                    const observer = new IntersectionObserver(entries => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                observer.unobserve(entry.target);
+                                createOptions(userList);
+                            }
+                        });
+                    });
+        
+                    observer.observe(selectElement);
+                }
+        
+                lazyLoad();
+            });
+        
             $(document).ready(function() {
                 if (!$('.datatable').hasClass('dataTable')) {
                     $('.datatable').DataTable({
+                        "processing": true,
+                        "serverSide": true,
                         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                         "columnDefs": [
                             { "targets": [9, 10, 11], "orderable": false },

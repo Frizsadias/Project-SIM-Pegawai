@@ -104,8 +104,8 @@
                                         <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
                                         <td class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
                                         <td class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
-                                        <td class="no_hp_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
-                                        <td class="no_telepon_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
+                                        <td class="no_hp_text"><center><a href="https://api.whatsapp.com/send?phone=62{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
+                                        <td class="no_telepon_text"><center><a href="https://api.whatsapp.com/send?phone=62{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
                                         <td class="email"><center>
                                             <a href="mailto:{{ $result_pasangan->email }}" style="color:black">{{ $result_pasangan->email }}</a>
                                         </center></td>

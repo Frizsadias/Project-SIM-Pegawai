@@ -531,8 +531,8 @@
                                                 <td class="status_pernikahan"><center>{{ $result_Ortu->status_pernikahan }}</center></td>
                                                 <td class="alamat"><center>{{ $result_Ortu->alamat }}</center></td>
                                                 <td class="email"><center><a href="mailto:{{ $result_Ortu->email }}" style="color:black">{{ $result_Ortu->email }}</a></center></td>
-                                                <td class="no_hp_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_hp }}" target="_blank" style="color:black">0{{ $result_Ortu->no_hp }}</a></center></td>
-                                                <td class="no_telepon_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_telepon }}" target="_blank" style="color:black">0{{ $result_Ortu->no_telepon }}</a></center></td>
+                                                <td class="no_hp_text"><center><a href="https://api.whatsapp.com/send?phone=62{{ $result_Ortu->no_hp }}" target="_blank" style="color:black">0{{ $result_Ortu->no_hp }}</a></center></td>
+                                                <td class="no_telepon_text"><center><a href="https://api.whatsapp.com/send?phone=62{{ $result_Ortu->no_telepon }}" target="_blank" style="color:black">0{{ $result_Ortu->no_telepon }}</a></center></td>
                                                 <td class="dokumen_kk"><center><a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank"></a></center></td>
                                                 <td class="dokumen_akta_lahir_anak"><center><a href="{{ asset('assets/DokumenAktaLahirAnak/' . $result_Ortu->dokumen_akta_lahir_anak) }}" target="_blank"></a></center></td>
                                                 <td class="pas_foto_ayah"><center><a href="{{ asset('assets/DokumenPasFotoAyah/' . $result_Ortu->pas_foto_ayah) }}" target="_blank"></a></center></td>
@@ -592,8 +592,8 @@
                                                 <td class="status_hidup"><center>{{ $result_pasangan->status_hidup }}</center></td>
                                                 <td class="no_karis_karsu"><center>{{ $result_pasangan->no_karis_karsu }}</center></td>
                                                 <td class="alamat"><center>{{ $result_pasangan->alamat }}</center></td>
-                                                <td class="no_hp_text_pasangan"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
-                                                <td class="no_telepon_text_pasangan"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
+                                                <td class="no_hp_text_pasangan"><center><a href="https://api.whatsapp.com/send?phone=62{{ $result_pasangan->no_hp }}" target="_blank" style="color:black">0{{ $result_pasangan->no_hp }}</a></center></td>
+                                                <td class="no_telepon_text_pasangan"><center><a href="https://api.whatsapp.com/send?phone=62{{ $result_pasangan->no_telepon }}" target="_blank" style="color:black">0{{ $result_pasangan->no_telepon }}</a></center></td>
                                                 <td class="email"><center><a href="mailto:{{ $result_pasangan->email }}" style="color:black">{{ $result_pasangan->email }}</a></center></td>
                                                 <td class="dokumen_nikah"><center><a href="{{ asset('assets/DokumenNikah/' . $result_pasangan->dokumen_nikah) }}" target="_blank"></a></center></td>
                                                 <td class="pas_foto"><center><a href="{{ asset('assets/DokumenPasFotoPasangan/' . $result_pasangan->pas_foto) }}" target="_blank"></a></center></td>

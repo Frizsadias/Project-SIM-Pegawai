@@ -58,7 +58,7 @@
                                     @if (!empty($tampilanPerusahaan->mobile_number))
                                         <p class="nomorhpperusahaan">
                                             <i class="fa-solid fa-mobile fa-xl" style="color: #f43b48;"></i> : 
-                                                <a href="https://api.whatsapp.com/send?phone=0{{ $tampilanPerusahaan->mobile_number }}" target="_blank" style="color:black;">0{{ $tampilanPerusahaan->mobile_number }}</a>
+                                                <a href="https://api.whatsapp.com/send?phone=62{{ $tampilanPerusahaan->mobile_number }}" target="_blank" style="color:black;">0{{ $tampilanPerusahaan->mobile_number }}</a>
                                         </p>
                                     @else
                                         <p>No. Telepon : Nomor Telepon Instansi</p>

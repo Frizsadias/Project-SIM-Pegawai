@@ -107,8 +107,8 @@
                                         <td class="email"><center>
                                             <a href="mailto:{{ $result_Ortu->email }}" style="color:black">{{ $result_Ortu->email }}</a>
                                         </center></td>
-                                        <td class="no_hp_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_hp }}" target="_blank" style="color:black">0{{ $result_Ortu->no_hp }}</a></center></td>
-                                        <td class="no_telepon_text"><center><a href="https://api.whatsapp.com/send?phone=0{{ $result_Ortu->no_telepon }}" target="_blank" style="color:black">0{{ $result_Ortu->no_telepon }}</a></center></td>
+                                        <td class="no_hp_text"><center><a href="https://api.whatsapp.com/send?phone=62{{ $result_Ortu->no_hp }}" target="_blank" style="color:black">0{{ $result_Ortu->no_hp }}</a></center></td>
+                                        <td class="no_telepon_text"><center><a href="https://api.whatsapp.com/send?phone=62{{ $result_Ortu->no_telepon }}" target="_blank" style="color:black">0{{ $result_Ortu->no_telepon }}</a></center></td>
                                         <td class="dokumen_kk"><center>
                                             <a href="{{ asset('assets/DokumenKartuKeluarga/' . $result_Ortu->dokumen_kk) }}" target="_blank"></a>
                                         </center></td>
