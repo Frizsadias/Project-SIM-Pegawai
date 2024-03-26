@@ -164,8 +164,8 @@
 
     <!-- /Page Wrapper -->
     @section('script')
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 var table = $('#tableRuangan').DataTable({
@@ -199,11 +199,12 @@
                         "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
+                        "searchPlaceholder": "Nama Ruangan",
                         "paginate": {
                             "previous": "Previous",
                             "next": "Next",
-                            "first": "<<",
-                            "last": ">>",
+                            "first": "<i class='fa-solid fa-backward-fast'></i>",
+                            "last": "<i class='fa-solid fa-forward-fast'></i>",
                         }
                     },
                     "order": [

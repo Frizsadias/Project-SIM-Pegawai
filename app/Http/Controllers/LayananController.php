@@ -216,10 +216,9 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-            ->where('role_name', '=', 'User')
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
             ->get();
 
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
@@ -1172,7 +1171,7 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('daftar_pegawai')->get();
 
         // $totalLamaCuti = LayananCuti::sum('lama_cuti');
         // $sisaCuti = 18 - $totalLamaCuti;
@@ -2114,10 +2113,9 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-            ->where('role_name', '=', 'User')
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -2335,7 +2333,7 @@ class LayananController extends Controller
             })
             ->get();
 
-        $userList = DB::table('profil_pegawai')->get();
+        $userList = DB::table('daftar_pegawai')->get();
 
         $golonganOptions = DB::table('golongan_id')->pluck('nama_golongan', 'nama_golongan');
 
@@ -2735,21 +2733,6 @@ class LayananController extends Controller
             ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.tingkat_pendidikan',
-            'posisi_jabatan.jabatan'
-        )
-            ->where('role_name', '=', 'User')
-            ->get();
-
         $user_id = auth()->user()->user_id;
         $result_tema = DB::table('users')
             ->select('users.*', 'users.tema_aplikasi')
@@ -2800,7 +2783,7 @@ class LayananController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('layanan.perpanjang-kontrak', compact('data_perpanjang_kontrak', 'userList', 
+        return view('layanan.perpanjang-kontrak', compact('data_perpanjang_kontrak',
             'unreadNotifications', 'readNotifications', 'data_profilpegawai', 'data_posisijabatan', 
             'data_perpanjang_pdf', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
@@ -2868,19 +2851,9 @@ class LayananController extends Controller
             ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-            ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-            ->select(
-                'users.*',
-                'users.role_name',
-                'profil_pegawai.nip',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.tingkat_pendidikan',
-                'posisi_jabatan.jabatan'
-            )
-            ->where('role_name', '=', 'User')
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -3013,23 +2986,13 @@ class LayananController extends Controller
 
         $user_id = auth()->user()->user_id;
         $data_posisijabatan = DB::table('posisi_jabatan')
-        ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
-        ->where('posisi_jabatan.user_id', $user_id)
+            ->select('posisi_jabatan.*', 'posisi_jabatan.jabatan')
+            ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.tingkat_pendidikan',
-            'posisi_jabatan.jabatan'
-        )
-            ->where('role_name', '=', 'User')
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -3446,19 +3409,9 @@ class LayananController extends Controller
             ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-            ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-            ->select(
-                'users.*',
-                'users.role_name',
-                'profil_pegawai.nip',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.tingkat_pendidikan',
-                'posisi_jabatan.jabatan'
-            )
-            ->where('role_name', '=', 'User')
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
             ->get();
 
         $perjanjian = perjanjianKinerja::find(1);
@@ -3598,22 +3551,10 @@ class LayananController extends Controller
         ->where('posisi_jabatan.user_id', $user_id)
         ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.tingkat_pendidikan',
-            'posisi_jabatan.jabatan'
-        )
-        ->where('role_name', '=',
-            'User'
-        )
-        ->get();
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
+            ->get();
 
         $perjanjian = perjanjianKinerja::find(1);
 
@@ -3863,12 +3804,6 @@ class LayananController extends Controller
             ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-            ->select('users.*', 'users.role_name', 'profil_pegawai.nip')
-            ->where('role_name', '=', 'User')
-            ->get();
-
         $user_id = auth()->user()->user_id;
         $result_tema = DB::table('users')
             ->select('users.*', 'users.tema_aplikasi')
@@ -3923,7 +3858,6 @@ class LayananController extends Controller
             'unreadNotifications',
             'readNotifications',
             'data_perjanjian_kontrak',
-            'userList',
             'data_profilpegawai',
             'data_posisijabatan',
             'result_tema', 
@@ -4164,21 +4098,9 @@ class LayananController extends Controller
             )
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-            ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-            ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-            ->select(
-                'users.*',
-                'users.role_name',
-                'profil_pegawai.nip',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.jenis_kelamin',
-                'profil_pegawai.tingkat_pendidikan',
-                'profil_pegawai.pendidikan_terakhir',
-                'posisi_jabatan.jabatan'
-            )
-            ->where('role_name', '=', 'User')
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -4288,21 +4210,9 @@ class LayananController extends Controller
             ->where('surat_tanda_registrasi.tgl_berlaku_str', 'like', '%' . $tgl_berlaku_str . '%')
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.jenis_kelamin',
-            'profil_pegawai.tingkat_pendidikan',
-            'profil_pegawai.pendidikan_terakhir',
-            'posisi_jabatan.jabatan'
-        )
-            ->where('role_name', '=', 'User')
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -4415,21 +4325,9 @@ class LayananController extends Controller
             ->where('surat_tanda_registrasi.tgl_berlaku_str', 'like', '%' . $tgl_berlaku_str . '%')
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.jenis_kelamin',
-            'profil_pegawai.tingkat_pendidikan',
-            'profil_pegawai.pendidikan_terakhir',
-            'posisi_jabatan.jabatan'
-        )
-            ->where('role_name', '=', 'User')
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -4534,22 +4432,6 @@ class LayananController extends Controller
             ->where('surat_tanda_registrasi.user_id', $user_id)
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'profil_pegawai.tempat_lahir',
-            'profil_pegawai.tanggal_lahir',
-            'profil_pegawai.jenis_kelamin',
-            'profil_pegawai.tingkat_pendidikan',
-            'profil_pegawai.pendidikan_terakhir',
-        )
-            ->where('role_name', '=', 'User')
-            ->get();
-
         $user_id = auth()->user()->user_id;
         $data_profil_str = DB::table('profil_pegawai')
         ->select('profil_pegawai.*', 'profil_pegawai.name', 'profil_pegawai.tempat_lahir', 'profil_pegawai.tanggal_lahir', 'profil_pegawai.jenis_kelamin', 'profil_pegawai.tingkat_pendidikan', 'profil_pegawai.pendidikan_terakhir')
@@ -4611,7 +4493,6 @@ class LayananController extends Controller
             'data_profil_str',
             'unreadNotifications',
             'readNotifications',
-            'userList',
             'result_tema', 
             'semua_notifikasi', 
             'belum_dibaca', 
@@ -4789,17 +4670,10 @@ class LayananController extends Controller
         ->where('posisi_jabatan.user_id', $user_id)
         ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'posisi_jabatan.jabatan'
-        )
-        ->where('role_name', '=', 'User')
-        ->get();
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
+            ->get();
 
         $user_id = auth()->user()->user_id;
         $result_tema = DB::table('users')
@@ -4918,17 +4792,10 @@ class LayananController extends Controller
         ->where('posisi_jabatan.user_id', $user_id)
         ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'posisi_jabatan.jabatan'
-        )
-        ->where('role_name', '=', 'User')
-        ->get();
+        $userList = DB::table('daftar_pegawai')
+            ->select('daftar_pegawai.*')
+            ->where('role_name', 'User')
+            ->get();
 
         $user_id = auth()->user()->user_id;
         $result_tema = DB::table('users')
@@ -5163,18 +5030,6 @@ class LayananController extends Controller
         ->where('posisi_jabatan.user_id', $user_id)
             ->get();
 
-        $userList = DB::table('profil_pegawai')
-        ->join('users', 'profil_pegawai.user_id', 'users.user_id')
-        ->join('posisi_jabatan', 'profil_pegawai.user_id', 'posisi_jabatan.user_id')
-        ->select(
-            'users.*',
-            'users.role_name',
-            'profil_pegawai.nip',
-            'posisi_jabatan.jabatan'
-        )
-            ->where('role_name', '=', 'User')
-            ->get();
-
         $user_id = auth()->user()->user_id;
         $result_tema = DB::table('users')
             ->select('users.*', 'users.tema_aplikasi')
@@ -5229,7 +5084,6 @@ class LayananController extends Controller
             'unreadNotifications',
             'readNotifications',
             'data_perjanjian_kinerja',
-            'userList',
             'data_profilpegawai',
             'data_posisijabatan',
             'data_kinerja_pdf',
@@ -5354,7 +5208,7 @@ class LayananController extends Controller
 
     /** Search Pegawai List Kepala Ruangan */
     public function pencarianPegawaiKepalaRuanganList(Request $request)
-{
+    {
     $name = $request->input('name');
     $nip = $request->input('nip');
 
@@ -5425,7 +5279,7 @@ class LayananController extends Controller
         'belum_dibaca', 
         'dibaca'
     ));
-}
+    }
     /** /Search Pegawai List Kepala Ruangan */
 
     /** Search Pegawai Card Kepala Ruangan */
@@ -5433,14 +5287,16 @@ class LayananController extends Controller
     {
         $name = $request->input('name');
         $nip = $request->input('nip');
+        $email = $request->input('email');
 
         $data_ruangan = User::where('role_name', 'User')
         ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
         ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
         ->where('users.ruangan', auth()->user()->ruangan)
-            ->where(function ($query) use ($name, $nip) {
+            ->where(function ($query) use ($name, $nip, $email) {
                 $query->where('profil_pegawai.name', 'like', '%' . $name . '%')
-                    ->where('profil_pegawai.nip', 'like', '%' . $nip . '%');
+                    ->where('profil_pegawai.nip', 'like', '%' . $nip . '%')
+                    ->where('profil_pegawai.email', 'like', '%' . $email . '%');
             })
             ->get();
 
