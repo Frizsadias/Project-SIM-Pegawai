@@ -32,6 +32,7 @@ use App\Models\RiwayatPMK;
 use App\Models\Village;
 use App\Models\userActivityLog;
 use App\Models\activityLog;
+use App\Models\DaftarPegawai;
 use App\Notifications\UlangTahunNotification;
 use Carbon\Carbon;
 use Session;
@@ -938,6 +939,15 @@ class UserManagementController extends Controller
             ];
             DB::table('users')->where('user_id', $request->user_id)->update($updateNIPRuangan);
 
+            $updateDP = [
+                'tanggal_lahir'         => $request->tanggal_lahir,
+                'tempat_lahir'          => $request->tempat_lahir,
+                'pendidikan_terakhir'   => $request->pendidikan_terakhir,
+                'jenis_kelamin'         => $request->jenis_kelamin,
+                'ruangan'               => $request->ruangan
+            ];
+            DB::table('daftar_pegawai')->where('user_id', $request->user_id)->update($updateDP);
+
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;
             $information->user_id      = $request->user_id;
@@ -1025,6 +1035,13 @@ class UserManagementController extends Controller
                 ];
                 User::where('user_id', $request->user_id)->update($update);
             }
+
+
+            $updateDP = [
+                'avatar'    => $image_name
+            ];
+            DB::table('daftar_pegawai')->where('user_id', $request->user_id)->update($updateDP);
+
 
             DB::commit();
             Toastr::success('Foto profil berhasil diperbaharui ✔', 'Success');
@@ -1428,6 +1445,20 @@ class UserManagementController extends Controller
 
             DB::table('profil_pegawai')->where('user_id', $request->user_id)->update($editProfilPegawai);
 
+            $updateDP = [
+                'nip'                   => $request->nip,
+                'tempat_lahir'          => $request->tempat_lahir,
+                'tanggal_lahir'         => $request->tanggal_lahir,
+                'jenis_kelamin'         => $request->jenis_kelamin,
+                'no_hp'                 => $request->no_hp,
+                'jenis_pegawai'         => $request->jenis_pegawai,
+                'kedudukan_pns'         => $request->kedudukan_pns,
+                'tingkat_pendidikan'    => $request->tingkat_pendidikan,
+                'pendidikan_terakhir'   => $request->pendidikan_terakhir,
+                'ruangan'               => $request->ruangan
+            ];
+            DB::table('daftar_pegawai')->where('user_id', $request->user_id)->update($updateDP);
+
             DB::commit();
             Toastr::success('Data profil pegawai berhasil diperbaharui ✔', 'Success');
             return redirect()->back();
@@ -1552,6 +1583,13 @@ class UserManagementController extends Controller
                 'eselon'                 => $request->eselon
             ];
 
+            $updateDP = [
+                'jabatan'           => $request->jabatan,
+                'gol_ruang_awal'    => $request->gol_ruang_awal,
+                'gol_ruang_akhir'   => $request->gol_ruang_akhir
+            ];
+
+            DB::table('daftar_pegawai')->where('user_id', $request->user_id)->update($updateDP);
             DB::table('posisi_jabatan')->where('user_id', $request->user_id)->update($editPosisiJabatan);
             DB::table('users')->where('user_id', $request->user_id)->update($editUsers);
 
@@ -1690,5 +1728,273 @@ class UserManagementController extends Controller
         );
 
         return response()->json($json_data);
+    }
+    
+    public function getPegawaiData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'nip',
+            2 => 'name',
+            3 => 'jabatan',
+            4 => 'pendidikan_terakhir',
+            5 => 'no_hp',
+            6 => 'ruangan',
+            7 => 'kedudukan_pns',
+            8 => 'user_id'
+        );
+
+        $result_pegawai = DB::table('daftar_pegawai')
+            ->where('role_name', 'User')
+            ->where(function ($query) {
+                $query->where('kedudukan_pns', 'Aktif');
+                $query->orWhereNull('kedudukan_pns');
+            });
+        $totalData = $result_pegawai->count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $data_pegawai =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where(function ($query) {
+                    $query->where('kedudukan_pns', 'Aktif');
+                    $query->orWhereNull('kedudukan_pns');
+                })
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+        } else {
+            $data_pegawai =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where(function ($query) {
+                    $query->where('kedudukan_pns', 'Aktif');
+                    $query->orWhereNull('kedudukan_pns');
+                })
+                ->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                          ->orWhere('nip', 'like', "%{$search}%");
+                })
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where(function ($query) {
+                    $query->where('kedudukan_pns', 'Aktif');
+                    $query->orWhereNull('kedudukan_pns');
+                })
+                ->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                          ->orWhere('nip', 'like', "%{$search}%");
+                })
+                ->count();
+        }
+
+        $data_arr = [];
+        foreach ($data_pegawai as $key => $result_pegawai) {
+            $data_arr [] = [
+                "id"                    => '<span class="id" data-id="' . $result_pegawai->id . '">' . ($start + ($key + 1)) . '</span>',
+                "nip"                   => '<span class="nip">' . $result_pegawai->nip . '</span>',
+                "name"                  => '<a href="' . url('user/profile/' . $result_pegawai->user_id) . '">' . $result_pegawai->name . '</a>',
+                "jabatan"               => '<span class="jabatan">' . $result_pegawai->jabatan . '</span>',
+                "pendidikan_terakhir"   => '<span class="pendidikan_terakhir">' . $result_pegawai->pendidikan_terakhir . '</span>',
+                "no_hp"                 => '<a href="https://api.whatsapp.com/send?phone=62' . $result_pegawai->no_hp . '" target="_blank"><span class="no_hp">' . $result_pegawai->no_hp . '</span></a>',
+                "ruangan"               => '<span class="ruangan">' . $result_pegawai->ruangan . '</span>',
+                "kedudukan_pns"         => '<span class="kedudukan_pns">' . $result_pegawai->kedudukan_pns . '</span>',
+                "user_id"               => '<a href="' . url('user/profile/' . $result_pegawai->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_pegawai->avatar) . '"></a>',
+            ];
+        }
+
+        $response = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data_arr
+        );
+
+        return response()->json($response);
+    }
+
+    public function getPegawaiRuanganData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'nip',
+            2 => 'name',
+            3 => 'gol_ruang_awal',
+            4 => 'gol_ruang_akhir',
+            5 => 'ruangan',
+            6 => 'jenis_pegawai',
+            7 => 'user_id'
+        );
+
+        $result_user = auth()->user();
+        $result_ruangan = $result_user->ruangan;
+
+        $result_pegawai =  DB::table('daftar_pegawai')
+            ->where('role_name', 'User')
+            ->where('ruangan', $result_ruangan);
+        $totalData = $result_pegawai->count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $data_ruangan =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where('ruangan', $result_ruangan)
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+        } else {
+            $data_ruangan =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where('ruangan', $result_ruangan)
+                ->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                          ->orWhere('nip', 'like', "%{$search}%");
+                })
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where('ruangan', $result_ruangan)
+                ->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                          ->orWhere('nip', 'like', "%{$search}%");
+                })
+                ->count();
+        }
+
+        $data_arr = [];
+        foreach ($data_ruangan as $key => $result_ruang) {
+            $data_arr [] = [
+                "id"                => '<span class="id" data-id="' . $result_ruang->id . '">' . ($start + ($key + 1)) . '</span>',
+                "nip"               => '<span class="nip">' . $result_ruang->nip . '</span>',
+                "name"              => '<a href="' . url('user/profile/' . $result_ruang->user_id) . '">' . $result_ruang->name . '</a>',
+                "gol_ruang_awal"    => '<span class="gol_ruang_awal">' . $result_ruang->gol_ruang_awal . '</span>',
+                "gol_ruang_akhir"   => '<span class="gol_ruang_akhir">' . $result_ruang->gol_ruang_akhir . '</span>',
+                "ruangan"           => '<span class="ruangan">' . $result_ruang->ruangan . '</span>',
+                "jenis_pegawai"     => '<span class="jenis_pegawai">' . $result_ruang->jenis_pegawai . '</span>',
+                "user_id"           => '<a href="' . url('user/profile/' . $result_ruang->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_ruang->avatar) . '"></a>',
+            ];
+        }
+
+        $response = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data_arr
+        );
+
+        return response()->json($response);
+    }
+
+    public function getPegawaiPensiunData(Request $request)
+    {
+        $columns = array(
+            0 => 'id',
+            1 => 'nip',
+            2 => 'name',
+            3 => 'jabatan',
+            4 => 'pendidikan_terakhir',
+            5 => 'no_hp',
+            6 => 'ruangan',
+            7 => 'kedudukan_pns',
+            8 => 'user_id'
+        );
+
+        $result_pegawai = DB::table('daftar_pegawai')
+            ->where('role_name', 'User')
+            ->where('kedudukan_pns', 'Pensiun');
+        $totalData = $result_pegawai->count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->length;
+        $start = $request->start;
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        $search = $request->input('search.value');
+
+        if (empty($search)) {
+            $data_pegawai =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where('kedudukan_pns', 'Pensiun')
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+        } else {
+            $data_pegawai =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where('kedudukan_pns', 'Pensiun')
+                ->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                          ->orWhere('nip', 'like', "%{$search}%");
+                })
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered =  DB::table('daftar_pegawai')
+                ->where('role_name', 'User')
+                ->where('kedudukan_pns', 'Pensiun')
+                ->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                          ->orWhere('nip', 'like', "%{$search}%");
+                })
+                ->count();
+        }
+
+        $data_arr = [];
+        foreach ($data_pegawai as $key => $result_pegawai) {
+            $data_arr [] = [
+                "id"                    => '<span class="id" data-id="' . $result_pegawai->id . '">' . ($start + ($key + 1)) . '</span>',
+                "nip"                   => '<span class="nip">' . $result_pegawai->nip . '</span>',
+                "name"                  => '<a href="' . url('user/profile/' . $result_pegawai->user_id) . '">' . $result_pegawai->name . '</a>',
+                "jabatan"               => '<span class="jabatan">' . $result_pegawai->jabatan . '</span>',
+                "pendidikan_terakhir"   => '<span class="pendidikan_terakhir">' . $result_pegawai->pendidikan_terakhir . '</span>',
+                "no_hp"                 => '<a href="https://api.whatsapp.com/send?phone=62' . $result_pegawai->no_hp . '" target="_blank"><span class="no_hp">' . $result_pegawai->no_hp . '</span></a>',
+                "ruangan"               => '<span class="ruangan">' . $result_pegawai->ruangan . '</span>',
+                "kedudukan_pns"         => '<span class="kedudukan_pns">' . $result_pegawai->kedudukan_pns . '</span>',
+                "user_id"               => '<a href="' . url('user/profile/' . $result_pegawai->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_pegawai->avatar) . '"></a>',
+            ];
+        }
+
+        $response = array(
+            "draw"            => intval($request->input('draw')),
+            "recordsTotal"    => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"            => $data_arr
+        );
+
+        return response()->json($response);
     }
 }

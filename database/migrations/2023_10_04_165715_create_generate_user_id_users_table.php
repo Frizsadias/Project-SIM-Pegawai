@@ -16,6 +16,7 @@ class CreateGenerateUserIdUsersTable extends Migration
         DB::unprepared('
             CREATE TRIGGER profil_posisi AFTER INSERT ON users FOR EACH ROW
             BEGIN
+                INSERT INTO daftar_pegawai(name,user_id,nip,role_name,avatar,ruangan) VALUES (NEW.name,NEW.user_id,NEW.nip,NEW.role_name,NEW.avatar,NEW.ruangan);
                 INSERT INTO profil_pegawai(name,user_id,email,nip,no_dokumen) VALUES (NEW.name,NEW.user_id,NEW.email,NEW.nip,NEW.no_dokumen);
                 INSERT INTO profil_pegawais(name,user_id,email,nip,no_dokumen) VALUES (NEW.name,NEW.user_id,NEW.email,NEW.nip,NEW.no_dokumen);
                 INSERT INTO posisi_jabatan(user_id,nip) VALUES (NEW.user_id,NEW.nip);

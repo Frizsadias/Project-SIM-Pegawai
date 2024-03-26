@@ -38,24 +38,19 @@ class EmployeeController extends Controller
     /** Daftar Pegawai Card */
     public function cardAllEmployee(Request $request)
     {
-        $users = DB::table('users')
-            ->join('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-            ->join('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+        $users = DB::table('daftar_pegawai')
+            ->join('users', 'daftar_pegawai.user_id', 'users.user_id')
             ->select(
-                'users.role_name',
-                'profil_pegawai.kedudukan_pns',
-                'users.user_id',
-                'users.avatar',
-                'users.name',
-                'users.nip',
+                'daftar_pegawai.kedudukan_pns',
+                'daftar_pegawai.user_id',
+                'daftar_pegawai.name',
+                'daftar_pegawai.nip',
                 'users.email',
-            )
-            ->where(function($query) {
-                $query->where('users.role_name', 'User')
-                    ->where(function($query) {
-                        $query->whereNull('profil_pegawai.kedudukan_pns')
-                            ->orWhere('profil_pegawai.kedudukan_pns', 'Aktif');
-                    });
+                'users.avatar')
+            ->where('daftar_pegawai.role_name', 'User')
+            ->where(function ($query) {
+                $query->where('kedudukan_pns', 'Aktif');
+                $query->orWhereNull('kedudukan_pns');
             })
             ->get();
 
@@ -119,20 +114,18 @@ class EmployeeController extends Controller
             ->join('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
             ->join('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
             ->select(
-                'users.id',
-                'users.role_name',
-                'users.nip',
-                'users.user_id',
-                'users.name',
+                'profil_pegawai.nip',
+                'profil_pegawai.name',
                 'posisi_jabatan.jabatan',
                 'profil_pegawai.pendidikan_terakhir',
                 'profil_pegawai.no_hp',
                 'profil_pegawai.ruangan',
                 'profil_pegawai.kedudukan_pns',
-                'users.avatar',
+                'profil_pegawai.user_id',
+                'users.avatar'
             )
             ->where(function($query) {
-                $query->where('users.role_name', 'User')
+                $query->where('role_name', 'User')
                     ->where(function($query) {
                         $query->whereNull('profil_pegawai.kedudukan_pns')
                             ->orWhere('profil_pegawai.kedudukan_pns', 'Aktif');
@@ -197,12 +190,20 @@ class EmployeeController extends Controller
     /** Daftar Pegawai Pensiun Card */
     public function cardPensiun(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $users = DB::table('daftar_pegawai')
+            ->join('users', 'daftar_pegawai.user_id', 'users.user_id')
+            ->select(
+                'daftar_pegawai.kedudukan_pns',
+                'daftar_pegawai.user_id',
+                'daftar_pegawai.name',
+                'daftar_pegawai.nip',
+                'users.email',
+                'users.avatar'
+            )
+            ->where('daftar_pegawai.role_name', 'User')
+            ->where('daftar_pegawai.kedudukan_pns', 'Pensiun')
             ->get();
-
+        
         $user = auth()->user();
         $role = $user->role_name;
         $unreadNotifications = Notification::where('notifiable_id', $user->id)
@@ -213,6 +214,12 @@ class EmployeeController extends Controller
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
             ->get();
 
         $semua_notifikasi = DB::table('notifications')
@@ -247,55 +254,28 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        $users = DB::table('users')
-            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select(
-                'users.*',
-                'profil_pegawai.name',
-                'profil_pegawai.email',
-                'profil_pegawai.nip',
-                'profil_pegawai.gelar_depan',
-                'profil_pegawai.gelar_belakang',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.jenis_kelamin',
-                'profil_pegawai.agama',
-                'profil_pegawai.jenis_dokumen',
-                'profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan',
-                'profil_pegawai.kecamatan',
-                'profil_pegawai.kota',
-                'profil_pegawai.provinsi',
-                'profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp',
-                'profil_pegawai.no_telp',
-                'profil_pegawai.jenis_pegawai',
-                'profil_pegawai.kedudukan_pns',
-                'profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns',
-                'profil_pegawai.no_seri_karpeg',
-                'profil_pegawai.tmt_cpns',
-                'profil_pegawai.tingkat_pendidikan',
-                'profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan',
-                'users.name',
-                'posisi_jabatan.jabatan'
-            )
-            ->get();
-        $userList = DB::table('users')->get();
-        $permission_lists = DB::table('permission_lists')->get();
-        return view('employees.datapensiuncard', compact('users', 'userList', 'permission_lists', 
-            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
+        return view('employees.datapensiuncard', compact('users', 'unreadNotifications', 'readNotifications',
+            'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Daftar Pegawai Pensiun List */
     public function listPensiun()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $users = DB::table('users')
+            ->join('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
+            ->join('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
+            ->select(
+                'profil_pegawai.nip',
+                'profil_pegawai.name',
+                'posisi_jabatan.jabatan',
+                'profil_pegawai.pendidikan_terakhir',
+                'profil_pegawai.no_hp',
+                'profil_pegawai.ruangan',
+                'profil_pegawai.kedudukan_pns',
+                'profil_pegawai.user_id',
+                'users.avatar')
+            ->where('role_name', 'User')
+            ->where('profil_pegawai.kedudukan_pns', 'Pensiun')
             ->get();
 
         $user = auth()->user();
@@ -308,6 +288,12 @@ class EmployeeController extends Controller
         $readNotifications = Notification::where('notifiable_id', $user->id)
             ->where('notifiable_type', get_class($user))
             ->whereNotNull('read_at')
+            ->get();
+
+        $user_id = auth()->user()->user_id;
+        $result_tema = DB::table('users')
+            ->select('users.*', 'users.tema_aplikasi')
+            ->where('users.user_id', $user_id)
             ->get();
 
         $semua_notifikasi = DB::table('notifications')
@@ -342,96 +328,26 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        $users = DB::table('users')
-            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select(
-                'users.*',
-                'profil_pegawai.name',
-                'profil_pegawai.email',
-                'profil_pegawai.nip',
-                'profil_pegawai.gelar_depan',
-                'profil_pegawai.gelar_belakang',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.jenis_kelamin',
-                'profil_pegawai.agama',
-                'profil_pegawai.jenis_dokumen',
-                'profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan',
-                'profil_pegawai.kecamatan',
-                'profil_pegawai.kota',
-                'profil_pegawai.provinsi',
-                'profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp',
-                'profil_pegawai.no_telp',
-                'profil_pegawai.jenis_pegawai',
-                'profil_pegawai.kedudukan_pns',
-                'profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns',
-                'profil_pegawai.no_seri_karpeg',
-                'profil_pegawai.tmt_cpns',
-                'profil_pegawai.tingkat_pendidikan',
-                'profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan',
-                'users.name',
-                'posisi_jabatan.jabatan'
-            )
-            ->get();
-        $userList = DB::table('users')->get();
-        $permission_lists = DB::table('permission_lists')->get();
-        return view('employees.datapensiunlist', compact('users', 'userList', 'permission_lists', 
-            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
+        return view('employees.datapensiunlist', compact('users', 'unreadNotifications', 'readNotifications',
+            'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     public function cardRuangan(Request $request)
     {
-        $users = DB::table('users')
-            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select(
-                'users.*',
-                'profil_pegawai.name',
-                'profil_pegawai.email',
-                'profil_pegawai.nip',
-                'profil_pegawai.gelar_depan',
-                'profil_pegawai.gelar_belakang',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.jenis_kelamin',
-                'profil_pegawai.agama',
-                'profil_pegawai.jenis_dokumen',
-                'profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan',
-                'profil_pegawai.kecamatan',
-                'profil_pegawai.kota',
-                'profil_pegawai.provinsi',
-                'profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp',
-                'profil_pegawai.no_telp',
-                'profil_pegawai.jenis_pegawai',
-                'profil_pegawai.kedudukan_pns',
-                'profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns',
-                'profil_pegawai.no_seri_karpeg',
-                'profil_pegawai.tmt_cpns',
-                'profil_pegawai.tingkat_pendidikan',
-                'profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan',
-                'users.name',
-                'posisi_jabatan.jabatan'
-            )
-            ->get();
-
-        $userList = DB::table('users')->get();
-        $permission_lists = DB::table('permission_lists')->get();
-
         $user = auth()->user();
         $ruangan = $user->ruangan;
-        $data_ruangan = User::where('role_name', 'User')
-            ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
-            ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
-            ->where('users.ruangan', $ruangan)
+        $data_ruangan = DB::table('daftar_pegawai')
+            ->join('users', 'daftar_pegawai.user_id', 'users.user_id')
+            ->select(
+                'daftar_pegawai.user_id',
+                'daftar_pegawai.name',
+                'daftar_pegawai.nip',
+                'users.email',
+                'daftar_pegawai.ruangan',
+                'users.avatar'
+            )
+            ->where('daftar_pegawai.role_name', 'User')
+            ->where('daftar_pegawai.ruangan', $ruangan)
             ->get();
 
         $user_id = auth()->user()->user_id;
@@ -484,58 +400,29 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('employees.dataruangancard', compact('data_ruangan', 'users', 'userList', 'permission_lists', 
-            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
+        return view('employees.dataruangancard', compact('data_ruangan', 'result_tema', 'unreadNotifications', 'readNotifications',
+            'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** Daftar Ruangan List */
     public function listRuangan()
     {
-        $users = DB::table('users')
-            ->leftjoin('profil_pegawai', 'users.user_id', 'profil_pegawai.user_id')
-            ->leftjoin('posisi_jabatan', 'users.user_id', 'posisi_jabatan.user_id')
-            ->select(
-                'users.*',
-                'profil_pegawai.name',
-                'profil_pegawai.email',
-                'profil_pegawai.nip',
-                'profil_pegawai.gelar_depan',
-                'profil_pegawai.gelar_belakang',
-                'profil_pegawai.tempat_lahir',
-                'profil_pegawai.tanggal_lahir',
-                'profil_pegawai.jenis_kelamin',
-                'profil_pegawai.agama',
-                'profil_pegawai.jenis_dokumen',
-                'profil_pegawai.no_dokumen',
-                'profil_pegawai.kelurahan',
-                'profil_pegawai.kecamatan',
-                'profil_pegawai.kota',
-                'profil_pegawai.provinsi',
-                'profil_pegawai.kode_pos',
-                'profil_pegawai.no_hp',
-                'profil_pegawai.no_telp',
-                'profil_pegawai.jenis_pegawai',
-                'profil_pegawai.kedudukan_pns',
-                'profil_pegawai.status_pegawai',
-                'profil_pegawai.tmt_pns',
-                'profil_pegawai.no_seri_karpeg',
-                'profil_pegawai.tmt_cpns',
-                'profil_pegawai.tingkat_pendidikan',
-                'profil_pegawai.pendidikan_terakhir',
-                'profil_pegawai.ruangan',
-                'users.name',
-                'posisi_jabatan.jabatan'
-            )
-            ->get();
-
-        $userList = DB::table('users')->get();
-        $permission_lists = DB::table('permission_lists')->get();
-
         $user = auth()->user();
         $ruangan = $user->ruangan;
-        $data_ruangan = User::where('role_name', 'User')
-            ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
-            ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
+        $data_ruangan = DB::table('profil_pegawai')
+            ->join('users', 'profil_pegawai.user_id', '=', 'users.user_id')
+            ->join('posisi_jabatan', 'profil_pegawai.user_id', '=', 'posisi_jabatan.user_id')
+            ->select(
+                'profil_pegawai.nip',
+                'profil_pegawai.name',
+                'posisi_jabatan.gol_ruang_awal',
+                'posisi_jabatan.gol_ruang_akhir',
+                'profil_pegawai.ruangan',
+                'profil_pegawai.jenis_pegawai',
+                'profil_pegawai.user_id',
+                'users.avatar'
+            )
+            ->where('users.role_name', 'User')
             ->where('users.ruangan', $ruangan)
             ->get();
 
@@ -589,8 +476,8 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('employees.dataruanganlist', compact('data_ruangan', 'users', 'userList', 'permission_lists', 
-            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
+        return view('employees.dataruanganlist', compact('data_ruangan', 'result_tema', 'unreadNotifications', 'readNotifications',
+            'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
 
     /** save data employee */
@@ -692,7 +579,7 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->join('employees', 'users.user_id', 'employees.employee_id')
             ->select('users.*', 'employees.name', 'employees.email')->get();
-        $userList = DB::table('users')->get();
+        $userList = DB::table('daftar_pegawai')->get();
 
         // search by id
         if ($request->employee_id) {
@@ -810,7 +697,7 @@ class EmployeeController extends Controller
         $users = DB::table('users')
             ->join('employees', 'users.user_id', 'employees.employee_id')
             ->select('users.*', 'employees.name', 'employees.email')->get();
-        $userList = DB::table('users')->get();
+        $userList = DB::table('daftar_pegawai')->get();
 
         // search by id
         if ($request->employee_id) {
@@ -1070,7 +957,8 @@ class EmployeeController extends Controller
                 'profil_pegawai.ruangan',
                 'users.name as user_name',
                 'posisi_jabatan.jabatan'
-            );
+            )
+            ->where('role_name', 'User');
 
         // Lakukan pencarian berdasarkan input form
         if ($request->input('nip')) {
@@ -1138,8 +1026,8 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        return view('employees.allemployeecard', compact('users', 
-            'unreadNotifications', 'readNotifications', 'result_tema', 'semua_notifikasi', 'belum_dibaca', 'dibaca'));
+            return view('employees.allemployeecard', compact('users', 'result_tema', 'unreadNotifications', 'readNotifications',
+                'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Search */
 

@@ -3,8 +3,10 @@
     
     <!-- Page Wrapper -->
     <div class="page-wrapper">
+
         <!-- Page Content -->
         <div class="content container-fluid">
+
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-lists-center">
@@ -25,7 +27,7 @@
             </div>
             <!-- /Page Header -->
 
-            <!-- Search Filter -->
+            {{-- <!-- Search Filter -->
             <form action="{{ route('ruangan/pegawai/list/cari') }}" method="POST">
                 @csrf
                 <div class="row filter-row">
@@ -46,7 +48,7 @@
                     </div>
                 </div>
             </form>
-            <!-- Search Filter -->
+            <!-- Search Filter --> --}}
 
             {{-- message --}}
             {!! Toastr::message() !!}
@@ -54,9 +56,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table datatable">
+                        <table class="table table-striped custom-table" id="tablePegawaiRuanganData" style="width: 100%">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>NIP</th>
                                     <th>Nama Pegawai</th>
                                     <th>Golongan Awal</th>
@@ -66,25 +69,11 @@
                                     <th>Foto</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($data_ruangan as $result_ruang)
-                                    <tr>
-                                        <td>{{ $result_ruang->nip }}</td>
-                                        <td><a href="{{ url('user/profile/' . $result_ruang->user_id) }}" style="color:black;">{{ $result_ruang->name }}</a></td>
-                                        <td>{{ $result_ruang->gol_ruang_awal }}</td>
-                                        <td>{{ $result_ruang->gol_ruang_akhir }}</td>
-                                        <td>{{ $result_ruang->ruangan }}</td>
-                                        <td>{{ $result_ruang->jenis_pegawai }}</td>
-                                        <td><h2 class="table-avatar">
-                                            <a href="{{ url('user/profile/' . $result_ruang->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $result_ruang->avatar) }}"></a>
-                                        </h2></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+            
         </div>
         <!-- /Page Content -->
 
@@ -92,14 +81,84 @@
     <!-- /Page Wrapper -->
     
     @section('script')
-    <script>
-        document.getElementById('pageTitle').innerHTML = 'Informasi Daftar Ruangan - Kepala Ruang | Aplikasi SILK';
-    </script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var table = $('#tablePegawaiRuanganData').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "{{ route('get-pegawai-ruangan-data') }}",
+                        "data": function(d) {
+                            d.keyword = $('#keyword').val();
+                            d._token = "{{ csrf_token() }}";
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "id"
+                        },
+                        {
+                            "data": "nip"
+                        },
+                        {
+                            "data": "name",
+                        },
+                        {
+                            "data": "gol_ruang_awal"
+                        },
+                        {
+                            "data": "gol_ruang_akhir"
+                        },
+                        {
+                            "data": "ruangan"
+                        },
+                        {
+                            "data": "jenis_pegawai"
+                        },
+                        {
+                            "data": "user_id",
+                        },
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "No data available in table",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "searchPlaceholder": "NIP dan Nama Pegawai",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<i class='fa-solid fa-backward-fast'></i>",
+                            "last": "<i class='fa-solid fa-forward-fast'></i>",
+                        }
+                    },
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
 
-    <script>
-        history.pushState({}, "", '/daftar/ruangan/pegawai/list');
-    </script>
-    <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
+                $('#search-form').on('submit', function(e) {
+                    e.preventDefault();
+                    table
+                        .search($('#keyword').val())
+                        .draw();
+                });
+            });
+        </script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Informasi Daftar Ruangan - Kepala Ruang | Aplikasi SILK';
+        </script>
+
+        <script>
+            history.pushState({}, "", '/daftar/ruangan/pegawai/list');
+        </script>
+        
+        <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection
 @endsection

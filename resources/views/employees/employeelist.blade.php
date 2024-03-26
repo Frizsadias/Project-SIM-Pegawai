@@ -34,8 +34,8 @@
                 </button>
             </form><br>
 
-            <!-- Search Filter -->
-            <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
+            <!-- Fitur Pencarian -->
+            {{-- <form action="{{ route('daftar/pegawai/list/search') }}" method="POST">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
@@ -60,8 +60,8 @@
                         <button type="sumit" class="btn btn-success btn-block"> Cari </button>
                     </div>
                 </div>
-            </form>
-            <!-- Search Filter -->
+            </form> --}}
+            <!-- /Fitur Pencarian -->
 
             {{-- message --}}
             {!! Toastr::message() !!}
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table datatable">
+                        <table class="table table-striped custom-table" id="tablePegawaiData" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -83,24 +83,6 @@
                                     <th>Foto</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($users as $sqlpegawai => $dafpeg)
-                                    <tr>
-                                        {{-- <td>{{ ++$sqlpegawai }}</td> --}}
-                                        <td>{{ $dafpeg->id }}</td>
-                                        <td>{{ $dafpeg->nip }}</td>
-                                        <td><a href="{{ url('user/profile/' . $dafpeg->user_id) }}" style="color:black;">{{ $dafpeg->name }}</a></td>
-                                        <td>{{ $dafpeg->jabatan }}</td>
-                                        <td>{{ $dafpeg->pendidikan_terakhir }}</td>
-                                        <td><a href="https://api.whatsapp.com/send?phone={{ $dafpeg->no_hp }}" target="_blank" style="color:black;">{{ $dafpeg->no_hp }}</a></td>
-                                        <td>{{ $dafpeg->ruangan }}</td>
-                                        <td>{{ $dafpeg->kedudukan_pns }}</td>
-                                        <td><h2 class="table-avatar">
-                                            <a href="{{ url('user/profile/' . $dafpeg->user_id) }}" class="avatar"><img alt="" src="{{ URL::to('/assets/images/' . $dafpeg->avatar) }}"></a>
-                                        </h2></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -113,6 +95,78 @@
     <!-- /Page Wrapper -->
     
     @section('script')
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var table = $('#tablePegawaiData').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "{{ route('get-pegawai-data') }}",
+                        "data": function(d) {
+                            d.keyword = $('#keyword').val();
+                            d._token = "{{ csrf_token() }}";
+                        }
+                    },
+                    "columns": [
+                        {
+                            "data": "id"
+                        },
+                        {
+                            "data": "nip"
+                        },
+                        {
+                            "data": "name",
+                        },
+                        {
+                            "data": "jabatan"
+                        },
+                        {
+                            "data": "pendidikan_terakhir"
+                        },
+                        {
+                            "data": "no_hp",
+                        },
+                        {
+                            "data": "ruangan"
+                        },
+                        {
+                            "data": "kedudukan_pns"
+                        },
+                        {
+                            "data": "user_id",
+                        },
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "No data available in table",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "searchPlaceholder": "NIP dan Nama Pegawai",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<i class='fa-solid fa-backward-fast'></i>",
+                            "last": "<i class='fa-solid fa-forward-fast'></i>",
+                        }
+                    },
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
+
+                $('#search-form').on('submit', function(e) {
+                    e.preventDefault();
+                    table
+                        .search($('#keyword').val())
+                        .draw();
+                });
+            });
+        </script>
+
         <script>
             @if (Auth::user()->role_name == 'Admin') 
                 document.getElementById('pageTitle').innerHTML = 'Manajemen Daftar Pegawai - Admin | Aplikasi SILK';

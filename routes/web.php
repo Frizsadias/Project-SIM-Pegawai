@@ -163,6 +163,9 @@ Route::controller(UserManagementController::class)->group(function () {
     Route::post('user/profile/upload-ktp', 'uploadDokumenKTP')->name('user/profile/upload-ktp');
     Route::get('get-riwayat-aktivitas', 'getRiwayatAktivitas')->name('get-riwayat-aktivitas');
     Route::get('get-aktivitas-pengguna', 'getAktivitasPengguna')->name('get-aktivitas-pengguna');
+    Route::get('get-pegawai-data', 'getPegawaiData')->name('get-pegawai-data');
+    Route::get('get-pegawai-pensiun-data', 'getPegawaiPensiunData')->name('get-pegawai-pensiun-data');
+    Route::get('get-pegawai-ruangan-data', 'getPegawaiRuanganData')->name('get-pegawai-ruangan-data');
 });
 
 // --------------------------------- job ---------------------------------//
@@ -540,7 +543,6 @@ Route::controller(LayananController::class)->group(function () {
     Route::post('layanan/kontrak/edit-data', 'editDataKontrak')->name('layanan/kontrak/edit-data');
     Route::get('layanan/perpanjang-kontrak/{id}', 'cetakPerpanjanganKontrak2')->name('layanan-perpanjang-kontrak');
     Route::get('layanan/perpanjang-kontrak-admin/{id}', 'cetakPerpanjanganKontrak')->name('layanan-perpanjang-kontrak-admin');
-    Route::get('layanan/perpanjang-kontrak-admin', 'tampilanPerpanjangKontrakAdmin')->name('perpanjang-kontrak-admin');
     Route::post('layanan/perpanjangan-kontrak/hapus-data', 'hapusPerpanjanganKontrak')->name('layanan/perpanjangan-kontrak/hapus-data');
     Route::get('layanan/perjanjian-kontrak', 'tampilanPerjanjianKontrak')->name('perjanjian-kontrak');
     Route::get('layanan/perjanjian-kontrak-admin', 'tampilanPerjanjianKontrakAdmin')->name('perjanjian-kontrak-admin');

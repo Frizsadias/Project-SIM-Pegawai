@@ -11705,3 +11705,71 @@ ul.nav-tabs > li > a {
 	float: right;
 	padding: 10px;
 }
+
+.form-control.form-control-sm {
+	border-radius: 10px;
+}
+
+.dataTables_paginate {
+	position: relative;
+	float: right;
+	margin-top: -43px;
+	margin-bottom: -10px;
+}
+
+.btn-secondary {
+	width: auto;
+	height: 35px;
+	color: black;
+	background-color: #fff;
+	border-color: #e3e3e3;
+	border-radius: 10px;
+}
+
+.btn-secondary:hover {
+	width: auto;
+	height: 35px;
+	color: black;
+	background-color: #fff;
+	border-color: #e3e3e3;
+	border-radius: 10px;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+	width: auto;
+	height: 35px;
+	color: black;
+	background-color: #fff;
+	border-color: #e3e3e3;
+	border-radius: 10px;
+}
+
+.paginate_button .page-item{
+	padding: 0.5rem 0.75rem;
+	margin-left: -1px;
+	line-height: 1.25;
+	color: #f43b48;
+	background-color: white;
+	border: 1px solid;
+}
+
+.paginate_button .page-item.active {
+	color: white;
+	background-color: #FF6529;
+	border: 1px solid;
+}
+
+.paginate_button .page-item:hover {
+	color: white;
+	background-color: #f43b48;
+	border: 1px solid;
+}
+
+.paginate_button .page-item2{
+	padding: 0.6rem 0.6rem 0.7rem 0.76rem;
+	pointer-events: none;
+	cursor: auto;
+	color: #6c757d;
+	background-color: #fff;
+	border: 1px solid;
+}
