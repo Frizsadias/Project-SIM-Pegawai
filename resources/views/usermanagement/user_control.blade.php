@@ -296,6 +296,8 @@
     <!-- /Page Wrapper -->
 
     @section('script')
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
 
@@ -369,7 +371,22 @@
                             data: 'action',
                             name: 'action',
                         },
-                    ]
+                    ],
+                    "language": {
+                        "lengthMenu": "Show _MENU_ entries",
+                        "zeroRecords": "No data available in table",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Cari:",
+                        "searchPlaceholder": "Nama, Peran, Status ",
+                        "paginate": {
+                            "previous": "Previous",
+                            "next": "Next",
+                            "first": "<i class='fa-solid fa-backward-fast'></i>",
+                            "last": "<i class='fa-solid fa-forward-fast'></i>",
+                        }
+                    }
                 });
                 $('.btn_search').on('click', function() {
                     table.draw();

@@ -202,7 +202,7 @@
                         "infoEmpty": "Showing 0 to 0 of 0 entries",
                         "infoFiltered": "(filtered from _MAX_ total records)",
                         "search": "Cari:",
-                        "searchPlaceholder": "Nama Golongan",
+                        "searchPlaceholder": "Nama Pangkat",
                         "paginate": {
                             "previous": "Previous",
                             "next": "Next",
