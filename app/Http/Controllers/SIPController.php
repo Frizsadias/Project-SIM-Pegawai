@@ -13,10 +13,21 @@ class SIPController extends Controller
     public function tampilanSIPDokter()
     {
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -97,10 +108,21 @@ class SIPController extends Controller
     /** Daftar SIP Dokter */
     public function tampilanSIPDokterAdmin()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -180,10 +202,21 @@ class SIPController extends Controller
     /** Filter SIP Dokter  Admin*/
     public function filterSIPDokterAdmin(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -270,10 +303,21 @@ class SIPController extends Controller
     public function filterSIPDokter(Request $request)
     {
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -463,10 +507,21 @@ class SIPController extends Controller
     /** /Tampilan SPK Dokter */
     public function tampilanSPKDokter()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -545,10 +600,21 @@ class SIPController extends Controller
     /** Daftar SPK Dokter */
     public function tampilanSPKDokterAdmin()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -627,10 +693,21 @@ class SIPController extends Controller
     /** Filter SPK Dokter Admin*/
     public function filterSPKDokterAdmin(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -715,10 +792,21 @@ class SIPController extends Controller
     /** Filter SPK Dokter User*/
     public function filterSPKDokter(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -908,10 +996,21 @@ class SIPController extends Controller
     /** /Tampilan SPK Perawat */
     public function tampilanSPKPerawat()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -990,10 +1089,21 @@ class SIPController extends Controller
     /** Daftar SPK Perawat */
     public function tampilanSPKPerawatAdmin()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1073,10 +1183,21 @@ class SIPController extends Controller
     /** Search SPK Perawat Admin*/
     public function filterSPKPerawatAdmin(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1161,10 +1282,21 @@ class SIPController extends Controller
     /** Search SPK Perawat User*/
     public function filterSPKPerawat(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1360,10 +1492,21 @@ class SIPController extends Controller
     /** /Tampilan SPK Nakes Lain */
     public function tampilanSPKNakesLain()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1442,10 +1585,21 @@ class SIPController extends Controller
     /** Daftar SPK Nakes Lain */
     public function tampilanSPKNakesLainAdmin()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1524,10 +1678,21 @@ class SIPController extends Controller
     /** Filter SPK Nakes Lain Admin*/
     public function filterSPKNakesLainAdmin(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1612,10 +1777,21 @@ class SIPController extends Controller
     /** Filter SPK Nakes Lain User*/
     public function filterSPKNakesLain(Request $request)
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();

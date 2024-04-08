@@ -51,10 +51,21 @@ class RiwayatController extends Controller
     public function pendidikan()
     {
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -260,10 +271,21 @@ class RiwayatController extends Controller
     public function golongan()
     {
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -450,10 +472,21 @@ class RiwayatController extends Controller
     public function jabatan()
     {
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -638,10 +671,21 @@ class RiwayatController extends Controller
     public function diklat()
     {
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -821,10 +865,21 @@ class RiwayatController extends Controller
         $tingkatpendidikanOptions = DB::table('tingkat_pendidikan_id')->pluck('tingkat_pendidikan', 'tingkat_pendidikan');
         $pendidikanterakhirOptions = DB::table('pendidikan_id')->pluck('pendidikan', 'pendidikan');
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -893,10 +948,21 @@ class RiwayatController extends Controller
             ->where('no_sk_golongan', 'like', '%' . $no_sk_golongan . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -965,10 +1031,21 @@ class RiwayatController extends Controller
 
         $jenisjabatanOptions = DB::table('jenis_jabatan_id')->pluck('nama', 'nama');
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1038,10 +1115,21 @@ class RiwayatController extends Controller
 
         $jenisdiklatOptions = DB::table('jenis_diklat_id')->pluck('jenis_diklat', 'jenis_diklat');
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1110,10 +1198,21 @@ class RiwayatController extends Controller
             ->where('agama', 'like', '%' . $agama . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1181,10 +1280,21 @@ class RiwayatController extends Controller
             ->where('agama', 'like', '%' . $agama . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1257,10 +1367,21 @@ class RiwayatController extends Controller
             ->where('agama', 'like', '%' . $agama . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1327,10 +1448,21 @@ class RiwayatController extends Controller
             ->where('no_surat', 'like', '%' . $no_surat . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1397,10 +1529,21 @@ class RiwayatController extends Controller
             ->where('no_anggota', 'like', '%' . $no_anggota . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1469,10 +1612,21 @@ class RiwayatController extends Controller
             ->where('tingkat_pendidikan', 'like', '%' . $tingkat_pendidikan . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1539,10 +1693,21 @@ class RiwayatController extends Controller
             ->where('jenis_hukuman', 'like', '%' . $jenis_hukuman . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1610,10 +1775,21 @@ class RiwayatController extends Controller
             ->where('tanggal_sk', 'like', '%' . $tanggal_sk . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1668,10 +1844,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat PMK */
     public function pmk()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1930,10 +2117,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Angka Kredit */
     public function angkakredit()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2181,10 +2379,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Hukuman Disiplin */
     public function hukumandisiplin()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2386,10 +2595,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Penghargaan */
     public function penghargaan()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2549,10 +2769,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Organisasi */
     public function organisasi()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2715,10 +2946,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Tugas Belajar */
     public function tugasbelajar()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2879,10 +3121,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Pasangan */
     public function pasangan()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3092,10 +3345,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Anak */
     public function anak()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3297,10 +3561,21 @@ class RiwayatController extends Controller
     /** Tampilan Riwayat Orang Tua */
     public function orangtua()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();

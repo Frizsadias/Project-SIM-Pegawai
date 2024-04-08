@@ -54,10 +54,21 @@ class EmployeeController extends Controller
             })
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -134,10 +145,21 @@ class EmployeeController extends Controller
             ->get();
 
             
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -216,10 +238,21 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $semua_notifikasi = DB::table('notifications')
@@ -290,10 +323,21 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $semua_notifikasi = DB::table('notifications')
@@ -350,10 +394,21 @@ class EmployeeController extends Controller
             ->where('daftar_pegawai.ruangan', $ruangan)
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -426,10 +481,21 @@ class EmployeeController extends Controller
             ->where('users.ruangan', $ruangan)
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -638,10 +704,21 @@ class EmployeeController extends Controller
                 ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -756,10 +833,21 @@ class EmployeeController extends Controller
                 ->where('users.email', 'LIKE', '%' . $request->email . '%')->get();
         }
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -865,10 +953,21 @@ class EmployeeController extends Controller
         $users = $query->get();
 
         // Lanjutkan dengan bagian notifikasi jika diperlukan
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -976,10 +1075,21 @@ class EmployeeController extends Controller
         $users = $query->get();
 
         // Lanjutkan dengan bagian notifikasi jika diperlukan
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1026,8 +1136,8 @@ class EmployeeController extends Controller
             ->whereNotNull('read_at')
             ->get();
 
-            return view('employees.allemployeecard', compact('users', 'result_tema', 'unreadNotifications', 'readNotifications',
-                'semua_notifikasi', 'belum_dibaca', 'dibaca'));
+        return view('employees.allemployeecard', compact('users', 'result_tema', 'unreadNotifications', 'readNotifications',
+            'semua_notifikasi', 'belum_dibaca', 'dibaca'));
     }
     /** End Search */
 
@@ -1058,10 +1168,21 @@ class EmployeeController extends Controller
             ->where('users.ruangan', $ruangan3)
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1138,10 +1259,21 @@ class EmployeeController extends Controller
             ->where('users.ruangan', $ruangan3)
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1616,10 +1748,21 @@ class EmployeeController extends Controller
         $provinces = Province::all();
 
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1780,10 +1923,21 @@ class EmployeeController extends Controller
     {
         $agama = DB::table('agama_id')->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1905,10 +2059,21 @@ class EmployeeController extends Controller
             ->where('agama', 'like', '%' . $keyword . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2030,10 +2195,21 @@ class EmployeeController extends Controller
     /** page kedudukan */
     public function indexKedudukan()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2156,10 +2332,21 @@ class EmployeeController extends Controller
             ->where('kedudukan', 'like', '%' . $keyword . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2281,10 +2468,21 @@ class EmployeeController extends Controller
     /** page pendidikan */
     public function indexPendidikan()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2412,10 +2610,21 @@ class EmployeeController extends Controller
             ->where('pendidikan', 'like', '%' . $keyword . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2548,10 +2757,21 @@ class EmployeeController extends Controller
     /** page ruangan */
     public function indexRuangan()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2677,10 +2897,21 @@ class EmployeeController extends Controller
             ->where('ruangan', 'like', '%' . $keyword . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2805,10 +3036,21 @@ class EmployeeController extends Controller
     /** page sumpah */
     public function indexSumpah()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -2932,10 +3174,21 @@ class EmployeeController extends Controller
             ->where('sumpah', 'like', '%' . $keyword . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3057,10 +3310,21 @@ class EmployeeController extends Controller
     /** page status */
     public function indexStatus()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3185,10 +3449,21 @@ class EmployeeController extends Controller
             ->where('jenis_pegawai', 'like', '%' . $keyword . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3312,10 +3587,21 @@ class EmployeeController extends Controller
     /** page golongan */
     public function indexGolongan()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3441,10 +3727,21 @@ class EmployeeController extends Controller
             ->where('nama_golongan', 'like', '%' . $keyword . '%')
             ->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3575,10 +3872,21 @@ class EmployeeController extends Controller
     /** page SIP */
     public function indexSIP()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3729,10 +4037,21 @@ class EmployeeController extends Controller
 
         $users = $query->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3839,10 +4158,21 @@ class EmployeeController extends Controller
 
         $users = $query->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -3896,10 +4226,21 @@ class EmployeeController extends Controller
     /** page unit organisasi */
     public function indexUnitOrganisasi()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();

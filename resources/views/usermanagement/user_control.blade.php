@@ -162,6 +162,14 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        <div class="kekuatan-indicator">
+                                            <div class="kata-sandi-lemah-after-1"></div>
+                                            <div class="kata-sandi-sedang-after-1"></div>
+                                            <div id="indicator-kata-sandi-1"></div>
+                                            <div class="kata-sandi-lemah-before-1"></div>
+                                            <div class="kata-sandi-sedang-before-1"></div>
+                                        </div>
+                                        <div id="indicator-kata-sandi-tulisan-1"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -175,6 +183,14 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        <div class="kekuatan-indicator">
+                                            <div class="kata-sandi-lemah-after-2"></div>
+                                            <div class="kata-sandi-sedang-after-2"></div>
+                                            <div id="indicator-kata-sandi-2"></div>
+                                            <div class="kata-sandi-lemah-before-2"></div>
+                                            <div class="kata-sandi-sedang-before-2"></div>
+                                        </div>
+                                        <div id="indicator-kata-sandi-tulisan-2"></div>
                                     </div>
                                 </div>
                             </div>
@@ -399,7 +415,11 @@
         </script>
 
         <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
+
+        <script src="{{ asset('assets/js/indicatorkatasandi.js') }}"></script>
+        
         <script src="{{ asset('assets/js/usercontrol.js') }}"></script>
+        
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
         <script>

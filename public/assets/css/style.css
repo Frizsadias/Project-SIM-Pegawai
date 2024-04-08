@@ -11773,3 +11773,204 @@ ul.nav-tabs > li > a {
 	background-color: #fff;
 	border: 1px solid;
 }
+
+#indicator-kata-sandi-1 {
+    height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+
+#indicator-kata-sandi-1 > div {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+#indicator-kata-sandi-tulisan-1 {
+    font-weight: bold;
+    margin-top: 5px;
+	text-align: center;
+}
+
+#indicator-kata-sandi-2 {
+    height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+
+#indicator-kata-sandi-2 > div {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+#indicator-kata-sandi-tulisan-2 {
+    font-weight: bold;
+    margin-top: 5px;
+	text-align: center;
+}
+
+#indicator-kata-sandi-3 {
+    height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+
+#indicator-kata-sandi-3 > div {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+#indicator-kata-sandi-tulisan-3 {
+    font-weight: bold;
+    margin-top: 5px;
+	text-align: center;
+}
+
+.kata-sandi-lemah{
+    width: 33.33%;
+    background-color: #ff4757;
+}
+
+.kata-sandi-lemah-before-1{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: lightgrey;
+    border: 0.1em solid #a9a9a9;
+}
+
+.kata-sandi-lemah-after-1{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: #ff4757;
+}
+
+.kata-sandi-lemah-before-2{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: lightgrey;
+    border: 0.1em solid #a9a9a9;
+}
+
+.kata-sandi-lemah-after-2{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: #ff4757;
+}
+
+.kata-sandi-lemah-before-3{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: lightgrey;
+    border: 0.1em solid #a9a9a9;
+}
+
+.kata-sandi-lemah-after-3{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: #ff4757;
+}
+
+.kata-sandi-sedang {
+    width: 33.33%;
+    background-color: orange;
+}
+
+.kata-sandi-sedang-before-1{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: lightgrey;
+    border: 0.1em solid #a9a9a9;
+}
+
+.kata-sandi-sedang-after-1{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: orange;
+}
+
+.kata-sandi-sedang-before-2{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: lightgrey;
+    border: 0.1em solid #a9a9a9;
+}
+
+.kata-sandi-sedang-after-2{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: orange;
+}
+
+.kata-sandi-sedang-before-3{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: lightgrey;
+    border: 0.1em solid #a9a9a9;
+}
+
+.kata-sandi-sedang-after-3{
+	display: none;
+	height: 5px;
+	margin: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 33.33%;
+	background-color: orange;
+}
+
+.kata-sandi-kuat {
+    width: 33.33%;
+    background-color: #23ad5c;
+}
+
+.kekuatan-indicator {
+	display: flex;
+    justify-content: center;
+    margin-top: .5rem !important;
+}

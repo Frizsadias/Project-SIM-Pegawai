@@ -31,15 +31,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('tema_aplikasi')->nullable();
-            $table->string('warna_sistem')->nullable();
-            $table->string('warna_sistem_tulisan')->nullable();
-            $table->string('warna_mode')->nullable();
-            $table->string('tabel_warna')->nullable();
-            $table->string('tabel_tulisan_tersembunyi')->nullable();
-            $table->string('warna_dropdown_menu')->nullable();
-            $table->string('ikon_plugin')->nullable();
-            $table->string('bayangan_kotak_header')->nullable();
-            $table->string('warna_mode_2')->nullable();
             $table->timestamps();
         });
 
@@ -58,15 +49,6 @@ class CreateUsersTable extends Migration
              'eselon'                       => NULL,
              'password'                     => Hash::make('Kelvin.P980425'),
              'tema_aplikasi'                => 'Terang',
-             'warna_sistem'                 => NULL,
-             'warna_sistem_tulisan'         => NULL,
-             'warna_mode'                   => NULL,
-             'tabel_warna'                  => NULL,
-             'tabel_tulisan_tersembunyi'    => NULL,
-             'warna_dropdown_menu'          => NULL,
-             'ikon_plugin'                  => NULL,
-             'bayangan_kotak_header'        => NULL,
-             'warna_mode_2'                 => NULL,
              'created_at' => now(),
              'updated_at' => now()
             ],
@@ -84,15 +66,6 @@ class CreateUsersTable extends Migration
              'eselon'                       => NULL,
              'password'                     => Hash::make('123456789'),
              'tema_aplikasi'                => 'Terang',
-             'warna_sistem'                 => NULL,
-             'warna_sistem_tulisan'         => NULL,
-             'warna_mode'                   => NULL,
-             'tabel_warna'                  => NULL,
-             'tabel_tulisan_tersembunyi'    => NULL,
-             'warna_dropdown_menu'          => NULL,
-             'ikon_plugin'                  => NULL,
-             'bayangan_kotak_header'        => NULL,
-             'warna_mode_2'                 => NULL,
              'created_at' => now(),
              'updated_at' => now()
             ],
@@ -110,21 +83,11 @@ class CreateUsersTable extends Migration
              'eselon'                       => NULL,
              'password'                     => Hash::make('123456789'),
              'tema_aplikasi'                => 'Terang',
-             'warna_sistem'                 => NULL,
-             'warna_sistem_tulisan'         => NULL,
-             'warna_mode'                   => NULL,
-             'tabel_warna'                  => NULL,
-             'tabel_tulisan_tersembunyi'    => NULL,
-             'warna_dropdown_menu'          => NULL,
-             'ikon_plugin'                  => NULL,
-             'bayangan_kotak_header'        => NULL,
-             'warna_mode_2'                 => NULL,
              'created_at' => now(),
              'updated_at' => now()
             ]
         ]);
     }
-
 
     /**
      * Reverse the migrations.

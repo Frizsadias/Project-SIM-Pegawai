@@ -16,10 +16,21 @@ class RekapitulasiController extends Controller
     public function index(GrafikChart $chart)
     {
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();

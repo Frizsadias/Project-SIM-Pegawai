@@ -55,6 +55,14 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <div class="kekuatan-indicator">
+                                    <div class="kata-sandi-lemah-after-1"></div>
+                                    <div class="kata-sandi-sedang-after-1"></div>
+                                    <div id="indicator-kata-sandi-1"></div>
+                                    <div class="kata-sandi-lemah-before-1"></div>
+                                    <div class="kata-sandi-sedang-before-1"></div>
+                                </div>
+                                <div id="indicator-kata-sandi-tulisan-1"></div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -75,6 +83,14 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <div class="kekuatan-indicator">
+                                    <div class="kata-sandi-lemah-after-2"></div>
+                                    <div class="kata-sandi-sedang-after-2"></div>
+                                    <div id="indicator-kata-sandi-2"></div>
+                                    <div class="kata-sandi-lemah-before-2"></div>
+                                    <div class="kata-sandi-sedang-before-2"></div>
+                                </div>
+                                <div id="indicator-kata-sandi-tulisan-2"></div>
                             </div>
                             <div class="form-group text-center">
                                 <button class="btn btn-primary account-btn" style="border-radius: 20px" type="submit">Perbaharui</button>
@@ -92,12 +108,15 @@
     </div>
 
     @section('script')
-    <script src="https://kit.fontawesome.com/95e99ea6db.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
-    
-    <script>
-        document.getElementById('pageTitle').innerHTML = 'Ubah Kata Sandi | Aplikasi SILK';
-    </script>
+        <script src="https://kit.fontawesome.com/95e99ea6db.js" crossorigin="anonymous"></script>
 
-@endsection
+        <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
+
+        <script src="{{ asset('assets/js/indicatorkatasandi.js') }}"></script>
+
+        <script>
+            document.getElementById('pageTitle').innerHTML = 'Ubah Kata Sandi | Aplikasi SILK';
+        </script>
+    
+    @endsection
 @endsection

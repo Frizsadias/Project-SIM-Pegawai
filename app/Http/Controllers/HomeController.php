@@ -14,6 +14,7 @@ use App\Models\Notification;
 use App\Charts\GrafikChart;
 use App\Models\ProfilPegawai;
 use App\Models\ruangan;
+use App\Models\ModeAplikasi;
 use App\Notifications\UserFollowNotification;
 use App\Notifications\UlangTahunNotification;
 use App\Notifications\MasaBerlakuSIPNotification;
@@ -87,10 +88,21 @@ class HomeController extends Controller
             $dataTempatTidurRuangBidara = ruangan::where('ruangan', 'Ruang Bidara/Ranap Jiwa')->sum('jumlah_tempat_tidur');
             $dataTempatTidurRuangNonPerawatan = ruangan::where('ruangan', 'Ruang Lain-Lain/Non Perawatan')->sum('jumlah_tempat_tidur');
 
-            $user_id = auth()->user()->user_id;
-            $result_tema = DB::table('users')
-                ->select('users.*', 'users.tema_aplikasi')
-                ->where('users.user_id', $user_id)
+            $result_tema = DB::table('mode_aplikasi')
+                ->select(
+                    'mode_aplikasi.id',
+                    'mode_aplikasi.tema_aplikasi',
+                    'mode_aplikasi.warna_sistem',
+                    'mode_aplikasi.warna_sistem_tulisan',
+                    'mode_aplikasi.warna_mode',
+                    'mode_aplikasi.tabel_warna',
+                    'mode_aplikasi.tabel_tulisan_tersembunyi',
+                    'mode_aplikasi.warna_dropdown_menu',
+                    'mode_aplikasi.ikon_plugin',
+                    'mode_aplikasi.bayangan_kotak_header',
+                    'mode_aplikasi.warna_mode_2',
+                    )
+                ->where('user_id', auth()->user()->user_id)
                 ->get();
 
             $user = auth()->user();
@@ -233,10 +245,21 @@ class HomeController extends Controller
             $dataTempatTidurRuangBidara = ruangan::where('ruangan', 'Ruang Bidara/Ranap Jiwa')->sum('jumlah_tempat_tidur');
             $dataTempatTidurRuangNonPerawatan = ruangan::where('ruangan', 'Ruang Lain-Lain/Non Perawatan')->sum('jumlah_tempat_tidur');
 
-            $user_id = auth()->user()->user_id;
-            $result_tema = DB::table('users')
-                ->select('users.*', 'users.tema_aplikasi')
-                ->where('users.user_id', $user_id)
+            $result_tema = DB::table('mode_aplikasi')
+                ->select(
+                    'mode_aplikasi.id',
+                    'mode_aplikasi.tema_aplikasi',
+                    'mode_aplikasi.warna_sistem',
+                    'mode_aplikasi.warna_sistem_tulisan',
+                    'mode_aplikasi.warna_mode',
+                    'mode_aplikasi.tabel_warna',
+                    'mode_aplikasi.tabel_tulisan_tersembunyi',
+                    'mode_aplikasi.warna_dropdown_menu',
+                    'mode_aplikasi.ikon_plugin',
+                    'mode_aplikasi.bayangan_kotak_header',
+                    'mode_aplikasi.warna_mode_2',
+                    )
+                ->where('user_id', auth()->user()->user_id)
                 ->get();
 
             $user = auth()->user();
@@ -406,10 +429,21 @@ class HomeController extends Controller
             $dataTempatTidurRuangBidara = ruangan::where('ruangan', 'Ruang Bidara/Ranap Jiwa')->sum('jumlah_tempat_tidur');
             $dataTempatTidurRuangNonPerawatan = ruangan::where('ruangan', 'Ruang Lain-Lain/Non Perawatan')->sum('jumlah_tempat_tidur');
 
-            $user_id = auth()->user()->user_id;
-            $result_tema = DB::table('users')
-                ->select('users.*', 'users.tema_aplikasi')
-                ->where('users.user_id', $user_id)
+            $result_tema = DB::table('mode_aplikasi')
+                ->select(
+                    'mode_aplikasi.id',
+                    'mode_aplikasi.tema_aplikasi',
+                    'mode_aplikasi.warna_sistem',
+                    'mode_aplikasi.warna_sistem_tulisan',
+                    'mode_aplikasi.warna_mode',
+                    'mode_aplikasi.tabel_warna',
+                    'mode_aplikasi.tabel_tulisan_tersembunyi',
+                    'mode_aplikasi.warna_dropdown_menu',
+                    'mode_aplikasi.ikon_plugin',
+                    'mode_aplikasi.bayangan_kotak_header',
+                    'mode_aplikasi.warna_mode_2',
+                    )
+                ->where('user_id', auth()->user()->user_id)
                 ->get();
 
             $user = auth()->user();
@@ -541,10 +575,21 @@ class HomeController extends Controller
         {
             $tampilanPerusahaan = CompanySettings::where('id',1)->first();
 
-            $user_id = auth()->user()->user_id;
-            $result_tema = DB::table('users')
-                ->select('users.*', 'users.tema_aplikasi')
-                ->where('users.user_id', $user_id)
+            $result_tema = DB::table('mode_aplikasi')
+                ->select(
+                    'mode_aplikasi.id',
+                    'mode_aplikasi.tema_aplikasi',
+                    'mode_aplikasi.warna_sistem',
+                    'mode_aplikasi.warna_sistem_tulisan',
+                    'mode_aplikasi.warna_mode',
+                    'mode_aplikasi.tabel_warna',
+                    'mode_aplikasi.tabel_tulisan_tersembunyi',
+                    'mode_aplikasi.warna_dropdown_menu',
+                    'mode_aplikasi.ikon_plugin',
+                    'mode_aplikasi.bayangan_kotak_header',
+                    'mode_aplikasi.warna_mode_2',
+                    )
+                ->where('user_id', auth()->user()->user_id)
                 ->get();
 
             $user = auth()->user();
@@ -697,7 +742,7 @@ class HomeController extends Controller
     {
         DB::beginTransaction();
         try {
-        $user = User::findOrFail($id);
+        $user = ModeAplikasi::findOrFail($id);
 
         $tema_aplikasi = $request->input('tema_aplikasi');
         if ($tema_aplikasi == 'Terang') {
@@ -725,6 +770,17 @@ class HomeController extends Controller
             $user->warna_mode_2 = '#2b2e3c';
         }
         $user->save();
+
+        $user2 = User::findOrFail($id);
+
+        $tema_aplikasi = $request->input('tema_aplikasi');
+        if ($tema_aplikasi == 'Terang') {
+            $user2->tema_aplikasi = 'Terang';
+
+        } elseif ($tema_aplikasi == 'Gelap') {
+            $user2->tema_aplikasi = 'Gelap';
+        }
+        $user2->save();
 
         DB::commit();
         Toastr::success('Tema aplikasi berhasil diperbarui ✔', 'Success');

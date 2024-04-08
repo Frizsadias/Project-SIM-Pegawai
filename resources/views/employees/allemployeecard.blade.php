@@ -109,15 +109,17 @@
     <!-- /Page Wrapper -->
 
     <style>
-        @foreach($result_tema as $sql_user => $aplikasi_tema)
-            @if ($aplikasi_tema->tema_aplikasi == 'Gelap')
-                .paginate_button .page-item{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important; border: 1px solid {{ auth()->user()->warna_mode}} !important;}
-                .paginate_button .page-item2{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important; border: 1px solid {{ auth()->user()->warna_mode}} !important;}
-                .paginate_button .page-item.active{background-color: {{ auth()->user()->warna_mode}} !important; color: {{ auth()->user()->warna_sistem_tulisan }}}
-                .btn-secondary{background-color: {{ auth()->user()->warna_mode}} !important; color: {{ auth()->user()->warna_sistem_tulisan }}}
-                .btn-secondary:hover{background-color: {{ auth()->user()->warna_mode}} !important; color: {{ auth()->user()->warna_sistem_tulisan }}}
-                .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle{background-color: {{ auth()->user()->warna_mode}} !important; color: {{ auth()->user()->warna_sistem_tulisan }}}
-            @endif
+        @foreach($result_tema as $sql_mode => $mode_tema)
+            @foreach($result_tema as $sql_user => $aplikasi_tema)
+                @if ($aplikasi_tema->tema_aplikasi == 'Gelap')
+                    .paginate_button .page-item{background-color: {{ $mode_tema->warna_sistem }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important; border: 1px solid {{ $mode_tema->warna_mode}} !important;}
+                    .paginate_button .page-item2{background-color: {{ $mode_tema->warna_sistem }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important; border: 1px solid {{ $mode_tema->warna_mode}} !important;}
+                    .paginate_button .page-item.active{background-color: {{ $mode_tema->warna_mode}} !important; color: {{ $mode_tema->warna_sistem_tulisan }}}
+                    .btn-secondary{background-color: {{ $mode_tema->warna_mode}} !important; color: {{ $mode_tema->warna_sistem_tulisan }}}
+                    .btn-secondary:hover{background-color: {{ $mode_tema->warna_mode}} !important; color: {{ $mode_tema->warna_sistem_tulisan }}}
+                    .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle{background-color: {{ $mode_tema->warna_mode}} !important; color: {{ $mode_tema->warna_sistem_tulisan }}}
+                @endif
+            @endforeach
         @endforeach
     </style>
 

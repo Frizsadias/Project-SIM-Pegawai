@@ -14,7 +14,7 @@ class CreateGenerateIdTblsTable extends Migration
     public function up()
     {
         DB::unprepared('
-            CREATE TRIGGER id_store BEFORE INSERT ON users FOR EACH ROW
+            CREATE TRIGGER generate_user_id BEFORE INSERT ON users FOR EACH ROW
             BEGIN
                 INSERT INTO sequence_tbls VALUES (NULL);
                 SET NEW.user_id = CONCAT("ID_", LPAD(LAST_INSERT_ID(), 5, "0"));
@@ -29,6 +29,6 @@ class CreateGenerateIdTblsTable extends Migration
      */
     public function down()
     {
-       DB::unprepared('DROP TRIGGER "id_store"');
+       DB::unprepared('DROP TRIGGER "generate_user_id"');
     }
 }

@@ -50,10 +50,21 @@ class UserManagementController extends Controller
             $role_name   = DB::table('role_type_users')->get();
             $status_user = DB::table('user_types')->get();
 
-            $user_id = auth()->user()->user_id;
-            $result_tema = DB::table('users')
-                ->select('users.*', 'users.tema_aplikasi')
-                ->where('users.user_id', $user_id)
+            $result_tema = DB::table('mode_aplikasi')
+                ->select(
+                    'mode_aplikasi.id',
+                    'mode_aplikasi.tema_aplikasi',
+                    'mode_aplikasi.warna_sistem',
+                    'mode_aplikasi.warna_sistem_tulisan',
+                    'mode_aplikasi.warna_mode',
+                    'mode_aplikasi.tabel_warna',
+                    'mode_aplikasi.tabel_tulisan_tersembunyi',
+                    'mode_aplikasi.warna_dropdown_menu',
+                    'mode_aplikasi.ikon_plugin',
+                    'mode_aplikasi.bayangan_kotak_header',
+                    'mode_aplikasi.warna_mode_2',
+                    )
+                ->where('user_id', auth()->user()->user_id)
                 ->get();
 
             $user = auth()->user();
@@ -108,10 +119,21 @@ class UserManagementController extends Controller
             $role_name   = DB::table('role_type_users')->get();
             $status_user = DB::table('user_types')->get();
 
-            $user_id = auth()->user()->user_id;
-            $result_tema = DB::table('users')
-                ->select('users.*', 'users.tema_aplikasi')
-                ->where('users.user_id', $user_id)
+            $result_tema = DB::table('mode_aplikasi')
+                ->select(
+                    'mode_aplikasi.id',
+                    'mode_aplikasi.tema_aplikasi',
+                    'mode_aplikasi.warna_sistem',
+                    'mode_aplikasi.warna_sistem_tulisan',
+                    'mode_aplikasi.warna_mode',
+                    'mode_aplikasi.tabel_warna',
+                    'mode_aplikasi.tabel_tulisan_tersembunyi',
+                    'mode_aplikasi.warna_dropdown_menu',
+                    'mode_aplikasi.ikon_plugin',
+                    'mode_aplikasi.bayangan_kotak_header',
+                    'mode_aplikasi.warna_mode_2',
+                    )
+                ->where('user_id', auth()->user()->user_id)
                 ->get();
 
             $user = auth()->user();
@@ -338,10 +360,21 @@ class UserManagementController extends Controller
     /** use activity log */
     public function activityLog()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -395,10 +428,21 @@ class UserManagementController extends Controller
     /** activity log */
     public function activityLogInLogOut()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -459,10 +503,21 @@ class UserManagementController extends Controller
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -543,10 +598,21 @@ class UserManagementController extends Controller
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -626,10 +692,21 @@ class UserManagementController extends Controller
         $agamaOptions = DB::table('agama_id')->pluck('agama', 'agama');
         $ruanganOptions = DB::table('ruangan_id')->pluck('ruangan', 'ruangan');
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -754,10 +831,21 @@ class UserManagementController extends Controller
         $dataHD = Session::get('user_id');
         $riwayatHD = RiwayatHukumanDisiplin::where('user_id', $dataHD)->get();
 
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();
@@ -1190,10 +1278,21 @@ class UserManagementController extends Controller
     /** view change password */
     public function changePasswordView()
     {
-        $user_id = auth()->user()->user_id;
-        $result_tema = DB::table('users')
-            ->select('users.*', 'users.tema_aplikasi')
-            ->where('users.user_id', $user_id)
+        $result_tema = DB::table('mode_aplikasi')
+            ->select(
+                'mode_aplikasi.id',
+                'mode_aplikasi.tema_aplikasi',
+                'mode_aplikasi.warna_sistem',
+                'mode_aplikasi.warna_sistem_tulisan',
+                'mode_aplikasi.warna_mode',
+                'mode_aplikasi.tabel_warna',
+                'mode_aplikasi.tabel_tulisan_tersembunyi',
+                'mode_aplikasi.warna_dropdown_menu',
+                'mode_aplikasi.ikon_plugin',
+                'mode_aplikasi.bayangan_kotak_header',
+                'mode_aplikasi.warna_mode_2',
+                )
+            ->where('user_id', auth()->user()->user_id)
             ->get();
 
         $user = auth()->user();

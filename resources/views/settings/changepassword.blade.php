@@ -30,12 +30,12 @@
                                         <i id="icon1" class="fa fa-eye-slash"></i>
                                     </button>
                                 </div>
+                                @error('current_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            @error('current_password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Kata Sandi Baru</label>
@@ -46,12 +46,20 @@
                                         <i id="icon2" class="fa fa-eye-slash"></i>
                                     </button>
                                 </div>
+                                @error('new_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            @error('new_password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <div class="kekuatan-indicator">
+                                <div class="kata-sandi-lemah-after-2"></div>
+                                <div class="kata-sandi-sedang-after-2"></div>
+                                <div id="indicator-kata-sandi-2"></div>
+                                <div class="kata-sandi-lemah-before-2"></div>
+                                <div class="kata-sandi-sedang-before-2"></div>
+                            </div>
+                            <div id="indicator-kata-sandi-tulisan-2"></div>
                         </div>
                         <div class="form-group">
                             <label>Konfirmasi Kata Sandi</label>
@@ -62,12 +70,20 @@
                                         <i id="icon3" class="fa fa-eye-slash"></i>
                                     </button>
                                 </div>
+                                @error('new_confirm_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            @error('new_confirm_password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <div class="kekuatan-indicator">
+                                <div class="kata-sandi-lemah-after-3"></div>
+                                <div class="kata-sandi-sedang-after-3"></div>
+                                <div id="indicator-kata-sandi-3"></div>
+                                <div class="kata-sandi-lemah-before-3"></div>
+                                <div class="kata-sandi-sedang-before-3"></div>
+                            </div>
+                            <div id="indicator-kata-sandi-tulisan-3"></div>
                         </div>
                         <div class="submit-section">
                             <button type="submit" class="btn btn-primary submit-btn">Ubah Kata Sandi</button>
@@ -82,6 +98,8 @@
 
     @section('script')
         <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
+
+        <script src="{{ asset('assets/js/indicatorkatasandi.js') }}"></script>
 
         <script>
             @if (Auth::user()->role_name == 'Admin') 
@@ -103,6 +121,7 @@
                 document.getElementById('pageTitle').innerHTML = 'Pengaturan Ubah Kata Sandi - Eselon 4 | Aplikasi SILK';
             @endif
         </script>
+        
         <script src="{{ asset('assets/js/memuat-ulang.js') }}"></script>
 
     @endsection

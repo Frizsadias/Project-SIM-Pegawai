@@ -38,227 +38,369 @@
     </style>
 
     <style>
-        body{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .peta-jabatan{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .fitur-tema{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .edit-icon{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .edit-icon-avatar{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .fitur-tema-sub-terang{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .fitur-tema-sub-gelap{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .view-icons .btn{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .nav-tabs .nav-link.active{background-color: {{ auth()->user()->warna_sistem }} !important;}
-        .page-item.disabled .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
-        .page-link{background-color: {{ auth()->user()->warna_sistem }} !important; border: 1px solid {{ auth()->user()->warna_mode }} !important;}
-        .datepicker{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .select2-dropdown {background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .select2-search--dropdown{background-color: {{ auth()->user()->warna_sistem }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .select2-container--default .select2-search--dropdown .select2-search__field{background-color: {{ auth()->user()->warna_sistem }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .bootstrap-datetimepicker-widget table td.day:hover,
-        .bootstrap-datetimepicker-widget table td.hour:hover,
-        .bootstrap-datetimepicker-widget table td.minute:hover,
-        .bootstrap-datetimepicker-widget table td.second:hover{color: {{ auth()->user()->warna_sistem }} !important}
+        @foreach($result_tema as $sql_mode => $mode_tema)
+            body{background-color: {{ $mode_tema->warna_sistem }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .peta-jabatan{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .fitur-tema{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .fitur-tema2{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .edit-icon{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .edit-icon-avatar{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .fitur-tema-sub-terang{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .fitur-tema2-sub-terang{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .fitur-tema-sub-gelap{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .fitur-tema2-sub-gelap{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .view-icons .btn{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .nav-tabs .nav-link.active{background-color: {{ $mode_tema->warna_sistem }} !important;}
+            .page-item.disabled .page-link{background-color: {{ $mode_tema->warna_sistem }} !important; color : {{ $mode_tema->warna_sistem_tulisan }} !important; border-color: {{ $mode_tema->warna_mode }} !important;}
+            .page-link{background-color: {{ $mode_tema->warna_sistem }} !important; border: 1px solid {{ $mode_tema->warna_mode }} !important;}
+            .datepicker{background-color: {{ $mode_tema->warna_sistem }} !important; color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .select2-dropdown {background-color: {{ $mode_tema->warna_sistem }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .select2-search--dropdown{background-color: {{ $mode_tema->warna_sistem }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .select2-container--default .select2-search--dropdown .select2-search__field{background-color: {{ $mode_tema->warna_sistem }} !important; color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .bootstrap-datetimepicker-widget table td.day:hover,
+            .bootstrap-datetimepicker-widget table td.hour:hover,
+            .bootstrap-datetimepicker-widget table td.minute:hover,
+            .bootstrap-datetimepicker-widget table td.second:hover{color: {{ $mode_tema->warna_sistem }} !important}
 
-        .card-title{color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .table{color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-pesan-form{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-1{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-2{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-3{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-4{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-5{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-6{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-7{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-8{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-9{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-10{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-11{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-12{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-13{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-14{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-15{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-16{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-17{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-18{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-19{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-20{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-21{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-22{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-23{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-24{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-25{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-26{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-27{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-28{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-29{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-30{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-31{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-32{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-33{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-34{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-35{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-36{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-37{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-38{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-39{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-40{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-41{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-42{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-43{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .info-draganddrop-44{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-1{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-2{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-3{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-4{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-5{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-6{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-7{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-8{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-9{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-10{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-11{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-12{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-13{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-14{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-15{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-16{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-17{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-18{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-19{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-20{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-21{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-22{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-23{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-24{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-25{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-26{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-27{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-28{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-29{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-30{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-31{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-32{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-33{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-34{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-35{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-36{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-37{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-38{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-39{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-40{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-41{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-42{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-43{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropzone-area-44{border: 2px dashed {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        table.table td h2 a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        svg{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .boc-input>label{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .text-muted{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .user-name{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .personal-info li .title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .personal-info li .text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .page-header .breadcrumb a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .page-header .breadcrumb{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .nav-tabs.nav-justified > li > a{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .apexcharts-text{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .apexcharts-yaxis-label{fill : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .fitur-tema-tulisan-terang{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .fitur-tema-tulisan-gelap{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .page-header .page-title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .page-header .breadcrumb-item.active{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .dropdown-item{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .notification-title{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .clear-noti{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .noti-details{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .logo-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .fa{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .cal-icon:after{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .bar-icon span{background-color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .apexcharts-legend-text{color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
+            .card-title{color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .table{color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-pesan-form{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-1{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-2{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-3{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-4{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-5{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-6{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-7{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-8{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-9{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-10{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-11{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-12{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-13{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-14{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-15{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-16{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-17{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-18{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-19{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-20{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-21{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-22{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-23{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-24{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-25{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-26{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-27{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-28{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-29{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-30{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-31{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-32{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-33{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-34{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-35{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-36{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-37{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-38{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-39{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-40{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-41{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-42{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-43{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .info-draganddrop-44{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-1{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-2{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-3{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-4{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-5{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-6{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-7{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-8{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-9{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-10{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-11{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-12{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-13{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-14{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-15{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-16{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-17{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-18{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-19{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-20{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-21{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-22{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-23{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-24{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-25{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-26{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-27{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-28{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-29{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-30{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-31{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-32{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-33{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-34{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-35{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-36{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-37{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-38{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-39{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-40{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-41{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-42{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-43{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropzone-area-44{border: 2px dashed {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            table.table td h2 a{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            svg{fill : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            a{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .boc-input>label{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .text-muted{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .user-name{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .personal-info li .title{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .personal-info li .text{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .page-header .breadcrumb a{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .page-header .breadcrumb{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .nav-tabs.nav-justified > li > a{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .apexcharts-text{fill : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .apexcharts-yaxis-label{fill : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .fitur-tema-tulisan-terang{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .fitur-tema2-tulisan-terang{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .fitur-tema-tulisan-gelap{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .fitur-tema2-tulisan-gelap{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .page-header .page-title{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .page-header .breadcrumb-item.active{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .dropdown-item{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .notification-title{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .clear-noti{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .logo-text{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .fa{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .cal-icon:after{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .bar-icon span{background-color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .apexcharts-legend-text{color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .form-header h3{color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+            .form-header p{color: {{ $mode_tema->warna_sistem_tulisan }} !important}
 
-        .apexcharts-xaxistooltip, .apexcharts-yaxistooltip{background: {{ auth()->user()->warna_mode }} !important; color : {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .form-control{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .profile-widget{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .card{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .sidebar {background-color: {{ auth()->user()->warna_mode }} !important;}
-        .custom-table tr{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .modal-content{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-1{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-2{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-3{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-4{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-5{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-6{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-7{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-8{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-9{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-10{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-11{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-12{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-13{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-14{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-15{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-16{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-17{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-18{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-19{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-20{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-21{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-22{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-23{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-24{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-25{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-26{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-27{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-28{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-29{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-30{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-31{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-32{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-33{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-34{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-35{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-36{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-37{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-38{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-39{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-40{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-41{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-42{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-43{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropzone-box-44{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .nav-tabs{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .profile-img-wrap{background : {{ auth()->user()->warna_mode }} !important;}
-        .header{background: {{ auth()->user()->warna_mode }} !important; box-shadow: {{ auth()->user()->bayangan_kotak_header }} !important;}
-        .btn-white{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .btn-outline-secondary{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .page-item.active .page-link{background: {{ auth()->user()->warna_mode }} !important; border-color: {{ auth()->user()->warna_mode }} !important;}
-        .boc-light .boc-input>input, .boc-light .boc-input>select{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .apexcharts-tooltip.apexcharts-theme-light {background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropdown-item.active, .dropdown-item:active{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .dropdown-item:focus, .dropdown-item:hover{background-color: {{ auth()->user()->warna_mode }} !important; border-radius : 10px !important; width: 90% !important; margin-left: 10px !important;}
-        .notifications ul.notification-list > li a:hover{background-color: {{ auth()->user()->warna_mode }} !important;}
-        .input-group-text{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .form-focus .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ auth()->user()->warna_mode }} !important; color: {{ auth()->user()->warna_sistem_tulisan }} !important;}
-        .custom-select{background: {{ auth()->user()->warna_mode }} url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='{{ auth()->user()->warna_sistem_tulisan }}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") right .75rem center/8px 10px no-repeat !important;}
+            .apexcharts-xaxistooltip, .apexcharts-yaxistooltip{background: {{ $mode_tema->warna_mode }} !important; color : {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .form-control{background-color: {{ $mode_tema->warna_mode }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .profile-widget{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .card{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .sidebar {background-color: {{ $mode_tema->warna_mode }} !important;}
+            .custom-table tr{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .modal-content{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-1{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-2{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-3{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-4{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-5{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-6{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-7{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-8{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-9{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-10{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-11{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-12{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-13{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-14{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-15{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-16{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-17{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-18{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-19{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-20{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-21{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-22{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-23{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-24{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-25{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-26{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-27{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-28{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-29{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-30{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-31{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-32{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-33{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-34{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-35{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-36{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-37{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-38{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-39{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-40{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-41{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-42{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-43{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropzone-box-44{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .boc-edit-form-instruments{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .boc-edit-form-fields{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .status-persetujuan-user{background-color: {{ $mode_tema->warna_mode }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+            .continue-btn{background-color: {{ $mode_tema->warna_mode }}}
+            .cancel-btn{background-color: {{ $mode_tema->warna_mode }}}
+            .card-header{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .nav-tabs{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .profile-img-wrap{background : {{ $mode_tema->warna_mode }} !important;}
+            .header{background: {{ $mode_tema->warna_mode }} !important; box-shadow: {{ $mode_tema->bayangan_kotak_header }} !important;}
+            .btn-white{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .btn-outline-secondary{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .page-item.active .page-link{background: {{ $mode_tema->warna_mode }} !important; border-color: {{ $mode_tema->warna_mode }} !important;}
+            .boc-light .boc-input>input, .boc-light .boc-input>select{background-color: {{ $mode_tema->warna_mode }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .apexcharts-tooltip.apexcharts-theme-light {background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropdown-item.active, .dropdown-item:active{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .dropdown-item:focus, .dropdown-item:hover{background-color: {{ $mode_tema->warna_mode }} !important; border-radius : 10px !important; width: 90% !important; margin-left: 10px !important;}
+            .notifications ul.notification-list > li a:hover{background-color: {{ $mode_tema->warna_mode }} !important;}
+            .input-group-text{background-color: {{ $mode_tema->warna_mode }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ $mode_tema->warna_mode }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .form-focus .select2-container--default .select2-selection--single .select2-selection__rendered{background-color: {{ $mode_tema->warna_mode }} !important; color: {{ $mode_tema->warna_sistem_tulisan }} !important;}
+            .custom-select{background: {{ $mode_tema->warna_mode }} url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='{{ $mode_tema->warna_sistem_tulisan }}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") right .75rem center/8px 10px no-repeat !important;}
 
-        .form-control::-webkit-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
-        .form-control::-moz-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
-        .form-control:-ms-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
-        .form-control::-ms-input-placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
-        .form-control::placeholder{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
-        .form-focus .focus-label{color: {{ auth()->user()->tabel_tulisan_tersembunyi }} !important;}
-        
-        .table-striped tbody tr:nth-of-type(odd){background-color: {{ auth()->user()->tabel_warna }} !important;}
-        .select2-container--default .select2-selection--single{background-color: {{ auth()->user()->tabel_warna }} !important;}
+            .form-control::-webkit-input-placeholder{color: {{ $mode_tema->tabel_tulisan_tersembunyi }} !important;}
+            .form-control::-moz-placeholder{color: {{ $mode_tema->tabel_tulisan_tersembunyi }} !important;}
+            .form-control:-ms-input-placeholder{color: {{ $mode_tema->tabel_tulisan_tersembunyi }} !important;}
+            .form-control::-ms-input-placeholder{color: {{ $mode_tema->tabel_tulisan_tersembunyi }} !important;}
+            .form-control::placeholder{color: {{ $mode_tema->tabel_tulisan_tersembunyi }} !important;}
+            .form-focus .focus-label{color: {{ $mode_tema->tabel_tulisan_tersembunyi }} !important;}
+            
+            .table-striped tbody tr:nth-of-type(odd){background-color: {{ $mode_tema->tabel_warna }} !important;}
+            .select2-container--default .select2-selection--single{background-color: {{ $mode_tema->tabel_warna }} !important;}
 
-        .dropdown-menu{background-color: {{ auth()->user()->warna_dropdown_menu }} !important;}
-        .dash-widget-icon{background-color: {{ auth()->user()->ikon_plugin }} !important;}
-        
-        .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title{background: {{ auth()->user()->warna_mode_2 }} !important;}
-        .select2-container--default .select2-results__option--selected{background-color: {{ auth()->user()->warna_mode_2 }} !important;}
+            .dropdown-menu{background-color: {{ $mode_tema->warna_dropdown_menu }} !important;}
+            .dash-widget-icon{background-color: {{ $mode_tema->ikon_plugin }} !important;}
+            
+            .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title{background: {{ $mode_tema->warna_mode_2 }} !important;}
+            .select2-container--default .select2-results__option--selected{background-color: {{ $mode_tema->warna_mode_2 }} !important;}
+
+            @foreach($result_tema as $sql_user => $aplikasi_tema)
+                @if ($aplikasi_tema->tema_aplikasi == 'Gelap')
+                    .cancel-btn{color: #f43b48 !important}
+                    .cancel-btn:hover, .cancel-btn:focus, .cancel-btn:active {color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+                    .topnav-dropdown-footer a:hover{color: #f83f37 !important}
+                    .topnav-dropdown-header .clear-noti:hover{color: #f83f37 !important}
+                    .notification-message.noti-read .noti-title{color: #989c9e !important}
+                    .boc-edit-form-header{background-color: {{ $mode_tema->warna_dropdown_menu }} !important; border-radius: 0px !important;}
+                    .boc-dark .boc-input>label.focused,.boc-light .boc-input>label.focused{color:#039be5 !important}
+
+                    @foreach ($belum_dibaca as $notifikasi_belum_dibaca)
+                        #popup-notifikasi_{{ $notifikasi_belum_dibaca->id }} {background: {{ $mode_tema->warna_mode }} !important}
+                        .noti-details2{color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+                        .noti-time3{color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+                        .fa-clock{color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+                    @endforeach
+                    @foreach ($dibaca as $notifikasi_dibaca)
+                        #popup-notifikasi_{{ $notifikasi_dibaca->id }} {background: {{ $mode_tema->warna_mode }} !important}
+                        .noti-details2{color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+                        .noti-time3{color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+                        .fa-clock{color: {{ $mode_tema->warna_sistem_tulisan }} !important}
+                    @endforeach
+                @endif
+            @endforeach
+
+            @foreach ($belum_dibaca as $notifikasi_belum_dibaca)
+            #popup-notifikasi_{{ $notifikasi_belum_dibaca->id }} {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #fff;
+                padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.2);
+            }
+
+            #close-popup_{{ $notifikasi_belum_dibaca->id }} {
+                background-color: #e74a3b;
+                border-color: #e74a3b;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 15px;
+            }
+
+            #close-popup_{{ $notifikasi_belum_dibaca->id }}:hover {
+                background-color: #e02d1b;
+                border-color: #d52a1a;
+            }
+
+            .close-notifikasi {
+                bottom: 20px;
+                left: 440px;
+                text-align: center;
+                position: absolute;
+            }
+            
+            .logo-rsud2 img{
+                display: block;
+                width: 15%;
+                margin-left: 87%;
+            }
+
+            .noti-time3 {
+                position: absolute;
+                bottom: 5px;
+                right: 15px;
+                float: right;
+                color: #333;
+                font-size: 14px;
+                font-family: 'Poppins';
+                text-align: center;
+            }
+            @endforeach
+
+            @foreach ($dibaca as $notifikasi_dibaca)
+            #popup-notifikasi_{{ $notifikasi_dibaca->id }} {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #fff;
+                padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.2);
+            }
+
+            #close-popup_{{ $notifikasi_dibaca->id }} {
+                background-color: #e74a3b;
+                border-color: #e74a3b;
+                color: #fff;
+                border: none;
+                padding: 0px 5px;
+                border-radius: 20px;
+            }
+
+            #close-popup_{{ $notifikasi_dibaca->id }}:hover {
+                background-color: #e02d1b;
+                border-color: #d52a1a;
+            }
+
+            .close-notifikasi-2 {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+
+            .logo-rsud2 img{
+                display: block;
+                width: 15%;
+                margin-left: 87%;
+            }
+
+            .noti-time3 {
+                position: absolute;
+                bottom: 5px;
+                right: 15px;
+                float: right;
+                color: #333;
+                font-size: 14px;
+                font-family: 'Poppins';
+                text-align: center;
+            }
+            @endforeach
+        @endforeach
     </style>
 
     <!-- Main Wrapper -->
