@@ -11713,8 +11713,8 @@ ul.nav-tabs > li > a {
 .dataTables_paginate {
 	position: relative;
 	float: right;
-	margin-top: -43px;
-	margin-bottom: -10px;
+	/* margin-top: -43px;
+	margin-bottom: -10px; */
 }
 
 .btn-secondary {
