@@ -1028,6 +1028,7 @@ class UserManagementController extends Controller
             DB::table('users')->where('user_id', $request->user_id)->update($updateNIPRuangan);
 
             $updateDP = [
+                'nip'                   => $request->nip,
                 'tanggal_lahir'         => $request->tanggal_lahir,
                 'tempat_lahir'          => $request->tempat_lahir,
                 'pendidikan_terakhir'   => $request->pendidikan_terakhir,
@@ -1075,6 +1076,14 @@ class UserManagementController extends Controller
                 'nip'                   => $request->nip,
             ];
             DB::table('users')->where('user_id', $request->user_id)->update($updateNIP);
+
+            $updateDP = [
+                'nip'                   => $request->nip,
+                'tanggal_lahir'         => $request->tanggal_lahir,
+                'tempat_lahir'          => $request->tempat_lahir,
+                'jenis_kelamin'         => $request->jenis_kelamin,
+            ];
+            DB::table('daftar_pegawai')->where('user_id', $request->user_id)->update($updateDP);
 
             $information = ProfileInformation::updateOrCreate(['user_id' => $request->user_id]);
             $information->name         = $request->name;
@@ -1557,6 +1566,12 @@ class UserManagementController extends Controller
                 'ruangan'               => $request->ruangan
             ];
             DB::table('daftar_pegawai')->where('user_id', $request->user_id)->update($updateDP);
+
+            $updateUsers = [
+                'nip'                   => $request->nip,
+                'ruangan'               => $request->ruangan
+            ];
+            DB::table('users')->where('user_id', $request->user_id)->update($updateUsers);
 
             DB::commit();
             Toastr::success('Data profil pegawai berhasil diperbaharui ✔', 'Success');
