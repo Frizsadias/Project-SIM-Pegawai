@@ -80,7 +80,7 @@
                     <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                         <div class="profile-widget">
                             <div class="profile-img">
-                                <a href="{{ url('user/profile/' . $lists->user_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/' . $lists->avatar) }}" alt="{{ $lists->avatar }}" alt="{{ $lists->avatar }}"></a>
+                                <a href="{{ url('user/profile/' . $lists->user_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/' . $lists->avatar) }}" alt="{{ $lists->avatar }}" loading="lazy"></a>
                             </div>
                             <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->name }}</a></h4>
                             <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->nip }}</a></h5>

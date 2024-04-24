@@ -519,7 +519,7 @@
                                         <a href="#" id="open-popup">
                                             <div class="media">
                                                 <span class="avatar">
-                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasi_belum_dibaca->data['avatar']) }}">
+                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasi_belum_dibaca->data['avatar']) }}" loading="lazy">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details">
@@ -543,7 +543,7 @@
                                         <a href="#" id="open-popup">
                                             <div class="media">
                                                 <span class="avatar">
-                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasi_dibaca->data['avatar']) }}">
+                                                    <img alt="" src="{{ URL::to('/assets/images/' . $notifikasi_dibaca->data['avatar']) }}" loading="lazy">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details">
@@ -585,7 +585,7 @@
                                         Kepada <b>{{ $notifikasi_belum_dibaca->data['name'] }}</b> {{ $notifikasi_belum_dibaca->data['message9'] }}</i>
                                     <br><br></p>
                                     <p class="logo-rsud">
-                                        <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
+                                        <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban" loading="lazy">
                                     </p>
                                     <p class="noti-time2">
                                         <b>RSUD Caruban</b><br>
@@ -612,7 +612,7 @@
                                         Kepada <b>{{ $notifikasi_dibaca->data['name'] }}</b> {{ $notifikasi_dibaca->data['message9'] }}</i>
                                     <br><br></p>
                                     <p class="logo-rsud">
-                                        <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban">
+                                        <img src="{{ asset('assets/images/Logo_RSUD_Caruban.png') }}" alt="Logo RSUD Caruban" loading="lazy">
                                     </p>
                                     <p class="noti-time2">
                                         <b>RSUD Caruban</b><br>
@@ -639,8 +639,7 @@
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img">
-                            <img src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}"
-                                alt="{{ Auth::user()->name }}">
+                            <img src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" loading="lazy">
                             <span class="status online"></span></span>
                         <span>{{ Auth::user()->name }}</span>
                     </a>

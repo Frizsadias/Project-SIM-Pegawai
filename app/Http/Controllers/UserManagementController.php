@@ -261,7 +261,7 @@ class UserManagementController extends Controller
             ->get();
         $data_arr = [];
         foreach ($records as $key => $record) {
-            $record->name = '<h2 class="table-avatar"><a href="'.url('user/profile/' . $record->user_id).'" class="name">'.'<img class="avatar" data-avatar='.$record->avatar.' src="'.url('/assets/images/'.$record->avatar).'">' .$record->name.'</a></h2>';
+            $record->name = '<h2 class="table-avatar"><a href="'.url('user/profile/' . $record->user_id).'" class="name">'.'<img class="avatar" data-avatar='.$record->avatar.' src="'.url('/assets/images/'.$record->avatar).'" loading="lazy">' .$record->name.'</a></h2>';
             if ($record->role_name == 'Admin') { /** color role name */
                 $role_name = '<span class="badge bg-inverse-danger role_name">'.$record->role_name.'</span>';
             } elseif ($record->role_name == 'Super Admin') {
@@ -1927,7 +1927,7 @@ class UserManagementController extends Controller
                 "no_hp"                 => '<a href="https://api.whatsapp.com/send?phone=62' . $result_pegawai->no_hp . '" target="_blank"><span class="no_hp">' . $result_pegawai->no_hp . '</span></a>',
                 "ruangan"               => '<span class="ruangan">' . $result_pegawai->ruangan . '</span>',
                 "kedudukan_pns"         => '<span class="kedudukan_pns">' . $result_pegawai->kedudukan_pns . '</span>',
-                "user_id"               => '<a href="' . url('user/profile/' . $result_pegawai->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_pegawai->avatar) . '"></a>',
+                "user_id"               => '<a href="' . url('user/profile/' . $result_pegawai->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_pegawai->avatar) . '" loading="lazy"></a>',
             ];
         }
 
@@ -2013,7 +2013,7 @@ class UserManagementController extends Controller
                 "gol_ruang_akhir"   => '<span class="gol_ruang_akhir">' . $result_ruang->gol_ruang_akhir . '</span>',
                 "ruangan"           => '<span class="ruangan">' . $result_ruang->ruangan . '</span>',
                 "jenis_pegawai"     => '<span class="jenis_pegawai">' . $result_ruang->jenis_pegawai . '</span>',
-                "user_id"           => '<a href="' . url('user/profile/' . $result_ruang->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_ruang->avatar) . '"></a>',
+                "user_id"           => '<a href="' . url('user/profile/' . $result_ruang->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_ruang->avatar) . '" loading="lazy"></a>',
             ];
         }
 
@@ -2098,7 +2098,7 @@ class UserManagementController extends Controller
                 "no_hp"                 => '<a href="https://api.whatsapp.com/send?phone=62' . $result_pegawai->no_hp . '" target="_blank"><span class="no_hp">' . $result_pegawai->no_hp . '</span></a>',
                 "ruangan"               => '<span class="ruangan">' . $result_pegawai->ruangan . '</span>',
                 "kedudukan_pns"         => '<span class="kedudukan_pns">' . $result_pegawai->kedudukan_pns . '</span>',
-                "user_id"               => '<a href="' . url('user/profile/' . $result_pegawai->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_pegawai->avatar) . '"></a>',
+                "user_id"               => '<a href="' . url('user/profile/' . $result_pegawai->user_id) . '" class="avatar"><img alt="" src="' . asset('assets/images/' . $result_pegawai->avatar) . '" loading="lazy"></a>',
             ];
         }
 

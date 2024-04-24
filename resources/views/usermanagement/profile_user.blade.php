@@ -26,14 +26,14 @@
                                 {{-- <div class="profile-img-wrap">
                                     <div class="profile-img">
                                         <a href="#">
-                                            <img alt="" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <img alt="" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" loading="lazy">
                                         </a>
                                     </div>
                                 </div> --}}
                                 <div class="profile-img-wrap">
                                     <div class="profile-img">
                                         <a href="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" data-fancybox="foto-profil">
-                                            <img alt="{{ Auth::user()->name }}" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}">
+                                            <img alt="{{ Auth::user()->name }}" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" loading="lazy">
                                         </a>
                                     </div>
                                 </div>
@@ -435,7 +435,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{-- <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" loading="lazy">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file" id="image" name="images">
@@ -443,7 +443,7 @@
                                             </div>
                                         </div> --}}
                                         <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" loading="lazy">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">Unggah</span>
                                                 <input class="upload" type="file" id="image" name="images" onchange="previewImage(event)">
@@ -487,7 +487,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{-- <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <img class="inline-block" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" loading="lazy">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file" id="image" name="images">
@@ -495,7 +495,7 @@
                                             </div>
                                         </div> --}}
                                         <div class="profile-img-wrap edit-img">
-                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+                                            <img class="inline-block" id="imagePreview" src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" loading="lazy">
                                             <div class="fileupload btn">
                                                 <span class="btn-text">Unggah</span>
                                                 <input class="upload" type="file" id="image" name="images" onchange="previewImage(event)">
