@@ -43,12 +43,12 @@
                             <label class="focus-label">Nama Pegawai</label>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3">
+                    {{-- <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="email">
                             <label class="focus-label">E-mail</label>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-6 col-md-3">
                         <button type="sumit" class="btn btn-success btn-block"> Cari </button>
                     </div>
@@ -84,7 +84,7 @@
                             </div>
                             <h4 class="user-name m-t-10 mb-0 text-ellipsis">{{ $result_ruang->name }}</h4>
                             <h5 class="user-name m-t-10 mb-0 text-ellipsis">{{ $result_ruang->nip }}</h5>
-                            <h5 class="user-name m-t-10 mb-0 text-ellipsis">{{ $result_ruang->email }}</h5>
+                            {{-- <h5 class="user-name m-t-10 mb-0 text-ellipsis">{{ $result_ruang->email }}</h5> --}}
                             @if ($result_ruang->ruangan)
                                 <h5 class="user-name m-t-10 mb-0 text-ellipsis">{{ $result_ruang->ruangan }}</h5>
                             @else

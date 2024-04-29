@@ -1210,7 +1210,6 @@ class UserManagementController extends Controller
             $todayDate = $dt->toDayDateTimeString();
 
             $update = [
-
                 'user_id'      => $user_id,
                 'name'         => $name,
                 'nip'          => $nip,
@@ -1219,6 +1218,10 @@ class UserManagementController extends Controller
                 'email'        => $email,
                 'status'       => $status,
                 'avatar'       => $avatar,
+            ];
+
+            $updateDP = [
+                'role_name'    => $role_name,
             ];
 
             $activityLog = [
@@ -1231,7 +1234,9 @@ class UserManagementController extends Controller
             ];
 
             DB::table('user_activity_logs')->insert($activityLog);
+            DB::table('daftar_pegawai')->where('user_id', $request->user_id)->update($updateDP);
             User::where('user_id', $request->user_id)->update($update);
+            
             DB::commit();
             Toastr::success('Data pengguna berhasil diperbaharui ✔', 'Success');
             return redirect()->route('manajemen-pengguna');

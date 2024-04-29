@@ -5639,16 +5639,20 @@ class LayananController extends Controller
     {
         $name = $request->input('name');
         $nip = $request->input('nip');
-        $email = $request->input('email');
 
-        $data_ruangan = User::where('role_name', 'User')
-        ->join('profil_pegawai', 'users.user_id', '=', 'profil_pegawai.user_id')
-        ->join('posisi_jabatan', 'users.user_id', '=', 'posisi_jabatan.user_id')
-        ->where('users.ruangan', auth()->user()->ruangan)
-            ->where(function ($query) use ($name, $nip, $email) {
-                $query->where('profil_pegawai.name', 'like', '%' . $name . '%')
-                    ->where('profil_pegawai.nip', 'like', '%' . $nip . '%')
-                    ->where('profil_pegawai.email', 'like', '%' . $email . '%');
+        $data_ruangan = DB::table('daftar_pegawai')
+            ->select(
+                'daftar_pegawai.user_id',
+                'daftar_pegawai.name',
+                'daftar_pegawai.nip',
+                'daftar_pegawai.ruangan',
+                'daftar_pegawai.avatar'
+            )
+            ->where('role_name', 'User')
+            ->where('ruangan', auth()->user()->ruangan)
+            ->where(function ($query) use ($name, $nip) {
+                $query->where('name', 'like', '%' . $name . '%')
+                    ->where('nip', 'like', '%' . $nip . '%');
             })
             ->get();
 

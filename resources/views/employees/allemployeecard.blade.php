@@ -43,12 +43,12 @@
                             <label class="focus-label">Nama Pegawai</label>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3">
+                    {{-- <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="email">
                             <label class="focus-label">E-mail</label>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-6 col-md-3">
                         <button type="sumit" class="btn btn-success btn-block"> Cari </button>
                     </div>
@@ -84,7 +84,7 @@
                             </div>
                             <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->name }}</a></h4>
                             <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->nip }}</a></h5>
-                            <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->email }}</a></h5>
+                            {{-- <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a>{{ $lists->email }}</a></h5> --}}
                         </div>
                     </div>
                 @endforeach
