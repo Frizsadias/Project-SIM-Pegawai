@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('tema_aplikasi')->nullable();
+            $table->string('status_online')->nullable();
             $table->timestamps();
         });
 
@@ -49,6 +50,7 @@ class CreateUsersTable extends Migration
              'eselon'                       => NULL,
              'password'                     => Hash::make('Kelvin.P980425'),
              'tema_aplikasi'                => 'Terang',
+             'status_online'                => 'Offline',
              'created_at' => now(),
              'updated_at' => now()
             ],
@@ -66,6 +68,7 @@ class CreateUsersTable extends Migration
              'eselon'                       => NULL,
              'password'                     => Hash::make('123456789'),
              'tema_aplikasi'                => 'Terang',
+             'status_online'                => 'Offline',
              'created_at' => now(),
              'updated_at' => now()
             ],
@@ -83,6 +86,7 @@ class CreateUsersTable extends Migration
              'eselon'                       => NULL,
              'password'                     => Hash::make('123456789'),
              'tema_aplikasi'                => 'Terang',
+             'status_online'                => 'Offline',
              'created_at' => now(),
              'updated_at' => now()
             ]

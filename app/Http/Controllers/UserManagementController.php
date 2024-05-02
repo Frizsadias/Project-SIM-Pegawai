@@ -261,7 +261,11 @@ class UserManagementController extends Controller
             ->get();
         $data_arr = [];
         foreach ($records as $key => $record) {
-            $record->name = '<h2 class="table-avatar"><a href="'.url('user/profile/' . $record->user_id).'" class="name">'.'<img class="avatar" data-avatar='.$record->avatar.' src="'.url('/assets/images/'.$record->avatar).'" loading="lazy">' .$record->name.'</a></h2>';
+            if ($record->status_online === "Online") {
+                $record->name = '<h2 class="table-avatar"><a href="'.url('user/profile/' . $record->user_id).'" class="name">'.'<img class="avatar" data-avatar='.$record->avatar.' src="'.url('/assets/images/'.$record->avatar).'" loading="lazy"><span class="status_online"></span>' .$record->name.'</a></h2>';
+            } else {
+                $record->name = '<h2 class="table-avatar"><a href="'.url('user/profile/' . $record->user_id).'" class="name">'.'<img class="avatar" data-avatar='.$record->avatar.' src="'.url('/assets/images/'.$record->avatar).'" loading="lazy"><span class="status_offline"></span>' .$record->name.'</a></h2>';
+            }
             if ($record->role_name == 'Admin') { /** color role name */
                 $role_name = '<span class="badge bg-inverse-danger role_name">'.$record->role_name.'</span>';
             } elseif ($record->role_name == 'Super Admin') {

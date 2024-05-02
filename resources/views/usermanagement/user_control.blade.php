@@ -311,6 +311,32 @@
     </div>
     <!-- /Page Wrapper -->
 
+    <style>
+        .status_online{
+            position: relative;
+            width: 10px;
+            height: 10px;
+            display: inline-block !important;
+            border-radius: 50%;
+            top: 10px;
+            right: 18px;
+            background-color: #55ce63;
+            border: 1px solid #fff;
+        }
+        
+        .status_offline{
+            position: relative;
+            width: 10px;
+            height: 10px;
+            display: inline-block !important;
+            border-radius: 50%;
+            top: 10px;
+            right: 18px;
+            background-color: #a7a7a7;
+            border: 1px solid #fff;
+        }
+    </style>
+
     @section('script')
         <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.min.js"></script>

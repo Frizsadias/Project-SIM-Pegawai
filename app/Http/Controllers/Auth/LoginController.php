@@ -50,7 +50,7 @@ class LoginController extends Controller
     }
 
     /** index login page */
-    public function login()
+    public function login(Request $request)
     {
         return view('auth.login');
     }
@@ -91,6 +91,12 @@ class LoginController extends Controller
                 $activityLog = ['name' => Session::get('name'), 'nip' => $user->nip, 'no_dokumen' => $user->no_dokumen, 'description' => 'Berhasil Masuk Aplikasi SILK', 'date_time' => $todayDate];
                 DB::table('activity_logs')->insert($activityLog);
 
+                $result_user_id = Session::get('user_id');
+                $updateStatus = [
+                    'status_online' => 'Online'
+                ];
+                DB::table('users')->where('user_id', $result_user_id)->update($updateStatus);
+
                 Toastr::success('Anda berhasil memasuki aplikasi SILK ✔', 'Success');
                 return redirect()->intended('home');
 
@@ -115,6 +121,13 @@ class LoginController extends Controller
     {
         $dt         = Carbon::now();
         $todayDate  = $dt->toDayDateTimeString();
+
+        $result_user_id = Session::get('user_id');
+        $updateStatus = [
+            'status_online' => 'Offline'
+        ];
+        DB::table('users')->where('user_id', $result_user_id)->update($updateStatus);
+
         $activityLog = ['name' => Session::get('name'), 'nip'=> Session::get('nip'), 'no_dokumen'=> Session::get('no_dokumen'), 'description' => 'Berhasil Keluar Aplikasi SILK', 'date_time' => $todayDate];
         DB::table('activity_logs')->insert($activityLog);
         $request->session()->forget('name');
