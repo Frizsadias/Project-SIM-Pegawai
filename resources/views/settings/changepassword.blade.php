@@ -99,7 +99,7 @@
     @section('script')
         <script src="{{ asset('assets/js/lihatkatasandi.js') }}"></script>
 
-        <script src="{{ asset('assets/js/indicatorkatasandi.js') }}"></script>
+        <script src="{{ asset('assets/js/indicatorkatasandichange.js') }}"></script>
 
         <script>
             @if (Auth::user()->role_name == 'Admin') 

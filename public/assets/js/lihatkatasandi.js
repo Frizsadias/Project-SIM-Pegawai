@@ -1,20 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
     const togglePassword = function(passwordInput, icon) {
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        } else {
-            passwordInput.type = 'password';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
+        if (passwordInput && icon) {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
         }
     };
 
     const showPassword = function(inputField, icon, toggleButton) {
-        toggleButton.addEventListener('click', function() {
-            togglePassword(inputField, icon);
-        });
+        if (toggleButton) {
+            toggleButton.addEventListener('click', function() {
+                togglePassword(inputField, icon);
+            });
+        }
     };
 
     const passwordInput1 = document.getElementById('passwordInput1');

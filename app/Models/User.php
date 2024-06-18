@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens, HasFactory, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,13 +21,19 @@ class User extends Authenticatable
         'name',
         'user_id',
         'email',
+        'nip',
+        'no_dokumen',
         'join_date',
-        'phone_number',
         'status',
         'role_name',
         'avatar',
+        'ruangan',
+        'jenis_jabatan',
+        'eselon',
         'email_verified_at',
         'password',
+        'tema_aplikasi',
+        'status_online',
     ];
 
     /**
@@ -48,12 +53,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 
-    use HasFactory, HasRoles;
-
-    public function hasRole($role_name)
+    public function isOnline()
     {
-        return $this->hasRole($role_name);
+        return $this->status_online === 'Online';
     }
 }

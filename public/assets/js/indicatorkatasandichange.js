@@ -1,0 +1,157 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Indicator Kata Sandi 2 //
+    const passwordInput2 = document.getElementById('passwordInput2');
+    const IndicatorKekuatan2 = document.getElementById('indicator-kata-sandi-2');
+    var IndicatorLemahBefore2 = document.querySelector(".kata-sandi-lemah-before-2");
+    var IndicatorSedangBefore2 = document.querySelector(".kata-sandi-sedang-before-2");
+    var IndicatorLemahAfter2 = document.querySelector(".kata-sandi-lemah-after-2");
+    var IndicatorSedangAfter2 = document.querySelector(".kata-sandi-sedang-after-2");
+    const IndicatorTulisan2 = document.getElementById('indicator-kata-sandi-tulisan-2');
+
+    passwordInput2.addEventListener('input', function() {
+        const password2 = passwordInput2.value.trim();
+        if (password2 === '') {
+            IndicatorKekuatan2.style.display = 'none';
+            IndicatorLemahBefore2.style.display = 'none';
+            IndicatorSedangBefore2.style.display = 'none';
+            IndicatorLemahAfter2.style.display = 'none';
+            IndicatorSedangAfter2.style.display = 'none';
+            IndicatorTulisan2.textContent = '';
+        } else {
+            const strength2 = kekuatanKataSandi2(password2);
+            perbaharuiIndicatorKataSandi2(strength2);
+        }
+    });
+
+    function kekuatanKataSandi2(password2) {
+        if (/[a-z]/.test(password2)) {
+            if (/\d+/.test(password2)) {
+                if (/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/.test(password2)) {
+                    return 'kuat';
+                } else {
+                    return 'sedang';
+                }
+            } else {
+                return 'lemah';
+            }
+        } else {
+            return 'lemah';
+        }
+    }
+
+    function perbaharuiIndicatorKataSandi2(strength2) {
+        IndicatorKekuatan2.style.display = '';
+        IndicatorKekuatan2.className = '';
+        IndicatorLemahBefore2.style.display = 'block';
+        IndicatorSedangBefore2.style.display = 'block';
+        IndicatorLemahAfter2.style.display = 'block';
+        IndicatorSedangAfter2.style.display = 'block';
+
+        if (strength2 === 'lemah') {
+            IndicatorKekuatan2.classList.add('kata-sandi-lemah');
+            IndicatorLemahBefore2.classList.add('kata-sandi-lemah-before-2');
+            IndicatorSedangBefore2.classList.add('kata-sandi-sedang-before-2');
+            IndicatorLemahAfter2.classList.remove('kata-sandi-lemah-after-2');
+            IndicatorSedangAfter2.classList.remove('kata-sandi-sedang-after-2');
+            IndicatorTulisan2.textContent = 'Kata Sandi Lemah';
+            IndicatorTulisan2.style.color = '#ff4757';
+
+        } else if (strength2 === 'sedang') {
+            IndicatorKekuatan2.classList.add('kata-sandi-sedang');
+            IndicatorLemahAfter2.classList.add('kata-sandi-lemah-after-2');
+            IndicatorSedangBefore2.classList.add('kata-sandi-sedang-before-2');
+            IndicatorLemahBefore2.classList.remove('kata-sandi-lemah-before-2');
+            IndicatorSedangAfter2.classList.remove('kata-sandi-sedang-after-2');
+            IndicatorTulisan2.textContent = 'Kata Sandi Sedang';
+            IndicatorTulisan2.style.color = 'orange';
+
+        } else {
+            IndicatorKekuatan2.classList.add('kata-sandi-kuat');
+            IndicatorLemahAfter2.classList.add('kata-sandi-lemah-after-2');
+            IndicatorSedangAfter2.classList.add('kata-sandi-sedang-after-2');
+            IndicatorLemahBefore2.classList.remove('kata-sandi-lemah-before-2');
+            IndicatorSedangBefore2.classList.remove('kata-sandi-sedang-before-2');
+            IndicatorTulisan2.textContent = 'Kata Sandi Kuat';
+            IndicatorTulisan2.style.color = '#23ad5c';
+        }
+    }
+    // /Indicator Kata Sandi 2 //
+
+    // Indicator Kata Sandi 3 //
+    const passwordInput3 = document.getElementById('passwordInput3');
+    const IndicatorKekuatan3 = document.getElementById('indicator-kata-sandi-3');
+    var IndicatorLemahBefore3 = document.querySelector(".kata-sandi-lemah-before-3");
+    var IndicatorSedangBefore3 = document.querySelector(".kata-sandi-sedang-before-3");
+    var IndicatorLemahAfter3 = document.querySelector(".kata-sandi-lemah-after-3");
+    var IndicatorSedangAfter3 = document.querySelector(".kata-sandi-sedang-after-3");
+    const IndicatorTulisan3 = document.getElementById('indicator-kata-sandi-tulisan-3');
+
+    passwordInput3.addEventListener('input', function() {
+        const password3 = passwordInput3.value.trim();
+        if (password3 === '') {
+            IndicatorKekuatan3.style.display = 'none';
+            IndicatorLemahBefore3.style.display = 'none';
+            IndicatorSedangBefore3.style.display = 'none';
+            IndicatorLemahAfter3.style.display = 'none';
+            IndicatorSedangAfter3.style.display = 'none';
+            IndicatorTulisan3.textContent = '';
+        } else {
+            const strength3 = kekuatanKataSandi3(password3);
+            perbaharuiIndicatorKataSandi3(strength3);
+        }
+    });
+    
+    function kekuatanKataSandi3(password3) {
+        if (/[a-z]/.test(password3)) {
+            if (/\d+/.test(password3)) {
+                if (/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/.test(password3)) {
+                    return 'kuat';
+                } else {
+                    return 'sedang';
+                }
+            } else {
+                return 'lemah';
+            }
+        } else {
+            return 'lemah';
+        }
+    }
+
+    function perbaharuiIndicatorKataSandi3(strength3) {
+        IndicatorKekuatan3.style.display = '';
+        IndicatorKekuatan3.className = '';
+        IndicatorLemahBefore3.style.display = 'block';
+        IndicatorSedangBefore3.style.display = 'block';
+        IndicatorLemahAfter3.style.display = 'block';
+        IndicatorSedangAfter3.style.display = 'block';
+
+        if (strength3 === 'lemah') {
+            IndicatorKekuatan3.classList.add('kata-sandi-lemah');
+            IndicatorLemahBefore3.classList.add('kata-sandi-lemah-before-3');
+            IndicatorSedangBefore3.classList.add('kata-sandi-sedang-before-3');
+            IndicatorLemahAfter3.classList.remove('kata-sandi-lemah-after-3');
+            IndicatorSedangAfter3.classList.remove('kata-sandi-sedang-after-3');
+            IndicatorTulisan3.textContent = 'Kata Sandi Lemah';
+            IndicatorTulisan3.style.color = '#ff4757';
+
+        } else if (strength3 === 'sedang') {
+            IndicatorKekuatan3.classList.add('kata-sandi-sedang');
+            IndicatorLemahAfter3.classList.add('kata-sandi-lemah-after-3');
+            IndicatorSedangBefore3.classList.add('kata-sandi-sedang-before-3');
+            IndicatorLemahBefore3.classList.remove('kata-sandi-lemah-before-3');
+            IndicatorSedangAfter3.classList.remove('kata-sandi-sedang-after-3');
+            IndicatorTulisan3.textContent = 'Kata Sandi Sedang';
+            IndicatorTulisan3.style.color = 'orange';
+
+        } else {
+            IndicatorKekuatan3.classList.add('kata-sandi-kuat');
+            IndicatorLemahAfter3.classList.add('kata-sandi-lemah-after-3');
+            IndicatorSedangAfter3.classList.add('kata-sandi-sedang-after-3');
+            IndicatorLemahBefore3.classList.remove('kata-sandi-lemah-before-3');
+            IndicatorSedangBefore3.classList.remove('kata-sandi-sedang-before-3');
+            IndicatorTulisan3.textContent = 'Kata Sandi Kuat';
+            IndicatorTulisan3.style.color = '#23ad5c';
+        }
+    }
+    // /Indicator Kata Sandi 3 //
+});

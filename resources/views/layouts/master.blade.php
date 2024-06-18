@@ -723,7 +723,11 @@
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img">
                             <img src="{{ URL::to('/assets/images/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" loading="lazy">
-                            <span class="status online"></span>
+                            @if (Auth::user()->isOnline())
+                                <span class="status online"></span>
+                            @else
+                                <span class="status offline"></span>
+                            @endif
                         </span>
                         <span>{{ Session::get('name') }}</span>
                     </a>
@@ -861,6 +865,9 @@
             }
         });
     </script>
+
+    <script src="{{ asset('assets/js/checking-online.js') }}"></script>
+    
     @yield('script')
     
 </body>

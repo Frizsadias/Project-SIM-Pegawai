@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const dataCards = document.querySelectorAll(".container .col-md-56");
+    const tempatTidurCards = document.querySelectorAll(".container .col-md-56");
     const lihatSemuaTempatTidur = document.getElementById("lihatSemuaTempatTidur");
     const sembunyikanTempatTidur = document.getElementById("sembunyikanTempatTidur");
     let dataDitampilkan = 3;
     const aturVisibilitasData = () => {
-        dataCards.forEach((card, index) => {
+        tempatTidurCards.forEach((card, index) => {
             if (index < dataDitampilkan) {
                 card.style.display = "block";
             } else {
@@ -12,28 +12,30 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     };
-    aturVisibilitasData();
-    lihatSemuaTempatTidur.addEventListener("click", () => {
-        dataDitampilkan = dataCards.length;
+    if (lihatSemuaTempatTidur && sembunyikanTempatTidur) {
         aturVisibilitasData();
-        lihatSemuaTempatTidur.style.display = "none";
-        sembunyikanTempatTidur.style.display = "block";
-    });
-    sembunyikanTempatTidur.addEventListener("click", () => {
-        dataDitampilkan = 3;
-        aturVisibilitasData();
-        sembunyikanTempatTidur.style.display = "none";
-        lihatSemuaTempatTidur.style.display = "block";
-    });
+        lihatSemuaTempatTidur.addEventListener("click", () => {
+            dataDitampilkan = tempatTidurCards.length;
+            aturVisibilitasData();
+            lihatSemuaTempatTidur.style.display = "none";
+            sembunyikanTempatTidur.style.display = "block";
+        });
+        sembunyikanTempatTidur.addEventListener("click", () => {
+            dataDitampilkan = 3;
+            aturVisibilitasData();
+            sembunyikanTempatTidur.style.display = "none";
+            lihatSemuaTempatTidur.style.display = "block";
+        });
+    }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const dataCards = document.querySelectorAll(".container .col-md-4");
+    const jenisPegawaiCards = document.querySelectorAll(".container .col-md-4");
     const lihatSemuaJenisPegawai = document.getElementById("lihatSemuaJenisPegawai");
     const sembunyikanJenisPegawai = document.getElementById("sembunyikanJenisPegawai");
     let dataDitampilkan = 3;
     const aturVisibilitasData2 = () => {
-        dataCards.forEach((card, index) => {
+        jenisPegawaiCards.forEach((card, index) => {
             if (index < dataDitampilkan) {
                 card.style.display = "block";
             } else {
@@ -41,28 +43,30 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     };
-    aturVisibilitasData2();
-    lihatSemuaJenisPegawai.addEventListener("click", () => {
-        dataDitampilkan = dataCards.length;
+    if (lihatSemuaJenisPegawai && sembunyikanJenisPegawai) {
         aturVisibilitasData2();
-        lihatSemuaJenisPegawai.style.display = "none";
-        sembunyikanJenisPegawai.style.display = "block";
-    });
-    sembunyikanJenisPegawai.addEventListener("click", () => {
-        dataDitampilkan = 3;
-        aturVisibilitasData2();
-        sembunyikanJenisPegawai.style.display = "none";
-        lihatSemuaJenisPegawai.style.display = "block";
-    });
+        lihatSemuaJenisPegawai.addEventListener("click", () => {
+            dataDitampilkan = jenisPegawaiCards.length;
+            aturVisibilitasData2();
+            lihatSemuaJenisPegawai.style.display = "none";
+            sembunyikanJenisPegawai.style.display = "block";
+        });
+        sembunyikanJenisPegawai.addEventListener("click", () => {
+            dataDitampilkan = 3;
+            aturVisibilitasData2();
+            sembunyikanJenisPegawai.style.display = "none";
+            lihatSemuaJenisPegawai.style.display = "block";
+        });
+    }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const dataCards = document.querySelectorAll(".container .col-md-4");
+    const pegawaiRuangCards = document.querySelectorAll(".container .col-md-4");
     const lihatSemuaPegawaiRuang = document.getElementById("lihatSemuaPegawaiRuang");
     const sembunyikanPegawaiRuang = document.getElementById("sembunyikanPegawaiRuang");
     let dataDitampilkan = 3;
     const aturVisibilitasData3 = () => {
-        dataCards.forEach((card, index) => {
+        pegawaiRuangCards.forEach((card, index) => {
             if (index < dataDitampilkan) {
                 card.style.display = "block";
             } else {
@@ -70,17 +74,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     };
-    aturVisibilitasData3();
-    lihatSemuaPegawaiRuang.addEventListener("click", () => {
-        dataDitampilkan = dataCards.length;
+    if (lihatSemuaPegawaiRuang && sembunyikanPegawaiRuang) {
         aturVisibilitasData3();
-        lihatSemuaPegawaiRuang.style.display = "none";
-        sembunyikanPegawaiRuang.style.display = "block";
-    });
-    sembunyikanPegawaiRuang.addEventListener("click", () => {
-        dataDitampilkan = 3;
-        aturVisibilitasData3();
-        sembunyikanPegawaiRuang.style.display = "none";
-        lihatSemuaPegawaiRuang.style.display = "block";
-    });
+        lihatSemuaPegawaiRuang.addEventListener("click", () => {
+            dataDitampilkan = pegawaiRuangCards.length;
+            aturVisibilitasData3();
+            lihatSemuaPegawaiRuang.style.display = "none";
+            sembunyikanPegawaiRuang.style.display = "block";
+        });
+        sembunyikanPegawaiRuang.addEventListener("click", () => {
+            dataDitampilkan = 3;
+            aturVisibilitasData3();
+            sembunyikanPegawaiRuang.style.display = "none";
+            lihatSemuaPegawaiRuang.style.display = "block";
+        });
+    }
 });
